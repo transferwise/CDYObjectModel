@@ -8,7 +8,6 @@ const struct UserAttributes UserAttributes = {
 	.email = @"email",
 	.invitationReward = @"invitationReward",
 	.invitationRewardCurrency = @"invitationRewardCurrency",
-	.inviteUrl = @"inviteUrl",
 	.pReference = @"pReference",
 	.password = @"password",
 	.sendAsBusinessDefaultSetting = @"sendAsBusinessDefaultSetting",
@@ -16,10 +15,12 @@ const struct UserAttributes UserAttributes = {
 };
 
 const struct UserRelationships UserRelationships = {
+	.achBanks = @"achBanks",
 	.businessProfile = @"businessProfile",
 	.contacts = @"contacts",
 	.payments = @"payments",
 	.personalProfile = @"personalProfile",
+	.referralLinks = @"referralLinks",
 };
 
 @implementation UserID
@@ -116,8 +117,6 @@ const struct UserRelationships UserRelationships = {
 
 @dynamic invitationRewardCurrency;
 
-@dynamic inviteUrl;
-
 @dynamic pReference;
 
 @dynamic password;
@@ -162,6 +161,8 @@ const struct UserRelationships UserRelationships = {
 	[self setPrimitiveSuccessfulInviteCount:[NSNumber numberWithShort:value_]];
 }
 
+@dynamic achBanks;
+
 @dynamic businessProfile;
 
 @dynamic contacts;
@@ -187,6 +188,8 @@ const struct UserRelationships UserRelationships = {
 }
 
 @dynamic personalProfile;
+
+@dynamic referralLinks;
 
 @end
 

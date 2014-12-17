@@ -139,7 +139,7 @@
     [controller presentOnViewController:self.view.window.rootViewController];
 }
 
-- (void)modalClosed
+- (void)dismissCompleted:(TransparentModalViewController *)dismissedController
 {
 	self.isShowingSettings = NO;
 }

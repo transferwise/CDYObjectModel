@@ -19,7 +19,7 @@
 #import "Country.h"
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
-#import "StateSuggestionProvider.h"
+#import "StateSuggestionCellProvider.h"
 
 @interface BusinessProfileSource ()
 

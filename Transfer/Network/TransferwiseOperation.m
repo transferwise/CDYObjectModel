@@ -29,6 +29,7 @@
 @property (nonatomic, copy) TRWOperationErrorBlock operationErrorHandler;
 @property (nonatomic, copy) TRWUploadOperationProgressBlock uploadProgressHandler;
 @property (nonatomic, strong) ObjectModel *workModel;
+@property (nonatomic) BOOL hasBeenCancelled;
 
 @end
 
@@ -38,10 +39,15 @@
     ABSTRACT_METHOD;
 }
 
-- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath {
+- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath
+{
+    [self postData:data toPath:postPath timeOut:-1];
+}
+
+- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath timeOut:(NSTimeInterval) timeOut{
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Post %@ to %@", [data sensibleDataHidden], [postPath stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
-    [self executeOperationWithMethod:@"POST" path:postPath parameters:data];
+    [self executeOperationWithMethod:@"POST" path:postPath parameters:data timeOut:timeOut];
 }
 
 - (void)getDataFromPath:(NSString *)path {
@@ -66,7 +72,15 @@
 }
 
 - (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
+    [self executeOperationWithMethod:method path:path parameters:parameters timeOut:-1];
+}
+    
+- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters timeOut:(NSTimeInterval)timeout{
     NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method path:path parameters:parameters];
+    if(timeout >0)
+    {
+        request.timeoutInterval = timeout;
+    }
     [self executeRequest:request];
 }
 
@@ -78,8 +92,17 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
     [operation setQueuePriority:NSOperationQueuePriorityLow];
+	
+#if DEV_VERSION
+	//if you want to run app against localhost then it has invalid cert
+	[operation setAllowsInvalidSSLCertificate:YES];
+#endif
     __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
+		if (self.hasBeenCancelled) {
+			return;
+		}
+		
         NSInteger statusCode = op.response.statusCode;
         MCLog(@"%@ - Success:%ld - %lu", op.request.URL.path, (long)statusCode, (unsigned long)[responseObject length]);
         if (statusCode != 200 || !responseObject) {
@@ -109,6 +132,10 @@
             weakSelf.operationSuccessHandler(response);
         }
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+		if (self.hasBeenCancelled) {
+			return;
+		}
+		
         MCLog(@"Error:%@", error);
         if (op.response.statusCode == 410) {
             NSError *createdError = [NSError errorWithDomain:TRWErrorDomain code:ResponseCallGoneError userInfo:@{}];
@@ -223,6 +250,7 @@
 }
 
 - (NSString *)addTokenToPath:(NSString *)path {
+    path = [NSString stringWithFormat:@"/%@%@",[self apiVersion],path];
     return [[TransferwiseClient sharedClient] addTokenToPath:path];
 }
 
@@ -233,6 +261,24 @@
         _workModel = [self.objectModel spawnBackgroundInstance];
     }
     return _workModel;
+}
+
++ (NSURLRequest*)getRequestForApiPath:(NSString*)path parameters:(NSDictionary*)params
+{
+    NSString *tokenizedPath = [[TransferwiseClient sharedClient] addTokenToPath:path];
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:tokenizedPath parameters:params];
+    [TransferwiseOperation provideAuthenticationHeaders:request];
+    return request;
+}
+
+- (NSString*)apiVersion
+{
+    return @"v1";
+}
+
+- (void)cancel
+{
+	self.hasBeenCancelled = YES;
 }
 
 @end

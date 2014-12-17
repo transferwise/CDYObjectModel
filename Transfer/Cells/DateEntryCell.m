@@ -36,6 +36,7 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
 @property (nonatomic) BOOL separatorsAdded;
 
+@property (nonatomic, strong) NSCalendar *gregorianCalendar;
 @end
 
 @implementation DateEntryCell
@@ -63,6 +64,7 @@ NSInteger const kYearField = 3;
 	self.separatorLine = [[UIView alloc] init];
 	[self configureLabels];
 	[self configureFields];
+    self.gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 }
 
 - (void)configureFields
@@ -199,9 +201,9 @@ NSInteger const kYearField = 3;
 	{
 		NSString* unknownValue = NSLocalizedString(@"unknown.value", nil);
 		
-		NSString* day = [self.dayTextField.text hasValue] ? self.dayTextField.text : unknownValue;
-		NSString* month = [self.monthTextField.text hasValue] ? self.monthTextField.text : unknownValue;
-		NSString* year = [self.yearTextField.text hasValue] ? self.yearTextField.text : unknownValue;
+		NSString* day = [self.dayTextField.text hasValue] ? [[self class] paddedString:[self.dayTextField.text integerValue]] : unknownValue;
+		NSString* month = [self.monthTextField.text hasValue] ? [[self class] paddedString:[self.monthTextField.text integerValue]] : unknownValue;
+		NSString* year = [self.yearTextField.text hasValue] ? [[self class] paddedString:[self.yearTextField.text integerValue]] : unknownValue;
 		
 		return [NSString stringWithFormat:@"%@-%@-%@", year, month, day];
 	}
@@ -241,9 +243,19 @@ NSInteger const kYearField = 3;
 {
 	NSString *value = self.value;
 	NSError *error = nil;
+    __block BOOL validDate = NO;
 	NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeDate error:&error];
+    [detector enumerateMatchesInString:value options:0 range:NSMakeRange(0, [value length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+        NSDate *date = [result date];
+        if (date)
+        {
+            NSDateComponents *components = [self.gregorianCalendar components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:date];
+            NSString *resultingDateString = [NSString stringWithFormat:@"%04ld-%02ld-%02ld",(long)[components year],(long)[components month],(long)[components day]];
+            validDate = [value isEqualToString:resultingDateString];
+        }
+    }];
 	
-	return [value hasValue] && [detector numberOfMatchesInString:value options:0 range:NSMakeRange(0, value.length)] > 0;
+	return [value hasValue] && validDate;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

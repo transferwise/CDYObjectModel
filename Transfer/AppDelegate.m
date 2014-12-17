@@ -87,8 +87,6 @@
 	UIViewController* controller;
 
     
-
-    
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
@@ -112,9 +110,7 @@
 		controller = mainController;
         controller = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller];
 	}
-    
-    
-    
+	
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
 	return YES;

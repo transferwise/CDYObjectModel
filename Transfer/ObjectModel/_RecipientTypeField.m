@@ -11,11 +11,13 @@ const struct RecipientTypeFieldAttributes RecipientTypeFieldAttributes = {
 	.presentationPattern = @"presentationPattern",
 	.required = @"required",
 	.title = @"title",
+	.type = @"type",
 	.validationRegexp = @"validationRegexp",
 };
 
 const struct RecipientTypeFieldRelationships RecipientTypeFieldRelationships = {
 	.allowedValues = @"allowedValues",
+	.fieldForGroup = @"fieldForGroup",
 	.fieldForType = @"fieldForType",
 	.values = @"values",
 };
@@ -133,6 +135,8 @@ const struct RecipientTypeFieldRelationships RecipientTypeFieldRelationships = {
 
 @dynamic title;
 
+@dynamic type;
+
 @dynamic validationRegexp;
 
 @dynamic allowedValues;
@@ -145,6 +149,8 @@ const struct RecipientTypeFieldRelationships RecipientTypeFieldRelationships = {
 	[self didAccessValueForKey:@"allowedValues"];
 	return result;
 }
+
+@dynamic fieldForGroup;
 
 @dynamic fieldForType;
 

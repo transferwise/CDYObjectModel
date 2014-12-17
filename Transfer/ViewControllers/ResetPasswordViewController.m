@@ -58,7 +58,6 @@
 	[self.continueButton setTitle:NSLocalizedString(@"reset.controller.footer.button.title", nil) forState:UIControlStateNormal];
 	
 	[self.messageLabel setText:NSLocalizedString([@"reset.password.header.description" deviceSpecificLocalization], nil)];
-	MCLog(@"%@", NSLocalizedString([@"reset.password.header.description" deviceSpecificLocalization], nil));
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,6 +73,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[NavigationBarCustomiser setDefault];
+	[super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {

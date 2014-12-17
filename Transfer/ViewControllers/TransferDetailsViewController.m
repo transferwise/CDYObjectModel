@@ -33,7 +33,7 @@
 {
 	_payment = payment;
 	[self setTitle:[self getStatusBasedLocalization:@"transferdetails.controller.%@.header"
-											 status:self.payment.paymentStatus]];
+											 status:self.payment.paymentStatusString]];
 }
 
 - (void)viewDidLoad
@@ -119,7 +119,7 @@
 	self.headerView.transferNumber = [self.payment.remoteId stringValue];
 	self.headerView.recipientName = [self.payment.recipient name];
 	self.headerView.status = [self getStatusBasedLocalization:@"payment.status.%@.description.long"
-													   status:self.payment.paymentStatus];
+													   status:self.payment.paymentStatusString];
 	//waiting has a two-line status
 	if (self.payment.status == PaymentStatusSubmitted
 		|| self.payment.status == PaymentStatusUserHasPaid)
@@ -133,7 +133,7 @@
 {
 	self.amountsView.fromAmount = [self.payment payInStringWithCurrency];
 	self.amountsView.status = [self getStatusBasedLocalization:@"payment.status.%@.description.conversion"
-														 status:self.payment.paymentStatus];
+														 status:self.payment.paymentStatusString];
     if(self.payment.status != PaymentStatusRefunded)
     {
         self.amountsView.toAmount = [self.payment payOutStringWithCurrency];
@@ -156,10 +156,11 @@
 		NSString* eta = NSLocalizedString([self getStatusBasedLocalization:@"payment.status.%@.description.eta"
 																	status:self.payment.paymentStatus], nil);
 		
-		if(eta.length > 0 && self.payment.paymentDateString != nil)
+        NSString* dateString = self.payment.paymentDateString;
+		if(eta.length > 0 && dateString)
 		{
 			self.amountsView.shouldArrive = eta;
-			self.amountsView.eta = self.payment.estimatedDeliveryStringFromServer;
+			self.amountsView.eta = dateString;
 		}
 		else
 		{

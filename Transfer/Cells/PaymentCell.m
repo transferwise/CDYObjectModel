@@ -37,11 +37,21 @@
 	
     [self.nameLabel setText:[payment.recipient name]];
     [self.statusLabel setText:[payment localizedStatus]];
-    [self.moneyLabel setText:[payment transferredAmountString]];
-    [self.currencyLabel setText:[payment transferredCurrenciesString]];
+    
+    PaymentStatus status = [payment status];
+    if(status != PaymentStatusCancelled && status != PaymentStatusRefunded)
+    {
+        [self.moneyLabel setText:[payment transferredAmountString]];
+        [self.currencyLabel setText:[payment transferredCurrenciesString]];
+    }
+    else
+    {
+        [self.moneyLabel setText:@""];
+        [self.currencyLabel setText:@""];
+    }
     
     UIImage *icon;
-    switch ([payment status]) {
+    switch (status) {
         case PaymentStatusCancelled:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
 			self.canBeCancelled = NO;

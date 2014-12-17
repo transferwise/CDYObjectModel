@@ -9,7 +9,7 @@
 #import "CustomInfoViewController.h"
 
 @interface CustomInfoViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *dismissButton;
+@property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *infoImageView;
@@ -18,9 +18,47 @@
 
 @implementation CustomInfoViewController
 
+-(instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        [self setDefaultAction];
+    }
+    return self;
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self)
+    {
+        [self setDefaultAction];
+    }
+    return self;
+}
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self)
+    {
+        [self setDefaultAction];
+    }
+    return self;
+}
+
+-(void)setDefaultAction
+{
+    __weak typeof(self) weakSelf = self;
+    self.actionButtonBlock = ^{
+        [weakSelf dismiss];
+    };
+}
+
 -(void)viewDidLoad
 {
-    [self.dismissButton setTitle:self.dismissButtonTitle forState:UIControlStateNormal];
+    [self.actionButton setTitle:self.actionButtonTitle forState:UIControlStateNormal];
     self.infoLabel.text = self.infoText;
     self.titleLabel.text = self.titleText;
     self.infoImageView.image = self.infoImage;
@@ -39,15 +77,63 @@
     self.titleLabel.text = title;
 }
 
--(void)setDismissButtonTitle:(NSString *)dismissButtonTitle
+-(void)setActionButtonTitle:(NSString *)dismissButtonTitle
 {
-    _dismissButtonTitle = dismissButtonTitle;
-    [self.dismissButton setTitle:dismissButtonTitle forState:UIControlStateNormal];
+    _actionButtonTitle = dismissButtonTitle;
+    [self.actionButton setTitle:dismissButtonTitle forState:UIControlStateNormal];
 }
 
 -(void)setInfoImage:(UIImage *)infoImage
 {
     _infoImage = infoImage;
     self.infoImageView.image = infoImage;
+}
+
+-(IBAction)actionButtonTapped
+{
+    if(self.actionButtonBlock)
+    {
+        self.actionButtonBlock();
+    }
+}
+
+-(IBAction)closebuttonTapped
+{
+	if(self.mapCloseButtonToAction)
+    {
+        if(self.actionButtonBlock)
+        {
+            self.actionButtonBlock();
+        }
+    }
+    else
+    {
+        [self dismiss];
+    }
+}
+
+
++(instancetype)successScreenWithMessage:(NSString*)messageKey
+{
+	return [self screenWithMessage:messageKey
+							 image:@"GreenTick"];
+}
+
++(instancetype)failScreenWithMessage:(NSString *)messageKey
+{
+	return [self screenWithMessage:messageKey
+							 image:@"RedCross"];
+}
+
++(instancetype)screenWithMessage:(NSString *)messageKey
+						   image:(NSString *)imageName
+{
+	CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
+	customInfo.infoText = NSLocalizedString(messageKey, nil);
+	customInfo.actionButtonTitle = NSLocalizedString(@"button.title.ok", nil);
+	customInfo.infoImage = [UIImage imageNamed:imageName];
+	customInfo.mapCloseButtonToAction = YES;
+	
+	return customInfo;
 }
 @end

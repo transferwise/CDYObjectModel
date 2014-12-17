@@ -8,31 +8,22 @@
 
 #import "TransferDetialsHeaderView.h"
 #import "UIFont+MOMStyle.h"
-#import <OHAttributedLabel.h>
 #import "UIFont+MOMStyle.h"
 #import "UIColor+MOMStyle.h"
 #import "Constants.h"
+#import "NSMutableAttributedString+Presentation.h"
 
 @interface TransferDetialsHeaderView ()
 
 @property (strong, nonatomic) IBOutlet UILabel* yourTransferLabel;
 @property (strong, nonatomic) IBOutlet UILabel* transferNrLabel;
-@property (strong, nonatomic) IBOutlet OHAttributedLabel* recipientNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel* recipientNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel* statusLabel;
 @property (strong, nonatomic) IBOutlet UILabel* statusLabelWaiting;
 
 @end
 
 @implementation TransferDetialsHeaderView
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 - (void)awakeFromNib
 {
@@ -48,26 +39,25 @@
 - (void)setRecipientName:(NSString *)recipientName
 {
 	NSString *key = NSLocalizedString(@"transferdetails.controller.transfer.recipient", nil);
+	
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+	[paragraphStyle setAlignment:NSTextAlignmentCenter];
+	[paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
+	
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:key, recipientName]
+																						 attributes:@{NSParagraphStyleAttributeName:paragraphStyle}];
+	
 	//last two symbols of the key are %@
 	NSRange toRange = NSMakeRange(0, key.length - 2);
 	
-	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:key, recipientName]];
+	[attributedString setFont:[UIFont fontFromStyle:IPAD ? @"heavy.@20" : @"heavy.@17"]
+					  toRange:NSMakeRange(toRange.location, attributedString.length)];
+	[attributedString setFont:[UIFont fontFromStyle:IPAD ? @"medium.@20" : @"medium.@17"]
+					  toRange:toRange];
 	
-    OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
-    paragraphStyle.textAlignment = kCTTextAlignmentCenter;
-    paragraphStyle.lineBreakMode = kCTLineBreakByTruncatingMiddle;
-    [attributedString setParagraphStyle:paragraphStyle];
-	if(IPAD)
-	{
-		[attributedString setFont:[UIFont fontFromStyle:@"heavy.@20"]];
-		[attributedString setFont:[UIFont fontFromStyle:@"medium.@20"] range:toRange];
-	}
-	else
-	{
-		[attributedString setFont:[UIFont fontFromStyle:@"heavy.@17"]];
-		[attributedString setFont:[UIFont fontFromStyle:@"medium.@17"] range:toRange];
-	}
-    [attributedString setTextColor:[UIColor colorFromStyle:@"DarkFont"]];
+	[attributedString addAttribute:NSForegroundColorAttributeName
+							 value:[UIColor colorFromStyle:@"DarkFont"]
+							 range:NSMakeRange(0, attributedString.length)];
 	
 	[self.recipientNameLabel setAttributedText:attributedString];
 }

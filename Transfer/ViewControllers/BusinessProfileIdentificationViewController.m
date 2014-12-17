@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
+
 - (IBAction)skipPressed;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="13F34" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -202,6 +202,6 @@
         <element name="RecipientTypeField" positionX="277" positionY="69" width="128" height="210"/>
         <element name="Setting" positionX="376" positionY="-108" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="54" positionY="72" width="128" height="90"/>
-        <element name="User" positionX="-360" positionY="207" width="128" height="240"/>
+        <element name="User" positionX="-360" positionY="207" width="128" height="238"/>
     </elements>
 </model>

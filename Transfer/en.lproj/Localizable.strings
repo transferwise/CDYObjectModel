@@ -1,3 +1,28 @@
+"ach.controller.title" = "Pay via direct debit";
+"ach.controller.login.title" = "Confirm your payment";
+"ach.controller.button.support.ipad" = "Contact support";
+"ach.controller.button.support" = "Contact customer support";
+"ach.controller.button.connect" = "Connect to my account";
+"ach.controller.routing.label" = "Your routing number";
+"ach.controller.account.label" = "Your account number";
+"ach.controller.validation.routing.invalid" = "Entered routing number is incorrect.";
+"ach.controller.validation.account.invalid" = "Entered account number is incorrect.";
+"ach.controller.error.title" = "Entered data is not valid";
+"ach.controller.accessing" = "Accessing your bank details";
+"ach.controller.accessing.error" = "Unable to contact your bank at the moment. Please try again.";
+"ach.controller.checkbook.routing" = "Your routing number";
+"ach.controller.checkbook.account" = "Your account number";
+"ach.controller.checkbook" = "%@ on a checkbook.";
+"ach.waiting.info" = "Now wait a moment while we are searching for your USD account";
+"ach.waiting.info2" = "We're now contacting your bank to instruct your ACH bank debit. Bear with us, It can take several minutes.";
+"ach.controller.button.pay" = "Pay $%@ with %@";
+"ach.controller.label.message.nostore" = "We do not store your bank details.";
+"ach.controller.label.message.secure" = "Payment is 100% secured.";
+"ach.controller.label.firstfield" = "Your %@ at %@";
+"ach.success.message" = "You successfully sent the money to TransferWise";
+"ach.failure.message.account" = "We did not manage to verify your account";
+"ach.failure.message.mismatch" = "Incorrect account details";
+
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";
 "business.profile.address.section.title" = "Address";
@@ -83,7 +108,7 @@
 "contacts.refresh.error.message" = "Could not refresh your recipients list";
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.controller.send.button.title" = "Send %@";
-"contacts.controller.footer.invite" = "Earn £50 by inviting
+"contacts.controller.footer.invite" = "Earn %@ by inviting
 your friends to TransferWise";
 "contacts.controller.footer.invite.button.title" = "Invite friends";
 "contacts.controller.account.type" = "%@ account";
@@ -416,7 +441,7 @@ This can't be undone.";
 "transferdetails.controller.transferred.header" = "Transfer completed";
 "transferdetails.controller.transfer.header" = "Your transfer";
 "transferdetails.controller.transfer.thankyou" = "Thank you!";
-"transferdetails.controller.transfer.message" = "We're now waiting for your\nbank transfer to reach our account.\nIt generally takes %@.";
+"transferdetails.controller.transfer.message" = "We're now waiting for your\nbank transfer to reach our account.\n%@.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "to %@";
 "transferdetails.controller.transfer.account.to" = "%@'s account details";
@@ -460,8 +485,8 @@ This can't be undone.";
 "upload.money.transaction.refresh.error.message" = "Could not update payment details. Please try again later.";
 "upload.money.transaction.refresh.error.title" = "Update error";
 
-"upload.money.card.no.payment.message" = "Payment not made";
-"upload.money.card.no.payment.title" = "Payment was not made. Please try again later.";
+"upload.money.card.retry" = "Try again";
+"upload.money.card.no.payment.message" = "We could not connect to our payment partner. No payment was processed.";
 "upload.money.card.payment.success.message" = "Great, your card payment was accepted!";
 "upload.money.card.payment.success.title" = "Success";
 
@@ -503,15 +528,30 @@ This can't be undone.";
 "payment.detail.sent.header.message" = "Transfer sent out to recipient.
 Payment #%@";
 "payment.detail.converting.header.message" = "Waiting to convert your money for transfer #%@.";
+
 "payment.method.DATA_CASH" = "Debit card";
 "payment.method.REGULAR" = "Bank transfer";
-"payment.method.REGULAR.USD" = "Domestic Wire";
+"payment.method.REGULAR.USD" = "Wire transfer";
+"payment.method.ADYEN" = "Debit card";
 "payment.method.SWIFT" = "SWIFT";
-"payment.method.ACH" = "ACH";
+"payment.method.SWIFT.USD" = "SWIFT";
+"payment.method.ACH" = "Bank debit (ACH)";
+"payment.method.ACH.USD" = "Bank debit (ACH)";
+
+"payment.method.title.DATA_CASH" = "Pay by debit card";
+"payment.method.title.REGULAR" = "Pay by bank transfer";
+"payment.method.title.REGULAR.USD" = "Pay by wire transfer";
+"payment.method.title.ADYEN" = "Pay by debit card";
+"payment.method.title.SWIFT" = "Pay by international wire";
+"payment.method.title.SWIFT.USD" = "Pay by international wire";
+"payment.method.title.ACH" = "Pay by direct debit";
+"payment.method.title.ACH.USD" = "Pay by direct debit";
+
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
-"payment.method.description.REGULAR" = "You transfer us the money via a local transfer and we do the rest.";
-"payment.method.description.SWIFT" = "Send USD to our European account if your USD account is not in the United States.";
-"payment.method.description.ACH" = "Pay directly through your online bank.";
+"payment.method.description.REGULAR" = "You transfer us the money via a \n wire transfer and we do the rest.";
+"payment.method.description.ADYEN" = "We accept all Visa & Mastercard debit cards.";
+"payment.method.description.SWIFT" = "If your USD account is not in the US, please use this option.";
+"payment.method.description.ACH" = "Instantly withdraw money\n from your USD account.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";
@@ -668,7 +708,7 @@ We'll send you an email in order to let you choose a new password.";
 "invite.sms.button.title" = "Invite via sms";
 "invite.copy.button.title" = "Copy my invite link";
 "invite.copied.button.title" = "Copied";
-"invite.context" = "When 3 friends start using Transferwise, you'll get 50 GBP.";
+"invite.context.format" = "When 3 friends start using Transferwise, you'll get %@.";
 "invite.modal.title" = "Share your invite url";
 "invite.error.facebook.title" = "Facebook error";
 "invite.error.facebook.message" = "Please enable Facebook in your device settings and try again.";
@@ -708,10 +748,11 @@ We'll send you an email in order to let you choose a new password.";
 "usd.legaleze" = "By continuing you agree\nto our %@";
 "usd.state.specific" = "state specific notices";
 
-"transfertime.default" = "1 business day";
-"transfertime.EUR.REGULAR" = "1-2 business days";
-"transfertime.GBP.REGULAR" = "a few business hours";
-"transfertime.USD.SWIFT" = "3 business days";
-"transfertime.USD.REGULAR" = "a few business hours";
+"transfertime.default" = "It generally takes 1 business day";
+"transfertime.EUR.REGULAR" = "It generally takes 1-2 business days";
+"transfertime.GBP.REGULAR" = "It generally takes a few business hours";
+"transfertime.USD" = "It takes up to 5 business days";
 
 "upload.money.bankname.title" = "Bank name";
+
+"upload.money.card.no.adyen.url" = "Could not load debit card screen. Please try again.";

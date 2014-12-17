@@ -13,4 +13,14 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
+/**
+ *  Convenience method for getting an instance of this screen for use in the payment flow
+ *
+ *  @param payment     the payment to display
+ *  @param objectModel the object model the payment comes from
+ *
+ *  @return configured instance ready to show
+ */
++(instancetype)endOfFlowInstanceForPayment:(Payment*)payment objectModel:(ObjectModel*)objectModel;
+
 @end

@@ -16,6 +16,7 @@
 #import "NSString+Presentation.h"
 #import "CurrencySelectorViewController.h"
 #import "MOMStyle.h"
+#import "UITextField+CaretPosition.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -94,10 +95,41 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    NSUInteger numberOfNumbersBefore = 0;
+    for (int i=0; i < range.location + [string length]; i++)
+    {
+        char character = [modified characterAtIndex:i];
+        if((character >= '1' && character <= '9') || (numberOfNumbersBefore > 0 && character == '0'))
+        {
+            numberOfNumbersBefore++;
+        }
+    }
+    
     if (![string isEqualToString:@","] && ![string isEqualToString:@"."] && [self entryBelowMaxAmount:modified])
 	{
-        [textField setText:[modified moneyFormatting]];
+        modified = [modified moneyFormatting];
+        [textField setText:modified];
         [textField sendActionsForControlEvents:UIControlEventEditingChanged];
+        
+        NSUInteger newCaretPosition = 0;
+        NSUInteger numberOfNumbers = 0;
+        for (int i=0; i < [modified length]; i++)
+        {
+            char character = [modified characterAtIndex:i];
+            if((character >= '0' && character <= '9'))
+            {
+                numberOfNumbers++;
+                if(numberOfNumbers == numberOfNumbersBefore)
+                {
+                    newCaretPosition = i+1;
+                    break;
+                }
+            }
+        }
+        
+        [textField moveCaretToAfterRange:NSMakeRange(newCaretPosition, 0)];
+        
         return NO;
     }
 

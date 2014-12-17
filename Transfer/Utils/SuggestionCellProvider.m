@@ -18,7 +18,7 @@
 
 @implementation SuggestionCellProvider
 
--(id)init
+- (id)init
 {
     self = [super init];
     if(self)
@@ -32,7 +32,7 @@
 
 #pragma mark - Suggestion table cell provider
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section < [self.dataSource count])
     {
@@ -41,13 +41,13 @@
     return 0;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.dataSource count];
 }
 
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SuggestionCell *cell = [self getCell:tableView];
     
@@ -77,7 +77,7 @@
 	return cell;
 }
 
--(void)filterForText:(NSString *)text completionBlock:(void (^)(BOOL))completionBlock
+- (void)filterForText:(NSString *)text completionBlock:(void (^)(BOOL))completionBlock
 {
     self.filterString = [text lowercaseString];
 	
@@ -86,12 +86,12 @@
     }];
 }
 
--(id)objectForIndexPath:(NSIndexPath *)indexPath
+- (id)objectForIndexPath:(NSIndexPath *)indexPath
 {
     return self.dataSource[indexPath.section][indexPath.row];
 }
 
--(void)setAutoCompleteResults:(NSFetchedResultsController *)autoCompleteResults
+- (void)setAutoCompleteResults:(NSFetchedResultsController *)autoCompleteResults
 {
     if(_autoCompleteResults != autoCompleteResults)
     {
@@ -101,12 +101,12 @@
     }
 }
 
--(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self refreshResults];
 }
 
--(void)refreshLookupWithCompletion:(void(^)(void))completionBlock
+- (void)refreshLookupWithCompletion:(void(^)(void))completionBlock
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		if([self.filterString length] > 0)
@@ -134,7 +134,7 @@
 	});
 }
 
--(void)refreshResults
+- (void)refreshResults
 {
     ABSTRACT_METHOD;
 }

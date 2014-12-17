@@ -40,10 +40,7 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet GoogleButton *googleLoginButton;
 @property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
 @property (strong, nonatomic) AuthenticationHelper *loginHelper;
-
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
 
 @property (nonatomic, strong) IBInspectable NSString* xibNameForResetPassword;
@@ -124,14 +121,7 @@ IB_DESIGNABLE
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[NavigationBarCustomiser setDefault];
-}
-
-- (void)updateViewConstraints
-{
-	self.passwordSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
-	self.emailSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
-	
-	[super updateViewConstraints];
+	[super viewWillDisappear:animated];
 }
 
 #pragma mark - TextField delegate
@@ -257,7 +247,7 @@ IB_DESIGNABLE
                                                                          NSArray *errors = error.userInfo[TRWErrors];
                                                                          for (NSDictionary *error in errors) {
                                                                              NSString *code = error[@"code"];
-                                                                             if ([code caseInsensitiveCompare:@"CRD_NOT_VALID"] == NSOrderedSame)
+                                                                             if ([@"CRD_NOT_VALID" caseInsensitiveCompare:code] == NSOrderedSame)
                                                                              {
                                                                                  isIncorrectCredentials = YES;
                                                                                  break;

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MultipleEntryCell.h"
 
+
 @interface DataEntryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MultipleEntryCellDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *presentedSectionCells;

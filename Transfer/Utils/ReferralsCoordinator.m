@@ -10,23 +10,35 @@
 #import "Constants.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
-#import "ReferralLinkOperation.h"
+#import "ReferralLinksOperation.h"
 #import "InviteViewController.h"
 #import "ObjectModel+Users.h"
+#import "ObjectModel+ReferralLinks.h"
 #import "User.h"
+#import "ReferralListOperation.h"
+
+#define defaultRewardAmount 50
+#define defaultRewardCurrency @"GBP"
+#define amountUpdateDeltaT -86400
 
 @interface ReferralsCoordinator ()
 
 @property (nonatomic, strong) TransferwiseOperation* currentOperation;
+@property (nonatomic, strong) NSNumberFormatter *currencyFormatter;
+@property (nonatomic, strong) NSDate *lastRewardUpdateDate;
+@property (nonatomic, strong) NSMutableArray* rewardCallbacks;
 
 @end
 
 @implementation ReferralsCoordinator
 
-+ (ReferralsCoordinator *)sharedInstance
++ (ReferralsCoordinator *)sharedInstanceWithObjectModel:(ObjectModel*)objectModel
 {
 	DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
-		return [[self alloc] initSingleton];
+		ReferralsCoordinator* coordinator = [[self alloc] initSingleton];
+        coordinator.objectModel = objectModel;
+        return coordinator;
+        
 	});
 }
 
@@ -35,7 +47,12 @@
 	self = [super init];
 	if (self)
 	{
-		
+        NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
+        [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [currencyFormatter setCurrencyCode:defaultRewardCurrency];
+        [currencyFormatter setMaximumFractionDigits:0];
+        [currencyFormatter setMinimumFractionDigits:0];
+        self.currencyFormatter = currencyFormatter;
 	}
 	
 	return self;
@@ -51,13 +68,14 @@
 	return nil;
 }
 
-- (void)showInviteController:(NSString *)referralLink
+- (void)showInviteController:(NSArray *)referralLinks
 			 weakCoordinator:(ReferralsCoordinator *)coordinator
 			  weakController:(UIViewController *)controller
 {
 	InviteViewController *inviteController = [[InviteViewController alloc] init];
-	inviteController.inviteUrl = referralLink;
+	inviteController.referralLinks = referralLinks;
 	inviteController.objectModel = coordinator.objectModel;
+    inviteController.rewardAmountString = [self rewardAmountString];
 	[inviteController presentOnViewController:controller.view.window.rootViewController];
 }
 
@@ -65,42 +83,124 @@
 {
 	User *user = self.objectModel.currentUser;
 	
-	if (user && user.inviteUrl)
+	if (user)
 	{
-		[self showInviteController:user.inviteUrl
-				   weakCoordinator:self
-					weakController:controller];
+		NSArray *referralLinks = [self.objectModel referralLinks];
+		
+		if (referralLinks && [referralLinks count] > 0)
+		{
+			[self showInviteController:referralLinks
+					   weakCoordinator:self
+						weakController:controller];
+		}		
+		else
+		{
+			TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:controller.navigationController.view];
+			[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
+			ReferralLinksOperation *referralLinksOperation = [ReferralLinksOperation operation];
+			[referralLinksOperation setObjectModel:self.objectModel];
+			self.currentOperation = referralLinksOperation;
+			
+			__weak UIViewController* weakController = controller;
+			__weak ReferralsCoordinator* weakCoordinator = self;
+			
+			[referralLinksOperation setResultHandler:^(NSError *error, NSArray *referralLinks) {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[hud hide];
+                    weakCoordinator.currentOperation = nil;
+					if (!error && referralLinks)
+					{
+						[weakCoordinator showInviteController:referralLinks weakCoordinator:weakCoordinator weakController:weakController];
+						return;
+					}
+					
+					TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
+																	   message:NSLocalizedString(@"invite.link.error.message", nil)];
+					[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+					[alertView show];
+				});
+			}];
+			
+			[referralLinksOperation execute];
+		}
 	}
-	else
-	{
-		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:controller.navigationController.view];
-		[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
-		ReferralLinkOperation *referralLinkOperation = [ReferralLinkOperation operation];
-		[referralLinkOperation setObjectModel:self.objectModel];
-		self.currentOperation = referralLinkOperation;
-		
-		__weak UIViewController* weakController = controller;
-		__weak ReferralsCoordinator* weakCoordinator = self;
-		
-		[referralLinkOperation setResultHandler:^(NSError *error, NSString *referralLink) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[hud hide];
-				
-				if (!error && referralLink)
-				{
-					[self showInviteController:referralLink weakCoordinator:weakCoordinator weakController:weakController];
-					return;
-				}
-				
-				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
-																   message:NSLocalizedString(@"invite.link.error.message", nil)];
-				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-				[alertView show];
-			});
-		}];
-		
-		[referralLinkOperation execute];
-	}
+}
+
+-(void)requestRewardStatus:(void(^)(NSError*))completionBlock
+{
+    if(!self.lastRewardUpdateDate || [self.lastRewardUpdateDate timeIntervalSinceNow] < amountUpdateDeltaT)
+    {
+        if(completionBlock)
+        {
+            if(!self.rewardCallbacks)
+            {
+                self.rewardCallbacks = [NSMutableArray array];
+            }
+            [self.rewardCallbacks addObject:completionBlock];
+        }
+        
+        //This request has lower priority than the links operation. Only excecute if no other request is running.
+        if(!self.currentOperation)
+        {
+            ReferralListOperation *referralListOperation = [ReferralListOperation operation];
+            self.currentOperation = referralListOperation;
+            [referralListOperation setObjectModel:self.objectModel];
+            self.currentOperation = referralListOperation;
+            __weak typeof(self) weakSelf = self;
+            [referralListOperation setResultHandler:^(NSError* error){
+                weakSelf.currentOperation = nil;
+                if(!error)
+                {
+                    weakSelf.lastRewardUpdateDate = [NSDate date];
+                }
+                
+                [weakSelf completeOutstandingCompletionBlocksWithError:error];
+            }];
+            
+            [referralListOperation execute];
+        }
+        else if (![self.currentOperation isKindOfClass:[ReferralListOperation class]])
+        {
+            [self completeOutstandingCompletionBlocksWithError:nil];
+        }
+        
+    }
+    else
+    {
+        if(completionBlock)
+        {
+            completionBlock(nil);
+        }
+    }
+
+}
+
+-(void)completeOutstandingCompletionBlocksWithError:(NSError*)error
+{
+    for(void(^completionblock)(NSError*) in self.rewardCallbacks)
+    {
+        completionblock(error);
+    }
+    self.rewardCallbacks = nil;
+}
+
+-(NSString*)rewardAmountString
+{
+    [self requestRewardStatus:nil];
+    
+    NSNumber *rewardNumber =@(defaultRewardAmount);
+    
+    if([[self.objectModel currentUser].invitationReward intValue] > 0)
+    {
+        rewardNumber = [self.objectModel currentUser].invitationReward;
+    }
+    
+    if ([self.objectModel currentUser].invitationRewardCurrency)
+    {
+        self.currencyFormatter.currencyCode = [self.objectModel currentUser].invitationRewardCurrency;
+    }
+    
+    return [self.currencyFormatter stringFromNumber:rewardNumber];
 }
 
 @end

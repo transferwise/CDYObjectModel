@@ -8,17 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
+@class TransparentModalViewController;
+
+typedef NS_ENUM(short, TransparentModalPresentationStyle)
+{
+    TransparentPresentationSlide = 0,
+    TransparentPresentationFade
+};
+
 @protocol TransparentModalViewControllerDelegate <NSObject>
 
 @optional
-- (void)modalClosed;
+
+-(void)dismissCompleted:(TransparentModalViewController*) dismissedController;
 
 @end
 
 @interface TransparentModalViewController : UIViewController
 
 @property (nonatomic, weak) id<TransparentModalViewControllerDelegate> delegate;
+@property (nonatomic, assign) TransparentModalPresentationStyle presentationStyle;
 
+-(void)presentOnViewController:(UIViewController*)hostViewcontroller withPresentationStyle:(TransparentModalPresentationStyle)presentationStyle;
 -(void)presentOnViewController:(UIViewController*)hostViewcontroller;
 -(IBAction)dismiss;
 -(UIViewController*)hostViewController;

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
-                <outlet property="emailSeparatorHeight" destination="fek-HK-kQ5" id="Tbv-kT-VgQ"/>
                 <outlet property="emailTextField" destination="Sqf-jN-fvd" id="pva-OL-Vn3"/>
                 <outlet property="forgotPasswordLabel" destination="Gzj-xE-Yjr" id="ZWy-f1-Rwh"/>
                 <outlet property="googleLoginButton" destination="2Sf-8q-59z" id="BRf-2K-vsj"/>
                 <outlet property="loginButton" destination="uSj-Tb-62N" id="wrl-Rn-Dv8"/>
                 <outlet property="orLabel" destination="2d1-LU-JcI" id="8nI-dK-9ah"/>
-                <outlet property="passwordSeparatorHeight" destination="MaW-ap-Zmh" id="uzN-SV-IhO"/>
                 <outlet property="passwordTextField" destination="UJr-a0-Czd" id="dAI-mg-ysB"/>
                 <outlet property="touchIdButton" destination="cO2-eB-1cd" id="AwB-y1-fIc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yahooLoginButton" destination="Uqc-Ct-ZJ1" id="gAu-Xp-nGd"/>
+                <outletCollection property="separatorHeights" destination="fek-HK-kQ5" id="fNh-TB-U1K"/>
+                <outletCollection property="separatorHeights" destination="MaW-ap-Zmh" id="Zwg-2r-06j"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,8 +25,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-jN-fvd" userLabel="Email TextField" customClass="FloatingLabelTextField">
-                    <rect key="frame" x="20" y="66" width="302" height="70"/>
+                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-jN-fvd" userLabel="Email TextField" customClass="FloatingLabelTextField">
+                    <rect key="frame" x="20" y="66" width="300" height="70"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" placeholder="YES" id="c5K-jG-eut"/>
                     </constraints>
@@ -34,24 +34,23 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </textField>
                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OOe-X8-gxb" userLabel="Separator View">
-                    <rect key="frame" x="10" y="145" width="312" height="1"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="fek-HK-kQ5"/>
+                        <constraint firstAttribute="height" id="fek-HK-kQ5"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJr-a0-Czd" userLabel="Password TextField" customClass="FloatingLabelTextField">
-                    <rect key="frame" x="20" y="155" width="302" height="70"/>
+                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJr-a0-Czd" userLabel="Password TextField" customClass="FloatingLabelTextField">
+                    <rect key="frame" x="20" y="154" width="300" height="70"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" placeholder="YES" id="DmN-tB-1bM"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-aP-kB6" userLabel="Separator View">
-                    <rect key="frame" x="10" y="234" width="312" height="1"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-aP-kB6" userLabel="Separator View">
+                    <rect key="frame" x="10" y="233" width="310" height="1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="MaW-ap-Zmh"/>
                     </constraints>
@@ -60,7 +59,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Tb-62N" userLabel="Login Button" customClass="GreenButton">
-                    <rect key="frame" x="0.0" y="267" width="322" height="49"/>
+                    <rect key="frame" x="0.0" y="266" width="322" height="49"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="dEk-hB-rjg"/>
                     </constraints>
@@ -74,11 +73,11 @@
                         <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="r5y-8P-piz"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eab-el-220" customClass="IntrinsicSizeUIView">
-                    <rect key="frame" x="0.0" y="311" width="322" height="257"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eab-el-220" customClass="IntrinsicSizeUIView">
+                    <rect key="frame" x="0.0" y="315" width="320" height="253"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-xE-Yjr" userLabel="Forgot Password Label">
-                            <rect key="frame" x="140" y="28" width="42" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-xE-Yjr" userLabel="Forgot Password Label">
+                            <rect key="frame" x="139" y="28" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -86,8 +85,8 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@15.TWElectricblue"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-LU-JcI" userLabel="Or Label">
-                            <rect key="frame" x="140" y="162" width="42" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-LU-JcI" userLabel="Or Label">
+                            <rect key="frame" x="139" y="154" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -95,8 +94,8 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Ct-ZJ1" userLabel="Yahoo Login Button" customClass="YahooButton">
-                            <rect key="frame" x="161" y="207" width="161" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Ct-ZJ1" userLabel="Yahoo Login Button" customClass="YahooButton">
+                            <rect key="frame" x="160" y="198" width="160" height="55"/>
                             <state key="normal" title="Button">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -104,10 +103,10 @@
                                 <action selector="yahooLogInPressed:" destination="-1" eventType="touchUpInside" id="3tO-LF-T4a"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sf-8q-59z" userLabel="Google Login Button" customClass="GoogleButton">
-                            <rect key="frame" x="0.0" y="207" width="161" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sf-8q-59z" userLabel="Google Login Button" customClass="GoogleButton">
+                            <rect key="frame" x="0.0" y="198" width="160" height="55"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="rAd-N1-RFz"/>
+                                <constraint firstAttribute="height" constant="55" id="rAd-N1-RFz"/>
                             </constraints>
                             <state key="normal" title="Button">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,7 +116,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-eB-1cd">
-                            <rect key="frame" x="138" y="80" width="45" height="45"/>
+                            <rect key="frame" x="138" y="81" width="45" height="45"/>
                             <state key="normal" image="touch_id_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>

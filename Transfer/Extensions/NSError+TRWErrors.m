@@ -47,15 +47,23 @@
     return [NSString stringWithString:errorsString];
 }
 
-- (BOOL)twCodeNotFound {
-    NSArray *errors = self.userInfo[TRWErrors];
-    for (NSDictionary *error in errors) {
-        NSString *code = error[@"code"];
-        if ([code isEqualToString:@"NOT_FOUND"]) {
-            return YES;
-        }
-    }
-    return NO;
+- (BOOL)twCodeNotFound
+{
+	return [self containsTwCode:@"NOT_FOUND"];
+}
+
+- (BOOL)containsTwCode:(NSString *)expectedCode
+{
+	NSArray *errors = self.userInfo[TRWErrors];
+	for (NSDictionary *error in errors)
+	{
+		NSString *code = error[@"code"];
+		if ([code isEqualToString:expectedCode])
+		{
+			return YES;
+		}
+	}
+	return NO;
 }
 
 @end

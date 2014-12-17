@@ -22,6 +22,7 @@ typedef NS_ENUM(short, RecipientReportingType) {
 };
 
 @interface RecipientViewController : SuggestionDataEntryViewController
+
 @property (nonatomic, copy) TRWActionBlock afterSaveAction;
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) Currency *preLoadRecipientsWithCurrency;
