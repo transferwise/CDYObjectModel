@@ -444,6 +444,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 			&& self.objectModel.pendingPayment.targetCurrency)
 		{
 			[self.countryCell setCode:[TargetCountryProvider getTargetCountryForCurrency:self.objectModel.pendingPayment.targetCurrency]];
+			//fire selection changed to make state cell appear for usa
+			[self.countryCell fireSelectionChanged];
+			//now put the cursor back to the first cell, this is really getting out of hand
+			[self.nameCell.entryField becomeFirstResponder];
 		}
 	}
 

@@ -30,8 +30,8 @@
 	NSString *lowerCoderOrName = [codeOrName lowercaseString];
 	for(Country *country in self.autoCompleteResults.fetchedObjects)
     {
-		if([country.iso3Code isEqualToString:lowerCoderOrName]
-		   || [country.iso2Code isEqualToString:lowerCoderOrName]
+		if([[country.iso3Code lowercaseString] isEqualToString:lowerCoderOrName]
+		   || [[country.iso2Code lowercaseString] isEqualToString:lowerCoderOrName]
 		   || [[country.name lowercaseString] isEqualToString:lowerCoderOrName])
 		{
 			return country;
@@ -92,7 +92,8 @@
 	NSString* lowerCaseFilterString = [self.filterString lowercaseString];
 	
 	return [[country.name lowercaseString] rangeOfString:lowerCaseFilterString].location == 0
-		|| [[country.iso3Code lowercaseString] rangeOfString:lowerCaseFilterString].location == 0;
+		|| [[country.iso3Code lowercaseString] rangeOfString:lowerCaseFilterString].location == 0
+		|| [[country.iso2Code lowercaseString] rangeOfString:lowerCaseFilterString].location == 0;
 }
 
 @end
