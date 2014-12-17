@@ -3,6 +3,7 @@
 #import "MoneyFormatter.h"
 #import "Currency.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "PaymentMadeIndicator.h"
 
 @interface Payment ()
 
@@ -50,9 +51,22 @@ static NSDictionary* statusLookupDictionary;
 {
     NSString* key = [self.paymentStatus lowercaseString];
     NSNumber *statusNumber =[self statusLookup][key];
-    if(
-       (self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted) ||
-       ([@"USD" caseInsensitiveCompare:self.sourceCurrency.code] == NSOrderedSame && [statusNumber unsignedIntegerValue] == PaymentStatusReceived))
+    BOOL isReceivedACHOrUnknownUSD = NO;
+    if([@"USD" caseInsensitiveCompare:self.sourceCurrency.code] == NSOrderedSame)
+    {
+        if([statusNumber unsignedIntegerValue] == PaymentStatusReceived)
+        {
+            if(self.paymentMadeIndicator)
+            {
+                isReceivedACHOrUnknownUSD = [@"ACH" caseInsensitiveCompare:self.paymentMadeIndicator.payInMethodName] == NSOrderedSame;
+            }
+            else
+            {
+                isReceivedACHOrUnknownUSD = YES;
+            }
+        }
+    }
+    if((self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted) || isReceivedACHOrUnknownUSD)
     {
         statusNumber = @(PaymentStatusUserHasPaid);
     }
