@@ -15,6 +15,8 @@
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
 
+#define kInsetsNotSet UIEdgeInsetsMake(-1, -1, -1, -1)
+
 @interface DataEntryMultiColumnViewController() <MultipleEntryCellDelegate>
 @property (nonatomic, assign) BOOL keyboardIsVisible;
 @property (nonatomic, weak) UITapGestureRecognizer* dismissKeyboardTaprecognizer;
@@ -25,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.cachedInsets = kInsetsNotSet;
     
     for(UITableView* tableView in self.tableViews)
     {
@@ -348,7 +352,7 @@
         UITableViewCell *cell = [self getParentCell:textField];
         if(cell)
         {
-            [self scrollToCell:cell inTableView:self.tableViews[0]];
+            [self scrollToCell:cell inTableView:self.tableViews[0] animated:YES];
         }
     }
     return YES;
@@ -395,6 +399,7 @@
     [self configureForInterfaceOrientation:toInterfaceOrientation];
 }
 
+
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     //Lots of magic numbers here to match designs. Not sure what to do...
@@ -428,7 +433,7 @@
 #pragma mark - keyboard overlap
 -(void)keyboardWillShow:(NSNotification*)note
 {
-    if(self.suppressAnimation)
+    if(self.suppressAnimation ||self.keyboardIsVisible)
     {
         return;
     }
@@ -449,7 +454,7 @@
             [UIView setAnimationCurve:curve];
             [UIView setAnimationBeginsFromCurrentState:YES];
             
-            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
+            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
             {
                 self.cachedInsets = self.containerScrollView.contentInset;
             }
@@ -477,9 +482,16 @@
                         
                     }
                     //Scroll cell after the keyboard has animated
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        [self scrollToCell:cell inTableView:tableView];
-                    });
+                    if(duration <= 0)
+                    {
+                        [self scrollToCell:cell inTableView:tableView animated:NO];
+                    }
+                    else
+                    {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                            [self scrollToCell:cell inTableView:tableView animated:YES];
+                        });
+                    }
                 }
                 
             }
@@ -510,7 +522,7 @@
             [UIView setAnimationCurve:curve];
             [UIView setAnimationBeginsFromCurrentState:YES];
             
-            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
+            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
             {
                 self.cachedInsets = tableView.contentInset;
             }
@@ -527,11 +539,16 @@
                 UITableViewCell *cell = [self getParentCell:firstResponder];
                 if(cell)
                 {
-                    //Scroll cell after the keyboard has animated
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        [self scrollToCell:cell inTableView:tableView];
-                    });
-                    
+                    if(duration <= 0)
+                    {
+                        [self scrollToCell:cell inTableView:tableView animated:NO];
+                    }
+                    else
+                    {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                            [self scrollToCell:cell inTableView:tableView animated:YES];
+                        });
+                    }
                 }
             }
         }
@@ -557,20 +574,26 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     if([self hasMoreThanOneTableView])
     {
-        self.containerScrollView.contentInset = self.cachedInsets;
+        if(!UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
+        {
+            self.containerScrollView.contentInset = self.cachedInsets;
+        }
     }
     else
     {
-        UITableView* tableView = self.tableViews[0];
-        tableView.contentInset = self.cachedInsets;
+        if(!UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
+        {
+            UITableView* tableView = self.tableViews[0];
+            tableView.contentInset = self.cachedInsets;
+        }
     }
     [UIView commitAnimations];
     
-    self.cachedInsets = UIEdgeInsetsZero;
+    self.cachedInsets = kInsetsNotSet;
     self.keyboardIsVisible = NO;
 }
 
--(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
+-(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView animated:(BOOL)animated
 {
     if(self.suppressAnimation)
     {
@@ -578,23 +601,23 @@
     }
     if(IPAD)
     {
-        [self scrollScrollViewToShowView:cell];
+        [self scrollScrollViewToShowView:cell animated:animated];
     }
     else
     {
         NSIndexPath *path = [tableView indexPathForCell:cell];
         if(path)
         {
-            [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
         }
     }
 }
 
--(void)scrollScrollViewToShowView:(UIView*)targetView
+-(void)scrollScrollViewToShowView:(UIView*)targetView animated:(BOOL)animated
 {
     CGRect showRect = [self.containerScrollView convertRect:targetView.frame fromView:targetView.superview];
     showRect.size.height *= 2;
-    [self.containerScrollView scrollRectToVisible:showRect animated:YES];
+    [self.containerScrollView scrollRectToVisible:showRect animated:animated];
 }
 
 #pragma mark - dismiss keyboard

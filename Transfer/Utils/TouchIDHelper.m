@@ -47,41 +47,56 @@
     return NO;
 }
 
+static BOOL validationInProgress;
+
 +(void)validateTouchIDWithReason:(NSString*)reason successAction:(void(^)(void))successActionBlock completion:(void(^)(BOOL success))resultBlock
 {
-    LAContext* context = [self getContextIfTouchIDAvailable];
-    if(context)
+    
+    //Prevent validation from being called multiple times in succession.
+    if(! validationInProgress)
     {
-        context.localizedFallbackTitle = @"";
-        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                localizedReason:reason
-                          reply:^(BOOL success, NSError *error) {
-                              dispatch_async(dispatch_get_main_queue(), ^{
-                                  if(success)
-                                  {
-                                      if(successActionBlock)
-                                      {
-                                          successActionBlock();
-                                      }
-                                  }
-                                  else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
-                                  {
-                                      TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
-                                      [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                                      [alert show];
-                                      [[GoogleAnalytics sharedInstance] sendAlertEvent:@"TouchIDError" withLabel:[error localizedDescription]];
-                                  }
-                                  
-                                  if(resultBlock)
-                                  {
-                                      resultBlock(success);
-                                  };
-                              });
-                          }];
-    }
-    else
-    {
-        resultBlock(NO);
+        validationInProgress = YES;
+        dispatch_queue_t highPriorityQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+        dispatch_after(DISPATCH_TIME_NOW, highPriorityQueue, ^{
+            LAContext* context = [self getContextIfTouchIDAvailable];
+            if(context)
+            {
+                context.localizedFallbackTitle = @"";
+                [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                        localizedReason:reason
+                                  reply:^(BOOL success, NSError *error) {
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          if(success)
+                                          {
+                                              if(successActionBlock)
+                                              {
+                                                  successActionBlock();
+                                              }
+                                          }
+                                          else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
+                                          {
+                                              TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
+                                              [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                                              [alert show];
+                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:@"TouchIDError" withLabel:[error localizedDescription]];
+                                          }
+                                          
+                                          if(resultBlock)
+                                          {
+                                              resultBlock(success);
+                                          };
+                                          validationInProgress = NO;
+                                      });
+                                  }];
+            }
+            else
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    resultBlock(NO);
+                });
+                
+            }
+        });
     }
 }
 

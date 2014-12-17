@@ -20,7 +20,7 @@
 #import "User.h"
 #import "GoogleAnalytics.h"
 #import "Mixpanel+Customisation.h"
-#import "LoginHelper.h"
+#import "AuthenticationHelper.h"
 #import "PaymentsOperation.h"
 #import "NavigationBarCustomiser.h"
 
@@ -136,7 +136,7 @@
                 [operation setObjectModel:weakSelf.objectModel];
                 [operation setCompletion:^(NSInteger totalCount, NSError *error)
                  {
-                     [LoginHelper proceedFromSuccessfulLoginFromViewController:weakSelf objectModel:weakSelf.objectModel];
+                     [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:weakSelf objectModel:weakSelf.objectModel];
                      weakSelf.paymentsOperation = nil;
                  }];
                 [operation execute];

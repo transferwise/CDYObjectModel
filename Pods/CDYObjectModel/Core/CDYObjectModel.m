@@ -357,6 +357,8 @@
 
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:isPrivateInstance ? NSPrivateQueueConcurrencyType : NSMainQueueConcurrencyType];
     [_managedObjectContext setParentContext:self.writingContext];
+    
+    _managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
 
     return _managedObjectContext;
 }

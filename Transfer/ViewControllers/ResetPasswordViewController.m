@@ -52,6 +52,7 @@
 	[self.emailTextField configureWithTitle:NSLocalizedString(@"reset.password.controller.email.cell.label", nil) value:@""];
     [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
 	[self.emailTextField setReturnKeyType:UIReturnKeyDone];
+	[self.emailTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
 	self.emailTextField.delegate = self;
 
 	[self.continueButton setTitle:NSLocalizedString(@"reset.controller.footer.button.title", nil) forState:UIControlStateNormal];

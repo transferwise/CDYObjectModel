@@ -1,5 +1,5 @@
 //
-//  LoginHelper.h
+//  Authenticationhelper.h
 //  Transfer
 //
 //  Created by Juhan Hion on 06.08.14.
@@ -12,7 +12,7 @@
 @class ObjectModel;
 @class TransferwiseOperation;
 
-@interface LoginHelper : NSObject
+@interface AuthenticationHelper : NSObject
 
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
 									 password:(NSString *)password
@@ -31,6 +31,8 @@
                                    errorBlock:(void(^)(NSError* error))errorBlock
                     waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
 
-+(void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel;
++ (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel;
+
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel completionBlock:(void (^)(void))completionBlock;
 
 @end

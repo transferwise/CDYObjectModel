@@ -190,8 +190,8 @@ Une révolution dans votre poche.";
 "payment.change.time.one.month.ago" = "Il y a 1 mois";
 "payment.change.time.one.year.ago" = "Il y a 1 an";
 "payment.change.time.years.ago" = "Il y a %d ans ago";
-"payment.date.format.long" = "MMM d YYYY";
-"payment.date.format.short" = "MMM d";
+"payment.date.format.long" = "d MMM YYYY";
+"payment.date.format.short" = "d MMM";
 "payment.controller.calculation.error.title" = "Calcul avorté";
 "payment.controller.continue.to.details.button.title" = "Continuer";
 "payment.controller.currency.cost.label" = "Sera converti";
@@ -693,6 +693,8 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "registration.legaleze" = "En utilisant TransferWise, vous adherez à nos %@ & %@";
 "registration.tos" = "conditions générales";
 "registration.privacy" = "règles de confidentialité";
+"usd.legaleze" = "En continuant vous adherez \n aux %@";
+"usd.state.specific" = "conditions spéciales de chaque état";
 
 "transfertime.default" = "1 jour ouvré";
 "transfertime.EUR.REGULAR" = "1-2 jours ouvrés";

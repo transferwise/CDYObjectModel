@@ -21,6 +21,7 @@
 #import "GAI.h"
 #import "GoogleAnalytics.h"
 #import "GAIFields.h"
+#import "AuthenticationHelper.h"
 
 @interface TransferwiseOperation ()
 
@@ -175,9 +176,10 @@
                 return;
             }
 
-            [Credentials clearCredentials];
-			[[GoogleAnalytics sharedInstance] markLoggedIn];
-			[[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+            [AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+            }];
+			
         });
     } else {
         MCLog(@"Other errors");

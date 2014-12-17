@@ -23,8 +23,6 @@
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
 #import "SendButtonFlashHelper.h"
-#import "TAGManager.h"
-#import "TAGContainerOpener.h"
 #import "NavigationBarCustomiser.h"
 
 
@@ -37,7 +35,7 @@
 @property (nonatomic, strong) ProfilesEditViewController *profileController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic) BOOL shown;
-@property (nonatomic, strong) id<TAGContainerFuture> future;
+@property (nonatomic) BOOL isShowingLoginScreen;
 
 @end
 
@@ -52,7 +50,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentView) name:TRWMoveToPaymentViewNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSendButtonFlashNotification:) name:TRWChangeSendButtonFlashStatusNotification object:nil];
-        _future = [TAGContainerOpener openContainerWithId:TRWGoogleTagManagerContainerId tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     }
     return self;
 }
@@ -150,7 +147,7 @@
 	
 	if (![Credentials userLoggedIn])
 	{
-		[self setViewControllers:@[[self getAnonymousViewController]]];
+		[self setViewControllers:@[[self getIntroViewController]]];
 	}
 	else
 	{
@@ -174,41 +171,45 @@
 
 - (void)loggedOut
 {
-	[self clearData];
-	
-	[self presentViewController:[self getAnonymousViewController]
-					   animated:YES
-					 completion:nil];
-	[self popToRootViewControllerAnimated:NO];
+    [self clearData];
+    void (^showLoginBlock)(void) = ^{
+        [self presentViewController:[self getIntroViewController]
+                           animated:YES
+                         completion:^{
+                             [self.tabController selectIndex:IPAD?1:0];
+                         }];
+        [self popToRootViewControllerAnimated:NO];
+    };
+    if(self.presentedViewController){
+
+        NSTimeInterval delay = 0.0f;
+        if([self.presentedViewController isBeingPresented]||[self.presentedViewController isBeingDismissed])
+        {
+            delay = 0.3f;
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showLoginBlock();
+                });
+                
+            }];
+        });
+    }
+    else
+    {
+        showLoginBlock();
+    }
 }
 
-- (ConnectionAwareViewController *)getAnonymousViewController
+- (ConnectionAwareViewController *)getIntroViewController
 {
-	UIViewController *presented;
-    
-    TAGContainer* container = [self.future get];
-    //A/B test
-    NSString* testName = [container stringForKey:@"iOSRegistrationTestName"];
-    BOOL requireRegistration = [container booleanForKey:testName];
-#ifdef REGISTRATION_UPFRONT_OVERRIDE
-    requireRegistration = REGISTRATION_UPFRONT_OVERRIDE;
-#endif
-    
-	if (requireRegistration)
-	{
-        IntroViewController *introController = [[IntroViewController alloc] init];
-        [introController setObjectModel:self.objectModel];
-        introController.requireRegistration = YES;
-        presented = introController;
-	}
-	else
-	{
-		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-		[controller setObjectModel:self.objectModel];
-		presented = controller;
-	}
-	
-	ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:presented navBarHidden:YES];
+    IntroViewController *introController = [[IntroViewController alloc] init];
+    [introController setObjectModel:self.objectModel];
+    introController.requireRegistration = YES;
+
+	ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	return wrapper;
 }
 

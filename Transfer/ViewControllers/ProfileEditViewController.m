@@ -29,7 +29,7 @@
 #import "UIColor+MOMStyle.h"
 #import "PaymentFlow.h"
 #import "DoublePasswordEntryCell.h"
-#import "LoginHelper.h"
+#import "AuthenticationHelper.h"
 #import "User.h"
 #import "PersonalProfile.h"
 #import "ObjectModel+Users.h"
@@ -61,7 +61,7 @@
 @property (nonatomic) BOOL isExistingEmail;
 @property (nonatomic, strong) IBOutlet UIView* footerView;
 @property (nonatomic) BOOL showingLogin;
-@property (nonatomic, strong) LoginHelper* loginHelper;
+@property (nonatomic, strong) AuthenticationHelper* loginHelper;
 @property (strong, nonatomic) IBOutlet UIButton *actionButton;
 @property (nonatomic, strong) NSString* actionButtonTitle;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *ipadFooterHeight;
@@ -79,7 +79,7 @@
 	{
         _profileSource = source;
         _quickProfileValidation = quickValidation;
-		_loginHelper = [[LoginHelper alloc] init];
+		_loginHelper = [[AuthenticationHelper alloc] init];
 		
     }
     return self;

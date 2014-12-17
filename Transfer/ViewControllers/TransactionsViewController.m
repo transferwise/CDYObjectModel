@@ -131,6 +131,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self configureForVerificationNeeded:self.showIdentificationView];
 	[self checkPersonalVerificationNeeded];
 	[self presentDetail:nil];
+    self.noTransfersMessage.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
