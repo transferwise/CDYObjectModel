@@ -42,7 +42,7 @@
 {
 	[super viewDidLoad];
 	[self.noTransferButton setTitle:NSLocalizedString(@"transferdetails.controller.button.notransfer", nil) forState:UIControlStateNormal];
-    self.noTransferButton.hidden = ![self.payment.paymentMadeIndicator isCancellable];
+    self.noTransferButton.hidden = !self.payment.paymentMadeIndicator || (![self.payment.paymentMadeIndicator isCancellable]);
     [self.gotItButton setTitle:NSLocalizedString(@"transferdetails.controller.button.gotit", nil) forState:UIControlStateNormal];
 }
 
@@ -61,7 +61,8 @@
 	[self.thankYouLabel setText:NSLocalizedString(@"transferdetails.controller.transfer.thankyou", nil)];
     
     NSString *key = [NSString stringWithFormat:@"transfertime.%@.%@",self.payment.sourceCurrency.code,self.payment.paymentMadeIndicator.payInMethodName];
-    NSString *timingString = [NSString localizedStringForKey:key withFallback:NSLocalizedString(@"transfertime.default", nil)];
+    NSString *fallbackKey = [NSString stringWithFormat:@"transfertime.%@",self.payment.sourceCurrency.code];
+    NSString *timingString = [NSString localizedStringForKey:key withFallback:[NSString localizedStringForKey:fallbackKey withFallback:NSLocalizedString(@"transfertime.default", nil)]];
     [self.messageLabel1 setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.message", nil),timingString]];
 	[super setUpHeader];
 }

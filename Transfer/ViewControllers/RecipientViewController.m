@@ -441,9 +441,28 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 	{
 		//set the recipient country based on targent currency, if pending payment exists
 		if (self.objectModel.pendingPayment
-			&& self.objectModel.pendingPayment.targetCurrency)
+			&& self.objectModel.pendingPayment.targetCurrency
+			&& [@"eur" caseInsensitiveCompare:self.objectModel.pendingPayment.targetCurrency.code] != NSOrderedSame)
 		{
 			[self.countryCell setCode:[TargetCountryProvider getTargetCountryForCurrency:self.objectModel.pendingPayment.targetCurrency]];
+			//fire selection changed to make state cell appear for usa
+			[self.countryCell fireSelectionChanged];
+
+			//remove keyboard showing
+			//fireSelectionChanged will select the next cell
+			NSUInteger countryIndex = [self.addressCells indexOfObject:self.countryCell];
+			
+			//for sanitys sake check that there are enough cells
+			if (self.addressCells.count >= countryIndex + 1)
+			{
+				id cell = [self.addressCells objectAtIndex:countryIndex + 1];
+				
+				//still paranoid
+				if ([cell isKindOfClass:[TextEntryCell class]])
+				{
+					[((TextEntryCell *)cell).entryField resignFirstResponder];
+				}
+			}
 		}
 	}
 

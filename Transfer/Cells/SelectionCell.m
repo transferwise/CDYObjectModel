@@ -63,11 +63,22 @@ NSString *const TWSelectionCellIdentifier = @"CountrySelectionCell";
 		//if user selected country form the list then that selection will be done after this
 		self.selectedItem = [self.selectionDelegate selectionCell:self
 												  getByCodeOrName:self.entryField.text];
+		//fire selection handler on changed text
+		//this only has point if the text matches any available choices
+		if (self.selectedItem)
+		{
+			[self fireSelectionChanged];
+		}
 	}
 	else
 	{
 		self.selectedItem = nil;
 	}
+}
+
+- (void)fireSelectionChanged
+{
+	self.selectionHandler(self.selectedItem.code);
 }
 
 @end

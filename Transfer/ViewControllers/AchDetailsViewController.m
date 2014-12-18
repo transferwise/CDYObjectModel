@@ -20,7 +20,7 @@
 #import "ACHCheckView.h"
 #import "TransferBackButtonItem.h"
 
-#define TOP_OFFSET	130
+#define TOP_OFFSET	IPAD ? 200 : 130
 
 IB_DESIGNABLE
 

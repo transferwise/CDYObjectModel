@@ -151,7 +151,7 @@
 
 - (void)setFooter
 {
-	if (!IPAD && ![self hasMoreThanOneTableView])
+	if (/*!IPAD &&*/ ![self hasMoreThanOneTableView])
 	{
 		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		UITableView *table = (UITableView *)self.tableViews[0];
@@ -161,7 +161,7 @@
 
 - (void)calculateTopOffset
 {
-	if (!IPAD && ![self hasMoreThanOneTableView])
+	if (/*!IPAD &&*/ ![self hasMoreThanOneTableView])
 	{
 		CGRect footer = [self.footerView convertRect:self.footerView.frame toView:self.view];
 		BOOL completelyVisible = CGRectContainsRect(self.view.frame, footer);
