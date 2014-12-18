@@ -82,6 +82,7 @@
 "confirm.payment.header.format" = "Le %@,\n%@\nest estimé d'arriver sur le compte de \n%@";
 "confirm.payment.header.format.nodate" = "%@\n arrivera sur le compte de \n%@";
 "confirm.payment.exchangerate.title.label" = "Taux de change estimé";
+"confirm.payment.exchangerate.exact.title.label" = "Taux de change";
 "confirm.payment.footer.button.title" = "Confirmer";
 "confirm.payment.payment.error.title" = "Le transfert n'a pas pu etre crée. Reéssayez.";
 "confirm.payment.pulling.data" = "Refraichissement...";
