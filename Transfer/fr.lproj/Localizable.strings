@@ -15,7 +15,7 @@
 "ach.controller.checkbook" = "%@ sur un chéque.";
 "ach.waiting.info" = "Patientez quelques instants, nous recherchons votre compte USD.";
 "ach.waiting.info2" = "Veuillez patienter pendant que nous procédons à l'instruction du paiement aupres de votre banque. Cela peut prendre quelques minutes.";
-"ach.controller.button.pay" = "Payez $%@ avec %@";
+"ach.controller.button.pay" = "Payez $%@";
 "ach.controller.label.message.nostore" = "Les détails de votre compte ne sont ni enregistrés, ni partagés. ";
 "ach.controller.label.message.secure" = "Le paiement is 100% sécurisé.";
 "ach.controller.label.firstfield" = "%@ à %@";
