@@ -548,6 +548,9 @@
 		47C1F74C1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */; };
 		47C1F74F1A3F2BC600014F55 /* ValidatorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F74E1A3F2BC600014F55 /* ValidatorFactory.m */; };
 		47C1F7501A3F2BC600014F55 /* ValidatorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F74E1A3F2BC600014F55 /* ValidatorFactory.m */; };
+		47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7521A443F1500014F55 /* NSObject+NSNull.m */; };
+		47C1F7541A443F1500014F55 /* NSObject+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7521A443F1500014F55 /* NSObject+NSNull.m */; };
+		47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */; };
 		47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03E1A232A9F005EC7C6 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
@@ -1455,6 +1458,9 @@
 		47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipientProfileValidator.m; path = Validation/RecipientProfileValidator.m; sourceTree = "<group>"; };
 		47C1F74D1A3F2BC600014F55 /* ValidatorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValidatorFactory.h; path = Validation/ValidatorFactory.h; sourceTree = "<group>"; };
 		47C1F74E1A3F2BC600014F55 /* ValidatorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ValidatorFactory.m; path = Validation/ValidatorFactory.m; sourceTree = "<group>"; };
+		47C1F7511A443F1500014F55 /* NSObject+NSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSNull.h"; sourceTree = "<group>"; };
+		47C1F7521A443F1500014F55 /* NSObject+NSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSNull.m"; sourceTree = "<group>"; };
+		47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectNSNullTests.swift; sourceTree = "<group>"; };
 		47C4D0381A232A9F005EC7C6 /* _AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AchBank.h; sourceTree = "<group>"; };
 		47C4D0391A232A9F005EC7C6 /* _AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AchBank.m; sourceTree = "<group>"; };
 		47C4D03A1A232A9F005EC7C6 /* _FieldGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FieldGroup.h; sourceTree = "<group>"; };
@@ -2245,9 +2251,18 @@
 			name = Validation;
 			sourceTree = "<group>";
 		};
+		47C1F7551A44446600014F55 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		47DC89821A03950F0042054B /* TransferTests */ = {
 			isa = PBXGroup;
 			children = (
+				47C1F7551A44446600014F55 /* Extensions */,
 				476EB8EA1A15030E00E4E392 /* TransferTests-Bridging-Header.h */,
 				476EB8E71A15000D00E4E392 /* Network */,
 				47DC89831A03950F0042054B /* Supporting Files */,
@@ -2484,6 +2499,8 @@
 		EA13E041171BEAF00019FBF0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */,
+				4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */,
 				EA225CA1178EB591009D6B83 /* NSDate+ServerTime.h */,
 				EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */,
 				EA225C83178EB21C009D6B83 /* NSDictionary+Cleanup.h */,
@@ -2502,6 +2519,8 @@
 				EA8FF681171D19B50090A658 /* NSString+Validation.m */,
 				47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */,
 				47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */,
+				47C1F7511A443F1500014F55 /* NSObject+NSNull.h */,
+				47C1F7521A443F1500014F55 /* NSObject+NSNull.m */,
 				EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */,
 				EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */,
 				EAD7D4CC171D4B4C0099063F /* UIButton+Skinning.h */,
@@ -2534,8 +2553,6 @@
 				47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */,
 				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
 				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
-				4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */,
-				4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3633,6 +3650,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */,
+				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3877,6 +3895,7 @@
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				47C1F74C1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
 				47C4D0451A232AC1005EC7C6 /* AchBank.m in Sources */,
+				47C1F7541A443F1500014F55 /* NSObject+NSNull.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				470C131E1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */,
@@ -4241,6 +4260,7 @@
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				38057ACF1A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
+				47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
