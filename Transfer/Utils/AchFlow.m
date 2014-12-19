@@ -29,6 +29,7 @@
 
 #define VERIFICATION_FAILURE	@"VERIFICATION_FAILED"
 #define ACCOUNT_NUMBER_MISMATCH	@"ACCOUNT_NUMBER_MISMATCH"
+#define INVALID_ROUTING_NUMBER	@"INVALID_ROUTING_NUMBER"
 
 @class AchBank;
 
@@ -99,6 +100,24 @@
 																						flow:weakSelf];
 											   
 												  [(VerificationFormOperation *)self.executedOperation setResultHandler:^(NSError *error, AchBank *form) {
+													  //handle known errors
+													  if (error)
+													  {
+														  if ([error containsTwCode:INVALID_ROUTING_NUMBER])
+														  {
+															  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+																									 withLabel:@"Invalid routing number"];
+															  [weakSelf presentCustomInfoWithSuccess:NO
+																						  controller:controller
+																							 message:@"ach.failure.message.routingnumber"
+																						 actionBlock:^{
+																							 [weakSelf.waitingViewController dismiss];
+																						 }
+																							successBlock:nil
+																									flow:weakSelf];
+															  return;
+														  }
+													  }
 													  [weakSelf handleResultWithError:error
 																		successBlock:^{
 																			UIViewController *loginController = [weakSelf getLoginForm:form];
@@ -108,7 +127,7 @@
 																		  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
 																												 withLabel:messages];
 																	  }
-																				flow:weakSelf];
+																				 flow:weakSelf];
 												  }];
 												  
 												  [self.executedOperation execute];
