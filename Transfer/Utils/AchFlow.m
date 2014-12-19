@@ -105,7 +105,7 @@
 													  {
 														  if ([error containsTwCode:INVALID_ROUTING_NUMBER])
 														  {
-															  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+															  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
 																									 withLabel:@"Invalid routing number"];
 															  [weakSelf presentCustomInfoWithSuccess:NO
 																						  controller:controller
