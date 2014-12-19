@@ -15,7 +15,7 @@
 "ach.controller.checkbook" = "%@ on a checkbook.";
 "ach.waiting.info" = "Now wait a moment while we are searching for your USD account";
 "ach.waiting.info2" = "We're now contacting your bank to instruct your ACH bank debit. Bear with us, It can take several minutes.";
-"ach.controller.button.pay" = "Pay $%@";
+"ach.controller.button.pay" = "Pay $%@ with %@";
 "ach.controller.label.message.nostore" = "We do not store your bank details.";
 "ach.controller.label.message.secure" = "Payment is 100% secured.";
 "ach.controller.label.firstfield" = "Your %@ at %@";
