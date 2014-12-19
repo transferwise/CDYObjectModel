@@ -13,7 +13,6 @@
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "IntroViewController.h"
-#import "SignUpViewController.h"
 #import "ObjectModel+Recipients.h"
 #import "ObjectModel+Settings.h"
 #import "TabViewController.h"
