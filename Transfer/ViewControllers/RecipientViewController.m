@@ -492,10 +492,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"ABRecipientSelected"];
 }
 
-- (void)didSelectRecipient:(Recipient *)recipient {
+- (void)didSelectRecipient:(Recipient *)recipient
+{
     RecipientType* type = recipient ? recipient.type : self.currency.defaultRecipientType;
-
-    
     
     NSArray* allowedTypes = [self allTypes];
     RecipientType *allowedType = type;
@@ -538,10 +537,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [self.nameCell setValue:self.templateRecipient.name];
             [self.emailCell setValue:self.templateRecipient.email];
             
-            
-            for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-
-                
+            for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells)
+			{
                 RecipientTypeField *field = fieldCell.type;
                 [fieldCell setValue:[self.templateRecipient valueField:field]];
                 if([fieldCell.value length]>0)
@@ -603,15 +600,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)setAddressFieldsFromRecipient:(Recipient*)recipient
 {
-
     self.addressCell.value = recipient.addressFirstLine;
     self.postCodeCell.value = recipient.addressPostCode;
     self.cityCell.value = recipient.addressCity;
-    self.countryCell.value = recipient.addressCountryCode;
-    self.stateCell.value = recipient.addressState;
+	//country could be prefilled. overwrite it only when the selected recipient has country information
+	if (recipient.addressCountryCode)
+	{
+		self.countryCell.value = recipient.addressCountryCode;
+	}
+	self.stateCell.value = recipient.addressState;
     
     [self includeStateCell:([@"usa" caseInsensitiveCompare:recipient.addressCountryCode]==NSOrderedSame)];
-    
 }
 
 -(void)setAddressFieldsEditable:(BOOL)editable
