@@ -22,6 +22,7 @@
 "ach.success.message" = "You successfully sent the money to TransferWise";
 "ach.failure.message.account" = "We did not manage to verify your account";
 "ach.failure.message.mismatch" = "Incorrect account details";
+"ach.failure.message.routingnumber" = "Invalid routing number";
 
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";
