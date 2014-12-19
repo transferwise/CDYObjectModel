@@ -13,7 +13,6 @@
 #import "TransferBackButtonItem.h"
 #import "Credentials.h"
 #import "TransferwiseClient.h"
-#import "NewPaymentViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "PersonalProfileCommitter.h"
 #import "BusinessProfileCommitter.h"

@@ -258,25 +258,25 @@
 
 -(void)setupForOrientation:(UIInterfaceOrientation)orientation
 {
-    if(IPAD)
-    {
-    CGRect newHeaderFrame = self.headerView.frame;
-    CGRect newFooterFrame = self.footerView.frame;
-    if UIInterfaceOrientationIsLandscape(orientation)
-    {
-        newHeaderFrame.size.height = 60.0f;
-        newFooterFrame.size.height = 224.0f;
-    }
-    else
-    {
-        newHeaderFrame.size.height = 188.0f;
-        newFooterFrame.size.height = 352.0f;
-    }
-    self.headerView.frame = newHeaderFrame;
-    self.footerView.frame = newFooterFrame;
-    self.tableView.tableHeaderView = self.headerView;
-    self.tableView.tableFooterView = self.footerView;
-    }
+	if(IPAD)
+	{
+		CGRect newHeaderFrame = self.headerView.frame;
+		CGRect newFooterFrame = self.footerView.frame;
+		if UIInterfaceOrientationIsLandscape(orientation)
+		{
+			newHeaderFrame.size.height = 60.0f;
+			newFooterFrame.size.height = 224.0f;
+		}
+		else
+		{
+			newHeaderFrame.size.height = 188.0f;
+			newFooterFrame.size.height = 352.0f;
+		}
+		self.headerView.frame = newHeaderFrame;
+		self.footerView.frame = newFooterFrame;
+		self.tableView.tableHeaderView = self.headerView;
+		self.tableView.tableFooterView = self.footerView;
+	}
 }
 
 - (void)fillDataCells
@@ -285,7 +285,7 @@
     
     [self.yourDepositCell configureWithTitle:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.deposit.fixed.title.label":@"confirm.payment.deposit.title.label", nil) text:[payment payInStringWithCurrency]];
     
-    [self.exchangedToCell configureWithTitle:NSLocalizedString(@"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
+	[self.exchangedToCell configureWithTitle:NSLocalizedString([@"usd" caseInsensitiveCompare:self.payment.sourceCurrency.code] == NSOrderedSame ? @"confirm.payment.exchangerate.exact.title.label" : @"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
 
     
     if(!IPAD)
