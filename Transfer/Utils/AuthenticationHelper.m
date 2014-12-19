@@ -28,6 +28,7 @@
 #import "PendingPayment.h"
 #import "TransferwiseClient.h"
 #import "AppDelegate.h"
+#import "SignUpViewController.h"
 
 @interface AuthenticationHelper ()
 
@@ -154,8 +155,9 @@
         
         NewPaymentViewController *paymentView = [[NewPaymentViewController alloc] init];
         [paymentView setObjectModel:objectModel];
-        
-        if(controller.presentingViewController)
+		
+		//SignUpViewController is not ConnectionAwareViewController wrapped
+        if(controller.presentingViewController && ![controller isKindOfClass:[SignUpViewController class]])
         {
             ConnectionAwareViewController* root = (ConnectionAwareViewController*)[controller.navigationController?:controller parentViewController];
             [root replaceWrappedViewControllerWithController:paymentView withAnimationStyle:ConnectionModalAnimation];

@@ -35,7 +35,6 @@
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
-#import "NewPaymentViewController.h"
 
 @interface AppDelegate ()
 

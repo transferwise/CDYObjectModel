@@ -12,7 +12,6 @@
 #import "SMPageControl.h"
 #import "ObjectModel.h"
 #import "Constants.h"
-#import "NewPaymentViewController.h"
 #import "SignUpViewController.h"
 #import "ObjectModel+Settings.h"
 #import "GoogleAnalytics.h"
@@ -22,7 +21,6 @@
 #import "AppDelegate.h"
 #import "ConnectionAwareViewController.h"
 #import "LoginViewController.h"
-#import "SignUpViewController.h"
 #import "Mixpanel+Customisation.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
@@ -334,14 +332,16 @@
 	appDelegate.window.rootViewController = root;
 }
 
-- (IBAction)logInTapped:(id)sender {
+- (IBAction)logInTapped:(id)sender
+{
     LoginViewController* login = [[LoginViewController alloc] initWithNibName:@"LoginViewControllerUpfront" bundle:nil];
     login.objectModel = self.objectModel;
     [self fadeInDismissableViewController:login];
 }
 
 
-- (IBAction)registerTapped:(id)sender {
+- (IBAction)registerTapped:(id)sender
+{
     SignUpViewController *signup = [[SignUpViewController alloc] init];
     signup.objectModel = self.objectModel;
     [self fadeInDismissableViewController:signup];
