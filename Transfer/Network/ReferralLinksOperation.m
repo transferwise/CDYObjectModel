@@ -29,7 +29,8 @@ NSString *const kReferralLinksPath = @"/referral/links";
 		if (response[@"referralLinks"])
 		{
 			NSDictionary *referralLinks = response[@"referralLinks"];
-			if (referralLinks) {
+			if (referralLinks)
+			{
     			NSArray *links = [weakSelf.workModel createOrUpdateReferralLinks:referralLinks];
 				[weakSelf.workModel saveContext:^{
 					weakSelf.resultHandler(nil, links);

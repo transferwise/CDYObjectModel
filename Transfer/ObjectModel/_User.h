@@ -87,9 +87,9 @@ extern const struct UserRelationships {
 
 //- (BOOL)validateSuccessfulInviteCount:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) AchBank *achBanks;
+@property (nonatomic, strong) NSSet *achBanks;
 
-//- (BOOL)validateAchBanks:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)achBanksSet;
 
 @property (nonatomic, strong) BusinessProfile *businessProfile;
 
@@ -107,9 +107,17 @@ extern const struct UserRelationships {
 
 //- (BOOL)validatePersonalProfile:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) ReferralLink *referralLinks;
+@property (nonatomic, strong) NSSet *referralLinks;
 
-//- (BOOL)validateReferralLinks:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)referralLinksSet;
+
+@end
+
+@interface _User (AchBanksCoreDataGeneratedAccessors)
+- (void)addAchBanks:(NSSet*)value_;
+- (void)removeAchBanks:(NSSet*)value_;
+- (void)addAchBanksObject:(AchBank*)value_;
+- (void)removeAchBanksObject:(AchBank*)value_;
 
 @end
 
@@ -126,6 +134,14 @@ extern const struct UserRelationships {
 - (void)removePayments:(NSSet*)value_;
 - (void)addPaymentsObject:(Payment*)value_;
 - (void)removePaymentsObject:(Payment*)value_;
+
+@end
+
+@interface _User (ReferralLinksCoreDataGeneratedAccessors)
+- (void)addReferralLinks:(NSSet*)value_;
+- (void)removeReferralLinks:(NSSet*)value_;
+- (void)addReferralLinksObject:(ReferralLink*)value_;
+- (void)removeReferralLinksObject:(ReferralLink*)value_;
 
 @end
 
@@ -167,8 +183,8 @@ extern const struct UserRelationships {
 - (int16_t)primitiveSuccessfulInviteCountValue;
 - (void)setPrimitiveSuccessfulInviteCountValue:(int16_t)value_;
 
-- (AchBank*)primitiveAchBanks;
-- (void)setPrimitiveAchBanks:(AchBank*)value;
+- (NSMutableSet*)primitiveAchBanks;
+- (void)setPrimitiveAchBanks:(NSMutableSet*)value;
 
 - (BusinessProfile*)primitiveBusinessProfile;
 - (void)setPrimitiveBusinessProfile:(BusinessProfile*)value;
@@ -182,7 +198,7 @@ extern const struct UserRelationships {
 - (PersonalProfile*)primitivePersonalProfile;
 - (void)setPrimitivePersonalProfile:(PersonalProfile*)value;
 
-- (ReferralLink*)primitiveReferralLinks;
-- (void)setPrimitiveReferralLinks:(ReferralLink*)value;
+- (NSMutableSet*)primitiveReferralLinks;
+- (void)setPrimitiveReferralLinks:(NSMutableSet*)value;
 
 @end

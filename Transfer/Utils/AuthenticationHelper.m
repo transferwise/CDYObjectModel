@@ -116,7 +116,8 @@
     [loginOperation execute];
 }
 
-- (NSString *)validateEmail:(NSString *)email password:(NSString *)password
+- (NSString *)validateEmail:(NSString *)email
+				   password:(NSString *)password
 {
     NSMutableString *issues = [NSMutableString string];
 	
@@ -137,7 +138,8 @@
     return [NSString stringWithString:issues];
 }
 
-+ (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel
++ (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller
+										 objectModel:(ObjectModel*)objectModel
 {
     //This method relies on the root view controller of the window being a ConnectionAwareViewController
     
@@ -195,7 +197,8 @@
     }
 }
 
-+ (void)logOutWithObjectModel:(ObjectModel *)objectModel completionBlock:(void (^)(void))completionBlock
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel
+			  completionBlock:(void (^)(void))completionBlock
 {
     [objectModel performBlock:^{
         [objectModel deleteObject:objectModel.currentUser];

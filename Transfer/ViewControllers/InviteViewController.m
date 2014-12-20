@@ -38,15 +38,6 @@
 
 @implementation InviteViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,17 +50,11 @@
 	
 	[self parseUrls];
     
-    self.smsButton.hidden = self.smsUrl && ![MFMessageComposeViewController canSendText];
+    self.smsButton.hidden = self.smsUrl == nil || ![MFMessageComposeViewController canSendText];
     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite friends modal"]];
 	self.facebookButton.enabled = self.fbUrl != nil;
 	self.emailButton.enabled = self.emailUrl != nil;
 	self.urlCopyButton.enabled = self.linkUrl != nil;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)parseUrls
