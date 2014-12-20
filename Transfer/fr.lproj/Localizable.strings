@@ -303,6 +303,7 @@ Une révolution dans votre poche.";
 "personal.profile.validation.password.error.notmatching.message" = "Les mots de passes sont différents.";
 "personal.profile.validation.password.error.invalid.length.message" = "Le mot de passe doit contenir au moins 5 caractères";
 "personal.profile.validation.dateofbirth.invalid.message" = "Date de naissance non valide";
+"personal.profile.validation.phone.invalid.message" = "Numéro de téléphone doit contenir au moins 5 caractères";
 "personal.profile.validation.error.title" = "Verifiez vos informations";
 "personal.profile.verify.error.title" = "Erreur de vérification";
 "personal.profile.verify.message" = "Verification du profil";

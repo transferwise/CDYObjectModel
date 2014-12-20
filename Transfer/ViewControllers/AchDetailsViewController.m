@@ -167,7 +167,7 @@ IB_DESIGNABLE
 	
 	if (textField == self.accountNumberTextField)
 	{
-		maxLength = kMaxAchAccountlength;
+		maxLength = kMaxAchAccountLength;
 	}
 	
 	NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
