@@ -9,11 +9,11 @@
 #import "AchFlow.h"
 #import "Constants.h"
 #import "TRWProgressHUD.h"
-#import "AchDetailsViewController.h"
 #import "VerificationFormOperation.h"
 #import "Payment.h"
 #import "TRWAlertView.h"
 #import "NSError+TRWErrors.h"
+#import "AchDetailsViewController.h"
 #import "AchLoginViewController.h"
 #import "AchWaitingViewController.h"
 #import "CustomInfoViewControllerDelegateHelper.h"
@@ -84,7 +84,7 @@
 {
 	[[GoogleAnalytics sharedInstance] sendScreen:@"ACH step 1 shown"];
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
-											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller) {
+											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller, AchDetailsViewController *detailsController) {
 												  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH waiting 1 shown"];
 												  
 												  __weak typeof(self) weakSelf = self;
@@ -111,6 +111,7 @@
 																						  controller:controller
 																							 message:@"ach.failure.message.routingnumber"
 																						 actionBlock:^{
+																							 detailsController.willDismiss = NO;
 																							 [weakSelf.waitingViewController dismiss];
 																						 }
 																							successBlock:nil
