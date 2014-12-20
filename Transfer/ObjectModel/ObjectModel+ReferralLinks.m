@@ -8,6 +8,7 @@
 
 #import "ReferralLink.h"
 #import "ObjectModel+ReferralLinks.h"
+#import "ObjectModel+Users.h"
 
 @implementation ObjectModel (ReferralLinks)
 
@@ -24,7 +25,7 @@
 		
 		if (channel > -1)
 		{
-			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"channel = %li", (long)channel];
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"channel = %li AND user = %@", (long)channel, [self currentUser]];
 			ReferralLink *referralLink = [self fetchEntityNamed:[ReferralLink entityName] withPredicate:predicate];
 			
 			if (!referralLink)
@@ -32,6 +33,7 @@
 				referralLink = [ReferralLink insertInManagedObjectContext:self.managedObjectContext];
 				[referralLink setChannelValue:channel];
 				[referralLink setUrl:referralLinks[key]];
+				[referralLink setUser:[self currentUser]];
 			}
 		}
 	}
