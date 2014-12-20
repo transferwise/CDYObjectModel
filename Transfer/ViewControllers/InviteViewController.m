@@ -102,7 +102,8 @@
 	}
 }
 
-- (IBAction)facebookTapped:(id)sender {
+- (IBAction)facebookTapped:(id)sender
+{
     FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
     NSURL* url = [NSURL URLWithString:self.fbUrl];
     params.link = url;
@@ -129,10 +130,19 @@
     }
     else
     {
-        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+		{
             SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-            
-            [controller setInitialText:[NSString stringWithFormat:NSLocalizedString(@"invite.facebook.default.message",nil),[self.objectModel currentUser].personalProfile.firstName]];
+			
+			if ([self hasProfile])
+			{
+				[controller setInitialText:[NSString stringWithFormat:NSLocalizedString(@"invite.facebook.default.message", nil), [self.objectModel currentUser].personalProfile.firstName]];
+			}
+			else
+			{
+				[controller setInitialText:[NSString stringWithFormat:NSLocalizedString(@"invite.facebook.default.message.anonymous", nil)]];
+			}
+			
             [controller addURL:url];
             [controller setCompletionHandler:^(SLComposeViewControllerResult result)
              {
@@ -153,7 +163,8 @@
     }
 }
 
-- (IBAction)emailTapped:(id)sender {
+- (IBAction)emailTapped:(id)sender
+{
     if(! [MFMailComposeViewController canSendMail])
     {
         TRWAlertView* alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title",nil) message:NSLocalizedString(@"support.cant.send.email.message",nil)];
@@ -162,39 +173,60 @@
     }
     else
     {
-
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaEmailInitiated"];
         NSURL* url = [NSURL URLWithString:self.emailUrl];
         [NavigationBarCustomiser noStyling];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMailComposeDelegate:self];
-        [controller setSubject:[NSString stringWithFormat:NSLocalizedString(@"invite.email.subject", nil), [self.objectModel currentUser].personalProfile.firstName]];
-        NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.email.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName, [self.objectModel currentUser].personalProfile.firstName];
+		
+		NSString *messageBody;
+		
+		if ([self hasProfile])
+		{
+			[controller setSubject:[NSString stringWithFormat:NSLocalizedString(@"invite.email.subject", nil), [self.objectModel currentUser].personalProfile.firstName]];
+			messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.email.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName, [self.objectModel currentUser].personalProfile.firstName];
+		}
+		else
+		{
+			[controller setSubject:[NSString stringWithFormat:NSLocalizedString(@"invite.email.subject.anonymous", nil)]];
+			messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.email.message.anonymous", nil), [url absoluteString]];
+		}
+		
         [controller setMessageBody:messageBody isHTML:YES];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-        [self  presentViewController:controller animated:YES completion:^{
+        [self presentViewController:controller animated:YES completion:^{
         }];
     }
 }
 
-- (IBAction)smsTapped:(id)sender {
- 
+- (IBAction)smsTapped:(id)sender
+{
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaSMSInitiated"];
     NSURL* url = [NSURL URLWithString:self.smsUrl];
     [NavigationBarCustomiser noStyling];
 
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     [controller setMessageComposeDelegate:self];
-    NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.sms.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName];
+	
+	NSString *messageBody;
+	
+	if ([self hasProfile])
+	{
+		messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.sms.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName];
+	}
+	else
+	{
+		messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.sms.message.anonymous", nil), [url absoluteString]];
+	}
+	
     [controller setBody:messageBody];
     [self  presentViewController:controller animated:YES completion:^{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }];
-
-
 }
 
-- (IBAction)urlCopyTapped:(id)sender {
+- (IBAction)urlCopyTapped:(id)sender
+{
     [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copied.button.title", @"") forState:UIControlStateNormal];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     self.urlCopyButton.alpha = 0.5f;
@@ -231,4 +263,8 @@
     }];
 }
 
+-(BOOL)hasProfile
+{
+	return [self.objectModel currentUser].personalProfile.firstName != nil;
+}
 @end
