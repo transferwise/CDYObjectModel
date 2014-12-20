@@ -22,7 +22,7 @@ NSString *const kReferralLinksPath = @"/referral/links";
 	
 	__weak ReferralLinksOperation *weakSelf = self;
 	[self setOperationErrorHandler:^(NSError *error) {
-		weakSelf.resultHandler(error, nil);
+		weakSelf.resultHandler(error);
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
@@ -31,15 +31,15 @@ NSString *const kReferralLinksPath = @"/referral/links";
 			NSDictionary *referralLinks = response[@"referralLinks"];
 			if (referralLinks)
 			{
-    			NSArray *links = [weakSelf.workModel createOrUpdateReferralLinks:referralLinks];
+    			[weakSelf.workModel createOrUpdateReferralLinks:referralLinks];
 				[weakSelf.workModel saveContext:^{
-					weakSelf.resultHandler(nil, links);
+					weakSelf.resultHandler(nil);
 				}];
 			}
 		}
 		else
 		{
-			weakSelf.resultHandler(nil, nil);
+			weakSelf.resultHandler(nil);
 		}
 	}];
 	

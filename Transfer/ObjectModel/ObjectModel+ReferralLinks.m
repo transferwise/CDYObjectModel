@@ -16,10 +16,8 @@
 	return [self fetchEntitiesNamed:[ReferralLink entityName] withSortDescriptors:nil];
 }
 
-- (NSArray *)createOrUpdateReferralLinks:(NSDictionary *)referralLinks
+- (void)createOrUpdateReferralLinks:(NSDictionary *)referralLinks
 {
-	NSMutableArray *returnLinks = [[NSMutableArray alloc] init];
-	
 	for (NSString* key in referralLinks)
 	{
 		NSInteger channel = [ObjectModel getReferralChannel:key];
@@ -35,15 +33,8 @@
 				[referralLink setChannelValue:channel];
 				[referralLink setUrl:referralLinks[key]];
 			}
-			
-			if (referralLink)
-			{
-				[returnLinks addObject:referralLink];
-			}
 		}
 	}
-	
-	return [NSArray arrayWithArray:returnLinks];
 }
 
 + (NSInteger)getReferralChannel:(NSString *)key

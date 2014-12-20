@@ -22,6 +22,10 @@
 
 
 @interface InviteViewController () <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
+
+@property (nonatomic, strong) NSArray *referralLinks;
+@property (nonatomic, strong) NSString *rewardAmountString;
+
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *smsButton;
@@ -37,6 +41,18 @@
 @end
 
 @implementation InviteViewController
+
+- (instancetype)initWithReferralLinks:(NSArray *)referralLinks
+						 rewardAmount:(NSString *)rewardAmountString
+{
+	self = [super init];
+	if (self)
+	{
+		self.referralLinks = referralLinks;
+		self.rewardAmountString = rewardAmountString;
+	}
+	return self;
+}
 
 - (void)viewDidLoad
 {
@@ -61,18 +77,21 @@
 {
 	for (ReferralLink *link in self.referralLinks)
 	{
-		switch (link.channelValue) {
+		//loving you so much right now Core Data!
+		NSString *url = link.url;
+		switch (link.channelValue)
+		{
 			case ReferralChannelEmail:
-				self.emailUrl = link.url;
+				self.emailUrl = url;
 				break;
 			case ReferralChannelFb:
-				self.fbUrl = link.url;
+				self.fbUrl = url;
 				break;
 			case ReferralChannelSms:
-				self.smsUrl = link.url;
+				self.smsUrl = url;
 				break;
 			case ReferralChannelLink:
-				self.linkUrl = link.url;
+				self.linkUrl = url;
 				break;
 			default:
 				break;
@@ -98,7 +117,8 @@
         // FBDialogs call to open Share dialog
         [FBDialogs presentShareDialogWithLink:url
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                          if(error) {
+                                          if(error)
+										  {
                                               if([FBErrorUtility shouldNotifyUserForError:error])
                                               {
                                                   TRWAlertView* alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.error.facebook.title",nil) message:[FBErrorUtility userMessageForError:error]];
@@ -106,7 +126,9 @@
                                                   [alertView show];
                                                   
                                               }
-                                          } else {
+                                          }
+										  else
+										  {
                                               [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBSent"];
                                               [self dismiss];
                                           }
@@ -129,8 +151,7 @@
 			}
 			
             [controller addURL:url];
-            [controller setCompletionHandler:^(SLComposeViewControllerResult result)
-             {
+            [controller setCompletionHandler:^(SLComposeViewControllerResult result) {
                 if(result ==SLComposeViewControllerResultDone)
                 {
                     [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBSent"];

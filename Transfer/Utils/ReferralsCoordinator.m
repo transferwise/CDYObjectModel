@@ -72,10 +72,9 @@
 			 weakCoordinator:(ReferralsCoordinator *)coordinator
 			  weakController:(UIViewController *)controller
 {
-	InviteViewController *inviteController = [[InviteViewController alloc] init];
-	inviteController.referralLinks = referralLinks;
+	InviteViewController *inviteController = [[InviteViewController alloc] initWithReferralLinks:referralLinks
+																					rewardAmount:[self rewardAmountString]];
 	inviteController.objectModel = coordinator.objectModel;
-    inviteController.rewardAmountString = [self rewardAmountString];
 	[inviteController presentOnViewController:controller.view.window.rootViewController];
 }
 
@@ -104,10 +103,13 @@
 			__weak UIViewController* weakController = controller;
 			__weak ReferralsCoordinator* weakCoordinator = self;
 			
-			[referralLinksOperation setResultHandler:^(NSError *error, NSArray *referralLinks) {
+			[referralLinksOperation setResultHandler:^(NSError *error) {
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[hud hide];
+					
                     weakCoordinator.currentOperation = nil;
+					NSArray *referralLinks = [weakCoordinator.objectModel referralLinks];
+					
 					if (!error && referralLinks)
 					{
 						[weakCoordinator showInviteController:referralLinks weakCoordinator:weakCoordinator weakController:weakController];
