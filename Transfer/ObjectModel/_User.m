@@ -163,6 +163,15 @@ const struct UserRelationships UserRelationships = {
 
 @dynamic achBanks;
 
+- (NSMutableSet*)achBanksSet {
+	[self willAccessValueForKey:@"achBanks"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"achBanks"];
+
+	[self didAccessValueForKey:@"achBanks"];
+	return result;
+}
+
 @dynamic businessProfile;
 
 @dynamic contacts;
@@ -190,6 +199,15 @@ const struct UserRelationships UserRelationships = {
 @dynamic personalProfile;
 
 @dynamic referralLinks;
+
+- (NSMutableSet*)referralLinksSet {
+	[self willAccessValueForKey:@"referralLinks"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"referralLinks"];
+
+	[self didAccessValueForKey:@"referralLinks"];
+	return result;
+}
 
 @end
 

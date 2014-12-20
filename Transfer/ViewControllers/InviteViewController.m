@@ -22,6 +22,10 @@
 
 
 @interface InviteViewController () <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
+
+@property (nonatomic, strong) NSArray *referralLinks;
+@property (nonatomic, strong) NSString *rewardAmountString;
+
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *smsButton;
@@ -38,13 +42,16 @@
 
 @implementation InviteViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithReferralLinks:(NSArray *)referralLinks
+						 rewardAmount:(NSString *)rewardAmountString
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+	self = [super init];
+	if (self)
+	{
+		self.referralLinks = referralLinks;
+		self.rewardAmountString = rewardAmountString;
+	}
+	return self;
 }
 
 - (void)viewDidLoad
@@ -59,35 +66,32 @@
 	
 	[self parseUrls];
     
-    self.smsButton.hidden = self.smsUrl && ![MFMessageComposeViewController canSendText];
+    self.smsButton.hidden = self.smsUrl == nil || ![MFMessageComposeViewController canSendText];
     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite friends modal"]];
 	self.facebookButton.enabled = self.fbUrl != nil;
 	self.emailButton.enabled = self.emailUrl != nil;
 	self.urlCopyButton.enabled = self.linkUrl != nil;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)parseUrls
 {
 	for (ReferralLink *link in self.referralLinks)
 	{
-		switch (link.channelValue) {
+		//loving you so much right now Core Data!
+		NSString *url = link.url;
+		switch (link.channelValue)
+		{
 			case ReferralChannelEmail:
-				self.emailUrl = link.url;
+				self.emailUrl = url;
 				break;
 			case ReferralChannelFb:
-				self.fbUrl = link.url;
+				self.fbUrl = url;
 				break;
 			case ReferralChannelSms:
-				self.smsUrl = link.url;
+				self.smsUrl = url;
 				break;
 			case ReferralChannelLink:
-				self.linkUrl = link.url;
+				self.linkUrl = url;
 				break;
 			default:
 				break;
@@ -113,7 +117,8 @@
         // FBDialogs call to open Share dialog
         [FBDialogs presentShareDialogWithLink:url
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                          if(error) {
+                                          if(error)
+										  {
                                               if([FBErrorUtility shouldNotifyUserForError:error])
                                               {
                                                   TRWAlertView* alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.error.facebook.title",nil) message:[FBErrorUtility userMessageForError:error]];
@@ -121,7 +126,9 @@
                                                   [alertView show];
                                                   
                                               }
-                                          } else {
+                                          }
+										  else
+										  {
                                               [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBSent"];
                                               [self dismiss];
                                           }
@@ -144,8 +151,7 @@
 			}
 			
             [controller addURL:url];
-            [controller setCompletionHandler:^(SLComposeViewControllerResult result)
-             {
+            [controller setCompletionHandler:^(SLComposeViewControllerResult result) {
                 if(result ==SLComposeViewControllerResultDone)
                 {
                     [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBSent"];
