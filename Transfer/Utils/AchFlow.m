@@ -165,10 +165,6 @@
 																					   controller:controller
 																						  message:@"ach.failure.message.account"
 																					  actionBlock:^{
-																						  weakSelf.currentWaitingDelegate.completion = ^{
-																							  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-																						  };
-																						  
 																						  [weakSelf.waitingViewController dismiss];
 																					  }
 																					 successBlock:nil
