@@ -456,6 +456,15 @@
 			return;
 		}
 		
+		if (![personalProfile isValidPhoneNumber])
+		{
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+															   message:NSLocalizedString(@"personal.profile.validation.phone.invalid.message", nil)];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+			return;
+		}
+		
 		if (!self.isExisting)
 		{
 			if (![personalProfile arePasswordsMatching])

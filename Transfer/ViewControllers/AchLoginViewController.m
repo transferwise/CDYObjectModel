@@ -79,7 +79,7 @@
 	
 	[self setTitle:NSLocalizedString(@"ach.controller.login.title", nil)];
 	[self.supportButton setTitle:NSLocalizedString(@"ach.controller.button.support", nil) forState:UIControlStateNormal];
-	[self.payButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.button.pay", nil), [self.payment payInString]] forState:UIControlStateNormal];
+	[self.payButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.button.pay", nil), [self.payment payInString], self.form.title] forState:UIControlStateNormal];
 	[self.messageOneLabel setText:NSLocalizedString(@"ach.controller.label.message.nostore", nil)];
 	[self.messageTwoLabel setText:NSLocalizedString(@"ach.controller.label.message.secure", nil)];
 	

@@ -261,6 +261,11 @@ NSUInteger const kUserPersonalSection = 1;
 	return self.dateOfBirthCell.isValidDate;
 }
 
+- (BOOL)isValidPhoneNumber
+{
+	return [self.phoneNumberCell.value isValidPhoneNumber];
+}
+
 - (id)enteredProfile
 {
     User *user = [self.objectModel currentUser];

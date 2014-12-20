@@ -5,3 +5,4 @@
 #import "ReferralLinksOperation.h"
 #import "TransferWiseOperation+Private.h"
 #import "Constants.h"
+#import "NSString+Validation.h"

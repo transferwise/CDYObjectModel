@@ -9,11 +9,11 @@
 #import "AchFlow.h"
 #import "Constants.h"
 #import "TRWProgressHUD.h"
-#import "AchDetailsViewController.h"
 #import "VerificationFormOperation.h"
 #import "Payment.h"
 #import "TRWAlertView.h"
 #import "NSError+TRWErrors.h"
+#import "AchDetailsViewController.h"
 #import "AchLoginViewController.h"
 #import "AchWaitingViewController.h"
 #import "CustomInfoViewControllerDelegateHelper.h"
@@ -29,6 +29,7 @@
 
 #define VERIFICATION_FAILURE	@"VERIFICATION_FAILED"
 #define ACCOUNT_NUMBER_MISMATCH	@"ACCOUNT_NUMBER_MISMATCH"
+#define INVALID_ROUTING_NUMBER	@"INVALID_ROUTING_NUMBER"
 
 @class AchBank;
 
@@ -83,7 +84,7 @@
 {
 	[[GoogleAnalytics sharedInstance] sendScreen:@"ACH step 1 shown"];
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
-											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller) {
+											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller, AchDetailsViewController *detailsController) {
 												  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH waiting 1 shown"];
 												  
 												  __weak typeof(self) weakSelf = self;
@@ -99,6 +100,25 @@
 																						flow:weakSelf];
 											   
 												  [(VerificationFormOperation *)self.executedOperation setResultHandler:^(NSError *error, AchBank *form) {
+													  //handle known errors
+													  if (error)
+													  {
+														  if ([error containsTwCode:INVALID_ROUTING_NUMBER])
+														  {
+															  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
+																									 withLabel:@"Invalid routing number"];
+															  [weakSelf presentCustomInfoWithSuccess:NO
+																						  controller:controller
+																							 message:@"ach.failure.message.routingnumber"
+																						 actionBlock:^{
+																							 detailsController.willDismiss = NO;
+																							 [weakSelf.waitingViewController dismiss];
+																						 }
+																							successBlock:nil
+																									flow:weakSelf];
+															  return;
+														  }
+													  }
 													  [weakSelf handleResultWithError:error
 																		successBlock:^{
 																			UIViewController *loginController = [weakSelf getLoginForm:form];
@@ -108,7 +128,7 @@
 																		  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
 																												 withLabel:messages];
 																	  }
-																				flow:weakSelf];
+																				 flow:weakSelf];
 												  }];
 												  
 												  [self.executedOperation execute];
@@ -146,10 +166,6 @@
 																					   controller:controller
 																						  message:@"ach.failure.message.account"
 																					  actionBlock:^{
-																						  weakSelf.currentWaitingDelegate.completion = ^{
-																							  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-																						  };
-																						  
 																						  [weakSelf.waitingViewController dismiss];
 																					  }
 																					 successBlock:nil

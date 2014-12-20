@@ -39,7 +39,6 @@ IB_DESIGNABLE
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textEntryTopSpace;
 @property (nonatomic, assign) CGFloat originalTopSpace;
 @property (nonatomic, assign) BOOL keyboardIsShowing;
-@property (nonatomic, assign) BOOL willDismiss;
 
 @end
 
@@ -167,7 +166,7 @@ IB_DESIGNABLE
 	
 	if (textField == self.accountNumberTextField)
 	{
-		maxLength = kMaxAchAccountlength;
+		maxLength = kMaxAchAccountLength;
 	}
 	
 	NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
@@ -189,7 +188,7 @@ IB_DESIGNABLE
 		__weak typeof(self) weakSelf = self;
 		[self navigateAway:weakSelf
 				completion:^{
-					weakSelf.loginFormBlock(weakSelf.accountNumberTextField.text, weakSelf.routingNumberTextField.text, weakSelf.navigationController);
+					weakSelf.loginFormBlock(weakSelf.accountNumberTextField.text, weakSelf.routingNumberTextField.text, weakSelf.navigationController, weakSelf);
 				}];
 	}
 	else

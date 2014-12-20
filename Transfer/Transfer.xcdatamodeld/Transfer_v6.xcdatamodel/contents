@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AchBank" representedClassName="AchBank" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -198,12 +198,12 @@
         <attribute name="pReference" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sendAsBusinessDefaultSetting" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="successfulInviteCount" optional="YES" attributeType="Integer 16" syncable="YES"/>
-        <relationship name="achBanks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AchBank" inverseName="user" inverseEntity="AchBank" syncable="YES"/>
+        <relationship name="achBanks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AchBank" inverseName="user" inverseEntity="AchBank" syncable="YES"/>
         <relationship name="businessProfile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProfile" inverseName="user" inverseEntity="BusinessProfile" syncable="YES"/>
         <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recipient" inverseName="user" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="payments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Payment" inverseName="user" inverseEntity="Payment" syncable="YES"/>
         <relationship name="personalProfile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonalProfile" inverseName="user" inverseEntity="PersonalProfile" syncable="YES"/>
-        <relationship name="referralLinks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReferralLink" inverseName="user" inverseEntity="ReferralLink" syncable="YES"/>
+        <relationship name="referralLinks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ReferralLink" inverseName="user" inverseEntity="ReferralLink" syncable="YES"/>
     </entity>
     <elements>
         <element name="AchBank" positionX="619" positionY="-324" width="128" height="105"/>
