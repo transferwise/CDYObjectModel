@@ -1,3 +1,29 @@
+"ach.controller.title" = "Payer par débit direct";
+"ach.controller.login.title" = "Confirmer votre payement";
+"ach.controller.button.support.ipad" = "Service client";
+"ach.controller.button.support" = "Contacter le service client";
+"ach.controller.button.connect" = "Se connecter à mon compte";
+"ach.controller.routing.label" = "Votre routing number";
+"ach.controller.account.label" = "Votre account number";
+"ach.controller.validation.routing.invalid" = "Routing number incorrect.";
+"ach.controller.validation.account.invalid" = "Account number incorrect.";
+"ach.controller.error.title" = "Les informations saisies ne sont pas valides.";
+"ach.controller.accessing" = "Nous interrogeons votre banque.";
+"ach.controller.accessing.error" = "Il est impossible de contacter votre banque pour le moment. Essayez à nouveau.";
+"ach.controller.checkbook.routing" = "Votre routing number";
+"ach.controller.checkbook.account" = "Votre account number";
+"ach.controller.checkbook" = "%@ sur un chéque.";
+"ach.waiting.info" = "Patientez quelques instants, nous recherchons votre compte USD.";
+"ach.waiting.info2" = "Veuillez patienter pendant que nous procédons à l'instruction du paiement aupres de votre banque. Cela peut prendre quelques minutes.";
+"ach.controller.button.pay" = "Payez $%@ avec %@";
+"ach.controller.label.message.nostore" = "Les détails de votre compte ne sont ni enregistrés, ni partagés. ";
+"ach.controller.label.message.secure" = "Le paiement is 100% sécurisé.";
+"ach.controller.label.firstfield" = "%@ à %@";
+"ach.success.message" = "Vous avez envoyé l'argent vers TransferWise avec Succès.";
+"ach.failure.message.account" = "Votre compte bancaire n'a pas pu être vérifié.";
+"ach.failure.message.mismatch" = "Les identifiants de votre compte bancaire sont incorrects.";
+"ach.failure.message.routingnumber" = "Routing number invalide";
+
 "business.profile.address.label" = "Adresse";
 "business.profile.email.label" = "Votre email profesionnel";
 "business.profile.address.section.title" = "Adresse";
@@ -57,6 +83,7 @@
 "confirm.payment.header.format" = "Le %@,\n%@\nest estimé d'arriver sur le compte de \n%@";
 "confirm.payment.header.format.nodate" = "%@\n arrivera sur le compte de \n%@";
 "confirm.payment.exchangerate.title.label" = "Taux de change estimé";
+"confirm.payment.exchangerate.exact.title.label" = "Taux de change";
 "confirm.payment.footer.button.title" = "Confirmer";
 "confirm.payment.payment.error.title" = "Le transfert n'a pas pu etre crée. Reéssayez.";
 "confirm.payment.pulling.data" = "Refraichissement...";
@@ -83,7 +110,7 @@
 "contacts.refresh.error.message" = "La list de vos destinataires n'a pas pu etre raffraichie";
 "contacts.refresh.error.title" = "Erreur de raffraichissement";
 "contacts.controller.send.button.title" = "Envoyer %@";
-"contacts.controller.footer.invite" = "Gagner £50 en invitant
+"contacts.controller.footer.invite" = "Gagner %@ en invitant
 vos amis sur TransferWise";
 "contacts.controller.footer.invite.button.title" = "Invitez vos amis";
 "contacts.controller.account.type" = "Compte %@";
@@ -276,6 +303,7 @@ Une révolution dans votre poche.";
 "personal.profile.validation.password.error.notmatching.message" = "Les mots de passes sont différents.";
 "personal.profile.validation.password.error.invalid.length.message" = "Le mot de passe doit contenir au moins 5 caractères";
 "personal.profile.validation.dateofbirth.invalid.message" = "Date de naissance non valide";
+"personal.profile.validation.phone.invalid.message" = "Numéro de téléphone doit contenir au moins 5 caractères";
 "personal.profile.validation.error.title" = "Verifiez vos informations";
 "personal.profile.verify.error.title" = "Erreur de vérification";
 "personal.profile.verify.message" = "Verification du profil";
@@ -408,12 +436,12 @@ C'est irréversible.";
 "transferdetails.controller.refunded.header" = "Transfert remboursé";
 "transferdetails.controller.cancelled.header" = "Transfert annulé";
 "transferdetails.controller.matched.header" = "Transfert en cours";
-"transferdetails.controller.received.header" = "Nous avons bien reçus votre argent";
+"transferdetails.controller.received.header" = "Parfait!";
 "transferdetails.controller.submitted.header" = "Transfert en attente";
 "transferdetails.controller.transferred.header" = "Transfert effectué";
 "transferdetails.controller.transfer.header" = "Votre transfert";
 "transferdetails.controller.transfer.thankyou" = "Bravo!";
-"transferdetails.controller.transfer.message" = "Nous sommes maintenant dans l'attente de réception de votre transfert sur notre compte.\nCela prend généralement %@.";
+"transferdetails.controller.transfer.message" = "Nous sommes maintenant dans l'attente de réception de votre transfert sur notre compte.\n%@.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "à %@";
 "transferdetails.controller.transfer.account.to" = "Details bancaires de %@";
@@ -457,8 +485,8 @@ C'est irréversible.";
 "upload.money.transaction.refresh.error.message" = "Impossible de mettre à jour les details du transfert. Réessayez plus tard.";
 "upload.money.transaction.refresh.error.title" = "Erreur de mise à jour";
 
-"upload.money.card.no.payment.message" = "Paiement avorté";
-"upload.money.card.no.payment.title" = "Le paiement n'a pu être éffectué. Réessayez plus tard.";
+"upload.money.card.retry" = "Réessayer";
+"upload.money.card.no.payment.message" = "Le paiement n'a pu être éffectué. Réessayez plus tard.";
 "upload.money.card.payment.success.message" = "Parfait, votre paiement par carte a été accepté!";
 "upload.money.card.payment.success.title" = "Paiement éffectué";
 
@@ -500,16 +528,30 @@ C'est irréversible.";
 "payment.detail.sent.header.message" = "Transfert envoyé au destinataire.
 Transfert #%@";
 "payment.detail.converting.header.message" = "Transfert #%@ en attente de conversion.";
+
 "payment.method.DATA_CASH" = "Carte de débit";
 "payment.method.REGULAR" = "Virement bancaire";
-"payment.method.REGULAR.USD" = "Domestic Wire";
+"payment.method.REGULAR.USD" = "Wire transfer";
+"payment.method.ADYEN" = "Carte de débit";
+"payment.method.SWIFT" = "SWIFT";
+"payment.method.SWIFT.USD" = "SWIFT";
+"payment.method.ACH" = "Bank debit";
+"payment.method.ACH.USD" = "Bank debit";
+
+"payment.method.title.DATA_CASH" = "Payer par carte bancaire";
+"payment.method.title.REGULAR" = "Payer par virement bancaire";
+"payment.method.title.REGULAR.USD" = "Payer par wire transfer";
+"payment.method.title.ADYEN" = "Payer par carte bancaire";
+"payment.method.title.SWIFT" = "Payer par SWIFT";
+"payment.method.title.SWIFT.USD" = "Payer par SWIFT";
+"payment.method.title.ACH" = "Payer par bank debit";
+"payment.method.title. ACH.USD" = "Payer par bank debit";
+
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
+"payment.method.description.ADYEN" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.SWIFT" = "Si votre compte USD n'est pas aux États Unis, virer vos USD vers notre compte Européen.";
-"payment.method.description.ACH" = "Payer directement via votre banque.";
-"payment.method.SWIFT" = "SWIFT";
-"payment.method.ACH" = "ACH";
-
+"payment.method.description.ACH" = "Prélever directement sur votre compte en banque.";
 
 "support.sheet.title" = "Si vous avez la moindre question, n'hésitez pas à contacter notre service client.";
 "support.sheet.write.message" = "Nous envoyer un email";
@@ -656,14 +698,17 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "invite.sms.button.title" = "Inviter par sms";
 "invite.copy.button.title" = "Copier mon lien";
 "invite.copied.button.title" = "Copié";
-"invite.context" = "Quand 3 amis utilisent TransferWise, vous gagnez £50.";
+"invite.context.format" = "Quand 3 amis utilisent TransferWise, vous gagnez %@.";
 "invite.modal.title" = "Envoyer vos invitations";
 "invite.error.facebook.title" = "Erreur de Facebook";
 "invite.error.facebook.message" = "Activez Facebook sur votre téléphone et réessayez.";
 "invite.facebook.default.message" = "";
 "invite.email.subject" = "%@ vous invite sur TransferWise";
+"invite.email.subject.anonymous" = "Vous avez été invité sur TransferWise";
 "invite.email.message" = "Salut,<br><br>J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi: <br><a href=\"%@\">Accepter l'invitation de %@</a> <br><br>J'espères que cela te rendra service,<br>%@";
+"invite.email.message.anonymous" = "Salut,<br><br>J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi: <br><a href=\"%@\">Accepter l'invitation</a> <br><br>J'espères que cela te rendra service,<br>";
 "invite.sms.message" = "J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi via ce lien: %@. J'espères que cela te rendra service, %@";
+"invite.sms.message.anonymous" = "J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi via ce lien: %@. J'espères que cela te rendra service.";
 "invite.link.querying" = "Obtention du lien d'invitation";
 "invite.link.error.title" = "Lien d'invitation non disponible";
 "invite.link.error.message" = "Il est impossible de charger votre lien d'invitation pour le moment. Réessayer plus tard.";
@@ -696,10 +741,10 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "usd.legaleze" = "En continuant vous adherez \n aux %@";
 "usd.state.specific" = "conditions spéciales de chaque état";
 
-"transfertime.default" = "1 jour ouvré";
-"transfertime.EUR.REGULAR" = "1-2 jours ouvrés";
-"transfertime.GBP.REGULAR" = "quelques heures ouvrées";
-"transfertime.USD.SWIFT" = "3 jours ouvrés";
-"transfertime.USD.REGULAR" = "quelques heures ouvrées";
+"transfertime.default" = "Cela prend généralement 1 jour ouvré";
+"transfertime.EUR.REGULAR" = "Cela prend généralement 1-2 jours ouvrés";
+"transfertime.GBP.REGULAR" = "Cela prend généralement quelques heures ouvrées";
+"transfertime.USD." = "Cela peut prendre 5 jours ouvrés";
+
 
 "upload.money.bankname.title" = "Nom de la banque";

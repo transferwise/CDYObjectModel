@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AchBank" representedClassName="AchBank" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fieldGroups" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FieldGroup" inverseName="achBank" inverseEntity="FieldGroup" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="achBanks" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="allowedValues" inverseEntity="RecipientTypeField" syncable="YES"/>
+    </entity>
+    <entity name="BusinessProfile" representedClassName="BusinessProfile" syncable="YES">
+        <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="businessDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readonlyFields" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registrationNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="businessProfile" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Country" representedClassName="Country" syncable="YES">
+        <attribute name="iso2Code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iso3Code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="code" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paymentReferenceAllowed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="recipientBicRequired" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="recipientEmailRequired" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="referenceMaxLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currencyForRecipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="currency" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="defaultRecipientType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="defaultForCurrencies" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="recipientTypes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipientType" inverseName="currencies" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="sourceForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="sourceCurrency" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="sources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairSourceCurrency" inverseName="currency" inverseEntity="PairSourceCurrency" syncable="YES"/>
+        <relationship name="targetForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="targetCurrency" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairTargetCurrency" inverseName="currency" inverseEntity="PairTargetCurrency" syncable="YES"/>
+    </entity>
+    <entity name="FieldGroup" representedClassName="FieldGroup" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="achBank" maxCount="1" deletionRule="Nullify" destinationEntity="AchBank" inverseName="fieldGroups" inverseEntity="AchBank" syncable="YES"/>
+        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipientTypeField" inverseName="fieldForGroup" inverseEntity="RecipientTypeField" syncable="YES"/>
+    </entity>
+    <entity name="PairSourceCurrency" representedClassName="PairSourceCurrency" syncable="YES">
+        <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxInvoiceAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sources" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PairTargetCurrency" inverseName="source" inverseEntity="PairTargetCurrency" syncable="YES"/>
+    </entity>
+    <entity name="PairTargetCurrency" representedClassName="PairTargetCurrency" syncable="YES">
+        <attribute name="fixedTargetPaymentAllowed" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="index" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="minInvoiceAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targets" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="source" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PairSourceCurrency" inverseName="targets" inverseEntity="PairSourceCurrency" syncable="YES"/>
+    </entity>
+    <entity name="PayInMethod" representedClassName="PayInMethod" syncable="YES">
+        <attribute name="bankName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="disabledReason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paymentReference" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transferWiseAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="payInMethods" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="recipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="payInMethods" inverseEntity="Recipient" syncable="YES"/>
+    </entity>
+    <entity name="Payment" representedClassName="Payment" syncable="YES">
+        <attribute name="cancelledDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="conversionRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="estimatedDelivery" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="estimatedDeliveryStringFromServer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFixedAmount" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="lastUpdateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="payIn" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="paymentStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="payOut" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="presentable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="profileUsed" attributeType="String" defaultValueString="personal" syncable="YES"/>
+        <attribute name="receivedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="remoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="submittedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="transferredDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="payInMethods" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PayInMethod" inverseName="payment" inverseEntity="PayInMethod" syncable="YES"/>
+        <relationship name="paymentMadeIndicator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PaymentMadeIndicator" inverseName="payment" inverseEntity="PaymentMadeIndicator" syncable="YES"/>
+        <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="payments" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="refundRecipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="refundForPayment" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="sourceCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sourceForPayments" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="targetCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targetForPayments" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="PaymentMadeIndicator" representedClassName="PaymentMadeIndicator" syncable="YES">
+        <attribute name="payInMethodName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paymentRemoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="paymentMadeIndicator" inverseEntity="Payment" syncable="YES"/>
+    </entity>
+    <entity name="PendingPayment" representedClassName="PendingPayment" parentEntity="Payment" syncable="YES">
+        <attribute name="paymentPurpose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="proposedPaymentsPurpose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recipientEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reference" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendVerificationLater" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="socialSecurityNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transferwiseTransferFee" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="verificiationNeeded" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="allowedRecipientTypes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipientType" inverseName="pendingPayment" inverseEntity="RecipientType" syncable="YES"/>
+    </entity>
+    <entity name="PersonalProfile" representedClassName="PersonalProfile" syncable="YES">
+        <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateOfBirth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="occupation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readonlyFields" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendAsBusiness" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="personalProfile" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Recipient" representedClassName="Recipient" syncable="YES">
+        <attribute name="addressCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressCountryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressPostCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="currencyForRecipients" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="fieldValues" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TypeFieldValue" inverseName="recipient" inverseEntity="TypeFieldValue" syncable="YES"/>
+        <relationship name="payInMethods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PayInMethod" inverseName="recipient" inverseEntity="PayInMethod" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="recipient" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="refundForPayment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="refundRecipient" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="type" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="recipients" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="contacts" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="RecipientType" representedClassName="RecipientType" syncable="YES">
+        <attribute name="hideFromCreation" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="recipientAddressRequired" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="recipientTypes" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="defaultForCurrencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="defaultRecipientType" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="RecipientTypeField" inverseName="fieldForType" inverseEntity="RecipientTypeField" syncable="YES"/>
+        <relationship name="pendingPayment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PendingPayment" inverseName="allowedRecipientTypes" inverseEntity="PendingPayment" syncable="YES"/>
+        <relationship name="recipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="type" inverseEntity="Recipient" syncable="YES"/>
+    </entity>
+    <entity name="RecipientTypeField" representedClassName="RecipientTypeField" syncable="YES">
+        <attribute name="example" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maxLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="minLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="presentationPattern" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="required" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="validationRegexp" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="allowedValues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AllowedTypeFieldValue" inverseName="valueForField" inverseEntity="AllowedTypeFieldValue" syncable="YES"/>
+        <relationship name="fieldForGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FieldGroup" inverseName="fields" inverseEntity="FieldGroup" syncable="YES"/>
+        <relationship name="fieldForType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="fields" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="values" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TypeFieldValue" inverseName="valueForField" inverseEntity="TypeFieldValue" syncable="YES"/>
+    </entity>
+    <entity name="ReferralLink" representedClassName="ReferralLink" syncable="YES">
+        <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="referralLinks" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Setting" representedClassName="Setting" syncable="YES">
+        <attribute name="key" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TypeFieldValue" representedClassName="TypeFieldValue" syncable="YES">
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="fieldValues" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="values" inverseEntity="RecipientTypeField" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="anonymous" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="invitationReward" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="invitationRewardCurrency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pReference" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendAsBusinessDefaultSetting" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="successfulInviteCount" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <relationship name="achBanks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AchBank" inverseName="user" inverseEntity="AchBank" syncable="YES"/>
+        <relationship name="businessProfile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProfile" inverseName="user" inverseEntity="BusinessProfile" syncable="YES"/>
+        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recipient" inverseName="user" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Payment" inverseName="user" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="personalProfile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonalProfile" inverseName="user" inverseEntity="PersonalProfile" syncable="YES"/>
+        <relationship name="referralLinks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ReferralLink" inverseName="user" inverseEntity="ReferralLink" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AchBank" positionX="619" positionY="-324" width="128" height="105"/>
+        <element name="AllowedTypeFieldValue" positionX="655" positionY="63" width="128" height="90"/>
+        <element name="BusinessProfile" positionX="-396" positionY="-99" width="128" height="193"/>
+        <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Currency" positionX="-92" positionY="-216" width="128" height="270"/>
+        <element name="FieldGroup" positionX="333" positionY="-178" width="128" height="105"/>
+        <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
+        <element name="Payment" positionX="459" positionY="18" width="128" height="375"/>
+        <element name="PaymentMadeIndicator" positionX="-405" positionY="-279" width="128" height="90"/>
+        <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="180"/>
+        <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="240"/>
+        <element name="Recipient" positionX="745" positionY="255" width="128" height="285"/>
+        <element name="RecipientType" positionX="205" positionY="-432" width="128" height="178"/>
+        <element name="RecipientTypeField" positionX="718" positionY="-207" width="128" height="240"/>
+        <element name="ReferralLink" positionX="-218" positionY="-405" width="128" height="88"/>
+        <element name="Setting" positionX="-441" positionY="-405" width="128" height="75"/>
+        <element name="TypeFieldValue" positionX="18" positionY="504" width="128" height="88"/>
+        <element name="User" positionX="-360" positionY="207" width="128" height="253"/>
+    </elements>
+</model>

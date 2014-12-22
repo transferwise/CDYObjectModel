@@ -14,8 +14,11 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
-+ (ReferralsCoordinator *)sharedInstance;
+- (id)init __attribute__((unavailable("init unavailable, use sharedInstanceWithObjetModel:")));
+
++ (ReferralsCoordinator *)sharedInstanceWithObjectModel:(ObjectModel*)objectModel;
 
 - (void)presentOnController:(UIViewController *)controller;
-
+- (void)requestRewardStatus:(void(^)(NSError*))completionBlock;
+- (NSString*)rewardAmountString;
 @end

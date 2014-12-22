@@ -13,7 +13,6 @@
 #import "TransferBackButtonItem.h"
 #import "Credentials.h"
 #import "TransferwiseClient.h"
-#import "NewPaymentViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "PersonalProfileCommitter.h"
 #import "BusinessProfileCommitter.h"
@@ -139,7 +138,7 @@
     [controller presentOnViewController:self.view.window.rootViewController];
 }
 
-- (void)modalClosed
+- (void)dismissCompleted:(TransparentModalViewController *)dismissedController
 {
 	self.isShowingSettings = NO;
 }

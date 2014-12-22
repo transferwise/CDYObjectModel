@@ -11,16 +11,19 @@ extern const struct RecipientTypeFieldAttributes {
 	__unsafe_unretained NSString *presentationPattern;
 	__unsafe_unretained NSString *required;
 	__unsafe_unretained NSString *title;
+	__unsafe_unretained NSString *type;
 	__unsafe_unretained NSString *validationRegexp;
 } RecipientTypeFieldAttributes;
 
 extern const struct RecipientTypeFieldRelationships {
 	__unsafe_unretained NSString *allowedValues;
+	__unsafe_unretained NSString *fieldForGroup;
 	__unsafe_unretained NSString *fieldForType;
 	__unsafe_unretained NSString *values;
 } RecipientTypeFieldRelationships;
 
 @class AllowedTypeFieldValue;
+@class FieldGroup;
 @class RecipientType;
 @class TypeFieldValue;
 
@@ -73,6 +76,10 @@ extern const struct RecipientTypeFieldRelationships {
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* type;
+
+//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* validationRegexp;
 
 //- (BOOL)validateValidationRegexp:(id*)value_ error:(NSError**)error_;
@@ -80,6 +87,10 @@ extern const struct RecipientTypeFieldRelationships {
 @property (nonatomic, strong) NSSet *allowedValues;
 
 - (NSMutableSet*)allowedValuesSet;
+
+@property (nonatomic, strong) FieldGroup *fieldForGroup;
+
+//- (BOOL)validateFieldForGroup:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) RecipientType *fieldForType;
 
@@ -144,6 +155,9 @@ extern const struct RecipientTypeFieldRelationships {
 
 - (NSMutableSet*)primitiveAllowedValues;
 - (void)setPrimitiveAllowedValues:(NSMutableSet*)value;
+
+- (FieldGroup*)primitiveFieldForGroup;
+- (void)setPrimitiveFieldForGroup:(FieldGroup*)value;
 
 - (RecipientType*)primitiveFieldForType;
 - (void)setPrimitiveFieldForType:(RecipientType*)value;

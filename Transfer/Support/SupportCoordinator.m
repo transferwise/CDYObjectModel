@@ -28,35 +28,32 @@
 
 @implementation SupportCoordinator
 
-+ (SupportCoordinator *)sharedInstance {
++ (SupportCoordinator *)sharedInstance
+{
     DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
         return [[self alloc] initSingleton];
     });
 }
 
-- (id)initSingleton {
+- (id)initSingleton
+{
     self = [super init];
-    if (self) {
+    if (self)
+	{
 
     }
 
     return self;
 }
 
-- (id)init {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must use [%@ %@] instead",
-                                                                     NSStringFromClass([self class]),
-                                                                     NSStringFromSelector(@selector(sharedClient))]
-                                 userInfo:nil];
-    return nil;
-}
-
-- (void)presentOnController:(UIViewController *)controller {
+- (void)presentOnController:(UIViewController *)controller
+{
     [self presentOnController:controller emailSubject:nil];
 }
 
-- (void)presentOnController:(UIViewController *)controller emailSubject:(NSString *)emailSubject {
+- (void)presentOnController:(UIViewController *)controller
+			   emailSubject:(NSString *)emailSubject
+{
 	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport"];
     [self setPresentedOnController:controller];
     [self setEmailSubject:emailSubject];
@@ -82,19 +79,24 @@
 	}
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)actionSheet
+clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     MCLog(@"clickedButtonAtIndex:%ld", (long)buttonIndex);
-    if (buttonIndex == actionSheet.cancelButtonIndex) {
+    if (buttonIndex == actionSheet.cancelButtonIndex)
+	{
         MCLog(@"Cancel pressed");
         return;
     }
     
-    if (buttonIndex == self.callButtonIndex) {
+    if (buttonIndex == self.callButtonIndex)
+	{
         MCLog(@"Call pressed");
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", TRWSupportCallNumber]]];
     }
 
-    if (buttonIndex != self.writeButtonIndex) {
+    if (buttonIndex != self.writeButtonIndex)
+	{
         return;
     }
 
@@ -105,7 +107,8 @@
 {
 	MCLog(@"Send mail pressed");
 	
-    if (![MFMailComposeViewController canSendMail]) {
+    if (![MFMailComposeViewController canSendMail])
+	{
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title", nil)
                                                            message:NSLocalizedString(@"support.cant.send.email.message", nil)];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
@@ -128,14 +131,16 @@
 							 ];
     [controller setMessageBody:messageBody isHTML:YES];
     [self.presentedOnController presentViewController:controller animated:YES completion:^{
-		if (IOS_7) {
-			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-		}
+		[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	}];
 }
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    if (error) {
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+		  didFinishWithResult:(MFMailComposeResult)result
+						error:(NSError *)error
+{
+    if (error)
+	{
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.send.email.error.title", nil)
                                                            message:NSLocalizedString(@"support.send.email.error.message", nil)];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];

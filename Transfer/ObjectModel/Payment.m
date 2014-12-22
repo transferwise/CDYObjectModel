@@ -3,7 +3,7 @@
 #import "MoneyFormatter.h"
 #import "Currency.h"
 #import "NSString+DeviceSpecificLocalisation.h"
-
+#import "PaymentMadeIndicator.h"
 
 @interface Payment ()
 
@@ -51,7 +51,22 @@ static NSDictionary* statusLookupDictionary;
 {
     NSString* key = [self.paymentStatus lowercaseString];
     NSNumber *statusNumber =[self statusLookup][key];
-    if(self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted)
+    BOOL overrideReceivedStatus = NO;
+    if([@"USD" caseInsensitiveCompare:self.sourceCurrency.code] == NSOrderedSame)
+    {
+        if([statusNumber unsignedIntegerValue] == PaymentStatusReceived)
+        {
+            if(self.paymentMadeIndicator)
+            {
+                overrideReceivedStatus = [@"ACH" caseInsensitiveCompare:self.paymentMadeIndicator.payInMethodName] == NSOrderedSame;
+            }
+            else
+            {
+                overrideReceivedStatus = YES;
+            }
+        }
+    }
+    if((self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted) || overrideReceivedStatus)
     {
         statusNumber = @(PaymentStatusUserHasPaid);
     }
@@ -59,7 +74,7 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (NSString *)localizedStatus {
-    NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus];
+    NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatusString];
     NSString *statusString = NSLocalizedString(statusKey, nil);
     if([statusString rangeOfString:@"%@"].location != NSNotFound)
     {
@@ -113,6 +128,10 @@ static NSDictionary* statusLookupDictionary;
     return [[MoneyFormatter sharedInstance] formatAmount:[self payIn] withCurrency:self.sourceCurrency.code];
 }
 
+- (NSString *)payInString {
+	return [[MoneyFormatter sharedInstance] formatAmount:[self payIn]];
+}
+
 - (NSString *)payOutStringWithCurrency {
     return [[MoneyFormatter sharedInstance] formatAmount:self.payOut withCurrency:self.targetCurrency.code];
 }
@@ -122,7 +141,9 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (NSString *)paymentDateString {
-    if (self.estimatedDeliveryStringFromServer) {
+    
+    NSString *language = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    if (self.estimatedDeliveryStringFromServer && [language isEqualToString:@"en"]) {
         return self.estimatedDeliveryStringFromServer;
     }
 
@@ -192,6 +213,12 @@ static NSDateFormatter *__shortDateFormatter;
 {
     NSOrderedSet *result = [self.payInMethods filteredOrderedSetUsingPredicate:[NSPredicate predicateWithFormat:@"disabled == false"]];
     return result;
+}
+
+-(NSString*)paymentStatusString
+{
+    NSString *status = self.status == PaymentStatusUserHasPaid ? @"submitted" : self.paymentStatus;
+    return status;
 }
 
 @end

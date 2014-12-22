@@ -13,7 +13,6 @@
 @class PaymentFlow;
 @class ObjectModel;
 @class Payment;
-@class OHAttributedLabel;
 @class ConfirmPaymentCell;
 
 typedef NS_ENUM(short, ConfirmPaymentReportingType) {

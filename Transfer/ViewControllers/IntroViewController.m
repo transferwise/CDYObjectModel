@@ -12,8 +12,6 @@
 #import "SMPageControl.h"
 #import "ObjectModel.h"
 #import "Constants.h"
-#import "NSAttributedString+Attributes.h"
-#import "NewPaymentViewController.h"
 #import "SignUpViewController.h"
 #import "ObjectModel+Settings.h"
 #import "GoogleAnalytics.h"
@@ -23,7 +21,6 @@
 #import "AppDelegate.h"
 #import "ConnectionAwareViewController.h"
 #import "LoginViewController.h"
-#import "SignUpViewController.h"
 #import "Mixpanel+Customisation.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
@@ -53,9 +50,11 @@
 
 @implementation IntroViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithNibName:@"IntroViewController" bundle:nil];
-    if (self) {
+    if (self)
+	{
     }
     return self;
 }
@@ -65,7 +64,8 @@
     _scrollView.delegate = nil;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     [self setReportedPage:NSNotFound];
@@ -132,7 +132,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-
 -(void)viewDidLayoutSubviews
 {
     if(!CGSizeEqualToSize(self.lastLaidoutPageSize,self.scrollView.bounds.size))
@@ -145,13 +144,6 @@
     [self.view layoutSubviews];
     [super viewDidLayoutSubviews];
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 -(void)layoutScrollView
 {
@@ -277,30 +269,36 @@
     }
 }
 
-- (void)pageChanged {
+- (void)pageChanged
+{
     MCLog(@"Page changed");
     [self.pageControl setScrollViewContentOffsetForCurrentPage:self.scrollView animated:YES];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
     self.currentPage = [self.pageControl currentPage];
     [self updatePages];
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
     [self googleReportPage];
     [self updatePages];
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
     [self googleReportPage];
     [self updatePages];
 }
 
-- (void)googleReportPage {
+- (void)googleReportPage
+{
     NSInteger currentPage = [self.pageControl currentPage];
-    if (self.reportedPage == currentPage) {
+    if (self.reportedPage == currentPage)
+	{
         return;
     }
 
@@ -308,22 +306,6 @@
     MCLog(@"Report page:%ld", (long)currentPage);
 
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"IntroScreensSlided" withLabel:[NSString stringWithFormat:@"%ld", (long) currentPage + 1]];
-}
-
-- (NSAttributedString *)attributedMessage:(NSString *)message bold:(NSArray *)boldTexts {
-    NSMutableAttributedString *result = [NSMutableAttributedString attributedStringWithString:message];
-    OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
-    paragraphStyle.textAlignment = kCTTextAlignmentCenter;
-    paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
-    [result setParagraphStyle:paragraphStyle];
-    [result setFont:[UIFont systemFontOfSize:18]];
-    [result setTextColor:[UIColor whiteColor]];
-    for (NSString *toBold in boldTexts) {
-        NSRange range = [message rangeOfString:toBold];
-        [result setFont:[UIFont boldSystemFontOfSize:18] range:range];
-    }
-
-    return [[NSAttributedString alloc] initWithAttributedString:result];
 }
 
 -(void)modifyViews:(NSArray*)viewArray withBlock:(void(^)(UIView* view))modificationBlock
@@ -350,14 +332,16 @@
 	appDelegate.window.rootViewController = root;
 }
 
-- (IBAction)logInTapped:(id)sender {
+- (IBAction)logInTapped:(id)sender
+{
     LoginViewController* login = [[LoginViewController alloc] initWithNibName:@"LoginViewControllerUpfront" bundle:nil];
     login.objectModel = self.objectModel;
     [self fadeInDismissableViewController:login];
 }
 
 
-- (IBAction)registerTapped:(id)sender {
+- (IBAction)registerTapped:(id)sender
+{
     SignUpViewController *signup = [[SignUpViewController alloc] init];
     signup.objectModel = self.objectModel;
     [self fadeInDismissableViewController:signup];
@@ -400,8 +384,6 @@
         
     }
     [dictionary removeObjectForKey:key];
-
-
 }
 
 @end

@@ -75,4 +75,9 @@ NSUInteger kPaymentsListLimit = 20;
     return [[PaymentsOperation alloc] initWithOffset:offset];
 }
 
+-(NSString *)apiVersion
+{
+    return @"v1"; //TODO: Change once Danieles branch is official@"v2";
+}
+
 @end

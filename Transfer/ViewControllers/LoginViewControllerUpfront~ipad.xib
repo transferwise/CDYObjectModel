@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -10,16 +10,16 @@
                 <userDefinedRuntimeAttribute type="string" keyPath="xibNameForResetPassword" value="ResetPasswordViewControllerUpfront"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="emailSeparatorHeight" destination="vHM-sh-uTK" id="6zS-qk-KHI"/>
                 <outlet property="emailTextField" destination="jNz-Kj-TyF" id="RQo-Is-8f0"/>
                 <outlet property="forgotPasswordLabel" destination="nVw-3E-NCJ" id="r9h-mA-0Pc"/>
                 <outlet property="googleLoginButton" destination="ZQJ-ts-mwH" id="h7C-iS-B2K"/>
                 <outlet property="loginButton" destination="A1z-HI-x7D" id="DP4-kN-c57"/>
                 <outlet property="orLabel" destination="Z2S-88-Izr" id="ThB-cl-kvD"/>
-                <outlet property="passwordSeparatorHeight" destination="aIc-s5-uLA" id="f2Z-Rm-ohz"/>
                 <outlet property="passwordTextField" destination="RCm-Tg-pZv" id="kvs-p0-1d5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yahooLoginButton" destination="r8f-4O-fgG" id="ZyH-nK-wHZ"/>
+                <outletCollection property="separatorHeights" destination="vHM-sh-uTK" id="moX-pC-4xM"/>
+                <outletCollection property="separatorHeights" destination="aIc-s5-uLA" id="bb0-ek-Krx"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

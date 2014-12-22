@@ -12,7 +12,6 @@
 #import "Credentials.h"
 #import "PersonalProfileViewController.h"
 #import "BusinessProfileViewController.h"
-#import "SignUpViewController.h"
 #import "LoginViewController.h"
 #import "PersonalProfileCommitter.h"
 #import "ClaimAccountViewController.h"
@@ -23,7 +22,6 @@
 #import "SupportCoordinator.h"
 #import "FeedbackCoordinator.h"
 #import "GoogleAnalytics.h"
-#import "NewPaymentViewController.h"
 #import"ConnectionAwareViewController.h"
 #import "MOMStyle.h"
 #import "TouchIDHelper.h"
@@ -90,9 +88,10 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 	[[UIApplication sharedApplication] openURL:url];
 }
 
-- (IBAction)customerServiceTapped:(id)sender {
+- (IBAction)customerServiceTapped:(id)sender
+{
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Settings"];
-    [[SupportCoordinator sharedInstance] presentOnController:self.hostViewController];
+	[[SupportCoordinator sharedInstance] presentOnController:IPAD ? self : self.hostViewController];
 }
 
 - (IBAction)feedbackTapped:(id)sender {
@@ -136,20 +135,20 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 	}
 }
 
-- (IBAction)profileUseSwitched:(id)sender {
-    
+- (IBAction)profileUseSwitched:(id)sender
+{
     User *user = [self.objectModel currentUser];
     user.sendAsBusinessDefaultSettingValue = self.sendAsBusinessSwitch.on;
     [self.objectModel saveContext];
 }
-- (IBAction)touchIdButtonTapped:(id)sender {
+
+- (IBAction)touchIdButtonTapped:(id)sender
+{
     if([TouchIDHelper isTouchIdSlotTaken])
     {
-
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"touchid.alert.title",nil) message:NSLocalizedString(@"touchid.settings.clear.info",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"button.title.no",nil) otherButtonTitles:NSLocalizedString(@"button.title.yes",nil), nil];
         alertView.tag = 1;
         [alertView show];
-        
     }
     else
     {

@@ -8,7 +8,6 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *invitationReward;
 	__unsafe_unretained NSString *invitationRewardCurrency;
-	__unsafe_unretained NSString *inviteUrl;
 	__unsafe_unretained NSString *pReference;
 	__unsafe_unretained NSString *password;
 	__unsafe_unretained NSString *sendAsBusinessDefaultSetting;
@@ -16,16 +15,20 @@ extern const struct UserAttributes {
 } UserAttributes;
 
 extern const struct UserRelationships {
+	__unsafe_unretained NSString *achBanks;
 	__unsafe_unretained NSString *businessProfile;
 	__unsafe_unretained NSString *contacts;
 	__unsafe_unretained NSString *payments;
 	__unsafe_unretained NSString *personalProfile;
+	__unsafe_unretained NSString *referralLinks;
 } UserRelationships;
 
+@class AchBank;
 @class BusinessProfile;
 @class Recipient;
 @class Payment;
 @class PersonalProfile;
+@class ReferralLink;
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -60,10 +63,6 @@ extern const struct UserRelationships {
 
 //- (BOOL)validateInvitationRewardCurrency:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* inviteUrl;
-
-//- (BOOL)validateInviteUrl:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* pReference;
 
 //- (BOOL)validatePReference:(id*)value_ error:(NSError**)error_;
@@ -88,6 +87,10 @@ extern const struct UserRelationships {
 
 //- (BOOL)validateSuccessfulInviteCount:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSSet *achBanks;
+
+- (NSMutableSet*)achBanksSet;
+
 @property (nonatomic, strong) BusinessProfile *businessProfile;
 
 //- (BOOL)validateBusinessProfile:(id*)value_ error:(NSError**)error_;
@@ -104,6 +107,18 @@ extern const struct UserRelationships {
 
 //- (BOOL)validatePersonalProfile:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSSet *referralLinks;
+
+- (NSMutableSet*)referralLinksSet;
+
+@end
+
+@interface _User (AchBanksCoreDataGeneratedAccessors)
+- (void)addAchBanks:(NSSet*)value_;
+- (void)removeAchBanks:(NSSet*)value_;
+- (void)addAchBanksObject:(AchBank*)value_;
+- (void)removeAchBanksObject:(AchBank*)value_;
+
 @end
 
 @interface _User (ContactsCoreDataGeneratedAccessors)
@@ -119,6 +134,14 @@ extern const struct UserRelationships {
 - (void)removePayments:(NSSet*)value_;
 - (void)addPaymentsObject:(Payment*)value_;
 - (void)removePaymentsObject:(Payment*)value_;
+
+@end
+
+@interface _User (ReferralLinksCoreDataGeneratedAccessors)
+- (void)addReferralLinks:(NSSet*)value_;
+- (void)removeReferralLinks:(NSSet*)value_;
+- (void)addReferralLinksObject:(ReferralLink*)value_;
+- (void)removeReferralLinksObject:(ReferralLink*)value_;
 
 @end
 
@@ -142,9 +165,6 @@ extern const struct UserRelationships {
 - (NSString*)primitiveInvitationRewardCurrency;
 - (void)setPrimitiveInvitationRewardCurrency:(NSString*)value;
 
-- (NSString*)primitiveInviteUrl;
-- (void)setPrimitiveInviteUrl:(NSString*)value;
-
 - (NSString*)primitivePReference;
 - (void)setPrimitivePReference:(NSString*)value;
 
@@ -163,6 +183,9 @@ extern const struct UserRelationships {
 - (int16_t)primitiveSuccessfulInviteCountValue;
 - (void)setPrimitiveSuccessfulInviteCountValue:(int16_t)value_;
 
+- (NSMutableSet*)primitiveAchBanks;
+- (void)setPrimitiveAchBanks:(NSMutableSet*)value;
+
 - (BusinessProfile*)primitiveBusinessProfile;
 - (void)setPrimitiveBusinessProfile:(BusinessProfile*)value;
 
@@ -174,5 +197,8 @@ extern const struct UserRelationships {
 
 - (PersonalProfile*)primitivePersonalProfile;
 - (void)setPrimitivePersonalProfile:(PersonalProfile*)value;
+
+- (NSMutableSet*)primitiveReferralLinks;
+- (void)setPrimitiveReferralLinks:(NSMutableSet*)value;
 
 @end

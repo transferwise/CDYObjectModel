@@ -62,9 +62,11 @@
 #import "CurrenciesOperation.h"
 #import "CountriesOperation.h"
 #import "CountrySuggestionCellProvider.h"
-#import "StateSuggestionProvider.h"
+#import "StateSuggestionCellProvider.h"
 #import "RecipientUpdateOperation.h"
 #import "Mixpanel+Customisation.h"
+#import "TypeFieldHelper.h"
+#import "TargetCountryProvider.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -126,7 +128,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic,strong)TextEntryCell *stateCell;
 
 @property (nonatomic, strong) CountrySuggestionCellProvider *countryCellProvider;
-@property (nonatomic, strong) StateSuggestionProvider *stateCellProvider;
+@property (nonatomic, strong) StateSuggestionCellProvider *stateCellProvider;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopContentOffset;
 
@@ -144,7 +146,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     for (UITableView* tableView in self.tableViews)
@@ -155,7 +158,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.cellHeight = IPAD ? 70.0f : 60.0f;
     
-     __weak typeof(self) weakSelf = self;
+	__weak typeof(self) weakSelf = self;
     
     RecipientEntrySelectionCell *nameCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
 
@@ -202,49 +205,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 							height:self.cellHeight];
     
     
-     NSMutableArray *addressCells = [NSMutableArray array];
+	NSMutableArray *addressCells = [NSMutableArray array];
     
-    SelectionCell *countryCell = [SelectionCell loadInstance];
-    [self setCountryCell:countryCell];
-    [addressCells addObject:countryCell];
-    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
-    [countryCell setCellTag:@"countryCode"];
-    NSFetchedResultsController* countriesFetcher = [self.objectModel fetchedControllerForAllCountries];
-    
-    self.countryCellProvider = [[CountrySuggestionCellProvider alloc] init];
-    
-    [self.countryCellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
-    
-    [super configureWithDataSource:self.countryCellProvider
-						 entryCell:self.countryCell
-							height:self.countryCell.frame.size.height];
-	
-	[self.countryCell setSelectionHandler:^(NSString *countryName) {
-        [weakSelf didSelectCountry:countryName];
-    }];
-    
-	self.countryCell.selectionDelegate = self;
-    
-    TRWProgressHUD * hud = nil;
-    if([countriesFetcher.fetchedObjects count]<=0)
-    {
-        hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    }
-    CountriesOperation *operation = [CountriesOperation operation];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-    [operation setCompletionHandler:^(NSError *error) {
-        [hud hide];
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
-                                                               message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-            return;
-        }
-        
-    }];
-    [operation execute];
+	[self createCountryCell:addressCells];
     
     SelectionCell *stateCell = [SelectionCell loadInstance];
     [self setStateCell:stateCell];
@@ -253,7 +216,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [stateCell setCellTag:@"state"];
     stateCell.selectionDelegate = self;
     
-    self.stateCellProvider = [[StateSuggestionProvider alloc] init];
+    self.stateCellProvider = [[StateSuggestionCellProvider alloc] init];
     [super configureWithDataSource:self.stateCellProvider
                          entryCell:self.stateCell
                             height:self.stateCell.frame.size.height];
@@ -289,6 +252,53 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 }
 
+- (void)createCountryCell:(NSMutableArray *)addressCells
+{
+	__weak typeof(self) weakSelf = self;
+	
+	SelectionCell *countryCell = [SelectionCell loadInstance];
+	[self setCountryCell:countryCell];
+	[addressCells addObject:countryCell];
+	[countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
+	[countryCell setCellTag:@"countryCode"];
+	NSFetchedResultsController* countriesFetcher = [self.objectModel fetchedControllerForAllCountries];
+	
+	self.countryCellProvider = [[CountrySuggestionCellProvider alloc] init];
+	
+	[self.countryCellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
+	
+	[super configureWithDataSource:self.countryCellProvider
+						 entryCell:self.countryCell
+							height:self.countryCell.frame.size.height];
+	
+	[self.countryCell setSelectionHandler:^(NSString *countryName) {
+		[weakSelf didSelectCountry:countryName];
+	}];
+	
+	self.countryCell.selectionDelegate = self;
+	
+	TRWProgressHUD * hud = nil;
+	if([countriesFetcher.fetchedObjects count]<=0)
+	{
+		hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+	}
+	CountriesOperation *operation = [CountriesOperation operation];
+	[self setExecutedOperation:operation];
+	[operation setObjectModel:self.objectModel];
+	[operation setCompletionHandler:^(NSError *error) {
+		[hud hide];
+		if (error)
+		{
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
+															   message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+			return;
+		}
+	}];
+	
+	[operation execute];
+}
 
 -(void)setupTableView:(UITableView*)tableView
 {
@@ -426,6 +436,35 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
    
     [self didSelectRecipient:self.recipient];
+	
+	if (!self.recipient && !self.noPendingPayment)
+	{
+		//set the recipient country based on targent currency, if pending payment exists
+		if (self.objectModel.pendingPayment
+			&& self.objectModel.pendingPayment.targetCurrency
+			&& [@"eur" caseInsensitiveCompare:self.objectModel.pendingPayment.targetCurrency.code] != NSOrderedSame)
+		{
+			[self.countryCell setCode:[TargetCountryProvider getTargetCountryForCurrency:self.objectModel.pendingPayment.targetCurrency]];
+			//fire selection changed to make state cell appear for usa
+			[self.countryCell fireSelectionChanged];
+
+			//remove keyboard showing
+			//fireSelectionChanged will select the next cell
+			NSUInteger countryIndex = [self.addressCells indexOfObject:self.countryCell];
+			
+			//for sanitys sake check that there are enough cells
+			if (self.addressCells.count >= countryIndex + 1)
+			{
+				id cell = [self.addressCells objectAtIndex:countryIndex + 1];
+				
+				//still paranoid
+				if ([cell isKindOfClass:[TextEntryCell class]])
+				{
+					[((TextEntryCell *)cell).entryField resignFirstResponder];
+				}
+			}
+		}
+	}
 
     [self setShown:YES];
 }
@@ -453,10 +492,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"ABRecipientSelected"];
 }
 
-- (void)didSelectRecipient:(Recipient *)recipient {
+- (void)didSelectRecipient:(Recipient *)recipient
+{
     RecipientType* type = recipient ? recipient.type : self.currency.defaultRecipientType;
-
-    
     
     NSArray* allowedTypes = [self allTypes];
     RecipientType *allowedType = type;
@@ -499,10 +537,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [self.nameCell setValue:self.templateRecipient.name];
             [self.emailCell setValue:self.templateRecipient.email];
             
-            
-            for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-
-                
+            for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells)
+			{
                 RecipientTypeField *field = fieldCell.type;
                 [fieldCell setValue:[self.templateRecipient valueField:field]];
                 if([fieldCell.value length]>0)
@@ -564,15 +600,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)setAddressFieldsFromRecipient:(Recipient*)recipient
 {
-
     self.addressCell.value = recipient.addressFirstLine;
     self.postCodeCell.value = recipient.addressPostCode;
     self.cityCell.value = recipient.addressCity;
-    self.countryCell.value = recipient.addressCountryCode;
-    self.stateCell.value = recipient.addressState;
+	//country could be prefilled. overwrite it only when the selected recipient has country information
+	if (recipient.addressCountryCode)
+	{
+		self.countryCell.value = recipient.addressCountryCode;
+	}
+	self.stateCell.value = recipient.addressState;
     
     [self includeStateCell:([@"usa" caseInsensitiveCompare:recipient.addressCountryCode]==NSOrderedSame)];
-    
 }
 
 -(void)setAddressFieldsEditable:(BOOL)editable
@@ -656,7 +694,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (NSArray *)buildCellsForType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"Build cells for type:%@", type.type);
-    NSMutableArray *result = [NSMutableArray array];
 
     //Set up a tabbed or non tabbed header depending on number of types
     if (allTypes.count > 1) {
@@ -676,28 +713,13 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self updateUserNameText];
 
     //Generate cells
-    
-    UITableView* tableView = [self hasMoreThanOneTableView]?self.tableViews[1]:self.tableViews[0];
-    for (RecipientTypeField *field in type.fields) {
-        TextEntryCell *createdCell;
-        if ([field.allowedValues count] > 0) {
-            DropdownCell *cell = [tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
-            [cell setAllElements:[self.objectModel fetchedControllerForAllowedValuesOnField:field]];
-            [cell configureWithTitle:field.title value:@""];
-            [cell setType:field];
-            [result addObject:cell];
-            createdCell = cell;
-        } else {
-            RecipientFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
-            [cell setFieldType:field];
-            [result addObject:cell];
-            createdCell = cell;
-        }
+	UITableView* tableView = [self hasMoreThanOneTableView]?self.tableViews[1]:self.tableViews[0];
 
-        [createdCell setEditable:YES];
-    }
-
-    return [NSArray arrayWithArray:result];
+    return [TypeFieldHelper generateFieldsArray:tableView
+								   fieldsGetter:^NSOrderedSet *{
+									   return type.fields;
+								   }
+									objectModel:self.objectModel];
 }
 
 - (IBAction)addButtonPressed:(id)sender {
@@ -840,7 +862,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         NSString *valueIssue = [field hasIssueWithValue:value];
         if (![valueIssue hasValue]) {
-            if([field.name caseInsensitiveCompare:@"bic"]== NSOrderedSame && [value length] < 1 && self.currency.recipientBicRequiredValue)
+            if([@"bic" caseInsensitiveCompare:field.name]== NSOrderedSame && [value length] < 1 && self.currency.recipientBicRequiredValue)
             {
                 [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.bic.required", nil),self.currency.code]];
             }

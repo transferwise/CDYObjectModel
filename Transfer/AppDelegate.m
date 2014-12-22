@@ -35,7 +35,6 @@
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
-#import "NewPaymentViewController.h"
 
 @interface AppDelegate ()
 
@@ -87,8 +86,6 @@
 	UIViewController* controller;
 
     
-
-    
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
@@ -112,9 +109,7 @@
 		controller = mainController;
         controller = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller];
 	}
-    
-    
-    
+	
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
 	return YES;

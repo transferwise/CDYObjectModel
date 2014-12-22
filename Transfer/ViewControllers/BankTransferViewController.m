@@ -55,17 +55,19 @@
 
 @implementation BankTransferViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithNibName:@"BankTransferViewController" bundle:nil];
-    if (self) {
+    if (self)
+	{
         // Custom initialization
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-
     
     [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
     [self.contactSupportFooterButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", @"") forState:UIControlStateNormal];
@@ -74,37 +76,46 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 50, 0):UIEdgeInsetsMake(20, 0, 50, 0);
     [self.tableView setContentOffset:CGPointMake(0,-self.tableView.contentInset.top)];
     [self loadData];
 }
 
-- (void)loadData {
+- (void)loadData
+{
     MCLog(@"loadData");
     
-    
-   
-    
     PayInMethod* method = self.method;
-
-    
+	NSString* currencyCode = self.payment.sourceCurrency.code;
+	
+	[BankTransferViewController trackForPaymentMethod:method.type
+								   sourceCurrencyCode:currencyCode
+									bankTransferBlock:nil
+										   swiftBlock:^{
+											   [[GoogleAnalytics sharedInstance] sendScreen:@"SWIFT transfer"];
+										   }
+											wireBlock:^{
+												[[GoogleAnalytics sharedInstance] sendScreen:@"Wire transfer"];
+											}];
+		
     //Header
     NSString *exactlyString = NSLocalizedString(@"upload.money.header.label.exactly", @"");
     exactlyString = [NSString stringWithFormat:exactlyString,self.payment.payInWithCurrency];
     
-    NSString* currencyCode = self.payment.sourceCurrency.code;
+	
     NSString* headerFormat;
-    if ([currencyCode caseInsensitiveCompare:@"GBP"]==NSOrderedSame)
+    if ([@"GBP" caseInsensitiveCompare:currencyCode]==NSOrderedSame)
     {
         headerFormat = NSLocalizedString(@"upload.money.header.label.GBP", @"");
     }
-    else if ([currencyCode caseInsensitiveCompare:@"EUR"]==NSOrderedSame)
+    else if ([@"EUR" caseInsensitiveCompare:currencyCode]==NSOrderedSame)
     {
         headerFormat = NSLocalizedString(@"upload.money.header.label.EUR", @"");
     }
-	else if ([currencyCode caseInsensitiveCompare:@"USD"]==NSOrderedSame)
+	else if ([@"USD" caseInsensitiveCompare:currencyCode]==NSOrderedSame)
 	{
         NSString* key = [NSString stringWithFormat:@"upload.money.header.label.USD.%@",self.method.type];
         headerFormat = [NSString localizedStringForKey:key withFallback:NSLocalizedString(@"upload.money.header.label", @"")];
@@ -140,7 +151,6 @@
 	self.footerView.frame = frame;
 	
     //Cells
-
     
     NSMutableArray *presentedCells = [NSMutableArray array];
     
@@ -186,16 +196,18 @@
     [self.tableView reloadData];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
-
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
 }
 
-- (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
+- (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient
+{
     NSMutableArray *result = [NSMutableArray array];
-    for (RecipientTypeField *field in type.fields) {
+    for (RecipientTypeField *field in type.fields)
+	{
         PlainPresentationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
         [cell configureWithTitle:[self addColon:field.title] text:[recipient valueField:field]];
         [result addObject:cell];
@@ -207,8 +219,20 @@
 {
     __weak typeof(self) weakSelf = self;
     [self.objectModel performBlock:^{
-        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:self.method.type];
-        [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
+        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:weakSelf.method.type];
+		
+		[BankTransferViewController trackForPaymentMethod:weakSelf.method.type
+									   sourceCurrencyCode:weakSelf.payment.sourceCurrency.code
+										bankTransferBlock:^{
+											[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
+										}
+											   swiftBlock:^{
+												   [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"Swift"];
+											   }
+												wireBlock:^{
+													[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"WireTransfer"];
+												}];
+		
         if ([Credentials temporaryAccount])
         {
             ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
@@ -223,9 +247,7 @@
             }
             else
             {
-                TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
-                controller.payment = self.payment;
-                controller.objectModel = self.objectModel;
+                TransferWaitingViewController *controller = [TransferWaitingViewController endOfFlowInstanceForPayment:self.payment objectModel:self.objectModel];
                 
                 [self switchToViewController:controller];
             }
@@ -234,7 +256,8 @@
     }];
 }
 
-- (IBAction)contactSupportPressed {
+- (IBAction)contactSupportPressed
+{
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
@@ -252,6 +275,38 @@
 -(NSString*)addColon:(NSString*)original
 {
     return [original stringByAppendingString:@":"];
+}
+
++ (void)trackForPaymentMethod:(NSString *)paymentMethod
+		   sourceCurrencyCode:(NSString *)sourceCurrencyCode
+			bankTransferBlock:(void (^)())bankTransferBlock
+				   swiftBlock:(void (^)())swiftBlock
+					wireBlock:(void (^)())wireBlock
+{
+	if ([@"SWIFT" caseInsensitiveCompare:paymentMethod] == NSOrderedSame)
+	{
+		if (swiftBlock)
+		{
+			swiftBlock();
+		}
+	}
+	else if ([@"REGULAR" caseInsensitiveCompare:paymentMethod] == NSOrderedSame)
+	{
+		if ([@"USD" caseInsensitiveCompare:sourceCurrencyCode] == NSOrderedSame)
+		{
+			if (wireBlock)
+			{
+				wireBlock();
+			}
+		}
+		else
+		{
+			if (bankTransferBlock)
+			{
+				bankTransferBlock();
+			}
+		}
+	}
 }
 @end
 

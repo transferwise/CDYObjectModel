@@ -12,7 +12,39 @@
 
 @property (nonatomic, copy) NSString *titleText;
 @property (nonatomic, copy) NSString *infoText;
-@property (nonatomic, copy) NSString *dismissButtonTitle;
+@property (nonatomic, copy) NSString *actionButtonTitle;
 @property (nonatomic, strong) UIImage *infoImage;
 
+/**
+ *  Set to override the behaviour when the action button is tapped. Default behaviour is call to dismiss.
+ */
+@property (nonatomic,copy) void(^actionButtonBlock)(void);
+
+/**
+ *  set to YES to make the close button invoke the actionButtonBlock rather than just dismiss.
+ */
+@property (nonatomic,assign) BOOL mapCloseButtonToAction;
+
+/**
+ *  Invokes the actionButtonBlock.
+ */
+-(IBAction)actionButtonTapped;
+
+/**
+ *  convenince method for getting an instance with a green tick and mapCloseToAction set to YES.
+ *
+ *  @param messageKey message. An attempt will be made to get the localised version.
+ *
+ *  @return green tick screen with your message
+ */
++(instancetype)successScreenWithMessage:(NSString*)messageKey;
+
+/**
+ *  convenince method for getting an instance with a red cross and mapCloseToAction set to YES.
+ *
+ *  @param messageKey message. An attempt will be made to get the localised version.
+ *
+ *  @return red cross screen with your message
+ */
++(instancetype)failScreenWithMessage:(NSString*)messageKey;
 @end

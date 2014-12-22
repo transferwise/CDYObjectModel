@@ -207,7 +207,7 @@
     }
 
     if ([objects count] > 1) {
-        CDYObjectModelLog(@"Fetched %lu objects: %@", (unsigned long)[objects count], objects);
+        CDYObjectModelLog(@"Fetched %d objects: %@", [objects count], objects);
     }
 
     return [objects lastObject];
@@ -357,8 +357,6 @@
 
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:isPrivateInstance ? NSPrivateQueueConcurrencyType : NSMainQueueConcurrencyType];
     [_managedObjectContext setParentContext:self.writingContext];
-    
-    _managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
 
     return _managedObjectContext;
 }

@@ -22,7 +22,7 @@
 #import "DoubleEntryCell.h"
 #import "Country.h"
 #import "SwitchCell.h"
-#import "StateSuggestionProvider.h"
+#import "StateSuggestionCellProvider.h"
 
 #define MIN_PASSWORD_LENGTH	5
 
@@ -259,6 +259,11 @@ NSUInteger const kUserPersonalSection = 1;
 - (BOOL)isValidDateOfBirth
 {
 	return self.dateOfBirthCell.isValidDate;
+}
+
+- (BOOL)isValidPhoneNumber
+{
+	return [self.phoneNumberCell.value isValidPhoneNumber];
 }
 
 - (id)enteredProfile

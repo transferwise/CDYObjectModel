@@ -11,7 +11,10 @@
 
 @interface InviteViewController : TransparentModalViewController
 
-@property (nonatomic, strong) ObjectModel* objectModel;
-@property (nonatomic, strong) NSString* inviteUrl;
+@property (nonatomic, strong) ObjectModel *objectModel;
+
+- (id)init __attribute__((unavailable("init unavailable, use initWithRewardAmount:")));
+- (instancetype)initWithReferralLinks:(NSArray *)referralLinks
+						 rewardAmount:(NSString *)rewardAmountString;
 
 @end

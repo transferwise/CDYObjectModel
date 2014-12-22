@@ -9,28 +9,34 @@
 
 @implementation PersonalProfile
 
-- (BOOL)isFieldReadonly:(NSString *)fieldName {
+- (BOOL)isFieldReadonly:(NSString *)fieldName
+{
     return [self.readonlyFields hasValue] && [self.readonlyFields rangeOfString:fieldName].location != NSNotFound;
 }
 
-- (NSString *)fullName {
+- (NSString *)fullName
+{
     NSMutableString *result = [NSMutableString string];
-    if ([self.firstName hasValue]) {
+    if ([self.firstName hasValue])
+	{
         [result appendString:self.firstName];
     }
 
-    if ([self.firstName hasValue] && [self.lastName hasValue]) {
+    if ([self.firstName hasValue] && [self.lastName hasValue])
+	{
         [result appendString:@" "];
     }
 
-    if ([self.lastName hasValue]) {
+    if ([self.lastName hasValue])
+	{
         [result appendString:self.lastName];
     }
 
     return [NSString stringWithString:result];
 }
 
-- (NSDictionary *)data {
+- (NSDictionary *)data
+{
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
 	data[@"firstName"] = self.firstName ? self.firstName : @"";
     data[@"lastName"] = self.lastName ? self.lastName : @"";

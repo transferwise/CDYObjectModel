@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import <OHAttributedLabel/OHAttributedLabel.h>
 #import "ConfirmPaymentViewController.h"
 #import "UIColor+Theme.h"
 #import "PlainPresentationCell.h"
@@ -259,25 +258,25 @@
 
 -(void)setupForOrientation:(UIInterfaceOrientation)orientation
 {
-    if(IPAD)
-    {
-    CGRect newHeaderFrame = self.headerView.frame;
-    CGRect newFooterFrame = self.footerView.frame;
-    if UIInterfaceOrientationIsLandscape(orientation)
-    {
-        newHeaderFrame.size.height = 60.0f;
-        newFooterFrame.size.height = 224.0f;
-    }
-    else
-    {
-        newHeaderFrame.size.height = 188.0f;
-        newFooterFrame.size.height = 352.0f;
-    }
-    self.headerView.frame = newHeaderFrame;
-    self.footerView.frame = newFooterFrame;
-    self.tableView.tableHeaderView = self.headerView;
-    self.tableView.tableFooterView = self.footerView;
-    }
+	if(IPAD)
+	{
+		CGRect newHeaderFrame = self.headerView.frame;
+		CGRect newFooterFrame = self.footerView.frame;
+		if UIInterfaceOrientationIsLandscape(orientation)
+		{
+			newHeaderFrame.size.height = 60.0f;
+			newFooterFrame.size.height = 224.0f;
+		}
+		else
+		{
+			newHeaderFrame.size.height = 188.0f;
+			newFooterFrame.size.height = 352.0f;
+		}
+		self.headerView.frame = newHeaderFrame;
+		self.footerView.frame = newFooterFrame;
+		self.tableView.tableHeaderView = self.headerView;
+		self.tableView.tableFooterView = self.footerView;
+	}
 }
 
 - (void)fillDataCells
@@ -286,7 +285,7 @@
     
     [self.yourDepositCell configureWithTitle:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.deposit.fixed.title.label":@"confirm.payment.deposit.title.label", nil) text:[payment payInStringWithCurrency]];
     
-    [self.exchangedToCell configureWithTitle:NSLocalizedString(@"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
+	[self.exchangedToCell configureWithTitle:NSLocalizedString([@"usd" caseInsensitiveCompare:self.payment.sourceCurrency.code] == NSOrderedSame ? @"confirm.payment.exchangerate.exact.title.label" : @"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
 
     
     if(!IPAD)
@@ -424,7 +423,7 @@
             message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message", nil),payment.recipient.name,payment.recipient.name,messageLookup[@"partner"],messageLookup[@"location"],payment.recipient.name];
         
         }
-        else if([payment.targetCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame)
+        else if([@"USD" caseInsensitiveCompare:payment.targetCurrency.code] == NSOrderedSame)
         {
             message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message.USD", nil),payment.recipient.name,payment.recipient.name];
         }

@@ -43,20 +43,24 @@
     [self redrawBlurView];
 }
 
+
 -(void)presentOnViewController:(UIViewController*)hostViewcontroller
 {
+    [self presentOnViewController:hostViewcontroller withPresentationStyle:self.presentationStyle];
+}
+
+-(void)presentOnViewController:(UIViewController*)hostViewcontroller withPresentationStyle:(TransparentModalPresentationStyle)presentationStyle;
+{
+    self.presentationStyle = presentationStyle;
     self.hostViewController= hostViewcontroller;
     [self willMoveToParentViewController:hostViewcontroller];
-    [hostViewcontroller addChildViewController:self];
-    [hostViewcontroller.view addSubview:self.view];
-    CGRect newFrame = hostViewcontroller.view.bounds;
-    newFrame.origin.y = newFrame.size.height;
+    [self.hostViewController addChildViewController:self];
+    [self didMoveToParentViewController:self.hostViewController];
+    
     UIView *blurView;
     if ([UIVisualEffectView class])
     {
         UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-        [hostViewcontroller.view insertSubview:blurEffectView belowSubview:self.view];
-        blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         self.blurEffectView=blurEffectView;
         blurView = blurEffectView;
     }
@@ -65,21 +69,40 @@
         UIImageView *blurredimage = [[UIImageView alloc] initWithFrame:hostViewcontroller.view.frame];
         self.blurImageView = blurredimage;
         [self redrawBlurView];
-        [hostViewcontroller.view insertSubview:blurredimage belowSubview:self.view];
         blurView = blurredimage;
-        blurredimage.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         blurredimage.contentMode = UIViewContentModeBottom;
         blurredimage.clipsToBounds = YES;
-    }
-    self.view.frame = newFrame;
-    newFrame.size.height = 0.0f;
-    blurView.frame=newFrame;
-    [self didMoveToParentViewController:hostViewcontroller];
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.frame = hostViewcontroller.view.bounds;
-       blurView.frame = hostViewcontroller.view.bounds;
         
-    } completion:nil];
+    }
+    [hostViewcontroller.view addSubview:self.view];
+    [hostViewcontroller.view insertSubview:blurView belowSubview:self.view];
+    blurView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    
+    switch (presentationStyle) {
+        case TransparentPresentationFade:
+            [self animateFadeIn];
+            break;
+        case TransparentPresentationSlide:
+        default:
+            [self animateSlideIn];
+            break;
+    }
+    
+    [self didMoveToParentViewController:self.hostViewController];
+    
+}
+
+-(IBAction)dismiss
+{
+    switch (self.presentationStyle) {
+        case TransparentPresentationFade:
+            [self animateFadeOut];
+            break;
+        case TransparentPresentationSlide:
+        default:
+            [self animateSlideOut];
+            break;
+    }
 }
 
 -(void)redrawBlurView
@@ -94,36 +117,84 @@
     }
 }
 
--(IBAction)dismiss
+#pragma mark - presentation styles
+-(void)animateSlideIn
+{
+    UIView* blurView = self.blurEffectView?:self.blurImageView;
+    CGRect newFrame = self.hostViewController.view.bounds;
+    newFrame.origin.y = newFrame.size.height;
+    self.view.frame = newFrame;
+    newFrame.size.height = 0.0f;
+    blurView.frame=newFrame;
+    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.view.frame = self.hostViewController.view.bounds;
+        blurView.frame = self.hostViewController.view.bounds;
+        
+    } completion:nil];
+}
+
+-(void)animateSlideOut
 {
     UIView *blurView = self.blurImageView?:self.blurEffectView;
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [UIView animateWithDuration:0.3f
-						  delay:0.0f
-						options:UIViewAnimationOptionCurveEaseInOut
-					 animations:^{
-						 CGRect newFrame = self.view.bounds;
-						 newFrame.origin.y = newFrame.size.height;
-						 self.view.frame = newFrame;
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         CGRect newFrame = self.view.bounds;
+                         newFrame.origin.y = newFrame.size.height;
+                         self.view.frame = newFrame;
                          if(blurView == self.blurImageView)
                          {
                              newFrame.size.height = 0.0f;
                          }
-						 blurView.frame = newFrame;
-					 }
-					 completion:^(BOOL finished) {
-						 [self.view removeFromSuperview];
-						 [blurView removeFromSuperview];
-						 [self removeFromParentViewController];
-						 if ([self.delegate respondsToSelector:@selector(modalClosed)])
-						 {
-							 [self.delegate modalClosed];
-						 }
-					 }];
+                         blurView.frame = newFrame;
+                     }
+                     completion:^(BOOL finished) {
+                         [self dismissAnimationCompletionWithBlurview:blurView];
+                     }];
+}
+
+-(void)animateFadeIn
+{
+    UIView* blurView = self.blurEffectView?:self.blurImageView;
+    CGRect newFrame = self.hostViewController.view.bounds;
+    self.view.frame = newFrame;
+    blurView.frame=newFrame;
+    self.view.hidden = YES;
+    blurView.hidden = YES;
+    [UIView transitionWithView:self.hostViewController.view duration:0.3 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.view.hidden = NO;
+        blurView.hidden = NO;
+    } completion:nil];
+}
+
+-(void)animateFadeOut
+{
+    UIView *blurView = self.blurImageView?:self.blurEffectView;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [UIView transitionWithView:self.hostViewController.view duration:0.3 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.view.hidden = YES;
+        blurView.hidden = YES;
+    } completion:^(BOOL finished) {
+        [self dismissAnimationCompletionWithBlurview:blurView];
+    }];
+}
+
+-(void)dismissAnimationCompletionWithBlurview:(UIView*)blurView
+{
+    [self.view removeFromSuperview];
+    [blurView removeFromSuperview];
+    [self removeFromParentViewController];
+    if ([self.delegate respondsToSelector:@selector(dismissCompleted:)])
+    {
+        [self.delegate dismissCompleted:self];
+    }
 }
 
 -(UIViewController*)hostViewController
 {
     return _hostViewController;
 }
+
 @end

@@ -36,5 +36,6 @@ typedef void (^SelectionCellSelectionBlock)(NSString *name);
 @property (nonatomic, copy) SelectionCellSelectionBlock selectionHandler;
 
 - (void)setCode:(NSString *)code;
+- (void)fireSelectionChanged;
 
 @end

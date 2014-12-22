@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import <OHAttributedLabel/NSAttributedString+Attributes.h>
 #import "SignUpViewController.h"
 #import "UIColor+Theme.h"
 #import "TableHeaderView.h"
@@ -40,15 +39,18 @@
 
 @implementation SignUpViewController
 
-- (id)init{
+- (id)init
+{
     self = [super init];
-    if (self) {
+    if (self)
+	{
         self.title = NSLocalizedString(@"sign.up.controller.title", nil);
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
@@ -90,26 +92,36 @@
                                                                                                            isBlue:YES]];
     }
     
-    NSString* tos = NSLocalizedString(@"registration.tos", nil);
-    NSString* privacy = NSLocalizedString(@"registration.privacy", nil);
-    NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"registration.legaleze", nil),tos,privacy];
-    NSMutableAttributedString *attributedLegaleze = [NSMutableAttributedString attributedStringWithString:legaleze];
-    NSRange wholeString = NSMakeRange(0, [legaleze length]);
-    [attributedLegaleze addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.legalezetextView.fontStyle] range:wholeString];
-    [attributedLegaleze addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.legalezetextView.fontStyle] range:wholeString];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setAlignment:NSTextAlignmentCenter];
-    [attributedLegaleze addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeString];
-    NSRange tosRange = [legaleze rangeOfString:tos];
-    [attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWToSUrl] range:tosRange];
-    NSRange privacyRange = [legaleze rangeOfString:privacy];
-    [attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWPrivacyUrl] range:privacyRange];
-    self.legalezetextView.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorFromStyle:@"TWElectricBlue"]};
-    self.legalezetextView.attributedText = attributedLegaleze;
-    
+	[self generateLegalezeLabels];
 }
 
-- (NSAttributedString *)existingUserMessage {
+- (void)generateLegalezeLabels
+{
+	NSString* tos = NSLocalizedString(@"registration.tos", nil);
+	NSString* privacy = NSLocalizedString(@"registration.privacy", nil);
+	NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"registration.legaleze", nil),tos,privacy];
+	
+	NSMutableAttributedString *attributedLegaleze = [[NSMutableAttributedString alloc] initWithString:legaleze];
+	NSRange wholeString = NSMakeRange(0, [legaleze length]);
+	[attributedLegaleze addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.legalezetextView.fontStyle] range:wholeString];
+	[attributedLegaleze addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.legalezetextView.fontStyle] range:wholeString];
+	
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+	[paragraphStyle setAlignment:NSTextAlignmentCenter];
+	[attributedLegaleze addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeString];
+	
+	NSRange tosRange = [legaleze rangeOfString:tos];
+	[attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWToSUrl] range:tosRange];
+	
+	NSRange privacyRange = [legaleze rangeOfString:privacy];
+	[attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWPrivacyUrl] range:privacyRange];
+	
+	self.legalezetextView.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorFromStyle:@"TWElectricBlue"]};
+	self.legalezetextView.attributedText = attributedLegaleze;
+}
+
+- (NSAttributedString *)existingUserMessage
+{
     NSString *existingUserMessage = NSLocalizedString(@"sign.up.controller.existing.user.message", nil);
     NSString *existingUserAction = NSLocalizedString(@"sign.up.controller.existing.user.action", nil);
     NSString *baseMessage = [NSString stringWithFormat:@"%@ %@", existingUserMessage, existingUserAction];
@@ -120,15 +132,11 @@
     NSRange actionRange = [baseMessage rangeOfString:existingUserAction];
     [result setAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14], NSForegroundColorAttributeName: HEXCOLOR(0x157EFBFF)} range:actionRange];
 
-    return [NSAttributedString attributedStringWithAttributedString:result];
+	return [[NSAttributedString alloc] initWithString:[result string]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
     [NavigationBarCustomiser setWhite];
@@ -144,12 +152,14 @@
 }
 
 
-- (IBAction)signUpPressed:(id)sender {
+- (IBAction)signUpPressed:(id)sender
+{
     [UIApplication dismissKeyboard];
 
     NSString *issues = [self validateInput];
 
-    if ([issues hasValue]) {
+    if ([issues hasValue])
+	{
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"sign.up.error.title", nil) message:issues];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
@@ -164,7 +174,8 @@
     [operation setCompletionHandler:^(NSError *error) {
         [hud hide];
 
-        if (error) {
+        if (error)
+		{
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"sign.up.controller.signup.error.message", nil) error:error];
             [alertView show];
             return;
@@ -177,25 +188,30 @@
     [operation execute];
 }
 
-- (NSString *)validateInput {
+- (NSString *)validateInput
+{
     NSString *email = self.emailCell.value;
     NSString *passwordOne = self.passwordCell.value;
     NSString *passwordTwo = self.confirmPasswordCell.value;
 
     NSMutableString *issues = [NSMutableString string];
 
-    if (![email hasValue]) {
+    if (![email hasValue])
+	{
         [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.email.missing", nil)];
     }
 
-    if ([email hasValue] && ![email isValidEmail]) {
+    if ([email hasValue] && ![email isValidEmail])
+	{
         [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.email.invalid", nil)];
     }
 
-    if (![passwordOne hasValue]) {
+    if (![passwordOne hasValue])
+	{
         [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.password.missing", nil)];
     }
-    else if (![passwordOne isEqualToString:passwordTwo]) {
+    else if (![passwordOne isEqualToString:passwordTwo])
+	{
         [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.password.mismatch", nil)];
     }
 
@@ -208,6 +224,5 @@
 {
     return YES;
 }
-
 
 @end

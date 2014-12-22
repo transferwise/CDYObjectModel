@@ -11,9 +11,15 @@
 @implementation PayInMethod
 
 
-+(NSArray*)supportedPayInMethods
++(NSDictionary*)supportedPayInMethods
 {
-    return @[@"REGULAR",@"DATA_CASH",@"SWIFT"];
+    return @{
+			 @"REGULAR" : @1,
+			 @"DATA_CASH" : @0,
+			 @"SWIFT" : @2,
+//			 @"ADYEN" : @0,
+			 @"ACH" : @0
+			 };
 }
 
 @end

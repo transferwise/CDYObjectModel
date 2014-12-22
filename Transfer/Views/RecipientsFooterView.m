@@ -7,6 +7,7 @@
 //
 
 #import "RecipientsFooterView.h"
+#import "ReferralsCoordinator.h"
 
 @interface RecipientsFooterView ()
 
@@ -17,15 +18,18 @@
 
 @implementation RecipientsFooterView
 
-- (void)commonSetup
+- (void)awakeFromNib
 {
-	[self.inviteLabel setText:NSLocalizedString(@"contacts.controller.footer.invite", nil)];
 	[self.inviteButton setTitle:NSLocalizedString(@"contacts.controller.footer.invite.button.title", nil) forState:UIControlStateNormal];
+}
+
+-(void)setAmountString:(NSString*)amountString
+{
+    [self.inviteLabel setText:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.footer.invite", nil),amountString]];
 }
 
 - (IBAction)inviteTapped:(id)sender
 {
-
     [self.delegate inviteFriends];
 }
 

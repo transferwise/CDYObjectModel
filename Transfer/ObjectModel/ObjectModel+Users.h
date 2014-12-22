@@ -17,7 +17,6 @@
 - (User *)currentUser;
 - (void)removeAnonymousUser;
 - (void)markAnonUserWithEmail:(NSString *)email;
-- (void)saveInviteUrl:(NSString *)inviteUrl;
 - (void)saveReferralData:(NSDictionary*)data;
 
 @end

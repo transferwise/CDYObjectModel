@@ -17,12 +17,10 @@
 #import "Payment.h"
 #import "BankTransferViewController.h"
 #import "ConfirmPaymentViewController.h"
-#import "PaymentDetailsViewController.h"
 #import "Recipient.h"
 #import "RecipientType.h"
 #import "UploadMoneyViewController.h"
 #import "GoogleAnalytics.h"
-#import "IdentificationNotificationView.h"
 #import "UIView+Loading.h"
 #import "CheckPersonalProfileVerificationOperation.h"
 #import "PersonalProfileIdentificationViewController.h"
@@ -79,8 +77,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     if (self)
 	{
         [self setTitle:NSLocalizedString(@"transactions.controller.title", nil)];
+		
+		//Observe notification to remove selected payment for iPad
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -156,6 +162,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.refreshView refreshComplete];
 }
 
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    for(PaymentCell* cell in [self.tableView visibleCells])
+    {
+        [cell setIsCancelVisible:NO animated:NO];
+    }
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -210,55 +225,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View payment"];
 	[self removeCancellingFromCell];
 
-    UIViewController *resultController;
-    if ([payment isSubmitted])
-	{
-        
-		if(IPAD)
-		{
-			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
-			controller.payment = payment;
-            controller.objectModel = self.objectModel;
-			controller.delegate = self;
-			resultController = controller;
-		}
-		else
-		{
-            if([[payment enabledPayInMethods] count]>2)
-            {
-                PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
-                selector.objectModel = self.objectModel;
-                selector.payment = payment;
-                resultController = selector;
-            }
-            else
-            {
+	[self showPayment:payment];
+}
 
-                UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-                [controller setPayment:payment];
-                [controller setObjectModel:self.objectModel];
-                [controller setHideBottomButton:YES];
-                [controller setShowContactSupportCell:YES];
-                resultController = controller;
-            }
-		}
-    }
-    else if (payment.status == PaymentStatusUserHasPaid)
-    {
-        TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
-        controller.payment = payment;
-        controller.objectModel = self.objectModel;
-        resultController = controller;
-    }
-    else
+- (void)moveToPaymentsList
+{
+	//if we are redisplaying transfers list on IPAD reload the selected transfer because it might have changed
+	if (IPAD)
 	{
-        TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
-        controller.payment = payment;
-        resultController = controller;
-    }
-
-    
-    [self presentDetail:resultController];
+		[self presentDetail:nil];
+	}
 }
 
 - (void)refreshPaymentsList
@@ -300,15 +276,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
             [self setExecutedOperation:nil];
 			
-            if (totalCount > self.payments.count)
-			{
-                [self.tableView setTableFooterView:self.loadingFooterView];
-            }
-			else
-			{
-                [self.tableView setTableFooterView:nil];
-            }
-			
 			[self.tableView reloadData];
             
             if(!error && totalCount == 0)
@@ -324,13 +291,28 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 }
             }
 			
-			
+            BOOL footerUpdateScheduled = NO;
 			//data may already be locally stored, this will be overwritten
 			if (delta > 0)
 			{
+                footerUpdateScheduled = YES;
+                [CATransaction begin];
+                __weak typeof(self) weakSelf = self;
+                [CATransaction setCompletionBlock:^{
+                    if (totalCount > self.payments.count)
+                    {
+                        [weakSelf.tableView setTableFooterView:self.loadingFooterView];
+                    }
+                    else
+                    {
+                        [weakSelf.tableView setTableFooterView:nil];
+                    }
+
+                }];
                 [self.tableView reloadRowsAtIndexPaths:[TransactionsViewController generateIndexPathsFrom:currentCount
                                                                                                 withCount:delta]
                                       withRowAnimation:UITableViewRowAnimationFade];
+                [CATransaction commit];
             }
 			
 			if(self.isViewAppearing)
@@ -347,6 +329,18 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 										  scrollPosition:UITableViewScrollPositionMiddle];
 				}
 			}
+            
+            if(!footerUpdateScheduled)
+            {
+                if (totalCount > self.payments.count)
+                {
+                    [self.tableView setTableFooterView:self.loadingFooterView];
+                }
+                else
+                {
+                    [self.tableView setTableFooterView:nil];
+                }
+            }
             
             [self.refreshView refreshComplete];
             
@@ -395,6 +389,56 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
 
     [self refreshPaymentsWithOffset:self.payments.count hud:nil];
+}
+
+- (void)showPayment:(Payment *)payment
+{
+	UIViewController *resultController;
+	if ([payment isSubmitted])
+	{
+		if(IPAD)
+		{
+			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
+			controller.payment = payment;
+			controller.objectModel = self.objectModel;
+			controller.delegate = self;
+			resultController = controller;
+		}
+		else
+		{
+			if([[payment enabledPayInMethods] count]>2)
+			{
+				PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
+				selector.objectModel = self.objectModel;
+				selector.payment = payment;
+				resultController = selector;
+			}
+			else
+			{
+				UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+				[controller setPayment:payment];
+				[controller setObjectModel:self.objectModel];
+				[controller setHideBottomButton:YES];
+				[controller setShowContactSupportCell:YES];
+				resultController = controller;
+			}
+		}
+	}
+	else if (payment.status == PaymentStatusUserHasPaid)
+	{
+		TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
+		controller.payment = payment;
+		controller.objectModel = self.objectModel;
+		resultController = controller;
+	}
+	else
+	{
+		TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
+		controller.payment = payment;
+		resultController = controller;
+	}
+	
+	[self presentDetail:resultController];
 }
 
 - (void)checkPersonalVerificationNeeded

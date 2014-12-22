@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MultipleEntryCell.h"
+#import "RecipientTypeField.h"
 
 extern NSString *const TWDoublePasswordEntryCellIdentifier;
 
@@ -17,6 +18,7 @@ extern NSString *const TWDoublePasswordEntryCellIdentifier;
 @property (nonatomic) BOOL showDouble;
 @property (nonatomic, readonly) BOOL areMatching;
 @property (nonatomic) BOOL useDummyPassword;
+@property (nonatomic, strong) RecipientTypeField *type;
 
 - (void)setDummyPassword;
 
