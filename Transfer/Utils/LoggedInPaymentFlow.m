@@ -11,7 +11,8 @@
 @implementation LoggedInPaymentFlow
 
 - (void)commitPaymentWithSuccessBlock:(TRWActionBlock)successBlock
-						 errorHandler:(TRWErrorBlock)errorHandler{
+						 errorHandler:(TRWErrorBlock)errorHandler
+{
     MCLog(@"Commit payment");
     [self setPaymentErrorHandler:errorHandler];
     [self setVerificationSuccessBlock:successBlock];

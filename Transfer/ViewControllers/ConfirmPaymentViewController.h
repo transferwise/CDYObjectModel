@@ -30,6 +30,8 @@ typedef NS_ENUM(short, ConfirmPaymentReportingType) {
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, assign) BOOL showContactSupportCell;
 @property (nonatomic, assign) ConfirmPaymentReportingType reportingType;
+@property (nonatomic, copy) TRWActionBlock sucessBlock;
+@property (nonatomic, copy) TRWErrorBlock errorBlock;
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked;
 

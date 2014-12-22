@@ -480,21 +480,24 @@
     }
     
     [input setRecipientEmail:email];
-    
-    void(^validateBlock)(void) = ^void(){
-		[self.paymentValidator setObjectModel:self.objectModel];
-		[self.paymentValidator setSuccessBlock:^{
-			[hud hide];
-		}];
-		[self.paymentValidator setErrorBlock:^(NSError *error) {
-			[hud hide];
-			if (error) {
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
-				TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
-				[alertView show];
-			}
-		}];
-    };
+	
+	__weak typeof(self) weakSelf = self;
+	
+	[self.paymentValidator setObjectModel:self.objectModel];
+	[self.paymentValidator setSuccessBlock:^{
+		[hud hide];
+		weakSelf.sucessBlock();
+	}];
+	[self.paymentValidator setErrorBlock:^(NSError *error) {
+		[hud hide];
+		if (error)
+		{
+			[[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert"
+												   withLabel:[error localizedTransferwiseMessage]];
+			TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+			[alertView show];
+		}
+	}];
 	
     if(emailAdded)
     {
@@ -511,7 +514,7 @@
                     [alertView show];
                     return;
                 }
-                validateBlock();
+                [self.paymentValidator validatePayment:input.objectID];
             }];
             self.executedOperation = updateOperation;
             [updateOperation execute];
@@ -519,12 +522,12 @@
         else
         {
             //recipient is being created later. the validation will catch any email issues.
-            validateBlock();
+            [self.paymentValidator validatePayment:input.objectID];
         }
     }
     else
     {
-        validateBlock();
+        [self.paymentValidator validatePayment:input.objectID];
     }
     
 

@@ -196,7 +196,17 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentPaymentConfirmation");
 		
+		__weak typeof(self) weakSelf = self;
 		id<PaymentValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePayment];
+		
+		//TODO: as inputs for controller factory
+		[validator setSuccessBlock:^{
+			[weakSelf checkVerificationNeeded];
+		}];
+		[validator setErrorBlock:^(NSError *error) {
+			weakSelf.paymentErrorHandler(error);
+		}];
+		
 		
 		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
 																								 params:@{kPaymentValidator: [NSObject getObjectOrNsNull:validator]}]
