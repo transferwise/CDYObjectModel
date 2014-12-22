@@ -211,7 +211,8 @@
 {
     Recipient *recipient = self.payment.recipient;
     NSMutableArray *cells = [NSMutableArray array];
-    for (TypeFieldValue *value in recipient.fieldValues) {
+    for (TypeFieldValue *value in recipient.fieldValues)
+	{
         PlainPresentationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
         [cell configureWithTitle:value.valueForField.title text:[value presentedValue]];
         cell.backgroundColor = [UIColor clearColor];
@@ -315,7 +316,7 @@
 		if (self.payment.estimatedDelivery)
 		{
 			NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-			dateFormatter.dateFormat = @"EEEE dd/MM/YYYY 'at' ha";
+			dateFormatter.dateFormat = @"EEEE dd/MM/yyyy 'at' ha";
 			NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
 			[self.estimatedDeliveryCell configureWithTitle:NSLocalizedString(@"confirm.payment.delivery.date.message",nil) text:dateString];
 		}
@@ -363,7 +364,7 @@
 -(void)fillHeaderText
 {
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"EEEE dd/MM/YYYY 'at' ha";
+    dateFormatter.dateFormat = @"EEEE dd/MM/yyyy 'at' ha";
 	NSString *amountString = [NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.fixed.target.sum.format":@"confirm.payment.target.sum.format",nil),[self.payment payOutStringWithCurrency]];
 	
 	NSString *headerText;

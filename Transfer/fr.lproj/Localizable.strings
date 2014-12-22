@@ -217,7 +217,7 @@ Une révolution dans votre poche.";
 "payment.change.time.one.month.ago" = "Il y a 1 mois";
 "payment.change.time.one.year.ago" = "Il y a 1 an";
 "payment.change.time.years.ago" = "Il y a %d ans ago";
-"payment.date.format.long" = "d MMM YYYY";
+"payment.date.format.long" = "d MMM yyyy";
 "payment.date.format.short" = "d MMM";
 "payment.controller.calculation.error.title" = "Calcul avorté";
 "payment.controller.continue.to.details.button.title" = "Continuer";
