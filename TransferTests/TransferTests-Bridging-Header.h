@@ -6,3 +6,4 @@
 #import "TransferWiseOperation+Private.h"
 #import "Constants.h"
 #import "NSObject+NSNull.h"
+#import "NSString+Validation.h"

@@ -10,7 +10,9 @@
 
 static NSInteger const kMaxAchRoutingLength = 9;
 static NSInteger const kMinAchAccountLength = 4;
-static NSInteger const kMaxAchAccountlength = 17;
+static NSInteger const kMaxAchAccountLength = 17;
+static NSInteger const kMinPhoneNumberLength = 4;
+static NSInteger const kMaxPhoneNumberLength = 255;
 
 @interface NSString (Validation)
 
@@ -18,5 +20,6 @@ static NSInteger const kMaxAchAccountlength = 17;
 - (BOOL)isValidEmail;
 - (BOOL)isValidAchRoutingNumber;
 - (BOOL)isValidAchAccountNumber;
+- (BOOL)isValidPhoneNumber;
 
 @end

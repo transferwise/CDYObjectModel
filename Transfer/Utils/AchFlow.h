@@ -12,8 +12,9 @@
 
 @class Payment;
 @class ObjectModel;
+@class AchDetailsViewController;
 
-typedef void (^GetLoginFormBlock)(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller);
+typedef void (^GetLoginFormBlock)(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller, AchDetailsViewController *detailsController);
 typedef void (^InitiatePullBlock)(NSDictionary *from, UINavigationController *controller);
 
 @interface AchFlow : NSObject<TransparentModalViewControllerDelegate>

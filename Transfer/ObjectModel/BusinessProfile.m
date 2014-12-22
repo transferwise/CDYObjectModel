@@ -7,11 +7,13 @@
 
 @implementation BusinessProfile
 
-- (BOOL)isFieldReadonly:(NSString *)fieldName {
+- (BOOL)isFieldReadonly:(NSString *)fieldName
+{
     return [self.readonlyFields hasValue] && [self.readonlyFields rangeOfString:fieldName].location != NSNotFound;
 }
 
-- (NSDictionary *)data {
+- (NSDictionary *)data
+{
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"businessName"] = self.name;
     data[@"registrationNumber"] = self.registrationNumber;
@@ -24,7 +26,8 @@
     return [NSDictionary dictionaryWithDictionary:data];
 }
 
-- (BOOL)isFilled {
+- (BOOL)isFilled
+{
 	return [self.name hasValue] && [self.registrationNumber hasValue] && [self.addressFirstLine hasValue] && [self.postCode hasValue]
 			&& [self.city hasValue] && [self.countryCode hasValue];
 }

@@ -15,6 +15,8 @@
 
 @interface AchDetailsViewController : DismissKeyboardViewController<UITextFieldDelegate>
 
+@property (nonatomic, assign) BOOL willDismiss;
+
 - (id)init __attribute__((unavailable("init unavailable, use initWithPayment:objectModel.")));
 - (instancetype)initWithPayment:(Payment *)payment
 				 loginFormBlock:(GetLoginFormBlock)loginFormBlock;

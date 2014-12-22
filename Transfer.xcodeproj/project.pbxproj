@@ -551,6 +551,7 @@
 		47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7521A443F1500014F55 /* NSObject+NSNull.m */; };
 		47C1F7541A443F1500014F55 /* NSObject+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7521A443F1500014F55 /* NSObject+NSNull.m */; };
 		47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */; };
+		47C1F75A1A45AFA600014F55 /* NSStringValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */; };
 		47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03E1A232A9F005EC7C6 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
@@ -1461,6 +1462,7 @@
 		47C1F7511A443F1500014F55 /* NSObject+NSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSNull.h"; sourceTree = "<group>"; };
 		47C1F7521A443F1500014F55 /* NSObject+NSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSNull.m"; sourceTree = "<group>"; };
 		47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectNSNullTests.swift; sourceTree = "<group>"; };
+		47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringValidationTests.swift; sourceTree = "<group>"; };
 		47C4D0381A232A9F005EC7C6 /* _AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AchBank.h; sourceTree = "<group>"; };
 		47C4D0391A232A9F005EC7C6 /* _AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AchBank.m; sourceTree = "<group>"; };
 		47C4D03A1A232A9F005EC7C6 /* _FieldGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FieldGroup.h; sourceTree = "<group>"; };
@@ -2255,6 +2257,14 @@
 			isa = PBXGroup;
 			children = (
 				47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		47C1F7581A45AF7D00014F55 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3652,6 +3662,7 @@
 				476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */,
 				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
+				47C1F75A1A45AFA600014F55 /* NSStringValidationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

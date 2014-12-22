@@ -8,6 +8,7 @@
 
 #import "ReferralLink.h"
 #import "ObjectModel+ReferralLinks.h"
+#import "ObjectModel+Users.h"
 
 @implementation ObjectModel (ReferralLinks)
 
@@ -16,17 +17,15 @@
 	return [self fetchEntitiesNamed:[ReferralLink entityName] withSortDescriptors:nil];
 }
 
-- (NSArray *)createOrUpdateReferralLinks:(NSDictionary *)referralLinks
+- (void)createOrUpdateReferralLinks:(NSDictionary *)referralLinks
 {
-	NSMutableArray *returnLinks = [[NSMutableArray alloc] init];
-	
 	for (NSString* key in referralLinks)
 	{
 		NSInteger channel = [ObjectModel getReferralChannel:key];
 		
 		if (channel > -1)
 		{
-			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"channel = %li", (long)channel];
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"channel = %li AND user = %@", (long)channel, [self currentUser]];
 			ReferralLink *referralLink = [self fetchEntityNamed:[ReferralLink entityName] withPredicate:predicate];
 			
 			if (!referralLink)
@@ -34,16 +33,10 @@
 				referralLink = [ReferralLink insertInManagedObjectContext:self.managedObjectContext];
 				[referralLink setChannelValue:channel];
 				[referralLink setUrl:referralLinks[key]];
-			}
-			
-			if (referralLink)
-			{
-				[returnLinks addObject:referralLink];
+				[referralLink setUser:[self currentUser]];
 			}
 		}
 	}
-	
-	return [NSArray arrayWithArray:returnLinks];
 }
 
 + (NSInteger)getReferralChannel:(NSString *)key

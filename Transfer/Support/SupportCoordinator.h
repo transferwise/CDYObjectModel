@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
+- (id)init __attribute__((unavailable("init unavailable, use sharedInstance")));
 + (SupportCoordinator *)sharedInstance;
 
 - (void)presentOnController:(UIViewController *)controller;
