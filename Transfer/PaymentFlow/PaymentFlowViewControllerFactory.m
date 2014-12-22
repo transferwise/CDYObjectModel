@@ -115,7 +115,8 @@ NSString * const kNextActionBlock = @"nextActionBlock";
 	if (self.objectModel.pendingPayment.recipient)
 	{
 		[controller setButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
-	} else
+	}
+	else
 	{
 		[controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
 	}
