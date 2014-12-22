@@ -46,6 +46,7 @@
 #import "ObjectModel+Payments.h"
 #import "EmailValidation.h"
 #import "PaymentValidation.h"
+#import "NSObject+NSNull.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -98,7 +99,7 @@
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalPaymentProfileController
 																							 params:@{kAllowProfileSwitch: [NSNumber numberWithBool:allowProfileSwitch],
 																									  kProfileIsExisting: [NSNumber numberWithBool:isExisting],
-																									  kPersonalProfileValidator: validator}]
+																									  kPersonalProfileValidator: [NSObject getObjectOrNsNull:validator]}]
 										 animated:YES];
 }
 
@@ -139,9 +140,9 @@
 
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:RecipientController
 																							 params:@{kShowMiniProfile: [NSNumber numberWithBool:showMiniProfile],
-																									  kTemplateRecipient: template ? template : [NSNull null],
-																									  kUpdateRecipient: updateRecipient ? updateRecipient : [NSNull null],
-																									  kRecipientProfileValidator: validator,
+																									  kTemplateRecipient: [NSObject getObjectOrNsNull:template],
+																									  kUpdateRecipient: [NSObject getObjectOrNsNull:updateRecipient],
+																									  kRecipientProfileValidator: [NSObject getObjectOrNsNull:validator],
 																									  kNextActionBlock: [nextBlock copy]}]
 										 animated:YES];
 }
@@ -185,7 +186,7 @@
 		}];
 		
 		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:BusinessPaymentProfileController
-																								 params:@{kBusinessProfileValidator: validator}]
+																								 params:@{kBusinessProfileValidator: [NSObject getObjectOrNsNull:validator]}]
 											 animated:YES];
     });
 }
@@ -198,7 +199,7 @@
 		id<PaymentValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePayment];
 		
 		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
-																								 params:@{kPaymentValidator: validator}]
+																								 params:@{kPaymentValidator: [NSObject getObjectOrNsNull:validator]}]
 											 animated:YES];
     });
 }
@@ -210,7 +211,7 @@
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalPaymentProfileController
-																							 params:@{kPendingPayment: payment}]
+																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment]}]
 										 animated:YES];
 }
 
@@ -232,13 +233,13 @@
         if(!IPAD && [[payment enabledPayInMethods] count]>2)
         {
 			[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PaymentMethodSelectorController
-																									 params:@{kPayment: payment}]
+																									 params:@{kPayment: [NSObject getObjectOrNsNull:payment]}]
 												 animated:YES];
         }
         else
         {
 			[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:UploadMoneyController
-																									 params:@{kPayment: payment}]
+																									 params:@{kPayment: [NSObject getObjectOrNsNull:payment]}]
 												 animated:YES];
         }
         
@@ -306,7 +307,7 @@
 
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:BusinessProfileIdentificationController
-																							 params:@{kPendingPayment: payment}]
+																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment]}]
 										 animated:YES];
 }
 
@@ -631,8 +632,8 @@
 	};
 	
     [self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:RefundDetailsController
-																							 params:@{kPendingPayment: payment,
-																									  kNextActionBlock: nextBlock}]
+																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment],
+																									  kNextActionBlock: [nextBlock copy]}]
 										 animated:YES];
 	
 }

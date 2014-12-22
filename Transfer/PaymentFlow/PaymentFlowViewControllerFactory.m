@@ -24,6 +24,7 @@
 #import "BusinessProfileValidation.h"
 #import "RecipientProfileValidation.h"
 #import "PaymentValidation.h"
+#import "NSObject+NSNull.h"
 
 NSString * const kAllowProfileSwitch = @"allowProfileSwitch";
 NSString * const kProfileIsExisting = @"profileIsExisting";
@@ -64,35 +65,35 @@ NSString * const kNextActionBlock = @"nextActionBlock";
 		case PersonalPaymentProfileController:
 			return [self getPersonalProfileViewController:params[kAllowProfileSwitch]
 											   isExisting:params[kProfileIsExisting]
-								 personalProfileValidator:params[kPersonalProfileValidator]];
+								 personalProfileValidator:[NSObject getObjectOrNil:params[kPersonalProfileValidator]]];
 			break;
 		case RecipientController:
 			return [self getRecipientViewController:params[kShowMiniProfile]
-								  templateRecipient:params[kTemplateRecipient]
-									updateRecipient:params[kUpdateRecipient]
-						  recipientProfileValidator:params[kRecipientProfileValidator]
+								  templateRecipient:[NSObject getObjectOrNil:params[kTemplateRecipient]]
+									updateRecipient:[NSObject getObjectOrNil:params[kUpdateRecipient]]
+						  recipientProfileValidator:[NSObject getObjectOrNil:params[kRecipientProfileValidator]]
 									nextActionBlock:params[kNextActionBlock]];
 			break;
 		case BusinessPaymentProfileController:
-			return [self getBusinessProfileViewController:params[kBusinessProfileValidator]];
+			return [self getBusinessProfileViewController:[NSObject getObjectOrNil:params[kBusinessProfileValidator]]];
 			break;
 		case ConfirmPaymentController:
-			return [self getConfirmPaymentViewController:params[kPaymentValidator]];
+			return [self getConfirmPaymentViewController:[NSObject getObjectOrNil:params[kPaymentValidator]]];
 			break;
 		case PersonalProfileIdentificationController:
-			return [self getPersonalProfileIdentificationViewController:params[kPendingPayment]];
+			return [self getPersonalProfileIdentificationViewController:[NSObject getObjectOrNil:params[kPendingPayment]]];
 			break;
 		case PaymentMethodSelectorController:
-			return [self getPaymentMethodSelectorViewController:params[kPayment]];
+			return [self getPaymentMethodSelectorViewController:[NSObject getObjectOrNil:params[kPayment]]];
 			break;
 		case UploadMoneyController:
-			return [self getUploadMoneyViewController:params[kPayment]];
+			return [self getUploadMoneyViewController:[NSObject getObjectOrNil:params[kPayment]]];
 			break;
 		case BusinessProfileIdentificationController:
-			return [self getBusinessProfileIdentificationController:params[kPendingPayment]];
+			return [self getBusinessProfileIdentificationController:[NSObject getObjectOrNil:params[kPendingPayment]]];
 			break;
 		case RefundDetailsController:
-			return [self getRefundDetailsViewController:params[kPendingPayment]
+			return [self getRefundDetailsViewController:[NSObject getObjectOrNil:params[kPendingPayment]]
 										nextActionBlock:params[kNextActionBlock]];
 			break;
 		default:
