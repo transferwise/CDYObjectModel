@@ -47,6 +47,7 @@
 #import "EmailValidation.h"
 #import "PaymentValidation.h"
 #import "NSObject+NSNull.h"
+#import "ConfirmPaymentViewController.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -215,9 +216,16 @@
 		id<PaymentValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePayment];
 		[validator setValidationBlock:paymentValidationBlock];
 		
-		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
-																								 params:@{kPaymentValidator: [NSObject getObjectOrNsNull:validator],
-																										  kNextActionBlock: [successBlock copy]}]
+		//TODO: decouple validation error handling to get rid of this
+		ConfirmPaymentViewController *controller = (ConfirmPaymentViewController *)[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
+																							  params:@{kPaymentValidator: [NSObject getObjectOrNsNull:validator],
+																									   kNextActionBlock: [successBlock copy]}];
+		
+		self.paymentErrorHandler = ^(NSError *error) {
+			[controller handleValidationError:error];
+		};
+		
+		[self.navigationController pushViewController:controller
 											 animated:YES];
     });
 }

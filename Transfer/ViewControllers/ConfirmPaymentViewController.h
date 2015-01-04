@@ -34,5 +34,6 @@ typedef NS_ENUM(short, ConfirmPaymentReportingType) {
 @property (nonatomic, copy) PaymentValidationBlock validationBlock;
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked;
+- (void)handleValidationError:(NSError *)error;
 
 @end
