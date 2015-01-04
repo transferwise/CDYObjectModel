@@ -38,6 +38,7 @@ NSString * const kRecipientProfileValidator = @"recipientProfileValidator";
 NSString * const kBusinessProfileValidator = @"businessProfileValidator";
 NSString * const kPaymentValidator = @"paymentValidator";
 NSString * const kNextActionBlock = @"nextActionBlock";
+NSString * const kValidationBlock = @"validationBlock";
 
 @interface PaymentFlowViewControllerFactory ()
 
@@ -78,7 +79,8 @@ NSString * const kNextActionBlock = @"nextActionBlock";
 			return [self getBusinessProfileViewController:[NSObject getObjectOrNil:params[kBusinessProfileValidator]]];
 			break;
 		case ConfirmPaymentController:
-			return [self getConfirmPaymentViewController:[NSObject getObjectOrNil:params[kPaymentValidator]]];
+			return [self getConfirmPaymentViewController:[NSObject getObjectOrNil:params[kPaymentValidator]]
+											successBlock:params[kNextActionBlock]];
 			break;
 		case PersonalProfileIdentificationController:
 			return [self getPersonalProfileIdentificationViewController:[NSObject getObjectOrNil:params[kPendingPayment]]];
@@ -179,6 +181,7 @@ NSString * const kNextActionBlock = @"nextActionBlock";
 }
 
 - (ConfirmPaymentViewController *)getConfirmPaymentViewController:(id<PaymentValidation>)paymentValidator
+													 successBlock:(TRWActionBlock)successBlock;
 {
 	ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
 	if ([Credentials userLoggedIn])
@@ -189,10 +192,12 @@ NSString * const kNextActionBlock = @"nextActionBlock";
 	{
 		[controller setReportingType:ConfirmPaymentReportingNotLoggedIn];
 	}
+	
 	[controller setObjectModel:self.objectModel];
 	[controller setPayment:[self.objectModel pendingPayment]];
 	[controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
 	[controller setPaymentValidator:paymentValidator];
+	[controller setSucessBlock:successBlock];
 	
 	return controller;
 }

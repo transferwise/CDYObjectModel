@@ -23,6 +23,7 @@ extern NSString * const kRecipientProfileValidator;
 extern NSString * const kBusinessProfileValidator;
 extern NSString * const kPaymentValidator;
 extern NSString * const kNextActionBlock;
+extern NSString * const kValidationBlock;
 
 typedef NS_ENUM(short, ControllerType)
 {
@@ -38,6 +39,7 @@ typedef NS_ENUM(short, ControllerType)
 };
 
 typedef void (^CommitActionBlock)(TRWActionBlock successBlock, TRWErrorBlock errorBlock);
+typedef void (^PaymentValidationBlock)(TRWActionBlock validationBlock);
 
 @interface PaymentFlowViewControllerFactory : NSObject
 

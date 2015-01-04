@@ -11,6 +11,8 @@
 
 @class ObjectModel;
 
+typedef void (^PaymentValidationBlock)(TRWActionBlock validationBlock);
+
 @protocol PaymentValidation <NSObject>
 
 - (void)validatePayment:(NSManagedObjectID *)paymentInput;
@@ -18,5 +20,6 @@
 - (void)setObjectModel:(ObjectModel *)objectModel;
 - (void)setSuccessBlock:(TRWActionBlock)successBlock;
 - (void)setErrorBlock:(TRWErrorBlock)errorBlock;
+- (void)setValidationBlock:(PaymentValidationBlock)validationBlock;
 
 @end

@@ -197,19 +197,27 @@
         MCLog(@"presentPaymentConfirmation");
 		
 		__weak typeof(self) weakSelf = self;
-		id<PaymentValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePayment];
+		PaymentValidationBlock paymentValidationBlock = ^(TRWActionBlock validationBlock){
+			if ([Credentials userLoggedIn])
+			{
+				[weakSelf updateSenderProfile:validationBlock];
+			}
+			else
+			{
+				validationBlock();
+			}
+		};
 		
-		//TODO: as inputs for controller factory
-		[validator setSuccessBlock:^{
+		TRWActionBlock successBlock = ^{
 			[weakSelf checkVerificationNeeded];
-		}];
-		[validator setErrorBlock:^(NSError *error) {
-			weakSelf.paymentErrorHandler(error);
-		}];
+		};
 		
+		id<PaymentValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePayment];
+		[validator setValidationBlock:paymentValidationBlock];
 		
 		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
-																								 params:@{kPaymentValidator: [NSObject getObjectOrNsNull:validator]}]
+																								 params:@{kPaymentValidator: [NSObject getObjectOrNsNull:validator],
+																										  kNextActionBlock: [successBlock copy]}]
 											 animated:YES];
     });
 }

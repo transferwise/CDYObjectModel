@@ -12,6 +12,7 @@
 @interface PaymentValidator ()
 
 @property (copy, nonatomic) TRWErrorBlock errorBlock;
+@property (copy, nonatomic)	PaymentValidationBlock validationBlock;
 
 @end
 
@@ -19,27 +20,38 @@
 
 - (void)validatePayment:(NSManagedObjectID *)paymentInput
 {
-	MCLog(@"Validate payment");
-	
-	CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
-	
-	[self setExecutedOperation:operation];
-	[operation setObjectModel:self.objectModel];
-	
 	__weak typeof(self) weakSelf = self;
 	
-	[operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
-		if (error)
-		{
-			weakSelf.errorBlock(error);
-			return;
-		}
+	TRWActionBlock paymentValidationBlock =  ^{
+		MCLog(@"Validate payment");
 		
-		MCLog(@"Payment valid");
-		weakSelf.successBlock();
-	}];
+		CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
+		
+		[weakSelf setExecutedOperation:operation];
+		[operation setObjectModel:weakSelf.objectModel];
+		
+		[operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
+			if (error)
+			{
+				weakSelf.errorBlock(error);
+				return;
+			}
+			
+			MCLog(@"Payment valid");
+			weakSelf.successBlock();
+		}];
+		
+		[operation execute];
+	};
 	
-	[operation execute];
+	if (self.validationBlock)
+	{
+		self.validationBlock(paymentValidationBlock);
+	}
+	else
+	{
+		paymentValidationBlock();
+	}
 }
 
 @end
