@@ -486,7 +486,7 @@
 	
 	[self.paymentValidator setObjectModel:self.objectModel];
 	[self.paymentValidator setSuccessBlock:^{
-		[self.hud hide];
+		[weakSelf.hud hide];
 		weakSelf.sucessBlock();
 	}];
 	[self.paymentValidator setErrorBlock:^(NSError *error) {

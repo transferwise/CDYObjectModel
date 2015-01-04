@@ -236,7 +236,7 @@
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	
-	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalPaymentProfileController
+	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalProfileIdentificationController
 																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment]}]
 										 animated:YES];
 }
