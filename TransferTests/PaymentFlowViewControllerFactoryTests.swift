@@ -47,20 +47,19 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		
 		let controllerValidator = concreteController.profileValidation as PersonalProfileValidator
 		
-		XCTAssertEqual(controllerValidator, validator as PersonalProfileValidator, "incorrect validator set")
+		XCTAssertEqual(controllerValidator, validator as PersonalProfileValidator, "incorrect personal validator set")
 	}
 	
 	func testGetViewControllerReturnsCorrectRecipient()
 	{
 		let recipient: Recipient = Recipient.insertInManagedObjectContext(objectModel?.managedObjectContext) as Recipient
 		let validator: AnyObject! = validatorFactory!.getValidatorWithType(.ValidateRecipientProfile)
-		let block: TRWActionBlock = {}
 		let controller = factory!.getViewControllerWithType(.RecipientController, params: [kShowMiniProfile: true,
 			kTemplateRecipient: recipient,
 			kUpdateRecipient: recipient,
 			kRecipientProfileValidator: validator,
 			//so... a block (closure in Swift-speak) is not AnyObject .oO
-			kNextActionBlock: unsafeBitCast(block, AnyObject.self)])
+			kNextActionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
 		
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is RecipientViewController, "invalid type of controller")
@@ -75,9 +74,50 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		
 		let controllerValidator = concreteController.recipientValidation as RecipientProfileValidator
 		
-		XCTAssertEqual(controllerValidator, validator as RecipientProfileValidator, "incorrect validator set")
+		XCTAssertEqual(controllerValidator, validator as RecipientProfileValidator, "incorrect recipient validator set")
+	}
+	
+	func testGetViewControllerReturnsCorrectBusinessPaymentProfile()
+	{
+		let validator: AnyObject! = validatorFactory!.getValidatorWithType(.ValidateBusinessProfile)
+		let controller = factory!.getViewControllerWithType(.BusinessPaymentProfileController, params: [kBusinessProfileValidator: validator])
+		
+		XCTAssertNotNil(controller, "controller must exist")
+		XCTAssertTrue(controller is BusinessPaymentProfileViewController, "invalid type of controller")
+		
+		let concreteController = controller as BusinessPaymentProfileViewController
+		
+		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
+		
+		let controllerValidator = concreteController.profileValidation as BusinessProfileValidator
+		
+		XCTAssertEqual(controllerValidator, validator as BusinessProfileValidator, "incorrect business profile validator set")
+	}
+	
+	func testGetViewControllerReturnsCorrectConfirmPayment()
+	{
+		let validator: AnyObject! = validatorFactory!.getValidatorWithType(.ValidatePayment)
+		let controller = factory!.getViewControllerWithType(.ConfirmPaymentController, params: [kPaymentValidator: validator,
+			kNextActionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
+		
+		XCTAssertNotNil(controller, "controller must exist")
+		XCTAssertTrue(controller is ConfirmPaymentViewController, "invalid type of controller")
+		
+		let concreteController = controller as ConfirmPaymentViewController
+		
+		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
+		XCTAssertNotNil(unsafeBitCast(concreteController.sucessBlock, AnyObject.self), "after save action not set")
+		
+		let controllerValidator = concreteController.paymentValidator as PaymentValidator
+		
+		XCTAssertEqual(controllerValidator, validator as PaymentValidator, "incorrect business profile validator set")
 	}
 
 	//test each version for negative paths
 	//- missing params
+	
+	private func getEmptyBlock() -> TRWActionBlock
+	{
+		return {}
+	}
 }
