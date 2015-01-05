@@ -15,7 +15,7 @@
 
 @interface ValidatorFactory ()
 
-@property (strong, nonatomic) ObjectModel *objetModel;
+@property (strong, nonatomic) ObjectModel *objectModel;
 
 @end
 
@@ -26,7 +26,7 @@
 	self = [super init];
 	if (self)
 	{
-		self.objetModel = objectModel;
+		self.objectModel = objectModel;
 	}
 	return self;
 }
@@ -59,28 +59,28 @@
 - (BusinessProfileValidator *)getBusinessProfileValidator
 {
 	BusinessProfileValidator *validator = [[BusinessProfileValidator alloc] init];
-	validator.objectModel = self.objetModel;
+	validator.objectModel = self.objectModel;
 	return validator;
 }
 
 - (PaymentValidator *)getPaymentValidator
 {
 	PaymentValidator *validator = [[PaymentValidator alloc] init];
-	validator.objectModel = self.objetModel;
+	validator.objectModel = self.objectModel;
 	return validator;
 }
 
 - (PersonalProfileValidator *)getPersonalProfileValidator
 {
 	PersonalProfileValidator *validator = [[PersonalProfileValidator alloc] initWithEmailValidation:[self getValidatorWithType:ValidateEmail]];
-	validator.objectModel = self.objetModel;
+	validator.objectModel = self.objectModel;
 	return validator;
 }
 
 - (RecipientProfileValidator *)getRecipientProfileValidator
 {
 	RecipientProfileValidator *validator = [[RecipientProfileValidator alloc] init];
-	validator.objectModel = self.objetModel;
+	validator.objectModel = self.objectModel;
 	return validator;
 }
 

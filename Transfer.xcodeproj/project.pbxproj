@@ -443,6 +443,7 @@
 		473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */; };
+		474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */; };
 		4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		474A5A8F1A137EDC0094757B /* _ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8E1A137EDC0094757B /* _ReferralLink.m */; };
@@ -1361,6 +1362,7 @@
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringValidationTests.swift; sourceTree = "<group>"; };
+		474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFlowViewControllerFactoryTests.swift; sourceTree = "<group>"; };
 		4746EAFA19A7267B00D03557 /* ReferralListOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralListOperation.h; sourceTree = "<group>"; };
 		4746EAFB19A7267B00D03557 /* ReferralListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralListOperation.m; sourceTree = "<group>"; };
 		474A5A8D1A137EDC0094757B /* _ReferralLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ReferralLink.h; sourceTree = "<group>"; };
@@ -2180,6 +2182,14 @@
 			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
+		474206FE1A5A671600DF6477 /* PaymentFlow */ = {
+			isa = PBXGroup;
+			children = (
+				474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */,
+			);
+			name = PaymentFlow;
+			sourceTree = "<group>";
+		};
 		4757BE5B1A3B0634005D7BDD /* PaymentFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -2265,6 +2275,7 @@
 		47DC89821A03950F0042054B /* TransferTests */ = {
 			isa = PBXGroup;
 			children = (
+				474206FE1A5A671600DF6477 /* PaymentFlow */,
 				47C1F7551A44446600014F55 /* Extensions */,
 				476EB8EA1A15030E00E4E392 /* TransferTests-Bridging-Header.h */,
 				476EB8E71A15000D00E4E392 /* Network */,
@@ -3656,6 +3667,7 @@
 				474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */,
 				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
+				474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
