@@ -210,8 +210,9 @@ NSString * const kValidationBlock = @"validationBlock";
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
 	[controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
-	__weak typeof(self) weakSelf = self;
 	
+	//TODO: move this back to payment flow
+	__weak typeof(self) weakSelf = self;
 	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
 		[weakSelf.objectModel performBlock:^{
 			//TODO: SSN
@@ -249,8 +250,9 @@ NSString * const kValidationBlock = @"validationBlock";
 - (BusinessProfileIdentificationViewController *)getBusinessProfileIdentificationController:(PendingPayment *)payment
 {
 	BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
-	__weak typeof(self) weakSelf = self;
 	
+	//TODO:move this back to payment flow
+	__weak typeof(self) weakSelf = self;
 	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock,TRWErrorBlock errorBlock) {
 		[weakSelf.objectModel performBlock:^{
 			[payment setSendVerificationLaterValue:skipIdentification];

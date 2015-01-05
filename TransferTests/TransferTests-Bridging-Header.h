@@ -1,3 +1,4 @@
+
 //
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
@@ -18,3 +19,13 @@
 #import "BusinessProfileIdentificationViewController.h"
 #import "RefundDetailsViewController.h"
 #import "PaymentFlowViewControllerFactory.h"
+#import "BusinessProfileValidator.h"
+#import "EmailValidator.h"
+#import "PaymentValidator.h"
+#import "PersonalProfileValidator.h"
+#import "RecipientProfileValidator.h"
+#import "ValidatorFactory.h"
+#import "Recipient.h"
+#import "PendingPayment.h"
+#import "Payment.h"
+#import "Currency.h"
