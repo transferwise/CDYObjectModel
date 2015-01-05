@@ -85,6 +85,7 @@
 	self.personalProfile.allowProfileSwitch = NO;
 	PersonalProfileCommitter *personalValidation = [[PersonalProfileCommitter alloc] init];
 	personalValidation.objectModel = self.objectModel;
+	
 	self.personalProfile.profileValidation = personalValidation;
 	self.personalProfile.showInsideTabControllerForIpad = YES;
 	self.personalProfile.showFooterViewForIpad = YES;
@@ -93,6 +94,7 @@
 	self.businessProfile.objectModel = self.objectModel;
 	BusinessProfileCommitter *businessValidation = [[BusinessProfileCommitter alloc] init];
 	businessValidation.objectModel = self.objectModel;
+	
 	self.businessProfile.profileValidation = businessValidation;
 	self.businessProfile.isExisting = YES;
 	self.businessProfile.showInsideTabControllerForIpad = YES;

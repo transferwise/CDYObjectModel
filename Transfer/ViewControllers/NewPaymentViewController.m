@@ -448,7 +448,16 @@ static NSUInteger const kRowYouSend = 0;
                     [payment setRecipient:self.recipient];
                     [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue? BUSINESS_PROFILE :PERSONAL_PROFILE];
                     payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[weakSelf.objectModel recipientTypesWithCodes:listOfRecipientTypeCodes]];
-                    PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
+					
+					PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:self.objectModel];
+					ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:self.objectModel];
+					
+                    PaymentFlow *paymentFlow = [Credentials userLoggedIn] ? [[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController
+																								   paymentFlowViewControllerFactory:controllerFactory
+																												   validatorFactory:validatorFactory]
+																			:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController
+																									paymentFlowViewControllerFactory:controllerFactory
+																													validatorFactory:validatorFactory];
                     [self setPaymentFlow:paymentFlow];
                     
                     [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @class ObjectModel;
 
@@ -14,7 +15,13 @@ typedef void (^BusinessProfileValidationBlock)(NSError *error);
 
 @protocol BusinessProfileValidation <NSObject>
 
-- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler;
+- (void)validateBusinessProfile:(NSManagedObjectID *)profile
+					withHandler:(BusinessProfileValidationBlock)handler;
+
 - (void)setObjectModel:(ObjectModel *)objectModel;
+
+@optional
+- (void)setSuccessBlock:(TRWActionBlock)successBlock;
+- (void)setPersonalProfileNotFilledBlock:(TRWActionBlock)personalProfileNotFilledBlock;
 
 @end

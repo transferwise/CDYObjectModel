@@ -53,6 +53,7 @@
 @property (nonatomic, strong) TextEntryCell *referenceCell;
 @property (nonatomic, strong) TextEntryCell *receiverEmailCell;
 @property (nonatomic, strong) IBOutlet UIButton *contactSupportButton;
+@property (nonatomic, strong) TRWProgressHUD *hud;
 
 @property (nonatomic, strong) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *footerLabel;
@@ -457,8 +458,8 @@
 
 -(void)sendForValidation
 {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
+    self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [self.hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
     
     PendingPayment *input = [self.objectModel pendingPayment];
     
@@ -480,19 +481,17 @@
     }
     
     [input setRecipientEmail:email];
-    
-    void(^validateBlock)(void) = ^void(){
-        [self.paymentFlow validatePayment:input.objectID successBlock:^{
-            [hud hide];
-        } errorHandler:^(NSError *error) {
-            [hud hide];
-            if (error) {
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
-                [alertView show];
-            }
-        }];
-    };
+	
+	__weak typeof(self) weakSelf = self;
+	
+	[self.paymentValidator setObjectModel:self.objectModel];
+	[self.paymentValidator setSuccessBlock:^{
+		[weakSelf.hud hide];
+		weakSelf.sucessBlock();
+	}];
+	[self.paymentValidator setErrorBlock:^(NSError *error) {
+		[weakSelf handleValidationError:error];
+	}];
 	
     if(emailAdded)
     {
@@ -503,13 +502,13 @@
             RecipientUpdateOperation * updateOperation = [RecipientUpdateOperation instanceWithRecipient:self.payment.recipient objectModel:self.objectModel completionHandler:^(NSError *error) {
                 if(error)
                 {
-                    [hud hide];
+                    [self.hud hide];
                     [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
                     TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                     [alertView show];
                     return;
                 }
-                validateBlock();
+                [self.paymentValidator validatePayment:input.objectID];
             }];
             self.executedOperation = updateOperation;
             [updateOperation execute];
@@ -517,15 +516,25 @@
         else
         {
             //recipient is being created later. the validation will catch any email issues.
-            validateBlock();
+            [self.paymentValidator validatePayment:input.objectID];
         }
     }
     else
     {
-        validateBlock();
+        [self.paymentValidator validatePayment:input.objectID];
     }
-    
+}
 
+-(void)handleValidationError:(NSError *)error
+{
+	[self.hud hide];
+	if (error)
+	{
+		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert"
+											   withLabel:[error localizedTransferwiseMessage]];
+		TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+		[alertView show];
+	}
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

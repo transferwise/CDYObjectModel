@@ -442,6 +442,8 @@
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
+		474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */; };
+		474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */; };
 		4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		474A5A8F1A137EDC0094757B /* _ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8E1A137EDC0094757B /* _ReferralLink.m */; };
@@ -462,6 +464,12 @@
 		47535CB21981362600DC39D6 /* DoublePasswordEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */; };
 		47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */; };
 		47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */; };
+		4757BE601A3B064B005D7BDD /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE5D1A3B064B005D7BDD /* NoUserPaymentFlow.m */; };
+		4757BE611A3B064B005D7BDD /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE5D1A3B064B005D7BDD /* NoUserPaymentFlow.m */; };
+		4757BE621A3B064B005D7BDD /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE5F1A3B064B005D7BDD /* PaymentFlow.m */; };
+		4757BE631A3B064B005D7BDD /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE5F1A3B064B005D7BDD /* PaymentFlow.m */; };
+		4757BE661A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */; };
+		4757BE671A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */; };
 		47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		476461E91982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
 		476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
@@ -516,7 +524,35 @@
 		47B36C841986543B002E66C7 /* MultipleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C821986543B002E66C7 /* MultipleEntryCell.m */; };
 		47B3864A1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B386491A1CDC9A00478402 /* VerificationFormOperation.m */; };
 		47B3864B1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B386491A1CDC9A00478402 /* VerificationFormOperation.m */; };
-		47C1F75A1A45AFA600014F55 /* NSStringValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */; };
+		47C1F7081A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F6FA1A3B3F4200014F55 /* BusinessProfileCommitter.m */; };
+		47C1F7091A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F6FA1A3B3F4200014F55 /* BusinessProfileCommitter.m */; };
+		47C1F70A1A3B3F4200014F55 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F6FC1A3B3F4200014F55 /* BusinessProfileSource.m */; };
+		47C1F70B1A3B3F4200014F55 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F6FC1A3B3F4200014F55 /* BusinessProfileSource.m */; };
+		47C1F70C1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F6FF1A3B3F4200014F55 /* PersonalProfileCommitter.m */; };
+		47C1F70D1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F6FF1A3B3F4200014F55 /* PersonalProfileCommitter.m */; };
+		47C1F70E1A3B3F4200014F55 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7011A3B3F4200014F55 /* PersonalProfileSource.m */; };
+		47C1F70F1A3B3F4200014F55 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7011A3B3F4200014F55 /* PersonalProfileSource.m */; };
+		47C1F7101A3B3F4200014F55 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7041A3B3F4200014F55 /* ProfileSource.m */; };
+		47C1F7111A3B3F4200014F55 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7041A3B3F4200014F55 /* ProfileSource.m */; };
+		47C1F7121A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */; };
+		47C1F7131A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */; };
+		47C1F7411A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */; };
+		47C1F7421A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */; };
+		47C1F7431A3F2AF700014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7351A3F2AF700014F55 /* EmailValidator.m */; };
+		47C1F7441A3F2AF700014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7351A3F2AF700014F55 /* EmailValidator.m */; };
+		47C1F7451A3F2AF700014F55 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7381A3F2AF700014F55 /* PaymentValidator.m */; };
+		47C1F7461A3F2AF700014F55 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7381A3F2AF700014F55 /* PaymentValidator.m */; };
+		47C1F7471A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */; };
+		47C1F7481A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */; };
+		47C1F7491A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */; };
+		47C1F74A1A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */; };
+		47C1F74B1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */; };
+		47C1F74C1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */; };
+		47C1F74F1A3F2BC600014F55 /* ValidatorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F74E1A3F2BC600014F55 /* ValidatorFactory.m */; };
+		47C1F7501A3F2BC600014F55 /* ValidatorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F74E1A3F2BC600014F55 /* ValidatorFactory.m */; };
+		47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7521A443F1500014F55 /* NSObject+NSNull.m */; };
+		47C1F7541A443F1500014F55 /* NSObject+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7521A443F1500014F55 /* NSObject+NSNull.m */; };
+		47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */; };
 		47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03E1A232A9F005EC7C6 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
@@ -622,7 +658,6 @@
 		EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */; };
 		EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861E21746442900BD01BB /* RegisterOperation.m */; };
 		EA1E4E33179FF1E500F8D932 /* NSMutableDictionary+SaneData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */; };
-		EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
 		EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
 		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
 		EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
@@ -698,7 +733,6 @@
 		EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		EA31A16317DDB29B00F937F7 /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		EA31A16417DDB29B00F937F7 /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
-		EA31A16517DDB29B00F937F7 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
 		EA31A16617DDB29B00F937F7 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
 		EA31A16717DDB29B00F937F7 /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
 		EA31A16817DDB29B00F937F7 /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
@@ -717,19 +751,12 @@
 		EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
 		EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
-		EA31A17817DDB29B00F937F7 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
 		EA31A17917DDB29B00F937F7 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
-		EA31A17A17DDB29B00F937F7 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
 		EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
-		EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
 		EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
 		EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
 		EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
-		EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
-		EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
-		EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
-		EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
 		EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */; };
 		EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
 		EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
@@ -813,14 +840,10 @@
 		EA415D4517A7B2A900E9B56A /* SpinningImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA415D4417A7B2A900E9B56A /* SpinningImageView.m */; };
 		EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
 		EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
-		EA416E301768673500904D97 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
-		EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
-		EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
-		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
 		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
 		EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
@@ -856,9 +879,7 @@
 		EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */; };
 		EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
-		EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
 		EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
-		EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
 		EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
 		EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
 		EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
@@ -894,7 +915,6 @@
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EACD942E18D82C2C00369905 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EACD942F18D82C2C00369905 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
 		EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
@@ -1341,6 +1361,8 @@
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
+		474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringValidationTests.swift; sourceTree = "<group>"; };
+		474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFlowViewControllerFactoryTests.swift; sourceTree = "<group>"; };
 		4746EAFA19A7267B00D03557 /* ReferralListOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralListOperation.h; sourceTree = "<group>"; };
 		4746EAFB19A7267B00D03557 /* ReferralListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralListOperation.m; sourceTree = "<group>"; };
 		474A5A8D1A137EDC0094757B /* _ReferralLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ReferralLink.h; sourceTree = "<group>"; };
@@ -1360,6 +1382,12 @@
 		47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoublePasswordEntryCell.xib; sourceTree = "<group>"; };
 		47535CB31981367C00DC39D6 /* UIView+SeparatorLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SeparatorLine.h"; sourceTree = "<group>"; };
 		47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SeparatorLine.m"; sourceTree = "<group>"; };
+		4757BE5C1A3B064B005D7BDD /* NoUserPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoUserPaymentFlow.h; path = PaymentFlow/NoUserPaymentFlow.h; sourceTree = "<group>"; };
+		4757BE5D1A3B064B005D7BDD /* NoUserPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoUserPaymentFlow.m; path = PaymentFlow/NoUserPaymentFlow.m; sourceTree = "<group>"; };
+		4757BE5E1A3B064B005D7BDD /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentFlow.h; path = PaymentFlow/PaymentFlow.h; sourceTree = "<group>"; };
+		4757BE5F1A3B064B005D7BDD /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentFlow.m; path = PaymentFlow/PaymentFlow.m; sourceTree = "<group>"; };
+		4757BE641A3B0747005D7BDD /* PaymentFlowViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentFlowViewControllerFactory.h; path = PaymentFlow/PaymentFlowViewControllerFactory.h; sourceTree = "<group>"; };
+		4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentFlowViewControllerFactory.m; path = PaymentFlow/PaymentFlowViewControllerFactory.m; sourceTree = "<group>"; };
 		476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledPlaceholderTextField.h; sourceTree = "<group>"; };
 		476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledPlaceholderTextField.m; sourceTree = "<group>"; };
 		476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeToCancelCell.h; sourceTree = "<group>"; };
@@ -1403,7 +1431,40 @@
 		47B36C821986543B002E66C7 /* MultipleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleEntryCell.m; sourceTree = "<group>"; };
 		47B386481A1CDC9A00478402 /* VerificationFormOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationFormOperation.h; sourceTree = "<group>"; };
 		47B386491A1CDC9A00478402 /* VerificationFormOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationFormOperation.m; sourceTree = "<group>"; };
-		47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringValidationTests.swift; sourceTree = "<group>"; };
+		47C1F6F91A3B3F4200014F55 /* BusinessProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileCommitter.h; path = Profile/BusinessProfileCommitter.h; sourceTree = "<group>"; };
+		47C1F6FA1A3B3F4200014F55 /* BusinessProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessProfileCommitter.m; path = Profile/BusinessProfileCommitter.m; sourceTree = "<group>"; };
+		47C1F6FB1A3B3F4200014F55 /* BusinessProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileSource.h; path = Profile/BusinessProfileSource.h; sourceTree = "<group>"; };
+		47C1F6FC1A3B3F4200014F55 /* BusinessProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessProfileSource.m; path = Profile/BusinessProfileSource.m; sourceTree = "<group>"; };
+		47C1F6FE1A3B3F4200014F55 /* PersonalProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileCommitter.h; path = Profile/PersonalProfileCommitter.h; sourceTree = "<group>"; };
+		47C1F6FF1A3B3F4200014F55 /* PersonalProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalProfileCommitter.m; path = Profile/PersonalProfileCommitter.m; sourceTree = "<group>"; };
+		47C1F7001A3B3F4200014F55 /* PersonalProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileSource.h; path = Profile/PersonalProfileSource.h; sourceTree = "<group>"; };
+		47C1F7011A3B3F4200014F55 /* PersonalProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalProfileSource.m; path = Profile/PersonalProfileSource.m; sourceTree = "<group>"; };
+		47C1F7031A3B3F4200014F55 /* ProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileSource.h; path = Profile/ProfileSource.h; sourceTree = "<group>"; };
+		47C1F7041A3B3F4200014F55 /* ProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileSource.m; path = Profile/ProfileSource.m; sourceTree = "<group>"; };
+		47C1F7051A3B3F4200014F55 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipientProfileCommitter.h; path = Profile/RecipientProfileCommitter.h; sourceTree = "<group>"; };
+		47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipientProfileCommitter.m; path = Profile/RecipientProfileCommitter.m; sourceTree = "<group>"; };
+		47C1F7301A3F2AF700014F55 /* BusinessProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileValidation.h; path = Validation/BusinessProfileValidation.h; sourceTree = "<group>"; };
+		47C1F7311A3F2AF700014F55 /* BusinessProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileValidator.h; path = Validation/BusinessProfileValidator.h; sourceTree = "<group>"; };
+		47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessProfileValidator.m; path = Validation/BusinessProfileValidator.m; sourceTree = "<group>"; };
+		47C1F7331A3F2AF700014F55 /* EmailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidation.h; path = Validation/EmailValidation.h; sourceTree = "<group>"; };
+		47C1F7341A3F2AF700014F55 /* EmailValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidator.h; path = Validation/EmailValidator.h; sourceTree = "<group>"; };
+		47C1F7351A3F2AF700014F55 /* EmailValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailValidator.m; path = Validation/EmailValidator.m; sourceTree = "<group>"; };
+		47C1F7361A3F2AF700014F55 /* PaymentValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentValidation.h; path = Validation/PaymentValidation.h; sourceTree = "<group>"; };
+		47C1F7371A3F2AF700014F55 /* PaymentValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentValidator.h; path = Validation/PaymentValidator.h; sourceTree = "<group>"; };
+		47C1F7381A3F2AF700014F55 /* PaymentValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentValidator.m; path = Validation/PaymentValidator.m; sourceTree = "<group>"; };
+		47C1F7391A3F2AF700014F55 /* PersonalProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileValidation.h; path = Validation/PersonalProfileValidation.h; sourceTree = "<group>"; };
+		47C1F73A1A3F2AF700014F55 /* PersonalProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileValidator.h; path = Validation/PersonalProfileValidator.h; sourceTree = "<group>"; };
+		47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalProfileValidator.m; path = Validation/PersonalProfileValidator.m; sourceTree = "<group>"; };
+		47C1F73C1A3F2AF700014F55 /* ProfileValidatorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileValidatorBase.h; path = Validation/ProfileValidatorBase.h; sourceTree = "<group>"; };
+		47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileValidatorBase.m; path = Validation/ProfileValidatorBase.m; sourceTree = "<group>"; };
+		47C1F73E1A3F2AF700014F55 /* RecipientProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipientProfileValidation.h; path = Validation/RecipientProfileValidation.h; sourceTree = "<group>"; };
+		47C1F73F1A3F2AF700014F55 /* RecipientProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipientProfileValidator.h; path = Validation/RecipientProfileValidator.h; sourceTree = "<group>"; };
+		47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipientProfileValidator.m; path = Validation/RecipientProfileValidator.m; sourceTree = "<group>"; };
+		47C1F74D1A3F2BC600014F55 /* ValidatorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValidatorFactory.h; path = Validation/ValidatorFactory.h; sourceTree = "<group>"; };
+		47C1F74E1A3F2BC600014F55 /* ValidatorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ValidatorFactory.m; path = Validation/ValidatorFactory.m; sourceTree = "<group>"; };
+		47C1F7511A443F1500014F55 /* NSObject+NSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSNull.h"; sourceTree = "<group>"; };
+		47C1F7521A443F1500014F55 /* NSObject+NSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSNull.m"; sourceTree = "<group>"; };
+		47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectNSNullTests.swift; sourceTree = "<group>"; };
 		47C4D0381A232A9F005EC7C6 /* _AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AchBank.h; sourceTree = "<group>"; };
 		47C4D0391A232A9F005EC7C6 /* _AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AchBank.m; sourceTree = "<group>"; };
 		47C4D03A1A232A9F005EC7C6 /* _FieldGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FieldGroup.h; sourceTree = "<group>"; };
@@ -1523,8 +1584,6 @@
 		EA1861E21746442900BD01BB /* RegisterOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterOperation.m; sourceTree = "<group>"; };
 		EA1E4E31179FF1E500F8D932 /* NSMutableDictionary+SaneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+SaneData.h"; sourceTree = "<group>"; };
 		EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+SaneData.m"; sourceTree = "<group>"; };
-		EA222E31173A676000C5D613 /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentFlow.h; sourceTree = "<group>"; };
-		EA222E32173A676000C5D613 /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlow.m; sourceTree = "<group>"; };
 		EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentViewController.h; sourceTree = "<group>"; };
 		EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPaymentViewController.m; sourceTree = "<group>"; };
 		EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmPaymentViewController.xib; sourceTree = "<group>"; };
@@ -1565,12 +1624,6 @@
 		EA416E28176860EA00904D97 /* ProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditViewController.h; sourceTree = "<group>"; };
 		EA416E29176860EA00904D97 /* ProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditViewController.m; sourceTree = "<group>"; };
 		EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditViewController.xib; sourceTree = "<group>"; };
-		EA416E2E1768673500904D97 /* ProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSource.h; sourceTree = "<group>"; };
-		EA416E2F1768673500904D97 /* ProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSource.m; sourceTree = "<group>"; };
-		EA416E311768674700904D97 /* PersonalProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileSource.h; sourceTree = "<group>"; };
-		EA416E321768674700904D97 /* PersonalProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileSource.m; sourceTree = "<group>"; };
-		EA416E341768675400904D97 /* BusinessProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileSource.h; sourceTree = "<group>"; };
-		EA416E351768675400904D97 /* BusinessProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileSource.m; sourceTree = "<group>"; };
 		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
 		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
@@ -1578,10 +1631,6 @@
 		EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationRequiredOperation.m; sourceTree = "<group>"; };
 		EA59293C17577CCA007C0072 /* UploadVerificationFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadVerificationFileOperation.h; sourceTree = "<group>"; };
 		EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadVerificationFileOperation.m; sourceTree = "<group>"; };
-		EA59296C17589F22007C0072 /* PersonalProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalProfileValidation.h; sourceTree = "<group>"; };
-		EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipientProfileValidation.h; sourceTree = "<group>"; };
-		EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileCommitter.h; sourceTree = "<group>"; };
-		EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileCommitter.m; sourceTree = "<group>"; };
 		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
 		EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailCheckOperation.m; sourceTree = "<group>"; };
 		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
@@ -1641,15 +1690,10 @@
 		EA8FF6B9171D26A00090A658 /* LoginOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOperation.h; sourceTree = "<group>"; };
 		EA8FF6BA171D26A00090A658 /* LoginOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOperation.m; sourceTree = "<group>"; };
 		EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferwiseOperation+Private.h"; sourceTree = "<group>"; };
-		EA92D9511769BD870078D0C4 /* BusinessProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessProfileValidation.h; sourceTree = "<group>"; };
-		EA92D9521769BD9D0078D0C4 /* BusinessProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileCommitter.h; sourceTree = "<group>"; };
-		EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileCommitter.m; sourceTree = "<group>"; };
 		EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
 		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggedInPaymentFlow.h; sourceTree = "<group>"; };
 		EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInPaymentFlow.m; sourceTree = "<group>"; };
-		EAA053D4175DD5EE00ACD3F6 /* NoUserPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoUserPaymentFlow.h; sourceTree = "<group>"; };
-		EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoUserPaymentFlow.m; sourceTree = "<group>"; };
 		EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickProfileValidationOperation.h; sourceTree = "<group>"; };
 		EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickProfileValidationOperation.m; sourceTree = "<group>"; };
 		EAA54F481733DA1400B65BF3 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
@@ -1701,8 +1745,6 @@
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
 		EACD942C18D82C2C00369905 /* NanTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NanTracking.h; sourceTree = "<group>"; };
 		EACD942D18D82C2C00369905 /* NanTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NanTracking.m; sourceTree = "<group>"; };
-		EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileCommitter.h; sourceTree = "<group>"; };
-		EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileCommitter.m; sourceTree = "<group>"; };
 		EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientFieldCell.h; sourceTree = "<group>"; };
 		EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientFieldCell.m; sourceTree = "<group>"; };
 		EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientFieldCell.xib; sourceTree = "<group>"; };
@@ -2140,6 +2182,27 @@
 			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
+		474206FE1A5A671600DF6477 /* PaymentFlow */ = {
+			isa = PBXGroup;
+			children = (
+				474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */,
+			);
+			name = PaymentFlow;
+			sourceTree = "<group>";
+		};
+		4757BE5B1A3B0634005D7BDD /* PaymentFlow */ = {
+			isa = PBXGroup;
+			children = (
+				4757BE5C1A3B064B005D7BDD /* NoUserPaymentFlow.h */,
+				4757BE5D1A3B064B005D7BDD /* NoUserPaymentFlow.m */,
+				4757BE5E1A3B064B005D7BDD /* PaymentFlow.h */,
+				4757BE5F1A3B064B005D7BDD /* PaymentFlow.m */,
+				4757BE641A3B0747005D7BDD /* PaymentFlowViewControllerFactory.h */,
+				4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */,
+			);
+			name = PaymentFlow;
+			sourceTree = "<group>";
+		};
 		476EB8E71A15000D00E4E392 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -2155,10 +2218,56 @@
 			name = JVFloatLabeledTextField;
 			sourceTree = "<group>";
 		};
-		47C1F7581A45AF7D00014F55 /* Extensions */ = {
+		47C1F6F81A3B3E1E00014F55 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */,
+				47C1F6F91A3B3F4200014F55 /* BusinessProfileCommitter.h */,
+				47C1F6FA1A3B3F4200014F55 /* BusinessProfileCommitter.m */,
+				47C1F6FB1A3B3F4200014F55 /* BusinessProfileSource.h */,
+				47C1F6FC1A3B3F4200014F55 /* BusinessProfileSource.m */,
+				47C1F6FE1A3B3F4200014F55 /* PersonalProfileCommitter.h */,
+				47C1F6FF1A3B3F4200014F55 /* PersonalProfileCommitter.m */,
+				47C1F7001A3B3F4200014F55 /* PersonalProfileSource.h */,
+				47C1F7011A3B3F4200014F55 /* PersonalProfileSource.m */,
+				47C1F7031A3B3F4200014F55 /* ProfileSource.h */,
+				47C1F7041A3B3F4200014F55 /* ProfileSource.m */,
+				47C1F7051A3B3F4200014F55 /* RecipientProfileCommitter.h */,
+				47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		47C1F72F1A3F2AA800014F55 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				47C1F7301A3F2AF700014F55 /* BusinessProfileValidation.h */,
+				47C1F7311A3F2AF700014F55 /* BusinessProfileValidator.h */,
+				47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */,
+				47C1F7331A3F2AF700014F55 /* EmailValidation.h */,
+				47C1F7341A3F2AF700014F55 /* EmailValidator.h */,
+				47C1F7351A3F2AF700014F55 /* EmailValidator.m */,
+				47C1F7361A3F2AF700014F55 /* PaymentValidation.h */,
+				47C1F7371A3F2AF700014F55 /* PaymentValidator.h */,
+				47C1F7381A3F2AF700014F55 /* PaymentValidator.m */,
+				47C1F7391A3F2AF700014F55 /* PersonalProfileValidation.h */,
+				47C1F73A1A3F2AF700014F55 /* PersonalProfileValidator.h */,
+				47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */,
+				47C1F73C1A3F2AF700014F55 /* ProfileValidatorBase.h */,
+				47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */,
+				47C1F73E1A3F2AF700014F55 /* RecipientProfileValidation.h */,
+				47C1F73F1A3F2AF700014F55 /* RecipientProfileValidator.h */,
+				47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */,
+				47C1F74D1A3F2BC600014F55 /* ValidatorFactory.h */,
+				47C1F74E1A3F2BC600014F55 /* ValidatorFactory.m */,
+			);
+			name = Validation;
+			sourceTree = "<group>";
+		};
+		47C1F7551A44446600014F55 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */,
+				47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2166,7 +2275,8 @@
 		47DC89821A03950F0042054B /* TransferTests */ = {
 			isa = PBXGroup;
 			children = (
-				47C1F7581A45AF7D00014F55 /* Extensions */,
+				474206FE1A5A671600DF6477 /* PaymentFlow */,
+				47C1F7551A44446600014F55 /* Extensions */,
 				476EB8EA1A15030E00E4E392 /* TransferTests-Bridging-Header.h */,
 				476EB8E71A15000D00E4E392 /* Network */,
 				47DC89831A03950F0042054B /* Supporting Files */,
@@ -2403,6 +2513,8 @@
 		EA13E041171BEAF00019FBF0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */,
+				4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */,
 				EA225CA1178EB591009D6B83 /* NSDate+ServerTime.h */,
 				EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */,
 				EA225C83178EB21C009D6B83 /* NSDictionary+Cleanup.h */,
@@ -2421,6 +2533,8 @@
 				EA8FF681171D19B50090A658 /* NSString+Validation.m */,
 				47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */,
 				47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */,
+				47C1F7511A443F1500014F55 /* NSObject+NSNull.h */,
+				47C1F7521A443F1500014F55 /* NSObject+NSNull.m */,
 				EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */,
 				EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */,
 				EAD7D4CC171D4B4C0099063F /* UIButton+Skinning.h */,
@@ -2453,8 +2567,6 @@
 				47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */,
 				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
 				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
-				4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */,
-				4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2672,6 +2784,9 @@
 		EAAA1473171BC911005B9430 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				47C1F72F1A3F2AA800014F55 /* Validation */,
+				47C1F6F81A3B3E1E00014F55 /* Profile */,
+				4757BE5B1A3B0634005D7BDD /* PaymentFlow */,
 				EAD3646517E1E19A001EFE40 /* Assets.xcassets */,
 				EABD864218E2B63A004A5A57 /* Analytics */,
 				EA225CB6178EEA89009D6B83 /* BaseData */,
@@ -2889,11 +3004,6 @@
 			children = (
 				47F667661A1DD2A0003C018A /* AchFlow.h */,
 				47F667671A1DD2A0003C018A /* AchFlow.m */,
-				EA92D9521769BD9D0078D0C4 /* BusinessProfileCommitter.h */,
-				EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */,
-				EA416E341768675400904D97 /* BusinessProfileSource.h */,
-				EA416E351768675400904D97 /* BusinessProfileSource.m */,
-				EA92D9511769BD870078D0C4 /* BusinessProfileValidation.h */,
 				EAEA6255172011C500A96770 /* CalculationResult.h */,
 				EAEA6256172011C500A96770 /* CalculationResult.m */,
 				3887CBBC1976AF2B004DFFFD /* CancelHelper.h */,
@@ -2910,24 +3020,10 @@
 				EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */,
 				4723EA1B1974095B00B4345F /* NavigationBarCustomiser.h */,
 				4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */,
-				EAA053D4175DD5EE00ACD3F6 /* NoUserPaymentFlow.h */,
-				EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */,
 				EA333F3A18A4C00000D8A44E /* PageZoom.h */,
 				EA333F3B18A4C00000D8A44E /* PageZoom.m */,
-				EA222E31173A676000C5D613 /* PaymentFlow.h */,
-				EA222E32173A676000C5D613 /* PaymentFlow.m */,
-				EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */,
-				EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */,
-				EA416E311768674700904D97 /* PersonalProfileSource.h */,
-				EA416E321768674700904D97 /* PersonalProfileSource.m */,
-				EA59296C17589F22007C0072 /* PersonalProfileValidation.h */,
 				EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */,
 				EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */,
-				EA416E2E1768673500904D97 /* ProfileSource.h */,
-				EA416E2F1768673500904D97 /* ProfileSource.m */,
-				EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */,
-				EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */,
-				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
 				38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */,
 				38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */,
 				383FC0EE19AE1A1A00465FCA /* StateSuggestionCellProvider.h */,
@@ -3568,8 +3664,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */,
+				474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */,
+				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
-				47C1F75A1A45AFA600014F55 /* NSStringValidationTests.swift in Sources */,
+				474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3581,6 +3679,7 @@
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
 				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
+				47C1F7461A3F2AF700014F55 /* PaymentValidator.m in Sources */,
 				47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */,
 				47AC3F8E1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */,
 				38AA83421949B8DF0065AD2A /* GradientView.m in Sources */,
@@ -3611,6 +3710,8 @@
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
 				474A5A901A137EDC0094757B /* _ReferralLink.m in Sources */,
 				3818605819C9A206009A413E /* SetSSNOperation.m in Sources */,
+				47C1F7441A3F2AF700014F55 /* EmailValidator.m in Sources */,
+				47C1F7131A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
 				4723EA0E1973D8E900B4345F /* RedButton.m in Sources */,
 				47B3864B1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */,
@@ -3621,6 +3722,7 @@
 				38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */,
 				EA31A13817DDB29B00F937F7 /* TRWProgressHUD.m in Sources */,
 				476D78C619B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */,
+				47C1F7501A3F2BC600014F55 /* ValidatorFactory.m in Sources */,
 				EA31A13917DDB29B00F937F7 /* TransferwiseOperation.m in Sources */,
 				EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */,
 				474A5A941A137EFA0094757B /* ReferralLink.m in Sources */,
@@ -3666,8 +3768,11 @@
 				EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */,
 				EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */,
 				389F67FC198FC1C6006CF1F6 /* _Country.m in Sources */,
+				47C1F70B1A3B3F4200014F55 /* BusinessProfileSource.m in Sources */,
+				47C1F70F1A3B3F4200014F55 /* PersonalProfileSource.m in Sources */,
 				389F683A198FC1C6006CF1F6 /* PairTargetCurrency.m in Sources */,
 				47126B5619C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */,
+				47C1F70D1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */,
 				EA31A14C17DDB29B00F937F7 /* NSError+TRWErrors.m in Sources */,
 				EA31A14D17DDB29B00F937F7 /* UIView+Container.m in Sources */,
 				389F6812198FC1C6006CF1F6 /* _RecipientTypeField.m in Sources */,
@@ -3692,6 +3797,7 @@
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
 				38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */,
 				389F6822198FC1C6006CF1F6 /* ObjectModel+Countries.m in Sources */,
+				47C1F74A1A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */,
 				EA0450D017EC3635008921DA /* TextContainerView.m in Sources */,
 				EA31A15A17DDB29B00F937F7 /* TransferwiseClient.m in Sources */,
 				EA31A15B17DDB29B00F937F7 /* RecipientTypesOperation.m in Sources */,
@@ -3712,9 +3818,9 @@
 				389F684E198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */,
 				EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */,
 				EA31A16317DDB29B00F937F7 /* BusinessProfileOperation.m in Sources */,
+				4757BE611A3B064B005D7BDD /* NoUserPaymentFlow.m in Sources */,
 				EA31A16417DDB29B00F937F7 /* DeleteRecipientOperation.m in Sources */,
 				EA0450CA17EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */,
-				EA31A16517DDB29B00F937F7 /* PaymentFlow.m in Sources */,
 				EA31A16617DDB29B00F937F7 /* ConfirmPaymentViewController.m in Sources */,
 				389F6800198FC1C6006CF1F6 /* _PairSourceCurrency.m in Sources */,
 				EA31A16717DDB29B00F937F7 /* ConfirmPaymentCell.m in Sources */,
@@ -3746,6 +3852,7 @@
 				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
+				47C1F7481A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
 				47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
@@ -3755,32 +3862,27 @@
 				47233CD7196D457300449042 /* LoginViewController.m in Sources */,
 				389F6816198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
 				380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
+				47C1F7091A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */,
 				EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */,
 				38B093181951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
-				EA31A17817DDB29B00F937F7 /* PersonalProfileCommitter.m in Sources */,
 				389F684A198FC1C6006CF1F6 /* RecipientTypeField.m in Sources */,
 				EA31A17917DDB29B00F937F7 /* EmailCheckOperation.m in Sources */,
 				4723EA25197436D000B4345F /* DismissKeyboardViewController.m in Sources */,
-				EA31A17A17DDB29B00F937F7 /* RecipientProfileCommitter.m in Sources */,
 				389F6806198FC1C6006CF1F6 /* _Payment.m in Sources */,
 				EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */,
-				EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */,
 				38288F4819C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */,
 				388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */,
 				47334E841A37121A004C19F7 /* TargetCountryProvider.m in Sources */,
+				4757BE671A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */,
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
 				4723EA301975639E00B4345F /* BlueRoundedButton.m in Sources */,
 				EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */,
 				EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */,
-				EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */,
 				47B36C841986543B002E66C7 /* MultipleEntryCell.m in Sources */,
 				38C7B29419742596004324E8 /* HeaderTabView.m in Sources */,
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
-				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
-				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
-				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
 				472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				389F683E198FC1C6006CF1F6 /* Payment.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
@@ -3807,7 +3909,9 @@
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
 				38057AD01A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
+				47C1F74C1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
 				47C4D0451A232AC1005EC7C6 /* AchBank.m in Sources */,
+				47C1F7541A443F1500014F55 /* NSObject+NSNull.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				470C131E1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */,
@@ -3838,6 +3942,7 @@
 				385669061980F9F200BC4230 /* ContactDetailsViewController.m in Sources */,
 				EA31A1B517DDB29B00F937F7 /* NSMutableDictionary+SaneData.m in Sources */,
 				383FC0F919AE1ABC00465FCA /* EmailLookupWrapper.m in Sources */,
+				4757BE631A3B064B005D7BDD /* PaymentFlow.m in Sources */,
 				EA31A1B617DDB29B00F937F7 /* SpinningImageView.m in Sources */,
 				389F6802198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EA31A1B717DDB29B00F937F7 /* NSString+Presentation.m in Sources */,
@@ -3872,7 +3977,9 @@
 				EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				47FAF358194F0A47004CE986 /* IntrinsicSizeUIView.m in Sources */,
 				477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */,
+				47C1F7111A3B3F4200014F55 /* ProfileSource.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
+				47C1F7421A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 				47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
 			);
@@ -3912,8 +4019,10 @@
 				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
+				47C1F7121A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */,
 				474A5A8F1A137EDC0094757B /* _ReferralLink.m in Sources */,
 				3818605719C9A206009A413E /* SetSSNOperation.m in Sources */,
+				47C1F7101A3B3F4200014F55 /* ProfileSource.m in Sources */,
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
 				4723EA0D1973D8E900B4345F /* RedButton.m in Sources */,
@@ -3948,6 +4057,7 @@
 				47AC3F911987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				38504B0919C1E83700276203 /* TouchIDHelper.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
+				4757BE661A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */,
 				472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
@@ -3957,8 +4067,10 @@
 				38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */,
 				389F682D198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
 				389F683F198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
+				47C1F74F1A3F2BC600014F55 /* ValidatorFactory.m in Sources */,
 				4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */,
 				383FC10019AE1B6700465FCA /* SeeHowView.m in Sources */,
+				47C1F7431A3F2AF700014F55 /* EmailValidator.m in Sources */,
 				479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				47C4D04F1A237F61005EC7C6 /* AchLoginViewController.m in Sources */,
 				EA88E65B172F96490021492C /* Credentials.m in Sources */,
@@ -3966,6 +4078,7 @@
 				389F6813198FC1C6006CF1F6 /* _Setting.m in Sources */,
 				479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
+				47C1F7451A3F2AF700014F55 /* PaymentValidator.m in Sources */,
 				3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
@@ -3974,6 +4087,7 @@
 				47126B5519C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */,
 				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
 				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
+				47C1F7411A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */,
 				389F6811198FC1C6006CF1F6 /* _RecipientTypeField.m in Sources */,
 				EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */,
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
@@ -4015,7 +4129,6 @@
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 				389F684D198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */,
 				EA0450C917EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */,
-				EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */,
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
@@ -4044,7 +4157,9 @@
 				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
 				3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
+				47C1F70C1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
+				4757BE621A3B064B005D7BDD /* PaymentFlow.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
@@ -4054,14 +4169,13 @@
 				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
 				389F6831198FC1C6006CF1F6 /* ObjectModel+Settings.m in Sources */,
 				38B093091951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
+				47C1F7081A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */,
 				389F6809198FC1C6006CF1F6 /* _PendingPayment.m in Sources */,
-				EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */,
 				389F6815198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
+				47C1F74B1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
-				EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */,
 				477319F31A1B62BB00660770 /* AchDetailsViewController.m in Sources */,
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
-				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,
 				389F6849198FC1C6006CF1F6 /* RecipientTypeField.m in Sources */,
 				4723EA24197436D000B4345F /* DismissKeyboardViewController.m in Sources */,
 				3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
@@ -4074,12 +4188,8 @@
 				4723EA2F1975639E00B4345F /* BlueRoundedButton.m in Sources */,
 				EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */,
 				EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */,
-				EA416E301768673500904D97 /* ProfileSource.m in Sources */,
-				EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */,
-				EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */,
 				47B36C831986543B002E66C7 /* MultipleEntryCell.m in Sources */,
 				38C7B29319742596004324E8 /* HeaderTabView.m in Sources */,
-				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 				4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
@@ -4089,6 +4199,7 @@
 				47C4D04A1A232B1E005EC7C6 /* ObjectModel+AchBank.m in Sources */,
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
+				47C1F70A1A3B3F4200014F55 /* BusinessProfileSource.m in Sources */,
 				47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6841198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
@@ -4106,6 +4217,7 @@
 				38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
 				380021CE192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
+				47C1F7491A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */,
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
 				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
@@ -4121,6 +4233,7 @@
 				EA0450DA17EC64BC008921DA /* IntroView.m in Sources */,
 				4723EA291975349C00B4345F /* TransferPayIPadViewController.m in Sources */,
 				389F680B198FC1C6006CF1F6 /* _PersonalProfile.m in Sources */,
+				47C1F7471A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */,
 				383FC10819AE1B8400465FCA /* CancellableCellViewController.m in Sources */,
 				47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */,
 				380021DF192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
@@ -4144,6 +4257,7 @@
 				389F6801198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
 				389F6829198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
+				4757BE601A3B064B005D7BDD /* NoUserPaymentFlow.m in Sources */,
 				47FC53C11A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
@@ -4162,6 +4276,7 @@
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				38057ACF1A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
+				47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
@@ -4178,6 +4293,7 @@
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 				38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */,
+				47C1F70E1A3B3F4200014F55 /* PersonalProfileSource.m in Sources */,
 				47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
