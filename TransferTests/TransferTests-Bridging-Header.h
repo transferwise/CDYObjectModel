@@ -26,3 +26,4 @@
 #import "RecipientProfileValidator.h"
 #import "ValidatorFactory.h"
 #import "Recipient.h"
+#import "PendingPayment.h"

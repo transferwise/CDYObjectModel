@@ -112,6 +112,22 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		
 		XCTAssertEqual(controllerValidator, validator as PaymentValidator, "incorrect business profile validator set")
 	}
+	
+	func testGetViewControllerReturnsCorrectPersonalProfileIdentification()
+	{
+		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
+		pendingPayment.proposedPaymentsPurpose = "blah"
+		let controller = factory!.getViewControllerWithType(.PersonalProfileIdentificationController, params: [kPendingPayment: pendingPayment])
+		
+		XCTAssertNotNil(controller, "controller must exist")
+		XCTAssertTrue(controller is PersonalProfileIdentificationViewController, "invalid type of controller")
+		
+		let concreteController = controller as PersonalProfileIdentificationViewController
+		
+		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
+		XCTAssertEqual(concreteController.identificationRequired, IdentificationRequired(rawValue: pendingPayment.verificiationNeededValue), "invalid verification needed set")
+		XCTAssertEqual(concreteController.proposedPaymentPurpose, pendingPayment.proposedPaymentsPurpose, "invalid proposed payment purpose set")
+	}
 
 	//test each version for negative paths
 	//- missing params
