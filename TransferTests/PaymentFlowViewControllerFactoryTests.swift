@@ -14,6 +14,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 {
 	var factory: PaymentFlowViewControllerFactory?
 	var objectModel: ObjectModel?
+	var validatorFactory: ValidatorFactory?
 	
     override func setUp()
 	{
@@ -21,6 +22,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		
 		objectModel = ObjectModel()
 		factory = PaymentFlowViewControllerFactory(objectModel: objectModel)
+		validatorFactory = ValidatorFactory(objectModel: objectModel)
 	}
     
     override func tearDown()
@@ -31,11 +33,23 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	
 	func testGetViewControllerReturnsCorrectPersonalPaymentProfile()
 	{
+		let validator: AnyObject! = validatorFactory!.getValidatorWithType(.ValidatePersonalProfile)
 		let controller = factory!.getViewControllerWithType(.PersonalPaymentProfileController, params: [kAllowProfileSwitch: true,
 			kProfileIsExisting: true,
-			kPersonalProfileValidator: NSNull()])
+			kPersonalProfileValidator: validator])
 		
 		XCTAssertNotNil(controller, "controller must exist")
+		XCTAssertTrue(controller is PersonalPaymentProfileViewController, "invalid type of controller")
+		
+		let concreteController = controller as PersonalPaymentProfileViewController
+		
+		XCTAssertTrue(concreteController.allowProfileSwitch, "invalid value for allow profile switch")
+		XCTAssertTrue(concreteController.isExisting, "invalid value for is existing")
+		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
+		
+		let controllerValidator = concreteController.profileValidation as PersonalProfileValidator
+		
+		XCTAssertEqual(controllerValidator, validator as PersonalProfileValidator, "incorrect validator set")
 	}
 
 	//test all positive paths
