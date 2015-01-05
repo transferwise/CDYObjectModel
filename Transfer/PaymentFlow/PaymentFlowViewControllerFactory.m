@@ -39,6 +39,7 @@ NSString * const kBusinessProfileValidator = @"businessProfileValidator";
 NSString * const kPaymentValidator = @"paymentValidator";
 NSString * const kNextActionBlock = @"nextActionBlock";
 NSString * const kValidationBlock = @"validationBlock";
+NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 
 @interface PaymentFlowViewControllerFactory ()
 
@@ -83,7 +84,8 @@ NSString * const kValidationBlock = @"validationBlock";
 											successBlock:params[kNextActionBlock]];
 			break;
 		case PersonalProfileIdentificationController:
-			return [self getPersonalProfileIdentificationViewController:[NSObject getObjectOrNil:params[kPendingPayment]]];
+			return [self getPersonalProfileIdentificationViewController:[NSObject getObjectOrNil:params[kPendingPayment]]
+															 completion:params[kVerificationCompletionBlock]];
 			break;
 		case PaymentMethodSelectorController:
 			return [self getPaymentMethodSelectorViewController:[NSObject getObjectOrNil:params[kPayment]]];
@@ -92,7 +94,8 @@ NSString * const kValidationBlock = @"validationBlock";
 			return [self getUploadMoneyViewController:[NSObject getObjectOrNil:params[kPayment]]];
 			break;
 		case BusinessProfileIdentificationController:
-			return [self getBusinessProfileIdentificationController:[NSObject getObjectOrNil:params[kPendingPayment]]];
+			return [self getBusinessProfileIdentificationController:[NSObject getObjectOrNil:params[kPendingPayment]]
+														 completion:params[kVerificationCompletionBlock]];
 			break;
 		case RefundDetailsController:
 			return [self getRefundDetailsViewController:[NSObject getObjectOrNil:params[kPendingPayment]]
@@ -203,6 +206,7 @@ NSString * const kValidationBlock = @"validationBlock";
 }
 
 - (PersonalProfileIdentificationViewController *)getPersonalProfileIdentificationViewController:(PendingPayment *)payment
+																					 completion:(VerificationCompletionBlock)completion
 {
 	PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
 	[controller setObjectModel:self.objectModel];
@@ -210,21 +214,7 @@ NSString * const kValidationBlock = @"validationBlock";
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
 	[controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
-	
-	//TODO: move this back to payment flow
-	__weak typeof(self) weakSelf = self;
-	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
-		[weakSelf.objectModel performBlock:^{
-			//TODO: SSN
-			[payment setSendVerificationLaterValue:skipIdentification];
-			[payment setPaymentPurpose:paymentPurpose];
-			[payment setSocialSecurityNumber:socialSecurityNumber];
-			
-			[weakSelf.objectModel saveContext:^{
-				weakSelf.commitActionBlock(successBlock, errorBlock);
-			}];
-		}];
-	}];
+	[controller setCompletionHandler:completion];
 	
 	return controller;
 }
@@ -248,19 +238,10 @@ NSString * const kValidationBlock = @"validationBlock";
 }
 
 - (BusinessProfileIdentificationViewController *)getBusinessProfileIdentificationController:(PendingPayment *)payment
+																				 completion:(VerificationCompletionBlock)completion
 {
 	BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
-	
-	//TODO:move this back to payment flow
-	__weak typeof(self) weakSelf = self;
-	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock,TRWErrorBlock errorBlock) {
-		[weakSelf.objectModel performBlock:^{
-			[payment setSendVerificationLaterValue:skipIdentification];
-			[weakSelf.objectModel saveContext:^{
-				weakSelf.commitActionBlock(successBlock, errorBlock);
-			}];
-		}];
-	}];
+	[controller setCompletionHandler:completion];
 	
 	return controller;
 }
