@@ -27,3 +27,5 @@
 #import "ValidatorFactory.h"
 #import "Recipient.h"
 #import "PendingPayment.h"
+#import "Payment.h"
+#import "Currency.h"

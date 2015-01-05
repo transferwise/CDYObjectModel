@@ -128,6 +128,62 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertEqual(concreteController.identificationRequired, IdentificationRequired(rawValue: pendingPayment.verificiationNeededValue), "invalid verification needed set")
 		XCTAssertEqual(concreteController.proposedPaymentPurpose, pendingPayment.proposedPaymentsPurpose, "invalid proposed payment purpose set")
 	}
+	
+	func testGetViewControllerReturnsCorrectPaymentMethodSelector()
+	{
+		let payment: Payment = Payment.insertInManagedObjectContext(objectModel?.managedObjectContext) as Payment
+		let controller = factory!.getViewControllerWithType(.PaymentMethodSelectorController, params: [kPayment: payment])
+		
+		XCTAssertNotNil(controller, "controller must exist")
+		XCTAssertTrue(controller is PaymentMethodSelectorViewController, "invalid type of controller")
+		
+		let concreteController = controller as PaymentMethodSelectorViewController
+		
+		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
+		XCTAssertEqual(concreteController.payment, payment, "invalid payment set")
+	}
+	
+	func testGetViewControllerReturnsCorrectUploadMoney()
+	{
+		let payment: Payment = Payment.insertInManagedObjectContext(objectModel?.managedObjectContext) as Payment
+		let controller = factory!.getViewControllerWithType(.UploadMoneyController, params: [kPayment: payment])
+		
+		XCTAssertNotNil(controller, "controller must exist")
+		XCTAssertTrue(controller is UploadMoneyViewController, "invalid type of controller")
+		
+		let concreteController = controller as UploadMoneyViewController
+		
+		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
+		XCTAssertEqual(concreteController.payment, payment, "invalid payment set")
+	}
+	
+	func testGetViewControllerReturnsCorrectBusinessProfileIdentification()
+	{
+		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
+		pendingPayment.proposedPaymentsPurpose = "blah"
+		let controller = factory!.getViewControllerWithType(.BusinessProfileIdentificationController, params: [kPendingPayment: pendingPayment])
+		
+		XCTAssertNotNil(controller, "controller must exist")
+		XCTAssertTrue(controller is BusinessProfileIdentificationViewController, "invalid type of controller")
+	}
+	
+	func testGetViewControllerReturnsCorrectRefundDetailsController()
+	{
+		let sourceCurrency: Currency = Currency.insertInManagedObjectContext(objectModel?.managedObjectContext) as Currency
+		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
+		pendingPayment.sourceCurrency = sourceCurrency
+		let controller = factory!.getViewControllerWithType(.RefundDetailsController, params: [kPendingPayment: pendingPayment,
+			kNextActionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
+		
+		XCTAssertNotNil(controller, "controller must exist")
+		XCTAssertTrue(controller is RefundDetailsViewController, "invalid type of controller")
+		
+		let concreteController = controller as RefundDetailsViewController
+		
+		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
+		XCTAssertEqual(concreteController.payment, pendingPayment, "invalid pending payment set")
+		XCTAssertEqual(concreteController.currency, sourceCurrency, "invalid source currency set")
+	}
 
 	//test each version for negative paths
 	//- missing params
