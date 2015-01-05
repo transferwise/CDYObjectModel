@@ -442,6 +442,7 @@
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
+		474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */; };
 		4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		474A5A8F1A137EDC0094757B /* _ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8E1A137EDC0094757B /* _ReferralLink.m */; };
@@ -551,7 +552,6 @@
 		47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7521A443F1500014F55 /* NSObject+NSNull.m */; };
 		47C1F7541A443F1500014F55 /* NSObject+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7521A443F1500014F55 /* NSObject+NSNull.m */; };
 		47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */; };
-		47C1F75A1A45AFA600014F55 /* NSStringValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */; };
 		47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03E1A232A9F005EC7C6 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
@@ -1360,6 +1360,7 @@
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
+		474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringValidationTests.swift; sourceTree = "<group>"; };
 		4746EAFA19A7267B00D03557 /* ReferralListOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralListOperation.h; sourceTree = "<group>"; };
 		4746EAFB19A7267B00D03557 /* ReferralListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralListOperation.m; sourceTree = "<group>"; };
 		474A5A8D1A137EDC0094757B /* _ReferralLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ReferralLink.h; sourceTree = "<group>"; };
@@ -1462,7 +1463,6 @@
 		47C1F7511A443F1500014F55 /* NSObject+NSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSNull.h"; sourceTree = "<group>"; };
 		47C1F7521A443F1500014F55 /* NSObject+NSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSNull.m"; sourceTree = "<group>"; };
 		47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectNSNullTests.swift; sourceTree = "<group>"; };
-		47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringValidationTests.swift; sourceTree = "<group>"; };
 		47C4D0381A232A9F005EC7C6 /* _AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AchBank.h; sourceTree = "<group>"; };
 		47C4D0391A232A9F005EC7C6 /* _AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AchBank.m; sourceTree = "<group>"; };
 		47C4D03A1A232A9F005EC7C6 /* _FieldGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FieldGroup.h; sourceTree = "<group>"; };
@@ -2256,15 +2256,8 @@
 		47C1F7551A44446600014F55 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */,
 				47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
-		47C1F7581A45AF7D00014F55 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				47C1F7591A45AFA600014F55 /* NSStringValidationTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3660,9 +3653,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */,
+				474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */,
 				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
-				47C1F75A1A45AFA600014F55 /* NSStringValidationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
