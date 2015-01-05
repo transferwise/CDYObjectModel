@@ -20,7 +20,9 @@ Scenario: EUR -> GBP
 	And I wait to see "Confirm"
 	Then I wait a bit
 	Then I touch "Confirm"
-	And I wait to see "Bank transfer"
+	Then I wait to see "Creating transfer"
+	And I skip verification if needed
+	And I wait to see "Contact customer support"
 	
 Scenario: GBP -> PLN
 	Given I am logged in
@@ -38,4 +40,5 @@ Scenario: GBP -> PLN
 	And I wait to see "Confirm"
 	Then I wait a bit
 	Then I touch "Confirm"
-	And I wait to see "Bank transfer"
+	And I skip verification if needed
+	And I wait to see "Contact customer support"

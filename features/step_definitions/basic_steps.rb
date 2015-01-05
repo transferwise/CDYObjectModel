@@ -4,7 +4,7 @@ Given /^I am on the Welcome Screen$/ do
 end
 
 Given /^I am logged in$/ do
-sleep(STEP_PAUSE)
+  sleep(STEP_PAUSE)
   if(element_exists("button marked:'Log in'"))
   	touch("button marked:'Log in'")
   	touch(query("view marked:'Your email'"))
@@ -26,43 +26,6 @@ sleep(STEP_PAUSE)
   sleep(STEP_PAUSE)
   wait_for_elements_exist( ["view marked:'Send'"], :timeout => 2)
   
-end
-
-Given /^I select source (.*)$/ do |currencyCode|
-  sleep(STEP_PAUSE)
-  touch("tableViewCell index:0 button")
-  selectCurrency(currencyCode)
-end
-
-Given /^I select target (.*)$/ do |currencyCode|
-  sleep(STEP_PAUSE)
-  touch("tableViewCell index:1 button")
-  sleep(STEP_PAUSE)
-  selectCurrency(currencyCode)
-end
-
-def selectCurrency(currencyCode)
-  cellQuery = "collectionViewCell label marked:'#{currencyCode}'"	
-  cell = query(cellQuery)
-  numberOfRows = query("collectionView index:0", "numberOfItemsInSection:")[0] #
-  row = 0
-  while(cell.count() === 0 && row < numberOfRows)	
-  	touch(query("collectionViewCell index:row"))
-  	sleep(STEP_PAUSE)
-  	cell = query(cellQuery)
-  	row = row + 3
-  end
-  
-  if (cell.count() > 0)
-  	touch(query(cellQuery)[0])
-  	sleep(STEP_PAUSE)
-  	if(query("view marked:'Select'").count() > 0)
-  		touch(query("view marked:'Select'"))
-  	end
-  	sleep(STEP_PAUSE)
-  else
-  	fail(msg="Currency #{currencyCode} not found!")
-  end
 end
 
 Given /^I grant access to Address Book in form field (.*)$/ do |key|
