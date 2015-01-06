@@ -51,6 +51,8 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 
 - (instancetype)initWithObjectModel:(ObjectModel *)objectModel
 {
+	NSAssert(objectModel, @"object model is nil");
+	
 	self = [super init];
 	if (self)
 	{
@@ -74,18 +76,18 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 								  templateRecipient:[NSObject getObjectOrNil:params[kTemplateRecipient]]
 									updateRecipient:[NSObject getObjectOrNil:params[kUpdateRecipient]]
 						  recipientProfileValidator:[NSObject getObjectOrNil:params[kRecipientProfileValidator]]
-									nextActionBlock:params[kNextActionBlock]];
+									nextActionBlock:[NSObject getObjectOrNil:params[kNextActionBlock]]];
 			break;
 		case BusinessPaymentProfileController:
 			return [self getBusinessProfileViewController:[NSObject getObjectOrNil:params[kBusinessProfileValidator]]];
 			break;
 		case ConfirmPaymentController:
 			return [self getConfirmPaymentViewController:[NSObject getObjectOrNil:params[kPaymentValidator]]
-											successBlock:params[kNextActionBlock]];
+											successBlock:[NSObject getObjectOrNil:params[kNextActionBlock]]];
 			break;
 		case PersonalProfileIdentificationController:
 			return [self getPersonalProfileIdentificationViewController:[NSObject getObjectOrNil:params[kPendingPayment]]
-															 completion:params[kVerificationCompletionBlock]];
+															 completion:[NSObject getObjectOrNil:params[kVerificationCompletionBlock]]];
 			break;
 		case PaymentMethodSelectorController:
 			return [self getPaymentMethodSelectorViewController:[NSObject getObjectOrNil:params[kPayment]]];
@@ -95,11 +97,11 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 			break;
 		case BusinessProfileIdentificationController:
 			return [self getBusinessProfileIdentificationController:[NSObject getObjectOrNil:params[kPendingPayment]]
-														 completion:params[kVerificationCompletionBlock]];
+														 completion:[NSObject getObjectOrNil:params[kVerificationCompletionBlock]]];
 			break;
 		case RefundDetailsController:
 			return [self getRefundDetailsViewController:[NSObject getObjectOrNil:params[kPendingPayment]]
-										nextActionBlock:params[kNextActionBlock]];
+										nextActionBlock:[NSObject getObjectOrNil:params[kNextActionBlock]]];
 			break;
 		default:
 			return nil;
@@ -111,6 +113,8 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 																isExisting:(BOOL)isExisting
 												  personalProfileValidator:(id<PersonalProfileValidation>)personalProfileValidator
 {
+	NSAssert(personalProfileValidator, @"personal profile validator is nil");
+	
 	PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
 	
 	[controller setObjectModel:self.objectModel];
@@ -137,6 +141,9 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 							  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator
 										nextActionBlock:(TRWActionBlock)nextActionBlock
 {
+	NSAssert(recipientProfileValidator, @"recipient profile validator is nil");
+	NSAssert(nextActionBlock, @"next action block is nil");
+	
 	RecipientViewController *controller = [[RecipientViewController alloc] init];
 	if ([Credentials userLoggedIn])
 	{
@@ -173,6 +180,8 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 
 - (BusinessPaymentProfileViewController *)getBusinessProfileViewController:(id<BusinessProfileValidation>)businessProfileValidator
 {
+	NSAssert(businessProfileValidator, @"business profile validator is nil");
+	
 	BusinessPaymentProfileViewController *controller = [[BusinessPaymentProfileViewController alloc] init];
 	
 	[controller setObjectModel:self.objectModel];
@@ -186,6 +195,9 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 - (ConfirmPaymentViewController *)getConfirmPaymentViewController:(id<PaymentValidation>)paymentValidator
 													 successBlock:(TRWActionBlock)successBlock;
 {
+	NSAssert(paymentValidator, @"payment validator is nil");
+	NSAssert(successBlock, @"sucess block is nil");
+	
 	ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
 	if ([Credentials userLoggedIn])
 	{
@@ -208,6 +220,9 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 - (PersonalProfileIdentificationViewController *)getPersonalProfileIdentificationViewController:(PendingPayment *)payment
 																					 completion:(VerificationCompletionBlock)completion
 {
+	NSAssert(payment, @"pending payment is nil");
+	NSAssert(completion, @"completion block is nil");
+	
 	PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
 	[controller setObjectModel:self.objectModel];
 	
@@ -221,6 +236,8 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 
 - (PaymentMethodSelectorViewController *)getPaymentMethodSelectorViewController:(Payment *)payment
 {
+	NSAssert(payment, @"payment is nil");
+	
 	PaymentMethodSelectorViewController* controller = [[PaymentMethodSelectorViewController alloc] init];
 	controller.objectModel = self.objectModel;
 	controller.payment = payment;
@@ -230,6 +247,8 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 
 - (UploadMoneyViewController *)getUploadMoneyViewController:(Payment *)payment
 {
+	NSAssert(payment, @"payment is nil");
+	
 	UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
 	controller.objectModel = self.objectModel;
 	controller.payment = payment;
@@ -240,6 +259,9 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 - (BusinessProfileIdentificationViewController *)getBusinessProfileIdentificationController:(PendingPayment *)payment
 																				 completion:(VerificationCompletionBlock)completion
 {
+	NSAssert(payment, @"payment is nil");
+	NSAssert(completion, @"completion block is nil");
+	
 	BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
 	[controller setCompletionHandler:completion];
 	
@@ -249,6 +271,9 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 - (RefundDetailsViewController *)getRefundDetailsViewController:(PendingPayment *)payment
 												nextActionBlock:(TRWActionBlock)nextActionBlock
 {
+	NSAssert(payment, @"payment is nil");
+	NSAssert(nextActionBlock, @"next action block is nil");
+	
 	RefundDetailsViewController *controller = [[RefundDetailsViewController alloc] init];
 	[controller setObjectModel:self.objectModel];
 	[controller setCurrency:payment.sourceCurrency];
