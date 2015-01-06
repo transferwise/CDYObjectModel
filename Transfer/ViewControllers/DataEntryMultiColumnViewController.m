@@ -443,7 +443,7 @@
 #pragma mark - keyboard overlap
 -(void)keyboardWillShow:(NSNotification*)note
 {
-    if(self.suppressAnimation ||self.keyboardIsVisible)
+    if(self.suppressAnimation)
     {
         return;
     }
@@ -458,22 +458,33 @@
         
         if(overlap >0)
         {
-            
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:duration];
-            [UIView setAnimationCurve:curve];
-            [UIView setAnimationBeginsFromCurrentState:YES];
-            
-            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
+         
+            if(self.keyboardIsVisible)
             {
-                self.cachedInsets = self.containerScrollView.contentInset;
+                //If the keyboard is already showing, only update the insets without animation.
+                UIEdgeInsets newInsets = self.cachedInsets;
+                newInsets.bottom += overlap;
+                self.containerScrollView.contentInset = newInsets;
             }
+            else
+            {
             
-            UIEdgeInsets newInsets = self.cachedInsets;
-            newInsets.bottom += overlap;
-            self.containerScrollView.contentInset = newInsets;
-            
-            [UIView commitAnimations];
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:duration];
+                [UIView setAnimationCurve:curve];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                
+                if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
+                {
+                    self.cachedInsets = self.containerScrollView.contentInset;
+                }
+                
+                UIEdgeInsets newInsets = self.cachedInsets;
+                newInsets.bottom += overlap;
+                self.containerScrollView.contentInset = newInsets;
+                
+                [UIView commitAnimations];
+            }
             
             UIView *firstResponder = [UIResponder currentFirstResponder];
             if(firstResponder)
@@ -494,7 +505,7 @@
                     //Scroll cell after the keyboard has animated
                     if(duration <= 0)
                     {
-                        [self scrollToCell:cell inTableView:tableView animated:NO];
+                        [self scrollToCell:cell inTableView:tableView animated:YES];
                     }
                     else
                     {
@@ -527,21 +538,32 @@
         
         if(overlap >0)
         {
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:duration];
-            [UIView setAnimationCurve:curve];
-            [UIView setAnimationBeginsFromCurrentState:YES];
-            
-            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
+            if(self.keyboardIsVisible)
             {
-                self.cachedInsets = tableView.contentInset;
+                //If the keyboard is already showing, only update the insets.
+                UIEdgeInsets newInsets = self.cachedInsets;
+                newInsets.bottom += overlap;
+                tableView.contentInset = newInsets;
             }
+            else
+            {
             
-            UIEdgeInsets newInsets = self.cachedInsets;
-            newInsets.bottom += overlap;
-            tableView.contentInset = newInsets;
-            
-            [UIView commitAnimations];
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:duration];
+                [UIView setAnimationCurve:curve];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                
+                if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
+                {
+                    self.cachedInsets = tableView.contentInset;
+                }
+                
+                UIEdgeInsets newInsets = self.cachedInsets;
+                newInsets.bottom += overlap;
+                tableView.contentInset = newInsets;
+                
+                [UIView commitAnimations];
+            }
             
             UIView *firstResponder = [UIResponder currentFirstResponder];
             if(firstResponder)
@@ -551,7 +573,7 @@
                 {
                     if(duration <= 0)
                     {
-                        [self scrollToCell:cell inTableView:tableView animated:NO];
+                        [self scrollToCell:cell inTableView:tableView animated:YES];
                     }
                     else
                     {
