@@ -64,12 +64,12 @@ NSString * const kValidationBlock = @"validationBlock";
 	switch (type)
 	{
 		case PersonalPaymentProfileController:
-			return [self getPersonalProfileViewController:params[kAllowProfileSwitch]
-											   isExisting:params[kProfileIsExisting]
+			return [self getPersonalProfileViewController:[[params objectForKey:kAllowProfileSwitch] boolValue]
+											   isExisting:[[params objectForKey:kProfileIsExisting] boolValue]
 								 personalProfileValidator:[NSObject getObjectOrNil:params[kPersonalProfileValidator]]];
 			break;
 		case RecipientController:
-			return [self getRecipientViewController:params[kShowMiniProfile]
+			return [self getRecipientViewController:[[params objectForKey:kShowMiniProfile] boolValue]
 								  templateRecipient:[NSObject getObjectOrNil:params[kTemplateRecipient]]
 									updateRecipient:[NSObject getObjectOrNil:params[kUpdateRecipient]]
 						  recipientProfileValidator:[NSObject getObjectOrNil:params[kRecipientProfileValidator]]
