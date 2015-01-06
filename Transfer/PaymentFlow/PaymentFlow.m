@@ -73,14 +73,7 @@
 	{
         _navigationController = controller;
 		_controllerFactory = controllerFactory;
-		_validatorFactory = validatorFactory;
-		
-		__weak typeof(self) weakSelf = self;
-		
-		self.controllerFactory.commitActionBlock = ^(TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
-			[weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
-		};
-    }
+		_validatorFactory = validatorFactory;    }
 
     return self;
 }
@@ -236,8 +229,23 @@
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	
+	__weak typeof(self) weakSelf = self;
+	VerificationCompletionBlock completion = ^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
+		[weakSelf.objectModel performBlock:^{
+			//TODO: SSN
+			[payment setSendVerificationLaterValue:skipIdentification];
+			[payment setPaymentPurpose:paymentPurpose];
+			[payment setSocialSecurityNumber:socialSecurityNumber];
+			
+			[weakSelf.objectModel saveContext:^{
+				[weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
+			}];
+		}];
+	};
+	
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalProfileIdentificationController
-																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment]}]
+																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment],
+																									  kVerificationCompletionBlock: [completion copy]}]
 										 animated:YES];
 }
 
@@ -330,10 +338,21 @@
 - (void)presentBusinessVerificationScreen
 {
     [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
-
+	
 	PendingPayment *payment = [self.objectModel pendingPayment];
+	__weak typeof(self) weakSelf = self;
+	VerificationCompletionBlock completion = ^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock,TRWErrorBlock errorBlock) {
+		[weakSelf.objectModel performBlock:^{
+			[payment setSendVerificationLaterValue:skipIdentification];
+			[weakSelf.objectModel saveContext:^{
+				[weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
+			}];
+		}];
+	};
+
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:BusinessProfileIdentificationController
-																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment]}]
+																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment],
+																									  kVerificationCompletionBlock: [completion copy]}]
 										 animated:YES];
 }
 

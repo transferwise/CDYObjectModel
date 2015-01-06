@@ -24,6 +24,7 @@ extern NSString * const kBusinessProfileValidator;
 extern NSString * const kPaymentValidator;
 extern NSString * const kNextActionBlock;
 extern NSString * const kValidationBlock;
+extern NSString * const	kVerificationCompletionBlock;
 
 typedef NS_ENUM(short, ControllerType)
 {
@@ -40,10 +41,9 @@ typedef NS_ENUM(short, ControllerType)
 
 typedef void (^CommitActionBlock)(TRWActionBlock successBlock, TRWErrorBlock errorBlock);
 typedef void (^PaymentValidationBlock)(TRWActionBlock validationBlock);
+typedef void (^VerificationCompletionBlock)(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock);
 
 @interface PaymentFlowViewControllerFactory : NSObject
-
-@property (copy, nonatomic) CommitActionBlock commitActionBlock;
 
 - (id)init __attribute__((unavailable("init unavailable, use initWithObjectModel")));
 
