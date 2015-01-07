@@ -38,6 +38,8 @@ typedef void (^TRWActionBlock)();
   }); \
   return _sharedObject; \
 
+#define TRW_MAX_CONCURRENT_OPERATIONS 5
+
 extern NSString *const TRWLoggedOutNotification;
 extern NSString *const TRWMoveToPaymentsListNotification;
 extern NSString *const TRWMoveToPaymentViewNotification;
