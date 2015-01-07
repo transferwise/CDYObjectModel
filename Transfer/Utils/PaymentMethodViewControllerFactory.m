@@ -22,7 +22,7 @@
 +(UIViewController*)viewControllerForPayInMethod:(PayInMethod*)method forPayment:(Payment*)payment objectModel:(ObjectModel*)objectModel;
 {
     UIViewController* result;
-    if([@"DATA_CASH" caseInsensitiveCompare:method.type] == NSOrderedSame)
+    if([@"DATA_CASH" caseInsensitiveCompare:method.type] == NSOrderedSame || [@"ADYEN" caseInsensitiveCompare:method.type] == NSOrderedSame)
     {
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
@@ -30,7 +30,7 @@
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
            //TODO: Change once Danieles branch is official NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
-            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v1/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
             loadRequestBlock(request);
         };
         
