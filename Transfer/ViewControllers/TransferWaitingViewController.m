@@ -95,7 +95,7 @@
 	else
 	{
         UIViewController* controller;
-        if ([[self.payment enabledPayInMethods] count] > 2)
+        if ([[self.payment enabledPayInMethods] count] > 2 || ([@"usd" caseInsensitiveCompare:[self.payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && [[self.payment enabledPayInMethods] count] > 1))
         {
             PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
             selector.objectModel = self.objectModel;
