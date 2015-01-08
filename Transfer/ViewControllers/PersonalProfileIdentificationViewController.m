@@ -153,7 +153,7 @@
         ValidationCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
         [photoCells addObject:idDocumentCell];
-        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
+        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(self.driversLicenseFirst?@"identification.id.description.drivers.first":@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
         [idDocumentCell documentSelected:[PendingPayment isIdVerificationImagePresent]];
         idDocumentCell.delegate = self;
         idDocumentCell.contentView.bgStyle = @"lightblueHighlighted.alpha4";
@@ -207,7 +207,7 @@
 }
 
 - (BOOL)ssnVerificationRequired {
-    return (self.identificationRequired & IdentificationSSNRequired) == IdentificationSSNRequired;
+    return NO; //Disable SSN as it's not working  (self.identificationRequired & IdentificationSSNRequired) == IdentificationSSNRequired;
 }
 
 #pragma mark - ValidationCell delegate

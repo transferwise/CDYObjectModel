@@ -136,6 +136,7 @@ your friends to TransferWise";
 "identification.creating.payment.message" = "Creating transfer...";
 "identification.id.document" = "Photo of your ID";
 "identification.id.description" = "A good quality photo of a valid passport or ID card or driving licence. Not a picture of yourself.";
+"identification.id.description.drivers.first" = "A good quality photo of your driving licence or valid passport or ID card. \nNot a picture of yourself.";
 "identification.id.selected.description" = "ID document selected";
 "identification.payment.error.title" = "Payment error";
 "identification.proof.of.address" = "Photo of proof of address";
