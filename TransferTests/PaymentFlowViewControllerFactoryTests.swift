@@ -25,6 +25,13 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		validatorFactory = ValidatorFactory(objectModel: objectModel)
 	}
 	
+	func testInitThrowsOnNullObjectModel()
+	{
+		XCTAssertThrows({ () -> Void in
+			let factory = PaymentFlowViewControllerFactory(objectModel: nil)
+		}, "no exception on nil object model")
+	}
+	
 	//test all positive paths
 	//- check correct type is returned
 	//- check that all params are set
@@ -117,7 +124,8 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	{
 		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
 		pendingPayment.proposedPaymentsPurpose = "blah"
-		let controller = factory!.getViewControllerWithType(.PersonalProfileIdentificationController, params: [kPendingPayment: pendingPayment])
+		let controller = factory!.getViewControllerWithType(.PersonalProfileIdentificationController, params: [kPendingPayment: pendingPayment,
+			kVerificationCompletionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
 		
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is PersonalProfileIdentificationViewController, "invalid type of controller")
@@ -127,6 +135,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		XCTAssertEqual(concreteController.identificationRequired, IdentificationRequired(rawValue: pendingPayment.verificiationNeededValue), "invalid verification needed set")
 		XCTAssertEqual(concreteController.proposedPaymentPurpose, pendingPayment.proposedPaymentsPurpose, "invalid proposed payment purpose set")
+		XCTAssertNotNil(unsafeBitCast(concreteController.completionHandler, AnyObject.self), "completion handler not set")
 	}
 	
 	func testGetViewControllerReturnsCorrectPaymentMethodSelector()
@@ -161,10 +170,15 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	{
 		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
 		pendingPayment.proposedPaymentsPurpose = "blah"
-		let controller = factory!.getViewControllerWithType(.BusinessProfileIdentificationController, params: [kPendingPayment: pendingPayment])
+		let controller = factory!.getViewControllerWithType(.BusinessProfileIdentificationController, params: [kPendingPayment: pendingPayment,
+			kVerificationCompletionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
 		
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is BusinessProfileIdentificationViewController, "invalid type of controller")
+		
+		let concreteController = controller as BusinessProfileIdentificationViewController
+		
+		XCTAssertNotNil(unsafeBitCast(concreteController.completionHandler, AnyObject.self), "completion handler not set")
 	}
 	
 	func testGetViewControllerReturnsCorrectRefundDetailsController()
@@ -187,6 +201,125 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 
 	//test each version for negative paths
 	//- missing params
+	
+	func testGetViewControllerThrowsOnNullValidatorPersonalPayment()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.PersonalPaymentProfileController, params: [kAllowProfileSwitch: true,
+				kProfileIsExisting: true,
+				kPersonalProfileValidator: NSNull()])
+		}, "no exception on unset personal profile validator")
+	}
+	
+	func testGetViewControllerThrowsOnNullValidatorRecipient()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.RecipientController, params: [kShowMiniProfile: true,
+				kTemplateRecipient: NSNull(),
+				kUpdateRecipient: NSNull(),
+				kRecipientProfileValidator: NSNull(),
+				kNextActionBlock: unsafeBitCast(self.getEmptyBlock(), AnyObject.self)])
+		}, "no exception on unset recipient profile validator")
+	}
+	
+	func testGetViewControllerThrowsOnNullNextActionRecipient()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.RecipientController, params: [kShowMiniProfile: true,
+				kTemplateRecipient: NSNull(),
+				kUpdateRecipient: NSNull(),
+				kRecipientProfileValidator: self.validatorFactory!.getValidatorWithType(.ValidateRecipientProfile),
+				kNextActionBlock: NSNull()])
+		}, "no exception on unset recipient profile validator")
+	}
+	
+	func testGetViewControllerThrowsOnNullValidatorBusinessPaymentProfile()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.BusinessPaymentProfileController, params: [kBusinessProfileValidator: NSNull()])
+		}, "no exception on unset business profile validator")
+	}
+	
+	func testGetViewControllerThrowsOnNullValidatorConfirm()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.ConfirmPaymentController, params: [kPaymentValidator: NSNull(),
+				kNextActionBlock: unsafeBitCast(self.getEmptyBlock(), AnyObject.self)])
+		}, "no exception on unset payment validator")
+	}
+	
+	func testGetViewControllerThrowsOnNullNextActionConfirm()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.ConfirmPaymentController, params: [kPaymentValidator: self.validatorFactory!.getValidatorWithType(.ValidatePayment),
+				kNextActionBlock: NSNull()])
+		}, "no exception on unset next action block")
+	}
+	
+	func testGetViewControllerThrowsOnNullPaymentPersonalIdentification()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.PersonalProfileIdentificationController, params: [kPendingPayment: NSNull(),
+				kVerificationCompletionBlock: unsafeBitCast(self.getEmptyBlock(), AnyObject.self)])
+		}, "no exception on unset pending payment")
+	}
+	
+	func testGetViewControllerThrowsOnNullVerificationCompletionPersonalIdentification()
+	{
+		XCTAssertThrows({ () -> Void in
+			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as PendingPayment
+			let controller = self.factory!.getViewControllerWithType(.PersonalProfileIdentificationController, params: [kPendingPayment: pendingPayment,
+				kVerificationCompletionBlock: NSNull()])
+		}, "no exception on unset verification completion")
+	}
+	
+	func testGetViewControllerThrowsOnNullPaymentPaymentMethodSelector()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.PaymentMethodSelectorController, params: [kPayment: NSNull()])
+		}, "no exception on unset payment")
+	}
+	
+	func testGetViewControllerThrowsOnNullPaymentUploadMoney()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.UploadMoneyController, params: [kPayment: NSNull()])
+		}, "no exception on unset payment")
+	}
+	
+	func testGetViewControllerThrowsOnNullPaymentBusinessIdentification()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.BusinessProfileIdentificationController, params: [kPendingPayment: NSNull(),
+				kVerificationCompletionBlock: unsafeBitCast(self.getEmptyBlock(), AnyObject.self)])
+		}, "no exception on unset payment")
+	}
+	
+	func testGetViewControllerThrowsOnNullVerificationCompletionBusinessIdentification()
+	{
+		XCTAssertThrows({ () -> Void in
+			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as PendingPayment
+			let controller = self.factory!.getViewControllerWithType(.BusinessProfileIdentificationController, params: [kPendingPayment: pendingPayment,
+				kVerificationCompletionBlock: NSNull()])
+		}, "no exception on unset verification completion")
+	}
+	
+	func testGetViewControllerThrowsOnNullPaymentRefund()
+	{
+		XCTAssertThrows({ () -> Void in
+			let controller = self.factory!.getViewControllerWithType(.RefundDetailsController, params: [kPendingPayment: NSNull(),
+				kNextActionBlock: unsafeBitCast(self.getEmptyBlock(), AnyObject.self)])
+		}, "no exception on unset payment")
+	}
+	
+	func testGetViewControllerThrowsOnNullNextActionRefund()
+	{
+		XCTAssertThrows({ () -> Void in
+			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as PendingPayment
+			let controller = self.factory!.getViewControllerWithType(.RefundDetailsController, params: [kPendingPayment: pendingPayment,
+				kNextActionBlock: NSNull()])
+		}, "no exception on unset next action block")
+	}
 	
 	private func getEmptyBlock() -> TRWActionBlock
 	{
