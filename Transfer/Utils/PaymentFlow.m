@@ -316,6 +316,7 @@
     [controller setPaymentFlow:self];
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
+    controller.driversLicenseFirst = [@"usd" caseInsensitiveCompare:payment.sourceCurrency.code] == NSOrderedSame;
     [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
     __weak typeof(self) weakSelf = self;
 

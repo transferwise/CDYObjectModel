@@ -136,6 +136,7 @@ vos amis sur TransferWise";
 "identification.creating.payment.message" = "Creation du transfert...";
 "identification.id.document" = "Photo d'une piece d'identité";
 "identification.id.description" = "Une photo de votre passeport, carte d'identité ou permi de conduire valide et de bonne qualité. Non pas une photo de vous.";
+"identification.id.description.drivers.first" = "Une photo de votre permi de conduire, passeport ou carte d'identité valide et de bonne qualité. Non pas une photo de vous.";
 "identification.id.selected.description" = "Piece d'identité selectionnée";
 "identification.payment.error.title" = "Erreur de paiement";
 "identification.proof.of.address" = "Photo d'une preuve de domicile";
