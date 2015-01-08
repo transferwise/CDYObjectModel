@@ -10,7 +10,7 @@
 
 @interface OptionalSplitViewController ()
 
-@property (nonatomic,weak)UIViewController* presentedDetailController;
+@property (nonatomic,strong)UIViewController* presentedDetailController;
 
 @end
 
@@ -46,6 +46,7 @@
 							 
 							 if (controller)
 							 {
+                                 [controller willMoveToParentViewController:self];
 								 [self addChildViewController:controller];
                                  [controller didMoveToParentViewController:self];
 								 [self.detailContainer addSubview:controller.view];

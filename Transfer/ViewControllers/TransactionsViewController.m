@@ -149,6 +149,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.isViewAppearing = NO;
     if(!IPAD)
     {
         [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];

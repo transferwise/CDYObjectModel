@@ -97,18 +97,18 @@ IB_DESIGNABLE
 {
 	if(!weakSelf.willDismiss)
 	{
+        float secondsToDelay = weakSelf.checkView.state == CheckStatePlain?0.0f:0.4f;
 		weakSelf.view.userInteractionEnabled = NO;
 		weakSelf.willDismiss = YES;
 		
-		float secondsToDelay = weakSelf.checkView.state == CheckStatePlain?0.0f:0.4f;
 		dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*NSEC_PER_SEC);
 		dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
 			completion();
+            weakSelf.view.userInteractionEnabled = YES;
 		});
 		
 		[self.view endEditing:YES];
 		[self.checkView setState:CheckStatePlain animated:YES];
-		weakSelf.view.userInteractionEnabled = YES;
 	}
 }
 
@@ -122,16 +122,16 @@ IB_DESIGNABLE
     {
         __weak typeof(self) weakSelf = self;
         TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
-            if(!IPAD && weakSelf)
+            if(weakSelf)
             {
 				[self navigateAway:weakSelf
 						completion:^{
-							[navigationController popViewControllerAnimated:YES];
+							[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 						}];
             }
             else
             {
-                [navigationController popViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
             }
         }];
         [self.navigationController.topViewController.navigationItem setLeftBarButtonItem:item];
