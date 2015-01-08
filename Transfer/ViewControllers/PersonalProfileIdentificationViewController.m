@@ -300,6 +300,7 @@
     NSString *inputValidationError = [self validateEnteredText];
     if(inputValidationError)
     {
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"VerificationAlert" withLabel:inputValidationError];
         TRWAlertView *alert = [[TRWAlertView alloc] initWithTitle:NSLocalizedString(@"identification.error",nil) message:inputValidationError delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
         [alert show];
     }
@@ -363,6 +364,7 @@
                 alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
             }
             [alertView show];
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"VerificationAlert" withLabel:alertView.message];
             self.continueButton.progress = 0.0f;
         }
     });
