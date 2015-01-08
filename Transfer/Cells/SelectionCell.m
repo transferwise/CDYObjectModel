@@ -78,7 +78,10 @@ NSString *const TWSelectionCellIdentifier = @"CountrySelectionCell";
 
 - (void)fireSelectionChanged
 {
-	self.selectionHandler(self.selectedItem.code);
+    if(self.selectionHandler)
+    {
+        self.selectionHandler(self.selectedItem.code);
+    }
 }
 
 @end
