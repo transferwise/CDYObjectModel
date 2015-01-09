@@ -76,9 +76,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *termsLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *termsLabelCenterConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginButtonCenterConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *termsLabelWidthConstraint;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -542,40 +539,10 @@ static NSUInteger const kRowYouSend = 0;
     if([self.youSendCell.currency.code isEqualToString:@"USD"])
     {
         self.termsLabel.hidden = NO;
-        if(!IPAD && !self.loginButton.hidden)
-        {
-            CGFloat viewWidth = self.view.bounds.size.width;
-            self.termsLabelCenterConstraint.constant = viewWidth;
-            [self.termsLabel layoutIfNeeded];
-            [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                
-               self.termsLabelCenterConstraint.constant = (viewWidth - self.termsLabelWidthConstraint.constant)/2.0f;
-                self.loginButtonCenterConstraint.constant =  -( viewWidth/2.0 - (viewWidth - self.termsLabelWidthConstraint.constant)/2.0);
-                [self.termsLabel layoutIfNeeded];
-                [self.loginButton layoutIfNeeded];
-            } completion:^(BOOL finished) {
-            }];
-        }
     }
     else
     {
-        if(!IPAD && !self.loginButton.hidden && !self.termsLabel.hidden )
-        {
-             CGFloat viewWidth = self.view.bounds.size.width;
-            [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.termsLabelCenterConstraint.constant = viewWidth;
-                self.loginButtonCenterConstraint.constant = 0;
-                [self.termsLabel layoutIfNeeded];
-                [self.loginButton layoutIfNeeded];
-            } completion:^(BOOL finished) {
-                self.termsLabel.hidden = YES;
-            }];
-        }
-        else
-        {
-             self.termsLabel.hidden = YES;
-        }
-       
+        self.termsLabel.hidden = YES;
     }
     
 }
