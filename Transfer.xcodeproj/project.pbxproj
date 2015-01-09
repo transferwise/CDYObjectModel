@@ -89,6 +89,9 @@
 		3831DCC819B8646000151A3D /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC619B8646000151A3D /* PullToRefreshView.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
+		383D30D41A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */; };
+		383D30D51A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */; };
+		383D30D61A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */; };
 		383FC0F019AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */; };
 		383FC0F119AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */; };
 		383FC0F819AE1ABC00465FCA /* EmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */; };
@@ -1542,6 +1545,8 @@
 		3831DCC619B8646000151A3D /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshView.xib; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
+		383D30D21A60039500171189 /* CustomInfoViewController+NoPayInMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+NoPayInMethods.h"; sourceTree = "<group>"; };
+		383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+NoPayInMethods.m"; sourceTree = "<group>"; };
 		383FC0EE19AE1A1A00465FCA /* StateSuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateSuggestionCellProvider.h; sourceTree = "<group>"; };
 		383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateSuggestionCellProvider.m; sourceTree = "<group>"; };
 		383FC0F219AE1ABC00465FCA /* EmailLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailLookupWrapper.h; sourceTree = "<group>"; };
@@ -3083,6 +3088,8 @@
 				47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */,
 				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
 				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
+				383D30D21A60039500171189 /* CustomInfoViewController+NoPayInMethods.h */,
+				383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4692,6 +4699,7 @@
 				388E5ACB1A5A949500AF6EB9 /* NameSuggestionCell.m in Sources */,
 				388E5ACC1A5A949500AF6EB9 /* SwipeToCancelCell.m in Sources */,
 				388E5ACD1A5A949500AF6EB9 /* MOMRoundedCornerStyle.m in Sources */,
+				383D30D61A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				388E5ACE1A5A949500AF6EB9 /* UploadMoneyViewController.m in Sources */,
 				388E5ACF1A5A949500AF6EB9 /* PullPaymentDetailsOperation.m in Sources */,
 				388E5AD01A5A949500AF6EB9 /* MOMStyleFactory.m in Sources */,
@@ -5019,6 +5027,7 @@
 				38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */,
 				476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
 				380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
+				383D30D51A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				EAD3648617E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
 				EAD33EAC17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */,
 				380021CB192CC531009B1D53 /* MOMStyleFactory.m in Sources */,
@@ -5166,6 +5175,7 @@
 				47C1F7451A3F2AF700014F55 /* PaymentValidator.m in Sources */,
 				3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
+				383D30D41A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
 				389F67FB198FC1C6006CF1F6 /* _Country.m in Sources */,
 				389F6839198FC1C6006CF1F6 /* PairTargetCurrency.m in Sources */,

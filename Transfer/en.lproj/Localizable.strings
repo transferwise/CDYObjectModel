@@ -763,3 +763,5 @@ We'll send you an email in order to let you choose a new password.";
 "upload.money.bankname.title" = "Bank name";
 
 "upload.money.card.no.adyen.url" = "Could not load debit card screen. Please try again.";
+
+"no.payin.methods.template" = "It is not possible to proceed with this %@ transfer at the moment. You may need to verify yourself first on TransferWise.com";

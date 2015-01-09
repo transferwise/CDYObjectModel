@@ -15,6 +15,7 @@
 #import "GoogleAnalytics.h"
 #import "SupportCoordinator.h"
 #import "ConnectionAwareViewController.h"
+#import "CustomInfoViewController+NoPayInMethods.h"
 
 @interface TransferPayIPadViewController ()
 
@@ -57,6 +58,14 @@
 
 - (IBAction)payTapped:(id)sender
 {
+    NSUInteger numberOfPayInMethods = [[self.payment enabledPayInMethods] count];
+    if(numberOfPayInMethods < 1)
+    {
+        CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:self.payment.sourceCurrency];
+        [errorScreen presentOnViewController:self.navigationController];
+        return;
+    }
+    
     UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
     [controller setPayment:self.payment];
     [controller setObjectModel:self.objectModel];
