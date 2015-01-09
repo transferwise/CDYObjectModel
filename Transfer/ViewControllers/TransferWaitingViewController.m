@@ -100,7 +100,7 @@
         if(numberOfPayInMethods <1)
         {
             CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:self.payment.sourceCurrency];
-            [errorScreen presentOnViewController:self.navigationController];
+            [errorScreen presentOnViewController:self.navigationController.parentViewController];
             return;
         }
         else if (numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[self.payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1))

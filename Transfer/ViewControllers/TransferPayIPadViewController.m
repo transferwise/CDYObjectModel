@@ -62,7 +62,7 @@
     if(numberOfPayInMethods < 1)
     {
         CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:self.payment.sourceCurrency];
-        [errorScreen presentOnViewController:self.navigationController];
+        [errorScreen presentOnViewController:self.navigationController.parentViewController];
         return;
     }
     

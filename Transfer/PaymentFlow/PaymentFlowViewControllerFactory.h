@@ -10,6 +10,7 @@
 #import "Constants.h"
 
 @class ObjectModel;
+@class TransparentModalViewController;
 
 extern NSString * const kAllowProfileSwitch;
 extern NSString * const kProfileIsExisting;
@@ -39,6 +40,11 @@ typedef NS_ENUM(short, ControllerType)
 	RefundDetailsController = 9,
 };
 
+typedef NS_ENUM(short, ModalType)
+{
+    NoPayInMethodsFailModal
+};
+
 typedef void (^CommitActionBlock)(TRWActionBlock successBlock, TRWErrorBlock errorBlock);
 typedef void (^PaymentValidationBlock)(TRWActionBlock validationBlock);
 typedef void (^VerificationCompletionBlock)(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock);
@@ -51,5 +57,8 @@ typedef void (^VerificationCompletionBlock)(BOOL skipIdentification, NSString *p
 
 - (UIViewController *)getViewControllerWithType:(ControllerType)type
 										 params:(NSDictionary *)params;
+
+- (TransparentModalViewController *)getCustomModalWithType:(ModalType)type
+                                         params:(NSDictionary *)params;
 
 @end
