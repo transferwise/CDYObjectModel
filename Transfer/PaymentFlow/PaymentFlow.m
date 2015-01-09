@@ -127,12 +127,17 @@
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
     [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
 	
+    if([self isAZOrOK])
+    {
+        return;
+    }
+    
 	__weak typeof(self) weakSelf = self;
 	id<RecipientProfileValidation> validator = [self.validatorFactory getValidatorWithType:ValidateRecipientProfile];
 	TRWActionBlock nextBlock = ^{
 		[weakSelf presentNextPaymentScreen];
 	};
-
+    
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:RecipientController
 																							 params:@{kShowMiniProfile: [NSNumber numberWithBool:showMiniProfile],
 																									  kTemplateRecipient: [NSObject getObjectOrNsNull:template],
@@ -800,11 +805,48 @@
 		{
             [self presentRefundAccountViewController];
         }
+        else if([self isAZOrOK])
+        {
+            return;
+        }
 		else
 		{
             [self presentPaymentConfirmation];
         }
     }];
+}
+
+-(BOOL)isAZOrOK
+{
+    //AZ and OK states in the US currently have no active pay in methods!
+    //Prevent payments from being created.
+    
+    PendingPayment *payment = [self.objectModel pendingPayment];
+    BOOL stateIsAZorOK = NO;
+    if(payment.sourceCurrency.code && [@"usd" caseInsensitiveCompare:payment.sourceCurrency.code] == NSOrderedSame)
+    {
+        if(payment.user.personalProfile.sendAsBusinessValue
+           || [payment.profileUsed isEqualToString:BUSINESS_PROFILE])
+        {
+            if([payment.user businessProfileFilled])
+            {
+                stateIsAZorOK = payment.user.businessProfile.state && ([@"AZ" caseInsensitiveCompare:payment.user.businessProfile.state] == NSOrderedSame || [@"OK" caseInsensitiveCompare:payment.user.businessProfile.state] == NSOrderedSame);
+            }
+        }
+        else if ([payment.user personalProfileFilled])
+        {
+            stateIsAZorOK = payment.user.personalProfile.state && ([@"AZ" caseInsensitiveCompare:payment.user.personalProfile.state] == NSOrderedSame || [@"OK" caseInsensitiveCompare:payment.user.personalProfile.state] == NSOrderedSame );
+            
+        }
+        
+        if(stateIsAZorOK)
+        {
+            TransparentModalViewController* failModal = [self.controllerFactory getCustomModalWithType:NoPayInMethodsFailModal params:@{kPayment: [NSObject getObjectOrNsNull:payment]}];
+            [failModal presentOnViewController:self.navigationController.parentViewController];
+        }
+    }
+    
+    return stateIsAZorOK;
 }
 
 @end
