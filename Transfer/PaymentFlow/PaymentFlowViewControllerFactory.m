@@ -25,6 +25,7 @@
 #import "RecipientProfileValidation.h"
 #import "PaymentValidation.h"
 #import "NSObject+NSNull.h"
+#import "Currency.h"
 
 NSString * const kAllowProfileSwitch = @"allowProfileSwitch";
 NSString * const kProfileIsExisting = @"profileIsExisting";
@@ -228,6 +229,7 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 	
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
+     controller.driversLicenseFirst = [@"usd" caseInsensitiveCompare:payment.sourceCurrency.code] == NSOrderedSame;
 	[controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
 	[controller setCompletionHandler:completion];
 	

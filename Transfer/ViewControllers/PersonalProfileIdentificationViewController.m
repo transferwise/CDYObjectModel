@@ -153,7 +153,7 @@
         ValidationCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
         [photoCells addObject:idDocumentCell];
-        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
+        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(self.driversLicenseFirst?@"identification.id.description.drivers.first":@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
         [idDocumentCell documentSelected:[PendingPayment isIdVerificationImagePresent]];
         idDocumentCell.delegate = self;
         idDocumentCell.contentView.bgStyle = @"lightblueHighlighted.alpha4";
@@ -207,7 +207,7 @@
 }
 
 - (BOOL)ssnVerificationRequired {
-    return (self.identificationRequired & IdentificationSSNRequired) == IdentificationSSNRequired;
+    return NO; //Disable SSN as it's not working  (self.identificationRequired & IdentificationSSNRequired) == IdentificationSSNRequired;
 }
 
 #pragma mark - ValidationCell delegate
@@ -300,6 +300,7 @@
     NSString *inputValidationError = [self validateEnteredText];
     if(inputValidationError)
     {
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"VerificationAlert" withLabel:inputValidationError];
         TRWAlertView *alert = [[TRWAlertView alloc] initWithTitle:NSLocalizedString(@"identification.error",nil) message:inputValidationError delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
         [alert show];
     }
@@ -363,6 +364,7 @@
                 alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
             }
             [alertView show];
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"VerificationAlert" withLabel:alertView.message];
             self.continueButton.progress = 0.0f;
         }
     });

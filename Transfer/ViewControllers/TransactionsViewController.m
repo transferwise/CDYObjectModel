@@ -149,6 +149,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.isViewAppearing = NO;
     if(!IPAD)
     {
         [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
@@ -406,7 +407,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}
 		else
 		{
-			if([[payment enabledPayInMethods] count]>2)
+			if([[payment enabledPayInMethods] count]>2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && [[payment enabledPayInMethods] count] > 1))
 			{
 				PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
 				selector.objectModel = self.objectModel;

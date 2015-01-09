@@ -26,4 +26,6 @@ typedef void (^IdentificationCompleteBlock)(BOOL skipIdentification, NSString *p
 @property (nonatomic, copy) NSString *proposedPaymentPurpose;
 @property (nonatomic, copy) NSString *completionMessage;
 
+@property (nonatomic, assign) BOOL driversLicenseFirst;
+
 @end
