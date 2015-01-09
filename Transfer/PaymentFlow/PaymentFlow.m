@@ -48,6 +48,7 @@
 #import "PaymentValidation.h"
 #import "NSObject+NSNull.h"
 #import "ConfirmPaymentViewController.h"
+#import "TransparentModalViewController.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -264,7 +265,14 @@
         
         Payment* payment = (id) [self.objectModel.managedObjectContext objectWithID:paymentID];
         
-        if(!IPAD && ([[payment enabledPayInMethods] count]>2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && [[payment enabledPayInMethods] count] > 1)))
+        
+        NSUInteger numberOfPayInMethods = [[payment enabledPayInMethods] count];
+        if(numberOfPayInMethods < 1)
+        {
+            TransparentModalViewController* failModal = [self.controllerFactory getCustomModalWithType:NoPayInMethodsFailModal params:@{kPayment: [NSObject getObjectOrNsNull:payment]}];
+            [failModal presentOnViewController:self.navigationController.parentViewController];
+        }
+        else if(!IPAD && (numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1)))
         {
 			[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PaymentMethodSelectorController
 																									 params:@{kPayment: [NSObject getObjectOrNsNull:payment]}]

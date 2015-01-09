@@ -412,7 +412,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             if(numberOfPayInMethods < 1)
             {
                 CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:payment.sourceCurrency];
-                [errorScreen presentOnViewController:self.navigationController];
+                [errorScreen presentOnViewController:self.navigationController.parentViewController];
                 return;
             }
 			else if(numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1))

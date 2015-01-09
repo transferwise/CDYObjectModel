@@ -26,6 +26,7 @@
 #import "PaymentValidation.h"
 #import "NSObject+NSNull.h"
 #import "Currency.h"
+#import "CustomInfoViewController+NoPayInMethods.h"
 
 NSString * const kAllowProfileSwitch = @"allowProfileSwitch";
 NSString * const kProfileIsExisting = @"profileIsExisting";
@@ -108,6 +109,19 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 			return nil;
 			break;
 	}
+}
+
+-(TransparentModalViewController *)getCustomModalWithType:(ModalType)type params:(NSDictionary *)params
+{
+    switch (type) {
+        case NoPayInMethodsFailModal:
+            return [self getNoPayInMethodsViewController:[NSObject getObjectOrNil:params[kPayment]]];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
 }
 
 - (PersonalPaymentProfileViewController *)getPersonalProfileViewController:(BOOL)allowProfileSwitch
@@ -286,5 +300,17 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 	
 	return controller;
 }
+
+- (CustomInfoViewController *)getNoPayInMethodsViewController:(Payment *)payment
+{
+    NSAssert(payment, @"payment is nil");
+    CustomInfoViewController* controller = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:payment.sourceCurrency];
+    controller.actionButtonBlock = ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    };
+    
+    return controller;
+}
+
 
 @end
