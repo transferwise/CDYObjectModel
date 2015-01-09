@@ -17,6 +17,7 @@
 #import "PaymentMadeIndicator.h"
 #import "NSString+Presentation.h"
 #import "PaymentMethodSelectorViewController.h"
+#import "CustomInfoViewController+NoPayInMethods.h"
 
 @interface TransferWaitingViewController ()
 
@@ -95,7 +96,14 @@
 	else
 	{
         UIViewController* controller;
-        if ([[self.payment enabledPayInMethods] count] > 2 || ([@"usd" caseInsensitiveCompare:[self.payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && [[self.payment enabledPayInMethods] count] > 1))
+        NSUInteger numberOfPayInMethods = [[self.payment enabledPayInMethods] count];
+        if(numberOfPayInMethods <1)
+        {
+            CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:self.payment.sourceCurrency];
+            [errorScreen presentOnViewController:self.navigationController];
+            return;
+        }
+        else if (numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[self.payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1))
         {
             PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
             selector.objectModel = self.objectModel;

@@ -42,6 +42,7 @@
 #import "SendButtonFlashHelper.h"
 
 #import "RecipientTypesOperation.h"
+#import "CustomInfoViewController+NoPayInMethods.h"
 
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
@@ -407,7 +408,14 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}
 		else
 		{
-			if([[payment enabledPayInMethods] count]>2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && [[payment enabledPayInMethods] count] > 1))
+            NSUInteger numberOfPayInMethods = [[payment enabledPayInMethods] count];
+            if(numberOfPayInMethods < 1)
+            {
+                CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:payment.sourceCurrency];
+                [errorScreen presentOnViewController:self.navigationController];
+                return;
+            }
+			else if(numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1))
 			{
 				PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
 				selector.objectModel = self.objectModel;
