@@ -749,3 +749,6 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 
 "upload.money.bankname.title" = "Nom de la banque";
+
+"no.payin.methods.template" = "It is not possible to proceed with this %@ transfer at the moment. You may need to verify yourself first on TransferWise.com";
+
