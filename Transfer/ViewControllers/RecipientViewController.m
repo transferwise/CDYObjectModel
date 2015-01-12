@@ -515,16 +515,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     else
     {
         self.recipient = recipient;
-        BOOL bicIsRequired = [self.currency isBicRequiredForType:self.recipientType];
-        if ((type.recipientAddressRequiredValue && ![recipient hasAddress]) || (bicIsRequired && [[recipient valueForFieldNamed:@"BIC"] length] <= 0))
-        {
-            self.updateRecipient = recipient;
-        }
-        else
-        {
-            self.updateRecipient = nil;
-        }
-
     }
     type = allowedType;
     
@@ -587,7 +577,20 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
     }
     [self setAddressFieldsFromRecipient:recipient];
-    if([recipient hasAddress])
+    
+    BOOL addressIsValid = [recipient hasAddress] && [self validateAddress].length == 0;
+    
+    BOOL bicIsRequired = [self.currency isBicRequiredForType:self.recipientType];
+    if ((type.recipientAddressRequiredValue && !addressIsValid) || (bicIsRequired && [[recipient valueForFieldNamed:@"BIC"] length] <= 0))
+    {
+        self.updateRecipient = recipient;
+    }
+    else
+    {
+        self.updateRecipient = nil;
+    }
+    
+    if(addressIsValid)
     {
         [self setAddressFieldsEditable:NO];
     }
@@ -595,6 +598,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         [self setAddressFieldsEditable:YES];
     }
+    
     self.settingRecipient = NO;
 }
 
@@ -874,38 +878,47 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     if(self.recipientType.recipientAddressRequiredValue)
     {
-        BOOL addressValidationFailed = NO;
-        for(TextEntryCell* cell in self.addressCells)
-        {
-            if (![[cell value] hasValue])
-            {
-                addressValidationFailed = YES;
-                break;
-            }
-            else if(cell == self.countryCell || cell == self.stateCell)
-            {
-                NSString* value = [cell value];
-                if ([value isEqualToString:@"invalid"])
-                {
-                    if(cell == self.countryCell)
-                    {
-                        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.country", nil),self.currency.code]];
-                    }
-                    else
-                    {
-                        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.state", nil),self.currency.code]];
-                    }
-
-                }
-            }
-        }
-        if(addressValidationFailed)
-        {
-            [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.address", nil),self.currency.code]];
-        }
+        [issues appendString:[self validateAddress]];
     }
     
     return [NSString stringWithString:issues];
+}
+
+-(NSString*)validateAddress
+{
+    NSMutableString *issues = [NSMutableString string];
+
+    BOOL addressValidationFailed = NO;
+    for(TextEntryCell* cell in self.addressCells)
+    {
+        if (![[cell value] hasValue])
+        {
+            addressValidationFailed = YES;
+            break;
+        }
+        else if(cell == self.countryCell || cell == self.stateCell)
+        {
+            NSString* value = [cell value];
+            if ([value isEqualToString:@"invalid"])
+            {
+                if(cell == self.countryCell)
+                {
+                    [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.country", nil),self.currency.code]];
+                }
+                else
+                {
+                    [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.state", nil),self.currency.code]];
+                }
+                
+            }
+        }
+    }
+    if(addressValidationFailed)
+    {
+        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.address", nil),self.currency.code]];
+    }
+    
+    return issues;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
