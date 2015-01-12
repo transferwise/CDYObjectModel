@@ -200,19 +200,27 @@
 + (void)logOutWithObjectModel:(ObjectModel *)objectModel
 			  completionBlock:(void (^)(void))completionBlock
 {
-    [objectModel performBlock:^{
-        [objectModel deleteObject:objectModel.currentUser];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [PendingPayment removePossibleImages];
-            [Credentials clearCredentials];
-            [[GoogleAnalytics sharedInstance] markLoggedIn];
-            [TransferwiseClient clearCookies];
-            if(completionBlock)
-            {
-                completionBlock();
-            }
-        });
-    }];
+    if([Credentials userLoggedIn])
+    {
+        [objectModel performBlock:^{
+            [objectModel deleteObject:objectModel.currentUser];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([Credentials userLoggedIn])
+                {
+                    [PendingPayment removePossibleImages];
+                    [[TransferwiseClient sharedClient] clearCredentials];
+                    [Credentials clearCredentials];
+                    [[GoogleAnalytics sharedInstance] markLoggedIn];
+                    [TransferwiseClient clearCookies];
+                    if(completionBlock)
+                    {
+                        completionBlock();
+                    }
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+                }
+            });
+        }];
+    }
 	
 	}
 

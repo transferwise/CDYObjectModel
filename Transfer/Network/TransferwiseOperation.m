@@ -200,18 +200,10 @@
         [[TransferwiseClient sharedClient].operationQueue cancelAllOperations];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            // Ensure notification posted only once. When multiple requests run at once and get expired token error,
-            // then first request clears credentials and posts notification
-            if (![Credentials userLoggedIn]) {
-                return;
-            }
-
-            [AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
-            }];
-			
+                [AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:^{
+                }];
         });
-    } else {
+        } else {
         MCLog(@"Other errors");
         self.operationErrorHandler(cumulativeError);
     }
