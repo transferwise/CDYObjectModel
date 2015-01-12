@@ -81,6 +81,7 @@ static NSUInteger const kRowYouSend = 0;
 - (IBAction)startPaymentPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *howButtonTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *termsBottomConstraint;
 
 @end
 
@@ -532,14 +533,22 @@ static NSUInteger const kRowYouSend = 0;
     if([self.youSendCell.currency.code isEqualToString:@"USD"])
     {
         self.termsLabel.hidden = NO;
+        self.termsBottomConstraint.constant = -100;
+        [self.termsLabel layoutIfNeeded];
+        self.termsBottomConstraint.constant = 4;
         self.howButtonTopConstraint.constant = 20;
     }
     else
     {
+        self.termsBottomConstraint.constant = -100;
         self.termsLabel.hidden = YES;
         self.howButtonTopConstraint.constant = 30;
     }
-    [self.howButton layoutIfNeeded];
+    [UIView animateWithDuration:0.2 delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.howButton layoutIfNeeded];
+        [self.termsLabel layoutIfNeeded];
+    } completion:nil];
+    
     
 }
 

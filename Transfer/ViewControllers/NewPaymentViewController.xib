@@ -15,6 +15,7 @@
                 <outlet property="saveLabel" destination="Lrw-M9-5jB" id="Yvf-w4-cpa"/>
                 <outlet property="startedButton" destination="UAL-I7-qIC" id="HsM-OH-U2p"/>
                 <outlet property="tableView" destination="w5b-eJ-Ssl" id="Rq4-Y8-MiI"/>
+                <outlet property="termsBottomConstraint" destination="ARC-VC-1Hn" id="lD7-QU-XR8"/>
                 <outlet property="termsLabel" destination="5xC-63-fjA" id="z5z-gG-Ppe"/>
                 <outlet property="view" destination="o2g-cv-K3K" id="OFd-hp-K7v"/>
                 <outlet property="vsLabel" destination="Tkb-LF-80g" id="vZf-5r-iOc"/>
@@ -84,7 +85,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
-                    <rect key="frame" x="15" y="412" width="290" height="20.5"/>
+                    <rect key="frame" x="15" y="412" width="290" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="0bG-QA-HQB"/>
                         <constraint firstAttribute="height" priority="900" constant="21" id="v7C-yk-KW6"/>
@@ -97,7 +98,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg" customClass="BlueRoundedButton">
-                    <rect key="frame" x="142" y="462.5" width="37" height="40"/>
+                    <rect key="frame" x="142" y="463" width="37" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="bW4-I8-zWx"/>
                     </constraints>
