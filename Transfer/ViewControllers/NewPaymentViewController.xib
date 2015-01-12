@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="amountLabel" destination="eTr-o2-8Xr" id="udi-ps-WMt"/>
                 <outlet property="howButton" destination="WRX-dl-Alg" id="DHq-E5-7S9"/>
+                <outlet property="howButtonTopConstraint" destination="zAv-yX-Ls9" id="FGw-pD-Z0f"/>
                 <outlet property="logo" destination="tx6-jd-3M7" id="Hth-RG-mtJ"/>
                 <outlet property="modalCloseButton" destination="6Et-gt-hPN" id="MYG-Cp-LYM"/>
                 <outlet property="saveLabel" destination="Lrw-M9-5jB" id="Yvf-w4-cpa"/>
@@ -83,7 +84,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
-                    <rect key="frame" x="15" y="412" width="290" height="20.5"/>
+                    <rect key="frame" x="15" y="412" width="290" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="0bG-QA-HQB"/>
                         <constraint firstAttribute="height" priority="900" constant="21" id="v7C-yk-KW6"/>
@@ -96,7 +97,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg" customClass="BlueRoundedButton">
-                    <rect key="frame" x="141.5" y="462.5" width="37" height="40"/>
+                    <rect key="frame" x="142" y="463" width="37" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="bW4-I8-zWx"/>
                     </constraints>
