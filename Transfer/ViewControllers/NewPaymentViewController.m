@@ -80,6 +80,8 @@ static NSUInteger const kRowYouSend = 0;
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *howButtonTopConstraint;
+
 @end
 
 @implementation NewPaymentViewController
@@ -530,11 +532,14 @@ static NSUInteger const kRowYouSend = 0;
     if([self.youSendCell.currency.code isEqualToString:@"USD"])
     {
         self.termsLabel.hidden = NO;
+        self.howButtonTopConstraint.constant = 20;
     }
     else
     {
         self.termsLabel.hidden = YES;
+        self.howButtonTopConstraint.constant = 30;
     }
+    [self.howButton layoutIfNeeded];
     
 }
 
