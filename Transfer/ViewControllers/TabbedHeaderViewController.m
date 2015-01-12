@@ -145,7 +145,7 @@
 
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index
 {
-	if ([self.controllers count] >= index)
+	if ([self.controllers count] > index)
 	{
 		UIViewController* controller = self.controllers[index];
 		
