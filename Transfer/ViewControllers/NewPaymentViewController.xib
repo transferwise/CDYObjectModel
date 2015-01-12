@@ -84,7 +84,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
-                    <rect key="frame" x="15" y="412" width="290" height="21"/>
+                    <rect key="frame" x="15" y="412" width="290" height="20.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="0bG-QA-HQB"/>
                         <constraint firstAttribute="height" priority="900" constant="21" id="v7C-yk-KW6"/>
@@ -97,7 +97,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg" customClass="BlueRoundedButton">
-                    <rect key="frame" x="142" y="463" width="37" height="40"/>
+                    <rect key="frame" x="142" y="462.5" width="37" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="bW4-I8-zWx"/>
                     </constraints>
@@ -139,6 +139,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="5xC-63-fjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WRX-dl-Alg" secondAttribute="bottom" priority="850" constant="1" id="04j-wj-GAl"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" constant="256" id="22B-xy-Gal"/>
                 <constraint firstAttribute="trailing" secondItem="UAL-I7-qIC" secondAttribute="trailing" id="2mt-xR-3dC"/>
                 <constraint firstItem="eTr-o2-8Xr" firstAttribute="top" secondItem="Lrw-M9-5jB" secondAttribute="bottom" constant="5" id="2oa-Mw-5rj"/>
@@ -153,6 +154,7 @@
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="PG8-cJ-E5J"/>
                 <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="850" constant="36" id="Psx-Cb-GIV"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Lrw-M9-5jB" secondAttribute="bottom" constant="160" id="T8Y-Rg-Big"/>
+                <constraint firstItem="WRX-dl-Alg" firstAttribute="top" secondItem="Tkb-LF-80g" secondAttribute="bottom" priority="500" constant="30" id="TZk-0v-7GA"/>
                 <constraint firstAttribute="bottom" secondItem="tx6-jd-3M7" secondAttribute="bottom" priority="900" constant="512" id="Trq-5e-f1h"/>
                 <constraint firstItem="Tkb-LF-80g" firstAttribute="top" secondItem="eTr-o2-8Xr" secondAttribute="bottom" constant="5" id="WQU-WJ-YUM"/>
                 <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="tx6-jd-3M7" secondAttribute="bottom" constant="512" id="YHC-LF-bw0"/>
@@ -166,7 +168,7 @@
                 <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="900" constant="20" id="xB0-6H-oF9"/>
                 <constraint firstAttribute="bottom" secondItem="Lrw-M9-5jB" secondAttribute="bottom" priority="800" constant="187" id="xta-Hy-Llm"/>
                 <constraint firstItem="6Et-gt-hPN" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" constant="2" id="z9j-bN-uXv"/>
-                <constraint firstItem="WRX-dl-Alg" firstAttribute="top" secondItem="Tkb-LF-80g" secondAttribute="bottom" constant="30" id="zAv-yX-Ls9"/>
+                <constraint firstItem="WRX-dl-Alg" firstAttribute="top" relation="lessThanOrEqual" secondItem="Tkb-LF-80g" secondAttribute="bottom" constant="30" id="zAv-yX-Ls9"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="string" keyPath="FromColorStyle" value="LightBlue"/>
