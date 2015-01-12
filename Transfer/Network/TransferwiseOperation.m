@@ -200,7 +200,7 @@
         [[TransferwiseClient sharedClient].operationQueue cancelAllOperations];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-                [AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:^{
+            [AuthenticationHelper logOutWithObjectModel:self.objectModel tokenNeedsClearing:NO completionBlock:^{
                 }];
         });
         } else {

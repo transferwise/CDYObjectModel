@@ -103,7 +103,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 {
 	[self dismiss];
     
-    [AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:^{
+    [AuthenticationHelper logOutWithObjectModel:self.objectModel tokenNeedsClearing:YES completionBlock:^{
     }];
 }
 
