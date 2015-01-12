@@ -25,6 +25,7 @@
 #import"ConnectionAwareViewController.h"
 #import "MOMStyle.h"
 #import "TouchIDHelper.h"
+#import "AuthenticationHelper.h"
 
 #define ABOUT_URL	@"https://transferwise.com/en/about"
 
@@ -101,7 +102,9 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 - (IBAction)logOutTapped:(id)sender
 {
 	[self dismiss];
-	[[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+    
+    [AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:^{
+    }];
 }
 
 -(void) verticallyAlignTextAndImageOfButton:(UIButton *)button
