@@ -158,8 +158,7 @@
         NewPaymentViewController *paymentView = [[NewPaymentViewController alloc] init];
         [paymentView setObjectModel:objectModel];
 		
-		//SignUpViewController is not ConnectionAwareViewController wrapped
-        if(controller.presentingViewController && ![controller isKindOfClass:[SignUpViewController class]])
+        if(controller.presentingViewController)
         {
             ConnectionAwareViewController* root = (ConnectionAwareViewController*)[controller.navigationController?:controller parentViewController];
             [root replaceWrappedViewControllerWithController:paymentView withAnimationStyle:ConnectionModalAnimation];
@@ -197,8 +196,7 @@
     }
 }
 
-+ (void)logOutWithObjectModel:(ObjectModel *)objectModel
-			  completionBlock:(void (^)(void))completionBlock
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel tokenNeedsClearing:(BOOL)clearToken completionBlock:(void (^)(void))completionBlock;
 {
     if([Credentials userLoggedIn])
     {
@@ -208,7 +206,10 @@
                 if([Credentials userLoggedIn])
                 {
                     [PendingPayment removePossibleImages];
-                    [[TransferwiseClient sharedClient] clearCredentials];
+                    if(clearToken)
+                    {
+                        [[TransferwiseClient sharedClient] clearCredentials];
+                    }
                     [Credentials clearCredentials];
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
                     [TransferwiseClient clearCookies];
@@ -222,6 +223,6 @@
         }];
     }
 	
-	}
+}
 
 @end

@@ -44,8 +44,6 @@ NSString *const kReleaseTokenPath = @"/token/release";
 	{
 		[self postData:@{@"token" : self.token} toPath:path];
 	}
-
-	[AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:nil];
 }
 
 @end
