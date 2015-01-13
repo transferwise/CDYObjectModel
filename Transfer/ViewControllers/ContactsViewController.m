@@ -41,7 +41,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSArray *allRecipients;
-@property (nonatomic, strong) RecipientsFooterView *footerView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *noRecipientsMessage;
 
@@ -97,7 +96,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     [self refreshRecipients];
 	
-	self.tableView.tableFooterView = self.footerView;
+    [self showFooter:!(self.allRecipients.count <= 0)];
     
     if(IPAD)
     {
@@ -405,7 +404,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         }
 		if (currentCount > 0)
 		{
-			[self setFooter];
+			[self showFooter:YES];
 		}
         else
         {
@@ -422,15 +421,23 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     });
 }
 
-- (void)setFooter
+- (void)showFooter:(BOOL)showFooter
 {
 	if (!IPAD)
 	{
-		self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
-        [self.footerView setAmountString:[[ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel] rewardAmountString]];
-		self.footerView.delegate = self;
-		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		self.tableView.tableFooterView = self.footerView;
+        RecipientsFooterView* footer = nil;
+        if(showFooter)
+        {
+            if(self.tableView.tableFooterView)
+            {
+                return;
+            }
+            footer = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
+            [footer setAmountString:[[ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel] rewardAmountString]];
+            footer.delegate = self;
+            footer.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        }
+		self.tableView.tableFooterView = footer;
 	}
 }
 
