@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet TransferDetailsAmountsView *amountsView;
 @property (strong, nonatomic) IBOutlet TransferDetialsRecipientView *accountView;
 @property (strong, nonatomic) IBOutlet UIButton *supportButton;
+@property (weak, nonatomic) IBOutlet UIButton *repeatButton;
 
 @end
 
@@ -105,10 +106,12 @@
 	if (self.payment.status == PaymentStatusTransferred)
 	{
 		[self.supportButton setTitle:NSLocalizedString([@"transferdetails.controller.button.rate" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+        [self.repeatButton setTitle:NSLocalizedString(@"transferdetails.controller.repeat.button", nil) forState:UIControlStateNormal];
 	}
 	else
 	{
 		[self.supportButton setTitle:NSLocalizedString([@"transferdetails.controller.button.support" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+        [self.repeatButton removeFromSuperview];
 	}
 	
 	[self.view layoutIfNeeded];
@@ -203,6 +206,10 @@
 													fromDate:date];
 	
 	return [calendar dateFromComponents:components];
+}
+
+- (IBAction)repeatTapped:(id)sender {
+    
 }
 
 @end
