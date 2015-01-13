@@ -16,6 +16,7 @@
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "TransferBackButtonItem.h"
 #import "BlueButton.h"
+#import "RepeatTransferHelper.h"
 
 @interface TransferDetailsViewController ()
 
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet TransferDetialsRecipientView *accountView;
 @property (strong, nonatomic) IBOutlet UIButton *supportButton;
 @property (weak, nonatomic) IBOutlet UIButton *repeatButton;
+@property (nonatomic, strong) RepeatTransferHelper* repeatTransferHelper;
 
 @end
 
@@ -209,6 +211,8 @@
 }
 
 - (IBAction)repeatTapped:(id)sender {
+    self.repeatTransferHelper = [[RepeatTransferHelper alloc] init];
+    [self.repeatTransferHelper repeatTransfer:self.payment objectModel:self.objectModel];
     
 }
 

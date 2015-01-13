@@ -11,11 +11,13 @@
 
 @class Payment;
 @class Recipient;
+@class ObjectModel;
 
 @interface TransferDetailsViewController : UIViewController
 
 @property (nonatomic) BOOL showClose;
-@property (weak, nonatomic) Payment *payment;
+@property (strong, nonatomic) Payment *payment;
+@property (strong, nonatomic) ObjectModel *objectModel;
 
 - (void)setUpHeader;
 - (void)setUpAmounts;

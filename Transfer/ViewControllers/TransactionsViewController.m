@@ -444,6 +444,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	{
 		TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
 		controller.payment = payment;
+        controller.objectModel = self.objectModel;
 		resultController = controller;
 	}
 	
