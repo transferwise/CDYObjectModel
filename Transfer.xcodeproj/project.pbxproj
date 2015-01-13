@@ -4516,8 +4516,6 @@
 					"\"${PODS_ROOT}/Headers/Reachability\"",
 					"-isystem",
 					"\"${PODS_ROOT}/Headers/SMPageControl\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/TestFlightSDK\"",
 					"-DNDEBUG",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
