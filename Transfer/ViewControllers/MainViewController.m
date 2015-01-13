@@ -214,8 +214,7 @@
 
 - (void)clearData
 {
-	[[TransferwiseClient sharedClient] clearCredentials];
-	[self.transactionsController clearData];
+    [self.transactionsController clearData];
 	[self.contactsController clearData];
 	[self.profileController clearData];
 }
