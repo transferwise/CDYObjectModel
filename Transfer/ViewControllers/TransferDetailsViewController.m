@@ -242,6 +242,11 @@
         
     } failureBlock:^(NSError *error) {
         NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+        controller.suggestedSourceAmount = self.payment.payIn;
+        controller.suggestedTargetAmount = self.payment.payOut;
+        controller.suggestedSourceCurrency = self.payment.sourceCurrency;
+        controller.suggestedTargetCurrency = self.payment.targetCurrency;
+        controller.suggestedTransactionIsFixedTarget = self.payment.isFixedAmountValue;
         [controller setObjectModel:weakSelf.objectModel];
         ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
         [weakSelf presentViewController:wrapper animated:YES completion:nil];

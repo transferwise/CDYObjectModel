@@ -25,6 +25,7 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic) BOOL leftSeparatorHidden;
 @property (nonatomic) BOOL currenciesLoaded;
+@property (nonatomic, strong) Currency *suggestedStartCurrency;
 
 
 - (void)setTitle:(NSString *)title;

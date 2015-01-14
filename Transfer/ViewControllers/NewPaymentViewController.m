@@ -109,16 +109,17 @@ static NSUInteger const kRowYouSend = 0;
 
 
     [self setYouSendCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
-    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
+    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:self.suggestedSourceAmount?:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
     self.youSendCell.hostForCurrencySelector = self;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     self.youSendCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";
+    self.youSendCell.suggestedStartCurrency = self.suggestedSourceCurrency;
     [self.youSendCell setEditable:YES];
 	[self.youSendCell initializeSelectorBackground];
 
     [self setTheyReceiveCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
-    [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
+    [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:self.suggestedTargetAmount?:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.theyReceiveCell setForcedCurrency:self.recipient ? self.recipient.currency : nil];
     self.theyReceiveCell.hostForCurrencySelector = self;
@@ -126,6 +127,7 @@ static NSUInteger const kRowYouSend = 0;
     self.theyReceiveCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";
     self.theyReceiveCell.contentView.bgStyle = @"LightBlueHighlighted";
 	self.theyReceiveCell.leftSeparatorHidden = YES;
+    self.theyReceiveCell.suggestedStartCurrency = self.suggestedTargetCurrency;
     [self.theyReceiveCell setEditable:YES];
 	[self.theyReceiveCell initializeSelectorBackground];
 
@@ -178,7 +180,15 @@ static NSUInteger const kRowYouSend = 0;
     [self.calculator setObjectModel:self.objectModel];
     [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
     if (!self.dummyPresentation) {
-        [self.calculator forceCalculate];
+        if(self.suggestedTransactionIsFixedTarget)
+        {
+            [self.calculator forceCalculateWithFixedTarget];
+        }
+        else
+        {
+            [self.calculator forceCalculate];
+        }
+        
     }
     
     [self retrieveCurrencyPairs];
