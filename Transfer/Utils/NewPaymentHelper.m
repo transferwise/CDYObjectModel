@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Mooncascade OÜ. All rights reserved.
 //
 
-#import "RepeatTransferHelper.h"
+#import "NewPaymentHelper.h"
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"
 #import "ObjectModel+CurrencyPairs.h"
@@ -20,16 +20,24 @@
 #import "RecipientTypesOperation.h"
 #import "CurrenciesOperation.h"
 
-@interface RepeatTransferHelper ()
+NSString *const NewTransferErrorDomain = @"NewTransferError";
+NSString *const NewTransferNetworkOperationErrorKey = @"NetworkOperationError";
+NSString *const NewTransferMinimumAmountKey = @"MinimumAmount";
+NSString *const NewTransferMaximumAmountKey = @"MaximumAmount";
+NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
+
+
+
+@interface NewPaymentHelper ()
 
 @property (nonatomic, strong) TransferwiseOperation* currentOperation;
 
 @end
 
-@implementation RepeatTransferHelper
+@implementation NewPaymentHelper
 
 
--(void)repeatTransfer:(Payment*)paymentToRepeat objectModel:(ObjectModel*)objectModel
+-(void)repeatTransfer:(Payment*)paymentToRepeat objectModel:(ObjectModel*)objectModel successBlock:(void(^)(PendingPayment* payment))successBlock failureBlock:(void(^)(NSError* error))failureBlock;
 {
     
     Currency *sourceCurrency = [paymentToRepeat sourceCurrency];
@@ -48,12 +56,11 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.currentOperation = nil;
             if (result) {
-                [self createPendingPaymentWithObjectModel:objectModel source:sourceCurrency target:targetCurrency calculationResult:result recipient:paymentToRepeat.recipient profile:paymentToRepeat.profileUsed successBlock:^(PendingPayment *payment) {
-                    
-                } successBlock:^(NSError *error) {
-                    
-                }];
-            
+                [self createPendingPaymentWithObjectModel:objectModel source:sourceCurrency target:targetCurrency calculationResult:result recipient:paymentToRepeat.recipient profile:paymentToRepeat.profileUsed successBlock:successBlock failureBlock:failureBlock];
+            }
+            else
+            {
+                [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CalculationOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
             }
         });
     }];
@@ -63,7 +70,7 @@
     
 }
 
--(void)createPendingPaymentWithObjectModel:(ObjectModel*)objectModel source:(Currency*)sourceCurrency target:(Currency*)targetCurrency calculationResult:(CalculationResult*)result recipient:(Recipient*)recipient profile:(NSString*)profile successBlock:(void(^)(PendingPayment* payment))successBlock successBlock:(void(^)(NSError* error))failureBlock
+-(void)createPendingPaymentWithObjectModel:(ObjectModel*)objectModel source:(Currency*)sourceCurrency target:(Currency*)targetCurrency calculationResult:(CalculationResult*)result recipient:(Recipient*)recipient profile:(NSString*)profile successBlock:(void(^)(PendingPayment* payment))successBlock failureBlock:(void(^)(NSError* error))failureBlock
 {
     PairSourceCurrency *source = [objectModel pairSourceWithCurrency:sourceCurrency];
     PairTargetCurrency *target = [objectModel pairTargetWithSource:sourceCurrency target:targetCurrency];
@@ -71,29 +78,19 @@
     
     if (![target acceptablePayIn:payIn])
     {
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.low.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.low.message.base", nil), target.minInvoiceAmount, target.source.currency.code]];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:PayInTooLow userInfo:@{NewTransferMinimumAmountKey:target.minInvoiceAmount, NewTransferSourceCurrencyCodeKey:target.source.currency.code}]];
         return;
     }
     else if (![source acceptablePayIn:payIn])
     {
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.high.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.high.message.base", nil), source.maxInvoiceAmount, source.currency.code]];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:PayInTooHigh userInfo:@{NewTransferMinimumAmountKey:source.maxInvoiceAmount, NewTransferSourceCurrencyCodeKey:source.currency.code}]];
         return;
     }
     
-//    if([@"USD" caseInsensitiveCompare:sourceCurrency.code] == NSOrderedSame && [payIn floatValue] < 3.0f)
-//    {
-//        CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
-//        customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
-//        customInfo.infoText = NSLocalizedString(@"usd.low.info",nil);
-//        customInfo.actionButtonTitle = NSLocalizedString(@"usd.low.dismiss",nil);
-//        customInfo.infoImage = [UIImage imageNamed:@"illustration_under1500usd"];
-//        [customInfo presentOnViewController:self];
-//        return;
-//    }
+   if([@"USD" caseInsensitiveCompare:sourceCurrency.code] == NSOrderedSame && [payIn floatValue] < 3.0f)
+   {
+       [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:USDPayinTooLow userInfo:@{NewTransferMinimumAmountKey:@(3), NewTransferSourceCurrencyCodeKey:@"USD"}]];
+   }
     
     RecipientTypesOperation *operation = [RecipientTypesOperation operation];
     [operation setObjectModel:objectModel];
@@ -105,6 +102,7 @@
      __weak typeof(self) weakSelf = self;
     [operation setResultHandler:^(NSError *error, NSArray* listOfRecipientTypeCodes) {
         if (error) {
+            [weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:RecipientTypesOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
             return;
         }
         
@@ -137,8 +135,7 @@
         [currenciesOperation setResultHandler:^(NSError *error) {
             weakSelf.currentOperation = nil;
             if (error) {
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
-                [alertView show];
+                [weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CurrenciesOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
                 return;
             }
             
@@ -149,6 +146,16 @@
         [currenciesOperation execute];
     }];
     [operation execute];
+}
+
+-(void)reportFailure:(void(^)(NSError* error))failureBlock error:(NSError*)error
+{
+    if(failureBlock)
+    {
+        dispatch_async(dispatch_get_main_queue(),^{
+            failureBlock(error);
+        });
+    }
 }
 
 @end

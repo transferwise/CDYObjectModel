@@ -16,7 +16,13 @@
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "TransferBackButtonItem.h"
 #import "BlueButton.h"
-#import "RepeatTransferHelper.h"
+#import "NewPaymentHelper.h"
+#import "TRWAlertView.h"
+#import "NewPaymentViewController.h"
+#import "ConnectionAwareViewController.h"
+#import "LoggedInPaymentFlow.h"
+#import "Currency.h"
+
 
 @interface TransferDetailsViewController ()
 
@@ -26,7 +32,8 @@
 @property (strong, nonatomic) IBOutlet TransferDetialsRecipientView *accountView;
 @property (strong, nonatomic) IBOutlet UIButton *supportButton;
 @property (weak, nonatomic) IBOutlet UIButton *repeatButton;
-@property (nonatomic, strong) RepeatTransferHelper* repeatTransferHelper;
+@property (nonatomic, strong) NewPaymentHelper* repeatTransferHelper;
+@property (nonatomic, strong) PaymentFlow *paymentFlow;
 
 @end
 
@@ -211,8 +218,34 @@
 }
 
 - (IBAction)repeatTapped:(id)sender {
-    self.repeatTransferHelper = [[RepeatTransferHelper alloc] init];
-    [self.repeatTransferHelper repeatTransfer:self.payment objectModel:self.objectModel];
+    self.repeatTransferHelper = [[NewPaymentHelper alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.repeatTransferHelper repeatTransfer:self.payment objectModel:self.objectModel successBlock:^(PendingPayment *payment) {
+       
+        PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:weakSelf.objectModel];
+        ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:weakSelf.objectModel];
+        
+        PaymentFlow *paymentFlow = [[LoggedInPaymentFlow alloc] initWithPresentingController:weakSelf.navigationController
+                                                                                         paymentFlowViewControllerFactory:controllerFactory
+                                                                            validatorFactory:validatorFactory];
+
+        [weakSelf setPaymentFlow:paymentFlow];
+        
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferCurrency1Selected" withLabel:weakSelf.payment.sourceCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferCurrency2Selected" withLabel:weakSelf.payment.targetCurrency.code];
+        
+        
+        [paymentFlow setObjectModel:weakSelf.objectModel];
+        [paymentFlow presentNextPaymentScreen];
+
+        
+        
+    } failureBlock:^(NSError *error) {
+        NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+        [controller setObjectModel:weakSelf.objectModel];
+        ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
+        [weakSelf presentViewController:wrapper animated:YES completion:nil];
+    }];
     
 }
 
