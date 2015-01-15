@@ -145,6 +145,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self checkPersonalVerificationNeeded];
 	[self presentDetail:nil];
     self.noTransfersMessage.hidden = YES;
+    
+    self.paymentFlow = nil;
+    self.paymentHelper = nil;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -724,8 +728,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
     self.paymentHelper = [[NewPaymentHelper alloc] init];
     __weak typeof(self) weakSelf = self;
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"repeat.transfer.creation", nil)];
     [self.paymentHelper repeatTransfer:payment objectModel:self.objectModel successBlock:^(PendingPayment *payment) {
-        
+        [hud hide];
         PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:weakSelf.objectModel];
         ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:weakSelf.objectModel];
         
@@ -745,6 +751,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         
         
     } failureBlock:^(NSError *error) {
+        [hud hide];
         NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
         controller.suggestedSourceAmount = payment.payIn;
         controller.suggestedTargetAmount = payment.payOut;
