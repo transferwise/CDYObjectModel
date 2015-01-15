@@ -150,6 +150,9 @@
 		385669191981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */; };
 		3856691D198157C600BC4230 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856691C198157C600BC4230 /* CircleStyle.m */; };
 		3856691E198157C600BC4230 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856691C198157C600BC4230 /* CircleStyle.m */; };
+		3859E7AE1A65670300B85A3F /* NewPaymentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */; };
+		3859E7AF1A65670300B85A3F /* NewPaymentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */; };
+		3859E7B01A65670300B85A3F /* NewPaymentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */; };
 		385A66861977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */; };
@@ -1593,6 +1596,8 @@
 		385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContactDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		3856691B198157C600BC4230 /* CircleStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircleStyle.h; path = CustomStyles/CircleStyle.h; sourceTree = "<group>"; };
 		3856691C198157C600BC4230 /* CircleStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircleStyle.m; path = CustomStyles/CircleStyle.m; sourceTree = "<group>"; };
+		3859E7AC1A65670300B85A3F /* NewPaymentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPaymentHelper.h; sourceTree = "<group>"; };
+		3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPaymentHelper.m; sourceTree = "<group>"; };
 		385A66841977C9A200D00D1F /* GrayRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrayRoundedButton.h; path = Views/GrayRoundedButton.h; sourceTree = "<group>"; };
 		385A66851977C9A200D00D1F /* GrayRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrayRoundedButton.m; path = Views/GrayRoundedButton.m; sourceTree = "<group>"; };
 		385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientCell~ipad.xib"; sourceTree = "<group>"; };
@@ -3537,6 +3542,8 @@
 				3887CBBD1976AF2B004DFFFD /* CancelHelper.m */,
 				47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */,
 				47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */,
+				47C4D0561A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.h */,
+				47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */,
 				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
 				EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */,
 				4735E4D31992258C00F41D1E /* AuthenticationHelper.h */,
@@ -3549,28 +3556,28 @@
 				4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */,
 				EA333F3A18A4C00000D8A44E /* PageZoom.h */,
 				EA333F3B18A4C00000D8A44E /* PageZoom.m */,
+				38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */,
+				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
 				EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */,
 				EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */,
 				38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */,
 				38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */,
+				3859E7AC1A65670300B85A3F /* NewPaymentHelper.h */,
+				3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */,
+				38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */,
+				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
 				383FC0EE19AE1A1A00465FCA /* StateSuggestionCellProvider.h */,
 				383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
-				38504B0719C1E83700276203 /* TouchIDHelper.h */,
-				38504B0819C1E83700276203 /* TouchIDHelper.m */,
-				38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */,
-				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
-				38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */,
-				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
-				380579A71A1A3520005E94DD /* TransferDevWebTools.h */,
-				380579A81A1A3520005E94DD /* TransferDevWebTools.m */,
-				47C4D0561A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.h */,
-				47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */,
-				47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */,
-				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
 				47334E811A37121A004C19F7 /* TargetCountryProvider.h */,
 				47334E821A37121A004C19F7 /* TargetCountryProvider.m */,
+				380579A71A1A3520005E94DD /* TransferDevWebTools.h */,
+				380579A81A1A3520005E94DD /* TransferDevWebTools.m */,
+				38504B0719C1E83700276203 /* TouchIDHelper.h */,
+				38504B0819C1E83700276203 /* TouchIDHelper.m */,
+				47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */,
+				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4731,6 +4738,7 @@
 				388E5AEA1A5A949500AF6EB9 /* UIDevice-Hardware.m in Sources */,
 				388E5AEB1A5A949500AF6EB9 /* ObjectModel+Users.m in Sources */,
 				388E5AEC1A5A949500AF6EB9 /* ObjectModel.m in Sources */,
+				3859E7B01A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				388E5AED1A5A949500AF6EB9 /* ReferralsCoordinator.m in Sources */,
 				388E5AEE1A5A949500AF6EB9 /* FeedbackCoordinator.m in Sources */,
 				388E5AEF1A5A949500AF6EB9 /* SeeHowViewController.m in Sources */,
@@ -5059,6 +5067,7 @@
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				389F6834198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6836198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
+				3859E7AF1A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				383FC10B19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
@@ -5266,6 +5275,7 @@
 				38B093091951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
 				47C1F7081A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */,
 				389F6809198FC1C6006CF1F6 /* _PendingPayment.m in Sources */,
+				3859E7AE1A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				389F6815198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
 				47C1F74B1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,

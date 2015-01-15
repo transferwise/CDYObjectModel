@@ -458,6 +458,7 @@ This can't be undone.";
 "transferdetails.controller.button.gotit" = "Got it!";
 "transferdetails.controller.button.pay" = "Pay %@ now";
 "transferdetails.controller.button.cancel" = "Cancel transfer";
+"transferdetails.controller.repeat.button" = "Repeat this transfer";
 
 "upload.money.account.nr.title" = "Account number";
 "upload.money.address.title" = "Our address";

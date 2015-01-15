@@ -512,7 +512,7 @@
             }
 
             MCLog(@"uploadAddressVerification done");
-            PendingPayment *payment = [self.objectModel pendingPayment];
+            PendingPayment *payment = [weakSelf.objectModel pendingPayment];
             [payment removeAddressVerificationRequiredMarker];
             [weakSelf.objectModel saveContext:^{
                 [weakSelf handleNextStepOfPendingPaymentCommit];
@@ -541,7 +541,7 @@
             }
 
             MCLog(@"uploadIdVerification done");
-            PendingPayment *payment = [self.objectModel pendingPayment];
+            PendingPayment *payment = [weakSelf.objectModel pendingPayment];
             [payment removeIdVerificationRequiredMarker];
             [weakSelf.objectModel saveContext:^{
                 [weakSelf handleNextStepOfPendingPaymentCommit];
@@ -642,10 +642,10 @@
         [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[__formatter stringFromNumber:transferFee]];
 #endif
 
-        [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
+        [NanTracking trackNanigansEvent:weakSelf.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
 
         [weakSelf.objectModel performBlock:^{
-            Payment *createdPayment = (Payment *) [self.objectModel.managedObjectContext objectWithID:paymentID];
+            Payment *createdPayment = (Payment *) [weakSelf.objectModel.managedObjectContext objectWithID:paymentID];
             NSMutableDictionary *details = [[NSMutableDictionary alloc] init];
             details[@"recipientType"] = createdPayment.recipient.type.type;
             details[@"sourceCurrency"] = createdPayment.sourceCurrency.code;
@@ -658,7 +658,7 @@
             [mixpanel track:@"Transfer created" properties:details];
             
 #if !TARGET_IPHONE_SIMULATOR
-            if ([self.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
+            if ([weakSelf.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
             {
                 Event* event = [[EventTracker sharedManager] newEvent:@"InappConversion"];
                 [event setOrderId:[NSString stringWithFormat:@"%@",createdPayment.remoteId]];
