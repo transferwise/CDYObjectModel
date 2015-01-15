@@ -22,6 +22,7 @@
 #import "ConnectionAwareViewController.h"
 #import "LoggedInPaymentFlow.h"
 #import "Currency.h"
+#import "TRWProgressHUD.h"
 
 
 @interface TransferDetailsViewController ()
@@ -220,8 +221,10 @@
 - (IBAction)repeatTapped:(id)sender {
     self.repeatTransferHelper = [[NewPaymentHelper alloc] init];
     __weak typeof(self) weakSelf = self;
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"repeat.transfer.creation", nil)];
     [self.repeatTransferHelper repeatTransfer:self.payment objectModel:self.objectModel successBlock:^(PendingPayment *payment) {
-       
+        [hud hide];
         PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:weakSelf.objectModel];
         ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:weakSelf.objectModel];
         
@@ -241,6 +244,7 @@
         
         
     } failureBlock:^(NSError *error) {
+        [hud hide];
         NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
         controller.suggestedSourceAmount = self.payment.payIn;
         controller.suggestedTargetAmount = self.payment.payOut;
