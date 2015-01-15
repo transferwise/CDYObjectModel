@@ -14,30 +14,30 @@
 
 @implementation CancellableCellViewController
 
-- (SwipeToCancelCell *)getPaymentCell:(NSIndexPath *)index
+- (SwipeActionCell *)getPaymentCell:(NSIndexPath *)index
 {
-	return (SwipeToCancelCell *)[self.tableView cellForRowAtIndexPath:index];
+	return (SwipeActionCell *)[self.tableView cellForRowAtIndexPath:index];
 }
 
 - (void)removeCancellingFromCell
 {
 	if (self.cancellingCellIndex != nil)
 	{
-		[[self getPaymentCell:self.cancellingCellIndex] setIsCancelVisible:NO animated:YES];
+		[[self getPaymentCell:self.cancellingCellIndex] setIsActionButtonVisible:NO animated:YES];
 		self.cancellingCellIndex = nil;
 	}
 }
 
-- (void)setCancellingVisibleForScrolling:(SwipeToCancelCell *)cell
+- (void)setCancellingVisibleForScrolling:(SwipeActionCell *)cell
 							   indexPath:(NSIndexPath *)indexPath
 {
 	if(self.cancellingCellIndex && self.cancellingCellIndex.row == indexPath.row)
 	{
-		[cell setIsCancelVisible:YES animated:NO];
+		[cell setIsActionButtonVisible:YES animated:NO];
 	}
 	else
 	{
-		[cell setIsCancelVisible:NO animated:NO];
+		[cell setIsActionButtonVisible:NO animated:NO];
 	}
 }
 

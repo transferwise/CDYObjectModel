@@ -40,9 +40,12 @@
 #import "PaymentMethodSelectorViewController.h"
 #import "SetSSNOperation.h"
 #import "SendButtonFlashHelper.h"
-
 #import "RecipientTypesOperation.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
+#import "NewPaymentHelper.h"
+#import "NewPaymentViewController.h"
+#import "LoggedInPaymentFlow.h"
+#import "ConnectionAwareViewController.h"
 
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
@@ -66,6 +69,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (weak, nonatomic) IBOutlet UILabel *verificationBartitle;
 @property (weak, nonatomic) IBOutlet UIButton *viewButton;
 @property (nonatomic) BOOL isViewAppearing;
+
+@property (nonatomic, strong) NewPaymentHelper *paymentHelper;
+@property (nonatomic, strong) PaymentFlow *paymentFlow;
 
 
 @end
@@ -169,7 +175,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     for(PaymentCell* cell in [self.tableView visibleCells])
     {
-        [cell setIsCancelVisible:NO animated:NO];
+        [cell setIsActionButtonVisible:NO animated:NO];
     }
 }
 
@@ -189,25 +195,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     PaymentCell *cell = [tableView dequeueReusableCellWithIdentifier:kPaymentCellIdentifier];
     Payment *payment = [self.payments objectAtIndex:indexPath.row];
 	
-	[cell configureWithPayment:payment
-		   willShowCancelBlock:^{
-			   //this will be called each time a touch starts
-			   //including the touch that hides the button
-			   //so not cancelling if the same cell is receiving touches
-			   if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
-			   {
-				   [self removeCancellingFromCell];
-			   }
-		   }
-			didShowCancelBlock:^{
-				self.cancellingCellIndex = indexPath;
-			}
-			didHideCancelBlock:^{
-				self.cancellingCellIndex = nil;
-			}
-			 cancelTappedBlock:^{
-				 [self confirmPaymentCancel:payment cellIndex:indexPath];
-			 }];
+    [cell configureWithPayment:payment willShowActionButtonBlock:^{
+        //this will be called each time a touch starts
+        //including the touch that hides the button
+        //so not cancelling if the same cell is receiving touches
+        if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
+        {
+            [self removeCancellingFromCell];
+        }
+    } didShowActionButtonBlock:^{
+        self.cancellingCellIndex = indexPath;
+    } didHideActionButtonBlock:^{
+        self.cancellingCellIndex = nil;
+    } actionTappedBlock:^{
+        [self actionTappedOnPayment:payment cellIndex:indexPath];
+    }];
 
 	//set cancelling visible when scrolling
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
@@ -647,9 +649,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
 	if (self.cancellingCellIndex != nil)
 	{
-		[[self getPaymentCell:self.cancellingCellIndex] setIsCancelVisible:NO animated:YES];
+		[[self getPaymentCell:self.cancellingCellIndex] setIsActionButtonVisible:NO animated:YES];
 		self.cancellingCellIndex = nil;
 	}
+}
+
+-(void)actionTappedOnPayment:(Payment *)payment cellIndex:(NSIndexPath *)cellIndex
+{
+    if(payment.status == PaymentStatusTransferred)
+    {
+        [self repeatPayment:payment];
+    }
+    else
+    {
+        [self confirmPaymentCancel:payment cellIndex:cellIndex];
+    }
 }
 
 - (void)confirmPaymentCancel:(Payment *)payment cellIndex:(NSIndexPath *)cellIndex
@@ -704,6 +718,43 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.tableView reloadData];
 }
 
-#pragma mark - Flash send button
+#pragma mark - Repeat payment
+
+-(void)repeatPayment:(Payment*)payment
+{
+    self.paymentHelper = [[NewPaymentHelper alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.paymentHelper repeatTransfer:payment objectModel:self.objectModel successBlock:^(PendingPayment *payment) {
+        
+        PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:weakSelf.objectModel];
+        ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:weakSelf.objectModel];
+        
+        PaymentFlow *paymentFlow = [[LoggedInPaymentFlow alloc] initWithPresentingController:weakSelf.navigationController
+                                                            paymentFlowViewControllerFactory:controllerFactory
+                                                                            validatorFactory:validatorFactory];
+        
+        [weakSelf setPaymentFlow:paymentFlow];
+        
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferCurrency1Selected" withLabel:payment.sourceCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferCurrency2Selected" withLabel:payment.targetCurrency.code];
+        
+        
+        [paymentFlow setObjectModel:weakSelf.objectModel];
+        [paymentFlow presentNextPaymentScreen];
+        
+        
+        
+    } failureBlock:^(NSError *error) {
+        NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+        controller.suggestedSourceAmount = payment.payIn;
+        controller.suggestedTargetAmount = payment.payOut;
+        controller.suggestedSourceCurrency = payment.sourceCurrency;
+        controller.suggestedTargetCurrency = payment.targetCurrency;
+        controller.suggestedTransactionIsFixedTarget = payment.isFixedAmountValue;
+        [controller setObjectModel:weakSelf.objectModel];
+        ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
+        [weakSelf presentViewController:wrapper animated:YES completion:nil];
+    }];
+}
 
 @end

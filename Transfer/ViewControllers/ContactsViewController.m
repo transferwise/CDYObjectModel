@@ -126,7 +126,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     for(RecipientCell* cell in [self.tableView visibleCells])
     {
-        [cell setIsCancelVisible:NO animated:NO];
+        [cell setIsActionButtonVisible:NO animated:NO];
     }
 }
 

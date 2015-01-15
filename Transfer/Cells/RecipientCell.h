@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SwipeToCancelCell.h"
+#import "SwipeActionCell.h"
 
 @class Recipient;
 
-@interface RecipientCell : SwipeToCancelCell
+@interface RecipientCell : SwipeActionCell
 
 @property (strong, nonatomic) IBOutlet UILabel *sendLabel;
 

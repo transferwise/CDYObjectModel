@@ -39,9 +39,6 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
 
 -(void)repeatTransfer:(Payment*)paymentToRepeat objectModel:(ObjectModel*)objectModel successBlock:(void(^)(PendingPayment* payment))successBlock failureBlock:(void(^)(NSError* error))failureBlock;
 {
-    failureBlock(nil);
-    return;
-    
     Currency *sourceCurrency = [paymentToRepeat sourceCurrency];
     Currency *targetCurrency = [paymentToRepeat targetCurrency];
 
