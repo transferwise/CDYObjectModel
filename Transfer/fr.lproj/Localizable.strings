@@ -68,6 +68,7 @@
 "button.title.retry" = "Reéssayer";
 "button.title.yes" = "Oui";
 "button.title.no" = "Non";
+"button.title.repeat" = "Repeat";
 
 "confirm.payment.controller.title" = "Revue des details";
 "confirm.payment.creating.message" = "Création du transfert en cours";

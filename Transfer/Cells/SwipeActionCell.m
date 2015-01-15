@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "SwipeToCancelCell.h"
-#import "RedGradientButton.h"
+#import "SwipeActionCell.h"
+#import "GradientButton.h"
 
 #define SLOW_FLICK_VELOCITY	100
 #define AUTO_ANIMATION_DURATION 0.3f
 
-@interface SwipeToCancelCell ()
+@interface SwipeActionCell ()
 
 @property (strong, nonatomic) IBOutlet UIView *slidingContentView;
 @property (strong, nonatomic) NSLayoutConstraint *contentViewTrailing;
-@property (strong, nonatomic) UIButton *cancelButton;
+@property (strong, nonatomic) GradientButton *actionButton;
 @property (strong, nonatomic) TRWActionBlock willShowCancelBlock;
 @property (strong, nonatomic) TRWActionBlock didShowCancelBlock;
 @property (strong, nonatomic) TRWActionBlock didHideCancelBlock;
@@ -24,12 +24,14 @@
 @property (nonatomic) CGPoint touchStart;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 @property (nonatomic, strong) UIView *shadowView;
+@property (nonatomic, strong) UIColor* fromColor;
+@property (nonatomic, strong) UIColor* toColor;
 
-@property (nonatomic, assign) BOOL isCancelVisible;
+@property (nonatomic, assign) BOOL isActionbuttonVisible;
 
 @end
 
-@implementation SwipeToCancelCell
+@implementation SwipeActionCell
 
 #pragma mark - Init
 - (void)awakeFromNib
@@ -40,8 +42,8 @@
 - (void)prepareForReuse
 {
 	//reset for reuse
-	self.isCancelVisible = NO;
-	self.canBeCancelled = NO;
+	self.isActionbuttonVisible = NO;
+	self.canPerformAction = NO;
 	self.touchStart = CGPointZero;
 	if(self.contentViewTrailing)
 	{
@@ -49,15 +51,25 @@
 	}
 }
 
-- (void)configureWithWillShowCancelBlock:(TRWActionBlock)willShowCancelBlock
-					  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
-					  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
-					   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
+- (void)configureWithActionButtonFromColor:(UIColor*)fromColor
+                               toColor:(UIColor*)toColor
+               willShowActionButtonBlock:(TRWActionBlock)willShowCancelBlock
+                didShowActionButtonBlock:(TRWActionBlock)didShowCancelBlock
+                didHideActionButtonBlock:(TRWActionBlock)didHideCancelBlock
+                       actionTappedBlock:(TRWActionBlock)cancelTappedBlock;
 {
 	self.willShowCancelBlock = willShowCancelBlock;
 	self.didShowCancelBlock = didShowCancelBlock;
 	self.didHideCancelBlock = didHideCancelBlock;
 	self.cancelTappedBlock = cancelTappedBlock;
+    
+    self.toColor = toColor;
+    self.fromColor = fromColor;
+    if(self.actionButton)
+    {
+        self.actionButton.toColor = toColor;
+        self.actionButton.fromColor = fromColor;
+    }
 	
 	if(!self.panRecognizer)
 	{
@@ -71,7 +83,7 @@
 - (void)layoutSubviews
 {
 	[self setShadowView];
-	[self setCancelButton];
+	[self setActionButton];
 	
 	[super layoutSubviews];
 }
@@ -118,52 +130,52 @@
 	}
 }
 
-- (void)setCancelButton
+- (void)setActionButton
 {
-	if (!self.cancelButton)
+	if (!self.actionButton)
 	{
-		self.cancelButton = [[RedGradientButton alloc] init];
-		self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
+		self.actionButton = [[GradientButton alloc] init];
+		self.actionButton.translatesAutoresizingMaskIntoConstraints = NO;
 		
-		if(self.cancelButtonTitle)
+		if(self.actionButtonTitle)
 		{
-			[self.cancelButton setTitle:self.cancelButtonTitle
+			[self.actionButton setTitle:self.actionButtonTitle
 							   forState:UIControlStateNormal];
 		}
 		else
 		{
-			[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
+			[self.actionButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
 							   forState:UIControlStateNormal];
 		}
-		[self.cancelButton setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)];
+		[self.actionButton setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)];
 		
-		[self.cancelButton addTarget:self
+		[self.actionButton addTarget:self
 							  action:@selector(cancelTapped:)
 					forControlEvents:UIControlEventTouchUpInside];
-		[self.contentView insertSubview:self.cancelButton belowSubview:self.slidingContentView];
+		[self.contentView insertSubview:self.actionButton belowSubview:self.slidingContentView];
 		
-		NSLayoutConstraint* width = [NSLayoutConstraint constraintWithItem:self.cancelButton
+		NSLayoutConstraint* width = [NSLayoutConstraint constraintWithItem:self.actionButton
 																 attribute:NSLayoutAttributeWidth
 																 relatedBy:NSLayoutRelationEqual
 																	toItem:nil
 																 attribute:NSLayoutAttributeNotAnAttribute
 																multiplier:1.0f
 																  constant:IPAD ? 120 : 90];
-		NSLayoutConstraint* height = [NSLayoutConstraint constraintWithItem:self.cancelButton
+		NSLayoutConstraint* height = [NSLayoutConstraint constraintWithItem:self.actionButton
 																  attribute:NSLayoutAttributeHeight
 																  relatedBy:NSLayoutRelationEqual
 																	 toItem:self.contentView
 																  attribute:NSLayoutAttributeHeight
 																 multiplier:1.0f
 																   constant:0.f];
-		NSLayoutConstraint* horizontalPosition = [NSLayoutConstraint constraintWithItem:self.cancelButton
+		NSLayoutConstraint* horizontalPosition = [NSLayoutConstraint constraintWithItem:self.actionButton
 																			  attribute:NSLayoutAttributeTrailing
 																			  relatedBy:NSLayoutRelationEqual
 																				 toItem:self.contentView
 																			  attribute:NSLayoutAttributeTrailing
 																			 multiplier:1.0f
 																			   constant:0.f];
-		NSLayoutConstraint* verticalPosition = [NSLayoutConstraint constraintWithItem:self.cancelButton
+		NSLayoutConstraint* verticalPosition = [NSLayoutConstraint constraintWithItem:self.actionButton
 																			attribute:NSLayoutAttributeTop
 																			relatedBy:NSLayoutRelationEqual
 																			   toItem:self.contentView
@@ -171,23 +183,26 @@
 																		   multiplier:1.0f
 																			 constant:0.f];
 		[self.contentView addConstraints:@[width, height, horizontalPosition, verticalPosition]];
+        
+        self.actionButton.fromColor = self.fromColor;
+        self.actionButton.toColor = self.toColor;
 	}
 }
 
 #pragma mark - Cancel button visiblity
 
-- (void)setIsCancelVisible:(BOOL)isCancelVisible animated:(BOOL)animated
+- (void)setIsActionButtonVisible:(BOOL)isActionButtonVisible animated:(BOOL)animated
 {
     if (animated)
     {
-        [self animateWithDuration:AUTO_ANIMATION_DURATION easeOutOnly:NO isShow:isCancelVisible];
+        [self animateWithDuration:AUTO_ANIMATION_DURATION easeOutOnly:NO isShow:isActionButtonVisible];
     }
     else
     {
-        self.isCancelVisible = isCancelVisible;
+        self.isActionbuttonVisible = isActionButtonVisible;
     }
     
-    if(isCancelVisible)
+    if(isActionButtonVisible)
     {
         [self didShow];
     }
@@ -197,10 +212,10 @@
     }
 }
 
-- (void)setIsCancelVisible:(BOOL)isCancelVisible
+- (void)setIsActionbuttonVisible:(BOOL)isCancelVisible
 {
-	_isCancelVisible = isCancelVisible;
-    self.contentViewTrailing.constant = isCancelVisible ? self.cancelButton.bounds.size.width : 0.0f;
+	_isActionbuttonVisible = isCancelVisible;
+    self.contentViewTrailing.constant = isCancelVisible ? self.actionButton.bounds.size.width : 0.0f;
     [self layoutIfNeeded];
 }
 
@@ -208,7 +223,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
 {
 	//all kinds of gesture recognizers can end up here, so check that we are dealing with pan
-	if(self.canBeCancelled && [gestureRecognizer isMemberOfClass:[UIPanGestureRecognizer class]])
+	if(self.canPerformAction && [gestureRecognizer isMemberOfClass:[UIPanGestureRecognizer class]])
 	{
 		UIView *cell = [gestureRecognizer view];
 		CGPoint translation = [gestureRecognizer translationInView:[cell superview]];
@@ -237,15 +252,15 @@
 		{
 			float dx = self.touchStart.x - currentPosition.x;
 			
-			if(dx > 0 && !self.isCancelVisible)
+			if(dx > 0 && !self.isActionbuttonVisible)
 			{
 				//swiping to show, simply set constraint
 				self.contentViewTrailing.constant = dx;
 			}
-			if(dx < 0 && self.isCancelVisible)
+			if(dx < 0 && self.isActionbuttonVisible)
 			{
 				//swiping to hide, add to button with and set to constraint
-				self.contentViewTrailing.constant = self.cancelButton.frame.size.width + dx;
+				self.contentViewTrailing.constant = self.actionButton.frame.size.width + dx;
 			}
 		}
 			break;
@@ -262,15 +277,15 @@
 - (void)handleSwipeEnd:(UIPanGestureRecognizer *)recognizer currentPosition:(CGPoint)currentPosition
 {
 	//if button has been swiped visible the whole width treat it as shown
-	if(self.contentViewTrailing.constant >= self.cancelButton.frame.size.width)
+	if(self.contentViewTrailing.constant >= self.actionButton.frame.size.width)
 	{
-		self.isCancelVisible = YES;
+		self.isActionbuttonVisible = YES;
 		[self didShow];
 	}
 	//if the button has been swiped hidden the whole width treat it as hidden
 	else if(self.contentViewTrailing.constant <= 0)
 	{
-		self.isCancelVisible = NO;
+		self.isActionbuttonVisible = NO;
 		[self didHide];
 	}
 	//handle flick and half length swipes
@@ -294,28 +309,28 @@
         else
         {
             //Too slow! Dismiss to left or right depending on offset
-            if(fabsf(dx) > self.cancelButton.frame.size.width / 2)
+            if(fabsf(dx) > self.actionButton.frame.size.width / 2)
 			{
-				shouldShow = !self.isCancelVisible;
+				shouldShow = !self.isActionbuttonVisible;
             }
             else
             {
-                shouldShow = self.isCancelVisible;
+                shouldShow = self.isActionbuttonVisible;
             }
             
-            duration = AUTO_ANIMATION_DURATION/self.cancelButton.bounds.size.width;
+            duration = AUTO_ANIMATION_DURATION/self.actionButton.bounds.size.width;
             
             easeOutOnly = NO;
         }
         
-        if(dx > 0 && !self.isCancelVisible)
+        if(dx > 0 && !self.isActionbuttonVisible)
         {
-            distanceLeft = shouldShow?self.cancelButton.bounds.size.width - dx: dx;
+            distanceLeft = shouldShow?self.actionButton.bounds.size.width - dx: dx;
             
         }
-        else if(dx < 0 && self.isCancelVisible)
+        else if(dx < 0 && self.isActionbuttonVisible)
         {
-            distanceLeft = shouldShow?-dx:self.cancelButton.bounds.size.width + dx;
+            distanceLeft = shouldShow?-dx:self.actionButton.bounds.size.width + dx;
         }
         
         
@@ -360,7 +375,7 @@
     [self.contentView layoutIfNeeded];
     
 	[UIView animateWithDuration:duration delay:0.0f options:outOnly?UIViewAnimationOptionCurveEaseOut:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.isCancelVisible = show;
+        self.isActionbuttonVisible = show;
         [self.contentView layoutIfNeeded];
     } completion:nil];
 }
@@ -416,6 +431,18 @@
 	}
 	
 	[self.contentView addConstraints:@[equalWidths, trailing, leading, leadingLowerLimit]];
+}
+
+#pragma mark - action button title
+
+-(void)setActionButtonTitle:(NSString *)actionButtonTitle
+{
+    _actionButtonTitle = actionButtonTitle;
+    if(self.actionButton)
+    {
+        [self.actionButton setTitle:actionButtonTitle forState:UIControlStateNormal];
+    }
+
 }
 
 @end

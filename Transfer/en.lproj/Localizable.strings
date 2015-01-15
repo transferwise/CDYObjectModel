@@ -68,6 +68,7 @@
 "button.title.retry" = "Retry";
 "button.title.yes" = "Yes";
 "button.title.no" = "No";
+"button.title.repeat" = "Repeat";
 
 "confirm.payment.controller.title" = "Review details";
 "confirm.payment.creating.message" = "Creating transfer";

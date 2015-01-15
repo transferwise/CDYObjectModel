@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "RedGradientButton.h"
+#import "GradientButton.h"
 #import "Constants.h"
 #import "UIColor+MOMStyle.h"
 
-@interface RedGradientButton ()
+@interface GradientButton ()
 
 @property (strong, nonatomic) CAGradientLayer* gradientLayer;
 @property (strong, nonatomic) CALayer* borderLayer;
 
 @end
 
-@implementation RedGradientButton
+@implementation GradientButton
 
 - (void)commonSetup
 {
@@ -27,14 +27,36 @@
 	[self setBackgroundColor:[UIColor colorWithRed:1/255.0 green:1/255.0 blue:1/255.0 alpha:0.1]];
 	
 	self.gradientLayer = [CAGradientLayer layer];
-	[self.gradientLayer setColors:[NSArray arrayWithObjects:
-					  (id)[UIColor colorFromStyle:@"RedShadow"].CGColor,
-					  (id)[UIColor colorFromStyle:@"Red"].CGColor,
-					  nil]];
 	[self.gradientLayer setStartPoint:CGPointMake(0.0, 0.5)];
 	[self.gradientLayer setEndPoint:CGPointMake(1.0, 0.5)];
+    [self updateGradient];
 	
 	[self.layer insertSublayer:self.gradientLayer atIndex:0];
+}
+
+-(void)updateGradient
+{
+    UIColor *fromColor = self.fromColor?:[UIColor whiteColor];
+    UIColor *toColor = self.toColor?:[UIColor blackColor];
+    [self.gradientLayer setColors:@[(id)fromColor.CGColor, (id)toColor.CGColor]];
+}
+
+-(void)setToColor:(UIColor *)toColor
+{
+    if (!(toColor == _toColor))
+    {
+        _toColor = toColor;
+        [self updateGradient];
+    }
+}
+
+-(void)setFromColor:(UIColor *)fromColor
+{
+    if (!(fromColor == _fromColor))
+    {
+        _fromColor = fromColor;
+        [self updateGradient];
+    }
 }
 
 - (void)layoutSubviews

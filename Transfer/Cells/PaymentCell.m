@@ -24,16 +24,18 @@
 @implementation PaymentCell
 
 - (void)configureWithPayment:(Payment *)payment
-		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
-		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
-		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
-		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
+		 willShowActionButtonBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowActionButtonBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideActionButtonBlock:(TRWActionBlock)didHideCancelBlock
+		   actionTappedBlock:(TRWActionBlock)cancelTappedBlock;
 {
 	//configure swipe to cancel
-	[super configureWithWillShowCancelBlock:willShowCancelBlock
-						 didShowCancelBlock:didShowCancelBlock
-						 didHideCancelBlock:didHideCancelBlock
-						  cancelTappedBlock:cancelTappedBlock];
+    [super configureWithActionButtonFromColor:[UIColor colorFromStyle:payment.status == PaymentStatusTransferred?@"TWElectricBlueDarker":@"RedShadow"]
+                                      toColor:[UIColor colorFromStyle:payment.status == PaymentStatusTransferred?@"TWElectricBlue":@"Red"]
+                    willShowActionButtonBlock:willShowCancelBlock
+						 didShowActionButtonBlock:didShowCancelBlock
+						 didHideActionButtonBlock:didHideCancelBlock
+						  actionTappedBlock:cancelTappedBlock];
 	
     [self.nameLabel setText:[payment.recipient name]];
     [self.statusLabel setText:[payment localizedStatus]];
@@ -54,40 +56,42 @@
     switch (status) {
         case PaymentStatusCancelled:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
-			self.canBeCancelled = NO;
+			self.canPerformAction = NO;
             break;
         case PaymentStatusMatched:
            icon = [UIImage imageNamed:@"transfers_icon_converting"];
-			self.canBeCancelled = NO;
+			self.canPerformAction = NO;
             break;
         case PaymentStatusReceived:
             icon = [UIImage imageNamed:@"transfers_icon_converting"];
-			self.canBeCancelled = NO;
+			self.canPerformAction = NO;
             break;
         case PaymentStatusRefunded:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
-			self.canBeCancelled = NO;
+			self.canPerformAction = NO;
             break;
         case PaymentStatusReceivedWaitingRecipient:
             icon = [UIImage imageNamed:@"transfers_icon_waiting"];
-			self.canBeCancelled = NO;
+			self.canPerformAction = NO;
             break;
         case PaymentStatusSubmitted:
 			icon = [UIImage imageNamed:@"transfers_icon_waiting"];
-			self.canBeCancelled = YES;
+			self.canPerformAction = YES;
+            self.actionButtonTitle = NSLocalizedString(@"button.title.cancel", nil);
             break;
         case PaymentStatusUserHasPaid:
             icon = [UIImage imageNamed:@"transfers_icon_waiting"];
-			self.canBeCancelled = NO;
+			self.canPerformAction = NO;
             break;
         case PaymentStatusTransferred:
             icon = [UIImage imageNamed:@"transfers_icon_complete"];
-			self.canBeCancelled = NO;
+			self.canPerformAction = YES;
+            self.actionButtonTitle = NSLocalizedString(@"button.title.repeat", nil);
             break;
         case PaymentStatusUnknown:
         default:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
-            self.canBeCancelled = NO;
+            self.canPerformAction = NO;
             break;
     }
     

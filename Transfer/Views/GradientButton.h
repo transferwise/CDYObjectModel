@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ColoredButton.h"
 
-@interface RedGradientButton : ColoredButton
+@interface GradientButton : ColoredButton
+
+@property (nonatomic,strong) UIColor *fromColor;
+@property (nonatomic,strong) UIColor *toColor;
 
 @end

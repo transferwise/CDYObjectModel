@@ -415,7 +415,7 @@
 		388E5AA41A5A949500AF6EB9 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		388E5AA51A5A949500AF6EB9 /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
 		388E5AA61A5A949500AF6EB9 /* _PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67AA198FC1C5006CF1F6 /* _PayInMethod.m */; };
-		388E5AA71A5A949500AF6EB9 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
+		388E5AA71A5A949500AF6EB9 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* GradientButton.m */; };
 		388E5AA81A5A949500AF6EB9 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
 		388E5AA91A5A949500AF6EB9 /* DataEntryDefaultHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */; };
 		388E5AAA1A5A949500AF6EB9 /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
@@ -452,7 +452,7 @@
 		388E5AC91A5A949500AF6EB9 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		388E5ACA1A5A949500AF6EB9 /* UIImage+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856690A1980FA1200BC4230 /* UIImage+RenderBlur.m */; };
 		388E5ACB1A5A949500AF6EB9 /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
-		388E5ACC1A5A949500AF6EB9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
+		388E5ACC1A5A949500AF6EB9 /* SwipeActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeActionCell.m */; };
 		388E5ACD1A5A949500AF6EB9 /* MOMRoundedCornerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021C1192CC531009B1D53 /* MOMRoundedCornerStyle.m */; };
 		388E5ACE1A5A949500AF6EB9 /* UploadMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */; };
 		388E5ACF1A5A949500AF6EB9 /* PullPaymentDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EAA17E84C2700CE0608 /* PullPaymentDetailsOperation.m */; };
@@ -942,8 +942,8 @@
 		474C45221993CD38001F207C /* ProfilesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 474C45201993CD38001F207C /* ProfilesEditViewController.m */; };
 		474D1A9F19518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
 		474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
-		474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
-		474D1AA71951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
+		474D1AA61951A500008BC7A7 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* GradientButton.m */; };
+		474D1AA71951A500008BC7A7 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* GradientButton.m */; };
 		47535CAF1981362600DC39D6 /* DoublePasswordEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CAD1981362600DC39D6 /* DoublePasswordEntryCell.m */; };
 		47535CB01981362600DC39D6 /* DoublePasswordEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CAD1981362600DC39D6 /* DoublePasswordEntryCell.m */; };
 		47535CB21981362600DC39D6 /* DoublePasswordEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */; };
@@ -958,8 +958,8 @@
 		47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		476461E91982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
 		476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
-		476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
-		476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
+		476C6B88196C18BF007002F9 /* SwipeActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeActionCell.m */; };
+		476C6B89196C18BF007002F9 /* SwipeActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeActionCell.m */; };
 		476D78C519B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
 		476D78C619B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
 		476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476EB8EB1A15030F00E4E392 /* ReferralLinksOperationTests.swift */; };
@@ -1870,8 +1870,8 @@
 		474C45201993CD38001F207C /* ProfilesEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesEditViewController.m; sourceTree = "<group>"; };
 		474D1A9D19518073008BC7A7 /* ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColoredButton.h; path = Views/ColoredButton.h; sourceTree = "<group>"; };
 		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColoredButton.m; path = Views/ColoredButton.m; sourceTree = "<group>"; };
-		474D1AA41951A500008BC7A7 /* RedGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedGradientButton.h; path = Views/RedGradientButton.h; sourceTree = "<group>"; };
-		474D1AA51951A500008BC7A7 /* RedGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedGradientButton.m; path = Views/RedGradientButton.m; sourceTree = "<group>"; };
+		474D1AA41951A500008BC7A7 /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientButton.h; path = Views/GradientButton.h; sourceTree = "<group>"; };
+		474D1AA51951A500008BC7A7 /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientButton.m; path = Views/GradientButton.m; sourceTree = "<group>"; };
 		47535CAC1981362600DC39D6 /* DoublePasswordEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoublePasswordEntryCell.h; sourceTree = "<group>"; };
 		47535CAD1981362600DC39D6 /* DoublePasswordEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoublePasswordEntryCell.m; sourceTree = "<group>"; };
 		47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoublePasswordEntryCell.xib; sourceTree = "<group>"; };
@@ -1885,8 +1885,8 @@
 		4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentFlowViewControllerFactory.m; path = PaymentFlow/PaymentFlowViewControllerFactory.m; sourceTree = "<group>"; };
 		476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledPlaceholderTextField.h; sourceTree = "<group>"; };
 		476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledPlaceholderTextField.m; sourceTree = "<group>"; };
-		476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeToCancelCell.h; sourceTree = "<group>"; };
-		476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeToCancelCell.m; sourceTree = "<group>"; };
+		476C6B86196C18BF007002F9 /* SwipeActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeActionCell.h; sourceTree = "<group>"; };
+		476C6B87196C18BF007002F9 /* SwipeActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeActionCell.m; sourceTree = "<group>"; };
 		476D78C319B70F7500B561DA /* UIViewController+SwitchToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SwitchToViewController.h"; sourceTree = "<group>"; };
 		476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SwitchToViewController.m"; sourceTree = "<group>"; };
 		476EB8EA1A15030E00E4E392 /* TransferTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -2530,14 +2530,16 @@
 				4723EA2E1975639E00B4345F /* BlueRoundedButton.m */,
 				474D1A9D19518073008BC7A7 /* ColoredButton.h */,
 				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
-				4723EA171973F3CA00B4345F /* GoogleButton.h */,
-				4723EA181973F3CA00B4345F /* GoogleButton.m */,
-				EAD7D4CF171D4BB20099063F /* GreenButton.h */,
-				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
+				474D1AA41951A500008BC7A7 /* GradientButton.h */,
+				474D1AA51951A500008BC7A7 /* GradientButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
 				385A66841977C9A200D00D1F /* GrayRoundedButton.h */,
 				385A66851977C9A200D00D1F /* GrayRoundedButton.m */,
+				EAD7D4CF171D4BB20099063F /* GreenButton.h */,
+				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
+				4723EA171973F3CA00B4345F /* GoogleButton.h */,
+				4723EA181973F3CA00B4345F /* GoogleButton.m */,
 				4723EA131973F32400B4345F /* ImageColoredButton.h */,
 				4723EA141973F32400B4345F /* ImageColoredButton.m */,
 				388F09FD1936434A00DBD93D /* InsetRespectingButton.h */,
@@ -2546,8 +2548,6 @@
 				47FAF343194B2F11004CE986 /* LightBlueButton.m */,
 				4723EA0B1973D8E900B4345F /* RedButton.h */,
 				4723EA0C1973D8E900B4345F /* RedButton.m */,
-				474D1AA41951A500008BC7A7 /* RedGradientButton.h */,
-				474D1AA51951A500008BC7A7 /* RedGradientButton.m */,
 				4723EA311975644A00B4345F /* RedRoundedButton.h */,
 				4723EA321975644A00B4345F /* RedRoundedButton.m */,
 				4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */,
@@ -3023,8 +3023,8 @@
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
 				47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */,
 				3840863919A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib */,
-				476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */,
-				476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */,
+				476C6B86196C18BF007002F9 /* SwipeActionCell.h */,
+				476C6B87196C18BF007002F9 /* SwipeActionCell.m */,
 				38B52F94199B622D00B6AEBD /* ValidationCell.h */,
 				38B52F95199B622D00B6AEBD /* ValidationCell.m */,
 				3840863619A370A400C837C2 /* ValidationCell~ipad.xib */,
@@ -4667,7 +4667,7 @@
 				388E5AA41A5A949500AF6EB9 /* PullToRefreshView.m in Sources */,
 				388E5AA51A5A949500AF6EB9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				388E5AA61A5A949500AF6EB9 /* _PayInMethod.m in Sources */,
-				388E5AA71A5A949500AF6EB9 /* RedGradientButton.m in Sources */,
+				388E5AA71A5A949500AF6EB9 /* GradientButton.m in Sources */,
 				388E5AA81A5A949500AF6EB9 /* UIImage+Color.m in Sources */,
 				388E5AA91A5A949500AF6EB9 /* DataEntryDefaultHeader.m in Sources */,
 				388E5AAA1A5A949500AF6EB9 /* InviteViewController.m in Sources */,
@@ -4704,7 +4704,7 @@
 				388E5AC91A5A949500AF6EB9 /* TabViewController.m in Sources */,
 				388E5ACA1A5A949500AF6EB9 /* UIImage+RenderBlur.m in Sources */,
 				388E5ACB1A5A949500AF6EB9 /* NameSuggestionCell.m in Sources */,
-				388E5ACC1A5A949500AF6EB9 /* SwipeToCancelCell.m in Sources */,
+				388E5ACC1A5A949500AF6EB9 /* SwipeActionCell.m in Sources */,
 				388E5ACD1A5A949500AF6EB9 /* MOMRoundedCornerStyle.m in Sources */,
 				383D30D61A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				388E5ACE1A5A949500AF6EB9 /* UploadMoneyViewController.m in Sources */,
@@ -4996,7 +4996,7 @@
 				38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				389F6804198FC1C6006CF1F6 /* _PayInMethod.m in Sources */,
-				474D1AA71951A500008BC7A7 /* RedGradientButton.m in Sources */,
+				474D1AA71951A500008BC7A7 /* GradientButton.m in Sources */,
 				47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */,
 				38B0930A1951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
 				38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */,
@@ -5033,7 +5033,7 @@
 				38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */,
 				3856690C1980FA1200BC4230 /* UIImage+RenderBlur.m in Sources */,
 				38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */,
-				476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
+				476C6B89196C18BF007002F9 /* SwipeActionCell.m in Sources */,
 				380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
 				383D30D51A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				EAD3648617E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
@@ -5316,7 +5316,7 @@
 				4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */,
 				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
 				47B3864A1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */,
-				476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
+				476C6B88196C18BF007002F9 /* SwipeActionCell.m in Sources */,
 				38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */,
 				38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
@@ -5327,7 +5327,7 @@
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
 				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
-				474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */,
+				474D1AA61951A500008BC7A7 /* GradientButton.m in Sources */,
 				389F683B198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				47F667681A1DD2A0003C018A /* AchFlow.m in Sources */,
 				47AC3F971987B2C3005491C6 /* SuggestionCell.m in Sources */,
