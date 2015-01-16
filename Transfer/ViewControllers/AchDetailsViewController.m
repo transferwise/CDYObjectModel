@@ -24,7 +24,7 @@
 
 IB_DESIGNABLE
 
-@interface AchDetailsViewController ()
+@interface AchDetailsViewController () <ACHCheckViewDelegate>
 
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, copy) GetLoginFormBlock loginFormBlock;
@@ -68,6 +68,7 @@ IB_DESIGNABLE
     [self.checkViewContainer addSubview:checkView];
     checkView.inactiveHostView = self.checkViewContainer;
     checkView.activeHostView = self.navigationController.parentViewController.view;
+    checkView.checkViewDelegate = self;
     
 	[self setTitle:NSLocalizedString(@"ach.controller.title", nil)];
 	[self.supportButton setTitle:NSLocalizedString([@"ach.controller.button.support" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
@@ -286,6 +287,24 @@ IB_DESIGNABLE
     [UIView commitAnimations];
     
     [self.checkView setState:CheckStatePlain animated:YES];
+}
+
+#pragma mark - check view delegate
+
+-(void)checkView:(ACHCheckView *)checkView hasBeenDraggedtoState:(ACHCheckViewState)state
+{
+    if (state == CheckStatePlain)
+    {
+        [self.view endEditing:YES];
+    }
+    else if (state == CheckStateAccountHighlighted)
+    {
+        [self.accountNumberTextField becomeFirstResponder];
+    }
+    else
+    {
+        [self.routingNumberTextField becomeFirstResponder];
+    }
 }
 
 @end
