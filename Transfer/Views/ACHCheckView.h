@@ -15,6 +15,14 @@ typedef NS_ENUM(short, ACHCheckViewState)
     CheckStateAccountHighlighted
 };
 
+@class ACHCheckView;
+
+@protocol ACHCheckViewDelegate <NSObject>
+
+-(void)checkView:(ACHCheckView*)checkView hasBeenDraggedtoState:(ACHCheckViewState)state;
+
+@end
+
 @interface ACHCheckView : UIView
 
 /**
@@ -30,12 +38,15 @@ typedef NS_ENUM(short, ACHCheckViewState)
  */
 @property (nonatomic, readonly) ACHCheckViewState state;
 
+@property (nonatomic, weak) id<ACHCheckViewDelegate> checkViewDelegate;
+
 /**
  *  Set state
  *
  *  @param state         Plain for inacitve, Routing or Account highlighted for active
- *  @param shouldAnimate indicates wether to animate the transition or not.
+ *  @param shouldAnimate indicates whether to animate the transition or not.
  */
 -(void)setState:(ACHCheckViewState)state animated:(BOOL)shouldAnimate;
+
 
 @end
