@@ -22,6 +22,7 @@
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+CurrencyPairs.h"
 #import "ObjectModel+Users.h"
+#import "ObjectModel+Payments.h"
 #import "Currency.h"
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"
@@ -109,6 +110,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LandingBackground.png"]]];    
 
+    Payment* latestPayment = [self.objectModel latestPayment];
 
     [self setYouSendCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
     [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:self.suggestedSourceAmount?:@(1000)] currency:nil];
@@ -116,7 +118,7 @@ static NSUInteger const kRowYouSend = 0;
     self.youSendCell.hostForCurrencySelector = self;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     self.youSendCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";
-    self.youSendCell.suggestedStartCurrency = self.suggestedSourceCurrency;
+    self.youSendCell.suggestedStartCurrency = self.suggestedSourceCurrency?:latestPayment.sourceCurrency;
     [self.youSendCell setEditable:YES];
 	[self.youSendCell initializeSelectorBackground];
 
@@ -129,7 +131,7 @@ static NSUInteger const kRowYouSend = 0;
     self.theyReceiveCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";
     self.theyReceiveCell.contentView.bgStyle = @"LightBlueHighlighted";
 	self.theyReceiveCell.leftSeparatorHidden = YES;
-    self.theyReceiveCell.suggestedStartCurrency = self.suggestedTargetCurrency;
+    self.theyReceiveCell.suggestedStartCurrency = self.suggestedTargetCurrency?:latestPayment.targetCurrency;
     [self.theyReceiveCell setEditable:YES];
 	[self.theyReceiveCell initializeSelectorBackground];
 

@@ -137,4 +137,12 @@
 	return [self countInstancesOfEntity:[Payment entityName] withPredicate:noOrCancelledPayments] <= 0;
 }
 
+- (Payment*)latestPayment
+{
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"remoteId" ascending:NO];
+    NSPredicate *presentablePredicate = [NSPredicate predicateWithFormat:@"presentable = YES"];
+    NSArray *array = [self fetchEntitiesNamed:[Payment entityName] usingPredicate:presentablePredicate sortDescriptors:@[sortDescriptor] limit:1];
+    return [array count]>0?array[0]:nil;
+}
+
 @end
