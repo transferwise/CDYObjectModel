@@ -767,4 +767,4 @@ We'll send you an email in order to let you choose a new password.";
 
 "no.payin.methods.template" = "It is not possible to proceed with this %@ transfer at the moment. You may need to verify yourself first on TransferWise.com";
 
-"repeat.transfer.creation" = "Configuring payment";
+"repeat.transfer.creation" = "Applying current exchange rate";

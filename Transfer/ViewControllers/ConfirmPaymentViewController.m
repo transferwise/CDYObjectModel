@@ -175,6 +175,7 @@
         }
         
         self.referenceField.delegate = self;
+        
         self.emailField.delegate = self;
         if ([payment.recipient.email length] == 0)
         {
@@ -307,7 +308,7 @@
         [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
         
         [self.referenceCell setEditable:YES];
-        [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
+        [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:self.payment.paymentReference];
         [self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     }
     else
@@ -323,6 +324,7 @@
 		}
 		
         self.referenceField.placeholder = NSLocalizedString(@"confirm.payment.reference.label", nil);
+        self.referenceField.text = self.payment.paymentReference;
         self.emailField.placeholder = NSLocalizedString(@"confirm.payment.email.label", nil);
     }
 }
@@ -465,7 +467,7 @@
     
     NSString *reference = IPAD?self.referenceField.text:[self.referenceCell value];
 	
-    [input setReference:reference];
+    [input setPaymentReference:reference];
     
     NSString *email;
     BOOL emailAdded;

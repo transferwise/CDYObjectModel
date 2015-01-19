@@ -55,7 +55,13 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.currentOperation = nil;
             if (result) {
-                [self createPendingPaymentWithObjectModel:objectModel source:sourceCurrency target:targetCurrency calculationResult:result recipient:paymentToRepeat.recipient profile:paymentToRepeat.profileUsed successBlock:successBlock failureBlock:failureBlock];
+                [self createPendingPaymentWithObjectModel:objectModel source:sourceCurrency target:targetCurrency calculationResult:result recipient:paymentToRepeat.recipient profile:paymentToRepeat.profileUsed successBlock:^(PendingPayment *payment) {
+                    payment.paymentReference = paymentToRepeat.paymentReference;
+                    if(successBlock)
+                    {
+                        successBlock(payment);
+                    }
+                } failureBlock:failureBlock];
             }
             else
             {
