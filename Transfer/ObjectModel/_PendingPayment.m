@@ -7,7 +7,6 @@ const struct PendingPaymentAttributes PendingPaymentAttributes = {
 	.paymentPurpose = @"paymentPurpose",
 	.proposedPaymentsPurpose = @"proposedPaymentsPurpose",
 	.recipientEmail = @"recipientEmail",
-	.reference = @"reference",
 	.sendVerificationLater = @"sendVerificationLater",
 	.socialSecurityNumber = @"socialSecurityNumber",
 	.transferwiseTransferFee = @"transferwiseTransferFee",
@@ -68,8 +67,6 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 @dynamic proposedPaymentsPurpose;
 
 @dynamic recipientEmail;
-
-@dynamic reference;
 
 @dynamic sendVerificationLater;
 

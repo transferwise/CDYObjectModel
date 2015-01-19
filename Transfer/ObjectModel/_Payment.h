@@ -12,6 +12,7 @@ extern const struct PaymentAttributes {
 	__unsafe_unretained NSString *lastUpdateTime;
 	__unsafe_unretained NSString *payIn;
 	__unsafe_unretained NSString *payOut;
+	__unsafe_unretained NSString *paymentReference;
 	__unsafe_unretained NSString *paymentStatus;
 	__unsafe_unretained NSString *presentable;
 	__unsafe_unretained NSString *profileUsed;
@@ -87,6 +88,10 @@ extern const struct PaymentRelationships {
 @property (nonatomic, strong) NSDecimalNumber* payOut;
 
 //- (BOOL)validatePayOut:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* paymentReference;
+
+//- (BOOL)validatePaymentReference:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* paymentStatus;
 
@@ -200,6 +205,9 @@ extern const struct PaymentRelationships {
 
 - (NSDecimalNumber*)primitivePayOut;
 - (void)setPrimitivePayOut:(NSDecimalNumber*)value;
+
+- (NSString*)primitivePaymentReference;
+- (void)setPrimitivePaymentReference:(NSString*)value;
 
 - (NSString*)primitivePaymentStatus;
 - (void)setPrimitivePaymentStatus:(NSString*)value;

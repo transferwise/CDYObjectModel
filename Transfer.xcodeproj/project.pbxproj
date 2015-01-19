@@ -1533,6 +1533,7 @@
 		3818605519C9A206009A413E /* SetSSNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSSNOperation.h; sourceTree = "<group>"; };
 		3818605619C9A206009A413E /* SetSSNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSSNOperation.m; sourceTree = "<group>"; };
 		3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v4.xcdatamodel; sourceTree = "<group>"; };
+		381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v7.xcdatamodel; sourceTree = "<group>"; };
 		3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CardPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodSelectorViewController.h; sourceTree = "<group>"; };
 		38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodSelectorViewController.m; sourceTree = "<group>"; };
@@ -5890,6 +5891,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */,
 				47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */,
 				474A5A961A13B8370094757B /* Transfer_v5.1.xcdatamodel */,
 				384CF64519F6ADE50011DDAD /* Transfer_v5.xcdatamodel */,
@@ -5900,7 +5902,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */;
+			currentVersion = 381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

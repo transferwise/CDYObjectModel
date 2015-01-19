@@ -8,7 +8,6 @@ extern const struct PendingPaymentAttributes {
 	__unsafe_unretained NSString *paymentPurpose;
 	__unsafe_unretained NSString *proposedPaymentsPurpose;
 	__unsafe_unretained NSString *recipientEmail;
-	__unsafe_unretained NSString *reference;
 	__unsafe_unretained NSString *sendVerificationLater;
 	__unsafe_unretained NSString *socialSecurityNumber;
 	__unsafe_unretained NSString *transferwiseTransferFee;
@@ -41,10 +40,6 @@ extern const struct PendingPaymentRelationships {
 @property (nonatomic, strong) NSString* recipientEmail;
 
 //- (BOOL)validateRecipientEmail:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* reference;
-
-//- (BOOL)validateReference:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* sendVerificationLater;
 
@@ -105,9 +100,6 @@ extern const struct PendingPaymentRelationships {
 
 - (NSString*)primitiveRecipientEmail;
 - (void)setPrimitiveRecipientEmail:(NSString*)value;
-
-- (NSString*)primitiveReference;
-- (void)setPrimitiveReference:(NSString*)value;
 
 - (NSNumber*)primitiveSendVerificationLater;
 - (void)setPrimitiveSendVerificationLater:(NSNumber*)value;

@@ -70,6 +70,7 @@
     [payment setPayOut:data[@"payOut"]];
     [payment setProfileUsed:data[@"profile"]];
     [payment setPresentableValue:YES];
+    [payment setPaymentReference:data[@"paymentReference"]];
     
     PaymentMadeIndicator* indicator = [self paymentMadeIndicatorForPayment:payment];
     if(indicator)
