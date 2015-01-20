@@ -19,7 +19,10 @@ typedef NS_ENUM(short, ACHCheckViewState)
 
 @protocol ACHCheckViewDelegate <NSObject>
 
--(void)checkView:(ACHCheckView*)checkView hasBeenDraggedtoState:(ACHCheckViewState)state;
+@optional
+-(void)checkViewDidStartDragging:(ACHCheckView*)checkView;
+-(void)checkView:(ACHCheckView*)checkview draggedToProgress:(float)progress;
+-(void)checkViewDidEndDragging:(ACHCheckView*)checkView willAnimateToState:(ACHCheckViewState)state withDuration:(NSTimeInterval)duration;;
 
 @end
 

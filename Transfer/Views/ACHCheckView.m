@@ -236,6 +236,10 @@
             {
                 self.isPanning = YES;
                 [self addToActiveView];
+                if([self.checkViewDelegate respondsToSelector:@selector(checkViewDidStartDragging:)])
+                {
+                    [self.checkViewDelegate checkViewDidStartDragging:self];
+                }
             }
             break;
         case UIGestureRecognizerStateChanged:
@@ -258,6 +262,10 @@
                 self.contextLabel.alpha = MAX(0.0f,1-progress*10);
                 
                 self.panProgress = progress;
+                if([self.checkViewDelegate respondsToSelector:@selector(checkView:draggedToProgress:)])
+                {
+                    [self.checkViewDelegate checkView:self draggedToProgress:progress];
+                }
             }
 
             break;
@@ -269,18 +277,19 @@
                 ACHCheckViewState newState;
                 progress = self.panProgress;
                 CGPoint velocity = [recognizer velocityInView:self.inactiveHostView];
+                NSTimeInterval duration;
                 if(ABS(velocity.y) > 150)
                 {
                     //Moving fast
                     //Animate based on velocity
                     if (velocity.y > 0) {
-                        NSTimeInterval duration = ABS(2* progress * (yOffset)/velocity.y);
+                        duration = ABS(2* progress * (yOffset)/velocity.y);
                         newState = CheckStatePlain;
                         [self setStateWithAnimation:newState duration:duration force:YES];
                     }
                     else
                     {
-                        NSTimeInterval duration = ABS(2* (1.0 - progress) * (yOffset)/velocity.y);
+                        duration = ABS(2* (1.0 - progress) * (yOffset)/velocity.y);
                         newState = self.state==CheckStatePlain?CheckStateRoutingHighlighted:self.state;
                         [self setStateWithAnimation:newState duration:duration force:YES];
                     }
@@ -289,19 +298,21 @@
                 {
                     if(progress < 0.5)
                     {
+                        duration = animationDuration * progress;
                         newState = CheckStatePlain;
-                        [self setStateWithAnimation:newState duration:animationDuration * progress force:YES];
+                        [self setStateWithAnimation:newState duration:duration force:YES];
                     }
                     else
                     {
+                        duration = animationDuration * (1-progress);
                         newState = self.state==CheckStatePlain?CheckStateRoutingHighlighted:self.state;
-                        [self setStateWithAnimation:newState duration:animationDuration * (1-progress) force:YES];
+                        [self setStateWithAnimation:newState duration:duration force:YES];
                     }
                 }
                 
-                if([self.checkViewDelegate respondsToSelector:@selector(checkView:hasBeenDraggedtoState:)])
+                if([self.checkViewDelegate respondsToSelector:@selector(checkViewDidEndDragging:willAnimateToState:withDuration:)])
                 {
-                    [self.checkViewDelegate checkView:self hasBeenDraggedtoState:newState];
+                    [self.checkViewDelegate checkViewDidEndDragging:self willAnimateToState:newState withDuration:duration];
                 }
                 
                 self.isPanning=NO;
