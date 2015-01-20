@@ -38,6 +38,7 @@ IB_DESIGNABLE
 @property (nonatomic, weak) ACHCheckView* checkView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textEntryTopSpace;
 @property (nonatomic, assign) CGFloat originalTopSpace;
+@property (nonatomic, assign) CGFloat activeTopOffset;
 @property (nonatomic, assign) BOOL keyboardIsShowing;
 
 @end
@@ -83,11 +84,12 @@ IB_DESIGNABLE
 	[self.accountNumberTextField setReturnKeyType:UIReturnKeyDone];
     
     self.originalTopSpace = self.textEntryTopSpace.constant;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-	//showing view so we are deffinetly not dismissing
+	//showing view so we are definitely not dismissing
 	self.willDismiss = NO;
     [super viewWillAppear:animated];
     [self.checkView setState:CheckStatePlain animated:NO];
@@ -136,6 +138,9 @@ IB_DESIGNABLE
             }
         }];
         [self.navigationController.topViewController.navigationItem setLeftBarButtonItem:item];
+        CGPoint topOffset = [self.view convertPoint:CGPointMake(0,TOP_OFFSET) fromView:self.navigationController.view];
+        topOffset.y = MAX(10.0f, topOffset.y);
+        self.activeTopOffset = topOffset.y - self.originalTopSpace;
     }
 }
 
@@ -251,8 +256,7 @@ IB_DESIGNABLE
     [UIView setAnimationCurve:curve];
     [UIView setAnimationBeginsFromCurrentState:YES];
    
-    CGPoint topOffset = [self.view convertPoint:CGPointMake(0,TOP_OFFSET) fromView:self.navigationController.view];
-    self.textEntryTopSpace.constant = MAX(10.0f, topOffset.y);
+    self.textEntryTopSpace.constant = self.originalTopSpace + self.activeTopOffset;
     [self.view layoutIfNeeded];
     
     [UIView commitAnimations];
@@ -291,11 +295,20 @@ IB_DESIGNABLE
 
 #pragma mark - check view delegate
 
--(void)checkView:(ACHCheckView *)checkView hasBeenDraggedtoState:(ACHCheckViewState)state
-{
+-(void)checkViewDidEndDragging:(ACHCheckView *)checkView willAnimateToState:(ACHCheckViewState)state withDuration:(NSTimeInterval)duration{
     if (state == CheckStatePlain)
     {
-        [self.view endEditing:YES];
+        if([self.routingNumberTextField isFirstResponder] || [self.accountNumberTextField isFirstResponder])
+        {
+            [self.view endEditing:YES];
+        }
+        else
+        {
+            [UIView animateWithDuration:duration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+                self.textEntryTopSpace.constant = self.originalTopSpace;
+                [self.view layoutIfNeeded];
+            } completion:nil];
+        }
     }
     else if (state == CheckStateAccountHighlighted)
     {
@@ -305,6 +318,12 @@ IB_DESIGNABLE
     {
         [self.routingNumberTextField becomeFirstResponder];
     }
+}
+
+-(void)checkView:(ACHCheckView *)checkview draggedToProgress:(float)progress
+{
+    self.textEntryTopSpace.constant = self.originalTopSpace + progress * self.activeTopOffset;
+    [self.view layoutIfNeeded];
 }
 
 @end
