@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -14,6 +14,7 @@
                 <outlet property="sendAsBusinessLabel" destination="RnR-rW-OWQ" id="wTv-Z2-dZp"/>
                 <outlet property="sendAsBusinessSwitch" destination="mNC-nX-I9A" id="Ow6-iT-EBN"/>
                 <outlet property="titleLabel" destination="wSR-ns-7AU" id="A4X-3k-cc4"/>
+                <outlet property="touchIdButton" destination="wyZ-3J-4Kg" id="YtW-Em-PG0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -83,6 +84,15 @@
                     </state>
                     <connections>
                         <action selector="feedbackTapped:" destination="-1" eventType="touchUpInside" id="Cup-Rx-QGy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyZ-3J-4Kg" userLabel="touchIdButton" customClass="BlueRoundedButton">
+                    <rect key="frame" x="234" y="536" width="301" height="44"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="touchIdButtonTapped:" destination="-1" eventType="touchUpInside" id="INs-ZC-LcA"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZbM-yQ-nVs" userLabel="logOutButton" customClass="BlueRoundedButton">
@@ -158,10 +168,12 @@
                 <constraint firstItem="GCT-Rm-NS4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="21" id="0sh-ch-ENZ"/>
                 <constraint firstItem="ZbM-yQ-nVs" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" constant="1.5" id="7pC-px-S3p"/>
                 <constraint firstAttribute="centerY" secondItem="JOS-XU-Ncc" secondAttribute="centerY" constant="196.5" id="9I5-1s-Tw9"/>
+                <constraint firstItem="wyZ-3J-4Kg" firstAttribute="top" secondItem="xJR-g2-g36" secondAttribute="bottom" constant="50" id="B2O-Hy-Vma"/>
                 <constraint firstAttribute="bottom" secondItem="ZbM-yQ-nVs" secondAttribute="bottom" constant="50" id="DIA-E1-FcD"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="width" secondItem="aFd-eX-qvc" secondAttribute="width" constant="1" id="Fcz-Ug-NtS"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="G3W-ve-zOi"/>
                 <constraint firstAttribute="centerX" secondItem="wSR-ns-7AU" secondAttribute="centerX" id="L4I-HT-Kop"/>
+                <constraint firstItem="wyZ-3J-4Kg" firstAttribute="height" secondItem="Tdp-xG-KTm" secondAttribute="height" id="PRa-ov-I43"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="top" secondItem="aFd-eX-qvc" secondAttribute="bottom" constant="15" id="PvX-06-7VE"/>
                 <constraint firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="S8N-5e-gAt"/>
                 <constraint firstItem="GCT-Rm-NS4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Uo4-uf-dfR"/>
@@ -171,8 +183,10 @@
                 <constraint firstItem="wSR-ns-7AU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="dx4-6C-95S"/>
                 <constraint firstItem="ZbM-yQ-nVs" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="j5f-sn-TUQ"/>
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="jMP-LN-eKZ"/>
+                <constraint firstItem="wyZ-3J-4Kg" firstAttribute="centerX" secondItem="Tdp-xG-KTm" secondAttribute="centerX" id="ofE-pe-fs7"/>
                 <constraint firstItem="xJR-g2-g36" firstAttribute="top" secondItem="Tdp-xG-KTm" secondAttribute="bottom" constant="50" id="qsh-yV-QD3"/>
                 <constraint firstItem="xJR-g2-g36" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rXr-hL-Bw8"/>
+                <constraint firstItem="wyZ-3J-4Kg" firstAttribute="width" secondItem="Tdp-xG-KTm" secondAttribute="width" id="vj7-mj-0FD"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="xxf-nn-Cbc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

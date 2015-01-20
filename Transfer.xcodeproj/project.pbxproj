@@ -69,6 +69,9 @@
 		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3818605719C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
 		3818605819C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
+		381DC2951A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */; };
+		381DC2961A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */; };
+		381DC2971A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */; };
 		3827407F199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		38288F4719C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */; };
@@ -1534,6 +1537,7 @@
 		3818605619C9A206009A413E /* SetSSNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSSNOperation.m; sourceTree = "<group>"; };
 		3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v4.xcdatamodel; sourceTree = "<group>"; };
 		381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v7.xcdatamodel; sourceTree = "<group>"; };
+		381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TouchIdPromptViewController~ipad.xib"; sourceTree = "<group>"; };
 		3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CardPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodSelectorViewController.h; sourceTree = "<group>"; };
 		38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodSelectorViewController.m; sourceTree = "<group>"; };
@@ -3505,6 +3509,7 @@
 				3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */,
 				3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */,
 				3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */,
+				381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */,
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
@@ -3817,6 +3822,7 @@
 				388E5B5F1A5A949500AF6EB9 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				388E5B601A5A949500AF6EB9 /* DropdownCell~ipad.xib in Resources */,
 				388E5B611A5A949500AF6EB9 /* TSAlertViewBackground2.png in Resources */,
+				381DC2971A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */,
 				388E5B621A5A949500AF6EB9 /* TSAlertViewBackground.png in Resources */,
 				388E5B631A5A949500AF6EB9 /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				388E5B641A5A949500AF6EB9 /* TransferTypeSelectionHeader.xib in Resources */,
@@ -3980,6 +3986,7 @@
 				38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
+				381DC2961A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
@@ -4136,6 +4143,7 @@
 				38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
+				381DC2951A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
