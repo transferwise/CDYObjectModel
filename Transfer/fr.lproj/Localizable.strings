@@ -68,7 +68,7 @@
 "button.title.retry" = "Reéssayer";
 "button.title.yes" = "Oui";
 "button.title.no" = "Non";
-"button.title.repeat" = "Repeat";
+"button.title.repeat" = "Répéter";
 
 "confirm.payment.controller.title" = "Revue des details";
 "confirm.payment.creating.message" = "Création du transfert en cours";
@@ -174,8 +174,8 @@ vos amis sur TransferWise";
 "introduction.login.section.title" = "Déja un utilisateur?";
 "introduction.savings.receive.message.base" = "Vous obtiendrez %@ de plus qu'avec votre banque";
 "introduction.savings.pay.message.base" = "Vous économisez %@ par rapport a votre banque";
-"introduction.savings.message.part1" = "Vous éconnomisez";
-"introduction.savings.message.part1.ipad" = "Vous éconnomisez";
+"introduction.savings.message.part1" = "Vous économisez";
+"introduction.savings.message.part1.ipad" = "Vous économisez";
 "introduction.savings.message.part2" = "avec TransferWise";
 "introduction.savings.message.part2.ipad" = "par rapport à votre banque";
 "introduction.savings.message.how" = "Voir explication";
@@ -456,6 +456,7 @@ C'est irréversible.";
 "transferdetails.controller.button.gotit" = "Compris!";
 "transferdetails.controller.button.pay" = "Payer %@";
 "transferdetails.controller.button.cancel" = "Annuler transfert";
+"transferdetails.controller.repeat.button" = "Répéter ce transfert";
 
 "upload.money.account.nr.title" = "Numéro de compte";
 "upload.money.address.title" = "Notre adresse";
@@ -501,7 +502,7 @@ C'est irréversible.";
 "why.popup.bank.you.get.title" = "Vous auriez reçu";
 "why.popup.tw.you.pay.title" = "Vous payez";
 "why.popup.bank.you.pay.title" = "Vous auriez payé";
-"why.popup.button" = "Compris, j'éconnomise %@";
+"why.popup.button" = "Compris, j'économise %@";
 "why.popup.title" = "Comparatif";
 "why.popup.vs" = "Vs";
 "why.popup.rate" = "TAUX DE\nCHANGE";
@@ -751,7 +752,7 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 "upload.money.bankname.title" = "Nom de la banque";
 
-"no.payin.methods.template" = "It is not possible to proceed with this %@ transfer at the moment. You may need to verify yourself first on TransferWise.com";
+"no.payin.methods.template" = "Aucune méthode de paiement sont actuellement disponible. Re-essayez plus tard.";
 
-"repeat.transfer.creation" = "Applying current exchange rate";
+"repeat.transfer.creation" = "Rafraîchissement du taux de change";
 
