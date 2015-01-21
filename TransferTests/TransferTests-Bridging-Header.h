@@ -31,3 +31,5 @@
 #import "PendingPayment.h"
 #import "Payment.h"
 #import "Currency.h"
+#import "TransparentModalViewController.h"
+#import "CustomInfoViewController.h"
