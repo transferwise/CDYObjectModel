@@ -198,6 +198,31 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertEqual(concreteController.payment, pendingPayment, "invalid pending payment set")
 		XCTAssertEqual(concreteController.currency, sourceCurrency, "invalid source currency set")
 	}
+    
+    func testGetCustomModalReturnsCorrectNoPayInMethodsModal()
+    {
+        
+        let sourceCurrency: Currency = Currency.insertInManagedObjectContext(objectModel?.managedObjectContext) as Currency
+        let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
+        pendingPayment.sourceCurrency = sourceCurrency
+        let controller = factory!.getCustomModalWithType(ModalType.NoPayInMethodsFailModal, params: [kPayment: pendingPayment])
+        
+        XCTAssertNotNil(controller, "controller must exist")
+        XCTAssertTrue(controller is CustomInfoViewController, "invalid type of controller")
+        
+        let concreteController = controller as CustomInfoViewController
+        
+        XCTAssertTrue(concreteController.mapCloseButtonToAction, "close action not correctly mapped")
+        
+        if let actionClosure = concreteController.actionButtonBlock?
+        {}
+        else
+        {
+            XCTFail("action button block not set")
+        }
+        
+    }
+    
 
 	//test each version for negative paths
 	//- missing params
@@ -320,9 +345,24 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 				kNextActionBlock: NSNull()])
 		}, "no exception on unset next action block")
 	}
-	
+    
+    func testGetModalThrowsOnNullPayment()
+    {
+        XCTAssertThrows({ () -> Void in
+            let controller = self.factory!.getCustomModalWithType(ModalType.NoPayInMethodsFailModal, params: [kPayment : NSNull()])
+            }, "no exception on missing payment")
+    }
+
+    func testGetModalThrowsOnMissingParameters()
+    {
+        XCTAssertThrows({ () -> Void in
+            let controller = self.factory!.getCustomModalWithType(ModalType.NoPayInMethodsFailModal, params: nil)
+            }, "no exception on missing payment")
+    }
+    
 	private func getEmptyBlock() -> TRWActionBlock
 	{
 		return {}
 	}
+    
 }
