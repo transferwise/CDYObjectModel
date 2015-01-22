@@ -69,7 +69,7 @@
 	}
 	else
 	{
-		[self loadProfileImagesWithUser:user];
+		[self loadProfileImagesWithUser:user requestAccess:NO];
 	}
 	
     self.title = NSLocalizedString(@"invite.controller.title", nil);
@@ -96,7 +96,7 @@
 }
 
 
-- (void)loadProfileImagesWithUser:(User *)user
+- (void)loadProfileImagesWithUser:(User *)user requestAccess:(BOOL)requestAccess
 {
     AddressBookManager *manager = [[AddressBookManager alloc] init];
     
@@ -181,7 +181,7 @@
         });
         
     }
-                         requestAccess:NO];
+                         requestAccess:requestAccess];
 }
 
 -(void)setProgress:(NSUInteger)progress
@@ -303,6 +303,10 @@
 	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel];
 	coordinator.objectModel = self.objectModel;
 	[coordinator presentOnController:self];
+    if (self.numberOfFriends <= 0)
+    {
+        [self loadProfileImagesWithUser:[self.objectModel currentUser] requestAccess:YES];
+    }
 }
 
 - (void)loadInviteStatus
