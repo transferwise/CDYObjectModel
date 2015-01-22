@@ -38,10 +38,10 @@
 		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
 {
 	//configure swipe to cancel
-	[super configureWithWillShowCancelBlock:willShowCancelBlock
-						 didShowCancelBlock:didShowCancelBlock
-						 didHideCancelBlock:didHideCancelBlock
-						  cancelTappedBlock:cancelTappedBlock];
+	[super configureWithActionButtonFromColor:[UIColor colorFromStyle:@"RedShadow"] toColor:[UIColor colorFromStyle:@"Red"] willShowActionButtonBlock:willShowCancelBlock
+						 didShowActionButtonBlock:didShowCancelBlock
+						 didHideActionButtonBlock:didHideCancelBlock
+						  actionTappedBlock:cancelTappedBlock];
 	
     [self.nameLabel setText:[recipient name]];
     [self.bankLabel setText:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.account.type", nil),[recipient.currency code]]];
@@ -59,8 +59,8 @@
 	
 	[self maskRecipientImage];
 	
-	self.canBeCancelled = YES;
-	self.cancelButtonTitle = NSLocalizedString(@"contacts.controller.delete.button.title", nil);
+	self.canPerformAction = YES;
+	self.actionButtonTitle = NSLocalizedString(@"contacts.controller.delete.button.title", nil);
 }
 
 

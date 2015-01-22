@@ -12,6 +12,7 @@ const struct PaymentAttributes PaymentAttributes = {
 	.lastUpdateTime = @"lastUpdateTime",
 	.payIn = @"payIn",
 	.payOut = @"payOut",
+	.paymentReference = @"paymentReference",
 	.paymentStatus = @"paymentStatus",
 	.presentable = @"presentable",
 	.profileUsed = @"profileUsed",
@@ -132,6 +133,8 @@ const struct PaymentRelationships PaymentRelationships = {
 @dynamic payIn;
 
 @dynamic payOut;
+
+@dynamic paymentReference;
 
 @dynamic paymentStatus;
 

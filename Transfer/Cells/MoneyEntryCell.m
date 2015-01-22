@@ -229,10 +229,13 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [currencies performFetch:nil];
     
     NSUInteger index = 0;
-    if(self.selectedCurrency)
+    
+    Currency* preSelectedCurrrency = self.selectedCurrency?:self.suggestedStartCurrency;
+    
+    if(preSelectedCurrrency)
     {
         NSArray* codes = [currencies.fetchedObjects valueForKey:@"currency"];
-        index = [codes indexOfObject:self.selectedCurrency];
+        index = [codes indexOfObject:preSelectedCurrrency];
         if(index == NSNotFound)
         {
             index = 0;

@@ -10,7 +10,9 @@
 
 @implementation LoggedInPaymentFlow
 
-- (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler{
+- (void)commitPaymentWithSuccessBlock:(TRWActionBlock)successBlock
+						 errorHandler:(TRWErrorBlock)errorHandler
+{
     MCLog(@"Commit payment");
     [self setPaymentErrorHandler:errorHandler];
     [self setVerificationSuccessBlock:successBlock];

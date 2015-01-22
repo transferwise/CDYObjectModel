@@ -14,12 +14,11 @@
 @class PaymentFlow;
 @class ObjectModel;
 
-typedef void (^IdentificationCompleteBlock)(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock);
+typedef void (^IdentificationCompleteBlock)(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock);
 
 @interface PersonalProfileIdentificationViewController : DataEntryViewController
 
 @property (nonatomic, copy) IdentificationCompleteBlock completionHandler;
-@property (nonatomic, weak) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL hideSkipOption;
 @property (nonatomic, assign) IdentificationRequired identificationRequired;

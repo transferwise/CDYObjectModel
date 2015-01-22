@@ -16,6 +16,14 @@
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "TransferBackButtonItem.h"
 #import "BlueButton.h"
+#import "NewPaymentHelper.h"
+#import "TRWAlertView.h"
+#import "NewPaymentViewController.h"
+#import "ConnectionAwareViewController.h"
+#import "LoggedInPaymentFlow.h"
+#import "Currency.h"
+#import "TRWProgressHUD.h"
+
 
 @interface TransferDetailsViewController ()
 
@@ -24,6 +32,9 @@
 @property (strong, nonatomic) IBOutlet TransferDetailsAmountsView *amountsView;
 @property (strong, nonatomic) IBOutlet TransferDetialsRecipientView *accountView;
 @property (strong, nonatomic) IBOutlet UIButton *supportButton;
+@property (weak, nonatomic) IBOutlet UIButton *repeatButton;
+@property (nonatomic, strong) NewPaymentHelper* repeatTransferHelper;
+@property (nonatomic, strong) PaymentFlow *paymentFlow;
 
 @end
 
@@ -105,10 +116,12 @@
 	if (self.payment.status == PaymentStatusTransferred)
 	{
 		[self.supportButton setTitle:NSLocalizedString([@"transferdetails.controller.button.rate" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+        [self.repeatButton setTitle:NSLocalizedString(@"transferdetails.controller.repeat.button", nil) forState:UIControlStateNormal];
 	}
 	else
 	{
 		[self.supportButton setTitle:NSLocalizedString([@"transferdetails.controller.button.support" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+        [self.repeatButton removeFromSuperview];
 	}
 	
 	[self.view layoutIfNeeded];
@@ -203,6 +216,46 @@
 													fromDate:date];
 	
 	return [calendar dateFromComponents:components];
+}
+
+- (IBAction)repeatTapped:(id)sender {
+    self.repeatTransferHelper = [[NewPaymentHelper alloc] init];
+    __weak typeof(self) weakSelf = self;
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"repeat.transfer.creation", nil)];
+    [self.repeatTransferHelper repeatTransfer:self.payment objectModel:self.objectModel successBlock:^(PendingPayment *payment) {
+        [hud hide];
+        PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:weakSelf.objectModel];
+        ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:weakSelf.objectModel];
+        
+        PaymentFlow *paymentFlow = [[LoggedInPaymentFlow alloc] initWithPresentingController:weakSelf.navigationController
+                                                                                         paymentFlowViewControllerFactory:controllerFactory
+                                                                            validatorFactory:validatorFactory];
+
+        [weakSelf setPaymentFlow:paymentFlow];
+        
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferCurrency1Selected" withLabel:weakSelf.payment.sourceCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferCurrency2Selected" withLabel:weakSelf.payment.targetCurrency.code];
+        
+        
+        [paymentFlow setObjectModel:weakSelf.objectModel];
+        [paymentFlow presentNextPaymentScreen];
+
+        
+        
+    } failureBlock:^(NSError *error) {
+        [hud hide];
+        NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+        controller.suggestedSourceAmount = self.payment.payIn;
+        controller.suggestedTargetAmount = self.payment.payOut;
+        controller.suggestedSourceCurrency = self.payment.sourceCurrency;
+        controller.suggestedTargetCurrency = self.payment.targetCurrency;
+        controller.suggestedTransactionIsFixedTarget = self.payment.isFixedAmountValue;
+        [controller setObjectModel:weakSelf.objectModel];
+        ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
+        [weakSelf presentViewController:wrapper animated:YES completion:nil];
+    }];
+    
 }
 
 @end

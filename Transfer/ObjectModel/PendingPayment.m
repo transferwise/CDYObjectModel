@@ -24,7 +24,7 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
     [dictionary setNotNilValue:self.isFixedAmountValue?self.payOut:self.payIn forKey:@"amount"];
     [dictionary setNotNilValue:self.user.email forKey:@"email"];
     [dictionary setNotNilValue:self.profileUsed forKey:@"profile"];
-    [dictionary setNotNilValue:self.reference forKey:@"paymentReference"];
+    [dictionary setNotNilValue:self.paymentReference forKey:@"paymentReference"];
     [dictionary setNotNilValue:self.recipientEmail forKey:@"recipientEmail"];
     if ([self isAnyVerificationRequired] && [self sendVerificationLaterValue]) {
         dictionary[@"verificationProvideLater"] = @"true";

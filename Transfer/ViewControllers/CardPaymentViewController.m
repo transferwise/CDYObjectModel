@@ -183,6 +183,7 @@
                         
                         TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
                         details.payment = weakSelf.payment;
+                        details.objectModel = self.objectModel;
                         details.showClose = YES;
                         
                         [self.navigationController pushViewController:details animated:NO];

@@ -27,5 +27,6 @@ typedef void (^CalculationActivityHandler)(BOOL calculating);
 @property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
 
 - (void)forceCalculate;
+-(void)forceCalculateWithFixedTarget;
 
 @end

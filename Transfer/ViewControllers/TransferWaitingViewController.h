@@ -11,8 +11,6 @@
 
 @interface TransferWaitingViewController : TransferDetailsViewController
 
-@property (nonatomic, strong) ObjectModel *objectModel;
-
 /**
  *  Convenience method for getting an instance of this screen for use in the payment flow
  *

@@ -7,6 +7,7 @@
 //
 
 #import "TabbedHeaderViewController.h"
+#import "PersonalProfileValidation.h"
 
 @class ObjectModel;
 
@@ -15,7 +16,7 @@
 @property (nonatomic) BOOL allowProfileSwitch;
 @property (nonatomic, strong) ObjectModel* objectModel;
 @property (nonatomic, strong) NSString* buttonTitle;
-@property (nonatomic, strong) id profileValidation;
+@property (nonatomic, strong) id<PersonalProfileValidation> profileValidation;
 //used for filling missing US fields
 @property (nonatomic) BOOL isExisting;
 

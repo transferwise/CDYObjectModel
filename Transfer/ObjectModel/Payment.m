@@ -132,6 +132,10 @@ static NSDictionary* statusLookupDictionary;
 	return [[MoneyFormatter sharedInstance] formatAmount:[self payIn]];
 }
 
+- (NSString *)payOutString {
+    return [[MoneyFormatter sharedInstance] formatAmount:[self payOut]];
+}
+
 - (NSString *)payOutStringWithCurrency {
     return [[MoneyFormatter sharedInstance] formatAmount:self.payOut withCurrency:self.targetCurrency.code];
 }
