@@ -132,7 +132,7 @@
     }
     else
     {
-        viewToAlignTo = ((TextEntryCell*)table.associatedView).separatorLine;
+        viewToAlignTo = ((TextEntryCell*)table.associatedView).separatorLine?:table.associatedView;
     }
     
     if([viewToAlignTo superview])

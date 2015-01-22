@@ -28,7 +28,7 @@ NSString *const kAPIPathBase = @"/api";
 - (id)initSingleton {
     self = [super initWithBaseURL:[NSURL URLWithString:TRWServerAddress]];
     if (self) {
-
+        self.operationQueue.maxConcurrentOperationCount = TRW_MAX_CONCURRENT_OPERATIONS;
     }
 
     return self;

@@ -10,7 +10,6 @@ pod 'Facebook-iOS-SDK', :inhibit_warnings => true
 pod 'SMPageControl'
 pod 'CXAlertView', '~> 1.0.1'
 pod 'Mixpanel'
-pod 'TestFlightSDK'
 pod 'CDYObjectModel', :git => 'https://github.com/coodly/CDYObjectModel.git'
 pod 'CDYAnalyticsCoordinator', :git => 'https://github.com/coodly/CDYAnalyticsCoordinator.git'
 pod 'JVFloatLabeledTextField', '~> 0.0.9'

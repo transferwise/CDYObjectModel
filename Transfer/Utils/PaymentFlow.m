@@ -316,6 +316,7 @@
     [controller setPaymentFlow:self];
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
+    controller.driversLicenseFirst = [@"usd" caseInsensitiveCompare:payment.sourceCurrency.code] == NSOrderedSame;
     [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
     __weak typeof(self) weakSelf = self;
 
@@ -345,7 +346,7 @@
         
         Payment* payment = (id) [self.objectModel.managedObjectContext objectWithID:paymentID];
         
-        if(!IPAD && [[payment enabledPayInMethods] count]>2)
+        if(!IPAD && ([[payment enabledPayInMethods] count]>2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && [[payment enabledPayInMethods] count] > 1)))
         {
             PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
             selector.objectModel = self.objectModel;

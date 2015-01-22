@@ -2,10 +2,10 @@ PODS:
   - AFNetworking (1.3.4)
   - Bolts (1.1.3)
   - CDYAnalyticsCoordinator (0.1.0):
-    - CDYAnalyticsCoordinator/Core (= 0.1.0)
+    - CDYAnalyticsCoordinator/Core
   - CDYAnalyticsCoordinator/Core (0.1.0)
   - CDYObjectModel (1.0):
-    - CDYObjectModel/Core (= 1.0)
+    - CDYObjectModel/Core
   - CDYObjectModel/Core (1.0)
   - CXAlertView (1.0.1)
   - Facebook-iOS-SDK (3.21.1):
@@ -14,11 +14,10 @@ PODS:
   - Lockbox (2.1.0)
   - MBProgressHUD (0.9)
   - Mixpanel (2.6.2):
-    - Mixpanel/MPCategoryHelpers (= 2.6.2)
+    - Mixpanel/MPCategoryHelpers
   - Mixpanel/MPCategoryHelpers (2.6.2)
   - Reachability (3.2)
   - SMPageControl (1.2)
-  - TestFlightSDK (3.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.2)
@@ -32,20 +31,11 @@ DEPENDENCIES:
   - Mixpanel
   - Reachability
   - SMPageControl
-  - TestFlightSDK
 
 EXTERNAL SOURCES:
   CDYAnalyticsCoordinator:
     :git: https://github.com/coodly/CDYAnalyticsCoordinator.git
   CDYObjectModel:
-    :git: https://github.com/coodly/CDYObjectModel.git
-
-CHECKOUT OPTIONS:
-  CDYAnalyticsCoordinator:
-    :commit: 5ca6ba7710acff8bb923ba7c4f7a34df4f4e8b93
-    :git: https://github.com/coodly/CDYAnalyticsCoordinator.git
-  CDYObjectModel:
-    :commit: 4e8d91343197c26197e0ab0b408e3c72c06336c6
     :git: https://github.com/coodly/CDYObjectModel.git
 
 SPEC CHECKSUMS:
@@ -61,6 +51,5 @@ SPEC CHECKSUMS:
   Mixpanel: c075cedebda3328ce1ee29a18429e265ce967cd8
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   SMPageControl: 506b0c561d3ddbe2d5df28cb33acc8e4b1f93f19
-  TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.34.4

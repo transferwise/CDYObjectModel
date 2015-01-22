@@ -28,8 +28,6 @@ typedef void (^TRWActionBlock)();
 
 #define ABSTRACT_METHOD MCLog(@"You must override %@ in a subclass", NSStringFromSelector(_cmd)); [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
 
-#define USE_TESTFLIGHT 1
-
 #define DEFINE_SHARED_INSTANCE_USING_BLOCK(block) \
   static dispatch_once_t pred = 0; \
   __strong static id _sharedObject = nil; \
@@ -37,6 +35,8 @@ typedef void (^TRWActionBlock)();
     _sharedObject = block(); \
   }); \
   return _sharedObject; \
+
+#define TRW_MAX_CONCURRENT_OPERATIONS 5
 
 extern NSString *const TRWLoggedOutNotification;
 extern NSString *const TRWMoveToPaymentsListNotification;

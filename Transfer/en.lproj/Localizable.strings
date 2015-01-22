@@ -136,6 +136,7 @@ your friends to TransferWise";
 "identification.creating.payment.message" = "Creating transfer...";
 "identification.id.document" = "Photo of your ID";
 "identification.id.description" = "A good quality photo of a valid passport or ID card or driving licence. Not a picture of yourself.";
+"identification.id.description.drivers.first" = "A good quality photo of your driving licence or valid passport or ID card. \nNot a picture of yourself.";
 "identification.id.selected.description" = "ID document selected";
 "identification.payment.error.title" = "Payment error";
 "identification.proof.of.address" = "Photo of proof of address";
@@ -177,8 +178,8 @@ your friends to TransferWise";
 "introduction.savings.message.part1.ipad" = "You'll save";
 "introduction.savings.message.part2" = "vs your bank";
 "introduction.savings.message.part2.ipad" = "vs your bank";
-"introduction.savings.message.how" = "SEE HOW";
-"introduction.savings.message.how.ipad" = "SEE HOW";
+"introduction.savings.message.how" = "See how";
+"introduction.savings.message.how.ipad" = "See how";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
 A revolution in your pocket.";
 
@@ -218,7 +219,7 @@ A revolution in your pocket.";
 "payment.change.time.one.month.ago" = "1 month ago";
 "payment.change.time.one.year.ago" = "1 year ago";
 "payment.change.time.years.ago" = "%d years ago";
-"payment.date.format.long" = "MMM d YYYY";
+"payment.date.format.long" = "MMM d yyyy";
 "payment.date.format.short" = "MMM d";
 "payment.controller.calculation.error.title" = "Calculation failed";
 "payment.controller.continue.to.details.button.title" = "Continue";

@@ -136,6 +136,7 @@ vos amis sur TransferWise";
 "identification.creating.payment.message" = "Creation du transfert...";
 "identification.id.document" = "Photo d'une piece d'identité";
 "identification.id.description" = "Une photo de votre passeport, carte d'identité ou permi de conduire valide et de bonne qualité. Non pas une photo de vous.";
+"identification.id.description.drivers.first" = "Une photo de votre permi de conduire, passeport ou carte d'identité valide et de bonne qualité. Non pas une photo de vous.";
 "identification.id.selected.description" = "Piece d'identité selectionnée";
 "identification.payment.error.title" = "Erreur de paiement";
 "identification.proof.of.address" = "Photo d'une preuve de domicile";
@@ -176,8 +177,8 @@ vos amis sur TransferWise";
 "introduction.savings.message.part1.ipad" = "Vous éconnomisez";
 "introduction.savings.message.part2" = "avec TransferWise";
 "introduction.savings.message.part2.ipad" = "par rapport à votre banque";
-"introduction.savings.message.how" = "VOIR EXPLICATION";
-"introduction.savings.message.how.ipad" = "VOIR EXPLICATION";
+"introduction.savings.message.how" = "Voir explication";
+"introduction.savings.message.how.ipad" = "Voir explication";
 "introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.
 Une révolution dans votre poche.";
 
@@ -217,7 +218,7 @@ Une révolution dans votre poche.";
 "payment.change.time.one.month.ago" = "Il y a 1 mois";
 "payment.change.time.one.year.ago" = "Il y a 1 an";
 "payment.change.time.years.ago" = "Il y a %d ans ago";
-"payment.date.format.long" = "d MMM YYYY";
+"payment.date.format.long" = "d MMM yyyy";
 "payment.date.format.short" = "d MMM";
 "payment.controller.calculation.error.title" = "Calcul avorté";
 "payment.controller.continue.to.details.button.title" = "Continuer";

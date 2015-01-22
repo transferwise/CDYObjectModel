@@ -173,7 +173,7 @@
     {
         [operation setUploadProgressBlock:self.uploadProgressHandler];
     }
-    [operation start];
+    [[TransferwiseClient sharedClient].operationQueue addOperation:operation];
 }
 
 - (void)handleErrorResponseData:(NSDictionary *)errorData {
@@ -195,20 +195,15 @@
         //This if is added here because most operations don't need this error. Screen where user was on
         //will be covered by login view controller.
         self.operationErrorHandler([self isCurrencyPairsOperation] ? cumulativeError : nil);
+        
+        //Cancel all outstanding operations if the token is expired
+        [[TransferwiseClient sharedClient].operationQueue cancelAllOperations];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            // Ensure notification posted only once. When multiple requests run at once and get expired token error,
-            // then first request clears credentials and posts notification
-            if (![Credentials userLoggedIn]) {
-                return;
-            }
-
-            [AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
-            }];
-			
+            [AuthenticationHelper logOutWithObjectModel:self.objectModel tokenNeedsClearing:NO completionBlock:^{
+                }];
         });
-    } else {
+        } else {
         MCLog(@"Other errors");
         self.operationErrorHandler(cumulativeError);
     }
