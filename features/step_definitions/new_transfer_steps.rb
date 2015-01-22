@@ -14,13 +14,14 @@ end
 def selectCurrency(currencyCode)
   cellQuery = "collectionViewCell label marked:'#{currencyCode}'"	
   cell = query(cellQuery)
-  numberOfRows = query("collectionView index:0", "numberOfItemsInSection:")[0] #
   row = 0
-  while(cell.count() === 0 && row < numberOfRows)	
-  	touch(query("collectionViewCell index:row"))
+  lastTouchedCell = cell;
+  while(cell.count() === 0 && query("collectionViewCell")[row] != lastTouchedCell)	
+  	lastTouchedCell = query("collectionViewCell")[row]
+  	touch(lastTouchedCell)
   	sleep(STEP_PAUSE)
   	cell = query(cellQuery)
-  	row = row + 3
+  	row = query("collectionViewCell").count() - 4
   end
   
   if (cell.count() > 0)
@@ -34,3 +35,25 @@ def selectCurrency(currencyCode)
   	fail(msg="Currency #{currencyCode} not found!")
   end
 end
+
+Given /^I select pay in method (.*)$/ do |methodName|
+  sleep(STEP_PAUSE)
+  tabQuery = "view marked:'#{methodName}"
+  tab = query(tabQuery)
+  if(tab.count > 0)
+  	touch(tab[0])
+  	sleep(STEP_PAUSE)
+  	sleep(STEP_PAUSE)
+  end
+end
+
+Given /^I confirm the transfer$/ do
+  sleep(STEP_PAUSE)
+  touch(query("view marked:'Confirm'"))
+  sleep(STEP_PAUSE)
+  if(query("view marked:'Ok'").count() > 0)
+  		touch(query("view marked:'Ok'"))
+  end
+  wait_for_elements_exist(["view marked:'Creating transfer'"], :timeout => 20)
+end
+

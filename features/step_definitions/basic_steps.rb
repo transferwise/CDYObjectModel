@@ -14,8 +14,13 @@ Given /^I am logged in$/ do
   	done
   	touch(query ("button marked:'Log in'"))
   	wait_for_elements_do_not_exist(["view marked:'Log in'"], :timeout => 20)
+  	sleep(STEP_PAUSE)
   	if(query("view marked:'No'").count() > 0)
   		touch(query("view marked:'No'"))
+  		sleep(STEP_PAUSE)
+  	end
+  	if(query("button marked:'CloseButton'").count() > 0)
+  		touch(query("button marked:'CloseButton'"))
   		sleep(STEP_PAUSE)
   	end
   else
@@ -52,9 +57,12 @@ Given /^I grant access to Address Book in form field (.*)$/ do |key|
 end	
 
 Given /^I enter (.*) into form field (.*)$/ do |value,key|
-    touch(query("label {text CONTAINS '#{key}'}"))
-  	keyboard_enter_text(value)
-  	done
+
+	if (key != "-" and value != "-")
+		touch(query("label {text CONTAINS '#{key}'}"))
+  		keyboard_enter_text(value)
+  		done
+  	end
 end
 
 Given /^I wait a bit$/ do
