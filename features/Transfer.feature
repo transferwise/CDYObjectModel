@@ -1,3 +1,29 @@
+#  CALABASH AUTOMATED UI TESTING iOS
+
+
+#####################################
+# Pre-conditions: 
+# burkskinka@matsomatic.co.uk is a registered user with a filled personal profile on api-sandbox
+#
+# build the calabash-cal target for profiling, as if using instruments
+#
+#####################################
+# Execute in simulator:
+#
+# reset simulator prior to running
+#
+# > cucumber
+#
+#####################################
+# Execute on device: 
+#
+# Build and install for profiling. Close instruments.
+#
+# > BUNDLE_ID=com.transferwise.dev.Transferwise-cal DEVICE_TARGET=<Device UDID> DEVICE_ENDPOINT=http://<device ip on local wifi>:37265 cucumber
+#
+#####################################
+
+
 Feature: Transfer
 	As a customer
 	I want to be able to enter transaction details
