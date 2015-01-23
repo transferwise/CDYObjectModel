@@ -58,13 +58,47 @@ end
 
 Given /^I enter (.*) into form field (.*)$/ do |value,key|
 
+	sleep(STEP_PAUSE)
 	if (key != "-" and value != "-")
-		touch(query("label {text CONTAINS '#{key}'}"))
-  		keyboard_enter_text(value)
-  		done
+		if(key[0,1] == ">")
+			keyName = key[1,key.length-2]
+		    if(query("pickerTableView view marked:'#{value}'").count < 1)
+		    	touch (query("view:'DropdownCell' view text:'#{keyName}'"))
+		    	sleep(STEP_PAUSE)
+		    end
+			touch (query("pickerTableView view marked:'#{value}'"))
+			sleep(STEP_PAUSE)
+			touch (query("view:'DropdownCell' view text:'#{value}'"))
+		else
+			touch(query("textFieldLabel {text CONTAINS '#{key}'}"))
+  			keyboard_enter_text(value)
+  			done
+  		end
   	end
 end
 
 Given /^I wait a bit$/ do
 	sleep(STEP_PAUSE)
+end
+
+Given /^I scroll the table all the way (up|down)$/ do |direction|
+	sections = query("tableView", "numberOfSections")[0]
+	numberOfCells =0;
+	for section in 0..sections-1
+		 numberOfCells = numberOfCells + query("tableView", "numberOfRowsInSection:#{section}")[0].to_i
+	end
+	
+	if (query("tableViewCell").count() < numberOfCells)
+		max_scroll_tries = 10
+   		numberOfVisibleCells = query("tableViewCell").count()
+   		lastCell = query("tableViewCell")[numberOfVisibleCells-1]
+   		[0..max_scroll_tries].each do
+   	 		scroll("tableView", direction)
+			numberOfVisibleCells = query("tableViewCell").count()
+    		newLastCell =  query("tableViewCell")[numberOfVisibleCells-1]
+      		break if (lastCell == newLastCell)
+      		lastCell = newLastCell
+   		end
+   		sleep(STEP_PAUSE)
+   	end
 end

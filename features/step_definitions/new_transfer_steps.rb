@@ -16,12 +16,14 @@ def selectCurrency(currencyCode)
   cell = query(cellQuery)
   row = 0
   lastTouchedCell = cell;
-  while(cell.count() === 0 && query("collectionViewCell")[row] != lastTouchedCell)	
+  numberOfScrolls = 0
+  while(cell.count() === 0 && query("collectionViewCell")[row] != lastTouchedCell && numberOfScrolls < 10)	
   	lastTouchedCell = query("collectionViewCell")[row]
   	touch(lastTouchedCell)
   	sleep(STEP_PAUSE)
   	cell = query(cellQuery)
   	row = query("collectionViewCell").count() - 4
+  	numberOfScrolls = numberOfScrolls + 1
   end
   
   if (cell.count() > 0)
@@ -37,13 +39,15 @@ def selectCurrency(currencyCode)
 end
 
 Given /^I select pay in method (.*)$/ do |methodName|
-  sleep(STEP_PAUSE)
-  tabQuery = "view marked:'#{methodName}"
-  tab = query(tabQuery)
-  if(tab.count > 0)
-  	touch(tab[0])
+  if (methodName != "-")
   	sleep(STEP_PAUSE)
-  	sleep(STEP_PAUSE)
+  	tabQuery = "button marked:'#{methodName}'"
+  	tab = query(tabQuery)
+  	if(tab.count > 0)
+  		touch(tab[0])
+  		sleep(STEP_PAUSE)
+  		sleep(STEP_PAUSE)
+  	end
   end
 end
 
