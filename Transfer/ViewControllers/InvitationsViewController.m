@@ -67,10 +67,6 @@
 		self.profilePictureContainer.hidden = YES;
 		self.indicatorContainer.hidden = NO;
 	}
-	else
-	{
-		[self loadProfileImagesWithUser:user requestAccess:NO];
-	}
 	
     self.title = NSLocalizedString(@"invite.controller.title", nil);
     if(!IPAD)
@@ -89,6 +85,15 @@
 	[[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.numberOfFriends <= 0)
+    {
+        [self loadProfileImagesWithUser:[self.objectModel currentUser] requestAccess:NO];
+    }
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -101,87 +106,97 @@
     AddressBookManager *manager = [[AddressBookManager alloc] init];
     
     [manager getPhoneLookupWithHandler:^(NSArray *phoneLookup) {
-        
-        NSMutableArray* matchingLookups = [[NSMutableArray alloc] initWithCapacity:self.profilePictures.count];
-        
+        NSMutableArray *workArray = [phoneLookup mutableCopy];
+        NSMutableOrderedSet *options = [NSMutableOrderedSet orderedSet];
         NSString* ownNumber = user.personalProfile.phoneNumber;
-        if (ownNumber)
-        {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             
-            //get profiles having pics, at least 2 numbers and of those 1 has the same country code
-            for (PhoneLookupWrapper *wrapper in phoneLookup)
+            NSUInteger totalCount = 0;
+            
+            if (ownNumber)
             {
-                if(matchingLookups.count >= self.profilePictures.count)
+                //get profiles having pics, at least 2 numbers and of those 1 has the same country code
+                for (PhoneLookupWrapper *wrapper in workArray)
                 {
-                    break;
-                }
-                
-                if ([wrapper hasPhonesWithDifferentCountryCodes]
-                    && [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
-                {
-                    [matchingLookups addObject:wrapper];
-                }
-            }
-        }
-        
-        //if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
-        if (matchingLookups.count < self.profilePictures.count)
-        {
-            for (PhoneLookupWrapper *wrapper in phoneLookup)
-            {
-                if ([wrapper hasPhonesWithDifferentCountryCodes]
-                    && [matchingLookups indexOfObject:wrapper] == NSNotFound)
-                {
-                    [matchingLookups addObject:wrapper];
-                    
-                    if (matchingLookups.count >= self.profilePictures.count)
+                    if ([wrapper hasPhonesWithDifferentCountryCodes]
+                        && [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
                     {
-                        break;
+                        totalCount++;
+                        [options addObject:wrapper];
                     }
                 }
+                [workArray removeObjectsInArray:[options array]];
             }
-        }
-        
-        //get images for chosen wrappers
-        NSInteger limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
-        for (NSInteger i = 0; i < limit; i++)
-        {
-            [manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
-                           requestAccess:NO
-                              completion:^(UIImage *image) {
-                                  UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
-                                  [UIView transitionWithView:viewToChange
-                                                    duration:0.5f
-                                                     options:UIViewAnimationOptionTransitionCrossDissolve
-                                                  animations:^{
-                                                      viewToChange.image = image;
-                                                  }
-                                                  completion:nil];
-                              }];
-        }
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            NSUInteger totalCount = limit;
-            if (limit < 1)
+            
+            BOOL didSetImages = NO;
+            if(options.count > [self.profilePictures count])
             {
-                return;
+                NSMutableOrderedSet *selectedOptions = [NSMutableOrderedSet orderedSetWithOrderedSet:options];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self setProfileImagesFromSet:selectedOptions addressBookManager:manager];
+                });
+                
+                didSetImages = YES;
             }
-            if(limit >= [self.profilePictures count])
+            
+            //if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
+            if (options.count < self.profilePictures.count)
             {
-                totalCount = 0;
-                for (PhoneLookupWrapper *wrapper in phoneLookup)
+                for (PhoneLookupWrapper *wrapper in workArray)
                 {
                     if ([wrapper hasPhonesWithDifferentCountryCodes])
                     {
                         totalCount++;
+                        if(!didSetImages)
+                        {
+                            [options addObject:wrapper];
+                        }
                     }
                 }
             }
-            [[GoogleAnalytics sharedInstance] sendEvent:@"expatsfoundinAB" category:@"recipient" label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
+            
+            if(! didSetImages)
+            {
+                NSMutableOrderedSet *selectedOptions = [NSMutableOrderedSet orderedSetWithOrderedSet:options];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self setProfileImagesFromSet:selectedOptions addressBookManager:manager];
+                });
+                
+            }
+            
+            if(totalCount >0)
+            {
+                [[GoogleAnalytics sharedInstance] sendEvent:@"expatsfoundinAB" category:@"recipient" label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
+            }
+            
         });
-        
     }
                          requestAccess:requestAccess];
+}
+
+-(void)setProfileImagesFromSet:(NSMutableOrderedSet*)options addressBookManager:(AddressBookManager*)manager
+{
+    //get images for chosen wrappers
+    NSInteger limit = (options.count < self.profilePictures.count) ? options.count : self.profilePictures.count;
+    for (NSInteger i = 0; i < limit; i++)
+    {
+        NSUInteger index = arc4random_uniform((u_int32_t)options.count);
+        PhoneLookupWrapper* wrapper = options[index];
+        [options removeObject:wrapper];
+        [manager getImageForRecordId:wrapper.recordId requestAccess:NO completion:^(UIImage *image)
+        {
+            UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
+            [UIView transitionWithView:viewToChange
+                              duration:0.5f
+                               options:UIViewAnimationOptionTransitionCrossDissolve
+                            animations:^{
+                                viewToChange.image = image;
+                                [viewToChange layoutIfNeeded];
+                            }
+                            completion:nil];
+        }];
+    }
+
 }
 
 -(void)setProgress:(NSUInteger)progress
