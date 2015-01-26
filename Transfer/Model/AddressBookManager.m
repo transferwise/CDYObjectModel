@@ -162,9 +162,8 @@
     {
         [self performBlockOnMainThread:^{
             completionBlock(cachedResult);
-            return;
         }];
-        
+        return;
     }
     [self getAddressBookAndExecuteInBackground:requestAccess
 								executionBlock:^(BOOL hasAddressBook) {
