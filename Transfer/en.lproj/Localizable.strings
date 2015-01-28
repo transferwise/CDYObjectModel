@@ -85,6 +85,7 @@
 "confirm.payment.header.format.nodate" = "%@\n will reach\n%@'s account";
 "confirm.payment.exchangerate.title.label" = "Estimated rate";
 "confirm.payment.exchangerate.exact.title.label" = "Exchange rate";
+"confirm.payment.fee.title.label" = "Fee";
 "confirm.payment.footer.button.title" = "Confirm";
 "confirm.payment.payment.error.title" = "Couldn't create transfer. Please try again.";
 "confirm.payment.pulling.data" = "Refreshing...";

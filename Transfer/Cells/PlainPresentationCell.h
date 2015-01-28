@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PresentationCell.h"
 
 #define PlainPresentationCellIdentifier @"PlainPresentationCell"
 
-@interface PlainPresentationCell : UITableViewCell
+@interface PlainPresentationCell : PresentationCell
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 
