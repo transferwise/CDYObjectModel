@@ -13,7 +13,7 @@
 
 @class PaymentFlow;
 @class ObjectModel;
-@class Payment;
+@class PendingPayment;
 @class ConfirmPaymentCell;
 
 typedef NS_ENUM(short, ConfirmPaymentReportingType) {
@@ -27,7 +27,7 @@ typedef NS_ENUM(short, ConfirmPaymentReportingType) {
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) id<PaymentValidation> paymentValidator;
 @property (nonatomic, strong) ObjectModel *objectModel;
-@property (nonatomic, strong) Payment *payment;
+@property (nonatomic, strong) PendingPayment *payment;
 @property (nonatomic, assign) BOOL showContactSupportCell;
 @property (nonatomic, assign) ConfirmPaymentReportingType reportingType;
 @property (nonatomic, copy) TRWActionBlock sucessBlock;
