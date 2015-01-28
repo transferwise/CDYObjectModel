@@ -11,7 +11,7 @@
 #import "MOMStyle.h"
 
 #define kInOutAnimationduration 0.3f
-#define kCommonAnimationduration 0.2f
+#define kCommonAnimationduration 0.3f
 
 @interface TransparentModalViewController ()
 
@@ -213,6 +213,7 @@
         [postAnimationConstraintConstants addObject:@(constraint.constant)];
         constraint.constant = (constraint.constant >= 0 ? -1 : 1) * view.bounds.size.width;
         NSLog(@"%@",constraint.description);
+        view.alpha = 0.4f;
         view.hidden = NO;
         [view layoutIfNeeded];
     }
@@ -228,12 +229,21 @@
         {
             view.alpha = 1.0f;
         }
+        
         for(int i = 0; i < [postAnimationConstraintConstants count]; i++)
         {
             NSLayoutConstraint *constraint = self.slideInAnimationConstraints[i];
             UIView *view = self.slideInAnimationViews[i];
             constraint.constant = [postAnimationConstraintConstants[i] floatValue];
             [view layoutIfNeeded];
+        }
+    } completion:nil];
+    
+    [UIView animateWithDuration:kCommonAnimationduration+1 delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        for(int i = 0; i < [postAnimationConstraintConstants count]; i++)
+        {
+            UIView *view = self.slideInAnimationViews[i];
+            view.alpha = 1.0f;
         }
     } completion:nil];
     
