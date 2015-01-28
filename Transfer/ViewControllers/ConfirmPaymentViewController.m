@@ -255,6 +255,12 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.hud hide];
+    [super viewWillDisappear:animated];
+}
+
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
         [self setupForOrientation:toInterfaceOrientation];
@@ -496,7 +502,6 @@
 	
 	[self.paymentValidator setObjectModel:self.objectModel];
 	[self.paymentValidator setSuccessBlock:^{
-		[weakSelf.hud hide];
 		weakSelf.sucessBlock();
 	}];
 	[self.paymentValidator setErrorBlock:^(NSError *error) {
