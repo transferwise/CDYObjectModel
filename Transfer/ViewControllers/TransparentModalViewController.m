@@ -10,6 +10,9 @@
 #import "UIView+RenderBlur.h"
 #import "MOMStyle.h"
 
+#define kInOutAnimationduration 0.3f
+#define kCommonAnimationduration 0.2f
+
 @interface TransparentModalViewController ()
 
 @property (nonatomic, weak) UIImageView* blurImageView;
@@ -28,6 +31,11 @@
     {
         self.view.bgStyle = [self.view.bgStyle stringByAppendingString:@".iOS8alpha"];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -78,6 +86,15 @@
     [hostViewcontroller.view insertSubview:blurView belowSubview:self.view];
     blurView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
+    for(UIView* slideView in self.slideInAnimationViews)
+    {
+        slideView.hidden = YES;
+    }
+    for(UIView* fadeView in self.fadeInAnimationViews)
+    {
+        fadeView.hidden = YES;
+    }
+    
     switch (presentationStyle) {
         case TransparentPresentationFade:
             [self animateFadeIn];
@@ -126,18 +143,20 @@
     self.view.frame = newFrame;
     newFrame.size.height = 0.0f;
     blurView.frame=newFrame;
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:kInOutAnimationduration delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.frame = self.hostViewController.view.bounds;
         blurView.frame = self.hostViewController.view.bounds;
         
-    } completion:nil];
+    } completion:^(BOOL finished) {
+        [self commonPresentationAnimation];
+    }];
 }
 
 -(void)animateSlideOut
 {
     UIView *blurView = self.blurImageView?:self.blurEffectView;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [UIView animateWithDuration:0.3f
+    [UIView animateWithDuration:kInOutAnimationduration
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -163,22 +182,61 @@
     blurView.frame=newFrame;
     self.view.hidden = YES;
     blurView.hidden = YES;
-    [UIView transitionWithView:self.hostViewController.view duration:0.3 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView transitionWithView:self.hostViewController.view duration:kInOutAnimationduration options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.view.hidden = NO;
         blurView.hidden = NO;
-    } completion:nil];
+    } completion:^(BOOL finished) {
+        [self commonPresentationAnimation];
+    }];
 }
 
 -(void)animateFadeOut
 {
     UIView *blurView = self.blurImageView?:self.blurEffectView;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [UIView transitionWithView:self.hostViewController.view duration:0.3 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView transitionWithView:self.hostViewController.view duration:kInOutAnimationduration options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.view.hidden = YES;
         blurView.hidden = YES;
     } completion:^(BOOL finished) {
         [self dismissAnimationCompletionWithBlurview:blurView];
     }];
+}
+
+-(void)commonPresentationAnimation
+{
+    NSUInteger slidingAnimationsCount = MIN([self.slideInAnimationViews count],[self.slideInAnimationConstraints count]);
+    NSMutableArray* postAnimationConstraintConstants = [NSMutableArray arrayWithCapacity:slidingAnimationsCount];
+    for (int i = 0; i< slidingAnimationsCount; i++)
+    {
+        NSLayoutConstraint *constraint = self.slideInAnimationConstraints[i];
+        UIView *view = self.slideInAnimationViews[i];
+        [postAnimationConstraintConstants addObject:@(constraint.constant)];
+        constraint.constant = (constraint.constant >= 0 ? -1 : 1) * view.bounds.size.width;
+        NSLog(@"%@",constraint.description);
+        view.hidden = NO;
+        [view layoutIfNeeded];
+    }
+    
+    for (UIView *view in self.fadeInAnimationViews)
+    {
+        view.alpha = 0.0f;
+        view.hidden = NO;
+    }
+    
+    [UIView animateWithDuration:kCommonAnimationduration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        for (UIView *view in self.fadeInAnimationViews)
+        {
+            view.alpha = 1.0f;
+        }
+        for(int i = 0; i < [postAnimationConstraintConstants count]; i++)
+        {
+            NSLayoutConstraint *constraint = self.slideInAnimationConstraints[i];
+            UIView *view = self.slideInAnimationViews[i];
+            constraint.constant = [postAnimationConstraintConstants[i] floatValue];
+            [view layoutIfNeeded];
+        }
+    } completion:nil];
+    
 }
 
 -(void)dismissAnimationCompletionWithBlurview:(UIView*)blurView
