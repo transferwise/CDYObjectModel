@@ -3547,6 +3547,8 @@
 			children = (
 				47F667661A1DD2A0003C018A /* AchFlow.h */,
 				47F667671A1DD2A0003C018A /* AchFlow.m */,
+				4735E4D31992258C00F41D1E /* AuthenticationHelper.h */,
+				4735E4D41992258C00F41D1E /* AuthenticationHelper.m */,
 				EAEA6255172011C500A96770 /* CalculationResult.h */,
 				EAEA6256172011C500A96770 /* CalculationResult.m */,
 				3887CBBC1976AF2B004DFFFD /* CancelHelper.h */,
@@ -3557,8 +3559,6 @@
 				47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */,
 				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
 				EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */,
-				4735E4D31992258C00F41D1E /* AuthenticationHelper.h */,
-				4735E4D41992258C00F41D1E /* AuthenticationHelper.m */,
 				EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */,
 				EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */,
 				EAAF8FB61743B3E4008DF9E2 /* MoneyFormatter.h */,
