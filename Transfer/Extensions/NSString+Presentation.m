@@ -111,6 +111,11 @@
     NSString *formatted = [[MoneyFormatter sharedInstance] formatAmount:moneyNumber];
 
     formatted = [formatted stringByReplacingOccurrencesOfString:@".00" withString:cents];
+    
+    if(formatted.length == 0 && cents.length >0)
+    {
+        formatted = cents;
+    }
 
     return formatted;
 }
