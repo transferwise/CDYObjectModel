@@ -452,6 +452,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 {
 	self.allRecipients = nil;
 	[self.tableView reloadData];
+    [self presentDetail:nil];
 }
 
 @end
