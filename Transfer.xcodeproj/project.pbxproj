@@ -162,6 +162,7 @@
 		385669191981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */; };
 		3856691D198157C600BC4230 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856691C198157C600BC4230 /* CircleStyle.m */; };
 		3856691E198157C600BC4230 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856691C198157C600BC4230 /* CircleStyle.m */; };
+		3856960D1A7A4C4C00D9F833 /* CalculationResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3856960C1A7A4C4C00D9F833 /* CalculationResultTests.swift */; };
 		3859E7AE1A65670300B85A3F /* NewPaymentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */; };
 		3859E7AF1A65670300B85A3F /* NewPaymentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */; };
 		3859E7B01A65670300B85A3F /* NewPaymentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */; };
@@ -1608,6 +1609,7 @@
 		385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContactDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		3856691B198157C600BC4230 /* CircleStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircleStyle.h; path = CustomStyles/CircleStyle.h; sourceTree = "<group>"; };
 		3856691C198157C600BC4230 /* CircleStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircleStyle.m; path = CustomStyles/CircleStyle.m; sourceTree = "<group>"; };
+		3856960C1A7A4C4C00D9F833 /* CalculationResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationResultTests.swift; sourceTree = "<group>"; };
 		3859E7AC1A65670300B85A3F /* NewPaymentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPaymentHelper.h; sourceTree = "<group>"; };
 		3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPaymentHelper.m; sourceTree = "<group>"; };
 		385A66841977C9A200D00D1F /* GrayRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrayRoundedButton.h; path = Views/GrayRoundedButton.h; sourceTree = "<group>"; };
@@ -2530,6 +2532,14 @@
 			name = CustomStyles;
 			sourceTree = "<group>";
 		};
+		385696091A7A4BEE00D9F833 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3856960C1A7A4C4C00D9F833 /* CalculationResultTests.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		385A66881977D19700D00D1F /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2808,6 +2818,7 @@
 		47DC89821A03950F0042054B /* TransferTests */ = {
 			isa = PBXGroup;
 			children = (
+				385696091A7A4BEE00D9F833 /* Utils */,
 				474206FE1A5A671600DF6477 /* PaymentFlow */,
 				47C1F7551A44446600014F55 /* Extensions */,
 				476EB8EA1A15030E00E4E392 /* TransferTests-Bridging-Header.h */,
@@ -4782,6 +4793,7 @@
 			files = (
 				476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */,
 				474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */,
+				3856960D1A7A4C4C00D9F833 /* CalculationResultTests.swift in Sources */,
 				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
 				474207031A5BF4AB00DF6477 /* XCTestCase+Exceptions.m in Sources */,

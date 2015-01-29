@@ -68,6 +68,10 @@
 
 - (void)setupWithResult:(CalculationResult *)result {
     [self.transferwiseTransferFeeLabel setText:result.transferwiseTransferFeeStringWithCurrency];
+    if([result isFeeZero])
+    {
+        self.transferwiseTransferFeeLabel.text = [self.transferwiseTransferFeeLabel.text stringByAppendingString:NSLocalizedString(@"why.popup.tw.fee.free", nil)];
+    }
     [self.bankRateLabel setText:result.bankRateString];
     self.transferwiseRateLabel.text = result.transferwiseRateString;
     [self.bankTransferFeeLabel setText:result.bankTotalFeeStringWithCurrency];

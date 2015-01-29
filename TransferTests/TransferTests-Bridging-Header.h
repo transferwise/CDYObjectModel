@@ -33,3 +33,4 @@
 #import "Currency.h"
 #import "TransparentModalViewController.h"
 #import "CustomInfoViewController.h"
+#import "CalculationResult.h"
