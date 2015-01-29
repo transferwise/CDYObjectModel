@@ -533,6 +533,10 @@
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
+        if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
+        {
+            self.cachedInsets = tableView.contentInset;
+        }
         
         CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height - newframe.origin.y;
         
@@ -552,11 +556,6 @@
                 [UIView setAnimationDuration:duration];
                 [UIView setAnimationCurve:curve];
                 [UIView setAnimationBeginsFromCurrentState:YES];
-                
-                if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, kInsetsNotSet))
-                {
-                    self.cachedInsets = tableView.contentInset;
-                }
                 
                 UIEdgeInsets newInsets = self.cachedInsets;
                 newInsets.bottom += overlap;
