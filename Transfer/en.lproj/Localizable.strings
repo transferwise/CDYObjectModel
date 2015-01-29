@@ -180,6 +180,8 @@ your friends to TransferWise";
 "introduction.savings.message.part1.ipad" = "You'll save";
 "introduction.savings.message.part2" = "vs your bank";
 "introduction.savings.message.part2.ipad" = "vs your bank";
+"introduction.savings.message.part2.no.fee" = "vs your bank \nas you earned a free transfer";
+"introduction.savings.message.part2.no.fee.ipad" = "vs your bank as you earned a free transfer";
 "introduction.savings.message.how" = "See how";
 "introduction.savings.message.how.ipad" = "See how";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
@@ -511,6 +513,7 @@ This can't be undone.";
 "why.popup.vs" = "VS";
 "why.popup.rate" = "EXCHANGE\nRATE";
 "why.popup.fee" = "COST";
+"why.popup.tw.fee.free" = " (Free)";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
 "errors.TRWErrorDomain.1.message" = "Could not read server response.";

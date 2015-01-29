@@ -251,6 +251,16 @@ static NSUInteger const kRowYouSend = 0;
     {
         self.amountLabel.text = [result payWinAmountWithCurrency];
     }
+    
+    if([result isFeeZero])
+    {
+        self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2.no.fee" deviceSpecificLocalization], nil);
+    }
+    else
+    {
+        self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2" deviceSpecificLocalization], nil);
+    }
+    [self.vsLabel layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated

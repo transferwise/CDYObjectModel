@@ -301,6 +301,10 @@
     
     NSString* exchangeRate = [NSString stringWithFormat:@"%f",payment.conversionRateValue];
     NSString* fee = [NSString stringWithFormat:@"%0.2f %@",[payment transferwiseTransferFeeValue],payment.sourceCurrency.code];
+    if(ABS([payment transferwiseTransferFeeValue]) < 0.005f)
+    {
+        fee = [fee stringByAppendingString:NSLocalizedString(@"why.popup.tw.fee.free", nil)];
+    }
     [self.exchangeRateCell setValues:exchangeRate, fee, nil];
 	
 

@@ -38,6 +38,7 @@
 - (NSString *)calculatedPayWinAmountWithCurrency;
 - (NSString *)payWinAmountWithCurrency;
 - (BOOL)isFixedTargetPayment;
+- (BOOL)isFeeZero;
 
 + (CalculationResult *)resultWithData:(NSDictionary *)data;
 + (NSString *)rateStringFrom:(NSNumber *)number;
