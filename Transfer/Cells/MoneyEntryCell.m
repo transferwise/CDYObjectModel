@@ -100,14 +100,22 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     for (int i=0; i < range.location + [string length]; i++)
     {
         char character = [modified characterAtIndex:i];
-        if((character >= '1' && character <= '9') || (numberOfNumbersBefore > 0 && character == '0') || character == '.')
+        if((character >= '1' && character <= '9') || (numberOfNumbersBefore > 0 && character == '0') || character == '.' || character == ',')
         {
             numberOfNumbersBefore++;
         }
     }
     
-    if (![string isEqualToString:@","] && ![string isEqualToString:@"."] && [self entryBelowMaxAmount:modified])
+    if ([self entryBelowMaxAmount:modified])
 	{
+        if([string isEqualToString:@"."] || [string isEqualToString:@","])
+        {
+            if([textField.text rangeOfString:@"."].location != NSNotFound)
+            {
+                return NO;
+            }
+            modified = [textField.text stringByReplacingCharactersInRange:range withString:@"."];
+        }
         modified = [modified moneyFormatting];
         [textField setText:modified];
         [textField sendActionsForControlEvents:UIControlEventEditingChanged];
@@ -132,16 +140,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
         [textField moveCaretToAfterRange:NSMakeRange(newCaretPosition, 0)];
         
         return NO;
-    }
-
-    if (![self entryBelowMaxAmount:modified])
-	{
-        return NO;
-    }
-
-    if ([string isEqualToString:@"."] && [textField.text rangeOfString:@"."].location == NSNotFound)
-	{
-        return YES;
     }
 
     return NO;
