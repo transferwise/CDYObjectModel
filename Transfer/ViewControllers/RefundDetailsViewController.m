@@ -102,9 +102,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }];
 
 
-    [presentedSections addObject:@[nameCell]];
-
-    [presentedSections addObject:@[]];
+    [presentedSections addObjectsFromArray:@[@[],@[nameCell],@[],@[]]];
 
     if([self hasMoreThanOneTableView])
     {
@@ -248,11 +246,11 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self setRecipientTypeFieldCells:cells];
     if([self hasMoreThanOneTableView])
     {
-        [self setSectionCellsByTableView:@[@[@[self.holderNameCell]],@[cells]]];
+        [self setSectionCellsByTableView:@[@[@[],@[self.holderNameCell]],@[@[],cells]]];
     }
     else
     {
-        [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
+        [self setSectionCellsByTableView:@[@[@[],@[self.holderNameCell],@[], cells]]];
     }
 
     [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
@@ -322,7 +320,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
     else
     {
-        if (section == 1)
+        if (section == 2)
         {
             return self.transferTypeSelectionHeader.frame.size.height;
         }
@@ -344,7 +342,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
     else
     {
-        if (section == 1)
+        if (section == 2)
         {
             return self.transferTypeSelectionHeader;
 

@@ -85,6 +85,7 @@
 "confirm.payment.header.format.nodate" = "%@\n arrivera sur le compte de \n%@";
 "confirm.payment.exchangerate.title.label" = "Taux de change estimé";
 "confirm.payment.exchangerate.exact.title.label" = "Taux de change";
+"confirm.payment.fee.title.label" = "Coût";
 "confirm.payment.footer.button.title" = "Confirmer";
 "confirm.payment.payment.error.title" = "Le transfert n'a pas pu etre crée. Reéssayez.";
 "confirm.payment.pulling.data" = "Refraichissement...";
@@ -177,7 +178,8 @@ vos amis sur TransferWise";
 "introduction.savings.message.part1" = "Vous économisez";
 "introduction.savings.message.part1.ipad" = "Vous économisez";
 "introduction.savings.message.part2" = "avec TransferWise";
-"introduction.savings.message.part2.ipad" = "par rapport à votre banque";
+"introduction.savings.message.part2.ipad" = "par rapport à votre banque ";
+"introduction.savings.message.part2.no.fee" = "par rapport à votre banque que vous avez gagné un transfert gratuit";
 "introduction.savings.message.how" = "Voir explication";
 "introduction.savings.message.how.ipad" = "Voir explication";
 "introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.
@@ -507,6 +509,7 @@ C'est irréversible.";
 "why.popup.vs" = "Vs";
 "why.popup.rate" = "TAUX DE\nCHANGE";
 "why.popup.fee" = "COUT";
+"why.popup.tw.fee.free" = " (Gratuit)";
 
 "errors.CRD_NOT_VALID.message" = "Identifiants incorrects.";
 "errors.TRWErrorDomain.1.message" = "Impossible de lire réponse du serveur.";

@@ -16,6 +16,9 @@
                 <outlet property="titleLabel" destination="wSR-ns-7AU" id="A4X-3k-cc4"/>
                 <outlet property="touchIdButton" destination="XXZ-rx-PM7" id="0XT-J7-F5V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="fadeInAnimationViews" destination="wSR-ns-7AU" id="oKg-as-iMm"/>
+                <outletCollection property="slideInAnimationViews" destination="GCT-Rm-NS4" id="6Tw-hJ-mAZ"/>
+                <outletCollection property="slideInAnimationConstraints" destination="0sh-ch-ENZ" id="U1m-ie-mhP"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

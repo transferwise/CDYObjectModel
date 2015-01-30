@@ -19,6 +19,7 @@
 #import "PairTargetCurrency.h"
 #import "RecipientTypesOperation.h"
 #import "CurrenciesOperation.h"
+#import "GoogleAnalytics.h"
 
 NSString *const NewTransferErrorDomain = @"NewTransferError";
 NSString *const NewTransferNetworkOperationErrorKey = @"NetworkOperationError";
@@ -72,6 +73,8 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
     
     self.currentOperation = operation;
     [operation execute];
+    
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferSelected"];
     
 }
 

@@ -30,7 +30,7 @@
 #import "TransferBackButtonItem.h"
 #import "AddressBookManager.h"
 
-@interface ContactDetailsViewController ()<UITableViewDataSource>
+@interface ContactDetailsViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerBackground;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
@@ -39,7 +39,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *flagIcon;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIView *imageContainerView;
 
+
+@property (assign, nonatomic) CGFloat headerWidthHeightRatio;
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *headerImagesHeightConstraints;
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *headerImagesWidthConstraints;
 
 @end
 
@@ -62,6 +67,7 @@
     UINib * cellNib = [UINib nibWithNibName:@"PlainPresentationCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView reloadData];
+    self.tableView.delegate = self;
 	
     NSMutableAttributedString* nameString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ - %@", self.recipient.name, self.recipient.currency.code]];
     NSRange hyphenRange = NSMakeRange([self.recipient.name length], 3);
@@ -104,6 +110,7 @@
     {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }
+    [self.headerBackground layoutIfNeeded];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -171,5 +178,26 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+#pragma mark - scroll view delegate
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if(self.headerWidthHeightRatio == 0.0f)
+    {
+        self.headerWidthHeightRatio = self.imageContainerView.bounds.size.width / self.imageContainerView.bounds.size.height;
+    }
+    CGFloat contentOffset = scrollView.contentOffset.y < 0 ? scrollView.contentOffset.y : 0;
+
+    for (int i = 0; i < self.headerImagesHeightConstraints.count; i++)
+    {
+        NSLayoutConstraint * heightConstraint = self.headerImagesHeightConstraints[i];
+        heightConstraint.constant = self.imageContainerView.bounds.size.height - contentOffset*5;
+        NSLayoutConstraint * widthconstraint = self.headerImagesWidthConstraints[i];
+        widthconstraint.constant = heightConstraint.constant * self.headerWidthHeightRatio;
+    }
+    
+    [self.imageContainerView layoutIfNeeded];
+}
 
 @end

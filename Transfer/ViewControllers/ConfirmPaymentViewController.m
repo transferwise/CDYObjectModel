@@ -45,7 +45,7 @@
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
 @property (nonatomic, strong) PlainPresentationCell *yourDepositCell;
-@property (nonatomic, strong) PlainPresentationCell *exchangedToCell;
+@property (nonatomic, strong) PresentationCell *exchangeRateCell;
 @property (nonatomic, strong) PlainPresentationCell *senderEmailCell;
 @property (nonatomic, strong) PlainPresentationCell *receiverAmountCell;
 @property (nonatomic, strong) PlainPresentationCell *estimatedDeliveryCell;
@@ -93,6 +93,7 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TwoFieldPresentationCell" bundle:nil] forCellReuseIdentifier:@"TwoFieldPresentationCell"];
     
     //Set background colour again because of ios 8.1 bug
     self.tableView.bgStyle = self.tableView.bgStyle;
@@ -122,8 +123,8 @@
         yourDepositCell.backgroundColor = [UIColor clearColor];
         [cells addObject:yourDepositCell];
         
-        PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-        [self setExchangedToCell:exchangedToCell];
+        PresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:@"TwoFieldPresentationCell"];
+        [self setExchangeRateCell:exchangedToCell];
         exchangedToCell.backgroundColor = [UIColor clearColor];
         [cells addObject:exchangedToCell];
         
@@ -165,8 +166,8 @@
         [self setReceiverFieldCells:fieldCells];
         [cells addObjectsFromArray:fieldCells];
       
-        PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-        [self setExchangedToCell:exchangedToCell];
+        PresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:@"TwoFieldPresentationCell"];
+        [self setExchangeRateCell:exchangedToCell];
         [cells addObject:exchangedToCell];
         
         for(UITableView* cell in cells)
@@ -254,6 +255,12 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.hud hide];
+    [super viewWillDisappear:animated];
+}
+
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
         [self setupForOrientation:toInterfaceOrientation];
@@ -284,11 +291,22 @@
 
 - (void)fillDataCells
 {
-    Payment *payment = self.payment;
+    PendingPayment *payment = self.payment;
     
     [self.yourDepositCell configureWithTitle:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.deposit.fixed.title.label":@"confirm.payment.deposit.title.label", nil) text:[payment payInStringWithCurrency]];
     
-	[self.exchangedToCell configureWithTitle:NSLocalizedString([@"usd" caseInsensitiveCompare:self.payment.sourceCurrency.code] == NSOrderedSame ? @"confirm.payment.exchangerate.exact.title.label" : @"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
+    NSString *exchangeRateTitle = NSLocalizedString([@"usd" caseInsensitiveCompare:self.payment.sourceCurrency.code] == NSOrderedSame ? @"confirm.payment.exchangerate.exact.title.label" : @"confirm.payment.exchangerate.title.label", nil);
+    NSString *feeTitle =  NSLocalizedString(@"confirm.payment.fee.title.label", nil);
+    [self.exchangeRateCell setTitles:exchangeRateTitle,feeTitle, nil];
+    
+    NSString* exchangeRate = [NSString stringWithFormat:@"%f",payment.conversionRateValue];
+    NSString* fee = [NSString stringWithFormat:@"%0.2f %@",[payment transferwiseTransferFeeValue],payment.sourceCurrency.code];
+    if(ABS([payment transferwiseTransferFeeValue]) < 0.005f)
+    {
+        fee = [fee stringByAppendingString:NSLocalizedString(@"why.popup.tw.fee.free", nil)];
+    }
+    [self.exchangeRateCell setValues:exchangeRate, fee, nil];
+	
 
     
     if(!IPAD)
@@ -488,7 +506,6 @@
 	
 	[self.paymentValidator setObjectModel:self.objectModel];
 	[self.paymentValidator setSuccessBlock:^{
-		[weakSelf.hud hide];
 		weakSelf.sucessBlock();
 	}];
 	[self.paymentValidator setErrorBlock:^(NSError *error) {

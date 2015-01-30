@@ -10,9 +10,21 @@
 
 @implementation PlainPresentationCell
 
+-(void)awakeFromNib
+{
+    NSMutableOrderedSet* titleLabels = [NSMutableOrderedSet orderedSetWithArray:self.titleLabels];
+    [titleLabels addObject:self.headerLabel];
+    self.titleLabels = [titleLabels array];
+
+    NSMutableOrderedSet* valueLabels = [NSMutableOrderedSet orderedSetWithArray:self.valueLabels];
+    [valueLabels addObject:self.valueLabel];
+    self.valueLabels = [valueLabels array];
+
+}
+
 - (void)configureWithTitle:(NSString *)title text:(NSString *)text {
-    [self.headerLabel setText:title];
-    [self.valueLabel setText:text];
+    [self setTitles:title, nil];
+    [self setValues:text, nil];
 }
 
 @end
