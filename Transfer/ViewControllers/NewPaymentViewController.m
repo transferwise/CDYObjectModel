@@ -45,6 +45,7 @@
 #import "NavigationBarCustomiser.h"
 #import "NewPaymentHelper.h"
 
+
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
 
@@ -252,7 +253,7 @@ static NSUInteger const kRowYouSend = 0;
         self.amountLabel.text = [result payWinAmountWithCurrency];
     }
     
-    if([result isFeeZero])
+    if([result isFeeZero] && self.view.bounds.size.height > 480)
     {
         self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2.no.fee" deviceSpecificLocalization], nil);
     }
@@ -297,6 +298,7 @@ static NSUInteger const kRowYouSend = 0;
 	{
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
