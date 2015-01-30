@@ -102,7 +102,7 @@
     NSString *cents = @"";
     NSRange dotLocation = [workingCopy rangeOfString:@"."];
     if (dotLocation.location != NSNotFound) {
-        cents = [workingCopy substringFromIndex:dotLocation.location];
+        cents = [[workingCopy substringFromIndex:dotLocation.location] stringByReplacingOccurrencesOfString:@" " withString:@""];
     }
 
     NSString *money = [workingCopy stringByReplacingOccurrencesOfString:cents withString:@""];
