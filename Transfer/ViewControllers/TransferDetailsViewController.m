@@ -234,8 +234,8 @@
 
         [weakSelf setPaymentFlow:paymentFlow];
         
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferCurrency1Selected" withLabel:weakSelf.payment.sourceCurrency.code];
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferCurrency2Selected" withLabel:weakSelf.payment.targetCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:weakSelf.payment.sourceCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:weakSelf.payment.targetCurrency.code];
         
         
         [paymentFlow setObjectModel:weakSelf.objectModel];
