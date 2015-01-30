@@ -153,6 +153,11 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     return YES;
 }
 
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    textField.text = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+}
+
 - (BOOL)entryBelowMaxAmount:(NSString *)amountString
 {
     //TODO: quick hack, needs something more solid and fuctional
