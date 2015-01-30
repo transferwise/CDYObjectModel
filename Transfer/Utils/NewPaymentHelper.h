@@ -29,7 +29,8 @@ typedef NS_ENUM(short, NewTransferError)
     USDPayinTooLow,
     CurrenciesOperationFailed,
     RecipientTypesOperationFailed,
-    CalculationOperationFailed
+    CalculationOperationFailed,
+    DataMissing
 };
 
 @interface NewPaymentHelper : NSObject

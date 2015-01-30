@@ -56,7 +56,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.currentOperation = nil;
             if (result) {
-                [self createPendingPaymentWithObjectModel:objectModel source:sourceCurrency target:targetCurrency calculationResult:result recipient:paymentToRepeat.recipient profile:paymentToRepeat.profileUsed successBlock:^(PendingPayment *payment) {
+                [weakSelf createPendingPaymentWithObjectModel:objectModel source:sourceCurrency target:targetCurrency calculationResult:result recipient:paymentToRepeat.recipient profile:paymentToRepeat.profileUsed successBlock:^(PendingPayment *payment) {
                     payment.paymentReference = paymentToRepeat.paymentReference;
                     if(successBlock)
                     {
@@ -66,7 +66,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
             }
             else
             {
-                [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CalculationOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
+                [weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CalculationOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
             }
         });
     }];
@@ -84,9 +84,15 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
     PairTargetCurrency *target = [objectModel pairTargetWithSource:sourceCurrency target:targetCurrency];
     NSNumber *payIn = [result transferwisePayIn];
     
+    if(!source || !target || !payIn)
+    {
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:PayInTooLow userInfo:nil]];
+        return;
+    }
+    
     if (![target acceptablePayIn:payIn])
     {
-        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:PayInTooLow userInfo:@{NewTransferMinimumAmountKey:target.minInvoiceAmount, NewTransferSourceCurrencyCodeKey:target.source.currency.code}]];
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:DataMissing userInfo:@{NewTransferMinimumAmountKey:target.minInvoiceAmount, NewTransferSourceCurrencyCodeKey:target.source.currency.code}]];
         return;
     }
     else if (![source acceptablePayIn:payIn])
