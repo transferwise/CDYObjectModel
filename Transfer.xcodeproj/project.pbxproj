@@ -188,6 +188,9 @@
 		38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
 		386B039C19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */; };
 		386B039D19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */; };
+		38705C671A7BDD5F002EB14B /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38705C661A7BDD5F002EB14B /* CopyLabel.m */; };
+		38705C681A7BDD5F002EB14B /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38705C661A7BDD5F002EB14B /* CopyLabel.m */; };
+		38705C691A7BDD5F002EB14B /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38705C661A7BDD5F002EB14B /* CopyLabel.m */; };
 		3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */; };
 		3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */; };
 		3876769119BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */; };
@@ -1624,6 +1627,8 @@
 		38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeaderNoTitle~ipad.xib"; sourceTree = "<group>"; };
 		386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewControllerUpfront.xib; sourceTree = "<group>"; };
+		38705C651A7BDD5F002EB14B /* CopyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyLabel.h; sourceTree = "<group>"; };
+		38705C661A7BDD5F002EB14B /* CopyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyLabel.m; sourceTree = "<group>"; };
 		3876768C19BF4914007B0EE5 /* CustomInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoViewController.h; sourceTree = "<group>"; };
 		3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoViewController.m; sourceTree = "<group>"; };
 		3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoViewController.xib; sourceTree = "<group>"; };
@@ -2878,6 +2883,8 @@
 				38CC81A41A1E368F007D965A /* ACHCheckView.m */,
 				38CC81A71A1E36A2007D965A /* ACHCheckView.xib */,
 				3886320E1A41D8140033CB32 /* ACHCheckView~ipad.xib */,
+				38705C651A7BDD5F002EB14B /* CopyLabel.h */,
+				38705C661A7BDD5F002EB14B /* CopyLabel.m */,
 				38B093011951FA2A00315BE4 /* DataEntryDefaultHeader.h */,
 				38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */,
 				38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */,
@@ -4766,6 +4773,7 @@
 				388E5AEA1A5A949500AF6EB9 /* UIDevice-Hardware.m in Sources */,
 				388E5AEB1A5A949500AF6EB9 /* ObjectModel+Users.m in Sources */,
 				388E5AEC1A5A949500AF6EB9 /* ObjectModel.m in Sources */,
+				38705C691A7BDD5F002EB14B /* CopyLabel.m in Sources */,
 				3859E7B01A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				388E5AED1A5A949500AF6EB9 /* ReferralsCoordinator.m in Sources */,
 				388E5AEE1A5A949500AF6EB9 /* FeedbackCoordinator.m in Sources */,
@@ -5096,6 +5104,7 @@
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				389F6834198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6836198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
+				38705C681A7BDD5F002EB14B /* CopyLabel.m in Sources */,
 				3859E7AF1A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
@@ -5287,6 +5296,7 @@
 				389F684B198FC1C6006CF1F6 /* Setting.m in Sources */,
 				389F681B198FC1C6006CF1F6 /* BusinessProfile.m in Sources */,
 				38CE6E181A27360300B39665 /* UITextField+CaretPosition.m in Sources */,
+				38705C671A7BDD5F002EB14B /* CopyLabel.m in Sources */,
 				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
 				3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
