@@ -104,6 +104,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
    if([@"USD" caseInsensitiveCompare:sourceCurrency.code] == NSOrderedSame && [payIn floatValue] < 3.0f)
    {
        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:USDPayinTooLow userInfo:@{NewTransferMinimumAmountKey:@(3), NewTransferSourceCurrencyCodeKey:@"USD"}]];
+       return;
    }
     
     RecipientTypesOperation *operation = [RecipientTypesOperation operation];
