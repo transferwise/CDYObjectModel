@@ -86,13 +86,13 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
     
     if(!source || !target || !payIn)
     {
-        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:PayInTooLow userInfo:nil]];
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:DataMissing userInfo:nil]];
         return;
     }
     
     if (![target acceptablePayIn:payIn])
     {
-        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:DataMissing userInfo:@{NewTransferMinimumAmountKey:target.minInvoiceAmount, NewTransferSourceCurrencyCodeKey:target.source.currency.code}]];
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:PayInTooLow userInfo:@{NewTransferMinimumAmountKey:target.minInvoiceAmount, NewTransferSourceCurrencyCodeKey:target.source.currency.code}]];
         return;
     }
     else if (![source acceptablePayIn:payIn])
