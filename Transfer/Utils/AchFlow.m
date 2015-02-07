@@ -114,16 +114,17 @@
 																							 detailsController.willDismiss = NO;
 																							 [weakSelf.waitingViewController dismiss];
 																						 }
-																							successBlock:nil
-																									flow:weakSelf];
+																						successBlock:nil
+																								flow:weakSelf];
 															  return;
 														  }
 													  }
 													  [weakSelf handleResultWithError:error
-																		successBlock:^{
-																			UIViewController *loginController = [weakSelf getLoginForm:form];
-																			[controller pushViewController:loginController animated:YES];
-																		}
+																		 successBlock:^{
+																			 [weakSelf pushLoginController:form
+																								  weakSelf:weakSelf
+																								controller:controller];
+																		 }
 																	  trackErrorBlock:^(NSString* messages){
 																		  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
 																												 withLabel:messages];
@@ -133,6 +134,14 @@
 												  
 												  [self.executedOperation execute];
 											  }];
+}
+
+- (void)pushLoginController:(AchBank *)form
+				   weakSelf:(AchFlow *)weakSelf
+				 controller:(UINavigationController *)controller
+{
+	UIViewController *loginController = [weakSelf getLoginForm:form];
+	[controller pushViewController:loginController animated:YES];
 }
 
 - (UIViewController *)getLoginForm:(AchBank *)form
@@ -218,10 +227,10 @@
 																										}];
 																									}
 																											flow:weakSelf];
-																		}
+																	  }
 																   trackErrorBlock:^(NSString* messages){
-																		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
-																											   withLabel:messages];
+																	   [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+																											  withLabel:messages];
 																   }
 																			  flow:weakSelf];
 											   }];
@@ -276,7 +285,7 @@
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
-        if (error)
+		if (error)
 		{
 			NSString *messages = nil;
 			
