@@ -14,6 +14,11 @@
 #import "AllowedTypeFieldValue.h"
 #import "ObjectModel+AchBank.h"
 
+// for logging
+#import "AchBank.h"
+#import "FieldGroup.h"
+#import "RecipientTypeField.h"
+
 NSString *const kVerificationFormPath = @"/ach/verificationForm";
 
 @interface VerificationFormOperation ()
@@ -60,7 +65,11 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 														bankTitle:bankName
 														   formId:formId];
 				[weakSelf.workModel saveContext:^{
-					weakSelf.resultHandler(nil, [weakSelf.workModel bankWithTitle:bankName]);
+					AchBank *bank = [weakSelf.workModel bankWithTitle:bankName];
+#if DEBUG
+					[VerificationFormOperation logBank:bank];
+#endif
+					weakSelf.resultHandler(nil, bank);
 				}];
 			}
 			else
@@ -83,6 +92,43 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 	return [[VerificationFormOperation alloc] initWithAccount:accountNumber
 												routingNumber:routingNumber
 													paymentId:paymentId];
+}
+
++ (void)logBank:(AchBank *)bank
+{
+	[[self class] logKey:@"Bank title"
+			   withValue:bank.title
+				  spacer:@""];
+	
+	for (FieldGroup *fg in bank.fieldGroups)
+	{
+		[[self class] logKey:@"Field group title"
+				   withValue:fg.title
+					  spacer:@" "];
+		[[self class] logKey:@"Field group name"
+				   withValue:fg.name
+					  spacer:@" "];
+		
+		for (RecipientTypeField *f in fg.fields)
+		{
+			[[self class] logKey:@"Field title"
+					   withValue:f.title
+						  spacer:@"  "];
+			[[self class] logKey:@"Field name"
+					   withValue:f.name
+						  spacer:@"  "];
+			[[self class] logKey:@"Field type"
+					   withValue:f.type
+						  spacer:@"  "];
+		}
+	}
+}
+
++ (void)logKey:(NSString *)key
+	 withValue:(NSString *)value
+		spacer:(NSString *)spacer
+{
+	NSLog(@"%@ %@: %@", spacer, key, value);
 }
 
 @end

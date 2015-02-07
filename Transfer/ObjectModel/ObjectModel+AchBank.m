@@ -35,26 +35,37 @@
 	//this id changes per each request and it needs to be submitted back
 	[bank setId:[NSNumber numberWithInteger:[formId integerValue]]];
 	
+	//collect received field group names to be used to determine which fields to remove
+	NSMutableArray *retrievedFieldGroupNames = [[NSMutableArray alloc] initWithCapacity:data.count];
+	
 	for (NSDictionary* group in data)
 	{
+		NSString* name = group[@"name"];
 		NSString* title = group[@"title"];
+		
+		[retrievedFieldGroupNames addObject:name];
 		FieldGroup* fieldGroup = [self existingFieldGroupForBank:bank
-												 fieldGroupTitle:title];
+												 fieldGroupName:name];
 		if (!fieldGroup)
 		{
 			fieldGroup = [FieldGroup insertInManagedObjectContext:self.managedObjectContext];
 			[fieldGroup setAchBank:bank];
 			[fieldGroup setTitle:title];
-			[fieldGroup setName:group[@"name"]];
+			[fieldGroup setName:name];
 		}
+
+		NSMutableArray *retrievedFieldNames = [[NSMutableArray alloc] init];
 		
 		uint rowCount = 1u;
 		
 		for (NSDictionary* row in group[@"fields"])
 		{
+			NSString *name = row[@"name"];
+			[retrievedFieldNames addObject:name];
+			
 			[TypeFieldHelper getTypeWithData:row
 								  nameGetter:^NSString *{
-									  return row[@"name"];
+									  return name;
 								  }
 								 fieldGetter:^RecipientTypeField *(NSString *name) {
 									 RecipientTypeField *field = [self existingFieldInGroup:fieldGroup
@@ -91,12 +102,11 @@
 								  typeGetter:^NSString *(NSDictionary *data) {
 									  return data[@"type"];
 								  }];
-			
 			rowCount++;
 		}
 		
+		//remove fields that we did not receive
 		NSMutableArray *removedFields = [NSMutableArray array];
-		NSArray* retrievedFieldNames = [group[@"fields"] valueForKey:@"name"];
 		
 		for (RecipientTypeField *field in fieldGroup.fields)
 		{
@@ -122,6 +132,37 @@
 			}
 		}
 	}
+	
+	//remove fields that we did not receive
+	NSMutableArray *removedFieldGroups = [NSMutableArray array];
+	
+	for (FieldGroup *field in bank.fieldGroups)
+	{
+		if([retrievedFieldGroupNames indexOfObject:field.name] == NSNotFound)
+		{
+			[removedFieldGroups addObject:field];
+		}
+	}
+	
+	if([removedFieldGroups count] >0)
+	{
+		NSMutableOrderedSet *adjustedSet = [bank.fieldGroups mutableCopy];
+		[adjustedSet removeObjectsInArray:removedFieldGroups];
+		bank.fieldGroups = adjustedSet;
+		
+		for (FieldGroup *fieldGroup in removedFieldGroups)
+		{
+			for (RecipientTypeField *field in fieldGroup.fields)
+			{
+				for(NSManagedObject *value in field.values)
+				{
+					[self.managedObjectContext deleteObject:value];
+				}
+				[self.managedObjectContext deleteObject:field];
+			}
+			[self.managedObjectContext deleteObject:fieldGroup];
+		}
+	}
 }
 
 - (AchBank *)existingBankForTitle:(NSString *)title
@@ -132,10 +173,10 @@
 }
 
 - (FieldGroup *)existingFieldGroupForBank:(AchBank *)bank
-						  fieldGroupTitle:(NSString *)title
+						  fieldGroupName:(NSString *)name
 {
 	NSPredicate *bankPredicate = [NSPredicate predicateWithFormat:@"achBank = %@", bank];
-	NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title = %@", title];
+	NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"name = %@", name];
 	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[bankPredicate, titlePredicate]];
 	return [self fetchEntityNamed:[FieldGroup entityName]
 					withPredicate:predicate];
