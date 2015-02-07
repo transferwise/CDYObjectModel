@@ -613,7 +613,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 	}
 	self.stateCell.value = recipient.addressState;
     
-    [self includeStateCell:([@"usa" caseInsensitiveCompare:recipient.addressCountryCode]==NSOrderedSame)];
+    [self includeStateCell:([@"usa" caseInsensitiveCompare:self.countryCell.value]==NSOrderedSame)];
 }
 
 -(void)setAddressFieldsEditable:(BOOL)editable
