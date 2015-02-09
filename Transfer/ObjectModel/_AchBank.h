@@ -5,6 +5,7 @@
 
 extern const struct AchBankAttributes {
 	__unsafe_unretained NSString *id;
+	__unsafe_unretained NSString *mfaTitle;
 	__unsafe_unretained NSString *title;
 } AchBankAttributes;
 
@@ -32,6 +33,10 @@ extern const struct AchBankRelationships {
 - (void)setIdValue:(int32_t)value_;
 
 //- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* mfaTitle;
+
+//- (BOOL)validateMfaTitle:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* title;
 
@@ -69,6 +74,9 @@ extern const struct AchBankRelationships {
 
 - (int32_t)primitiveIdValue;
 - (void)setPrimitiveIdValue:(int32_t)value_;
+
+- (NSString*)primitiveMfaTitle;
+- (void)setPrimitiveMfaTitle:(NSString*)value;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;

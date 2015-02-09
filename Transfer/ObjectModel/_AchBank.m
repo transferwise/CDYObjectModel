@@ -5,6 +5,7 @@
 
 const struct AchBankAttributes AchBankAttributes = {
 	.id = @"id",
+	.mfaTitle = @"mfaTitle",
 	.title = @"title",
 };
 
@@ -67,6 +68,8 @@ const struct AchBankRelationships AchBankRelationships = {
 - (void)setPrimitiveIdValue:(int32_t)value_ {
 	[self setPrimitiveId:[NSNumber numberWithInt:value_]];
 }
+
+@dynamic mfaTitle;
 
 @dynamic title;
 

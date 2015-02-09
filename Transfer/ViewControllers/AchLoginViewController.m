@@ -135,8 +135,11 @@
 																	 objectModel:self.objectModel]];
 		}
 		
-		TextEntryCell *firstCell = (TextEntryCell *)formFields[0];
-		[firstCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.label.firstfield", nil), firstCell.entryField.placeholder, self.form.title] value:nil];
+		if (!self.form.mfaTitle)
+		{
+			TextEntryCell *firstCell = (TextEntryCell *)formFields[0];
+			[firstCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.label.firstfield", nil), firstCell.entryField.placeholder, self.form.title] value:nil];
+		}
 		
 		self.formCells = [NSArray arrayWithArray:formFields];
 		

@@ -58,13 +58,16 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 		if (response[@"status"])
 		{
 			//another set of fields - mfa
-			if (response[@"fieldGroups"] && response[@"fieldType"])
+			//mfa must also contain fieldType
+			if (response[@"fieldGroups"] && response[@"bankName"] && response[@"fieldType"])
 			{
+				NSString* bankName = response[@"bankName"];
 				NSString* fieldType = response[@"fieldType"];
 				NSString* formId = response[@"verifiableAccountId"];
 				[weakSelf.objectModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
-														bankTitle:fieldType
-														   formId:formId];
+														bankTitle:bankName
+														   formId:formId
+														   mfaTitle:fieldType];
 				[weakSelf.objectModel saveContext:^{
 					weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame, [weakSelf.workModel bankWithTitle:fieldType]);
 				}];

@@ -24,12 +24,15 @@
 - (void)createOrUpdateAchBankWithData:(NSDictionary *)data
 							bankTitle:(NSString *)bankTitle
 							   formId:(NSString *)formId
+							 mfaTitle:(NSString *)mfaTitle
 {
-	AchBank* bank = [self existingBankForTitle:bankTitle];
+	AchBank* bank = [self existingBankForTitle:bankTitle
+									  mfaTitle:mfaTitle];
 	if (!bank)
 	{
 		bank = [AchBank insertInManagedObjectContext:self.managedObjectContext];
 		[bank setTitle:bankTitle];
+		[bank setMfaTitle:mfaTitle];
 	}
 
 	//this id changes per each request and it needs to be submitted back
@@ -166,10 +169,13 @@
 }
 
 - (AchBank *)existingBankForTitle:(NSString *)title
+						 mfaTitle:(NSString *)mfaTitle
 {
 	NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title = %@", title];
+	NSPredicate *mfaTitlePredicate = [NSPredicate predicateWithFormat:@"mfaTitle = %@", mfaTitle];
+	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[titlePredicate, mfaTitlePredicate]];
 	return [self fetchEntityNamed:[AchBank entityName]
-					withPredicate:titlePredicate];
+					withPredicate:predicate];
 }
 
 - (FieldGroup *)existingFieldGroupForBank:(AchBank *)bank
