@@ -9,6 +9,7 @@
 #import "VerifyFormOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
+#import "ObjectModel+AchBank.h"
 
 #define kVerifyFormExtendedTimeout 180
 
@@ -21,6 +22,12 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 @end
 
 @implementation VerifyFormOperation
+
+- (NSString*)apiVersion
+{
+	//v2 contains MFA
+	return @"v2";
+}
 
 + (VerifyFormOperation *)verifyFormOperationWithData:(NSDictionary *)data
 {
@@ -44,13 +51,29 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 	
 	__weak VerifyFormOperation *weakSelf = self;
 	[self setOperationErrorHandler:^(NSError *error) {
-		weakSelf.resultHandler(error, NO);
+		weakSelf.resultHandler(error, NO, nil);
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
 		if (response[@"status"])
 		{
-			weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame);
+			//another set of fields - mfa
+			if (response[@"fieldGroups"] && response[@"fieldType"])
+			{
+				NSString* fieldType = response[@"fieldType"];
+				NSString* formId = response[@"verifiableAccountId"];
+				[weakSelf.objectModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
+														bankTitle:fieldType
+														   formId:formId];
+				[weakSelf.objectModel saveContext:^{
+					weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame, [weakSelf.workModel bankWithTitle:fieldType]);
+				}];
+
+			}
+			else
+			{
+				weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame, nil);
+			}
 		}
 	}];
 	
