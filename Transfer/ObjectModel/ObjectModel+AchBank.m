@@ -16,9 +16,10 @@
 @implementation ObjectModel (AchBank)
 
 - (AchBank *)bankWithTitle:(NSString *)title
+				  mfaTitle:(NSString *)mfaTitle
 {
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title = %@", title];
-	return [self fetchEntityNamed:[AchBank entityName] withPredicate:predicate];
+	return [self existingBankForTitle:title
+							 mfaTitle:mfaTitle];
 }
 
 - (void)createOrUpdateAchBankWithData:(NSDictionary *)data

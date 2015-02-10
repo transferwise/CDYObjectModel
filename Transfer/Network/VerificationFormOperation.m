@@ -61,13 +61,15 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 			{
 				NSString* bankName = response[@"bankName"];
 				NSString* formId = response[@"verifiableAccountId"];
+				
 				//this is the first authentication screen, we never expect to receive MFA title here
 				[weakSelf.workModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
 														bankTitle:bankName
 														   formId:formId
 														 mfaTitle:nil];
 				[weakSelf.workModel saveContext:^{
-					weakSelf.resultHandler(nil, [weakSelf.workModel bankWithTitle:bankName]);
+					weakSelf.resultHandler(nil, [weakSelf.workModel bankWithTitle:bankName
+																		 mfaTitle:nil]);
 				}];
 			}
 			else

@@ -12,7 +12,8 @@
 
 @interface ObjectModel (AchBank)
 
-- (AchBank *)bankWithTitle:(NSString *)title;
+- (AchBank *)bankWithTitle:(NSString *)title
+				  mfaTitle:(NSString *)mfaTitle;
 - (void)createOrUpdateAchBankWithData:(NSDictionary *)data
 							bankTitle:(NSString *)bankTitle
 							   formId:(NSString *)formId

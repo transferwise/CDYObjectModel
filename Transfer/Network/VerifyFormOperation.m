@@ -65,11 +65,12 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 				NSString* fieldType = response[@"fieldType"];
 				NSString* formId = response[@"verifiableAccountId"];
 				[weakSelf.objectModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
-														bankTitle:bankName
-														   formId:formId
+														  bankTitle:bankName
+															 formId:formId
 														   mfaTitle:fieldType];
 				[weakSelf.objectModel saveContext:^{
-					weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame, [weakSelf.workModel bankWithTitle:fieldType]);
+					weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame, [weakSelf.workModel bankWithTitle:bankName
+																																				   mfaTitle:fieldType]);
 				}];
 
 			}
