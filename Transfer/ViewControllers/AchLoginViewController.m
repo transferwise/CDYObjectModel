@@ -240,7 +240,7 @@
 		[dict setValue:self.form.fieldType forKey:@"fieldType"];
 	}
 	
-	if (self.form.itemId)
+	if ([self.form.itemId intValue] > 0)
 	{
 		[dict setValue:[self.form.itemId stringValue] forKey:@"itemId"];
 	}

@@ -37,7 +37,12 @@
 
 - (BOOL)isValidAchAccountNumber
 {
+#if DEBUG
+	//ACH test account contains a "-" that is not allowed in production
+	return [self isValid:[NSString stringWithFormat:@"([\\d- ]{%li,%li})", (long)kMinAchAccountLength, (long)kMaxAchAccountLength]];
+#else
 	return [self isValid:[NSString stringWithFormat:@"([\\d]{%li,%li})", (long)kMinAchAccountLength, (long)kMaxAchAccountLength]];
+#endif
 }
 
 - (BOOL)isValidPhoneNumber
