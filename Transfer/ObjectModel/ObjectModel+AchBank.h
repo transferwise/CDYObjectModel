@@ -13,10 +13,11 @@
 @interface ObjectModel (AchBank)
 
 - (AchBank *)bankWithTitle:(NSString *)title
-				  mfaTitle:(NSString *)mfaTitle;
+				 fieldType:(NSString *)fieldType;
 - (void)createOrUpdateAchBankWithData:(NSDictionary *)data
 							bankTitle:(NSString *)bankTitle
 							   formId:(NSString *)formId
-							 mfaTitle:(NSString *)mfaTitle;
+							fieldType:(NSString *)fieldType
+							   itemId:(NSString *)itemId;
 
 @end

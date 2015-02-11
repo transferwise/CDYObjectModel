@@ -16,28 +16,37 @@
 @implementation ObjectModel (AchBank)
 
 - (AchBank *)bankWithTitle:(NSString *)title
-				  mfaTitle:(NSString *)mfaTitle
+				 fieldType:(NSString *)fieldType
 {
 	return [self existingBankForTitle:title
-							 mfaTitle:mfaTitle];
+							 fieldType:fieldType];
 }
 
 - (void)createOrUpdateAchBankWithData:(NSDictionary *)data
 							bankTitle:(NSString *)bankTitle
 							   formId:(NSString *)formId
-							 mfaTitle:(NSString *)mfaTitle
+							fieldType:(NSString *)fieldType
+							   itemId:(NSString *)itemId
 {
 	AchBank* bank = [self existingBankForTitle:bankTitle
-									  mfaTitle:mfaTitle];
+									 fieldType:fieldType];
 	if (!bank)
 	{
 		bank = [AchBank insertInManagedObjectContext:self.managedObjectContext];
 		[bank setTitle:bankTitle];
-		[bank setMfaTitle:mfaTitle];
+		[bank setFieldType:fieldType];
 	}
 
 	//this id changes per each request and it needs to be submitted back
 	[bank setId:[NSNumber numberWithInteger:[formId integerValue]]];
+	
+	//this id might be present and it changes per each request and it needs to be submitted back if present
+	if (itemId)
+	{
+		[bank setItemId:[NSNumber numberWithInteger:[formId integerValue]]];
+	}
+	
+	//TODO: handle additional params
 	
 	//collect received field group names to be used to determine which fields to remove
 	NSMutableArray *retrievedFieldGroupNames = [[NSMutableArray alloc] initWithCapacity:data.count];
@@ -170,17 +179,17 @@
 }
 
 - (AchBank *)existingBankForTitle:(NSString *)title
-						 mfaTitle:(NSString *)mfaTitle
+						fieldType:(NSString *)fieldType
 {
 	NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title = %@", title];
-	NSPredicate *mfaTitlePredicate = [NSPredicate predicateWithFormat:@"mfaTitle = %@", mfaTitle];
+	NSPredicate *mfaTitlePredicate = [NSPredicate predicateWithFormat:@"fieldType = %@", fieldType];
 	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[titlePredicate, mfaTitlePredicate]];
 	return [self fetchEntityNamed:[AchBank entityName]
 					withPredicate:predicate];
 }
 
 - (FieldGroup *)existingFieldGroupForBank:(AchBank *)bank
-						  fieldGroupName:(NSString *)name
+						   fieldGroupName:(NSString *)name
 {
 	NSPredicate *bankPredicate = [NSPredicate predicateWithFormat:@"achBank = %@", bank];
 	NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"name = %@", name];
@@ -190,7 +199,7 @@
 }
 
 - (RecipientTypeField *)existingFieldInGroup:(FieldGroup *)group
-								   withName:(NSString *)name
+									withName:(NSString *)name
 {
 	NSPredicate *groupPredicate = [NSPredicate predicateWithFormat:@"fieldForGroup = %@", group];
 	NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"name = %@", name];

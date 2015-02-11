@@ -135,7 +135,7 @@
 																	 objectModel:self.objectModel]];
 		}
 		
-		if (!self.form.mfaTitle)
+		if (!self.form.fieldType)
 		{
 			TextEntryCell *firstCell = (TextEntryCell *)formFields[0];
 			[firstCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.label.firstfield", nil), firstCell.entryField.placeholder, self.form.title] value:nil];
@@ -234,6 +234,18 @@
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	
 	[dict setValue:self.formId forKey:@"verifiableAccountId"];
+	
+	if (self.form.fieldType)
+	{
+		[dict setValue:self.form.fieldType forKey:@"fieldType"];
+	}
+	
+	if (self.form.itemId)
+	{
+		[dict setValue:[self.form.itemId stringValue] forKey:@"itemId"];
+	}
+	
+	//TODO: handle additional params
 	
 	for (NSInteger i = 0; i < [self.formKeys count] && i < [self.formCells count]; i++)
 	{

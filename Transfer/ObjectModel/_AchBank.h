@@ -4,17 +4,20 @@
 #import <CoreData/CoreData.h>
 
 extern const struct AchBankAttributes {
+	__unsafe_unretained NSString *fieldType;
 	__unsafe_unretained NSString *id;
-	__unsafe_unretained NSString *mfaTitle;
+	__unsafe_unretained NSString *itemId;
 	__unsafe_unretained NSString *title;
 } AchBankAttributes;
 
 extern const struct AchBankRelationships {
 	__unsafe_unretained NSString *fieldGroups;
+	__unsafe_unretained NSString *mfaFields;
 	__unsafe_unretained NSString *user;
 } AchBankRelationships;
 
 @class FieldGroup;
+@class NSManagedObject;
 @class User;
 
 @interface AchBankID : NSManagedObjectID {}
@@ -26,6 +29,10 @@ extern const struct AchBankRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AchBankID* objectID;
 
+@property (nonatomic, strong) NSString* fieldType;
+
+//- (BOOL)validateFieldType:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSNumber* id;
 
 @property (atomic) int32_t idValue;
@@ -34,9 +41,13 @@ extern const struct AchBankRelationships {
 
 //- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* mfaTitle;
+@property (nonatomic, strong) NSNumber* itemId;
 
-//- (BOOL)validateMfaTitle:(id*)value_ error:(NSError**)error_;
+@property (atomic) int32_t itemIdValue;
+- (int32_t)itemIdValue;
+- (void)setItemIdValue:(int32_t)value_;
+
+//- (BOOL)validateItemId:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* title;
 
@@ -45,6 +56,10 @@ extern const struct AchBankRelationships {
 @property (nonatomic, strong) NSOrderedSet *fieldGroups;
 
 - (NSMutableOrderedSet*)fieldGroupsSet;
+
+@property (nonatomic, strong) NSManagedObject *mfaFields;
+
+//- (BOOL)validateMfaFields:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) User *user;
 
@@ -69,20 +84,29 @@ extern const struct AchBankRelationships {
 
 @interface _AchBank (CoreDataGeneratedPrimitiveAccessors)
 
+- (NSString*)primitiveFieldType;
+- (void)setPrimitiveFieldType:(NSString*)value;
+
 - (NSNumber*)primitiveId;
 - (void)setPrimitiveId:(NSNumber*)value;
 
 - (int32_t)primitiveIdValue;
 - (void)setPrimitiveIdValue:(int32_t)value_;
 
-- (NSString*)primitiveMfaTitle;
-- (void)setPrimitiveMfaTitle:(NSString*)value;
+- (NSNumber*)primitiveItemId;
+- (void)setPrimitiveItemId:(NSNumber*)value;
+
+- (int32_t)primitiveItemIdValue;
+- (void)setPrimitiveItemIdValue:(int32_t)value_;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
 
 - (NSMutableOrderedSet*)primitiveFieldGroups;
 - (void)setPrimitiveFieldGroups:(NSMutableOrderedSet*)value;
+
+- (NSManagedObject*)primitiveMfaFields;
+- (void)setPrimitiveMfaFields:(NSManagedObject*)value;
 
 - (User*)primitiveUser;
 - (void)setPrimitiveUser:(User*)value;

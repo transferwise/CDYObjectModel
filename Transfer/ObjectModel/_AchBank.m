@@ -4,13 +4,15 @@
 #import "_AchBank.h"
 
 const struct AchBankAttributes AchBankAttributes = {
+	.fieldType = @"fieldType",
 	.id = @"id",
-	.mfaTitle = @"mfaTitle",
+	.itemId = @"itemId",
 	.title = @"title",
 };
 
 const struct AchBankRelationships AchBankRelationships = {
 	.fieldGroups = @"fieldGroups",
+	.mfaFields = @"mfaFields",
 	.user = @"user",
 };
 
@@ -45,9 +47,16 @@ const struct AchBankRelationships AchBankRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"itemIdValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"itemId"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
+
+@dynamic fieldType;
 
 @dynamic id;
 
@@ -69,7 +78,25 @@ const struct AchBankRelationships AchBankRelationships = {
 	[self setPrimitiveId:[NSNumber numberWithInt:value_]];
 }
 
-@dynamic mfaTitle;
+@dynamic itemId;
+
+- (int32_t)itemIdValue {
+	NSNumber *result = [self itemId];
+	return [result intValue];
+}
+
+- (void)setItemIdValue:(int32_t)value_ {
+	[self setItemId:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveItemIdValue {
+	NSNumber *result = [self primitiveItemId];
+	return [result intValue];
+}
+
+- (void)setPrimitiveItemIdValue:(int32_t)value_ {
+	[self setPrimitiveItemId:[NSNumber numberWithInt:value_]];
+}
 
 @dynamic title;
 
@@ -83,6 +110,8 @@ const struct AchBankRelationships AchBankRelationships = {
 	[self didAccessValueForKey:@"fieldGroups"];
 	return result;
 }
+
+@dynamic mfaFields;
 
 @dynamic user;
 
