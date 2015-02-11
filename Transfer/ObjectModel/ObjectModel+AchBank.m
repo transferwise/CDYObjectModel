@@ -12,6 +12,7 @@
 #import "RecipientTypeField.h"
 #import "TypeFieldHelper.h"
 #import "AllowedTypeFieldValue.h"
+#import "MfaField.h"
 
 @implementation ObjectModel (AchBank)
 
@@ -27,6 +28,7 @@
 							   formId:(NSString *)formId
 							fieldType:(NSString *)fieldType
 							   itemId:(NSString *)itemId
+							mfaFields:(NSDictionary *)mfaFields
 {
 	AchBank* bank = [self existingBankForTitle:bankTitle
 									 fieldType:fieldType];
@@ -46,7 +48,8 @@
 		[bank setItemId:[NSNumber numberWithInteger:[formId integerValue]]];
 	}
 	
-	//TODO: handle additional params
+	[self handleMfaFields:bank
+				   parser:mfaFields];	
 	
 	//collect received field group names to be used to determine which fields to remove
 	NSMutableArray *retrievedFieldGroupNames = [[NSMutableArray alloc] initWithCapacity:data.count];
@@ -58,7 +61,7 @@
 		
 		[retrievedFieldGroupNames addObject:name];
 		FieldGroup* fieldGroup = [self existingFieldGroupForBank:bank
-												 fieldGroupName:name];
+												  fieldGroupName:name];
 		if (!fieldGroup)
 		{
 			fieldGroup = [FieldGroup insertInManagedObjectContext:self.managedObjectContext];
@@ -178,6 +181,57 @@
 	}
 }
 
+- (void)handleMfaFields:(AchBank *)bank
+				 parser:(NSDictionary *)fields
+{
+	if (!fields)
+	{
+		return;
+	}
+	
+	NSMutableArray *retrievedKeys = [[NSMutableArray alloc] init];
+	
+	//insert keys
+	for (NSString *key in [fields allKeys])
+	{
+		[retrievedKeys addObject:key];
+		
+		MfaField *field = [self existingFieldForBank:bank
+											 withKey:key];
+		if (!field)
+		{
+			field = [MfaField insertInManagedObjectContext:self.managedObjectContext];
+			[field setAchBank:bank];
+			[field setKey:key];
+		}
+		
+		[field setValue:fields[key]];
+	}
+	
+	//remove keys that we did not receive
+	NSMutableArray *removedKeys = [NSMutableArray array];
+	
+	for (MfaField *field in bank.mfaFields)
+	{
+		if([retrievedKeys indexOfObject:field.key] == NSNotFound)
+		{
+			[removedKeys addObject:field];
+		}
+	}
+	
+	if([removedKeys count] >0)
+	{
+		NSMutableOrderedSet *adjustedSet = [bank.mfaFields mutableCopy];
+		[adjustedSet removeObjectsInArray:removedKeys];
+		bank.mfaFields = adjustedSet;
+		
+		for (MfaField *field in removedKeys)
+		{
+			[self.managedObjectContext deleteObject:field];
+		}
+	}
+}
+
 - (AchBank *)existingBankForTitle:(NSString *)title
 						fieldType:(NSString *)fieldType
 {
@@ -205,6 +259,16 @@
 	NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"name = %@", name];
 	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[groupPredicate, titlePredicate]];
 	return [self fetchEntityNamed:[RecipientTypeField entityName]
+					withPredicate:predicate];
+}
+
+- (MfaField *)existingFieldForBank:(AchBank *)bank
+						   withKey:(NSString *)key
+{
+	NSPredicate *bankPredicate = [NSPredicate predicateWithFormat:@"achBank = %@", bank];
+	NSPredicate *keyPredicate = [NSPredicate predicateWithFormat:@"key = %@", key];
+	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[bankPredicate, keyPredicate]];
+	return [self fetchEntityNamed:[MfaField entityName]
 					withPredicate:predicate];
 }
 

@@ -17,7 +17,7 @@ extern const struct AchBankRelationships {
 } AchBankRelationships;
 
 @class FieldGroup;
-@class NSManagedObject;
+@class MfaField;
 @class User;
 
 @interface AchBankID : NSManagedObjectID {}
@@ -57,9 +57,9 @@ extern const struct AchBankRelationships {
 
 - (NSMutableOrderedSet*)fieldGroupsSet;
 
-@property (nonatomic, strong) NSManagedObject *mfaFields;
+@property (nonatomic, strong) NSOrderedSet *mfaFields;
 
-//- (BOOL)validateMfaFields:(id*)value_ error:(NSError**)error_;
+- (NSMutableOrderedSet*)mfaFieldsSet;
 
 @property (nonatomic, strong) User *user;
 
@@ -79,6 +79,21 @@ extern const struct AchBankRelationships {
 - (void)removeFieldGroupsAtIndexes:(NSIndexSet *)indexes;
 - (void)replaceObjectInFieldGroupsAtIndex:(NSUInteger)idx withObject:(FieldGroup*)value;
 - (void)replaceFieldGroupsAtIndexes:(NSIndexSet *)indexes withFieldGroups:(NSArray *)values;
+
+@end
+
+@interface _AchBank (MfaFieldsCoreDataGeneratedAccessors)
+- (void)addMfaFields:(NSOrderedSet*)value_;
+- (void)removeMfaFields:(NSOrderedSet*)value_;
+- (void)addMfaFieldsObject:(MfaField*)value_;
+- (void)removeMfaFieldsObject:(MfaField*)value_;
+
+- (void)insertObject:(MfaField*)value inMfaFieldsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromMfaFieldsAtIndex:(NSUInteger)idx;
+- (void)insertMfaFields:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeMfaFieldsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInMfaFieldsAtIndex:(NSUInteger)idx withObject:(MfaField*)value;
+- (void)replaceMfaFieldsAtIndexes:(NSIndexSet *)indexes withMfaFields:(NSArray *)values;
 
 @end
 
@@ -105,8 +120,8 @@ extern const struct AchBankRelationships {
 - (NSMutableOrderedSet*)primitiveFieldGroups;
 - (void)setPrimitiveFieldGroups:(NSMutableOrderedSet*)value;
 
-- (NSManagedObject*)primitiveMfaFields;
-- (void)setPrimitiveMfaFields:(NSManagedObject*)value;
+- (NSMutableOrderedSet*)primitiveMfaFields;
+- (void)setPrimitiveMfaFields:(NSMutableOrderedSet*)value;
 
 - (User*)primitiveUser;
 - (void)setPrimitiveUser:(User*)value;

@@ -18,6 +18,7 @@
 							bankTitle:(NSString *)bankTitle
 							   formId:(NSString *)formId
 							fieldType:(NSString *)fieldType
-							   itemId:(NSString *)itemId;
+							   itemId:(NSString *)itemId
+							mfaFields:(NSDictionary *)mfaFields;
 
 @end

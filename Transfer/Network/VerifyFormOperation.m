@@ -70,10 +70,11 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 														  bankTitle:bankName
 															 formId:parser.VerifiableAccountId
 														  fieldType:fieldType
-															 itemId:parser.ItemId];
+															 itemId:parser.ItemId
+														  mfaFields:parser.getMfaFields];
 				[weakSelf.objectModel saveContext:^{
 					weakSelf.resultHandler(nil, parser.isSuccessful, [weakSelf.workModel bankWithTitle:bankName
-																											fieldType:fieldType]);
+																							 fieldType:fieldType]);
 				}];
 			}
 			else

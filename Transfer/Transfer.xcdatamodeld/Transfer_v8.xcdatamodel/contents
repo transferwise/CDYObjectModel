@@ -6,7 +6,7 @@
         <attribute name="itemId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="fieldGroups" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FieldGroup" inverseName="achBank" inverseEntity="FieldGroup" syncable="YES"/>
-        <relationship name="mfaFields" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="MfaFields" inverseName="achBank" inverseEntity="MfaFields" syncable="YES"/>
+        <relationship name="mfaFields" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="MfaField" inverseName="achBank" inverseEntity="MfaField" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="achBanks" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
@@ -54,7 +54,7 @@
         <relationship name="achBank" maxCount="1" deletionRule="Nullify" destinationEntity="AchBank" inverseName="fieldGroups" inverseEntity="AchBank" syncable="YES"/>
         <relationship name="fields" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipientTypeField" inverseName="fieldForGroup" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
-    <entity name="MfaFields" syncable="YES">
+    <entity name="MfaField" representedClassName="MfaField" syncable="YES">
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="achBank" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AchBank" inverseName="mfaFields" inverseEntity="AchBank" syncable="YES"/>
@@ -214,12 +214,13 @@
         <relationship name="referralLinks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ReferralLink" inverseName="user" inverseEntity="ReferralLink" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AchBank" positionX="619" positionY="-324" width="128" height="150"/>
+        <element name="AchBank" positionX="619" positionY="-324" width="128" height="148"/>
         <element name="AllowedTypeFieldValue" positionX="655" positionY="63" width="128" height="90"/>
         <element name="BusinessProfile" positionX="-396" positionY="-99" width="128" height="193"/>
         <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Currency" positionX="-92" positionY="-216" width="128" height="270"/>
         <element name="FieldGroup" positionX="333" positionY="-178" width="128" height="103"/>
+        <element name="MfaField" positionX="-405" positionY="-279" width="128" height="88"/>
         <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
@@ -234,6 +235,5 @@
         <element name="Setting" positionX="-441" positionY="-405" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="18" positionY="504" width="128" height="88"/>
         <element name="User" positionX="-360" positionY="207" width="128" height="253"/>
-        <element name="MfaFields" positionX="-405" positionY="-279" width="128" height="88"/>
     </elements>
 </model>

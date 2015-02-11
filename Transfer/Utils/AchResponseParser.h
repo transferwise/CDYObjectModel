@@ -26,6 +26,8 @@
 @property (readonly, nonatomic) NSString* VerifiableAccountId;
 @property (readonly, nonatomic) NSString* ItemId;
 
+- (NSDictionary *)getMfaFields;
+
 + (NSMutableDictionary *)initFormValues:(AchBank *)bank;
 
 @end

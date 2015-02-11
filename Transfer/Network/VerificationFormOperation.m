@@ -65,7 +65,8 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 														bankTitle:bankName
 														   formId:formId
 														fieldType:nil
-														   itemId:nil];
+														   itemId:nil
+														mfaFields:nil];
 				[weakSelf.workModel saveContext:^{
 					weakSelf.resultHandler(nil, [weakSelf.workModel bankWithTitle:bankName
 																		 fieldType:nil]);

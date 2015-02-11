@@ -8,6 +8,7 @@
 
 #import "AchResponseParser.h"
 #import "AchBank.h"
+#import "MfaField.h"
 
 static NSString *const FIELD_GROUPS = @"fieldGroups";
 static NSString *const VERIFIABLE_ACCOUNT_ID = @"verifiableAccountId";
@@ -87,6 +88,27 @@ static NSString *const SUCCESS = @"success";
 	return self.response[FIELD_GROUPS];
 }
 
+- (NSDictionary *)getMfaFields
+{
+	NSMutableArray *mfaKeys = [[NSMutableArray alloc] init];
+	NSMutableDictionary *mfaFields = [[NSMutableDictionary alloc] init];
+	
+	for (NSString *key in [self.response allKeys])
+	{
+		if (![[self class] isKnownKey:key])
+		{
+			[mfaKeys addObject:key];
+		}
+	}
+	
+	for (NSString *key in mfaKeys)
+	{
+		[mfaFields setObject:self.response[key] forKey:key];
+	}
+	
+	return mfaFields;
+}
+
 #pragma mark - Submit Dict
 + (NSMutableDictionary *)initFormValues:(AchBank *)bank
 {
@@ -104,7 +126,23 @@ static NSString *const SUCCESS = @"success";
 		[dict setValue:[bank.itemId stringValue] forKey:@"itemId"];
 	}
 	
+	for (MfaField *field in bank.mfaFields)
+	{
+		[dict setValue:field.value forKey:field.key];
+	}
+	
 	return dict;
+}
+
+#pragma mark - Helpers
++ (BOOL)isKnownKey:(NSString *)key
+{
+	return [key isEqualToString:STATUS]
+		|| [key isEqualToString:FIELD_GROUPS]
+		|| [key isEqualToString:BANK_NAME]
+		|| [key isEqualToString:VERIFIABLE_ACCOUNT_ID]
+		|| [key isEqualToString:FIELD_TYPE]
+		|| [key isEqualToString:ITEM_ID];
 }
 
 @end
