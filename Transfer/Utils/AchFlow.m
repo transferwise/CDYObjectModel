@@ -164,6 +164,12 @@
 																					 flow:weakSelf];
 											   
 											   [(VerifyFormOperation *)self.executedOperation setResultHandler:^(NSError *error, BOOL success, AchBank *mfaForm) {
+												   //if not successful, show generic error
+												   if (!success)
+												   {
+													   [self showErrorAlertWithMessages:nil];
+													   return;
+												   }
 												   //handle known errors
 												   if (error)
 												   {
@@ -307,10 +313,7 @@
 			
 			trackErrorBlock(messages);
 			
-			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			[self.waitingViewController dismiss];
-			[alertView show];
+			[self showErrorAlertWithMessages:messages];
 			return;
 		}
 		
@@ -381,6 +384,14 @@
 			weakCustomInfo.actionButtonBlock();
 		}
 	});
+}
+
+- (void)showErrorAlertWithMessages:(NSString *)messages
+{
+	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
+	[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+	[self.waitingViewController dismiss];
+	[alertView show];
 }
 
 @end

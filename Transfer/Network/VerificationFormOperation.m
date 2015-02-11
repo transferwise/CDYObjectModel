@@ -13,11 +13,7 @@
 #import "RecipientTypeField.h"
 #import "AllowedTypeFieldValue.h"
 #import "ObjectModel+AchBank.h"
-
-// for logging
-#import "AchBank.h"
-#import "FieldGroup.h"
-#import "RecipientTypeField.h"
+#import "AchResponseParser.h"
 
 NSString *const kVerificationFormPath = @"/ach/verificationForm";
 
@@ -56,14 +52,16 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		[weakSelf.workModel.managedObjectContext performBlock:^{			
-			if (response[@"fieldGroups"] && response[@"bankName"])
+		[weakSelf.workModel.managedObjectContext performBlock:^{
+			AchResponseParser *parser = [[AchResponseParser alloc] initWithResponse:response];
+			
+			if (parser.isLogin)
 			{
-				NSString* bankName = response[@"bankName"];
-				NSString* formId = response[@"verifiableAccountId"];
+				NSString* bankName = parser.BankName;
+				NSString* formId = parser.VerifiableAccountId;
 				
 				//this is the first authentication screen, we never expect to receive MFA secific fields here
-				[weakSelf.workModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
+				[weakSelf.workModel createOrUpdateAchBankWithData:parser.FieldGroups
 														bankTitle:bankName
 														   formId:formId
 														fieldType:nil

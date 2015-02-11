@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
 #import "ObjectModel+AchBank.h"
+#import "AchResponseParser.h"
 
 #define kVerifyFormExtendedTimeout 180
 
@@ -55,38 +56,34 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		if (response[@"status"])
+		AchResponseParser *parser = [[AchResponseParser alloc] initWithResponse:response];
+		
+		if (parser.hasStatus)
 		{
 			//check if we are dealing with MFA
-			if ([[weakSelf class] isMfa:response])
+			if (parser.isMfa)
 			{
-				NSString* bankName = response[@"bankName"];
-				NSString* fieldType = response[@"fieldType"];
+				NSString* bankName = parser.BankName;
+				NSString* fieldType = parser.FieldType;
 				
-				[weakSelf.objectModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
+				[weakSelf.objectModel createOrUpdateAchBankWithData:parser.FieldGroups
 														  bankTitle:bankName
-															 formId:response[@"verifiableAccountId"]
+															 formId:parser.VerifiableAccountId
 														  fieldType:fieldType
-															 itemId:response[@"itemId"]];
+															 itemId:parser.ItemId];
 				[weakSelf.objectModel saveContext:^{
-					weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame, [weakSelf.workModel bankWithTitle:bankName
-																																				  fieldType:fieldType]);
+					weakSelf.resultHandler(nil, parser.isSuccessful, [weakSelf.workModel bankWithTitle:bankName
+																											fieldType:fieldType]);
 				}];
-
 			}
 			else
 			{
-				weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame, nil);
+				weakSelf.resultHandler(nil, parser.isSuccessful, nil);
 			}
 		}
 	}];
 	
 	[self postData:self.data toPath:path timeOut:kVerifyFormExtendedTimeout];
-}
-
-+ (BOOL)isMfa:(NSDictionary *)response
-{
-	return response[@"fieldGroups"] && response[@"bankName"] && response[@"fieldType"] && response[@"itemId"];
 }
 
 @end

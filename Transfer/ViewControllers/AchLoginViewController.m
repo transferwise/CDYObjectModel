@@ -22,6 +22,7 @@
 #import "NSMutableString+Issues.h"
 #import "TRWAlertView.h"
 #import "FieldGroup.h"
+#import "AchResponseParser.h"
 
 @interface AchLoginViewController ()
 
@@ -39,7 +40,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *messageOneLabel;
 @property (strong, nonatomic) IBOutlet UILabel *messageTwoLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopSpace;
-@property (strong, nonatomic) NSNumber *formId;
 
 @end
 
@@ -58,8 +58,6 @@
 		self.payment = payment;
 		self.objectModel = objectModel;
 		self.initiatePullBlock = initiatePullBlock;
-		
-		self.formId = form.id;
 	}
 	return self;
 }
@@ -231,21 +229,7 @@
 #pragma mark - Helpers
 - (NSDictionary *)getFormValues
 {
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-	
-	[dict setValue:self.formId forKey:@"verifiableAccountId"];
-	
-	if (self.form.fieldType)
-	{
-		[dict setValue:self.form.fieldType forKey:@"fieldType"];
-	}
-	
-	if ([self.form.itemId intValue] > 0)
-	{
-		[dict setValue:[self.form.itemId stringValue] forKey:@"itemId"];
-	}
-	
-	//TODO: handle additional params
+	NSMutableDictionary *dict = [AchResponseParser initFormValues:self.form];
 	
 	for (NSInteger i = 0; i < [self.formKeys count] && i < [self.formCells count]; i++)
 	{

@@ -940,9 +940,9 @@
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
-		4740A77B1A8B64C80044F0CD /* AchBankHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchBankHelper.m */; };
-		4740A77C1A8B64C80044F0CD /* AchBankHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchBankHelper.m */; };
-		4740A77D1A8B64C80044F0CD /* AchBankHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchBankHelper.m */; };
+		4740A77B1A8B64C80044F0CD /* AchResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchResponseParser.m */; };
+		4740A77C1A8B64C80044F0CD /* AchResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchResponseParser.m */; };
+		4740A77D1A8B64C80044F0CD /* AchResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchResponseParser.m */; };
 		474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */; };
 		474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */; };
 		474207031A5BF4AB00DF6477 /* XCTestCase+Exceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 474207021A5BF4AB00DF6477 /* XCTestCase+Exceptions.m */; };
@@ -1877,8 +1877,8 @@
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v8.xcdatamodel; sourceTree = "<group>"; };
-		4740A7791A8B64C80044F0CD /* AchBankHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchBankHelper.h; sourceTree = "<group>"; };
-		4740A77A1A8B64C80044F0CD /* AchBankHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchBankHelper.m; sourceTree = "<group>"; };
+		4740A7791A8B64C80044F0CD /* AchResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchResponseParser.h; sourceTree = "<group>"; };
+		4740A77A1A8B64C80044F0CD /* AchResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchResponseParser.m; sourceTree = "<group>"; };
 		474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringValidationTests.swift; sourceTree = "<group>"; };
 		474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFlowViewControllerFactoryTests.swift; sourceTree = "<group>"; };
 		474207011A5BF4AB00DF6477 /* XCTestCase+Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+Exceptions.h"; sourceTree = "<group>"; };
@@ -3569,8 +3569,8 @@
 		EAB72162171FDC6700DE29F5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4740A7791A8B64C80044F0CD /* AchBankHelper.h */,
-				4740A77A1A8B64C80044F0CD /* AchBankHelper.m */,
+				4740A7791A8B64C80044F0CD /* AchResponseParser.h */,
+				4740A77A1A8B64C80044F0CD /* AchResponseParser.m */,
 				47F667661A1DD2A0003C018A /* AchFlow.h */,
 				47F667671A1DD2A0003C018A /* AchFlow.m */,
 				4735E4D31992258C00F41D1E /* AuthenticationHelper.h */,
@@ -4500,7 +4500,7 @@
 				388E59D21A5A949500AF6EB9 /* GradientView.m in Sources */,
 				388E59D31A5A949500AF6EB9 /* SeparatorViewCell.m in Sources */,
 				388E59D41A5A949500AF6EB9 /* NSString+DeviceSpecificLocalisation.m in Sources */,
-				4740A77D1A8B64C80044F0CD /* AchBankHelper.m in Sources */,
+				4740A77D1A8B64C80044F0CD /* AchResponseParser.m in Sources */,
 				388E59D51A5A949500AF6EB9 /* main.m in Sources */,
 				388E59D61A5A949500AF6EB9 /* AppDelegate.m in Sources */,
 				388E59D71A5A949500AF6EB9 /* TransferWaitingViewController.m in Sources */,
@@ -4832,7 +4832,7 @@
 				38AA83421949B8DF0065AD2A /* GradientView.m in Sources */,
 				383FC11319AE1BF400465FCA /* SeparatorViewCell.m in Sources */,
 				47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */,
-				4740A77C1A8B64C80044F0CD /* AchBankHelper.m in Sources */,
+				4740A77C1A8B64C80044F0CD /* AchResponseParser.m in Sources */,
 				EA31A12517DDB29B00F937F7 /* main.m in Sources */,
 				EA31A12617DDB29B00F937F7 /* AppDelegate.m in Sources */,
 				47FAF34F194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
@@ -5282,7 +5282,7 @@
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 				389F684D198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */,
 				EA0450C917EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */,
-				4740A77B1A8B64C80044F0CD /* AchBankHelper.m in Sources */,
+				4740A77B1A8B64C80044F0CD /* AchResponseParser.m in Sources */,
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
 				389F67FF198FC1C6006CF1F6 /* _PairSourceCurrency.m in Sources */,
