@@ -23,6 +23,7 @@
 							valueGetter:(GetAllowedTypeFieldValueBlock)valueGetterBlock
 							titleGetter:(StringGetterBlock)titleGetterBlock
 							 typeGetter:(StringGetterBlock)typeGetterBlock
+							imageGetter:(GetImageBlock)imageGetterBlock
 {
 	NSDictionary *cleanedData = [data dictionaryByRemovingNullObjects];
 	NSString *name = nameGetterBlock();
@@ -36,6 +37,7 @@
 	[field setTitle:titleGetterBlock(cleanedData)];
 	[field setValidationRegexp:cleanedData[@"validationRegexp"]];
 	[field setType:typeGetterBlock(cleanedData)];
+	[field setImage:imageGetterBlock(cleanedData)];
 	
 	NSArray *allowedValues = cleanedData[@"valuesAllowed"];
 	

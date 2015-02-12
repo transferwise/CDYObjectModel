@@ -170,6 +170,7 @@
     </entity>
     <entity name="RecipientTypeField" representedClassName="RecipientTypeField" syncable="YES">
         <attribute name="example" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="maxLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="minLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -230,7 +231,7 @@
         <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="240"/>
         <element name="Recipient" positionX="745" positionY="255" width="128" height="285"/>
         <element name="RecipientType" positionX="205" positionY="-432" width="128" height="178"/>
-        <element name="RecipientTypeField" positionX="718" positionY="-207" width="128" height="240"/>
+        <element name="RecipientTypeField" positionX="718" positionY="-207" width="128" height="255"/>
         <element name="ReferralLink" positionX="-218" positionY="-405" width="128" height="88"/>
         <element name="Setting" positionX="-441" positionY="-405" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="18" positionY="504" width="128" height="88"/>

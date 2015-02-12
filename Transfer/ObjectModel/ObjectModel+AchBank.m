@@ -117,7 +117,10 @@
 								 }
 								  typeGetter:^NSString *(NSDictionary *data) {
 									  return data[@"type"];
-								  }];
+								  }
+								 imageGetter:^NSString *(NSDictionary *data) {
+									 return data[@"image"];
+								 }];
 			rowCount++;
 		}
 		
