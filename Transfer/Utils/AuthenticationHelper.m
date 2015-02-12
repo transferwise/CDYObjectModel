@@ -29,7 +29,6 @@
 #import "TransferwiseClient.h"
 #import "AppDelegate.h"
 #import "SignUpViewController.h"
-#import "LocationHelper.h"
 
 @interface AuthenticationHelper ()
 
@@ -157,9 +156,6 @@
         //Use smoke and mirrors to sneak in a MainViewController underneath a modally presented new payment viewcontroller
         
         NewPaymentViewController *paymentView = [[NewPaymentViewController alloc] init];
-		
-		//set location based default source
-		paymentView.suggestedSourceCurrency = [LocationHelper getSourceCurrencyWithObjectModel:objectModel];		
         [paymentView setObjectModel:objectModel];
 		
         if(controller.presentingViewController)

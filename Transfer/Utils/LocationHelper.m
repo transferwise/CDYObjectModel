@@ -14,7 +14,9 @@
 
 + (Currency *)getSourceCurrencyWithObjectModel:(ObjectModel *)objectModel
 {
-	if ([[NSLocale currentLocale].localeIdentifier isEqualToString:@"en_US"])
+	NSLocale *currentLocale = [NSLocale currentLocale];
+	
+	if ([currentLocale.localeIdentifier isEqualToString:@"en_US"])
 	{
 		return [objectModel currencyWithCode:@"USD"];
 	}
