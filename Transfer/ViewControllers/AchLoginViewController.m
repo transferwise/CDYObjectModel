@@ -22,6 +22,7 @@
 #import "NSMutableString+Issues.h"
 #import "TRWAlertView.h"
 #import "FieldGroup.h"
+#import "AchResponseParser.h"
 
 @interface AchLoginViewController ()
 
@@ -39,7 +40,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *messageOneLabel;
 @property (strong, nonatomic) IBOutlet UILabel *messageTwoLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopSpace;
-@property (strong, nonatomic) NSNumber *formId;
 
 @end
 
@@ -58,8 +58,6 @@
 		self.payment = payment;
 		self.objectModel = objectModel;
 		self.initiatePullBlock = initiatePullBlock;
-		
-		self.formId = form.id;
 	}
 	return self;
 }
@@ -135,8 +133,11 @@
 																	 objectModel:self.objectModel]];
 		}
 		
-		TextEntryCell *firstCell = (TextEntryCell *)formFields[0];
-		[firstCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.label.firstfield", nil), firstCell.entryField.placeholder, self.form.title] value:nil];
+		if (!self.form.fieldType)
+		{
+			TextEntryCell *firstCell = (TextEntryCell *)formFields[0];
+			[firstCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.label.firstfield", nil), firstCell.entryField.placeholder, self.form.title] value:nil];
+		}
 		
 		self.formCells = [NSArray arrayWithArray:formFields];
 		
@@ -228,9 +229,7 @@
 #pragma mark - Helpers
 - (NSDictionary *)getFormValues
 {
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-	
-	[dict setValue:self.formId forKey:@"verifiableAccountId"];
+	NSMutableDictionary *dict = [AchResponseParser initFormValues:self.form];
 	
 	for (NSInteger i = 0; i < [self.formKeys count] && i < [self.formCells count]; i++)
 	{

@@ -940,6 +940,15 @@
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
+		4740A77B1A8B64C80044F0CD /* AchResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchResponseParser.m */; };
+		4740A77C1A8B64C80044F0CD /* AchResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchResponseParser.m */; };
+		4740A77D1A8B64C80044F0CD /* AchResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77A1A8B64C80044F0CD /* AchResponseParser.m */; };
+		4740A7801A8B9A1F0044F0CD /* _MfaField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77F1A8B9A1F0044F0CD /* _MfaField.m */; };
+		4740A7811A8B9A1F0044F0CD /* _MfaField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77F1A8B9A1F0044F0CD /* _MfaField.m */; };
+		4740A7821A8B9A1F0044F0CD /* _MfaField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A77F1A8B9A1F0044F0CD /* _MfaField.m */; };
+		4740A7851A8B9A7C0044F0CD /* MfaField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A7841A8B9A7C0044F0CD /* MfaField.m */; };
+		4740A7861A8B9A7C0044F0CD /* MfaField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A7841A8B9A7C0044F0CD /* MfaField.m */; };
+		4740A7871A8B9A7C0044F0CD /* MfaField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740A7841A8B9A7C0044F0CD /* MfaField.m */; };
 		474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */; };
 		474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */; };
 		474207031A5BF4AB00DF6477 /* XCTestCase+Exceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 474207021A5BF4AB00DF6477 /* XCTestCase+Exceptions.m */; };
@@ -1873,6 +1882,13 @@
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
+		4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v8.xcdatamodel; sourceTree = "<group>"; };
+		4740A7791A8B64C80044F0CD /* AchResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchResponseParser.h; sourceTree = "<group>"; };
+		4740A77A1A8B64C80044F0CD /* AchResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchResponseParser.m; sourceTree = "<group>"; };
+		4740A77E1A8B9A1F0044F0CD /* _MfaField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MfaField.h; sourceTree = "<group>"; };
+		4740A77F1A8B9A1F0044F0CD /* _MfaField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MfaField.m; sourceTree = "<group>"; };
+		4740A7831A8B9A7C0044F0CD /* MfaField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MfaField.h; sourceTree = "<group>"; };
+		4740A7841A8B9A7C0044F0CD /* MfaField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MfaField.m; sourceTree = "<group>"; };
 		474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringValidationTests.swift; sourceTree = "<group>"; };
 		474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFlowViewControllerFactoryTests.swift; sourceTree = "<group>"; };
 		474207011A5BF4AB00DF6477 /* XCTestCase+Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+Exceptions.h"; sourceTree = "<group>"; };
@@ -2631,6 +2647,8 @@
 				389F67DA198FC1C5006CF1F6 /* ObjectModel+Users.m */,
 				389F67DB198FC1C5006CF1F6 /* ObjectModel.h */,
 				389F67DC198FC1C5006CF1F6 /* ObjectModel.m */,
+				4740A7831A8B9A7C0044F0CD /* MfaField.h */,
+				4740A7841A8B9A7C0044F0CD /* MfaField.m */,
 				389F67DD198FC1C6006CF1F6 /* PairSourceCurrency.h */,
 				389F67DE198FC1C6006CF1F6 /* PairSourceCurrency.m */,
 				389F67DF198FC1C6006CF1F6 /* PairTargetCurrency.h */,
@@ -2667,6 +2685,8 @@
 		389F6851198FC1D0006CF1F6 /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				4740A77E1A8B9A1F0044F0CD /* _MfaField.h */,
+				4740A77F1A8B9A1F0044F0CD /* _MfaField.m */,
 				47C4D0381A232A9F005EC7C6 /* _AchBank.h */,
 				47C4D0391A232A9F005EC7C6 /* _AchBank.m */,
 				389F679D198FC1C5006CF1F6 /* _AllowedTypeFieldValue.h */,
@@ -3563,6 +3583,8 @@
 		EAB72162171FDC6700DE29F5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4740A7791A8B64C80044F0CD /* AchResponseParser.h */,
+				4740A77A1A8B64C80044F0CD /* AchResponseParser.m */,
 				47F667661A1DD2A0003C018A /* AchFlow.h */,
 				47F667671A1DD2A0003C018A /* AchFlow.m */,
 				4735E4D31992258C00F41D1E /* AuthenticationHelper.h */,
@@ -4492,6 +4514,7 @@
 				388E59D21A5A949500AF6EB9 /* GradientView.m in Sources */,
 				388E59D31A5A949500AF6EB9 /* SeparatorViewCell.m in Sources */,
 				388E59D41A5A949500AF6EB9 /* NSString+DeviceSpecificLocalisation.m in Sources */,
+				4740A77D1A8B64C80044F0CD /* AchResponseParser.m in Sources */,
 				388E59D51A5A949500AF6EB9 /* main.m in Sources */,
 				388E59D61A5A949500AF6EB9 /* AppDelegate.m in Sources */,
 				388E59D71A5A949500AF6EB9 /* TransferWaitingViewController.m in Sources */,
@@ -4660,6 +4683,7 @@
 				388E5A7A1A5A949500AF6EB9 /* PhoneBookAddress.m in Sources */,
 				388E5A7B1A5A949500AF6EB9 /* DismissKeyboardTableView.m in Sources */,
 				388E5A7C1A5A949500AF6EB9 /* PersonalProfileValidator.m in Sources */,
+				4740A7871A8B9A7C0044F0CD /* MfaField.m in Sources */,
 				388E5A7D1A5A949500AF6EB9 /* VerificationRequiredOperation.m in Sources */,
 				388E5A7E1A5A949500AF6EB9 /* UIGestureRecognizer+Cancel.m in Sources */,
 				388E5A7F1A5A949500AF6EB9 /* UploadVerificationFileOperation.m in Sources */,
@@ -4774,6 +4798,7 @@
 				388E5AEB1A5A949500AF6EB9 /* ObjectModel+Users.m in Sources */,
 				388E5AEC1A5A949500AF6EB9 /* ObjectModel.m in Sources */,
 				38705C691A7BDD5F002EB14B /* CopyLabel.m in Sources */,
+				4740A7821A8B9A1F0044F0CD /* _MfaField.m in Sources */,
 				3859E7B01A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				388E5AED1A5A949500AF6EB9 /* ReferralsCoordinator.m in Sources */,
 				388E5AEE1A5A949500AF6EB9 /* FeedbackCoordinator.m in Sources */,
@@ -4823,6 +4848,7 @@
 				38AA83421949B8DF0065AD2A /* GradientView.m in Sources */,
 				383FC11319AE1BF400465FCA /* SeparatorViewCell.m in Sources */,
 				47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */,
+				4740A77C1A8B64C80044F0CD /* AchResponseParser.m in Sources */,
 				EA31A12517DDB29B00F937F7 /* main.m in Sources */,
 				EA31A12617DDB29B00F937F7 /* AppDelegate.m in Sources */,
 				47FAF34F194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
@@ -4991,6 +5017,7 @@
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
 				47C1F7481A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */,
+				4740A7861A8B9A7C0044F0CD /* MfaField.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
 				47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
@@ -5105,6 +5132,7 @@
 				389F6834198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6836198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				38705C681A7BDD5F002EB14B /* CopyLabel.m in Sources */,
+				4740A7811A8B9A1F0044F0CD /* _MfaField.m in Sources */,
 				3859E7AF1A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
@@ -5207,6 +5235,7 @@
 				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
 				4735E4D51992258C00F41D1E /* AuthenticationHelper.m in Sources */,
 				38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */,
+				4740A7851A8B9A7C0044F0CD /* MfaField.m in Sources */,
 				389F682D198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
 				389F683F198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
 				47C1F74F1A3F2BC600014F55 /* ValidatorFactory.m in Sources */,
@@ -5272,6 +5301,7 @@
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 				389F684D198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */,
 				EA0450C917EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */,
+				4740A77B1A8B64C80044F0CD /* AchResponseParser.m in Sources */,
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
 				389F67FF198FC1C6006CF1F6 /* _PairSourceCurrency.m in Sources */,
@@ -5434,6 +5464,7 @@
 				EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				471DAA7D1A276DD00077E341 /* VerifyFormOperation.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
+				4740A7801A8B9A1F0044F0CD /* _MfaField.m in Sources */,
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 				38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */,
@@ -5929,6 +5960,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */,
 				381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */,
 				47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */,
 				474A5A961A13B8370094757B /* Transfer_v5.1.xcdatamodel */,
@@ -5940,7 +5972,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */;
+			currentVersion = 4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

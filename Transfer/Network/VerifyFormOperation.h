@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
+@class AchBank;
+
 #import "TransferwiseOperation.h"
 
-typedef void (^VerifyFormBlock)(NSError *error, BOOL success);
+typedef void (^VerifyFormBlock)(NSError *error, BOOL success, AchBank *mfaForm);
 
 @interface VerifyFormOperation : TransferwiseOperation
 
