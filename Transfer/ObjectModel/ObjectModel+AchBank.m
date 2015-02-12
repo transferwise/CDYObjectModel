@@ -45,7 +45,7 @@
 	//this id might be present and it changes per each request and it needs to be submitted back if present
 	if (itemId)
 	{
-		[bank setItemId:[NSNumber numberWithInteger:[formId integerValue]]];
+		[bank setItemId:[NSNumber numberWithInteger:[itemId integerValue]]];
 	}
 	
 	[self handleMfaFields:bank
