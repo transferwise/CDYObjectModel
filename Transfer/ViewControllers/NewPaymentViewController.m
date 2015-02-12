@@ -44,6 +44,7 @@
 #import "CustomInfoViewController.h"
 #import "NavigationBarCustomiser.h"
 #import "NewPaymentHelper.h"
+#import "LocationHelper.h"
 
 
 #define	PERSONAL_PROFILE	@"personal"
@@ -119,7 +120,7 @@ static NSUInteger const kRowYouSend = 0;
     self.youSendCell.hostForCurrencySelector = self;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     self.youSendCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";
-    self.youSendCell.suggestedStartCurrency = self.suggestedSourceCurrency?:latestPayment.sourceCurrency;
+	self.youSendCell.suggestedStartCurrency = self.suggestedSourceCurrency?:(latestPayment.sourceCurrency?:[LocationHelper getSourceCurrencyWithObjectModel:self.objectModel]);
     [self.youSendCell setEditable:YES];
 	[self.youSendCell initializeSelectorBackground];
 

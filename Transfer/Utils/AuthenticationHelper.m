@@ -165,7 +165,6 @@
         }
         else
         {
-            
             ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller.navigationController?:controller];
             window.rootViewController = root;
             

@@ -218,7 +218,8 @@
 	return [calendar dateFromComponents:components];
 }
 
-- (IBAction)repeatTapped:(id)sender {
+- (IBAction)repeatTapped:(id)sender
+{
     self.repeatTransferHelper = [[NewPaymentHelper alloc] init];
     __weak typeof(self) weakSelf = self;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
