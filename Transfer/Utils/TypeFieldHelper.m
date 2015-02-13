@@ -14,6 +14,7 @@
 #import "DropdownCell.h"
 #import "RecipientFieldCell.h"
 #import "ObjectModel+RecipientTypes.h"
+#import "CaptchaCell.h"
 
 @implementation TypeFieldHelper
 
@@ -79,6 +80,13 @@
 			[cell configureWithTitle:field.title value:@""];
 			[cell setType:field];
 			[cell addSingleSeparator];
+			[result addObject:cell];
+			createdCell = cell;
+		}
+		else if (field.image)
+		{
+			CaptchaCell *cell = [tableView dequeueReusableCellWithIdentifier:TWCaptchaCellIdentifier];
+			[cell setFieldType:field];
 			[result addObject:cell];
 			createdCell = cell;
 		}

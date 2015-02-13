@@ -11,9 +11,9 @@
 #import "Constants.h"
 #import "Payment.h"
 #import "TransferBackButtonItem.h"
-#import "DoublePasswordEntryCell.h"
 #import "DropdownCell.h"
 #import "RecipientFieldCell.h"
+#import "DoublePasswordEntryCell.h"
 #import "TypeFieldHelper.h"
 #import "AchBank.h"
 #import "FieldGroup.h"
@@ -23,6 +23,7 @@
 #import "TRWAlertView.h"
 #import "FieldGroup.h"
 #import "AchResponseParser.h"
+#import "CaptchaCell.h"
 
 @interface AchLoginViewController ()
 
@@ -115,6 +116,7 @@
 	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"CaptchaCell" bundle:nil] forCellReuseIdentifier:TWCaptchaCellIdentifier];
 }
 
 - (void)generateFormCells

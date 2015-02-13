@@ -994,6 +994,12 @@
 		4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
+		478C6FEF1A8DF04700431882 /* CaptchaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FEE1A8DF04700431882 /* CaptchaCell.m */; };
+		478C6FF01A8DF04700431882 /* CaptchaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FEE1A8DF04700431882 /* CaptchaCell.m */; };
+		478C6FF11A8DF04700431882 /* CaptchaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FEE1A8DF04700431882 /* CaptchaCell.m */; };
+		478C6FF31A8DF61D00431882 /* CaptchaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478C6FF21A8DF61D00431882 /* CaptchaCell.xib */; };
+		478C6FF41A8DF61D00431882 /* CaptchaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478C6FF21A8DF61D00431882 /* CaptchaCell.xib */; };
+		478C6FF51A8DF61D00431882 /* CaptchaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478C6FF21A8DF61D00431882 /* CaptchaCell.xib */; };
 		47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
 		47971C5F199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
 		47971C61199A3C1C0018FDA8 /* DateEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */; };
@@ -1932,6 +1938,9 @@
 		4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Presentation.h"; sourceTree = "<group>"; };
 		4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Presentation.m"; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
+		478C6FED1A8DF04700431882 /* CaptchaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptchaCell.h; sourceTree = "<group>"; };
+		478C6FEE1A8DF04700431882 /* CaptchaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptchaCell.m; sourceTree = "<group>"; };
+		478C6FF21A8DF61D00431882 /* CaptchaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaptchaCell.xib; sourceTree = "<group>"; };
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoublePasswordEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -2988,6 +2997,9 @@
 				EA88E689172F97E20021492C /* SelectionCell.m */,
 				47F84D611988E83300886D41 /* SelectionCell.xib */,
 				47971C66199A3FB60018FDA8 /* SelectionCell~ipad.xib */,
+				478C6FED1A8DF04700431882 /* CaptchaCell.h */,
+				478C6FEE1A8DF04700431882 /* CaptchaCell.m */,
+				478C6FF21A8DF61D00431882 /* CaptchaCell.xib */,
 				380021FD192F443E009B1D53 /* CurrencyCell.h */,
 				380021FE192F443E009B1D53 /* CurrencyCell.m */,
 				3800220B192F5774009B1D53 /* CurrencyCell.xib */,
@@ -3921,6 +3933,7 @@
 				388E5B931A5A949500AF6EB9 /* ResetPasswordViewController~ipad.xib in Resources */,
 				388E5B941A5A949500AF6EB9 /* ClaimAccountViewController.xib in Resources */,
 				388E5B951A5A949500AF6EB9 /* Styles.plist in Resources */,
+				478C6FF51A8DF61D00431882 /* CaptchaCell.xib in Resources */,
 				388E5B961A5A949500AF6EB9 /* ProfileEditViewController.xib in Resources */,
 				388E5B971A5A949500AF6EB9 /* BusinessProfileIdentificationViewController.xib in Resources */,
 				388E5B981A5A949500AF6EB9 /* TouchIdPromptViewController.xib in Resources */,
@@ -4086,6 +4099,7 @@
 				4723EA211974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */,
 				EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */,
 				380021D8192CC570009B1D53 /* Styles.plist in Resources */,
+				478C6FF41A8DF61D00431882 /* CaptchaCell.xib in Resources */,
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
 				EA0450CC17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
 				3811674819C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */,
@@ -4244,6 +4258,7 @@
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				4723EA201974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */,
+				478C6FF31A8DF61D00431882 /* CaptchaCell.xib in Resources */,
 				3840D34619A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
 				3811674719C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */,
@@ -4714,6 +4729,7 @@
 				388E5A981A5A949500AF6EB9 /* HeaderTabView.m in Sources */,
 				388E5A991A5A949500AF6EB9 /* ConnectionAwareViewController.m in Sources */,
 				388E5A9A1A5A949500AF6EB9 /* ImageColoredButton.m in Sources */,
+				478C6FF11A8DF04700431882 /* CaptchaCell.m in Sources */,
 				388E5A9B1A5A949500AF6EB9 /* PersonalPaymentProfileViewController.m in Sources */,
 				388E5A9C1A5A949500AF6EB9 /* Payment.m in Sources */,
 				388E5A9D1A5A949500AF6EB9 /* LightBlueButton.m in Sources */,
@@ -5048,6 +5064,7 @@
 				38C7B29419742596004324E8 /* HeaderTabView.m in Sources */,
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
+				478C6FF01A8DF04700431882 /* CaptchaCell.m in Sources */,
 				472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				389F683E198FC1C6006CF1F6 /* Payment.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
@@ -5449,6 +5466,7 @@
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				38057ACF1A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
+				478C6FEF1A8DF04700431882 /* CaptchaCell.m in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
