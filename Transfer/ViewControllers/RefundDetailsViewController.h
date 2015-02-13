@@ -12,7 +12,6 @@
 @class ObjectModel;
 @class Currency;
 @class RecipientType;
-@class CurrenciesOperation;
 @class PendingPayment;
 
 @interface RefundDetailsViewController : SuggestionDataEntryViewController

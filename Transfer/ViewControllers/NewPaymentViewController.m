@@ -40,7 +40,6 @@
 #import "User.h"
 #import "RecipientTypesOperation.h"
 #import "TRWProgressHUD.h"
-#import "CurrenciesOperation.h"
 #import "CustomInfoViewController.h"
 #import "NavigationBarCustomiser.h"
 #import "NewPaymentHelper.h"

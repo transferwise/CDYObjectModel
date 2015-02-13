@@ -18,8 +18,8 @@
 #import "PairSourceCurrency.h"
 #import "PairTargetCurrency.h"
 #import "RecipientTypesOperation.h"
-#import "CurrenciesOperation.h"
 #import "GoogleAnalytics.h"
+#import "CurrencyLoader.h"
 
 NSString *const NewTransferErrorDomain = @"NewTransferError";
 NSString *const NewTransferNetworkOperationErrorKey = @"NetworkOperationError";
@@ -172,21 +172,17 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
                 }];
             });
         };
-        
-        CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-        [currenciesOperation setObjectModel:objectModel];
-        [currenciesOperation setResultHandler:^(NSError *error) {
-            weakSelf.currentOperation = nil;
-            if (error) {
-                [weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CurrenciesOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
-                return;
-            }
-            
-            dataLoadCompletionBlock();
-            
-        }];
-        weakSelf.currentOperation = currenciesOperation;
-        [currenciesOperation execute];
+		
+		CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:objectModel];
+		[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+			weakSelf.currentOperation = nil;
+			if (error) {
+				[weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CurrenciesOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
+				return;
+			}
+			
+			dataLoadCompletionBlock();
+		}];
     }];
     [operation execute];
 }

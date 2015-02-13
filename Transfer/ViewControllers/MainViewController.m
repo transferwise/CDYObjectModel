@@ -23,9 +23,8 @@
 #import "InvitationsViewController.h"
 #import "SendButtonFlashHelper.h"
 #import "NavigationBarCustomiser.h"
-#import "CurrenciesOperation.h"
 #import "CurrencyPairsOperation.h"
-
+#import "CurrencyLoader.h"
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -233,7 +232,6 @@
     }
 }
 
-
 - (void)moveToPaymentsList
 {
     [self.tabController selectIndex:IPAD?1:0];
@@ -252,23 +250,18 @@
 
 -(void)preloadCurrencies
 {
-    CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-    currenciesOperation.objectModel = self.objectModel;
-    [self setExecutedOperation:currenciesOperation];
-    __weak typeof (self) weakSelf = self;
-    [currenciesOperation setResultHandler:^(NSError* error)
-     {
-         CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
-         [weakSelf setExecutedOperation:operation];
-         [operation setObjectModel:weakSelf.objectModel];
-         
-         [operation setCurrenciesHandler:^(NSError *error) {
-             [weakSelf setExecutedOperation:nil];
-         }];
-         [operation execute];
-     }];
-    [currenciesOperation execute];
-
+	CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
+	__weak typeof (self) weakSelf = self;
+	[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+		CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
+		[weakSelf setExecutedOperation:operation];
+		[operation setObjectModel:weakSelf.objectModel];
+		
+		[operation setCurrenciesHandler:^(NSError *error) {
+			[weakSelf setExecutedOperation:nil];
+		}];
+		[operation execute];
+	}];
 }
 
 #pragma mark - Highlight Send Button

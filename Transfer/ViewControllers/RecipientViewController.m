@@ -58,7 +58,6 @@
 #import "SelectionCell.h"
 #import "Country.h"
 #import "ObjectModel+Countries.h"
-#import "CurrenciesOperation.h"
 #import "CountriesOperation.h"
 #import "CountrySuggestionCellProvider.h"
 #import "StateSuggestionCellProvider.h"
@@ -66,6 +65,7 @@
 #import "Mixpanel+Customisation.h"
 #import "TypeFieldHelper.h"
 #import "TargetCountryProvider.h"
+#import "CurrencyLoader.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -394,27 +394,23 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 dataLoadCompletionBlock();
             }];
         }
-        
-        CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-        [self setRetrieveCurrenciesOperation:currenciesOperation];
-        [currenciesOperation setObjectModel:self.objectModel];
-        [currenciesOperation setResultHandler:^(NSError *error) {
-            if (error) {
-                [hud hide];
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
-                [alertView show];
-                return;
-            }
-            
-            if (recipientsOperation) {
-                [self setRetrieveCurrenciesOperation:recipientsOperation];
-                [recipientsOperation execute];
-            } else {
-                dataLoadCompletionBlock();
-            }
-        }];
-        
-        [currenciesOperation execute];
+		
+		CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
+		[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+			if (error) {
+				[hud hide];
+				TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
+				[alertView show];
+				return;
+			}
+			
+			if (recipientsOperation) {
+				[self setRetrieveCurrenciesOperation:recipientsOperation];
+				[recipientsOperation execute];
+			} else {
+				dataLoadCompletionBlock();
+			}
+		}];
     }
     else
     {
