@@ -35,7 +35,17 @@ typedef NS_ENUM(short, NewTransferError)
 
 @interface NewPaymentHelper : NSObject
 
--(void)repeatTransfer:(Payment*)payment objectModel:(ObjectModel*)objectModel successBlock:(void(^)(PendingPayment* payment))successBlock failureBlock:(void(^)(NSError* error))failureBlock;
+-(void)repeatTransfer:(Payment*)payment
+		  objectModel:(ObjectModel*)objectModel
+		 successBlock:(void(^)(PendingPayment* payment))successBlock
+		 failureBlock:(void(^)(NSError* error))failureBlock;
 
--(void)createPendingPaymentWithObjectModel:(ObjectModel*)objectModel source:(Currency*)sourceCurrency target:(Currency*)targetCurrency calculationResult:(CalculationResult*)result recipient:(Recipient*)recipient profile:(NSString*)profile successBlock:(void(^)(PendingPayment* payment))successBlock failureBlock:(void(^)(NSError* error))failureBlock;
+-(void)createPendingPaymentWithObjectModel:(ObjectModel*)objectModel
+									source:(Currency*)sourceCurrency
+									target:(Currency*)targetCurrency
+						 calculationResult:(CalculationResult*)result
+								 recipient:(Recipient*)recipient
+								   profile:(NSString*)profile
+							  successBlock:(void(^)(PendingPayment* payment))successBlock
+							  failureBlock:(void(^)(NSError* error))failureBlock;
 @end

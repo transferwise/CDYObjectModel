@@ -994,6 +994,12 @@
 		4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
+		478C6FEA1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
+		478C6FEB1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
+		478C6FEC1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
+		478C6FF81A8E2C0600431882 /* CurrencyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FF71A8E2C0600431882 /* CurrencyLoader.m */; };
+		478C6FF91A8E2C0600431882 /* CurrencyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FF71A8E2C0600431882 /* CurrencyLoader.m */; };
+		478C6FFA1A8E2C0600431882 /* CurrencyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FF71A8E2C0600431882 /* CurrencyLoader.m */; };
 		47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
 		47971C5F199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
 		47971C61199A3C1C0018FDA8 /* DateEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */; };
@@ -1932,6 +1938,10 @@
 		4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Presentation.h"; sourceTree = "<group>"; };
 		4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Presentation.m"; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
+		478C6FE81A8CC71500431882 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
+		478C6FE91A8CC71500431882 /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
+		478C6FF61A8E2C0600431882 /* CurrencyLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyLoader.h; sourceTree = "<group>"; };
+		478C6FF71A8E2C0600431882 /* CurrencyLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyLoader.m; sourceTree = "<group>"; };
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoublePasswordEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -3597,6 +3607,8 @@
 				47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */,
 				47C4D0561A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.h */,
 				47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */,
+				478C6FE81A8CC71500431882 /* LocationHelper.h */,
+				478C6FE91A8CC71500431882 /* LocationHelper.m */,
 				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
 				EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */,
 				EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */,
@@ -3629,6 +3641,8 @@
 				38504B0819C1E83700276203 /* TouchIDHelper.m */,
 				47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */,
 				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
+				478C6FF61A8E2C0600431882 /* CurrencyLoader.h */,
+				478C6FF71A8E2C0600431882 /* CurrencyLoader.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4596,6 +4610,7 @@
 				388E5A231A5A949500AF6EB9 /* Credentials.m in Sources */,
 				388E5A241A5A949500AF6EB9 /* CustomInfoViewController.m in Sources */,
 				388E5A251A5A949500AF6EB9 /* DataEntryViewController.m in Sources */,
+				478C6FEC1A8CC71500431882 /* LocationHelper.m in Sources */,
 				388E5A261A5A949500AF6EB9 /* PersonalProfileViewController.m in Sources */,
 				388E5A271A5A949500AF6EB9 /* _Country.m in Sources */,
 				388E5A281A5A949500AF6EB9 /* BusinessProfileSource.m in Sources */,
@@ -4645,6 +4660,7 @@
 				381EF8871A7908A600485C7F /* PresentationCell.m in Sources */,
 				388E5A541A5A949500AF6EB9 /* PersonalProfileOperation.m in Sources */,
 				388E5A551A5A949500AF6EB9 /* PersonalProfileIdentificationViewController.m in Sources */,
+				478C6FFA1A8E2C0600431882 /* CurrencyLoader.m in Sources */,
 				388E5A561A5A949500AF6EB9 /* CardPaymentViewController.m in Sources */,
 				388E5A571A5A949500AF6EB9 /* TypeFieldValue.m in Sources */,
 				388E5A581A5A949500AF6EB9 /* BusinessProfileViewController.m in Sources */,
@@ -4930,6 +4946,7 @@
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */,
+				478C6FEB1A8CC71500431882 /* LocationHelper.m in Sources */,
 				EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */,
 				389F67FC198FC1C6006CF1F6 /* _Country.m in Sources */,
 				47C1F70B1A3B3F4200014F55 /* BusinessProfileSource.m in Sources */,
@@ -4979,6 +4996,7 @@
 				381EF8861A7908A600485C7F /* PresentationCell.m in Sources */,
 				EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */,
 				EA31A16117DDB29B00F937F7 /* PersonalProfileIdentificationViewController.m in Sources */,
+				478C6FF91A8E2C0600431882 /* CurrencyLoader.m in Sources */,
 				EAD3648D17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				389F684E198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */,
 				EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */,
@@ -5308,6 +5326,7 @@
 				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
 				EAB6170E191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
 				389F6827198FC1C6006CF1F6 /* ObjectModel+PayInMethod.m in Sources */,
+				478C6FEA1A8CC71500431882 /* LocationHelper.m in Sources */,
 				BB29BD47173CD2FF0016A6E9 /* BankTransferViewController.m in Sources */,
 				389F67FD198FC1C6006CF1F6 /* _Currency.m in Sources */,
 				BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */,
@@ -5443,6 +5462,7 @@
 				389F681D198FC1C6006CF1F6 /* Country.m in Sources */,
 				389F682F198FC1C6006CF1F6 /* ObjectModel+RecipientTypes.m in Sources */,
 				4723EA1D1974095B00B4345F /* NavigationBarCustomiser.m in Sources */,
+				478C6FF81A8E2C0600431882 /* CurrencyLoader.m in Sources */,
 				47F84D6B198A638B00886D41 /* DoubleEntryCell.m in Sources */,
 				389F6845198FC1C6006CF1F6 /* Recipient.m in Sources */,
 				38288F4E19C86DC200661BFB /* PaymentMethodCell.m in Sources */,

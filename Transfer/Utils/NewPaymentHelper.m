@@ -18,8 +18,8 @@
 #import "PairSourceCurrency.h"
 #import "PairTargetCurrency.h"
 #import "RecipientTypesOperation.h"
-#import "CurrenciesOperation.h"
 #import "GoogleAnalytics.h"
+#import "CurrencyLoader.h"
 
 NSString *const NewTransferErrorDomain = @"NewTransferError";
 NSString *const NewTransferNetworkOperationErrorKey = @"NetworkOperationError";
@@ -37,8 +37,10 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
 
 @implementation NewPaymentHelper
 
-
--(void)repeatTransfer:(Payment*)paymentToRepeat objectModel:(ObjectModel*)objectModel successBlock:(void(^)(PendingPayment* payment))successBlock failureBlock:(void(^)(NSError* error))failureBlock;
+-(void)repeatTransfer:(Payment*)paymentToRepeat
+		  objectModel:(ObjectModel*)objectModel
+		 successBlock:(void(^)(PendingPayment* payment))successBlock
+		 failureBlock:(void(^)(NSError* error))failureBlock;
 {
     Currency *sourceCurrency = [paymentToRepeat sourceCurrency];
     Currency *targetCurrency = [paymentToRepeat targetCurrency];
@@ -48,25 +50,37 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
     NSString *source = paymentToRepeat.sourceCurrency.code;
     NSString *target = paymentToRepeat.targetCurrency.code;
     
-    TransferCalculationsOperation *operation = [TransferCalculationsOperation operationWithAmount:amount source:source target:target];
+    TransferCalculationsOperation *operation = [TransferCalculationsOperation operationWithAmount:amount
+																						   source:source
+																						   target:target];
     
     [operation setAmountCurrency:paymentToRepeat.isFixedAmountValue?TargetCurrency:SourceCurrency];
     __weak typeof(self) weakSelf = self;
     [operation setRemoteCalculationHandler:^(CalculationResult *result, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.currentOperation = nil;
-            if (result) {
-                [weakSelf createPendingPaymentWithObjectModel:objectModel source:sourceCurrency target:targetCurrency calculationResult:result recipient:paymentToRepeat.recipient profile:paymentToRepeat.profileUsed successBlock:^(PendingPayment *payment) {
-                    payment.paymentReference = paymentToRepeat.paymentReference;
-                    if(successBlock)
-                    {
-                        successBlock(payment);
-                    }
-                } failureBlock:failureBlock];
+            if (result)
+			{
+				[weakSelf createPendingPaymentWithObjectModel:objectModel
+													   source:sourceCurrency
+													   target:targetCurrency
+											calculationResult:result recipient:paymentToRepeat.recipient
+													  profile:paymentToRepeat.profileUsed
+												 successBlock:^(PendingPayment *payment) {
+													 payment.paymentReference = paymentToRepeat.paymentReference;
+													 if(successBlock)
+													 {
+														 successBlock(payment);
+													 }
+												 }
+												 failureBlock:failureBlock];
             }
             else
             {
-                [weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CalculationOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
+                [weakSelf reportFailure:failureBlock
+								  error:[NSError errorWithDomain:NewTransferErrorDomain
+															code:CalculationOperationFailed
+														userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
             }
         });
     }];
@@ -78,7 +92,14 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
     
 }
 
--(void)createPendingPaymentWithObjectModel:(ObjectModel*)objectModel source:(Currency*)sourceCurrency target:(Currency*)targetCurrency calculationResult:(CalculationResult*)result recipient:(Recipient*)recipient profile:(NSString*)profile successBlock:(void(^)(PendingPayment* payment))successBlock failureBlock:(void(^)(NSError* error))failureBlock
+-(void)createPendingPaymentWithObjectModel:(ObjectModel*)objectModel
+									source:(Currency*)sourceCurrency
+									target:(Currency*)targetCurrency
+						 calculationResult:(CalculationResult*)result
+								 recipient:(Recipient*)recipient
+								   profile:(NSString*)profile
+							  successBlock:(void(^)(PendingPayment* payment))successBlock
+							  failureBlock:(void(^)(NSError* error))failureBlock
 {
     PairSourceCurrency *source = [objectModel pairSourceWithCurrency:sourceCurrency];
     PairTargetCurrency *target = [objectModel pairTargetWithSource:sourceCurrency target:targetCurrency];
@@ -86,24 +107,31 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
     
     if(!source || !target || !payIn)
     {
-        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:DataMissing userInfo:nil]];
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain
+																   code:DataMissing
+															   userInfo:nil]];
         return;
     }
     
     if (![target acceptablePayIn:payIn])
     {
-        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:PayInTooLow userInfo:@{NewTransferMinimumAmountKey:target.minInvoiceAmount, NewTransferSourceCurrencyCodeKey:target.source.currency.code}]];
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain
+																   code:PayInTooLow
+															   userInfo:@{NewTransferMinimumAmountKey:target.minInvoiceAmount, NewTransferSourceCurrencyCodeKey:target.source.currency.code}]];
         return;
     }
     else if (![source acceptablePayIn:payIn])
     {
-        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:PayInTooHigh userInfo:@{NewTransferMinimumAmountKey:source.maxInvoiceAmount, NewTransferSourceCurrencyCodeKey:source.currency.code}]];
+        [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain
+																   code:PayInTooHigh
+															   userInfo:@{NewTransferMinimumAmountKey:source.maxInvoiceAmount, NewTransferSourceCurrencyCodeKey:source.currency.code}]];
         return;
     }
     
    if([@"USD" caseInsensitiveCompare:sourceCurrency.code] == NSOrderedSame && [payIn floatValue] < 3.0f)
    {
-       [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:USDPayinTooLow userInfo:@{NewTransferMinimumAmountKey:@(3), NewTransferSourceCurrencyCodeKey:@"USD"}]];
+       [self reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain
+																  code:USDPayinTooLow userInfo:@{NewTransferMinimumAmountKey:@(3), NewTransferSourceCurrencyCodeKey:@"USD"}]];
        return;
    }
     
@@ -144,21 +172,17 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
                 }];
             });
         };
-        
-        CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-        [currenciesOperation setObjectModel:objectModel];
-        [currenciesOperation setResultHandler:^(NSError *error) {
-            weakSelf.currentOperation = nil;
-            if (error) {
-                [weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CurrenciesOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
-                return;
-            }
-            
-            dataLoadCompletionBlock();
-            
-        }];
-        weakSelf.currentOperation = currenciesOperation;
-        [currenciesOperation execute];
+		
+		CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:objectModel];
+		[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+			weakSelf.currentOperation = nil;
+			if (error) {
+				[weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CurrenciesOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
+				return;
+			}
+			
+			dataLoadCompletionBlock();
+		}];
     }];
     [operation execute];
 }

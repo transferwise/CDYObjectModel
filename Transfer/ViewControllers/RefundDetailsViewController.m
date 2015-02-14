@@ -16,7 +16,6 @@
 #import "DropdownCell.h"
 #import "ObjectModel+PendingPayments.h"
 #import "ObjectModel+RecipientTypes.h"
-#import "CurrenciesOperation.h"
 #import "PendingPayment.h"
 #import "RecipientFieldCell.h"
 #import "TRWProgressHUD.h"
