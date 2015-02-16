@@ -19,6 +19,7 @@ typedef RecipientTypeField *(^GetRecipientTypeBlock)(NSString *name);
 typedef AllowedTypeFieldValue *(^GetAllowedTypeFieldValueBlock)(RecipientTypeField* field, NSString *code);
 typedef NSString *(^StringGetterBlock)(NSDictionary *data);
 typedef NSOrderedSet *(^GetFieldsBlock)();
+typedef NSString *(^GetImageBlock)(NSDictionary *data);
 
 @interface TypeFieldHelper : NSObject
 
@@ -27,7 +28,8 @@ typedef NSOrderedSet *(^GetFieldsBlock)();
 							fieldGetter:(GetRecipientTypeBlock)fieldGetterBlock
 							valueGetter:(GetAllowedTypeFieldValueBlock)valueGetterBlock
 							titleGetter:(StringGetterBlock)titleGetterBlock
-							 typeGetter:(StringGetterBlock)typeGetterBlock;
+							 typeGetter:(StringGetterBlock)typeGetterBlock
+							imageGetter:(GetImageBlock)imageGetterBlock;
 
 + (NSArray *)generateFieldsArray:(UITableView *)tableView
 					fieldsGetter:(GetFieldsBlock)fieldsGetterBlock

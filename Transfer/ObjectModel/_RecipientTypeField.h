@@ -5,6 +5,7 @@
 
 extern const struct RecipientTypeFieldAttributes {
 	__unsafe_unretained NSString *example;
+	__unsafe_unretained NSString *image;
 	__unsafe_unretained NSString *maxLength;
 	__unsafe_unretained NSString *minLength;
 	__unsafe_unretained NSString *name;
@@ -39,6 +40,10 @@ extern const struct RecipientTypeFieldRelationships {
 @property (nonatomic, strong) NSString* example;
 
 //- (BOOL)validateExample:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* image;
+
+//- (BOOL)validateImage:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* maxLength;
 
@@ -122,6 +127,9 @@ extern const struct RecipientTypeFieldRelationships {
 
 - (NSString*)primitiveExample;
 - (void)setPrimitiveExample:(NSString*)value;
+
+- (NSString*)primitiveImage;
+- (void)setPrimitiveImage:(NSString*)value;
 
 - (NSNumber*)primitiveMaxLength;
 - (void)setPrimitiveMaxLength:(NSNumber*)value;

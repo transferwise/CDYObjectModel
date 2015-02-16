@@ -113,7 +113,10 @@
 						 }
 						  typeGetter:^NSString *(NSDictionary *data) {
 							  return nil;
-						  }];
+						  }
+						 imageGetter:^NSString *(NSDictionary *data) {
+							 return nil;
+						 }];
 }
 
 - (RecipientTypeField *)existingFieldOnType:(RecipientType *)type withName:(NSString *)name
