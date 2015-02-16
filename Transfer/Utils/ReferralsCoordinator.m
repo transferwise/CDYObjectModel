@@ -53,9 +53,16 @@
         [currencyFormatter setMaximumFractionDigits:0];
         [currencyFormatter setMinimumFractionDigits:0];
         self.currencyFormatter = currencyFormatter;
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetLastRewardUpdatedDate) name:TRWLoggedOutNotification object:nil];
 	}
 	
 	return self;
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (id)init
@@ -203,6 +210,11 @@
     }
     
     return [self.currencyFormatter stringFromNumber:rewardNumber];
+}
+
+- (void)resetLastRewardUpdatedDate
+{
+	self.lastRewardUpdateDate = nil;
 }
 
 @end
