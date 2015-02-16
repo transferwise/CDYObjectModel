@@ -553,7 +553,7 @@ Payment #%@";
 "payment.method.title.REGULAR.USD" = "Pay by wire transfer";
 "payment.method.title.ADYEN" = "Pay by debit card";
 "payment.method.title.SWIFT" = "Pay by international wire";
-"payment.method.title.SWIFT.USD" = "Pay by international wire";
+"payment.method.title.SWIFT.USD" = "Pay by SWIFT Transfer";
 "payment.method.title.ACH" = "Pay by direct debit";
 "payment.method.title.ACH.USD" = "Pay by direct debit";
 
