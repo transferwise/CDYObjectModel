@@ -21,6 +21,8 @@
 #import "Credentials.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+CurrencyPairs.h"
+#import "ObjectModel+Users.h"
+#import "ObjectModel+Payments.h"
 #import "Currency.h"
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"
@@ -38,9 +40,11 @@
 #import "User.h"
 #import "RecipientTypesOperation.h"
 #import "TRWProgressHUD.h"
-#import "CurrenciesOperation.h"
 #import "CustomInfoViewController.h"
 #import "NavigationBarCustomiser.h"
+#import "NewPaymentHelper.h"
+#import "LocationHelper.h"
+
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -61,6 +65,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) CalculationResult *result;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
+@property (nonatomic, strong) NewPaymentHelper* paymentHelper;
 
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
@@ -71,7 +76,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (weak, nonatomic) IBOutlet UIButton *modalCloseButton;
 
 
-@property (nonatomic, strong) TransferwiseOperation *continueOperation;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
@@ -107,18 +111,20 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LandingBackground.png"]]];    
 
+    Payment* latestPayment = [self.objectModel latestPayment];
 
     [self setYouSendCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
-    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
+    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:self.suggestedSourceAmount?:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
     self.youSendCell.hostForCurrencySelector = self;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     self.youSendCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";
+	self.youSendCell.suggestedStartCurrency = self.suggestedSourceCurrency?:(latestPayment.sourceCurrency?:[LocationHelper getSourceCurrencyWithObjectModel:self.objectModel]);
     [self.youSendCell setEditable:YES];
 	[self.youSendCell initializeSelectorBackground];
 
     [self setTheyReceiveCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
-    [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
+    [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:self.suggestedTargetAmount?:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.theyReceiveCell setForcedCurrency:self.recipient ? self.recipient.currency : nil];
     self.theyReceiveCell.hostForCurrencySelector = self;
@@ -126,6 +132,7 @@ static NSUInteger const kRowYouSend = 0;
     self.theyReceiveCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";
     self.theyReceiveCell.contentView.bgStyle = @"LightBlueHighlighted";
 	self.theyReceiveCell.leftSeparatorHidden = YES;
+    self.theyReceiveCell.suggestedStartCurrency = self.suggestedTargetCurrency?:latestPayment.targetCurrency;
     [self.theyReceiveCell setEditable:YES];
 	[self.theyReceiveCell initializeSelectorBackground];
 
@@ -178,7 +185,15 @@ static NSUInteger const kRowYouSend = 0;
     [self.calculator setObjectModel:self.objectModel];
     [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
     if (!self.dummyPresentation) {
-        [self.calculator forceCalculate];
+        if(self.suggestedTransactionIsFixedTarget)
+        {
+            [self.calculator forceCalculateWithFixedTarget];
+        }
+        else
+        {
+            [self.calculator forceCalculate];
+        }
+        
     }
     
     [self retrieveCurrencyPairs];
@@ -237,6 +252,16 @@ static NSUInteger const kRowYouSend = 0;
     {
         self.amountLabel.text = [result payWinAmountWithCurrency];
     }
+    
+    if([result isFeeZero] && self.view.bounds.size.height > 480)
+    {
+        self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2.no.fee" deviceSpecificLocalization], nil);
+    }
+    else
+    {
+        self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2" deviceSpecificLocalization], nil);
+    }
+    [self.vsLabel layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -273,6 +298,7 @@ static NSUInteger const kRowYouSend = 0;
 	{
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -381,106 +407,70 @@ static NSUInteger const kRowYouSend = 0;
 
 	Currency *sourceCurrency = [self.youSendCell currency];
     Currency *targetCurrency = [self.theyReceiveCell currency];
-    NSNumber *payIn = [self.result transferwisePayIn];
-
-	PairSourceCurrency *source = [self.objectModel pairSourceWithCurrency:sourceCurrency];
-    PairTargetCurrency *target = [self.objectModel pairTargetWithSource:sourceCurrency target:targetCurrency];
-    if (![target acceptablePayIn:payIn])
-	{
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.low.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.low.message.base", nil), target.minInvoiceAmount, target.source.currency.code]];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
-    }
-	else if (![source acceptablePayIn:payIn])
-	{
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.high.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.high.message.base", nil), source.maxInvoiceAmount, source.currency.code]];
-		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-		[alertView show];
-		return;
-	}
+    NSString *profile = [self.objectModel currentUser].sendAsBusinessDefaultSettingValue? BUSINESS_PROFILE:PERSONAL_PROFILE;
     
-    if([@"USD" caseInsensitiveCompare:sourceCurrency.code] == NSOrderedSame && [payIn floatValue] < 3.0f)
-    {
-        CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
-        customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
-        customInfo.infoText = NSLocalizedString(@"usd.low.info",nil);
-        customInfo.actionButtonTitle = NSLocalizedString(@"usd.low.dismiss",nil);
-        customInfo.infoImage = [UIImage imageNamed:@"illustration_under1500usd"];
-        [customInfo presentOnViewController:self];
-        return;
-    }
-
+    self.paymentHelper = [[NewPaymentHelper alloc] init];
+    
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
     
-    RecipientTypesOperation *operation = [RecipientTypesOperation operation];
-    self.continueOperation = operation;
-    [operation setObjectModel:self.objectModel];
-    operation.sourceCurrency = self.youSendCell.currency.code;
-    operation.targetCurrency = self.theyReceiveCell.currency.code;
-    operation.amount = [self.result transferwisePayIn];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [operation setResultHandler:^(NSError *error, NSArray* listOfRecipientTypeCodes) {
-        if (error) {
-            self.continueOperation = nil;
-            [hud hide];
+    [self.paymentHelper createPendingPaymentWithObjectModel:self.objectModel source:sourceCurrency target:targetCurrency calculationResult:self.result recipient:self.recipient profile:profile successBlock:^(PendingPayment *payment) {
+        self.paymentHelper = nil;
+        [hud hide];
+        PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:self.objectModel];
+        ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:self.objectModel];
+        
+        PaymentFlow *paymentFlow = [Credentials userLoggedIn] ? [[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController
+                                                                                         paymentFlowViewControllerFactory:controllerFactory
+                                                                                                         validatorFactory:validatorFactory]
+                                                                 :[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController
+                                                                                         paymentFlowViewControllerFactory:controllerFactory
+                                                                                                         validatorFactory:validatorFactory];
+        [self setPaymentFlow:paymentFlow];
+        
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:[self.theyReceiveCell currency].code];
+        
+        
+        [NavigationBarCustomiser setDefault];
+        
+        [paymentFlow setObjectModel:self.objectModel];
+        [paymentFlow presentNextPaymentScreen];
+    } failureBlock:^(NSError *error) {
+        self.paymentHelper = nil;
+        [hud hide];
+        if (error.code == PayInTooLow)
+        {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.low.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.low.message.base", nil), error.userInfo[NewTransferMinimumAmountKey], error.userInfo[NewTransferSourceCurrencyCodeKey]]];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+
+        }
+        else if (error.code == PayInTooLow)
+        {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.high.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.high.message.base", nil), error.userInfo[NewTransferMaximumAmountKey], error.userInfo[NewTransferSourceCurrencyCodeKey]]];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+        }
+        else if(error.code == USDPayinTooLow)
+        {
+            CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
+            customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
+            customInfo.infoText = NSLocalizedString(@"usd.low.info",nil);
+            customInfo.actionButtonTitle = NSLocalizedString(@"usd.low.dismiss",nil);
+            customInfo.infoImage = [UIImage imageNamed:@"illustration_under1500usd"];
+            [customInfo presentOnViewController:self];
             return;
         }
-        
-        void (^dataLoadCompletionBlock)() = ^() {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hide];
-                [weakSelf.objectModel performBlock:^{
-                    PendingPayment *payment = [self.objectModel createPendingPayment];
-                    [payment setSourceCurrency:[self.youSendCell currency]];
-                    [payment setTargetCurrency:[self.theyReceiveCell currency]];
-                    [payment setPayIn:(NSDecimalNumber *) [self.result transferwisePayIn]];
-                    [payment setPayOut:(NSDecimalNumber *) [self.result transferwisePayOut]];
-                    [payment setConversionRate:[self.result transferwiseRate]];
-                    [payment setEstimatedDelivery:[self.result estimatedDelivery]];
-                    [payment setEstimatedDeliveryStringFromServer:[self.result formattedEstimatedDelivery]];
-                    [payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
-                    [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
-                    [payment setRecipient:self.recipient];
-                    [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue? BUSINESS_PROFILE :PERSONAL_PROFILE];
-                    payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[weakSelf.objectModel recipientTypesWithCodes:listOfRecipientTypeCodes]];
-                    PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
-                    [self setPaymentFlow:paymentFlow];
-                    
-                    [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];
-                    [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:[self.theyReceiveCell currency].code];
-                    
-                    
-                    [NavigationBarCustomiser setDefault];
-                    
-                    [paymentFlow setObjectModel:self.objectModel];
-                    [paymentFlow presentNextPaymentScreen];
-                }];
-            });
-        };
-        
-        CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-        weakSelf.continueOperation = currenciesOperation;
-        [currenciesOperation setObjectModel:weakSelf.objectModel];
-        [currenciesOperation setResultHandler:^(NSError *error) {
-            if (error) {
-                [hud hide];
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
-                [alertView show];
-                return;
-            }
-            
-            dataLoadCompletionBlock();
+        else if(error.code == CurrenciesOperationFailed || error.code == RecipientTypesOperationFailed || error.code == CalculationOperationFailed)
+        {
+            NSError *networkError = error.userInfo[NewTransferNetworkOperationErrorKey];
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:networkError];
+            [alertView show];
+            return;
+        }
 
-        }];
-        [currenciesOperation execute];
     }];
-    
-    [operation execute];
-    
 }
 
 - (IBAction)howButtonTapped:(id)sender {

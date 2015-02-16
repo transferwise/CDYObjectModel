@@ -68,6 +68,7 @@
 "button.title.retry" = "Retry";
 "button.title.yes" = "Yes";
 "button.title.no" = "No";
+"button.title.repeat" = "Repeat";
 
 "confirm.payment.controller.title" = "Review details";
 "confirm.payment.creating.message" = "Creating transfer";
@@ -84,6 +85,7 @@
 "confirm.payment.header.format.nodate" = "%@\n will reach\n%@'s account";
 "confirm.payment.exchangerate.title.label" = "Estimated rate";
 "confirm.payment.exchangerate.exact.title.label" = "Exchange rate";
+"confirm.payment.fee.title.label" = "Fee";
 "confirm.payment.footer.button.title" = "Confirm";
 "confirm.payment.payment.error.title" = "Couldn't create transfer. Please try again.";
 "confirm.payment.pulling.data" = "Refreshing...";
@@ -178,6 +180,8 @@ your friends to TransferWise";
 "introduction.savings.message.part1.ipad" = "You'll save";
 "introduction.savings.message.part2" = "vs your bank";
 "introduction.savings.message.part2.ipad" = "vs your bank";
+"introduction.savings.message.part2.no.fee" = "vs your bank \nas you earned a free transfer";
+"introduction.savings.message.part2.no.fee.ipad" = "vs your bank as you earned a free transfer";
 "introduction.savings.message.how" = "See how";
 "introduction.savings.message.how.ipad" = "See how";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
@@ -458,6 +462,7 @@ This can't be undone.";
 "transferdetails.controller.button.gotit" = "Got it!";
 "transferdetails.controller.button.pay" = "Pay %@ now";
 "transferdetails.controller.button.cancel" = "Cancel transfer";
+"transferdetails.controller.repeat.button" = "Repeat this transfer";
 
 "upload.money.account.nr.title" = "Account number";
 "upload.money.address.title" = "Our address";
@@ -508,6 +513,7 @@ This can't be undone.";
 "why.popup.vs" = "VS";
 "why.popup.rate" = "EXCHANGE\nRATE";
 "why.popup.fee" = "COST";
+"why.popup.tw.fee.free" = " (Free)";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
 "errors.TRWErrorDomain.1.message" = "Could not read server response.";
@@ -547,7 +553,7 @@ Payment #%@";
 "payment.method.title.REGULAR.USD" = "Pay by wire transfer";
 "payment.method.title.ADYEN" = "Pay by debit card";
 "payment.method.title.SWIFT" = "Pay by international wire";
-"payment.method.title.SWIFT.USD" = "Pay by international wire";
+"payment.method.title.SWIFT.USD" = "Pay by SWIFT Transfer";
 "payment.method.title.ACH" = "Pay by direct debit";
 "payment.method.title.ACH.USD" = "Pay by direct debit";
 
@@ -761,5 +767,8 @@ We'll send you an email in order to let you choose a new password.";
 "transfertime.USD" = "It takes up to 5 business days";
 
 "upload.money.bankname.title" = "Bank name";
-
 "upload.money.card.no.adyen.url" = "Could not load debit card screen. Please try again.";
+
+"no.payin.methods.template" = "It is not possible to proceed with this %@ transfer at the moment. You may need to verify yourself first on TransferWise.com";
+
+"repeat.transfer.creation" = "Applying current exchange rate";

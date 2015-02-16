@@ -154,5 +154,9 @@ NSDateFormatter *__paymentDateFormatter;
     return __paymentDateFormatter;
 }
 
+- (BOOL)isFeeZero
+{
+    return [self.transferwiseTransferFee floatValue] == 0.0f || ABS([self.transferwiseTransferFee floatValue]) < 0.005; // Check with wanted precision just in case we bump into floating point errors.
+}
 
 @end

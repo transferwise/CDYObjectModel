@@ -68,6 +68,7 @@
 "button.title.retry" = "Reéssayer";
 "button.title.yes" = "Oui";
 "button.title.no" = "Non";
+"button.title.repeat" = "Répéter";
 
 "confirm.payment.controller.title" = "Revue des details";
 "confirm.payment.creating.message" = "Création du transfert en cours";
@@ -84,6 +85,7 @@
 "confirm.payment.header.format.nodate" = "%@\n arrivera sur le compte de \n%@";
 "confirm.payment.exchangerate.title.label" = "Taux de change estimé";
 "confirm.payment.exchangerate.exact.title.label" = "Taux de change";
+"confirm.payment.fee.title.label" = "Coût";
 "confirm.payment.footer.button.title" = "Confirmer";
 "confirm.payment.payment.error.title" = "Le transfert n'a pas pu etre crée. Reéssayez.";
 "confirm.payment.pulling.data" = "Refraichissement...";
@@ -173,10 +175,11 @@ vos amis sur TransferWise";
 "introduction.login.section.title" = "Déja un utilisateur?";
 "introduction.savings.receive.message.base" = "Vous obtiendrez %@ de plus qu'avec votre banque";
 "introduction.savings.pay.message.base" = "Vous économisez %@ par rapport a votre banque";
-"introduction.savings.message.part1" = "Vous éconnomisez";
-"introduction.savings.message.part1.ipad" = "Vous éconnomisez";
+"introduction.savings.message.part1" = "Vous économisez";
+"introduction.savings.message.part1.ipad" = "Vous économisez";
 "introduction.savings.message.part2" = "avec TransferWise";
-"introduction.savings.message.part2.ipad" = "par rapport à votre banque";
+"introduction.savings.message.part2.ipad" = "par rapport à votre banque ";
+"introduction.savings.message.part2.no.fee" = "par rapport à votre banque que vous avez gagné un transfert gratuit";
 "introduction.savings.message.how" = "Voir explication";
 "introduction.savings.message.how.ipad" = "Voir explication";
 "introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.
@@ -455,6 +458,7 @@ C'est irréversible.";
 "transferdetails.controller.button.gotit" = "Compris!";
 "transferdetails.controller.button.pay" = "Payer %@";
 "transferdetails.controller.button.cancel" = "Annuler transfert";
+"transferdetails.controller.repeat.button" = "Répéter ce transfert";
 
 "upload.money.account.nr.title" = "Numéro de compte";
 "upload.money.address.title" = "Notre adresse";
@@ -500,11 +504,12 @@ C'est irréversible.";
 "why.popup.bank.you.get.title" = "Vous auriez reçu";
 "why.popup.tw.you.pay.title" = "Vous payez";
 "why.popup.bank.you.pay.title" = "Vous auriez payé";
-"why.popup.button" = "Compris, j'éconnomise %@";
+"why.popup.button" = "Compris, j'économise %@";
 "why.popup.title" = "Comparatif";
 "why.popup.vs" = "Vs";
 "why.popup.rate" = "TAUX DE\nCHANGE";
 "why.popup.fee" = "COUT";
+"why.popup.tw.fee.free" = " (Gratuit)";
 
 "errors.CRD_NOT_VALID.message" = "Identifiants incorrects.";
 "errors.TRWErrorDomain.1.message" = "Impossible de lire réponse du serveur.";
@@ -749,3 +754,8 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 
 "upload.money.bankname.title" = "Nom de la banque";
+
+"no.payin.methods.template" = "Aucune méthode de paiement sont actuellement disponible. Re-essayez plus tard.";
+
+"repeat.transfer.creation" = "Rafraîchissement du taux de change";
+

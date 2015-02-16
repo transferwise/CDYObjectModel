@@ -70,6 +70,7 @@
     [payment setPayOut:data[@"payOut"]];
     [payment setProfileUsed:data[@"profile"]];
     [payment setPresentableValue:YES];
+    [payment setPaymentReference:data[@"paymentReference"]];
     
     PaymentMadeIndicator* indicator = [self paymentMadeIndicatorForPayment:payment];
     if(indicator)
@@ -135,6 +136,14 @@
 {
 	NSPredicate *noOrCancelledPayments = [NSPredicate predicateWithFormat:@"(SELF != %@) AND paymentStatus != %@", paymentID, @"cancelled"];
 	return [self countInstancesOfEntity:[Payment entityName] withPredicate:noOrCancelledPayments] <= 0;
+}
+
+- (Payment*)latestPayment
+{
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"remoteId" ascending:NO];
+    NSPredicate *presentablePredicate = [NSPredicate predicateWithFormat:@"presentable = YES"];
+    NSArray *array = [self fetchEntitiesNamed:[Payment entityName] usingPredicate:presentablePredicate sortDescriptors:@[sortDescriptor] limit:1];
+    return [array count]>0?array[0]:nil;
 }
 
 @end

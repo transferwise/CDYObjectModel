@@ -23,7 +23,8 @@
 #import "InvitationsViewController.h"
 #import "SendButtonFlashHelper.h"
 #import "NavigationBarCustomiser.h"
-
+#import "CurrencyPairsOperation.h"
+#import "CurrencyLoader.h"
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -35,6 +36,7 @@
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic) BOOL shown;
 @property (nonatomic) BOOL isShowingLoginScreen;
+@property (nonatomic, strong) TransferwiseOperation* executedOperation;
 
 @end
 
@@ -64,7 +66,7 @@
     
     self.navigationBar.translucent = NO;
 	self.navigationBarHidden = YES;
-    
+    [self preloadCurrencies];
 	[self setUpTabs];
     [self setDelegate:self];
 }
@@ -230,7 +232,6 @@
     }
 }
 
-
 - (void)moveToPaymentsList
 {
     [self.tabController selectIndex:IPAD?1:0];
@@ -245,6 +246,22 @@
     [self popToRootViewControllerAnimated:YES];
 	[self setViewControllers:@[self.tabController]];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)preloadCurrencies
+{
+	CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
+	__weak typeof (self) weakSelf = self;
+	[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+		CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
+		[weakSelf setExecutedOperation:operation];
+		[operation setObjectModel:weakSelf.objectModel];
+		
+		[operation setCurrenciesHandler:^(NSError *error) {
+			[weakSelf setExecutedOperation:nil];
+		}];
+		[operation execute];
+	}];
 }
 
 #pragma mark - Highlight Send Button

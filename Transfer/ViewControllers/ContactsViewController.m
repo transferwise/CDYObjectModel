@@ -32,8 +32,8 @@
 #import "ContactDetailsViewController.h"
 #import "ReferralsCoordinator.h"
 #import "SendButtonFlashHelper.h"
-#import "CurrenciesOperation.h"
 #import "CurrencyPairsOperation.h"
+#import "CurrencyLoader.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -41,7 +41,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSArray *allRecipients;
-@property (nonatomic, strong) RecipientsFooterView *footerView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *noRecipientsMessage;
 
@@ -97,7 +96,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     [self refreshRecipients];
 	
-	self.tableView.tableFooterView = self.footerView;
+    [self showFooter:!(self.allRecipients.count <= 0)];
     
     if(IPAD)
     {
@@ -127,7 +126,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     for(RecipientCell* cell in [self.tableView visibleCells])
     {
-        [cell setIsCancelVisible:NO animated:NO];
+        [cell setIsActionButtonVisible:NO animated:NO];
     }
 }
 
@@ -227,25 +226,21 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 -(void)loadAllRequiredData
 {
     self.noRecipientsMessage.hidden = YES;
-    
-    //Retrieve currency pairs.
-    CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-    currenciesOperation.objectModel = self.objectModel;
-    [self setExecutedOperation:currenciesOperation];
-    __weak typeof (self) weakSelf = self;
-    [currenciesOperation setResultHandler:^(NSError* error)
-     {
-         CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
-         [weakSelf setExecutedOperation:operation];
-         [operation setObjectModel:weakSelf.objectModel];
-         
-         [operation setCurrenciesHandler:^(NSError *error) {
-             [weakSelf setExecutedOperation:nil];
-             [weakSelf refreshRecipients];
-         }];
-         [operation execute];
-     }];
-    [currenciesOperation execute];
+	
+	CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
+	__weak typeof (self) weakSelf = self;
+	
+	[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+		CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
+		[weakSelf setExecutedOperation:operation];
+		[operation setObjectModel:weakSelf.objectModel];
+		
+		[operation setCurrenciesHandler:^(NSError *error) {
+			[weakSelf setExecutedOperation:nil];
+			[weakSelf refreshRecipients];
+		}];
+		[operation execute];
+	}];
 }
 
 - (void)refreshRecipients
@@ -405,7 +400,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         }
 		if (currentCount > 0)
 		{
-			[self setFooter];
+			[self showFooter:YES];
 		}
         else
         {
@@ -422,15 +417,23 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     });
 }
 
-- (void)setFooter
+- (void)showFooter:(BOOL)showFooter
 {
 	if (!IPAD)
 	{
-		self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
-        [self.footerView setAmountString:[[ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel] rewardAmountString]];
-		self.footerView.delegate = self;
-		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		self.tableView.tableFooterView = self.footerView;
+        RecipientsFooterView* footer = nil;
+        if(showFooter)
+        {
+            if(self.tableView.tableFooterView)
+            {
+                return;
+            }
+            footer = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
+            [footer setAmountString:[[ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel] rewardAmountString]];
+            footer.delegate = self;
+            footer.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        }
+		self.tableView.tableFooterView = footer;
 	}
 }
 
@@ -445,6 +448,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 {
 	self.allRecipients = nil;
 	[self.tableView reloadData];
+    [self presentDetail:nil];
 }
 
 @end

@@ -161,11 +161,10 @@
         if(controller.presentingViewController)
         {
             ConnectionAwareViewController* root = (ConnectionAwareViewController*)[controller.navigationController?:controller parentViewController];
-            [root replaceWrappedViewControllerWithController:paymentView withAnimationStyle:ConnectionModalAnimation];
+            [root replaceWrappedViewControllerWithController:[[UINavigationController alloc] initWithRootViewController:paymentView] withAnimationStyle:ConnectionModalAnimation];
         }
         else
         {
-            
             ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller.navigationController?:controller];
             window.rootViewController = root;
             

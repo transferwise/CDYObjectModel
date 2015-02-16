@@ -120,7 +120,7 @@
     self.noRegistrationContainer.hidden = self.requireRegistration;
     
     [[Mixpanel sharedInstance] sendPageView:@"Intro screen"];
-
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Intro screen"];
 }
 
 -(void)viewWillAppear:(BOOL)animated

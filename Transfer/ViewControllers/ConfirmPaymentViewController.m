@@ -45,7 +45,7 @@
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
 @property (nonatomic, strong) PlainPresentationCell *yourDepositCell;
-@property (nonatomic, strong) PlainPresentationCell *exchangedToCell;
+@property (nonatomic, strong) PresentationCell *exchangeRateCell;
 @property (nonatomic, strong) PlainPresentationCell *senderEmailCell;
 @property (nonatomic, strong) PlainPresentationCell *receiverAmountCell;
 @property (nonatomic, strong) PlainPresentationCell *estimatedDeliveryCell;
@@ -53,6 +53,7 @@
 @property (nonatomic, strong) TextEntryCell *referenceCell;
 @property (nonatomic, strong) TextEntryCell *receiverEmailCell;
 @property (nonatomic, strong) IBOutlet UIButton *contactSupportButton;
+@property (nonatomic, strong) TRWProgressHUD *hud;
 
 @property (nonatomic, strong) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *footerLabel;
@@ -92,6 +93,7 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TwoFieldPresentationCell" bundle:nil] forCellReuseIdentifier:@"TwoFieldPresentationCell"];
     
     //Set background colour again because of ios 8.1 bug
     self.tableView.bgStyle = self.tableView.bgStyle;
@@ -121,8 +123,8 @@
         yourDepositCell.backgroundColor = [UIColor clearColor];
         [cells addObject:yourDepositCell];
         
-        PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-        [self setExchangedToCell:exchangedToCell];
+        PresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:@"TwoFieldPresentationCell"];
+        [self setExchangeRateCell:exchangedToCell];
         exchangedToCell.backgroundColor = [UIColor clearColor];
         [cells addObject:exchangedToCell];
         
@@ -164,8 +166,8 @@
         [self setReceiverFieldCells:fieldCells];
         [cells addObjectsFromArray:fieldCells];
       
-        PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-        [self setExchangedToCell:exchangedToCell];
+        PresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:@"TwoFieldPresentationCell"];
+        [self setExchangeRateCell:exchangedToCell];
         [cells addObject:exchangedToCell];
         
         for(UITableView* cell in cells)
@@ -174,6 +176,7 @@
         }
         
         self.referenceField.delegate = self;
+        
         self.emailField.delegate = self;
         if ([payment.recipient.email length] == 0)
         {
@@ -252,6 +255,12 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.hud hide];
+    [super viewWillDisappear:animated];
+}
+
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
         [self setupForOrientation:toInterfaceOrientation];
@@ -282,11 +291,22 @@
 
 - (void)fillDataCells
 {
-    Payment *payment = self.payment;
+    PendingPayment *payment = self.payment;
     
     [self.yourDepositCell configureWithTitle:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.deposit.fixed.title.label":@"confirm.payment.deposit.title.label", nil) text:[payment payInStringWithCurrency]];
     
-	[self.exchangedToCell configureWithTitle:NSLocalizedString([@"usd" caseInsensitiveCompare:self.payment.sourceCurrency.code] == NSOrderedSame ? @"confirm.payment.exchangerate.exact.title.label" : @"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
+    NSString *exchangeRateTitle = NSLocalizedString([@"usd" caseInsensitiveCompare:self.payment.sourceCurrency.code] == NSOrderedSame ? @"confirm.payment.exchangerate.exact.title.label" : @"confirm.payment.exchangerate.title.label", nil);
+    NSString *feeTitle =  NSLocalizedString(@"confirm.payment.fee.title.label", nil);
+    [self.exchangeRateCell setTitles:exchangeRateTitle,feeTitle, nil];
+    
+    NSString* exchangeRate = [NSString stringWithFormat:@"%f",payment.conversionRateValue];
+    NSString* fee = [NSString stringWithFormat:@"%0.2f %@",[payment transferwiseTransferFeeValue],payment.sourceCurrency.code];
+    if(ABS([payment transferwiseTransferFeeValue]) < 0.005f)
+    {
+        fee = [fee stringByAppendingString:NSLocalizedString(@"why.popup.tw.fee.free", nil)];
+    }
+    [self.exchangeRateCell setValues:exchangeRate, fee, nil];
+	
 
     
     if(!IPAD)
@@ -306,7 +326,7 @@
         [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
         
         [self.referenceCell setEditable:YES];
-        [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
+        [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:self.payment.paymentReference];
         [self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     }
     else
@@ -322,6 +342,7 @@
 		}
 		
         self.referenceField.placeholder = NSLocalizedString(@"confirm.payment.reference.label", nil);
+        self.referenceField.text = self.payment.paymentReference;
         self.emailField.placeholder = NSLocalizedString(@"confirm.payment.email.label", nil);
     }
 }
@@ -457,14 +478,14 @@
 
 -(void)sendForValidation
 {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
+    self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [self.hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
     
     PendingPayment *input = [self.objectModel pendingPayment];
     
     NSString *reference = IPAD?self.referenceField.text:[self.referenceCell value];
 	
-    [input setReference:reference];
+    [input setPaymentReference:reference];
     
     NSString *email;
     BOOL emailAdded;
@@ -480,19 +501,16 @@
     }
     
     [input setRecipientEmail:email];
-    
-    void(^validateBlock)(void) = ^void(){
-        [self.paymentFlow validatePayment:input.objectID successBlock:^{
-            [hud hide];
-        } errorHandler:^(NSError *error) {
-            [hud hide];
-            if (error) {
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
-                [alertView show];
-            }
-        }];
-    };
+	
+	__weak typeof(self) weakSelf = self;
+	
+	[self.paymentValidator setObjectModel:self.objectModel];
+	[self.paymentValidator setSuccessBlock:^{
+		weakSelf.sucessBlock();
+	}];
+	[self.paymentValidator setErrorBlock:^(NSError *error) {
+		[weakSelf handleValidationError:error];
+	}];
 	
     if(emailAdded)
     {
@@ -503,13 +521,13 @@
             RecipientUpdateOperation * updateOperation = [RecipientUpdateOperation instanceWithRecipient:self.payment.recipient objectModel:self.objectModel completionHandler:^(NSError *error) {
                 if(error)
                 {
-                    [hud hide];
+                    [self.hud hide];
                     [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
                     TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                     [alertView show];
                     return;
                 }
-                validateBlock();
+                [self.paymentValidator validatePayment:input.objectID];
             }];
             self.executedOperation = updateOperation;
             [updateOperation execute];
@@ -517,15 +535,25 @@
         else
         {
             //recipient is being created later. the validation will catch any email issues.
-            validateBlock();
+            [self.paymentValidator validatePayment:input.objectID];
         }
     }
     else
     {
-        validateBlock();
+        [self.paymentValidator validatePayment:input.objectID];
     }
-    
+}
 
+-(void)handleValidationError:(NSError *)error
+{
+	[self.hud hide];
+	if (error)
+	{
+		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert"
+											   withLabel:[error localizedTransferwiseMessage]];
+		TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+		[alertView show];
+	}
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

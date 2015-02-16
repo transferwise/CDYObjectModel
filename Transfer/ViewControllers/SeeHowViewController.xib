@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SeeHowViewController">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="fadeInAnimationViews" destination="ehO-9s-ggY" id="JUi-PD-MNR"/>
+                <outletCollection property="slideInAnimationViews" destination="gao-4F-TXn" id="gFN-VN-VTU"/>
+                <outletCollection property="slideInAnimationConstraints" destination="3Gf-cL-MJb" id="0EK-qP-x5f"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,7 +21,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juB-fg-Pju" userLabel="LeftColumn">
                     <rect key="frame" x="0.0" y="0.0" width="160" height="480"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rG1-Fu-9Ba" userLabel="rateValue">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="rG1-Fu-9Ba" userLabel="rateValue">
                             <rect key="frame" x="13" y="196" width="113" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="3BK-S6-amF"/>
@@ -40,10 +43,10 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="Medium.@14.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdS-U1-huq" userLabel="feeValue">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="gdS-U1-huq" userLabel="feeValue">
                             <rect key="frame" x="13" y="306" width="113" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="uEp-Tr-GOK"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="uEp-Tr-GOK"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -61,7 +64,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@14.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="TransferWise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eH-Dv-hmh" userLabel="rateValue">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="TransferWise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="99" translatesAutoresizingMaskIntoConstraints="NO" id="2eH-Dv-hmh" userLabel="rateValue">
                             <rect key="frame" x="23" y="124" width="99" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="MPy-4E-aLT"/>
@@ -97,7 +100,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGZ-IH-zOS" userLabel="RightColumn">
                     <rect key="frame" x="160" y="0.0" width="160" height="480"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBC-PJ-eVv" userLabel="rateValue">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="bBC-PJ-eVv" userLabel="rateValue">
                             <rect key="frame" x="34" y="196" width="113" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="113" id="HLw-M5-1l6"/>
@@ -119,7 +122,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="Medium.@14.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEy-fq-pFN" userLabel="feeValue">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="oEy-fq-pFN" userLabel="feeValue">
                             <rect key="frame" x="34" y="306" width="113" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Hlg-GL-5qn"/>
@@ -140,7 +143,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@14.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkw-H0-hXr" userLabel="rateValue">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="Zkw-H0-hXr" userLabel="rateValue">
                             <rect key="frame" x="66" y="124" width="42" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="wFJ-dX-vxW"/>
@@ -173,7 +176,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="TWBlueHighlighted.alpha3"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehO-9s-ggY">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="ehO-9s-ggY">
                     <rect key="frame" x="85" y="32" width="150" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Gaf-OM-8nG"/>
@@ -199,8 +202,8 @@
                         <action selector="dismiss" destination="-1" eventType="touchUpInside" id="Avd-dh-1n9"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="vs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13i-hZ-OLM">
-                    <rect key="frame" x="152" y="125" width="18" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="vs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="18" translatesAutoresizingMaskIntoConstraints="NO" id="13i-hZ-OLM">
+                    <rect key="frame" x="151" y="125" width="18" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -217,8 +220,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@12.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="fee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rn5-xO-UfR">
-                    <rect key="frame" x="149" y="306" width="24" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="fee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="24" translatesAutoresizingMaskIntoConstraints="NO" id="Rn5-xO-UfR">
+                    <rect key="frame" x="148" y="306" width="24" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

@@ -72,7 +72,7 @@
 
 -(void)updateColor
 {
-    self.gradient.colors = [NSArray arrayWithObjects:(id)[self.fromColor?:[UIColor clearColor]CGColor], (id)[self.toColor?:[UIColor colorWithWhite:0.0f alpha:0.7f] CGColor], nil];
+    self.gradient.colors = @[(id)[self.fromColor?:[UIColor clearColor]CGColor], (id)[self.toColor?:[UIColor colorWithWhite:0.0f alpha:0.7f] CGColor]];
 }
 
 -(CAGradientLayer*)gradient

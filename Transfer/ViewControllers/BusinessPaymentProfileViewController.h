@@ -7,6 +7,7 @@
 //
 
 #import "TabbedHeaderViewController.h"
+#import "BusinessProfileValidation.h"
 
 @class ObjectModel;
 
@@ -15,6 +16,6 @@
 @property (nonatomic) BOOL allowProfileSwitch;
 @property (nonatomic, strong) ObjectModel* objectModel;
 @property (nonatomic, strong) NSString* buttonTitle;
-@property (nonatomic, strong) id profileValidation;
+@property (nonatomic, strong) id<BusinessProfileValidation> profileValidation;
 
 @end

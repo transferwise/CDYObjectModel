@@ -1,8 +1,36 @@
+
 //
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
+#import "XCTestCase+Exceptions.h"
+
+#import "ObjectModel.h"
 #import "ReferralLinksOperation.h"
 #import "TransferWiseOperation+Private.h"
 #import "Constants.h"
+#import "NSObject+NSNull.h"
 #import "NSString+Validation.h"
+#import "PersonalPaymentProfileViewController.h"
+#import "RecipientViewController.h"
+#import "BusinessPaymentProfileViewController.h"
+#import "ConfirmPaymentViewController.h"
+#import "PersonalProfileIdentificationViewController.h"
+#import "PaymentMethodSelectorViewController.h"
+#import "UploadMoneyViewController.h"
+#import "BusinessProfileIdentificationViewController.h"
+#import "RefundDetailsViewController.h"
+#import "PaymentFlowViewControllerFactory.h"
+#import "BusinessProfileValidator.h"
+#import "EmailValidator.h"
+#import "PaymentValidator.h"
+#import "PersonalProfileValidator.h"
+#import "RecipientProfileValidator.h"
+#import "ValidatorFactory.h"
+#import "Recipient.h"
+#import "PendingPayment.h"
+#import "Payment.h"
+#import "Currency.h"
+#import "TransparentModalViewController.h"
+#import "CustomInfoViewController.h"
+#import "CalculationResult.h"

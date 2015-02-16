@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
-#import "SwipeToCancelCell.h"
+#import "SwipeActionCell.h"
 
 @class Payment;
 
-@interface PaymentCell : SwipeToCancelCell
+@interface PaymentCell : SwipeActionCell
 
 - (void)configureWithPayment:(Payment *)payment
-		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
-		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
-		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
-		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
+		 willShowActionButtonBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowActionButtonBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideActionButtonBlock:(TRWActionBlock)didHideCancelBlock
+		   actionTappedBlock:(TRWActionBlock)cancelTappedBlock;
 
 @end

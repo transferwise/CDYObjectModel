@@ -10,10 +10,10 @@
 #import "MOMStyle.h"
 #import "Constants.h"
 
-#define xOffset IPAD ? 0.0f : 70.0f
-#define yOffset IPAD ? -220.0f : -140.0f
-#define rotationAngle M_PI_4/3.0f
-#define magnifyingScale IPAD ? 1.0f : 1.5f
+#define xOffset (IPAD ? 0.0f : 70.0f)
+#define yOffset (IPAD ? -220.0f : -140.0f)
+#define rotationAngle (M_PI_4/3.0f)
+#define magnifyingScale (IPAD ? 1.0f : 1.5f)
 #define animationDuration 0.5f
 #define animationSpring 0.65f
 
@@ -25,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *routingNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountNumberLabel;
 @property (nonatomic, assign) ACHCheckViewState state;
+@property (nonatomic, assign) BOOL isPanning;
+@property (nonatomic, weak) UIPanGestureRecognizer* panRecognizer;
+@property (nonatomic, assign) CGFloat panProgress;
 
 @end
 
@@ -40,9 +43,16 @@
 }
 
 
+
 -(void)setState:(ACHCheckViewState)state animated:(BOOL)shouldAnimate
 {
-    if(state == self.state)
+    [self setStateWithAnimation:state duration:shouldAnimate?animationDuration:0.0f force:NO];
+}
+
+-(void)setStateWithAnimation:(ACHCheckViewState)state duration:(NSTimeInterval)duration force:(BOOL)force
+{
+    BOOL shouldAnimate = duration > 0;
+    if(!force && state == self.state)
     {
         return;
     }
@@ -69,7 +79,7 @@
     
     if(shouldAnimate)
     {
-        [UIView animateWithDuration:animationDuration delay:0.0f usingSpringWithDamping:animationSpring initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:duration delay:0.0f usingSpringWithDamping:animationSpring initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             layoutblock(state);
         } completion:^(BOOL finished) {
             if(finished)
@@ -100,6 +110,18 @@
     }
 }
 
+-(void) setActiveHostView:(UIView *)activeHostView
+{
+    if(self.panRecognizer)
+    {
+        [_activeHostView removeGestureRecognizer:self.panRecognizer];
+    }
+    _activeHostView = activeHostView;
+    
+    UIPanGestureRecognizer * panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    [activeHostView addGestureRecognizer:panGestureRecognizer];
+    self.panRecognizer = panGestureRecognizer;
+}
 
 -(void)styleForNormalState
 {
@@ -202,6 +224,109 @@
     }
     
     return self.routingNumberLabel;
+}
+
+-(void)handlePanGesture:(UIPanGestureRecognizer*)recognizer
+{
+    float progress = 0;
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            ;CGPoint startPoint = [recognizer locationInView:self];
+            if(CGRectContainsPoint(self.bounds, startPoint))
+            {
+                self.isPanning = YES;
+                [self addToActiveView];
+                if([self.checkViewDelegate respondsToSelector:@selector(checkViewDidStartDragging:)])
+                {
+                    [self.checkViewDelegate checkViewDidStartDragging:self];
+                }
+            }
+            break;
+        case UIGestureRecognizerStateChanged:
+            if(self.isPanning)
+            {
+                CGPoint translation = [recognizer translationInView:self.inactiveHostView];
+                if(self.state == CheckStatePlain)
+                {
+                    progress = MIN(MAX(0,translation.y/(yOffset)),1.0f);
+                }
+                else
+                {
+                    progress = 1.0f - MIN(MAX(0,-translation.y/(yOffset)),1.0f);
+                }
+                CGAffineTransform transform = CGAffineTransformMakeRotation(progress *rotationAngle);
+                CGPoint activeOffset = [self.activeHostView convertPoint:CGPointZero fromView:self.inactiveHostView];
+                transform = CGAffineTransformTranslate(transform, progress * (xOffset), progress * ((yOffset) - activeOffset.y));
+                transform = CGAffineTransformScale(transform, 1.0 + progress * (magnifyingScale - 1), 1.0 + progress * (magnifyingScale - 1));
+                self.checkContainer.transform = transform;
+                self.contextLabel.alpha = MAX(0.0f,1-progress*10);
+                
+                self.panProgress = progress;
+                if([self.checkViewDelegate respondsToSelector:@selector(checkView:draggedToProgress:)])
+                {
+                    [self.checkViewDelegate checkView:self draggedToProgress:progress];
+                }
+            }
+
+            break;
+        case UIGestureRecognizerStateFailed:
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded:
+            if(self.isPanning)
+            {
+                ACHCheckViewState newState;
+                progress = self.panProgress;
+                CGPoint velocity = [recognizer velocityInView:self.inactiveHostView];
+                NSTimeInterval duration;
+                if(ABS(velocity.y) > 150)
+                {
+                    //Moving fast
+                    //Animate based on velocity
+                    if (velocity.y > 0) {
+                        duration = ABS(2* progress * (yOffset)/velocity.y);
+                        newState = CheckStatePlain;
+                        [self setStateWithAnimation:newState duration:duration force:YES];
+                    }
+                    else
+                    {
+                        duration = ABS(2* (1.0 - progress) * (yOffset)/velocity.y);
+                        newState = self.state==CheckStatePlain?CheckStateRoutingHighlighted:self.state;
+                        [self setStateWithAnimation:newState duration:duration force:YES];
+                    }
+                }
+                else
+                {
+                    if(progress < 0.5)
+                    {
+                        duration = animationDuration * progress;
+                        newState = CheckStatePlain;
+                        [self setStateWithAnimation:newState duration:duration force:YES];
+                    }
+                    else
+                    {
+                        duration = animationDuration * (1-progress);
+                        newState = self.state==CheckStatePlain?CheckStateRoutingHighlighted:self.state;
+                        [self setStateWithAnimation:newState duration:duration force:YES];
+                    }
+                }
+                
+                if([self.checkViewDelegate respondsToSelector:@selector(checkViewDidEndDragging:willAnimateToState:withDuration:)])
+                {
+                    [self.checkViewDelegate checkViewDidEndDragging:self willAnimateToState:newState withDuration:duration];
+                }
+                
+                self.isPanning=NO;
+            }
+            else
+            {
+                if (self.state == CheckStatePlain)
+                {
+                    [self addToInactiveView];
+                }
+            }
+        default:
+            break;
+    }
 }
 
 @end

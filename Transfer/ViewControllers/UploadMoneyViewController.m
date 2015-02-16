@@ -23,7 +23,6 @@
 #import "Credentials.h"
 #import "FeedbackCoordinator.h"
 #import "SupportCoordinator.h"
-#import "TransferDetailsViewController.h"
 #import "PaymentMethodViewControllerFactory.h"
 #import "PayInMethod.h"
 #import "NSString+Presentation.h"
