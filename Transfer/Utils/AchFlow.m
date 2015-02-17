@@ -129,7 +129,8 @@
 																		  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
 																												 withLabel:messages];
 																	  }
-																				 flow:weakSelf];
+																				 flow:weakSelf
+																		   controller:controller];
 												  }];
 												  
 												  [self.executedOperation execute];
@@ -175,6 +176,8 @@
 																					   controller:controller
 																						  message:@"ach.failure.message.account"
 																					  actionBlock:^{
+																						  //mfa item id is not reusable, need to start from the first login form
+																						  [weakSelf resetToFirstLoginView:controller];
 																						  [weakSelf.waitingViewController dismiss];
 																					  }
 																					 successBlock:nil
@@ -243,7 +246,8 @@
 																	   [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
 																											  withLabel:messages];
 																   }
-																			  flow:weakSelf];
+																			  flow:weakSelf
+																		controller:controller];
 											   }];
 											   
 											   [self.executedOperation execute];
@@ -286,6 +290,7 @@
 				 successBlock:(void (^)())successBlock
 			  trackErrorBlock:(void (^)(NSString* messages))trackErrorBlock
 						 flow:(AchFlow *)flow
+				   controller:(UINavigationController *)controller
 {
 	//operation might have been cancelled before reaching here
 	//but it might not have
@@ -308,6 +313,8 @@
 			trackErrorBlock(messages);
 			
 			[self showErrorAlertWithMessages:messages];
+			//mfa item id is not reusable, so need to pop to first login form
+			[self resetToFirstLoginView:controller];
 			return;
 		}
 		
@@ -386,6 +393,27 @@
 	[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 	[self.waitingViewController dismiss];
 	[alertView show];
+}
+
+//pops failed ACH MFA to login from
+- (void)resetToFirstLoginView:(UINavigationController *)controller
+{
+	NSUInteger count = [controller.viewControllers count];
+	
+	//if the last pushed viewcontroller is not AchLoginViewController, then we have failed before getting to MFA, ignore
+	if ([controller.viewControllers[count - 1] isKindOfClass:[AchLoginViewController class]])
+	{
+		for (NSUInteger i = count - 1; i > 0; i--)
+		{
+			//there can be multiple AchLoginViewControllers in the stack, find the controller before and show the first.
+			if (![controller.viewControllers[i] isKindOfClass:[AchLoginViewController class]])
+			{
+				[controller popToViewController:controller.viewControllers[i]
+			 					   animated:YES];
+				break;
+			}
+		}
+	}
 }
 
 @end
