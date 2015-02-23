@@ -57,3 +57,6 @@ NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
 NSString *AppsFlyerIdentifier = @"612261027;6g8vUfZXve88zupKDb94pk";
 
 NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
+
+NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";
+NSString *const GoogleOAuthClientSecret = @"18voZHT-sCWXExY_1ZQZ35nC";
