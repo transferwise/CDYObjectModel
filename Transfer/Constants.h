@@ -104,6 +104,8 @@ extern NSString *AppsFlyerIdentifier;
 
 extern NSString *const GoogleOAuthClientId;
 extern NSString *const GoogleOAuthClientSecret;
+extern NSString *const GoogleOAuthAuthorizationUrl;
+extern NSString *const GoogleOAuthTokenUrl;
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
