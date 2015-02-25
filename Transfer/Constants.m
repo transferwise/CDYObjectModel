@@ -23,7 +23,8 @@ NSString *const TRWServerAddress = @"https://transferwise.com";
 NSString *const TransferSandboxUsername = @"mooncascade";
 NSString *const TransferSandboxPassword = @"DayAndNight";
 
-NSString *const TRWSupportCallNumber = @"+442081234020";
+NSString *const TRWSupportCallNumber = @"+442036950999";
+NSString *const TRWSupportCallNumberUS = @"+18889083833";
 NSString *const TRWSupportEmail = @"support@transferwise.com";
 NSString *const TRWFeedbackEmail = @"feedback@transferwise.com";
 NSString *const TRWIdentificationEmail = @"id@transferwise.com";

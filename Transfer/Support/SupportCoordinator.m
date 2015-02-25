@@ -16,6 +16,7 @@
 #import "UIDevice-Hardware.h"
 #import "GoogleAnalytics.h"
 #import "NavigationBarCustomiser.h"
+#import "LocationHelper.h"
 
 @interface SupportCoordinator () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
@@ -92,7 +93,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     if (buttonIndex == self.callButtonIndex)
 	{
         MCLog(@"Call pressed");
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", TRWSupportCallNumber]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [LocationHelper getSupportPhoneNumber]]]];
     }
 
     if (buttonIndex != self.writeButtonIndex)
