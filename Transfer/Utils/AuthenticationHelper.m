@@ -104,7 +104,8 @@
     [hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
 	
     LoginOperation *loginOperation = [LoginOperation loginOperationWithEmail:email
-																	password:password keepPendingPayment:keepPendingPayment];
+																	password:password
+														  keepPendingPayment:keepPendingPayment];
 	self.executedOperation = loginOperation;
     [loginOperation setObjectModel:objectModel];
 	[loginOperation setWaitForDetailsCompletion:waitForDetailsCompletion];

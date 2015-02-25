@@ -1134,6 +1134,9 @@
 		47FD9FEE1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
 		47FD9FEF1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
 		47FD9FF01A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
+		47FD9FF31A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */; };
+		47FD9FF41A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */; };
+		47FD9FF51A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */; };
 		B4C9172D19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		B4C9172E19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
@@ -2074,6 +2077,8 @@
 		47FD9FE81A9DD9CF00E95D7E /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
 		47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
 		47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthViewController.xib; sourceTree = "<group>"; };
+		47FD9FF11A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOrRegisterWithOauthOperation.h; sourceTree = "<group>"; };
+		47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOrRegisterWithOauthOperation.m; sourceTree = "<group>"; };
 		7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8FB7727F5849FF439B605EF8 /* Pods-TransferTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransferTests/Pods-TransferTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3289,6 +3294,8 @@
 				EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
+				47FD9FF11A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.h */,
+				47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
 				EA88E67F172F97D50021492C /* NetworkErrorCodes.m */,
 				3840862F19A2444000C837C2 /* PaymentCancelOperation.h */,
@@ -4586,6 +4593,7 @@
 				388E59E41A5A949500AF6EB9 /* RecipientType.m in Sources */,
 				388E59E51A5A949500AF6EB9 /* UIColor+Theme.m in Sources */,
 				388E59E61A5A949500AF6EB9 /* Currency.m in Sources */,
+				47FD9FF51A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */,
 				388E59E71A5A949500AF6EB9 /* UIColor+MOMStyle.m in Sources */,
 				388E59E81A5A949500AF6EB9 /* ReferralListOperation.m in Sources */,
 				388E59E91A5A949500AF6EB9 /* UIView+Loading.m in Sources */,
@@ -4925,6 +4933,7 @@
 				389F6848198FC1C6006CF1F6 /* RecipientType.m in Sources */,
 				EA31A13117DDB29B00F937F7 /* UIColor+Theme.m in Sources */,
 				389F6820198FC1C6006CF1F6 /* Currency.m in Sources */,
+				47FD9FF41A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */,
 				380021DC192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
@@ -5432,6 +5441,7 @@
 				475122061A920B3900CC22F7 /* CaptchaCell.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
+				47FD9FF31A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */,
 				472D5642198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
 				389F683D198FC1C6006CF1F6 /* Payment.m in Sources */,
