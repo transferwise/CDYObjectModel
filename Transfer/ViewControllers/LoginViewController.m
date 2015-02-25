@@ -87,6 +87,7 @@ IB_DESIGNABLE
 												  usingBlock:^(NSNotification *aNotification){
 													  NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
 													  MCLog(@"OAuth failure");
+													  [self.navigationController popViewControllerAnimated:YES];
 													  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:error.description];
 													  [alertView show];
 												  }];
