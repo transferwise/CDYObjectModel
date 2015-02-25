@@ -75,6 +75,21 @@ IB_DESIGNABLE
 -(void)commonSetup
 {
     _loginHelper = [[AuthenticationHelper alloc] init];
+	[[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
+													  object:[NXOAuth2AccountStore sharedStore]
+													   queue:nil
+												  usingBlock:^(NSNotification *note) {
+													  MCLog(@"OAuth success");
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+													  object:[NXOAuth2AccountStore sharedStore]
+													   queue:nil
+												  usingBlock:^(NSNotification *aNotification){
+													  NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+													  MCLog(@"OAuth failure");
+													  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:error.description];
+													  [alertView show];
+												  }];
 }
 
 #pragma mark - View Life-cycle

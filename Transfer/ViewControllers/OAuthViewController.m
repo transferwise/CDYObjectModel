@@ -10,6 +10,10 @@
 #import "NavigationBarCustomiser.h"
 #import "GoogleAnalytics.h"
 #import "TransferBackButtonItem.h"
+#import "NXOAuth2AccountStore.h"
+#import "TRWAlertView.h"
+
+#define GOOGLE_OAUTH_HEADER_PREFIX	@"Success code="
 
 @interface OAuthViewController () <UIWebViewDelegate>
 
@@ -41,6 +45,7 @@
 {
 	self.webView.delegate = nil;
 	[self.webView stopLoading];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,7 +58,7 @@
 	NSString *loadingPageContent = [[NSString alloc] initWithContentsOfFile:loadingPagePath encoding:NSUTF8StringEncoding error:nil];
 	[self.webView loadHTMLString:loadingPageContent baseURL:[[NSBundle mainBundle] bundleURL]];
 	
-	self.navigationItem.title = self.provider;
+	self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"login.oauth.header.title", nil), self.provider];
 	
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 	
@@ -64,7 +69,19 @@
 	[NavigationBarCustomiser setWhite];
 }
 
-#pragma mark -
+#pragma mark - WebView delegate
+- (BOOL)webView:(UIWebView *)webView
+shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType
+{
+	if ([request.URL.absoluteString hasPrefix:GoogleOAuthRedirectUrl])
+	{
+		[[NXOAuth2AccountStore sharedStore] handleRedirectURL:request.URL];
+	}
+	
+	return YES;
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
 	MCLog(@"webViewDidFinishLoad");
@@ -72,12 +89,10 @@
 	
 	//initally a file URL for spinner will be loaded
 	//if an actual url is loaded we don't want to start from the top again
-	if (![webView.request.URL isFileURL])
+	if ([webView.request.URL isFileURL])
 	{
-		return;
+		[self.webView loadRequest:[NSURLRequest requestWithURL:self.requestUrl]];
 	}
-	
-	[self.webView loadRequest:[NSURLRequest requestWithURL:self.requestUrl]];
 }
 
 @end
