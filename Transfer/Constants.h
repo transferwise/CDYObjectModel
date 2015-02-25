@@ -59,6 +59,7 @@ extern NSString *const TransferSandboxUsername;
 extern NSString *const TransferSandboxPassword;
 
 extern NSString *const TRWSupportCallNumber;
+extern NSString *const TRWSupportCallNumberUS;
 extern NSString *const TRWSupportEmail;
 extern NSString *const TRWFeedbackEmail;
 extern NSString *const TRWIdentificationEmail;
