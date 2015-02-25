@@ -28,6 +28,8 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
+#import "NXOAuth2AccountStore.h"
+#import "OAuthViewController.h"
 
 IB_DESIGNABLE
 
@@ -189,12 +191,25 @@ IB_DESIGNABLE
 
 - (IBAction)googleLogInPressed:(id)sender
 {
-    [self presentOpenIDLogInWithProvider:@"google" name:@"Google"];
+	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
     [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+}
+
+- (void)presentOAuthLogInWithProvider:(NSString *)provider
+{
+	__weak typeof(self) weakSelf = self;
+	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
+								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
+									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
+																												   url:preparedURL
+																										   objectModel:weakSelf.objectModel];
+									   [weakSelf.navigationController pushViewController:controller
+																				animated:YES];
+								   }];
 }
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
@@ -204,7 +219,8 @@ IB_DESIGNABLE
     [controller setProvider:provider];
     //FYI: this is a concious decision not to add email to open id any more
     [controller setProviderName:providerName];
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller
+										 animated:YES];
 }
 
 #pragma mark - Password reset

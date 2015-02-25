@@ -1128,6 +1128,12 @@
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47FC53C11A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */; };
 		47FC53C21A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */; };
+		47FD9FEB1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */; };
+		47FD9FEC1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */; };
+		47FD9FED1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */; };
+		47FD9FEE1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
+		47FD9FEF1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
+		47FD9FF01A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
 		B4C9172D19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		B4C9172E19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
@@ -2065,6 +2071,9 @@
 		47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeFieldHelper.h; sourceTree = "<group>"; };
 		47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldHelper.m; sourceTree = "<group>"; };
 		47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v6.xcdatamodel; sourceTree = "<group>"; };
+		47FD9FE81A9DD9CF00E95D7E /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
+		47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
+		47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthViewController.xib; sourceTree = "<group>"; };
 		7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8FB7727F5849FF439B605EF8 /* Pods-TransferTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransferTests/Pods-TransferTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3604,6 +3613,9 @@
 				471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */,
 				471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */,
 				471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */,
+				47FD9FE81A9DD9CF00E95D7E /* OAuthViewController.h */,
+				47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */,
+				47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -3827,6 +3839,7 @@
 				388E5B171A5A949500AF6EB9 /* CurrencyCell~ipad.xib in Resources */,
 				388E5B181A5A949500AF6EB9 /* MoneyEntryCell~ipad.xib in Resources */,
 				388E5B191A5A949500AF6EB9 /* RecipientCell~ipad.xib in Resources */,
+				47FD9FF01A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */,
 				388E5B1A1A5A949500AF6EB9 /* AchLoginViewController.xib in Resources */,
 				388E5B1B1A5A949500AF6EB9 /* DoubleEntryCell.xib in Resources */,
 				388E5B1C1A5A949500AF6EB9 /* CurrencySelectorViewController~ipad.xib in Resources */,
@@ -3994,6 +4007,7 @@
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				385A668B197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
+				47FD9FEF1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */,
 				47C4D0521A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				47F84D6E198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
@@ -4154,6 +4168,7 @@
 				3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
 				38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
+				47FD9FEE1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */,
 				47C4D0511A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
@@ -4590,6 +4605,7 @@
 				388E59F71A5A949500AF6EB9 /* InvitationProgressIndicatorView.m in Sources */,
 				388E59F81A5A949500AF6EB9 /* TRWProgressHUD.m in Sources */,
 				388E59F91A5A949500AF6EB9 /* UIViewController+SwitchToViewController.m in Sources */,
+				47FD9FED1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */,
 				388E59FA1A5A949500AF6EB9 /* ValidatorFactory.m in Sources */,
 				388E59FB1A5A949500AF6EB9 /* TransferwiseOperation.m in Sources */,
 				388E59FC1A5A949500AF6EB9 /* LoginOperation.m in Sources */,
@@ -4928,6 +4944,7 @@
 				38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */,
 				EA31A13817DDB29B00F937F7 /* TRWProgressHUD.m in Sources */,
 				476D78C619B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */,
+				47FD9FEC1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */,
 				47C1F7501A3F2BC600014F55 /* ValidatorFactory.m in Sources */,
 				EA31A13917DDB29B00F937F7 /* TransferwiseOperation.m in Sources */,
 				EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */,
@@ -5512,6 +5529,7 @@
 				47233CD6196D457300449042 /* LoginViewController.m in Sources */,
 				38CC81A51A1E368F007D965A /* ACHCheckView.m in Sources */,
 				EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
+				47FD9FEB1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */,
 				471DAA7D1A276DD00077E341 /* VerifyFormOperation.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				4740A7801A8B9A1F0044F0CD /* _MfaField.m in Sources */,
