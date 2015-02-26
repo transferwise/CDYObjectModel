@@ -206,7 +206,9 @@
     }
 }
 
-+ (void)logOutWithObjectModel:(ObjectModel *)objectModel tokenNeedsClearing:(BOOL)clearToken completionBlock:(void (^)(void))completionBlock;
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel
+		   tokenNeedsClearing:(BOOL)clearToken
+			  completionBlock:(void (^)(void))completionBlock;
 {
     if([Credentials userLoggedIn])
     {

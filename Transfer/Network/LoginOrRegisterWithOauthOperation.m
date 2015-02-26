@@ -1,6 +1,4 @@
-^{
-	<#code#>
-}//
+//
 //  LoginOrRegisterWithOauthOperation.m
 //  Transfer
 //

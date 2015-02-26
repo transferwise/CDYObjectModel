@@ -31,8 +31,11 @@
                                    errorBlock:(void(^)(NSError* error))errorBlock
                     waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
 
-+ (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel;
++ (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller
+										 objectModel:(ObjectModel*)objectModel;
 
-+ (void)logOutWithObjectModel:(ObjectModel *)objectModel tokenNeedsClearing:(BOOL)clearToken completionBlock:(void (^)(void))completionBlock;
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel
+		   tokenNeedsClearing:(BOOL)clearToken
+			  completionBlock:(void (^)(void))completionBlock;
 
 @end
