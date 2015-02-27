@@ -28,6 +28,10 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
+#import "NXOAuth2AccountStore.h"
+#import "OAuthViewController.h"
+#import "NXOAuth2Account.h"
+#import "NXOAuth2AccessToken.h"
 
 IB_DESIGNABLE
 
@@ -73,6 +77,40 @@ IB_DESIGNABLE
 -(void)commonSetup
 {
     _loginHelper = [[AuthenticationHelper alloc] init];
+	[[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
+													  object:[NXOAuth2AccountStore sharedStore]
+													   queue:nil
+												  usingBlock:^(NSNotification *note) {
+													  MCLog(@"OAuth success");
+													  NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+													  
+													  if (newAccount)
+													  {
+														  dispatch_async(dispatch_get_main_queue(), ^{
+															  __weak typeof(self) weakSelf = self;
+															  [self.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
+																								  provider:newAccount.accountType
+																						keepPendingPayment:NO
+																					  navigationController:self.navigationController
+																							   objectModel:self.objectModel
+																							  successBlock:^{
+																								  [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+																								  [weakSelf processSuccessfulLogin];
+																							  }
+																				 waitForDetailsCompletions:YES];
+														  });
+													  }
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+													  object:[NXOAuth2AccountStore sharedStore]
+													   queue:nil
+												  usingBlock:^(NSNotification *aNotification){
+													  NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+													  MCLog(@"OAuth failure");
+													  [self.navigationController popViewControllerAnimated:YES];
+													  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:error.description];
+													  [alertView show];
+												  }];
 }
 
 #pragma mark - View Life-cycle
@@ -189,12 +227,25 @@ IB_DESIGNABLE
 
 - (IBAction)googleLogInPressed:(id)sender
 {
-    [self presentOpenIDLogInWithProvider:@"google" name:@"Google"];
+	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
     [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+}
+
+- (void)presentOAuthLogInWithProvider:(NSString *)provider
+{
+	__weak typeof(self) weakSelf = self;
+	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
+								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
+									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
+																												   url:preparedURL
+																										   objectModel:weakSelf.objectModel];
+									   [weakSelf.navigationController pushViewController:controller
+																				animated:YES];
+								   }];
 }
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
@@ -204,7 +255,8 @@ IB_DESIGNABLE
     [controller setProvider:provider];
     //FYI: this is a concious decision not to add email to open id any more
     [controller setProviderName:providerName];
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller
+										 animated:YES];
 }
 
 #pragma mark - Password reset

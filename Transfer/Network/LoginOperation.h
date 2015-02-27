@@ -9,13 +9,14 @@
 #import "TransferwiseOperation.h"
 #import "Constants.h"
 
-typedef void (^LoginResponseBlock)(NSError *error);
+typedef void (^LoginResponseBlock)(NSError *error, NSDictionary *result);
 
 @interface LoginOperation : TransferwiseOperation
 
 @property (nonatomic, copy) LoginResponseBlock responseHandler;
-@property (nonatomic) BOOL waitForDetailsCompletion;
 
-+ (LoginOperation *)loginOperationWithEmail:(NSString *)email password:(NSString *)password keepPendingPayment:(BOOL)keepPendingPayment ;
++ (LoginOperation *)loginOperationWithEmail:(NSString *)email
+								   password:(NSString *)password
+						 keepPendingPayment:(BOOL)keepPendingPayment ;
 
 @end

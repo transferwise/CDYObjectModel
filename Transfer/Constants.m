@@ -58,3 +58,12 @@ NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
 NSString *AppsFlyerIdentifier = @"612261027;6g8vUfZXve88zupKDb94pk";
 
 NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
+
+NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";
+NSString *const GoogleOAuthClientSecret = @"18voZHT-sCWXExY_1ZQZ35nC";
+NSString *const GoogleOAuthAuthorizationUrl = @"https://accounts.google.com/o/oauth2/auth";
+NSString *const GoogleOAuthTokenUrl = @"https://accounts.google.com/o/oauth2/token";
+NSString *const GoogleOAuthRedirectUrl = @"http://localhost/";
+NSString *const GoogleOAuthServiceName = @"Google";
+NSString *const GoogleOAuthEmailScope = @"https://www.googleapis.com/auth/userinfo.email";
+NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/userinfo.profile";
