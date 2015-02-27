@@ -9,6 +9,7 @@
 #import "LoginOrRegisterWithOauthOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
+#import "ObjectModel+Users.h"
 
 NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
@@ -16,6 +17,8 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
 @property (nonatomic, strong) NSString* provider;
 @property (nonatomic, strong) NSString* token;
+@property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic) BOOL keepPendingPayment;
 
 @end
 
@@ -23,21 +26,29 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
 - (instancetype)initWithProvider:(NSString *)provider
 						   token:(NSString *)token
+					 objectModel:(ObjectModel *)objectModel
+			  keepPendingPayment:(BOOL)keepPendingPayment
 {
 	self = [super init];
 	if (self)
 	{
 		self.provider = provider;
 		self.token = token;
+		self.objectModel = objectModel;
+		self.keepPendingPayment = keepPendingPayment;
 	}
 	return self;
 }
 
 + (LoginOrRegisterWithOauthOperation *)loginOrRegisterWithOauthOperationWithProvider:(NSString *)provider
 																			   token:(NSString *)token
+																		 objectModel:(ObjectModel *)objectModel
+																  keepPendingPayment:(BOOL)keepPendingPayment
 {
 	return [[LoginOrRegisterWithOauthOperation alloc] initWithProvider:provider
-																 token:token];
+																 token:token
+														   objectModel:objectModel
+													keepPendingPayment:keepPendingPayment];
 }
 
 - (void)execute
@@ -50,13 +61,17 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 	params[@"provider"] = self.provider;
 	params[@"token"] = self.token;
 	
+	//Ensure no stale data is present before logging in.
+	[self.objectModel clearUserRelatedDataKeepingPendingPayment:self.keepPendingPayment];
+	
 	__block __weak LoginOrRegisterWithOauthOperation *weakSelf = self;
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		
+		weakSelf.responseHandler(nil, response);
 	}];
 	
 	[self setOperationErrorHandler:^(NSError *error) {
-		
+		MCLog(@"Error:%@", error);
+		weakSelf.responseHandler(error, nil);
 	}];
 	
 	[self postData:params toPath:path];

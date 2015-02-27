@@ -7,11 +7,16 @@
 //
 
 #import "TransferwiseOperation.h"
+#import "LoginOperation.h"
 
 @interface LoginOrRegisterWithOauthOperation : TransferwiseOperation
 
-- (id)init __attribute__((unavailable("init unavailable, use initWithProvider:url:objectModel")));
+@property (nonatomic, copy) LoginResponseBlock responseHandler;
+
+- (id)init __attribute__((unavailable("init unavailable, use initWithProvider:token:objectModel:keepPendingPayment:")));
 + (LoginOrRegisterWithOauthOperation *)loginOrRegisterWithOauthOperationWithProvider:(NSString *)provider
-																			   token:(NSString *)token;
+																			   token:(NSString *)token
+																		 objectModel:(ObjectModel *)objectModel
+																  keepPendingPayment:(BOOL)keepPendingPayment;
 
 @end

@@ -30,6 +30,8 @@
 #import "UITextField+CaretPosition.h"
 #import "NXOAuth2AccountStore.h"
 #import "OAuthViewController.h"
+#import "NXOAuth2Account.h"
+#import "NXOAuth2AccessToken.h"
 
 IB_DESIGNABLE
 
@@ -80,6 +82,24 @@ IB_DESIGNABLE
 													   queue:nil
 												  usingBlock:^(NSNotification *note) {
 													  MCLog(@"OAuth success");
+													  NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+													  
+													  if (newAccount)
+													  {
+														  dispatch_async(dispatch_get_main_queue(), ^{
+															  __weak typeof(self) weakSelf = self;
+															  [self.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
+																								  provider:newAccount.accountType
+																						keepPendingPayment:NO
+																					  navigationController:self.navigationController
+																							   objectModel:self.objectModel
+																							  successBlock:^{
+																								  [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+																								  [weakSelf processSuccessfulLogin];
+																							  }
+																				 waitForDetailsCompletions:YES];
+														  });
+													  }
 												  }];
 	[[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
 													  object:[NXOAuth2AccountStore sharedStore]

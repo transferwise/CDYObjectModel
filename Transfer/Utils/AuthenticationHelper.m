@@ -34,6 +34,7 @@
 #import "ObjectModel+RecipientTypes.h"
 #import "FacebookSDK.h"
 #import "Mixpanel+Customisation.h"
+#import "LoginOrRegisterWithOauthOperation.h"
 
 @interface AuthenticationHelper ()
 
@@ -78,8 +79,6 @@
 										 [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 										 
 										 [alertView show];
-										 
-										 
 									 }
 					  waitForDetailsCompletions:waitForDetailsCompletion];
 }
@@ -113,55 +112,18 @@
 														  keepPendingPayment:keepPendingPayment];
 	self.executedOperation = loginOperation;
     [loginOperation setObjectModel:objectModel];
-	[loginOperation setWaitForDetailsCompletion:waitForDetailsCompletion];
 	
     [loginOperation setResponseHandler:^(NSError *error, NSDictionary *response) {
 		if (!error)
 		{
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
-				[Credentials setUserToken:token];
-				[Credentials setUserEmail:email];
-				[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
-#if USE_APPSFLYER_EVENTS
-					[AppsFlyerTracker sharedTracker].customerUserID = objectModel.currentUser.pReference;
-					[[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
-#endif
-					if (waitForDetailsCompletion)
-					{
-						//Attempt to retreive the user's transactions prior to showing the first logged in screen.
-						PaymentsOperation *operation = [PaymentsOperation operationWithOffset:0];
-						self.executedOperation = operation;
-						[operation setObjectModel:objectModel];
-						[operation setCompletion:^(NSInteger totalCount, NSError *error)
-						 {
-							 dispatch_async(dispatch_get_main_queue(), ^{
-								 [hud hide];
-								 successBlock();
-							 });
-						 }];
-						[operation execute];
-					}
-				}];
-				
-				[objectModel removeOtherUsers];
-				
-#if USE_FACEBOOK_EVENTS
-				[FBAppEvents logEvent:@"loggedIn"];
-#endif
-				[[GoogleAnalytics sharedInstance] markLoggedIn];
-				
-				[[Mixpanel sharedInstance] track:@"UserLogged"];
-				
-				[objectModel saveContext:^{
-					if (!waitForDetailsCompletion)
-					{
-						dispatch_async(dispatch_get_main_queue(), ^{
-							[hud hide];
-							successBlock();
-						});
-					}
-				}];
+				[self logUserIn:token
+						  email:email
+				   successBlock:successBlock
+							hud:hud
+					objectModel:objectModel
+	   waitForDetailsCompletion:waitForDetailsCompletion];
 			}];
 			return;
 		}
@@ -173,6 +135,119 @@
     }];
 	
     [loginOperation execute];
+}
+
+- (void)preformOAuthLoginWithToken:(NSString *)token
+						  provider:(NSString *)provider
+				keepPendingPayment:(BOOL)keepPendingPayment
+			  navigationController:(UINavigationController *)navigationController
+					   objectModel:(ObjectModel *)objectModel
+					  successBlock:(TRWActionBlock)successBlock
+		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+{
+	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:navigationController.view];
+	[hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
+	
+	LoginOrRegisterWithOauthOperation *oauthLoginOperation = [LoginOrRegisterWithOauthOperation loginOrRegisterWithOauthOperationWithProvider:provider
+																																		token:token
+																																  objectModel:objectModel
+																														   keepPendingPayment:keepPendingPayment];
+	self.executedOperation = oauthLoginOperation;
+	
+	[oauthLoginOperation setResponseHandler:^(NSError *error, NSDictionary *response) {
+		if (!error)
+		{
+			[objectModel performBlock:^{
+				NSString *token = response[@"token"];
+				NSString *email = response[@"email"];
+				[self logUserIn:token
+						  email:email
+				   successBlock:successBlock
+							hud:hud
+					objectModel:objectModel
+	   waitForDetailsCompletion:waitForDetailsCompletion];
+			}];
+			return;
+		}
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[hud hide];
+			TRWAlertView *alertView;
+			if ([error isTransferwiseError])
+			{
+				NSString *message = [error localizedTransferwiseMessage];
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+													   withLabel:message];
+				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+													 message:message];
+			}
+			else
+			{
+				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+													 message:NSLocalizedString(@"login.error.generic.message", nil)];
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+													   withLabel:error.localizedDescription];
+			}
+			
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			
+			[alertView show];
+			[navigationController popViewControllerAnimated:YES];
+		});
+	}];
+	
+	[oauthLoginOperation execute];
+}
+
+- (void)logUserIn:(NSString *)token
+			email:(NSString *)email
+	 successBlock:(TRWActionBlock)successBlock
+			  hud:(TRWProgressHUD *)hud
+	  objectModel:(ObjectModel *)objectModel
+waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
+{
+	[Credentials setUserToken:token];
+	[Credentials setUserEmail:email];
+	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
+#if USE_APPSFLYER_EVENTS
+		[AppsFlyerTracker sharedTracker].customerUserID = objectModel.currentUser.pReference;
+		[[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
+#endif
+		if (waitForDetailsCompletion)
+		{
+			//Attempt to retreive the user's transactions prior to showing the first logged in screen.
+			PaymentsOperation *operation = [PaymentsOperation operationWithOffset:0];
+			self.executedOperation = operation;
+			[operation setObjectModel:objectModel];
+			[operation setCompletion:^(NSInteger totalCount, NSError *error)
+			 {
+				 dispatch_async(dispatch_get_main_queue(), ^{
+					 [hud hide];
+					 successBlock();
+				 });
+			 }];
+			[operation execute];
+		}
+	}];
+	
+	[objectModel removeOtherUsers];
+	
+#if USE_FACEBOOK_EVENTS
+	[FBAppEvents logEvent:@"loggedIn"];
+#endif
+	[[GoogleAnalytics sharedInstance] markLoggedIn];
+	
+	[[Mixpanel sharedInstance] track:@"UserLogged"];
+	
+	[objectModel saveContext:^{
+		if (!waitForDetailsCompletion)
+		{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[hud hide];
+				successBlock();
+			});
+		}
+	}];
 }
 
 - (NSString *)validateEmail:(NSString *)email
