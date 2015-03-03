@@ -4,32 +4,58 @@ Given /^I am on the Welcome Screen$/ do
 end
 
 Given /^I am logged in$/ do
-  sleep(STEP_PAUSE)
-  if(element_exists("button marked:'Log in'"))
-  	touch("button marked:'Log in'")
-  	touch(query("view marked:'Your email'"))
-  	keyboard_enter_text("burkskinka@matsomatic.co.uk")
-  	done
-  	keyboard_enter_text("banana")
-  	done
-  	touch(query ("button marked:'Log in'"))
-  	wait_for_elements_do_not_exist(["view marked:'Log in'"], :timeout => 20)
   	sleep(STEP_PAUSE)
-  	if(query("view marked:'No'").count() > 0)
-  		touch(query("view marked:'No'"))
-  		sleep(STEP_PAUSE)
-  	end
-  	if(query("button marked:'CloseButton'").count() > 0)
-  		touch(query("button marked:'CloseButton'"))
-  		sleep(STEP_PAUSE)
-  	end
-  else
-    if(element_exists("button marked:'Got it'"))
+	if element_exists("button marked:'Got it'")
     	touch ("button marked:'Got it'")
+    	sleep(STEP_PAUSE)
     end
-  end
-  sleep(STEP_PAUSE)
-  wait_for_elements_exist( ["view marked:'Send'"], :timeout => 2)
+  	if(element_exists("button marked:'Register'"))
+  		touch("button marked:'Register'")
+  		touch(query("view marked:'Your email'"))
+  		username = Time.now.to_i
+  		keyboard_enter_text("#{username}@transferwise.com")
+  		done
+  		keyboard_enter_text("banana")
+  		done
+  		keyboard_enter_text("banana")
+  		done
+  		touch(query ("button marked:'Register'"))
+  		wait_for_elements_do_not_exist(["view marked:'Register'"], :timeout => 20)
+  		sleep(STEP_PAUSE)
+  		if(query("view marked:'No'").count() > 0)
+  			touch(query("view marked:'No'"))
+  			sleep(STEP_PAUSE)
+  		end
+  		if(query("button marked:'CloseButton'").count() > 0)
+  			touch(query("button marked:'CloseButton'"))
+  			sleep(STEP_PAUSE)
+  		end
+  		touch(query("view marked:'Profile'"))
+  		touch(query("view marked:'First name'"))
+  		keyboard_enter_text("Glenn")
+  		done
+  		keyboard_enter_text("Fish")
+  		done
+  		keyboard_enter_text("gbr")
+  		done
+  		keyboard_enter_text("#{rand(200000)} street")
+  		done
+  		keyboard_enter_text("n#{rand(100)} #{rand(100)}qq")
+  		done
+  		keyboard_enter_text("London")
+  		done
+  		keyboard_enter_text("#{rand(100000000)}")
+  		done
+  		keyboard_enter_text("#{1+rand(31)}")
+  		keyboard_enter_text("12")
+  		keyboard_enter_text("19#{30+rand(50)}")
+  		touch("button marked:'Save'")
+  		wait_for_elements_exist(["view marked:'OK'"], :timeout => 60)
+  		touch("view marked:'OK'")
+  		touch("view marked:'Transfers'")
+  	end
+  	sleep(STEP_PAUSE)
+  	wait_for_elements_exist( ["view marked:'Send'"], :timeout => 2)
   
 end
 

@@ -18,6 +18,7 @@ def selectCurrency(currencyCode)
   lastTouchedCell = cell;
   numberOfScrolls = 0
   while(cell.count() === 0 && query("collectionViewCell")[row] != lastTouchedCell && numberOfScrolls < 10)	
+    #scroll down
   	lastTouchedCell = query("collectionViewCell")[row]
   	touch(lastTouchedCell)
   	sleep(STEP_PAUSE)
@@ -25,6 +26,19 @@ def selectCurrency(currencyCode)
   	row = query("collectionViewCell").count() - 4
   	numberOfScrolls = numberOfScrolls + 1
   end
+  
+  if(cell.count() == 0)
+      numberOfScrolls =0
+      row = 0
+	  while(cell.count() === 0 && query("collectionViewCell")[row] != lastTouchedCell && numberOfScrolls < 10)	
+	   #scroll up	
+  		lastTouchedCell = query("collectionViewCell")[row]
+  		touch(lastTouchedCell)
+  		sleep(STEP_PAUSE)
+  		cell = query(cellQuery)
+  		numberOfScrolls = numberOfScrolls + 1
+  	  end
+	end
   
   if (cell.count() > 0)
   	touch(query(cellQuery)[0])
