@@ -32,10 +32,11 @@ NSString *const kCheckVerificationPath = @"/verification/required";
 		if ([response[@"paymentsPurposeVerification"] boolValue]) {
 			identificationRequired = identificationRequired | IdentificationPaymentPurposeRequired;
 		}
-        if ([response[@"ssnVerification"] boolValue]) {
-            identificationRequired = identificationRequired | IdentificationSSNRequired;
-
-        }
+//        SSN verification in app is disabled for now
+//        if ([response[@"ssnVerification"] boolValue]) {
+//            identificationRequired = identificationRequired | IdentificationSSNRequired;
+//
+//        }
 		weakSelf.resultHandler(identificationRequired);
 	}];
 
