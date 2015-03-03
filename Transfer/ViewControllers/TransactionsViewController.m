@@ -553,26 +553,31 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 					  errorHandler:(TRWErrorBlock)errorBlock
 				 completionHandler:(TRWActionBlock)completion
 {
-    if ((self.identificationRequired & IdentificationSSNRequired) != IdentificationSSNRequired) {
-        [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
-        return;
-    }
+
+    [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+
+//    SSN verification in app is disabled for now
+//    if ((self.identificationRequired & IdentificationSSNRequired) != IdentificationSSNRequired) {
+//        [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+//        return;
+//    }
+//    
+//     __weak typeof(self) weakSelf = self;
+//    SetSSNOperation *operation = [SetSSNOperation operationWithSsn:ssn resultHandler:^(NSError *error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (error)
+//            {
+//                errorBlock(error);
+//                return;
+//            }
+//            MCLog(@"uploadPaymentPurpose done");
+//            [weakSelf uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+//        });
+//    }];
+//    [self setExecutedUploadOperation:operation];
+//    [operation setObjectModel:self.objectModel];
+//    [operation execute];
     
-     __weak typeof(self) weakSelf = self;
-    SetSSNOperation *operation = [SetSSNOperation operationWithSsn:ssn resultHandler:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error)
-            {
-                errorBlock(error);
-                return;
-            }
-            MCLog(@"uploadPaymentPurpose done");
-            [weakSelf uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
-        });
-    }];
-    [self setExecutedUploadOperation:operation];
-    [operation setObjectModel:self.objectModel];
-    [operation execute];
 }
 
 

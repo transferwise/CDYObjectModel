@@ -712,11 +712,12 @@
             MCLog(@"commit refund");
             [self commitRecipient:payment.refundRecipient];
         }
-		else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired])
-		{
-            MCLog(@"Upload SSN");
-            [self uploadSocialSecurityNumber];
-        }
+//      SSN verification in app is disabled for now
+//		else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired])
+//		{
+//            MCLog(@"Upload SSN");
+//            [self uploadSocialSecurityNumber];
+//        }
 		else if (!payment.sendVerificationLaterValue && [payment idVerificationRequired])
 		{
             MCLog(@"Upload id");

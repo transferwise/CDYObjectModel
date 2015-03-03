@@ -10,6 +10,8 @@
 #import "TransferwiseOperation+Private.h"
 #import "NetworkErrorCodes.h"
 
+NSString *const SetSSNErrorDomain = @"SSNError";
+
 @interface SetSSNOperation ()
 
 @property (nonatomic, copy) NSString *ssn;
@@ -30,9 +32,21 @@ NSString *const kSetSSNPath = @"/verification/setSSN";
 }
 
 -(void)execute {
-    NSString *path = [self addTokenToPath:kSetSSNPath];
+    
     
     __weak typeof(self) weakSelf = self;
+    
+    if(!self.ssn)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *error = [[NSError alloc] initWithDomain:SetSSNErrorDomain code:SSN_MISSING userInfo:nil];
+            weakSelf.resultHandler(error);
+        });
+        return;
+    }
+    
+    NSString *path = [self addTokenToPath:kSetSSNPath];
+    
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.resultHandler(error);
     }];
