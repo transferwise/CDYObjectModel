@@ -30,7 +30,6 @@
         
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
-           //TODO: Change once Danieles branch is official NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
             NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
             loadRequestBlock(request);
         };
