@@ -22,15 +22,15 @@
 +(UIViewController*)viewControllerForPayInMethod:(PayInMethod*)method forPayment:(Payment*)payment objectModel:(ObjectModel*)objectModel;
 {
     UIViewController* result;
-    if([@"DATA_CASH" caseInsensitiveCompare:method.type] == NSOrderedSame)
+    if([@"DATA_CASH" caseInsensitiveCompare:method.type] == NSOrderedSame || [@"ADYEN" caseInsensitiveCompare:method.type] == NSOrderedSame)
     {
+        BOOL isDataCash = [@"DATA_CASH" caseInsensitiveCompare:method.type] == NSOrderedSame;
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
         
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
-           //TODO: Change once Danieles branch is official NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
-            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v1/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
             loadRequestBlock(request);
         };
         
@@ -51,52 +51,15 @@
         [cardController setResultHandler:^(BOOL success) {
             if (success) {
                 [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
-                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard_datacash"];
+                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
             } else {
-                [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
+                [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
             }
         }];
 
         result = cardController;
     }
-    else if([@"ADYEN" caseInsensitiveCompare:method.type] == NSOrderedSame)
-    {
-        CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
-        [cardController setPayment:payment];
-        
-        cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
-        {
-            //TODO: Change once Danieles branch is official NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
-            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v1/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
-            loadRequestBlock(request);
-        };
-        
-        cardController.loadURLBlock = ^(NSURL *url)
-        {
-            NSString *absoluteString = [url absoluteString];
-            if ([absoluteString rangeOfString:@"/adyen/complete"].location != NSNotFound) {
-                return URLActionAbortAndReportSuccess;
-            } else if ([absoluteString rangeOfString:/*TODO: Replace once known!*/@"/card/notPaidIn"].location != NSNotFound) {
-                return URLActionAbortAndReportFailure;
-            } else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound) {
-                return URLActionAbortLoad;
-            }
-            
-            return URLActionContinueLoad;
-        };
-        
-        [cardController setResultHandler:^(BOOL success) {
-            if (success) {
-                [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
-                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard_adyen"];
-            } else {
-                [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
-            }
-        }];
-
-        result = cardController;
-    }
-	else if ([@"ACH" caseInsensitiveCompare:method.type] == NSOrderedSame)
+    	else if ([@"ACH" caseInsensitiveCompare:method.type] == NSOrderedSame)
 	{
 		AchFlow *flow = [AchFlow sharedInstanceWithPayment:payment
 											   objectModel:objectModel

@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) PullPaymentDetailsOperation *executedOperation;
+@property (nonatomic, assign) NSHTTPCookieAcceptPolicy bufferedPolicy;
 
 @end
 
@@ -37,6 +38,8 @@
 - (id)init {
     self = [super initWithNibName:@"CardPaymentViewController" bundle:nil];
     if (self) {
+        _bufferedPolicy = [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy;
+        [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
 #ifdef DEV_VERSION
         [NSURLProtocol registerClass:[DebugURLProtocol class]];
 #endif
@@ -51,6 +54,7 @@
 #ifdef DEV_VERSION
     [NSURLProtocol unregisterClass:[DebugURLProtocol class]];
 #endif
+    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = _bufferedPolicy;
 }
 
 - (void)viewDidLoad {
