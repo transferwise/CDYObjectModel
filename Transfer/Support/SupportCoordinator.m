@@ -124,7 +124,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [controller setToRecipients:@[[NSString stringWithFormat:@"%@ <%@>", NSLocalizedString(@"support.email.to.name", nil), TRWSupportEmail]]];
     [controller setSubject:self.emailSubject ? self.emailSubject : NSLocalizedString(@"support.generic.email.subject", nil)];
     NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"support.email.message.body.base", nil),
-							 [NSString stringWithFormat:@"https://transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
+							 [NSString stringWithFormat:@"https://ninjas.transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
 							 [[self.objectModel currentUser] displayName],
 							 [[UIDevice currentDevice] platformString],
 							 [[UIDevice currentDevice] systemVersion],
