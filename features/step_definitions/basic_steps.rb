@@ -30,7 +30,9 @@ Given /^I am logged in$/ do
   			touch(query("button marked:'CloseButton'"))
   			sleep(STEP_PAUSE)
   		end
+  		wait_for_elements_exist(["view marked:'Profile"], :timeout => 10)
   		touch(query("view marked:'Profile'"))
+  		wait_for_elements_exist(["view marked:'First name'"], :timeout => 10)
   		touch(query("view marked:'First name'"))
   		keyboard_enter_text("Glenn")
   		done
@@ -46,7 +48,7 @@ Given /^I am logged in$/ do
   		done
   		keyboard_enter_text("#{rand(100000000)}")
   		done
-  		keyboard_enter_text("#{1+rand(31)}")
+  		keyboard_enter_text("#{10+rand(20)}")
   		keyboard_enter_text("12")
   		keyboard_enter_text("19#{30+rand(50)}")
   		touch("button marked:'Save'")
