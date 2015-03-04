@@ -77,40 +77,56 @@ IB_DESIGNABLE
 -(void)commonSetup
 {
     _loginHelper = [[AuthenticationHelper alloc] init];
-	[[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
-													  object:[NXOAuth2AccountStore sharedStore]
-													   queue:nil
-												  usingBlock:^(NSNotification *note) {
-													  MCLog(@"OAuth success");
-													  NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
-													  
-													  if (newAccount)
-													  {
-														  dispatch_async(dispatch_get_main_queue(), ^{
-															  __weak typeof(self) weakSelf = self;
-															  [self.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
-																								  provider:newAccount.accountType
-																						keepPendingPayment:NO
-																					  navigationController:self.navigationController
-																							   objectModel:self.objectModel
-																							  successBlock:^{
-																								  [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-																								  [weakSelf processSuccessfulLogin];
-																							  }
-																				 waitForDetailsCompletions:YES];
-														  });
-													  }
-												  }];
-	[[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-													  object:[NXOAuth2AccountStore sharedStore]
-													   queue:nil
-												  usingBlock:^(NSNotification *aNotification){
-													  NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-													  MCLog(@"OAuth failure");
-													  [self.navigationController popViewControllerAnimated:YES];
-													  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:error.description];
-													  [alertView show];
-												  }];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(oauthSucess:)
+												 name:NXOAuth2AccountStoreAccountsDidChangeNotification
+											   object:[NXOAuth2AccountStore sharedStore]];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(oauthFail:)
+												 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+											   object:[NXOAuth2AccountStore sharedStore]];
+}
+	 
+-(void)oauthSucess:(NSNotification *)note
+{
+	MCLog(@"OAuth success");
+	__weak typeof(self) weakSelf = self;
+	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+	if (newAccount)
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[weakSelf.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
+													provider:newAccount.accountType
+										  keepPendingPayment:NO
+										navigationController:weakSelf.navigationController
+												 objectModel:weakSelf.objectModel
+												successBlock:^{
+													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+													[weakSelf processSuccessfulLogin];
+												}
+								   waitForDetailsCompletions:YES];
+		});
+	}
+}
+
+-(void)oauthFail:(NSNotification *)note
+{
+	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+	MCLog(@"OAuth failure");
+	[self.navigationController popViewControllerAnimated:YES];
+	
+	//-1005 - user has cancelled logging in
+	if (error.code != -1005)
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
+}
+
+-(void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - View Life-cycle
@@ -217,11 +233,14 @@ IB_DESIGNABLE
     {
         TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
         prompt.touchIdDelegate = self;
-        [prompt presentOnViewController:self.navigationController.parentViewController withUsername:self.emailTextField.text password:self.passwordTextField.text];
+        [prompt presentOnViewController:self.navigationController.parentViewController
+						   withUsername:self.emailTextField.text
+							   password:self.passwordTextField.text];
     }
     else
     {
-        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
+															   objectModel:self.objectModel];
     }
 }
 
@@ -273,7 +292,8 @@ IB_DESIGNABLE
 	self.emailTextField.text = email;
 }
 
-- (IBAction)touchIdTapped:(id)sender {
+- (IBAction)touchIdTapped:(id)sender
+{
     [TouchIDHelper retrieveStoredCredentials:^(BOOL success, NSString *username, NSString *password) {
         if(success)
         {
@@ -295,9 +315,11 @@ IB_DESIGNABLE
                                                                  if ([error isTransferwiseError])
                                                                  {
                                                                      BOOL isIncorrectCredentials = NO;
-                                                                     if (error.code == ResponseCumulativeError) {
+                                                                     if (error.code == ResponseCumulativeError)
+																	 {
                                                                          NSArray *errors = error.userInfo[TRWErrors];
-                                                                         for (NSDictionary *error in errors) {
+                                                                         for (NSDictionary *error in errors)
+																		 {
                                                                              NSString *code = error[@"code"];
                                                                              if ([@"CRD_NOT_VALID" caseInsensitiveCompare:code] == NSOrderedSame)
                                                                              {
