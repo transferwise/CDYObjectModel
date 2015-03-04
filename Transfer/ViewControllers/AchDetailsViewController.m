@@ -138,10 +138,11 @@ IB_DESIGNABLE
             }
         }];
         [self.navigationController.topViewController.navigationItem setLeftBarButtonItem:item];
-        CGPoint topOffset = [self.view convertPoint:CGPointMake(0,TOP_OFFSET) fromView:self.navigationController.view];
-        topOffset.y = MAX(10.0f, topOffset.y);
-        self.activeTopOffset = topOffset.y - self.originalTopSpace;
     }
+    
+    CGPoint topOffset = [self.view convertPoint:CGPointMake(0,TOP_OFFSET) fromView:self.navigationController.view];
+    topOffset.y = MAX(10.0f, topOffset.y);
+    self.activeTopOffset = topOffset.y - self.originalTopSpace;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
