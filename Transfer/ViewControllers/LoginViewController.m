@@ -115,8 +115,14 @@ IB_DESIGNABLE
 	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
 	MCLog(@"OAuth failure");
 	[self.navigationController popViewControllerAnimated:YES];
-	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:error.description];
-	[alertView show];
+	
+	//-1005 - user has cancelled logging in
+	if (error.code != -1005)
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
 }
 
 -(void)dealloc
