@@ -76,7 +76,6 @@ IB_DESIGNABLE
 
 -(void)commonSetup
 {
-	__weak typeof(self) weakSelf = self;
     _loginHelper = [[AuthenticationHelper alloc] init];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(oauthSucess:)
