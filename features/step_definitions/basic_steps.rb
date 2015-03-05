@@ -1,14 +1,10 @@
-Given /^I am on the Welcome Screen$/ do
+Given /^I am past the Welcome Screen$/ do
   element_exists("view")
-  sleep(STEP_PAUSE)
+  passWelcomeScreen()
 end
 
 Given /^I am logged in$/ do
-  	sleep(STEP_PAUSE)
-	if element_exists("button marked:'Got it'")
-    	touch ("button marked:'Got it'")
-    	sleep(STEP_PAUSE)
-    end
+  	passWelcomeScreen()
   	if(element_exists("button marked:'Register'"))
   		touch("button marked:'Register'")
   		touch(query("view marked:'Your email'"))
@@ -22,10 +18,7 @@ Given /^I am logged in$/ do
   		touch(query ("button marked:'Register'"))
   		wait_for_elements_do_not_exist(["view marked:'Register'"], :timeout => 20)
   		sleep(STEP_PAUSE)
-  		if(query("view marked:'No'").count() > 0)
-  			touch(query("view marked:'No'"))
-  			sleep(STEP_PAUSE)
-  		end
+  		closePaymentScreen()
   		if(query("button marked:'CloseButton'").count() > 0)
   			touch(query("button marked:'CloseButton'"))
   			sleep(STEP_PAUSE)
@@ -85,7 +78,6 @@ Given /^I grant access to Address Book in form field (.*)$/ do |key|
 end	
 
 Given /^I enter (.*) into form field (.*)$/ do |value,key|
-
 	sleep(STEP_PAUSE)
 	if (key != "-" and value != "-")
 		if(key[0,1] == ">")
@@ -129,4 +121,41 @@ Given /^I scroll the table all the way (up|down)$/ do |direction|
    		end
    		sleep(STEP_PAUSE)
    	end
+end
+
+def passWelcomeScreen()
+	sleep(STEP_PAUSE)
+	if element_exists("button marked:'Got it'")
+		touch ("button marked:'Got it'")
+		sleep(STEP_PAUSE)
+	end
+end
+
+def closePaymentScreen()
+	if(query("button marked:'CloseButton'").count() > 0)
+		touch(query("button marked:'CloseButton'"))
+		sleep(STEP_PAUSE)
+	end
+end
+
+Given /^I Log In with TransferWise/ do
+	if(element_exists("button marked:'Login'"))
+		touch("button marked:'Login'")
+		touch(query("view marked:'Your email'"))
+		keyboard_enter_text("juhan@transferwise.com")
+		done
+		keyboard_enter_text("q1w2e3r4")
+		done
+		touch(query ("button marked:'Login'"))
+		wait_for_elements_do_not_exist(["view marked:'Register'"], :timeout => 20)
+	end
+end
+
+Then /^I see a "([^\"]*)"$/ do |view_name|
+	screenshot_and_raise if query("view:'#{view_name}'").empty?
+end
+
+Given /^I log out$/ do
+	closePaymentScreen()
+	
 end
