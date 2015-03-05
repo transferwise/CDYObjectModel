@@ -178,6 +178,8 @@
 		{
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"sign.up.controller.signup.error.message", nil) error:error];
             [alertView show];
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"RegisterIncorrectCredentials"
+                                                   withLabel:alertView.message];
             return;
         }
 
