@@ -138,24 +138,16 @@ def closePaymentScreen()
 	end
 end
 
-Given /^I Log In with TransferWise/ do
-	if(element_exists("button marked:'Login'"))
-		touch("button marked:'Login'")
-		touch(query("view marked:'Your email'"))
-		keyboard_enter_text("juhan@transferwise.com")
-		done
-		keyboard_enter_text("q1w2e3r4")
-		done
-		touch(query ("button marked:'Login'"))
-		wait_for_elements_do_not_exist(["view marked:'Register'"], :timeout => 20)
-	end
-end
-
 Then /^I see a "([^\"]*)"$/ do |view_name|
 	screenshot_and_raise if query("view:'#{view_name}'").empty?
 end
 
 Given /^I log out$/ do
 	closePaymentScreen()
-	
+	touch(query("collectionViewCell label marked:'Profile'"))
+	wait_for_elements_do_not_exist(["view marked:'Loading profile...'"], :timeout => 20)
+	touch("button marked:'Settings'")
+	wait_for_elements_exist(["button marked:'Log out'"], :timeout => 20)
+	touch("button marked:'Log out'")
+	wait_for_elements_exist(["button marked:'Log in'"], :timeout => 1)
 end
