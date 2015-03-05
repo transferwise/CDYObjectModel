@@ -151,3 +151,10 @@ Given /^I log out$/ do
 	touch("button marked:'Log out'")
 	wait_for_elements_exist(["button marked:'Log in'"], :timeout => 1)
 end
+
+Given /^I enter (.*) into web view field (.*)$/ do |value, key|
+	if (key != "-" and value != "-")
+		touch("webView css:'input[name=\'#{key}\''")
+		keyboard_enter_text("#{value}")
+	end
+end

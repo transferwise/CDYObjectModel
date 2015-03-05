@@ -22,6 +22,15 @@ Feature: Transfer
 	As a customer
 	I want to be able to log in using different login methods
 	So I can make international money transfers and be secure!
+	
+Scenario: Google
+	Given I am past the Welcome Screen
+	Then I touch the "Log in" button
+	And I wait a bit
+	Then I touch the "Google" button
+	And I wait a bit
+	Then I enter tw_calabash_test@gamail.com into web view field Email
+	And I enter va1uutaPost into web view field Passwd
 
 Scenario: TransferWise
 	Given I am past the Welcome Screen
@@ -34,3 +43,4 @@ Scenario: TransferWise
 	Then I wait until I don't see "Logging in..."
 	Then I wait to see "Transfers list"
 	And I log out
+	
