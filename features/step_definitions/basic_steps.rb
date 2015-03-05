@@ -154,7 +154,28 @@ end
 
 Given /^I enter (.*) into web view field (.*)$/ do |value, key|
 	if (key != "-" and value != "-")
-		touch("webView css:'input[name=\'#{key}\''")
+		touch("webView css:'input[name=\"#{key}\"]'")
+		sleep(STEP_PAUSE)
 		keyboard_enter_text("#{value}")
 	end
+end
+
+Given /^I touch web view field (.*)$/ do |key|
+	if (key != "-")
+		touch("webView css:'input[name=\"#{key}\"]'")
+	end
+end
+
+Given /^I wait for web view field (.*) to appear$/ do |key|
+	wait_for_elements_exist(["webView css:'input[name=\"#{key}\"]'"], :timeout => 10)
+end
+
+Given /^I touch web view button with id (.*)$/ do |key|
+	if (key != "-")
+		touch("webView css:'button[id=\"#{key}\"]'")
+	end
+end
+
+Given /^I wait for web view button with id (.*) to appear$/ do |key|
+	wait_for_elements_exist(["webView css:'button[id=\"#{key}\"]'"], :timeout => 10)
 end
