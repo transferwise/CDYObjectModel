@@ -24,8 +24,10 @@ Given /^I am logged in$/ do
   			sleep(STEP_PAUSE)
   		end
   		wait_for_elements_exist(["view marked:'Profile"], :timeout => 10)
+  		sleep(STEP_PAUSE)
   		touch(query("view marked:'Profile'"))
   		wait_for_elements_exist(["view marked:'First name'"], :timeout => 10)
+  		sleep(STEP_PAUSE)
   		touch(query("view marked:'First name'"))
   		keyboard_enter_text("Glenn")
   		done
@@ -192,5 +194,6 @@ end
 
 Given /^I wait and dismiss alert$/ do
 	wait_for_elements_exist(["view marked:'OK'"], :timeout => 60)
+	sleep(STEP_PAUSE)
 	touch("view marked:'OK'")
 end

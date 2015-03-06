@@ -71,6 +71,7 @@
     [payment setProfileUsed:data[@"profile"]];
     [payment setPresentableValue:YES];
     [payment setPaymentReference:data[@"paymentReference"]];
+    payment.isFixedAmount = data[@"fixedPayOut"];
     
     PaymentMadeIndicator* indicator = [self paymentMadeIndicatorForPayment:payment];
     if(indicator)
