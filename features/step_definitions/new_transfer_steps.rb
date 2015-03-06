@@ -1,13 +1,12 @@
 Given /^I select source (.*)$/ do |currencyCode|
-  sleep(STEP_PAUSE)
+  wait_for_elements_exist(["tableViewCell index:0"], :timeout => 20)
   touch("tableViewCell index:0 button")
   selectCurrency(currencyCode)
 end
 
 Given /^I select target (.*)$/ do |currencyCode|
-  sleep(STEP_PAUSE)
+  wait_for_elements_exist(["tableViewCell index:1"], :timeout => 20)
   touch("tableViewCell index:1 button")
-  sleep(STEP_PAUSE)
   selectCurrency(currencyCode)
 end
 
@@ -44,6 +43,7 @@ def selectCurrency(currencyCode)
   	touch(query(cellQuery)[0])
   	sleep(STEP_PAUSE)
   	if(query("view marked:'Select'").count() > 0)
+  		sleep(STEP_PAUSE)
   		touch(query("view marked:'Select'"))
   	end
   	sleep(STEP_PAUSE)
