@@ -31,8 +31,10 @@ Given /^I am logged in$/ do
   			sleep(STEP_PAUSE)
   		end
   		wait_for_elements_exist(["view marked:'Profile"], :timeout => 10)
+  		sleep(STEP_PAUSE)
   		touch(query("view marked:'Profile'"))
   		wait_for_elements_exist(["view marked:'First name'"], :timeout => 10)
+  		sleep(STEP_PAUSE)
   		touch(query("view marked:'First name'"))
   		keyboard_enter_text("Glenn")
   		done
@@ -53,6 +55,7 @@ Given /^I am logged in$/ do
   		keyboard_enter_text("19#{30+rand(50)}")
   		touch("button marked:'Save'")
   		wait_for_elements_exist(["view marked:'OK'"], :timeout => 60)
+  		sleep(STEP_PAUSE)
   		touch("view marked:'OK'")
   		touch("view marked:'Transfers'")
   	end
