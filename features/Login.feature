@@ -22,9 +22,19 @@ Feature: Transfer
 	As a customer
 	I want to be able to log in using different login methods
 	So I can make international money transfers and be secure!
-	
+
+Scenario: Yahoo
+	Given I log out
+	And I am past the Welcome Screen
+	Then I touch the "Log in" button
+	And I wait a bit
+	Then I log in with Yahoo
+	Then I wait to see "Transfers list"
+	And I log out
+
 Scenario: Google
-	Given I am past the Welcome Screen
+	Given I log out
+	And I am past the Welcome Screen
 	Then I touch the "Log in" button
 	And I wait a bit
 	Then I log in with Google
@@ -32,7 +42,8 @@ Scenario: Google
 	And I log out
 
 Scenario: TransferWise
-	Given I am past the Welcome Screen
+	Given I log out
+	And I am past the Welcome Screen
 	Then I touch the "Log in" button
 	Then I wait a bit
 	And I enter juhan@transferwise.com into form field Your email

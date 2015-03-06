@@ -144,12 +144,14 @@ end
 
 Given /^I log out$/ do
 	closePaymentScreen()
-	touch(query("collectionViewCell label marked:'Profile'"))
-	wait_for_elements_do_not_exist(["view marked:'Loading profile...'"], :timeout => 20)
-	touch("button marked:'Settings'")
-	wait_for_elements_exist(["button marked:'Log out'"], :timeout => 20)
-	touch("button marked:'Log out'")
-	wait_for_elements_exist(["button marked:'Log in'"], :timeout => 1)
+	if(query("collectionViewCell label marked:'Profile'").count() > 0)
+		touch(query("collectionViewCell label marked:'Profile'"))
+		wait_for_elements_do_not_exist(["view marked:'Loading profile...'"], :timeout => 20)
+		touch("button marked:'Settings'")
+		wait_for_elements_exist(["button marked:'Log out'"], :timeout => 20)
+		touch("button marked:'Log out'")
+		wait_for_elements_exist(["button marked:'Log in'"], :timeout => 1)
+	end
 end
 
 Given /^I enter (.*) into web view field (.*)$/ do |value, key|

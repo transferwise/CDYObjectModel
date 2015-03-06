@@ -20,3 +20,21 @@ Given /^I log in with Google$/ do
 	macro 'I wait a bit'
 	closePaymentScreen()
 end
+
+Given /^I log in with Yahoo$/ do
+	touch("view marked:'Yahoo'")
+	#wit for page to load
+	macro 'I wait a bit'
+	macro 'I wait a bit'
+	macro 'I wait a bit'
+	macro 'I wait a bit'
+	if (element_exists("webView css:'button[id=\"login-signin\"]'"))
+		macro 'I wait for web view field username to appear'
+		macro 'I enter tw.calabash@yahoo.com into web view field username'
+		macro 'I enter va1uutaPost into web view field passwd'
+		macro 'I touch web view button with id login-signin'
+	end
+	wait_for_elements_do_not_exist(["webView"], :timeout => 5)
+	macro 'I wait a bit'
+	closePaymentScreen()
+end

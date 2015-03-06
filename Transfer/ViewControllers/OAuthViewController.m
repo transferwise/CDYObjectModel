@@ -48,6 +48,12 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	self.webView.accessibilityLabel = @"webView";
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
