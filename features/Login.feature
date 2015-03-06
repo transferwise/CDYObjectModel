@@ -18,10 +18,22 @@
 #####################################
 
 
-Feature: Transfer
+Feature: Authentication
 	As a customer
 	I want to be able to log in using different login methods
 	So I can make international money transfers and be secure!
+
+Scenario: Forgot Password
+	Given I log out
+	And I am past the Welcome Screen
+	Then I touch the "Log in" button
+	And I wait a bit
+	Then I touch "Forgot password"
+	And I wait to see "Your email"
+	Then I enter blah@blah.ff into form field Your email
+	And I press the "Reset password" button
+	Then I wait and dismiss alert
+	And I wait to see "Your email"
 
 Scenario: Yahoo
 	Given I log out

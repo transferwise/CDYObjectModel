@@ -45,8 +45,7 @@ Given /^I am logged in$/ do
   		keyboard_enter_text("12")
   		keyboard_enter_text("19#{30+rand(50)}")
   		touch("button marked:'Save'")
-  		wait_for_elements_exist(["view marked:'OK'"], :timeout => 60)
-  		touch("view marked:'OK'")
+  		macro 'I wait and dismiss alert'
   		touch("view marked:'Transfers'")
   	end
   	sleep(STEP_PAUSE)
@@ -180,4 +179,18 @@ end
 
 Given /^I wait for web view button with id (.*) to appear$/ do |key|
 	wait_for_elements_exist(["webView css:'button[id=\"#{key}\"]'"], :timeout => 10)
+end
+
+Given /^I wait to see alert with text (.*)$/ do |text|
+	wait_poll(:until_exists => 'alertView', :timeout => 5) do
+		actual = query('alertView child label', :text).first
+		unless actual.eql? text
+			screenshot_and_raise "should see alert view with message '#{text}' but found '#{actual}'"
+		end
+	end
+end
+
+Given /^I wait and dismiss alert$/ do
+	wait_for_elements_exist(["view marked:'OK'"], :timeout => 60)
+	touch("view marked:'OK'")
 end
