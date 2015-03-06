@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "DataEntryViewController.h"
 #import "Constants.h"
-#import "PaymentValidation.h"
 
 @class PaymentFlow;
 @class ObjectModel;
@@ -25,13 +24,11 @@ typedef NS_ENUM(short, ConfirmPaymentReportingType) {
 @interface ConfirmPaymentViewController : DataEntryViewController
 
 @property (nonatomic, copy) NSString *footerButtonTitle;
-@property (nonatomic, strong) id<PaymentValidation> paymentValidator;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) PendingPayment *payment;
 @property (nonatomic, assign) BOOL showContactSupportCell;
 @property (nonatomic, assign) ConfirmPaymentReportingType reportingType;
 @property (nonatomic, copy) TRWActionBlock sucessBlock;
-@property (nonatomic, copy) PaymentValidationBlock validationBlock;
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked;
 - (void)handleValidationError:(NSError *)error;

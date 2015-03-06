@@ -103,9 +103,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	
 	func testGetViewControllerReturnsCorrectConfirmPayment()
 	{
-		let validator: AnyObject! = validatorFactory!.getValidatorWithType(.ValidatePayment)
-		let controller = factory!.getViewControllerWithType(.ConfirmPaymentController, params: [kPaymentValidator: validator,
-			kNextActionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
+		let controller = factory!.getViewControllerWithType(.ConfirmPaymentController, params: [kNextActionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
 		
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is ConfirmPaymentViewController, "invalid type of controller")
@@ -115,9 +113,6 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		XCTAssertNotNil(unsafeBitCast(concreteController.sucessBlock, AnyObject.self), "after save action not set")
 		
-		let controllerValidator = concreteController.paymentValidator as PaymentValidator
-		
-		XCTAssertEqual(controllerValidator, validator as PaymentValidator, "incorrect business profile validator set")
 	}
 	
 	func testGetViewControllerReturnsCorrectPersonalProfileIdentification()
@@ -265,19 +260,11 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		}, "no exception on unset business profile validator")
 	}
 	
-	func testGetViewControllerThrowsOnNullValidatorConfirm()
-	{
-		XCTAssertThrows({ () -> Void in
-			let controller = self.factory!.getViewControllerWithType(.ConfirmPaymentController, params: [kPaymentValidator: NSNull(),
-				kNextActionBlock: unsafeBitCast(self.getEmptyBlock(), AnyObject.self)])
-		}, "no exception on unset payment validator")
-	}
 	
 	func testGetViewControllerThrowsOnNullNextActionConfirm()
 	{
 		XCTAssertThrows({ () -> Void in
-			let controller = self.factory!.getViewControllerWithType(.ConfirmPaymentController, params: [kPaymentValidator: self.validatorFactory!.getValidatorWithType(.ValidatePayment),
-				kNextActionBlock: NSNull()])
+			let controller = self.factory!.getViewControllerWithType(.ConfirmPaymentController, params: [kNextActionBlock: NSNull()])
 		}, "no exception on unset next action block")
 	}
 	
