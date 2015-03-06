@@ -19,6 +19,7 @@
 #import "TRWProgressHUD.h"
 #import "ACHCheckView.h"
 #import "TransferBackButtonItem.h"
+#import "PaymentMethodSelectorViewController.h"
 
 #define TOP_OFFSET	IPAD ? 200 : 130
 
@@ -101,7 +102,6 @@ IB_DESIGNABLE
 	if(!weakSelf.willDismiss)
 	{
         float secondsToDelay = weakSelf.checkView.state == CheckStatePlain?0.0f:0.4f;
-		weakSelf.view.userInteractionEnabled = NO;
 		weakSelf.willDismiss = YES;
 		
 		dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*NSEC_PER_SEC);
@@ -111,6 +111,7 @@ IB_DESIGNABLE
 		});
 		
 		[self.view endEditing:YES];
+        weakSelf.view.userInteractionEnabled = NO;
 		[self.checkView setState:CheckStatePlain animated:YES];
 	}
 }
@@ -121,24 +122,38 @@ IB_DESIGNABLE
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     UINavigationController* navigationController = self.navigationController;
-    if([[navigationController viewControllers] count]>1)
+    __weak typeof(self) weakSelf = self;
+    NSUInteger stackCount = [navigationController.viewControllers count];
+    BOOL useCustomBackAction = YES;
+    if(stackCount >2)
     {
-        __weak typeof(self) weakSelf = self;
-        TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
-            if(weakSelf)
-            {
-				[self navigateAway:weakSelf
-						completion:^{
-							[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-						}];
-            }
-            else
-            {
-                [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-            }
-        }];
-        [self.navigationController.topViewController.navigationItem setLeftBarButtonItem:item];
+        if([navigationController.viewControllers[stackCount-2] isKindOfClass:[PaymentMethodSelectorViewController class]])
+        {
+            useCustomBackAction = NO;
+        }
     }
+    TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
+        if(weakSelf)
+        {
+            [self navigateAway:weakSelf
+                    completion:^{
+                        if(useCustomBackAction)
+                        {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                        }
+                        else
+                        {
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                    }];
+        }
+        else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        }
+    }];
+    
+    [navigationController.topViewController.navigationItem setLeftBarButtonItem:item];
     
     CGPoint topOffset = [self.view convertPoint:CGPointMake(0,TOP_OFFSET) fromView:self.navigationController.view];
     topOffset.y = MAX(10.0f, topOffset.y);
