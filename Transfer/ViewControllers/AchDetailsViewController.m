@@ -135,7 +135,7 @@ IB_DESIGNABLE
     TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
         if(weakSelf)
         {
-            [self navigateAway:weakSelf
+            [weakSelf navigateAway:weakSelf
                     completion:^{
                         if(useCustomBackAction)
                         {
@@ -143,7 +143,7 @@ IB_DESIGNABLE
                         }
                         else
                         {
-                            [self.navigationController popViewControllerAnimated:YES];
+                            [weakSelf.navigationController popViewControllerAnimated:YES];
                         }
                     }];
         }
