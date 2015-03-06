@@ -29,13 +29,13 @@ Scenario: Add new Recipient
 	And I wait to see "AddButton"
 	Then I touch the "AddButton" button
 	And I wait to see "Add recipient"
-	And I grant access to Address Book in form field "Recipient's Name"
-	Then I enter Somebody Somewhere into form field Recipient's Name
-	And I enter somebody@somewhere.ff into form field Recipient's Email (Optional)
+	And I grant access to Address Book in form field Name
+	Then I enter Somebody Somewhere into form field Name
+	And I enter somebody@somewhere.ff into form field Email
 	And I enter EE252200001107666896 into form field IBAN
-	And I enter HABAEE2X into form field Banck code (BIC/SWIFT)
+	And I enter HABAEE2X into form field Bank code (BIC/SWIFT)
 	Then I touch the "Add" button
 	Then I wait to see "Validating..."
 	Then I wait until I don't see "Validating..."
-	Then I wait until I see "Recipients"
+	Then I wait to see "Recipients"
 	
