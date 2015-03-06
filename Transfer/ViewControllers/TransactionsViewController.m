@@ -116,6 +116,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     self.titleLabel.text = self.title;
     
     self.noTransfersMessage.text = NSLocalizedString(@"empty.transfers",nil);
+	self.tableView.accessibilityLabel = @"Transfers list";
 }
 
 - (void)didReceiveMemoryWarning

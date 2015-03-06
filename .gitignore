@@ -4,3 +4,5 @@ xcuserdata
 submit
 .DS_Store
 *.xccheckout
+screenshot_*.png
+.irb-history
