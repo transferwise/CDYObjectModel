@@ -504,14 +504,6 @@
 	
 	__weak typeof(self) weakSelf = self;
 	
-	[self.paymentValidator setObjectModel:self.objectModel];
-	[self.paymentValidator setSuccessBlock:^{
-		weakSelf.sucessBlock();
-	}];
-	[self.paymentValidator setErrorBlock:^(NSError *error) {
-		[weakSelf handleValidationError:error];
-	}];
-	
     if(emailAdded)
     {
         self.payment.recipient.email = email;
@@ -527,34 +519,22 @@
                     [alertView show];
                     return;
                 }
-                [self.paymentValidator validatePayment:input.objectID];
+                weakSelf.sucessBlock();
             }];
             self.executedOperation = updateOperation;
             [updateOperation execute];
         }
         else
         {
-            //recipient is being created later. the validation will catch any email issues.
-            [self.paymentValidator validatePayment:input.objectID];
+            weakSelf.sucessBlock();
         }
     }
     else
     {
-        [self.paymentValidator validatePayment:input.objectID];
+        weakSelf.sucessBlock();
     }
 }
 
--(void)handleValidationError:(NSError *)error
-{
-	[self.hud hide];
-	if (error)
-	{
-		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert"
-											   withLabel:[error localizedTransferwiseMessage]];
-		TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
-		[alertView show];
-	}
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

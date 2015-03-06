@@ -9,7 +9,6 @@
 #import "ValidatorFactory.h"
 #import "BusinessProfileValidator.h"
 #import "EmailValidator.h"
-#import "PaymentValidator.h"
 #import "PersonalProfileValidator.h"
 #import "RecipientProfileValidator.h"
 
@@ -41,9 +40,6 @@
 		case ValidateEmail:
 			return [[EmailValidator alloc] init];
 			break;
-		case ValidatePayment:
-			return [self getPaymentValidator];
-			break;
 		case ValidatePersonalProfile:
 			return [self getPersonalProfileValidator];
 			break;
@@ -59,13 +55,6 @@
 - (BusinessProfileValidator *)getBusinessProfileValidator
 {
 	BusinessProfileValidator *validator = [[BusinessProfileValidator alloc] init];
-	validator.objectModel = self.objectModel;
-	return validator;
-}
-
-- (PaymentValidator *)getPaymentValidator
-{
-	PaymentValidator *validator = [[PaymentValidator alloc] init];
 	validator.objectModel = self.objectModel;
 	return validator;
 }
