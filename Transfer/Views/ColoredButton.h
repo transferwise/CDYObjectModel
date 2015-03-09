@@ -12,12 +12,14 @@
 @interface ColoredButton : InsetRespectingButton
 
 @property (nonatomic, assign) BOOL addShadow;
-@property (nonatomic,assign) CGFloat progress;
+@property (nonatomic,assign) IBInspectable CGFloat progress;
 
 - (void)commonSetup;
 
 - (void)configureWithCompoundStyle:(NSString *)compoundStyle;
 - (void)configureWithCompoundStyle:(NSString *)compoundStyle
 					   shadowColor:(NSString *)shadowColor;
+
+-(void)animateProgressFrom:(CGFloat)startValue to:(CGFloat)toValue delay:(NSTimeInterval)delay;
 
 @end

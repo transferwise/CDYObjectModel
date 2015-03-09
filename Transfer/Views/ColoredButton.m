@@ -19,6 +19,15 @@
 @property (weak, nonatomic) UIImage* highlightedStateImage;
 @property (nonatomic, assign) CGSize lastDrawnSize;
 
+@property (nonatomic, assign) BOOL isAnimatingProgress;
+@property (nonatomic, strong) NSThread* animationThread;
+@property (nonatomic, strong) CADisplayLink* displayLink;
+@property (nonatomic, assign) CGFloat transitionalProgress;
+@property (nonatomic, assign) CGFloat progressStartPoint;
+@property (nonatomic, assign) CFTimeInterval startTime;
+
+#define animationDuration (0.3f)
+
 @end
 
 @implementation ColoredButton
@@ -60,6 +69,13 @@
     {
         [self setBackgroundImages];
     }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setProgress:0.2 animated:NO];
+    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setProgress:0.8 animated:YES];
+    });
 }
 
 - (void)configureWithCompoundStyle:(NSString *)compoundStyle
@@ -114,14 +130,41 @@
 	}
 }
 
--(void)setProgress:(CGFloat)progress
+-(void)setProgress:(CGFloat)progress animated:(BOOL)animated
 {
     if(_progress != progress)
     {
+        self.progressStartPoint = _progress;
         _progress = progress;
-		[self resetBackgroundImages];
-        [self setBackgroundImages];
+        if(!self.animationThread)
+        {
+            if(animated)
+            {
+                self.animationThread = [[NSThread alloc] initWithTarget:self selector:@selector(setupDisplayLink) object:nil];
+                [self.animationThread start];
+                
+            }
+            else
+            {
+                self.transitionalProgress = progress;
+                [self resetBackgroundImages];
+                [self setBackgroundImages];
+            }
+        }
     }
+}
+
+-(void)setProgress:(CGFloat)progress
+{
+    [self setProgress:progress animated:NO];
+}
+
+-(void)animateProgressFrom:(CGFloat)startValue to:(CGFloat)toValue delay:(NSTimeInterval)delay
+{
+    [self setProgress:startValue];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setProgress:toValue animated:YES];
+    });
 }
 
 #pragma mark - Helpers
@@ -151,18 +194,23 @@
 	if(bgStyle && highlightedBgStyle)
 	{
 		// set background images
-		[self setBackgroundImage:[self getBackgroundImage:NO
-												  bgStyle:bgStyle
-									   highlightedBgStyle:highlightedBgStyle
-											   shdowStyle:self.shadowColor]
-						forState:UIControlStateNormal];
-		[self setBackgroundImage:[self getBackgroundImage:YES
-												  bgStyle:bgStyle
-									   highlightedBgStyle:highlightedBgStyle
-											   shdowStyle:self.shadowColor]
-						forState:UIControlStateHighlighted];
 		
+        UIImage *normalImage = [self getBackgroundImage:NO
+                                              bgStyle:bgStyle
+                                   highlightedBgStyle:highlightedBgStyle
+                                            shdowStyle:self.shadowColor];
+        
+        UIImage *highlightedImage = [self getBackgroundImage:YES
+                                                     bgStyle:bgStyle
+                                          highlightedBgStyle:highlightedBgStyle
+                                                  shdowStyle:self.shadowColor];
+    
 		self.lastDrawnSize = self.bounds.size;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self setBackgroundImage:normalImage forState:UIControlStateNormal];
+            [self setBackgroundImage:highlightedImage forState:UIControlStateHighlighted];
+        });
 	}
 }
 
@@ -180,7 +228,7 @@
 		CGRect rect = CGRectMake(0, 0, size.width, size.height);
 		
 		CGRect progressRect = rect;
-		progressRect.size.width = round(self.progress * size.width);
+		progressRect.size.width = round(self.transitionalProgress * size.width);
 		
 		CGRect remainingRect = rect;
 		remainingRect.size.width = size.width - progressRect.size.width ;
@@ -275,4 +323,61 @@
 	
 	return nil;
 }
+
+#pragma mark - custom animation
+
+-(void)setupDisplayLink
+{
+    if(!self.displayLink)
+    {
+        self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateProgressAnimation:)];
+        [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [[NSRunLoop currentRunLoop] run];
+    }
+}
+
+-(void)updateProgressAnimation:(CADisplayLink*)displayLink
+{
+    if(self.startTime == 0)
+    {
+        self.startTime = displayLink.timestamp;
+    }
+    
+    CFTimeInterval time = displayLink.timestamp - self.startTime;
+    
+    if(time>animationDuration)
+    {
+        //Tear down display link and thread
+        self.transitionalProgress = self.progress;
+        [self resetBackgroundImages];
+        [self setBackgroundImages];
+        [displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        self.displayLink = nil;
+        [self.animationThread cancel];
+        self.animationThread = nil;
+        self.startTime = 0;
+        return;
+    }
+    
+    CFTimeInterval normalisedTime = time / (animationDuration/2);
+    
+    
+    //Quadratic ease in/out http://gizma.com/easing/
+    if(normalisedTime < 1 )
+    {
+        self.transitionalProgress = self.progressStartPoint + (self.progress - self.progressStartPoint)/2*normalisedTime*normalisedTime ;
+    }
+    else
+    {
+        normalisedTime--;
+        self.transitionalProgress = self.progressStartPoint + (-(self.progress - self.progressStartPoint)/2 * (normalisedTime*(normalisedTime-2) - 1));
+    }
+    
+    //Drawing and setting images seems efficient enough. Want to avoid custom class since this baseclass is used everywhere.
+    [self resetBackgroundImages];
+    [self setBackgroundImages];
+    
+}
+
+
 @end
