@@ -38,4 +38,4 @@ Scenario: Add new Recipient
 	Then I wait to see "Validating..."
 	Then I wait until I don't see "Validating..."
 	Then I wait to see "Recipients"
-	
+	And I see row with label "Somebody Somewhere"	

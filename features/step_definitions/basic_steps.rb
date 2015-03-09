@@ -197,3 +197,11 @@ Given /^I wait and dismiss alert$/ do
 	sleep(STEP_PAUSE)
 	touch("view marked:'OK'")
 end
+
+Given /^I see row with label (.*)$/ do |text|
+	element_exists(getRowWithLabel(text))
+end
+
+def getRowWithLabel(label)
+	query("view:'UITableViewCell' descendant view marked:'#{label}'")
+end
