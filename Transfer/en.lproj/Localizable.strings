@@ -77,7 +77,7 @@
 "confirm.payment.deposit.title.label" = "You're sending exactly";
 "confirm.payment.deposit.fixed.title.label" = "You're sending";
 "confirm.payment.recipient.title.label" = "%@ will receive";
-"confirm.payment.recipient.fixed.title.label" = "Y%@ will receive exactly";
+"confirm.payment.recipient.fixed.title.label" = "%@ will receive exactly";
 "confirm.payment.email.label" = "Recipient's Email";
 "confirm.payment.target.sum.format" = "%@";
 "confirm.payment.fixed.target.sum.format" = "exactly %@";
