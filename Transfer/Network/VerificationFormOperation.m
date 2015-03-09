@@ -13,11 +13,7 @@
 #import "RecipientTypeField.h"
 #import "AllowedTypeFieldValue.h"
 #import "ObjectModel+AchBank.h"
-
-// for logging
-#import "AchBank.h"
-#import "FieldGroup.h"
-#import "RecipientTypeField.h"
+#import "AchResponseParser.h"
 
 NSString *const kVerificationFormPath = @"/ach/verificationForm";
 
@@ -56,20 +52,24 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		[weakSelf.workModel.managedObjectContext performBlock:^{			
-			if (response[@"fieldGroups"] && response[@"bankName"])
+		[weakSelf.workModel.managedObjectContext performBlock:^{
+			AchResponseParser *parser = [[AchResponseParser alloc] initWithResponse:response];
+			
+			if (parser.isLogin)
 			{
-				NSString* bankName = response[@"bankName"];
-				NSString* formId = response[@"verifiableAccountId"];
-				[weakSelf.workModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
+				NSString* bankName = parser.BankName;
+				NSString* formId = parser.VerifiableAccountId;
+				
+				//this is the first authentication screen, we never expect to receive MFA secific fields here
+				[weakSelf.workModel createOrUpdateAchBankWithData:parser.FieldGroups
 														bankTitle:bankName
-														   formId:formId];
+														   formId:formId
+														fieldType:nil
+														   itemId:nil
+														mfaFields:nil];
 				[weakSelf.workModel saveContext:^{
-					AchBank *bank = [weakSelf.workModel bankWithTitle:bankName];
-#if DEBUG
-					[VerificationFormOperation logBank:bank];
-#endif
-					weakSelf.resultHandler(nil, bank);
+					weakSelf.resultHandler(nil, [weakSelf.workModel bankWithTitle:bankName
+																		 fieldType:nil]);
 				}];
 			}
 			else
@@ -92,43 +92,6 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 	return [[VerificationFormOperation alloc] initWithAccount:accountNumber
 												routingNumber:routingNumber
 													paymentId:paymentId];
-}
-
-+ (void)logBank:(AchBank *)bank
-{
-	[[self class] logKey:@"Bank title"
-			   withValue:bank.title
-				  spacer:@""];
-	
-	for (FieldGroup *fg in bank.fieldGroups)
-	{
-		[[self class] logKey:@"Field group title"
-				   withValue:fg.title
-					  spacer:@" "];
-		[[self class] logKey:@"Field group name"
-				   withValue:fg.name
-					  spacer:@" "];
-		
-		for (RecipientTypeField *f in fg.fields)
-		{
-			[[self class] logKey:@"Field title"
-					   withValue:f.title
-						  spacer:@"  "];
-			[[self class] logKey:@"Field name"
-					   withValue:f.name
-						  spacer:@"  "];
-			[[self class] logKey:@"Field type"
-					   withValue:f.type
-						  spacer:@"  "];
-		}
-	}
-}
-
-+ (void)logKey:(NSString *)key
-	 withValue:(NSString *)value
-		spacer:(NSString *)spacer
-{
-	NSLog(@"%@ %@: %@", spacer, key, value);
 }
 
 @end

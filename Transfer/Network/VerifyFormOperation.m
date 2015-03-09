@@ -9,6 +9,8 @@
 #import "VerifyFormOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
+#import "ObjectModel+AchBank.h"
+#import "AchResponseParser.h"
 
 #define kVerifyFormExtendedTimeout 180
 
@@ -21,6 +23,12 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 @end
 
 @implementation VerifyFormOperation
+
+- (NSString*)apiVersion
+{
+	//v2 contains MFA
+	return @"v2";
+}
 
 + (VerifyFormOperation *)verifyFormOperationWithData:(NSDictionary *)data
 {
@@ -44,13 +52,35 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 	
 	__weak VerifyFormOperation *weakSelf = self;
 	[self setOperationErrorHandler:^(NSError *error) {
-		weakSelf.resultHandler(error, NO);
+		weakSelf.resultHandler(error, NO, nil);
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		if (response[@"status"])
+		AchResponseParser *parser = [[AchResponseParser alloc] initWithResponse:response];
+		
+		if (parser.hasStatus)
 		{
-			weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame);
+			//check if we are dealing with MFA
+			if (parser.isMfa)
+			{
+				NSString* bankName = parser.BankName;
+				NSString* fieldType = parser.FieldType;
+				
+				[weakSelf.objectModel createOrUpdateAchBankWithData:parser.FieldGroups
+														  bankTitle:bankName
+															 formId:parser.VerifiableAccountId
+														  fieldType:fieldType
+															 itemId:parser.ItemId
+														  mfaFields:parser.getMfaFields];
+				[weakSelf.objectModel saveContext:^{
+					weakSelf.resultHandler(nil, parser.isSuccessful, [weakSelf.workModel bankWithTitle:bankName
+																							 fieldType:fieldType]);
+				}];
+			}
+			else
+			{
+				weakSelf.resultHandler(nil, parser.isSuccessful, nil);
+			}
 		}
 	}];
 	

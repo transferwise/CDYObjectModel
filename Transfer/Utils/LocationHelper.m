@@ -9,14 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "LocationHelper.h"
 #import "ObjectModel+Currencies.h"
+#import "Constants.h"
 
 @implementation LocationHelper
 
 + (Currency *)getSourceCurrencyWithObjectModel:(ObjectModel *)objectModel
 {
-	NSLocale *currentLocale = [NSLocale currentLocale];
-	
-	if ([currentLocale.localeIdentifier isEqualToString:@"en_US"])
+	if ([self isUS])
 	{
 		return [objectModel currencyWithCode:@"USD"];
 	}
@@ -25,6 +24,26 @@
 		//nil will be handled elswhere
 		return nil;
 	}
+}
+
++ (NSString *)getSupportPhoneNumber
+{
+	if ([self isUS])
+	{
+		return TRWSupportCallNumberUS;
+	}
+	else
+	{
+		return TRWSupportCallNumber;
+	}
+}
+
++ (BOOL)isUS
+{
+	NSLocale *currentLocale = [NSLocale currentLocale];
+	
+	//you can have different actual languages used in US
+	return [currentLocale.localeIdentifier hasSuffix:@"_US"];
 }
 
 @end

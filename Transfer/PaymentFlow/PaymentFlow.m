@@ -45,7 +45,6 @@
 #import "EventTracker.h"
 #import "ObjectModel+Payments.h"
 #import "EmailValidation.h"
-#import "PaymentValidation.h"
 #import "NSObject+NSNull.h"
 #import "ConfirmPaymentViewController.h"
 #import "TransparentModalViewController.h"
@@ -197,28 +196,17 @@
         MCLog(@"presentPaymentConfirmation");
 		
 		__weak typeof(self) weakSelf = self;
-		PaymentValidationBlock paymentValidationBlock = ^(TRWActionBlock validationBlock){
-			if ([Credentials userLoggedIn])
-			{
-				[weakSelf updateSenderProfile:validationBlock];
-			}
-			else
-			{
-				validationBlock();
-			}
-		};
 		
 		TRWActionBlock successBlock = ^{
-			[weakSelf checkVerificationNeeded];
+            [weakSelf updateSenderProfile:^{
+                [weakSelf checkVerificationNeeded];
+            }];
 		};
 		
-		id<PaymentValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePayment];
-		[validator setValidationBlock:paymentValidationBlock];
 		
 		//TODO: decouple validation error handling to get rid of this
 		ConfirmPaymentViewController *controller = (ConfirmPaymentViewController *)[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
-																							  params:@{kPaymentValidator: [NSObject getObjectOrNsNull:validator],
-																									   kNextActionBlock: [successBlock copy]}];
+																							  params:@{kNextActionBlock: [successBlock copy]}];
 		
 		self.paymentErrorHandler = ^(NSError *error) {
 			[controller handleValidationError:error];
@@ -712,11 +700,12 @@
             MCLog(@"commit refund");
             [self commitRecipient:payment.refundRecipient];
         }
-		else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired])
-		{
-            MCLog(@"Upload SSN");
-            [self uploadSocialSecurityNumber];
-        }
+//      SSN verification in app is disabled for now
+//		else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired])
+//		{
+//            MCLog(@"Upload SSN");
+//            [self uploadSocialSecurityNumber];
+//        }
 		else if (!payment.sendVerificationLaterValue && [payment idVerificationRequired])
 		{
             MCLog(@"Upload id");

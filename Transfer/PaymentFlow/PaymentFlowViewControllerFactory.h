@@ -22,7 +22,6 @@ extern NSString * const kPendingPayment;
 extern NSString * const kPersonalProfileValidator;
 extern NSString * const kRecipientProfileValidator;
 extern NSString * const kBusinessProfileValidator;
-extern NSString * const kPaymentValidator;
 extern NSString * const kNextActionBlock;
 extern NSString * const kValidationBlock;
 extern NSString * const	kVerificationCompletionBlock;

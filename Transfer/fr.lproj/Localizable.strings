@@ -198,6 +198,7 @@ Une révolution dans votre poche.";
 "login.validation.email.missing" = "Adresse email manquante";
 "login.validation.email.not.valid" = "L'émail saisi n'est pas valide";
 "login.validation.password.missing" = "Mot de passe manquant";
+"login.oauth.header.title" = "Connecter avec %@";
 
 "money.entry.priority.payment.title" = "Transfert prioritaire";
 "money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";

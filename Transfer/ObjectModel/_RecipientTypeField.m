@@ -5,6 +5,7 @@
 
 const struct RecipientTypeFieldAttributes RecipientTypeFieldAttributes = {
 	.example = @"example",
+	.image = @"image",
 	.maxLength = @"maxLength",
 	.minLength = @"minLength",
 	.name = @"name",
@@ -68,6 +69,8 @@ const struct RecipientTypeFieldRelationships RecipientTypeFieldRelationships = {
 }
 
 @dynamic example;
+
+@dynamic image;
 
 @dynamic maxLength;
 

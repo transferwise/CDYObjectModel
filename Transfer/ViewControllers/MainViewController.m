@@ -78,7 +78,7 @@
 	[transactionsController setObjectModel:self.objectModel];
 	TabItem *transactionsItem = [TabItem new];
 	transactionsItem.viewController = transactionsController;
-	transactionsItem.title = NSLocalizedString(@"transactions.controller.tabbar.title", nil);
+	transactionsItem.title = transactionsItem.accessibilityLabel = NSLocalizedString(@"transactions.controller.tabbar.title", nil);
 	transactionsItem.icon = [UIImage imageNamed:@"Transfers"];
 	transactionsItem.selectedIcon = [UIImage imageNamed:@"Transfers_selected"];
 	
@@ -86,14 +86,14 @@
 	InvitationsViewController* invitationController = [[InvitationsViewController alloc] init];
 	TabItem *inviteItem = [TabItem new];
 	invitationController.objectModel = self.objectModel;
-	inviteItem.title = NSLocalizedString(@"invite.controller.tabbar.title", nil);
+	inviteItem.title = inviteItem.accessibilityLabel = NSLocalizedString(@"invite.controller.tabbar.title", nil);
 	inviteItem.icon = [UIImage imageNamed:@"Invite"];
 	inviteItem.selectedIcon = [UIImage imageNamed:@"Invite_selected"];
 	inviteItem.viewController = invitationController;
 	
 	
 	TabItem *paymentItem = [TabItem new];
-	paymentItem.title = NSLocalizedString(@"payment.controller.tabbar.title", nil);
+	paymentItem.title = paymentItem.accessibilityLabel = NSLocalizedString(@"payment.controller.tabbar.title", nil);
 	paymentItem.icon = [UIImage imageNamed:@"Payment"];
 	paymentItem.selectedIcon = [UIImage imageNamed:@"Payment_selected"];
 	paymentItem.deSelectedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
@@ -112,7 +112,7 @@
 	[self setContactsController:contactsController];
 	[contactsController setObjectModel:self.objectModel];
 	TabItem *contactsItem = [TabItem new];
-	contactsItem.title = NSLocalizedString(@"contacts.controller.tabbar.title", nil);
+	contactsItem.title = contactsItem.accessibilityLabel = NSLocalizedString(@"contacts.controller.tabbar.title", nil);
 	contactsItem.icon = [UIImage imageNamed:@"Contacts"];
 	contactsItem.selectedIcon = [UIImage imageNamed:@"Contacts_selected"];
 	contactsItem.viewController = contactsController;
@@ -122,7 +122,7 @@
 	[profileController setObjectModel:self.objectModel];
 	
 	TabItem *profileItem = [TabItem new];
-	profileItem.title = NSLocalizedString(@"profile.controller.tabbar.title", nil);
+	profileItem.title = profileItem.accessibilityLabel = NSLocalizedString(@"profile.controller.tabbar.title", nil);
 	profileItem.icon = [UIImage imageNamed:@"Profile"];
 	profileItem.selectedIcon = [UIImage imageNamed:@"Profile_selected"];
 	profileItem.viewController = IPAD ? [[UINavigationController alloc] initWithRootViewController:profileController] : profileController;

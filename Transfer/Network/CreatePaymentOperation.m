@@ -40,7 +40,7 @@ NSString *const kValidatePaymentPath = @"/payment/validate";
 {
     if([self.path isEqualToString:kCreatePaymentPath])
     {
-        return @"v1"; //TODO: Change once Danieles branch is official @"v2";
+        return @"v2";
     }
     return @"v1";
 }

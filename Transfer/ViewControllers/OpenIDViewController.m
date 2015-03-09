@@ -36,8 +36,6 @@
 - (id)init {
     self = [super initWithNibName:@"OpenIDViewController" bundle:nil];
     if (self) {
-        //TODO jaanus: fix this workaround. loginWithOpenID is also entry URL and causes some problems
-        //[self setRegisterUser:YES];
     }
     return self;
 }
@@ -48,9 +46,10 @@
     [self.webView stopLoading];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	self.webView.accessibilityLabel = @"webView";
 }
 
 - (void)didReceiveMemoryWarning {

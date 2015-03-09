@@ -28,6 +28,10 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
+#import "NXOAuth2AccountStore.h"
+#import "OAuthViewController.h"
+#import "NXOAuth2Account.h"
+#import "NXOAuth2AccessToken.h"
 
 IB_DESIGNABLE
 
@@ -73,6 +77,56 @@ IB_DESIGNABLE
 -(void)commonSetup
 {
     _loginHelper = [[AuthenticationHelper alloc] init];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(oauthSucess:)
+												 name:NXOAuth2AccountStoreAccountsDidChangeNotification
+											   object:[NXOAuth2AccountStore sharedStore]];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(oauthFail:)
+												 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+											   object:[NXOAuth2AccountStore sharedStore]];
+}
+	 
+-(void)oauthSucess:(NSNotification *)note
+{
+	MCLog(@"OAuth success");
+	__weak typeof(self) weakSelf = self;
+	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+	if (newAccount)
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[weakSelf.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
+													provider:newAccount.accountType
+										  keepPendingPayment:NO
+										navigationController:weakSelf.navigationController
+												 objectModel:weakSelf.objectModel
+												successBlock:^{
+													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+													[weakSelf processSuccessfulLogin];
+												}
+								   waitForDetailsCompletions:YES];
+		});
+	}
+}
+
+-(void)oauthFail:(NSNotification *)note
+{
+	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+	MCLog(@"OAuth failure");
+	[self.navigationController popViewControllerAnimated:YES];
+	
+	//-1005 - user has cancelled logging in
+	if (error.code != -1005)
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
+}
+
+-(void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - View Life-cycle
@@ -179,22 +233,38 @@ IB_DESIGNABLE
     {
         TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
         prompt.touchIdDelegate = self;
-        [prompt presentOnViewController:self.navigationController.parentViewController withUsername:self.emailTextField.text password:self.passwordTextField.text];
+        [prompt presentOnViewController:self.navigationController.parentViewController
+						   withUsername:self.emailTextField.text
+							   password:self.passwordTextField.text];
     }
     else
     {
-        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
+															   objectModel:self.objectModel];
     }
 }
 
 - (IBAction)googleLogInPressed:(id)sender
 {
-    [self presentOpenIDLogInWithProvider:@"google" name:@"Google"];
+	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
     [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+}
+
+- (void)presentOAuthLogInWithProvider:(NSString *)provider
+{
+	__weak typeof(self) weakSelf = self;
+	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
+								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
+									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
+																												   url:preparedURL
+																										   objectModel:weakSelf.objectModel];
+									   [weakSelf.navigationController pushViewController:controller
+																				animated:YES];
+								   }];
 }
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
@@ -204,7 +274,8 @@ IB_DESIGNABLE
     [controller setProvider:provider];
     //FYI: this is a concious decision not to add email to open id any more
     [controller setProviderName:providerName];
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller
+										 animated:YES];
 }
 
 #pragma mark - Password reset
@@ -221,7 +292,8 @@ IB_DESIGNABLE
 	self.emailTextField.text = email;
 }
 
-- (IBAction)touchIdTapped:(id)sender {
+- (IBAction)touchIdTapped:(id)sender
+{
     [TouchIDHelper retrieveStoredCredentials:^(BOOL success, NSString *username, NSString *password) {
         if(success)
         {
@@ -243,9 +315,11 @@ IB_DESIGNABLE
                                                                  if ([error isTransferwiseError])
                                                                  {
                                                                      BOOL isIncorrectCredentials = NO;
-                                                                     if (error.code == ResponseCumulativeError) {
+                                                                     if (error.code == ResponseCumulativeError)
+																	 {
                                                                          NSArray *errors = error.userInfo[TRWErrors];
-                                                                         for (NSDictionary *error in errors) {
+                                                                         for (NSDictionary *error in errors)
+																		 {
                                                                              NSString *code = error[@"code"];
                                                                              if ([@"CRD_NOT_VALID" caseInsensitiveCompare:code] == NSOrderedSame)
                                                                              {

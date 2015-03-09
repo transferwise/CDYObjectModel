@@ -63,50 +63,12 @@ NSString *const kLoginPath = @"/token/create";
     
     __block __weak LoginOperation *weakSelf = self;
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        [weakSelf.workModel performBlock:^{
-            NSString *token = response[@"token"];
-            [Credentials setUserToken:token];
-            [Credentials setUserEmail:weakSelf.email];
-            [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
-#if USE_APPSFLYER_EVENTS
-                [AppsFlyerTracker sharedTracker].customerUserID = weakSelf.objectModel.currentUser.pReference;
-                [[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
-#endif
-				if (weakSelf.waitForDetailsCompletion)
-				{
-                    //Attempt to retreive the user's transactions prior to showing the first logged in screen.
-                    PaymentsOperation *operation = [PaymentsOperation operationWithOffset:0];
-                    [weakSelf setExecutedOperation:operation];
-                    [operation setObjectModel:weakSelf.objectModel];
-                    [operation setCompletion:^(NSInteger totalCount, NSError *error)
-                     {
-                        weakSelf.responseHandler(nil);
-                     }];
-                    [operation execute];
-				}
-            }];
-
-            [weakSelf.workModel removeOtherUsers];
-
-#if USE_FACEBOOK_EVENTS
-			[FBAppEvents logEvent:@"loggedIn"];
-#endif
-			[[GoogleAnalytics sharedInstance] markLoggedIn];
-            
-            [[Mixpanel sharedInstance] track:@"UserLogged"];
-			
-			[weakSelf.workModel saveContext:^{
-				if (!weakSelf.waitForDetailsCompletion)
-				{
-					weakSelf.responseHandler(nil);
-				}
-			}];
-        }];
-    }];
+		weakSelf.responseHandler(nil, response);
+	}];
 
     [self setOperationErrorHandler:^(NSError *error) {
         MCLog(@"Error:%@", error);
-        weakSelf.responseHandler(error);
+        weakSelf.responseHandler(error, nil);
     }];
 
     [self postData:params toPath:path];

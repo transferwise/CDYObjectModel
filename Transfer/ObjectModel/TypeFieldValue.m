@@ -13,7 +13,7 @@
 
 - (NSString *)presentedValue {
     if ([self.valueForField hasPredefinedValues]) {
-        return [self displayValueForCode:self.value];
+        return [self displayValueForCodeOrValue:self.value];
     }
 
     if (self.valueForField.presentationPattern) {
@@ -23,15 +23,14 @@
     return self.value;
 }
 
-- (NSString *)displayValueForCode:(NSString *)code {
+- (NSString *)displayValueForCodeOrValue:(NSString *)codeOrValue {
     for (AllowedTypeFieldValue *allowed in self.valueForField.allowedValues) {
-        if ([allowed.code isEqualToString:code]) {
+        if ([allowed.code isEqualToString:codeOrValue]) {
             return allowed.title;
         }
     }
 
-    MCAssert(NO);
-    return @"";
+    return codeOrValue;
 }
 
 @end

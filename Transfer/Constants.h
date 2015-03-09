@@ -59,6 +59,7 @@ extern NSString *const TransferSandboxUsername;
 extern NSString *const TransferSandboxPassword;
 
 extern NSString *const TRWSupportCallNumber;
+extern NSString *const TRWSupportCallNumberUS;
 extern NSString *const TRWSupportEmail;
 extern NSString *const TRWFeedbackEmail;
 extern NSString *const TRWIdentificationEmail;
@@ -101,6 +102,15 @@ typedef NS_OPTIONS(short, IdentificationRequired) {
 
 extern NSString *AppsFlyerDevKey;
 extern NSString *AppsFlyerIdentifier;
+
+extern NSString *const GoogleOAuthClientId;
+extern NSString *const GoogleOAuthClientSecret;
+extern NSString *const GoogleOAuthAuthorizationUrl;
+extern NSString *const GoogleOAuthTokenUrl;
+extern NSString *const GoogleOAuthRedirectUrl;
+extern NSString *const GoogleOAuthServiceName;
+extern NSString *const GoogleOAuthEmailScope;
+extern NSString *const GoogleOAuthProfileScope;
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
