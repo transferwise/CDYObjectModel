@@ -49,9 +49,23 @@ Scenario: Make tranfser to existing Recipient
 	Then I touch the "Send money" button
 	And I wait to see "CloseButton"
 	Then I wait a bit
+	Then I wait a bit
 	Then I touch the "Send Money" button
 	And I wait to see "Confirm"
 	Then I wait a bit
 	Then I confirm the transfer
 	And I skip verification if needed
 	And I wait to see "Contact customer support"
+	
+Scenario: Delete existing Recipient
+	Given I am logged in
+	Then I touch "Recipients"
+	And I wait to see "Somebody Somewhere"
+	Then I touch "Somebody Somewhere"
+	And I wait to see "DeleteRecipient"
+	Then I touch "DeleteRecipient"
+	And I wait a bit
+	Then I touch "Delete"
+	Then I wait to see "Deleting..."
+	Then I wait until I don't see "Deleting..."
+	And I wait to see "Recipients"
