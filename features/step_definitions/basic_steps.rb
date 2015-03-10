@@ -193,7 +193,9 @@ Given /^I wait to see alert with text (.*)$/ do |text|
 end
 
 Given /^I wait and dismiss alert$/ do
-	macro 'I wait for an alert and agree with button "OK"'
+	wait_for_elements_exist(["view marked:'OK'"], :timeout => 60)
+	sleep(STEP_PAUSE)
+	touch("view marked:'OK'")
 end
 
 Given /^I wait for an alert and agree with button (.*)$/ do |button|
