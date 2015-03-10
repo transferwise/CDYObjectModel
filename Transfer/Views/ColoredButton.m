@@ -186,24 +186,28 @@
 
 - (void)setBackgroundImages
 {
-	UIColor* bgStyle = [self getColorFromStyle:self.compoundStyleContainer.bgStyle];
-	UIColor* highlightedBgStyle = [self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle];
+	UIColor* bgColor = [self getColorFromStyle:self.compoundStyleContainer.bgStyle];
+	UIColor* highlightedBgColor = [self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle];
+    UIColor* shadowColor = [UIColor colorFromStyle:self.shadowColor];
+    UIColor* selectedColor = [self getColorFromStyle:self.compoundStyleContainer.selectedBgStyle];
 	
 	//this gets called from layoutsubviews
 	//colors might noth have been set yet.
-	if(bgStyle && highlightedBgStyle)
+	if(bgColor && highlightedBgColor)
 	{
 		// set background images
 		
         UIImage *normalImage = [self getBackgroundImage:NO
-                                              bgStyle:bgStyle
-                                   highlightedBgStyle:highlightedBgStyle
-                                            shdowStyle:self.shadowColor];
+                                                bgColor:bgColor
+                                     highlightedBgColor:highlightedBgColor
+                                            shadowColor:shadowColor
+                                          progressColor:selectedColor];
         
         UIImage *highlightedImage = [self getBackgroundImage:YES
-                                                     bgStyle:bgStyle
-                                          highlightedBgStyle:highlightedBgStyle
-                                                  shdowStyle:self.shadowColor];
+                                                     bgColor:bgColor
+                                          highlightedBgColor:highlightedBgColor
+                                                 shadowColor:shadowColor
+                                               progressColor:selectedColor];
     
 		self.lastDrawnSize = self.bounds.size;
         
@@ -215,9 +219,10 @@
 }
 
 - (UIImage *)getBackgroundImage:(BOOL)selected
-						bgStyle:(UIColor *)bgStyle
-			 highlightedBgStyle:(UIColor *)highlightedBgStyle
-					 shdowStyle:(NSString *)shadowStyle
+						bgColor:(UIColor *)bgColor
+			 highlightedBgColor:(UIColor *)highlightedBgColor
+					 shadowColor:(UIColor *)shadowColor
+					 progressColor:(UIColor *)progressColor
 {
 	UIImage *result = selected ? self.highlightedStateImage : self.normalStateImage;
 	
@@ -234,10 +239,10 @@
 		remainingRect.size.width = size.width - progressRect.size.width ;
 		remainingRect.origin.x = progressRect.size.width;
 		
-		UIColor* progressColor = highlightedBgStyle;
-		UIColor* remainingColor = bgStyle;
-		UIColor* progressSelected = highlightedBgStyle;
-		UIColor* remainingSelected = highlightedBgStyle;
+        progressColor = progressColor?:highlightedBgColor;
+		UIColor* remainingColor = bgColor;
+		UIColor* progressSelected = progressColor;
+		UIColor* remainingSelected = highlightedBgColor;
 		
 		UIGraphicsBeginImageContextWithOptions(size, selected ? NO : YES, 0.0);
 		CGContextRef context = UIGraphicsGetCurrentContext();
@@ -263,8 +268,8 @@
 			remainingShadowRect.origin.y = size.height - (selected ? 2.0f : 4.0f);
 			remainingShadowRect.size.height = selected ? 2.0f : 4.0f;
 			
-			UIColor* progressShadow = [UIColor colorFromStyle:shadowStyle];
-			UIColor* remainingShadow = [UIColor colorFromStyle:shadowStyle];
+			UIColor* progressShadow = shadowColor;
+			UIColor* remainingShadow = shadowColor;
 			
 			CGContextSetFillColorWithColor(context, [progressShadow CGColor]);
 			CGContextFillRect(context, progressShadowRect);

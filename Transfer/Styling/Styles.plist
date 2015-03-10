@@ -120,6 +120,11 @@
 				<key>color</key>
 				<string>2d960c</string>
 			</dict>
+			<key>GreenProgress</key>
+			<dict>
+				<key>color</key>
+				<string>429C30</string>
+			</dict>
 			<key>invite0_1</key>
 			<dict>
 				<key>color</key>
@@ -149,16 +154,6 @@
 			<dict>
 				<key>color</key>
 				<string>2fb4e0</string>
-			</dict>
-			<key>GreenShadow - 4</key>
-			<dict>
-				<key>color</key>
-				<string>2d960c</string>
-			</dict>
-			<key>GreenShadow - 5</key>
-			<dict>
-				<key>color</key>
-				<string>2d960c</string>
 			</dict>
 			<key>LightBlue</key>
 			<dict>
@@ -312,6 +307,8 @@
 			<string>GreenHighlighted</string>
 			<key>bgStyle</key>
 			<string>Green</string>
+			<key>selectedBgStyle</key>
+			<string>GreenProgress</string>
 		</dict>
 		<key>blueButton</key>
 		<dict>
