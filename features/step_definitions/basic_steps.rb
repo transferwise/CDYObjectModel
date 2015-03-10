@@ -139,7 +139,7 @@ def closePaymentScreen()
 	end
 end
 
-Then /^I see a "([^\"]*)"$/ do |view_name|
+Given /^I see (.*) displayed$/ do |view_name|
 	screenshot_and_raise if query("view:'#{view_name}'").empty?
 end
 
@@ -198,10 +198,20 @@ Given /^I wait and dismiss alert$/ do
 	touch("view marked:'OK'")
 end
 
+Given /^I wait for an alert and agree with button (.*)$/ do |button|
+	wait_for_elements_exist(["view marked:'#{button}'"], :timeout => 60)
+	sleep(STEP_PAUSE)
+	touch("view marked:'#{button}'")
+end
+
 Given /^I see row with label (.*)$/ do |text|
 	element_exists(getRowWithLabel(text))
 end
 
 def getRowWithLabel(label)
 	query("view:'UITableViewCell' descendant view marked:'#{label}'")
+end
+
+Given /^I swipe left on a row with label (.*)$/ do |label|
+	swipe :left, query: "view marked:'#{label}' parent UITableViewCell", force: :strong
 end
