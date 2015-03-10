@@ -10,6 +10,8 @@
 #import "MOMStyle.h"
 #import "UIImage+Color.h"
 
+#define kColoredButtonVCPushAnimationDelay 0.6f
+
 @interface ColoredButton ()
 
 @property (strong, nonatomic) NSString* compoundStyleName;
@@ -26,7 +28,7 @@
 @property (nonatomic, assign) CGFloat progressStartPoint;
 @property (nonatomic, assign) CFTimeInterval startTime;
 
-#define animationDuration (0.3f)
+#define animationDuration (0.6f)
 
 @end
 
@@ -69,13 +71,6 @@
     {
         [self setBackgroundImages];
     }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self setProgress:0.2 animated:NO];
-    });
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self setProgress:0.8 animated:YES];
-    });
 }
 
 - (void)configureWithCompoundStyle:(NSString *)compoundStyle
@@ -134,22 +129,25 @@
 {
     if(_progress != progress)
     {
+        
+        if(self.animationThread)
+        {
+            _progress = progress;
+            return;
+        }
         self.progressStartPoint = _progress;
         _progress = progress;
-        if(!self.animationThread)
+        if(animated)
         {
-            if(animated)
-            {
-                self.animationThread = [[NSThread alloc] initWithTarget:self selector:@selector(setupDisplayLink) object:nil];
-                [self.animationThread start];
-                
-            }
-            else
-            {
-                self.transitionalProgress = progress;
-                [self resetBackgroundImages];
-                [self setBackgroundImages];
-            }
+            self.animationThread = [[NSThread alloc] initWithTarget:self selector:@selector(setupDisplayLink) object:nil];
+            [self.animationThread start];
+            
+        }
+        else
+        {
+            self.transitionalProgress = progress;
+            [self resetBackgroundImages];
+            [self setBackgroundImages];
         }
     }
 }
@@ -165,6 +163,11 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self setProgress:toValue animated:YES];
     });
+}
+
+-(void)progressPushVCAnimationFrom:(CGFloat)startValue to:(CGFloat)toValue
+{
+    [self animateProgressFrom:startValue to:toValue delay:kColoredButtonVCPushAnimationDelay];
 }
 
 #pragma mark - Helpers

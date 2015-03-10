@@ -19,6 +19,7 @@ typedef void (^BusinessProfileValidationBlock)(NSError *error);
 					withHandler:(BusinessProfileValidationBlock)handler;
 
 - (void)setObjectModel:(ObjectModel *)objectModel;
+-(float)paymentFlowProgress;
 
 @optional
 - (void)setSuccessBlock:(TRWActionBlock)successBlock;

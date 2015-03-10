@@ -53,11 +53,22 @@
 }
 
 - (void)configureWithControllers:(NSArray *)controllers
+                          titles:(NSArray *)titles
+                     actionTitle:(NSString *)actionTitle
+                     actionStyle:(NSString *)actionStyle
+                    actionShadow:(NSString *)actionShadow
+              actionProgress:(CGFloat)actionProgress
+{
+    [self configureWithControllers:controllers titles:titles actionTitle:actionTitle actionStyle:actionStyle actionShadow:actionShadow actionProgressFrom:actionProgress actionProgressTo:CGFLOAT_MIN];
+}
+
+- (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle
 					 actionStyle:(NSString *)actionStyle
 					actionShadow:(NSString *)actionShadow
-				  actionProgress:(CGFloat)actionProgress
+				  actionProgressFrom:(CGFloat)actionProgressFrom
+				  actionProgressTo:(CGFloat)actionProgressTo
 {
 	MCAssert([controllers count] == [titles count]);
 	
@@ -81,9 +92,16 @@
 			}
 		}
 		
-		if (actionProgress > CGFLOAT_MIN)
+		if (actionProgressFrom > CGFLOAT_MIN)
 		{
-			self.actionButton.progress = actionProgress;
+            if(actionProgressTo > CGFLOAT_MIN)
+            {
+                [self.actionButton progressPushVCAnimationFrom:actionProgressFrom to:actionProgressTo];
+            }
+            else
+            {
+                self.actionButton.progress = actionProgressFrom;
+            }
 		}
 		
 		if (IPAD)

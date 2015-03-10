@@ -20,6 +20,8 @@
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
 #import "StateSuggestionCellProvider.h"
+#import "PendingPayment.h"
+#import "ObjectModel+PendingPayments.h"
 
 @interface BusinessProfileSource ()
 
@@ -174,7 +176,7 @@
     return profile.objectID;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+- (void)validateProfile:(id)profile withValidation:(id<BusinessProfileValidation>)validation completion:(ProfileActionBlock)completion
 {
     [validation validateBusinessProfile:profile withHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -186,6 +188,9 @@
 
             [self loadDetailsToCells];
 
+            PendingPayment* payment = [self.objectModel pendingPayment];
+            payment.paymentFlowProgressValue = [validation paymentFlowProgress];
+            
             completion(nil);
         });
     }];

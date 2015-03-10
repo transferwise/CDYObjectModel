@@ -20,6 +20,8 @@
 - (void)configureWithCompoundStyle:(NSString *)compoundStyle
 					   shadowColor:(NSString *)shadowColor;
 
+-(void)setProgress:(CGFloat)progress animated:(BOOL)animated;
 -(void)animateProgressFrom:(CGFloat)startValue to:(CGFloat)toValue delay:(NSTimeInterval)delay;
+-(void)progressPushVCAnimationFrom:(CGFloat)startValue to:(CGFloat)toValue;
 
 @end
