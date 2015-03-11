@@ -37,8 +37,7 @@
 #import "UIView+Container.h"
 #import "UITextField+CaretPosition.h"
 #import "ColoredButton.h"
-
-#define kConfirmProgress 1.0f
+#import "PendingPayment+ColoredButton.h"
 
 @interface ConfirmPaymentViewController ()
 
@@ -109,7 +108,7 @@
     if([self.actionButton isKindOfClass:[ColoredButton class]])
     {
         ColoredButton* coloredButton = (ColoredButton*)self.actionButton;
-        [coloredButton progressPushVCAnimationFrom:[[self.objectModel pendingPayment] paymentFlowProgressValue] to:kConfirmProgress];
+        [[self.objectModel pendingPayment] addProgressAnimationToButton:coloredButton];
     }
     
 }

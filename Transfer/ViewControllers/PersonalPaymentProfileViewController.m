@@ -10,7 +10,7 @@
 #import "PersonalProfileViewController.h"
 #import "TransferBackButtonItem.h"
 #import "ObjectModel+PendingPayments.h"
-#import "PendingPayment.h"
+#import "PendingPayment+ColoredButton.h"
 
 @interface PersonalPaymentProfileViewController ()<ProfileEditViewControllerDelegate>
 
@@ -49,7 +49,10 @@
 						actionTitle:self.buttonTitle ? self.buttonTitle : NSLocalizedString(@"confirm.payment.footer.button.title", nil)
 						actionStyle:@"greenButton"
 					   actionShadow:@"greenShadow"
-					 actionProgressFrom:[[self.objectModel pendingPayment] paymentFlowProgressValue] actionProgressTo:[self.profileValidation paymentFlowProgress]];
+					 actionProgress:CGFLOAT_MIN];
+    
+    [[self.objectModel pendingPayment] addProgressAnimationToButton:self.actionButton];
+    
     [super viewDidLoad];
 }
 

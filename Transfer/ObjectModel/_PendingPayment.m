@@ -5,6 +5,7 @@
 
 const struct PendingPaymentAttributes PendingPaymentAttributes = {
 	.paymentFlowProgress = @"paymentFlowProgress",
+	.paymentFlowProgressPrevious = @"paymentFlowProgressPrevious",
 	.paymentPurpose = @"paymentPurpose",
 	.proposedPaymentsPurpose = @"proposedPaymentsPurpose",
 	.recipientEmail = @"recipientEmail",
@@ -49,6 +50,11 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"paymentFlowProgressPreviousValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"paymentFlowProgressPrevious"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"sendVerificationLaterValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"sendVerificationLater"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -86,6 +92,26 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 
 - (void)setPrimitivePaymentFlowProgressValue:(float)value_ {
 	[self setPrimitivePaymentFlowProgress:[NSNumber numberWithFloat:value_]];
+}
+
+@dynamic paymentFlowProgressPrevious;
+
+- (float)paymentFlowProgressPreviousValue {
+	NSNumber *result = [self paymentFlowProgressPrevious];
+	return [result floatValue];
+}
+
+- (void)setPaymentFlowProgressPreviousValue:(float)value_ {
+	[self setPaymentFlowProgressPrevious:[NSNumber numberWithFloat:value_]];
+}
+
+- (float)primitivePaymentFlowProgressPreviousValue {
+	NSNumber *result = [self primitivePaymentFlowProgressPrevious];
+	return [result floatValue];
+}
+
+- (void)setPrimitivePaymentFlowProgressPreviousValue:(float)value_ {
+	[self setPrimitivePaymentFlowProgressPrevious:[NSNumber numberWithFloat:value_]];
 }
 
 @dynamic paymentPurpose;

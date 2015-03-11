@@ -20,7 +20,6 @@
 @property (nonatomic, weak) IBOutlet UIView *containerView;
 
 @property (nonatomic,weak) IBOutlet HeaderTabView *tabView;
-@property (nonatomic,weak) IBOutlet ColoredButton *actionButton;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
@@ -59,18 +58,7 @@
                     actionShadow:(NSString *)actionShadow
               actionProgress:(CGFloat)actionProgress
 {
-    [self configureWithControllers:controllers titles:titles actionTitle:actionTitle actionStyle:actionStyle actionShadow:actionShadow actionProgressFrom:actionProgress actionProgressTo:CGFLOAT_MIN];
-}
-
-- (void)configureWithControllers:(NSArray *)controllers
-						  titles:(NSArray *)titles
-					 actionTitle:(NSString *)actionTitle
-					 actionStyle:(NSString *)actionStyle
-					actionShadow:(NSString *)actionShadow
-				  actionProgressFrom:(CGFloat)actionProgressFrom
-				  actionProgressTo:(CGFloat)actionProgressTo
-{
-	MCAssert([controllers count] == [titles count]);
+    MCAssert([controllers count] == [titles count]);
 	
 	self.controllers = controllers;
 	self.titles = titles;
@@ -92,16 +80,9 @@
 			}
 		}
 		
-		if (actionProgressFrom > CGFLOAT_MIN)
+		if (actionProgress > CGFLOAT_MIN)
 		{
-            if(actionProgressTo > CGFLOAT_MIN)
-            {
-                [self.actionButton progressPushVCAnimationFrom:actionProgressFrom to:actionProgressTo];
-            }
-            else
-            {
-                self.actionButton.progress = actionProgressFrom;
-            }
+            self.actionButton.progress = actionProgress;
 		}
 		
 		if (IPAD)
