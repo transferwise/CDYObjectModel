@@ -86,43 +86,6 @@ IB_DESIGNABLE
 												 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
 											   object:[NXOAuth2AccountStore sharedStore]];
 }
-	 
--(void)oauthSucess:(NSNotification *)note
-{
-	MCLog(@"OAuth success");
-	__weak typeof(self) weakSelf = self;
-	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
-	if (newAccount)
-	{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
-													provider:newAccount.accountType
-										  keepPendingPayment:NO
-										navigationController:weakSelf.navigationController
-												 objectModel:weakSelf.objectModel
-												successBlock:^{
-													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-													[weakSelf processSuccessfulLogin];
-												}
-								   waitForDetailsCompletions:YES];
-		});
-	}
-}
-
--(void)oauthFail:(NSNotification *)note
-{
-	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-	MCLog(@"OAuth failure");
-	[self.navigationController popViewControllerAnimated:YES];
-	
-	//-1005 - user has cancelled logging in
-	if (error.code != -1005)
-	{
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
-		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-		[alertView show];
-	}
-}
 
 -(void)dealloc
 {
@@ -221,15 +184,15 @@ IB_DESIGNABLE
 													objectModel:self.objectModel
 												   successBlock:^{
                                                        [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
-                                                       [weakSelf processSuccessfulLogin];
+													   [weakSelf processSuccessfulLogin:YES];
 												   }
 									  waitForDetailsCompletions:YES];
     });
 }
 
--(void)processSuccessfulLogin
+-(void)processSuccessfulLogin:(BOOL)useTouchId
 {
-    if([TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
+    if(useTouchId && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
     {
         TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
         prompt.touchIdDelegate = self;
@@ -307,7 +270,7 @@ IB_DESIGNABLE
                                                            successBlock:^{
                                                                
                                                                [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"touchID"];
-                                                               [weakSelf processSuccessfulLogin];
+															   [weakSelf processSuccessfulLogin:NO];
                                                            }
                                                              errorBlock:^(NSError *error) {
                                                                  //Error logging in with stored credentials
@@ -367,6 +330,44 @@ IB_DESIGNABLE
 {
     [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
+
+#pragma mark - OAuth events
+-(void)oauthSucess:(NSNotification *)note
+{
+	MCLog(@"OAuth success");
+	__weak typeof(self) weakSelf = self;
+	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+	if (newAccount)
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[weakSelf.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
+													provider:newAccount.accountType
+										  keepPendingPayment:NO
+										navigationController:weakSelf.navigationController
+												 objectModel:weakSelf.objectModel
+												successBlock:^{
+													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+													[weakSelf processSuccessfulLogin:NO];
+												}
+								   waitForDetailsCompletions:YES];
+		});
+	}
+}
+
+-(void)oauthFail:(NSNotification *)note
+{
+	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+	MCLog(@"OAuth failure");
+	[self.navigationController popViewControllerAnimated:YES];
+	
+	//-1005 - user has cancelled logging in
+	if (error.code != -1005)
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
 }
 
 @end
