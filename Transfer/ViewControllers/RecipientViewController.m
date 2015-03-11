@@ -66,8 +66,7 @@
 #import "TypeFieldHelper.h"
 #import "TargetCountryProvider.h"
 #import "CurrencyLoader.h"
-
-#define kRecipientProgress 0.3f
+#import "PendingPayment+ColoredButton.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -195,7 +194,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     [self.addButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
     PendingPayment* payment = [self pendingPayment];
-    [self.addButton progressPushVCAnimationFrom:payment.paymentFlowProgressValue to:kRecipientProgress];
+    [payment addProgressAnimationToButton:self.addButton];
 
     if (self.preLoadRecipientsWithCurrency) {
         [self.currencyCell setEditable:NO];
@@ -742,7 +741,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:@"Manual"];
     
     PendingPayment *payment = [self pendingPayment];
-     payment.paymentFlowProgressValue = kRecipientProgress;
 
     if (self.recipient && (self.updateRecipient != self.recipient)) {
         if([self.recipient.email isEqualToString:self.emailCell.value])

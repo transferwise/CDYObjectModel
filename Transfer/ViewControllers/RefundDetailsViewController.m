@@ -40,8 +40,7 @@
 #import "EmailLookupWrapper.h"
 #import "GoogleAnalytics.h"
 #import "ColoredButton.h"
-
-#define kRefundProgress 0.8f
+#import "PendingPayment+ColoredButton.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -148,7 +147,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     if([self.footerButton isKindOfClass:[ColoredButton class]])
     {
         ColoredButton* coloredButton = (ColoredButton*)self.footerButton;
-        [coloredButton progressPushVCAnimationFrom:[self.payment paymentFlowProgressValue] to:kRefundProgress];
+        [self.payment addProgressAnimationToButton:coloredButton];
     }
     
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];

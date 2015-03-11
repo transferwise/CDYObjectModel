@@ -62,10 +62,4 @@
 	return [self.objectModel.currentUser personalProfileFilled];
 }
 
-#pragma mark - payment flow progress indiation
--(float)paymentFlowProgress
-{
-    return 0.7f;
-}
-
 @end

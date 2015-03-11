@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class ColoredButton;
+
 @interface TabbedHeaderViewController : UIViewController
 
 @property (nonatomic) BOOL showFullWidth;
 @property (nonatomic) BOOL showButtonForIphone;
+@property (nonatomic,weak) IBOutlet ColoredButton *actionButton;
 
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles;
@@ -22,14 +25,6 @@
 					 actionStyle:(NSString *)actionStyle
 					actionShadow:(NSString *)actionShadow
 				  actionProgress:(CGFloat)actionProgress;
-
-- (void)configureWithControllers:(NSArray *)controllers
-                          titles:(NSArray *)titles
-                     actionTitle:(NSString *)actionTitle
-                     actionStyle:(NSString *)actionStyle
-                    actionShadow:(NSString *)actionShadow
-              actionProgressFrom:(CGFloat)actionProgressFrom
-                actionProgressTo:(CGFloat)actionProgressTo;
 
 - (void)willSelectViewController:(UIViewController *)controller
 						 atIndex:(NSUInteger)index;

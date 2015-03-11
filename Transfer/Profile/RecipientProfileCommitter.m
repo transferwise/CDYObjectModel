@@ -26,11 +26,4 @@
 
     [operation execute];
 }
-
-
--(float)paymentFlowProgress
-{
-    return 0.6f;
-}
-
 @end

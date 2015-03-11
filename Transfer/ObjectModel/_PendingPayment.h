@@ -6,6 +6,7 @@
 
 extern const struct PendingPaymentAttributes {
 	__unsafe_unretained NSString *paymentFlowProgress;
+	__unsafe_unretained NSString *paymentFlowProgressPrevious;
 	__unsafe_unretained NSString *paymentPurpose;
 	__unsafe_unretained NSString *proposedPaymentsPurpose;
 	__unsafe_unretained NSString *recipientEmail;
@@ -37,6 +38,14 @@ extern const struct PendingPaymentRelationships {
 - (void)setPaymentFlowProgressValue:(float)value_;
 
 //- (BOOL)validatePaymentFlowProgress:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* paymentFlowProgressPrevious;
+
+@property (atomic) float paymentFlowProgressPreviousValue;
+- (float)paymentFlowProgressPreviousValue;
+- (void)setPaymentFlowProgressPreviousValue:(float)value_;
+
+//- (BOOL)validatePaymentFlowProgressPrevious:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* paymentPurpose;
 
@@ -106,6 +115,12 @@ extern const struct PendingPaymentRelationships {
 
 - (float)primitivePaymentFlowProgressValue;
 - (void)setPrimitivePaymentFlowProgressValue:(float)value_;
+
+- (NSNumber*)primitivePaymentFlowProgressPrevious;
+- (void)setPrimitivePaymentFlowProgressPrevious:(NSNumber*)value;
+
+- (float)primitivePaymentFlowProgressPreviousValue;
+- (void)setPrimitivePaymentFlowProgressPreviousValue:(float)value_;
 
 - (NSString*)primitivePaymentPurpose;
 - (void)setPrimitivePaymentPurpose:(NSString*)value;

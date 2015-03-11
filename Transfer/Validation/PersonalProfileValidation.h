@@ -20,7 +20,6 @@ typedef void (^PersonalProfileValidationBlock)(NSError *error);
 					withHandler:(PersonalProfileValidationBlock)handler;
 
 - (void)setObjectModel:(ObjectModel *)objectModel;
--(float)paymentFlowProgress;
 
 @optional
 - (void)setSuccessBlock:(TRWActionBlock)successBlock;

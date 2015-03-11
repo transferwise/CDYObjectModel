@@ -90,11 +90,4 @@
 	}];
 }
 
-
-#pragma mark - payment flow progress indiation
--(float)paymentFlowProgress
-{
-    return 0.6f;
-}
-
 @end

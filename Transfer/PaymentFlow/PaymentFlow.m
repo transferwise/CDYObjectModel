@@ -52,6 +52,12 @@
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
 
+#define kProgressRecipient 0.4f
+#define kProgressPersonalProfile 0.6f
+#define kProgressBusinessProfile 0.7f
+#define kProgressRefundRecipient 0.8f
+#define kProgressConfirm 1.0f
+
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
@@ -758,28 +764,38 @@
         PendingPayment *payment = [self.objectModel pendingPayment];
         if (!payment.recipient)
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             [self presentRecipientDetails:[payment.user personalProfileFilled]];
         }
         else if ([payment.allowedRecipientTypes indexOfObject:payment.recipient.type] == NSNotFound)
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *template = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
         }
         else if ([payment.recipient.type recipientAddressRequiredValue] && ! [payment.recipient hasAddress])
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
         }
         else if ([payment.targetCurrency isBicRequiredForType:payment.recipient.type] && ! [[payment.recipient valueForFieldNamed:@"BIC"] length] > 0)
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
         }
 		else if (!payment.user.personalProfileFilled)
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressPersonalProfile;
             [self presentPersonalProfileEntry:YES
 								   isExisting:[Credentials userLoggedIn]];
         }
@@ -788,10 +804,16 @@
 		{
 			//reset flag so we won't be coming back here again
 			payment.user.personalProfile.sendAsBusinessValue = NO;
+            
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressBusinessProfile;
+            
 			[self presentBusinessProfileScreen];
 		}
 		else if (payment.isFixedAmountValue && !payment.refundRecipient)
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRefundRecipient;
             [self presentRefundAccountViewController];
         }
         else if([self isAZOrOK])
@@ -800,6 +822,8 @@
         }
 		else
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressConfirm;
             [self presentPaymentConfirmation];
         }
     }];
