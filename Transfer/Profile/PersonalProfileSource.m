@@ -23,6 +23,8 @@
 #import "Country.h"
 #import "SwitchCell.h"
 #import "StateSuggestionCellProvider.h"
+#import "ObjectModel+PendingPayments.h"
+#import "PendingPayment.h"
 
 #define MIN_PASSWORD_LENGTH	5
 
@@ -294,7 +296,7 @@ NSUInteger const kUserPersonalSection = 1;
     return profile.objectID;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+- (void)validateProfile:(id)profile withValidation:(id<PersonalProfileValidation>)validation completion:(ProfileActionBlock)completion
 {
     [validation validatePersonalProfile:profile withHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -306,6 +308,9 @@ NSUInteger const kUserPersonalSection = 1;
 
             [self loadDetailsToCells];
 
+            PendingPayment* payment = [self.objectModel pendingPayment];
+            payment.paymentFlowProgressValue = [validation paymentFlowProgress];
+            
             completion(nil);
         });
     }];

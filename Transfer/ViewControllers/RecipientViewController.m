@@ -67,6 +67,8 @@
 #import "TargetCountryProvider.h"
 #import "CurrencyLoader.h"
 
+#define kRecipientProgress 0.3f
+
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
 static NSUInteger const kRecipientFieldsSection = 2;
@@ -192,6 +194,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setCurrencyCells:currencyCells];
 
     [self.addButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+    PendingPayment* payment = [self pendingPayment];
+    [self.addButton progressPushVCAnimationFrom:payment.paymentFlowProgressValue to:kRecipientProgress];
 
     if (self.preLoadRecipientsWithCurrency) {
         [self.currencyCell setEditable:NO];
@@ -733,11 +737,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [alertView show];
         return;
     }
+    
 
     [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:@"Manual"];
     
     PendingPayment *payment = [self pendingPayment];
-    
+     payment.paymentFlowProgressValue = kRecipientProgress;
 
     if (self.recipient && (self.updateRecipient != self.recipient)) {
         if([self.recipient.email isEqualToString:self.emailCell.value])

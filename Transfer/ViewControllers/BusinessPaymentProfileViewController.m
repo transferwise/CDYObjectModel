@@ -10,6 +10,8 @@
 #import "BusinessProfileViewController.h"
 #import "TransferBackButtonItem.h"
 #import "Credentials.h"
+#import "ObjectModel+PendingPayments.h"
+#import "PendingPayment.h"
 
 @interface BusinessPaymentProfileViewController ()
 
@@ -39,7 +41,7 @@
 						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)
 						actionStyle:@"greenButton"
 					   actionShadow:@"greenShadow"					
-					 actionProgress:0.0f];
+					 actionProgressFrom:[[self.objectModel pendingPayment] paymentFlowProgressValue] actionProgressTo:[self.profileValidation paymentFlowProgress]];
     [super viewDidLoad];
 	
 	[self setTitle:[Credentials userLoggedIn] ? NSLocalizedString(@"business.profile.controller.send.title", nil) : NSLocalizedString(@"personal.profile.controller.title", nil)];

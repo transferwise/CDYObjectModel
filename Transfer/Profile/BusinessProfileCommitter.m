@@ -32,4 +32,9 @@
     [operation execute];
 }
 
+
+-(float)paymentFlowProgress
+{
+    return 0.7f;
+}
 @end

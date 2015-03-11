@@ -39,6 +39,9 @@
 #import "NameSuggestionCellProvider.h"
 #import "EmailLookupWrapper.h"
 #import "GoogleAnalytics.h"
+#import "ColoredButton.h"
+
+#define kRefundProgress 0.8f
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -141,6 +144,12 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    if([self.footerButton isKindOfClass:[ColoredButton class]])
+    {
+        ColoredButton* coloredButton = (ColoredButton*)self.footerButton;
+        [coloredButton progressPushVCAnimationFrom:[self.payment paymentFlowProgressValue] to:kRefundProgress];
+    }
     
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
     
