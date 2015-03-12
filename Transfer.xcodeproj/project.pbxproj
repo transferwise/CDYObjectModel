@@ -1679,7 +1679,7 @@
 		388B1F731990E04200DF13E8 /* WhiteRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteRoundedButton.h; sourceTree = "<group>"; };
 		388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteRoundedButton.m; sourceTree = "<group>"; };
 		388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AchDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
-		388E5BAF1A5A949500AF6EB9 /* TransferDev copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TransferDev copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		388E5BAF1A5A949500AF6EB9 /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388E5BB01A5A949600AF6EB9 /* TransferDev-cal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TransferDev-cal-Info.plist"; path = "/Users/matstrovik/Documents/iOSDev/github/transferwise-ios/TransferDev-cal-Info.plist"; sourceTree = "<absolute>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
@@ -3371,7 +3371,7 @@
 				EAAA1468171BC911005B9430 /* TransferWise.app */,
 				EA31A23817DDB29B00F937F7 /* TransferDev.app */,
 				47DC89811A03950F0042054B /* TransferTests.xctest */,
-				388E5BAF1A5A949500AF6EB9 /* TransferDev copy.app */,
+				388E5BAF1A5A949500AF6EB9 /* TransferDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3726,7 +3726,7 @@
 			);
 			name = "TransferDev-cal";
 			productName = Transfer;
-			productReference = 388E5BAF1A5A949500AF6EB9 /* TransferDev copy.app */;
+			productReference = 388E5BAF1A5A949500AF6EB9 /* TransferDev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		47DC89801A03950F0042054B /* TransferTests */ = {
@@ -5618,7 +5618,7 @@
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "TransferDev copy";
+				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5662,7 +5662,7 @@
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "TransferDev copy";
+				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

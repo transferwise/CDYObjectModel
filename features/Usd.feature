@@ -23,7 +23,7 @@ Feature: Authentication
 	I want to be able to transfer money from USD
 	I want to be able to do this with ACH
 	
-Scenario: Create from USD transfe and pay with ACH
+Scenario: Create from USD transfer and pay with ACH
 	Given I am logged in as an american
 	Then I touch "Send"
 	Then I select source USD
@@ -34,6 +34,9 @@ Scenario: Create from USD transfe and pay with ACH
 	Then I grant access to Address Book in form field Name
 	And I enter John Doe into form field Name
 	And I enter john@doe.com into form field Email
+	And I enter Somewhere 42 into form field Address
+	And I enter SW1 112 into form field Post
+	And I enter London into form field City
 	And I enter 123456 into form field Sort
 	And I enter 12345678 into form field Account
 	Then I touch "Continue"
@@ -42,4 +45,20 @@ Scenario: Create from USD transfe and pay with ACH
 	Then I touch "Confirm"
 	Then I wait to see "Creating transfer"
 	And I skip verification if needed
-	And I wait to see "Contact customer support"
+	And I wait to see "Bank debit (ACH)"
+	Then I touch the "Bank debit (ACH)" button
+	And I wait to see "Pay by direct debit"
+	Then I enter 999999989 into form field routing
+	And I enter 5035623253 into form field account
+	Then I press the "Connect to my account" button
+	And I wait to see "Confirm your payment"
+	Then I enter tr@nswise.bank1 into form field Username
+	And I enter bank1 into form field Password
+	And I touch the "Pay $1 000.00 with DagBank" button
+	Then I wait to see "AchWaitingView"
+	Then I wait a long time until I don't see "AchWaitingView"
+	Then I wait to see "OK"
+	And I touch "OK"
+	Then I wait to see "Got it!"
+	And I touch "Got it!"
+	Then I wait to see "Transfers list"
