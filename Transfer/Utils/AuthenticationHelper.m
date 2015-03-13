@@ -314,7 +314,6 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     }
     else
     {
-     
         if(controller.presentingViewController)
         {
             [controller dismissViewControllerAnimated:YES completion:nil];
@@ -356,8 +355,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
                 }
             });
         }];
-    }
-	
+    }	
 }
 
 @end

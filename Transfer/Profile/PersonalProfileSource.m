@@ -364,4 +364,16 @@ NSUInteger const kUserPersonalSection = 1;
 	[self.occupationCell setValue:@""];
 }
 
+#pragma mark - US DOB format
+
+- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+                       didSelectCountry:(Country *)country
+                         withCompletion:(SelectionCompletion)completion
+{
+
+    self.dateOfBirthCell.usDateOrder = [country.code caseInsensitiveCompare:@"USA"] == NSOrderedSame;
+    return [super countrySelectionCell:cell didSelectCountry:country withCompletion:completion];
+}
+
+
 @end
