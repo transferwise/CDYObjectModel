@@ -73,7 +73,6 @@ Scenario Outline: create new transfer
 	
 Examples:
 | source | target | payInMethod    | field1    | value1                      | field2   | value2         | field3                | value3        | field4  | value4   | field5 | value5     | field6 | value6  | field7  | value7 |
-| GBP    | BRL    | -              |>Checking  | Checking                    | Account  | 12345678       | >Brb Banco De Brasilia| Banco Bradesco| Branch  | 001      | Tax    | 79443451115| phone  | 12345678|>Business|Private |
 | EUR    | GBP    | UK Sort        | Sort      | 123456                      | Account  | 12345678       | -                     | -             | -       | -        | -      | -          | -      | -       | -       | -      |
 | GBP    | EUR    | -              | IBAN      | FR2830002004130000071693Z15 | BIC      | CRLYFRPP       | -                     | -             | -       | -        | -      | -          | -      | -       | -       | -      |
 | GBP    | USD    | -              | State     | NY                          | Address  | 1 Street       | Zip code              | 10001         | City    | New York | Routing| 121181976  | Account|012344321| -       | -      |
