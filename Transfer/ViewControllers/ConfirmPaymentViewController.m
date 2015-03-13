@@ -535,6 +535,18 @@
     }
 }
 
+-(void)handleValidationError:(NSError *)error
+{
+    [self.hud hide];
+    if (error)
+    {
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert"
+                                               withLabel:[error localizedTransferwiseMessage]];
+        TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+        [alertView show];
+    }
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
