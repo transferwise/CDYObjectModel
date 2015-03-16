@@ -38,7 +38,7 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet GreenButton *loginButton;
 @property (strong, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
-@property (strong, nonatomic) IBOutlet GPPSignInButton *googleLoginButton;
+@property (strong, nonatomic) IBOutlet GoogleButton *googleLoginButton;
 @property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 @property (strong, nonatomic) AuthenticationHelper *loginHelper;
@@ -227,6 +227,11 @@ IB_DESIGNABLE
         [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
 															   objectModel:self.objectModel];
     }
+}
+
+- (IBAction)googleLoginPressed:(id)sender
+{
+	[[GPPSignIn sharedInstance] authenticate];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
