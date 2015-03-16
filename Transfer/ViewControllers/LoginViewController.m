@@ -28,10 +28,7 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
-#import "NXOAuth2AccountStore.h"
-#import "OAuthViewController.h"
-#import "NXOAuth2Account.h"
-#import "NXOAuth2AccessToken.h"
+#import <GoogleOpenSource/GoogleOpenSource.h>
 
 IB_DESIGNABLE
 
@@ -41,7 +38,7 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet GreenButton *loginButton;
 @property (strong, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
-@property (strong, nonatomic) IBOutlet GoogleButton *googleLoginButton;
+@property (strong, nonatomic) IBOutlet GPPSignInButton *googleLoginButton;
 @property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 @property (strong, nonatomic) AuthenticationHelper *loginHelper;
@@ -77,19 +74,7 @@ IB_DESIGNABLE
 -(void)commonSetup
 {
     _loginHelper = [[AuthenticationHelper alloc] init];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(oauthSucess:)
-												 name:NXOAuth2AccountStoreAccountsDidChangeNotification
-											   object:[NXOAuth2AccountStore sharedStore]];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(oauthFail:)
-												 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-											   object:[NXOAuth2AccountStore sharedStore]];
-}
-
--(void)dealloc
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[self initGPlus];
 }
 
 #pragma mark - View Life-cycle
@@ -141,6 +126,43 @@ IB_DESIGNABLE
 	[super viewWillDisappear:animated];
 }
 
+#pragma mark - Google Plus
+- (void)initGPlus
+{
+	GPPSignIn *signIn = [GPPSignIn sharedInstance];
+	signIn.shouldFetchGoogleUserEmail = YES;
+	signIn.clientID = GoogleOAuthClientId;
+	signIn.scopes = @[ @"profile" ];
+	signIn.delegate = self;
+}
+
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
+				   error:(NSError *)error
+{
+	if (error)
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+														   message:nil];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+		return;
+	}
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		__weak typeof(self) weakSelf = self;
+		[weakSelf.loginHelper preformOAuthLoginWithToken:auth.accessToken
+												provider:GoogleOAuthServiceName
+									  keepPendingPayment:NO
+									navigationController:weakSelf.navigationController
+											 objectModel:weakSelf.objectModel
+											successBlock:^{
+												[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+												[weakSelf processSuccessfulLogin:NO];
+											}
+							   waitForDetailsCompletions:YES];
+	});
+}
+
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -176,7 +198,7 @@ IB_DESIGNABLE
 - (IBAction)loginPressed:(id)sender
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-            __weak typeof(self) weakSelf = self;
+		__weak typeof(self) weakSelf = self;
 		[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailTextField.text
 													   password:self.passwordTextField.text
                                              keepPendingPayment:NO
@@ -207,27 +229,9 @@ IB_DESIGNABLE
     }
 }
 
-- (IBAction)googleLogInPressed:(id)sender
-{
-	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
-}
-
 - (IBAction)yahooLogInPressed:(id)sender
 {
     [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
-}
-
-- (void)presentOAuthLogInWithProvider:(NSString *)provider
-{
-	__weak typeof(self) weakSelf = self;
-	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
-								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
-									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
-																												   url:preparedURL
-																										   objectModel:weakSelf.objectModel];
-									   [weakSelf.navigationController pushViewController:controller
-																				animated:YES];
-								   }];
 }
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
@@ -330,44 +334,6 @@ IB_DESIGNABLE
 {
     [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-}
-
-#pragma mark - OAuth events
--(void)oauthSucess:(NSNotification *)note
-{
-	MCLog(@"OAuth success");
-	__weak typeof(self) weakSelf = self;
-	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
-	if (newAccount)
-	{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
-													provider:newAccount.accountType
-										  keepPendingPayment:NO
-										navigationController:weakSelf.navigationController
-												 objectModel:weakSelf.objectModel
-												successBlock:^{
-													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-													[weakSelf processSuccessfulLogin:NO];
-												}
-								   waitForDetailsCompletions:YES];
-		});
-	}
-}
-
--(void)oauthFail:(NSNotification *)note
-{
-	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-	MCLog(@"OAuth failure");
-	[self.navigationController popViewControllerAnimated:YES];
-	
-	//-1005 - user has cancelled logging in
-	if (error.code != -1005)
-	{
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
-		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-		[alertView show];
-	}
 }
 
 @end

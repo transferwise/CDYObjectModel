@@ -16,7 +16,6 @@ PODS:
   - Mixpanel (2.6.2):
     - Mixpanel/MPCategoryHelpers (= 2.6.2)
   - Mixpanel/MPCategoryHelpers (2.6.2)
-  - NXOAuth2Client (1.2.8)
   - Reachability (3.2)
   - SMPageControl (1.2)
 
@@ -30,7 +29,6 @@ DEPENDENCIES:
   - Lockbox
   - MBProgressHUD
   - Mixpanel
-  - NXOAuth2Client (~> 1.2.8)
   - Reachability
   - SMPageControl
 
@@ -51,7 +49,6 @@ SPEC CHECKSUMS:
   Lockbox: 3168f08cb26680b05a0702b8c0cc6da32788059d
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   Mixpanel: c075cedebda3328ce1ee29a18429e265ce967cd8
-  NXOAuth2Client: fa81be68c9ce628202028ae037c9c92cfbb37865
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   SMPageControl: 506b0c561d3ddbe2d5df28cb33acc8e4b1f93f19
 

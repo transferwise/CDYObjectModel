@@ -34,7 +34,7 @@
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
-#import "NXOAuth2AccountStore.h"
+#import <GooglePlus/GooglePlus.h>
 
 @interface AppDelegate ()
 
@@ -82,11 +82,8 @@
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
-	
-	[self initOauth];
     
 	UIViewController* controller;
-
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
 	{
@@ -217,20 +214,12 @@
                                   fallbackHandler:^(FBAppCall *call) {
                                       MCLog(@"Unhandled deep link: %@", url);
                                   }];
+	urlWasHandled = urlWasHandled || [GPPURLHandler handleURL:url
+											sourceApplication:sourceApplication
+												   annotation:annotation];
+	
     
     return urlWasHandled;
-}
-
-- (void)initOauth
-{
-	[[NXOAuth2AccountStore sharedStore] setClientID:GoogleOAuthClientId
-											 secret:GoogleOAuthClientSecret
-											  scope:[NSSet setWithObjects:GoogleOAuthEmailScope, GoogleOAuthProfileScope, nil]
-								   authorizationURL:[NSURL URLWithString:GoogleOAuthAuthorizationUrl]
-										   tokenURL:[NSURL URLWithString:GoogleOAuthTokenUrl]
-										redirectURL:[NSURL URLWithString:GoogleOAuthRedirectUrl]
-									  keyChainGroup:@""
-									 forAccountType:GoogleOAuthServiceName];
 }
 
 @end

@@ -35,6 +35,7 @@
 #import "FacebookSDK.h"
 #import "Mixpanel+Customisation.h"
 #import "LoginOrRegisterWithOauthOperation.h"
+#import <GooglePlus/GooglePlus.h>
 
 @interface AuthenticationHelper ()
 
@@ -345,6 +346,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
                         [[TransferwiseClient sharedClient] clearCredentials];
                     }
                     [Credentials clearCredentials];
+					[[GPPSignIn sharedInstance] signOut];
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
                     [TransferwiseClient clearCookies];
                     if(completionBlock)
