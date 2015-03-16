@@ -969,9 +969,6 @@
 		474FF61C1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */; };
 		474FF61D1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */; };
 		474FF61E1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */; };
-		474FF61F1AB6EC9E008DF343 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 474FF61A1AB6EC9E008DF343 /* GooglePlus.bundle */; };
-		474FF6201AB6EC9E008DF343 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 474FF61A1AB6EC9E008DF343 /* GooglePlus.bundle */; };
-		474FF6211AB6EC9E008DF343 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 474FF61A1AB6EC9E008DF343 /* GooglePlus.bundle */; };
 		474FF6221AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */; };
 		474FF6231AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */; };
 		474FF6241AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */; };
@@ -1944,7 +1941,6 @@
 		474D1AA41951A500008BC7A7 /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientButton.h; path = Views/GradientButton.h; sourceTree = "<group>"; };
 		474D1AA51951A500008BC7A7 /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientButton.m; path = Views/GradientButton.m; sourceTree = "<group>"; };
 		474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = GooglePlus/GoogleOpenSource.framework; sourceTree = "<group>"; };
-		474FF61A1AB6EC9E008DF343 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = GooglePlus/GooglePlus.bundle; sourceTree = "<group>"; };
 		474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = GooglePlus/GooglePlus.framework; sourceTree = "<group>"; };
 		474FF6251AB6F0B6008DF343 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		474FF6271AB6F0D5008DF343 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -2825,7 +2821,6 @@
 			isa = PBXGroup;
 			children = (
 				474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */,
-				474FF61A1AB6EC9E008DF343 /* GooglePlus.bundle */,
 				474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */,
 			);
 			name = GooglePlus;
@@ -3917,7 +3912,6 @@
 				388E5B3D1A5A949500AF6EB9 /* SettingsViewController.xib in Resources */,
 				388E5B3E1A5A949500AF6EB9 /* Assets.xcassets in Resources */,
 				388E5B3F1A5A949500AF6EB9 /* SuggestionCell.xib in Resources */,
-				474FF6211AB6EC9E008DF343 /* GooglePlus.bundle in Resources */,
 				388E5B401A5A949500AF6EB9 /* AchWaitingViewController~ipad.xib in Resources */,
 				388E5B411A5A949500AF6EB9 /* ACHCheckView.xib in Resources */,
 				388E5B421A5A949500AF6EB9 /* ResetPasswordViewControllerUpfront.xib in Resources */,
@@ -4085,7 +4079,6 @@
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
 				EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				47AC3F9A1987B2C3005491C6 /* SuggestionCell.xib in Resources */,
-				474FF6201AB6EC9E008DF343 /* GooglePlus.bundle in Resources */,
 				3886321A1A4211AF0033CB32 /* AchWaitingViewController~ipad.xib in Resources */,
 				38CC81A91A1E36A2007D965A /* ACHCheckView.xib in Resources */,
 				3863B82219E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
@@ -4246,7 +4239,6 @@
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
-				474FF61F1AB6EC9E008DF343 /* GooglePlus.bundle in Resources */,
 				388632191A4211AF0033CB32 /* AchWaitingViewController~ipad.xib in Resources */,
 				38CC81A81A1E36A2007D965A /* ACHCheckView.xib in Resources */,
 				3863B82119E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,

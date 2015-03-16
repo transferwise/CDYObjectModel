@@ -231,7 +231,10 @@ IB_DESIGNABLE
 
 - (IBAction)googleLoginPressed:(id)sender
 {
-	[[GPPSignIn sharedInstance] authenticate];
+	if(![[GPPSignIn sharedInstance] trySilentAuthentication])
+	{
+		[[GPPSignIn sharedInstance] authenticate];
+	}
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
