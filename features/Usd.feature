@@ -57,8 +57,7 @@ Scenario: Create from USD transfer and pay with ACH
 	And I touch the "Pay $1 000.00 with DagBank" button
 	Then I wait a bit
 	And I wait to see "AchWaitingView"
-	Then I wait a long time until I don't see "AchWaitingView"
-	Then I wait to see "OK"
+	Then I wait a long time until I see "OK"
 	And I touch "OK"
 	Then I wait to see "Got it!"
 	And I touch "Got it!"

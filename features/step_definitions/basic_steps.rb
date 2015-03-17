@@ -192,8 +192,8 @@ Given /^I wait to see alert with text (.*)$/ do |text|
 	end
 end
 
-Given /^I wait a long time until I don't see (.*)$/ do |key|
-	wait_for_elements_do_not_exist(["view marked:'#{key}'"], :timeout => 180)
+Given /^I wait a long time until I see (.*)$/ do |key|
+	wait_for_elements_exist(["view marked:'#{key}'"], :timeout => 180)
 end
 
 Given /^I wait and dismiss alert$/ do
