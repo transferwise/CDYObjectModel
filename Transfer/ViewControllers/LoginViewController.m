@@ -152,7 +152,7 @@ IB_DESIGNABLE
 	dispatch_async(dispatch_get_main_queue(), ^{
 		__weak typeof(self) weakSelf = self;
 		[weakSelf.loginHelper preformOAuthLoginWithToken:auth.accessToken
-												provider:GoogleOAuthServiceName
+												provider:@"Google"
 									  keepPendingPayment:NO
 									navigationController:weakSelf.navigationController
 											 objectModel:weakSelf.objectModel
