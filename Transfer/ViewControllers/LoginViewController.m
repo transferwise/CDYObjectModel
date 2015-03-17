@@ -130,9 +130,10 @@ IB_DESIGNABLE
 - (void)initGPlus
 {
 	GPPSignIn *signIn = [GPPSignIn sharedInstance];
+	signIn.shouldFetchGooglePlusUser = NO;
 	signIn.shouldFetchGoogleUserEmail = YES;
 	signIn.clientID = GoogleOAuthClientId;
-	signIn.scopes = @[ @"profile" ];
+	signIn.scopes = @[ @"https://www.googleapis.com/auth/plus.profile.emails.read" ];
 	signIn.delegate = self;
 	signIn.attemptSSO = YES;
 }
