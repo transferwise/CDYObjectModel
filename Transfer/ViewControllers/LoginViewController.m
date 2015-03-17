@@ -134,6 +134,7 @@ IB_DESIGNABLE
 	signIn.clientID = GoogleOAuthClientId;
 	signIn.scopes = @[ @"profile" ];
 	signIn.delegate = self;
+	signIn.attemptSSO = YES;
 }
 
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
