@@ -40,9 +40,9 @@ Given /^I am logged in as an american$/ do
 		done
 		keyboard_enter_text("#{rand(100000000)}")
 		done
-		keyboard_enter_text("#{10+rand(20)}")
 		keyboard_enter_text("12")
-		keyboard_enter_text("19#{30+rand(50)}")
+		keyboard_enter_text("#{10+rand(20)}")
+		keyboard_enter_text("19#{60+rand(50)}")
 		touch("button marked:'Save'")
 		macro 'I wait and dismiss alert'
 		touch("view marked:'Transfers'")
