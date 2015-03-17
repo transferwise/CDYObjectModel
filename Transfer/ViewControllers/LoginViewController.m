@@ -232,7 +232,7 @@ IB_DESIGNABLE
 
 - (IBAction)googleLoginPressed:(id)sender
 {
-	if(![[GPPSignIn sharedInstance] trySilentAuthentication])
+	if(![[GPPSignIn sharedInstance] hasAuthInKeychain] || ![[GPPSignIn sharedInstance] trySilentAuthentication])
 	{
 		[[GPPSignIn sharedInstance] authenticate];
 	}
