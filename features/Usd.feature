@@ -55,7 +55,8 @@ Scenario: Create from USD transfer and pay with ACH
 	Then I enter tr@nswise.bank1 into form field Username
 	And I enter bank1 into form field Password
 	And I touch the "Pay $1 000.00 with DagBank" button
-	Then I wait to see "AchWaitingView"
+	Then I wait a bit
+	And I wait to see "AchWaitingView"
 	Then I wait a long time until I don't see "AchWaitingView"
 	Then I wait to see "OK"
 	And I touch "OK"
