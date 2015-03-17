@@ -45,13 +45,18 @@
 #import "EventTracker.h"
 #import "ObjectModel+Payments.h"
 #import "EmailValidation.h"
-#import "PaymentValidation.h"
 #import "NSObject+NSNull.h"
 #import "ConfirmPaymentViewController.h"
 #import "TransparentModalViewController.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
+
+#define kProgressRecipient 0.4f
+#define kProgressPersonalProfile 0.6f
+#define kProgressBusinessProfile 0.7f
+#define kProgressRefundRecipient 0.8f
+#define kProgressConfirm 1.0f
 
 @interface PaymentFlow ()
 
@@ -197,28 +202,17 @@
         MCLog(@"presentPaymentConfirmation");
 		
 		__weak typeof(self) weakSelf = self;
-		PaymentValidationBlock paymentValidationBlock = ^(TRWActionBlock validationBlock){
-			if ([Credentials userLoggedIn])
-			{
-				[weakSelf updateSenderProfile:validationBlock];
-			}
-			else
-			{
-				validationBlock();
-			}
-		};
 		
 		TRWActionBlock successBlock = ^{
-			[weakSelf checkVerificationNeeded];
+            [weakSelf updateSenderProfile:^{
+                [weakSelf checkVerificationNeeded];
+            }];
 		};
 		
-		id<PaymentValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePayment];
-		[validator setValidationBlock:paymentValidationBlock];
 		
 		//TODO: decouple validation error handling to get rid of this
 		ConfirmPaymentViewController *controller = (ConfirmPaymentViewController *)[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
-																							  params:@{kPaymentValidator: [NSObject getObjectOrNsNull:validator],
-																									   kNextActionBlock: [successBlock copy]}];
+																							  params:@{kNextActionBlock: [successBlock copy]}];
 		
 		self.paymentErrorHandler = ^(NSError *error) {
 			[controller handleValidationError:error];
@@ -770,28 +764,38 @@
         PendingPayment *payment = [self.objectModel pendingPayment];
         if (!payment.recipient)
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             [self presentRecipientDetails:[payment.user personalProfileFilled]];
         }
         else if ([payment.allowedRecipientTypes indexOfObject:payment.recipient.type] == NSNotFound)
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *template = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
         }
         else if ([payment.recipient.type recipientAddressRequiredValue] && ! [payment.recipient hasAddress])
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
         }
         else if ([payment.targetCurrency isBicRequiredForType:payment.recipient.type] && ! [[payment.recipient valueForFieldNamed:@"BIC"] length] > 0)
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
         }
 		else if (!payment.user.personalProfileFilled)
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressPersonalProfile;
             [self presentPersonalProfileEntry:YES
 								   isExisting:[Credentials userLoggedIn]];
         }
@@ -800,10 +804,16 @@
 		{
 			//reset flag so we won't be coming back here again
 			payment.user.personalProfile.sendAsBusinessValue = NO;
+            
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressBusinessProfile;
+            
 			[self presentBusinessProfileScreen];
 		}
 		else if (payment.isFixedAmountValue && !payment.refundRecipient)
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRefundRecipient;
             [self presentRefundAccountViewController];
         }
         else if([self isAZOrOK])
@@ -812,6 +822,8 @@
         }
 		else
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressConfirm;
             [self presentPaymentConfirmation];
         }
     }];

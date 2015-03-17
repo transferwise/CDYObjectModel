@@ -83,13 +83,13 @@ Given /^I enter (.*) into form field (.*)$/ do |value,key|
 	if (key != "-" and value != "-")
 		if(key[0,1] == ">")
 			keyName = key[1,key.length-2]
-		    if(query("pickerTableView view marked:'#{value}'").count < 1)
-		    	touch (query("view:'DropdownCell' view text:'#{keyName}'"))
+		    if(query("pickerTableView view {text CONTAINS '#{value}'}").count < 1)
+		    	touch (query("view:'DropdownCell' view {text CONTAINS '#{keyName}'}"))
 		    	sleep(STEP_PAUSE)
 		    end
-			touch (query("pickerTableView view marked:'#{value}'"))
+			touch (query("pickerTableView view {text CONTAINS '#{value}'}"))
 			sleep(STEP_PAUSE)
-			touch (query("view:'DropdownCell' view text:'#{value}'"))
+			touch (query("view:'DropdownCell' view {text CONTAINS '#{value}'}"))
 		else
 			touch(query("textFieldLabel {text CONTAINS '#{key}'}"))
   			keyboard_enter_text(value)

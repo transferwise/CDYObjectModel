@@ -215,7 +215,6 @@
 		388E59CC1A5A949500AF6EB9 /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
 		388E59CD1A5A949500AF6EB9 /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		388E59CE1A5A949500AF6EB9 /* UIFont+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */; };
-		388E59CF1A5A949500AF6EB9 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7381A3F2AF700014F55 /* PaymentValidator.m */; };
 		388E59D01A5A949500AF6EB9 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		388E59D11A5A949500AF6EB9 /* SuggestionDataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */; };
 		388E59D21A5A949500AF6EB9 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83401949B8DF0065AD2A /* GradientView.m */; };
@@ -690,6 +689,9 @@
 		388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
+		3893A1C31AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
+		3893A1C41AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
+		3893A1C51AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
 		389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
 		389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
 		389F67F9198FC1C6006CF1F6 /* _BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A0198FC1C5006CF1F6 /* _BusinessProfile.m */; };
@@ -1066,8 +1068,6 @@
 		47C1F7421A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */; };
 		47C1F7431A3F2AF700014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7351A3F2AF700014F55 /* EmailValidator.m */; };
 		47C1F7441A3F2AF700014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7351A3F2AF700014F55 /* EmailValidator.m */; };
-		47C1F7451A3F2AF700014F55 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7381A3F2AF700014F55 /* PaymentValidator.m */; };
-		47C1F7461A3F2AF700014F55 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7381A3F2AF700014F55 /* PaymentValidator.m */; };
 		47C1F7471A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */; };
 		47C1F7481A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */; };
 		47C1F7491A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */; };
@@ -1581,6 +1581,7 @@
 		3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v4.xcdatamodel; sourceTree = "<group>"; };
 		381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v7.xcdatamodel; sourceTree = "<group>"; };
 		381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TouchIdPromptViewController~ipad.xib"; sourceTree = "<group>"; };
+		381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v9.xcdatamodel; sourceTree = "<group>"; };
 		381EF8831A7908A600485C7F /* PresentationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentationCell.h; sourceTree = "<group>"; };
 		381EF8841A7908A600485C7F /* PresentationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentationCell.m; sourceTree = "<group>"; };
 		381EF8881A7908E600485C7F /* TwoFieldPresentationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoFieldPresentationCell.xib; sourceTree = "<group>"; };
@@ -1685,6 +1686,8 @@
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
 		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsetRespectingButton.h; path = Views/InsetRespectingButton.h; sourceTree = "<group>"; };
 		388F09FE1936434A00DBD93D /* InsetRespectingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsetRespectingButton.m; path = Views/InsetRespectingButton.m; sourceTree = "<group>"; };
+		3893A1C11AB04C7E004D0560 /* PendingPayment+ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PendingPayment+ColoredButton.h"; sourceTree = "<group>"; };
+		3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PendingPayment+ColoredButton.m"; sourceTree = "<group>"; };
 		389F679D198FC1C5006CF1F6 /* _AllowedTypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AllowedTypeFieldValue.h; sourceTree = "<group>"; };
 		389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AllowedTypeFieldValue.m; sourceTree = "<group>"; };
 		389F679F198FC1C5006CF1F6 /* _BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BusinessProfile.h; sourceTree = "<group>"; };
@@ -2013,9 +2016,6 @@
 		47C1F7331A3F2AF700014F55 /* EmailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidation.h; path = Validation/EmailValidation.h; sourceTree = "<group>"; };
 		47C1F7341A3F2AF700014F55 /* EmailValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidator.h; path = Validation/EmailValidator.h; sourceTree = "<group>"; };
 		47C1F7351A3F2AF700014F55 /* EmailValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailValidator.m; path = Validation/EmailValidator.m; sourceTree = "<group>"; };
-		47C1F7361A3F2AF700014F55 /* PaymentValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentValidation.h; path = Validation/PaymentValidation.h; sourceTree = "<group>"; };
-		47C1F7371A3F2AF700014F55 /* PaymentValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentValidator.h; path = Validation/PaymentValidator.h; sourceTree = "<group>"; };
-		47C1F7381A3F2AF700014F55 /* PaymentValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentValidator.m; path = Validation/PaymentValidator.m; sourceTree = "<group>"; };
 		47C1F7391A3F2AF700014F55 /* PersonalProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileValidation.h; path = Validation/PersonalProfileValidation.h; sourceTree = "<group>"; };
 		47C1F73A1A3F2AF700014F55 /* PersonalProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileValidator.h; path = Validation/PersonalProfileValidator.h; sourceTree = "<group>"; };
 		47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalProfileValidator.m; path = Validation/PersonalProfileValidator.m; sourceTree = "<group>"; };
@@ -2700,6 +2700,8 @@
 				389F67E6198FC1C6006CF1F6 /* PaymentMadeIndicator.m */,
 				389F67E7198FC1C6006CF1F6 /* PendingPayment.h */,
 				389F67E8198FC1C6006CF1F6 /* PendingPayment.m */,
+				3893A1C11AB04C7E004D0560 /* PendingPayment+ColoredButton.h */,
+				3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */,
 				389F67E9198FC1C6006CF1F6 /* PersonalProfile.h */,
 				389F67EA198FC1C6006CF1F6 /* PersonalProfile.m */,
 				389F67EB198FC1C6006CF1F6 /* Recipient.h */,
@@ -2853,9 +2855,6 @@
 				47C1F7331A3F2AF700014F55 /* EmailValidation.h */,
 				47C1F7341A3F2AF700014F55 /* EmailValidator.h */,
 				47C1F7351A3F2AF700014F55 /* EmailValidator.m */,
-				47C1F7361A3F2AF700014F55 /* PaymentValidation.h */,
-				47C1F7371A3F2AF700014F55 /* PaymentValidator.h */,
-				47C1F7381A3F2AF700014F55 /* PaymentValidator.m */,
 				47C1F7391A3F2AF700014F55 /* PersonalProfileValidation.h */,
 				47C1F73A1A3F2AF700014F55 /* PersonalProfileValidator.h */,
 				47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */,
@@ -4568,7 +4567,6 @@
 				388E59CC1A5A949500AF6EB9 /* TransferDetialsHeaderView.m in Sources */,
 				388E59CD1A5A949500AF6EB9 /* TransferDetailsViewController.m in Sources */,
 				388E59CE1A5A949500AF6EB9 /* UIFont+MOMStyle.m in Sources */,
-				388E59CF1A5A949500AF6EB9 /* PaymentValidator.m in Sources */,
 				388E59D01A5A949500AF6EB9 /* _AchBank.m in Sources */,
 				388E59D11A5A949500AF6EB9 /* SuggestionDataEntryViewController.m in Sources */,
 				388E59D21A5A949500AF6EB9 /* GradientView.m in Sources */,
@@ -4637,6 +4635,7 @@
 				388E5A0E1A5A949500AF6EB9 /* ProfilesEditViewController.m in Sources */,
 				388E5A0F1A5A949500AF6EB9 /* SettingsTitleCell.m in Sources */,
 				388E5A101A5A949500AF6EB9 /* SuggestionCellProvider.m in Sources */,
+				3893A1C51AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */,
 				388E5A111A5A949500AF6EB9 /* _FieldGroup.m in Sources */,
 				388E5A121A5A949500AF6EB9 /* TouchIDHelper.m in Sources */,
 				388E5A131A5A949500AF6EB9 /* MoneyCalculator.m in Sources */,
@@ -4908,7 +4907,6 @@
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
 				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
-				47C1F7461A3F2AF700014F55 /* PaymentValidator.m in Sources */,
 				47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */,
 				47AC3F8E1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */,
 				38AA83421949B8DF0065AD2A /* GradientView.m in Sources */,
@@ -4977,6 +4975,7 @@
 				474C45221993CD38001F207C /* ProfilesEditViewController.m in Sources */,
 				EA31A14217DDB29B00F937F7 /* SettingsTitleCell.m in Sources */,
 				47AC3F921987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
+				3893A1C41AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */,
 				47C4D03F1A232A9F005EC7C6 /* _FieldGroup.m in Sources */,
 				38504B0A19C1E83700276203 /* TouchIDHelper.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
@@ -5321,7 +5320,6 @@
 				389F6813198FC1C6006CF1F6 /* _Setting.m in Sources */,
 				479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
-				47C1F7451A3F2AF700014F55 /* PaymentValidator.m in Sources */,
 				3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
 				383D30D41A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
@@ -5460,6 +5458,7 @@
 				4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */,
 				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
 				47B3864A1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */,
+				3893A1C31AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */,
 				476C6B88196C18BF007002F9 /* SwipeActionCell.m in Sources */,
 				38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */,
 				38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
@@ -6038,6 +6037,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */,
 				4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */,
 				381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */,
 				47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */,
@@ -6050,7 +6050,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */;
+			currentVersion = 381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

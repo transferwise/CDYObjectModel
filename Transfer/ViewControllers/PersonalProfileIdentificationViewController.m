@@ -585,12 +585,12 @@
         
         float progress = self.uploadProgressAddress + self.uploadProgressId;
         
-        if(self.identificationRequired && self.addressVerificationRowIndex)
+        if(self.identificationRequired && self.addressVerificationRowIndex != NSNotFound)
         {
             progress /= 2;
         }
         
-        self.continueButton.progress = progress;
+        [self.continueButton setProgress:progress animated:YES];
     });
     
 }

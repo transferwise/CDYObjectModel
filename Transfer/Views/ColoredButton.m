@@ -10,6 +10,8 @@
 #import "MOMStyle.h"
 #import "UIImage+Color.h"
 
+#define kColoredButtonVCPushAnimationDelay 0.6f
+
 @interface ColoredButton ()
 
 @property (strong, nonatomic) NSString* compoundStyleName;
@@ -18,6 +20,15 @@
 @property (weak, nonatomic) UIImage* normalStateImage;
 @property (weak, nonatomic) UIImage* highlightedStateImage;
 @property (nonatomic, assign) CGSize lastDrawnSize;
+
+@property (nonatomic, assign) BOOL isAnimatingProgress;
+@property (nonatomic, strong) NSThread* animationThread;
+@property (nonatomic, strong) CADisplayLink* displayLink;
+@property (nonatomic, assign) CGFloat transitionalProgress;
+@property (nonatomic, assign) CGFloat progressStartPoint;
+@property (nonatomic, assign) CFTimeInterval startTime;
+
+#define animationDuration (0.6f)
 
 @end
 
@@ -114,14 +125,49 @@
 	}
 }
 
--(void)setProgress:(CGFloat)progress
+-(void)setProgress:(CGFloat)progress animated:(BOOL)animated
 {
     if(_progress != progress)
     {
+        
+        if(self.animationThread)
+        {
+            _progress = progress;
+            return;
+        }
+        self.progressStartPoint = _progress;
         _progress = progress;
-		[self resetBackgroundImages];
-        [self setBackgroundImages];
+        if(animated)
+        {
+            self.animationThread = [[NSThread alloc] initWithTarget:self selector:@selector(setupDisplayLink) object:nil];
+            [self.animationThread start];
+            
+        }
+        else
+        {
+            self.transitionalProgress = progress;
+            [self resetBackgroundImages];
+            [self setBackgroundImages];
+        }
     }
+}
+
+-(void)setProgress:(CGFloat)progress
+{
+    [self setProgress:progress animated:NO];
+}
+
+-(void)animateProgressFrom:(CGFloat)startValue to:(CGFloat)toValue delay:(NSTimeInterval)delay
+{
+    [self setProgress:startValue];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setProgress:toValue animated:YES];
+    });
+}
+
+-(void)progressPushVCAnimationFrom:(CGFloat)startValue to:(CGFloat)toValue
+{
+    [self animateProgressFrom:startValue to:toValue delay:kColoredButtonVCPushAnimationDelay];
 }
 
 #pragma mark - Helpers
@@ -143,33 +189,43 @@
 
 - (void)setBackgroundImages
 {
-	UIColor* bgStyle = [self getColorFromStyle:self.compoundStyleContainer.bgStyle];
-	UIColor* highlightedBgStyle = [self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle];
+	UIColor* bgColor = [self getColorFromStyle:self.compoundStyleContainer.bgStyle];
+	UIColor* highlightedBgColor = [self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle];
+    UIColor* shadowColor = [UIColor colorFromStyle:self.shadowColor];
+    UIColor* selectedColor = [self getColorFromStyle:self.compoundStyleContainer.selectedBgStyle];
 	
 	//this gets called from layoutsubviews
 	//colors might noth have been set yet.
-	if(bgStyle && highlightedBgStyle)
+	if(bgColor && highlightedBgColor)
 	{
 		// set background images
-		[self setBackgroundImage:[self getBackgroundImage:NO
-												  bgStyle:bgStyle
-									   highlightedBgStyle:highlightedBgStyle
-											   shdowStyle:self.shadowColor]
-						forState:UIControlStateNormal];
-		[self setBackgroundImage:[self getBackgroundImage:YES
-												  bgStyle:bgStyle
-									   highlightedBgStyle:highlightedBgStyle
-											   shdowStyle:self.shadowColor]
-						forState:UIControlStateHighlighted];
 		
+        UIImage *normalImage = [self getBackgroundImage:NO
+                                                bgColor:bgColor
+                                     highlightedBgColor:highlightedBgColor
+                                            shadowColor:shadowColor
+                                          progressColor:selectedColor];
+        
+        UIImage *highlightedImage = [self getBackgroundImage:YES
+                                                     bgColor:bgColor
+                                          highlightedBgColor:highlightedBgColor
+                                                 shadowColor:shadowColor
+                                               progressColor:selectedColor];
+    
 		self.lastDrawnSize = self.bounds.size;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self setBackgroundImage:normalImage forState:UIControlStateNormal];
+            [self setBackgroundImage:highlightedImage forState:UIControlStateHighlighted];
+        });
 	}
 }
 
 - (UIImage *)getBackgroundImage:(BOOL)selected
-						bgStyle:(UIColor *)bgStyle
-			 highlightedBgStyle:(UIColor *)highlightedBgStyle
-					 shdowStyle:(NSString *)shadowStyle
+						bgColor:(UIColor *)bgColor
+			 highlightedBgColor:(UIColor *)highlightedBgColor
+					 shadowColor:(UIColor *)shadowColor
+					 progressColor:(UIColor *)progressColor
 {
 	UIImage *result = selected ? self.highlightedStateImage : self.normalStateImage;
 	
@@ -180,16 +236,16 @@
 		CGRect rect = CGRectMake(0, 0, size.width, size.height);
 		
 		CGRect progressRect = rect;
-		progressRect.size.width = round(self.progress * size.width);
+		progressRect.size.width = round(self.transitionalProgress * size.width);
 		
 		CGRect remainingRect = rect;
 		remainingRect.size.width = size.width - progressRect.size.width ;
 		remainingRect.origin.x = progressRect.size.width;
 		
-		UIColor* progressColor = highlightedBgStyle;
-		UIColor* remainingColor = bgStyle;
-		UIColor* progressSelected = highlightedBgStyle;
-		UIColor* remainingSelected = highlightedBgStyle;
+        progressColor = progressColor?:highlightedBgColor;
+		UIColor* remainingColor = bgColor;
+		UIColor* progressSelected = progressColor;
+		UIColor* remainingSelected = highlightedBgColor;
 		
 		UIGraphicsBeginImageContextWithOptions(size, selected ? NO : YES, 0.0);
 		CGContextRef context = UIGraphicsGetCurrentContext();
@@ -215,8 +271,8 @@
 			remainingShadowRect.origin.y = size.height - (selected ? 2.0f : 4.0f);
 			remainingShadowRect.size.height = selected ? 2.0f : 4.0f;
 			
-			UIColor* progressShadow = [UIColor colorFromStyle:shadowStyle];
-			UIColor* remainingShadow = [UIColor colorFromStyle:shadowStyle];
+			UIColor* progressShadow = shadowColor;
+			UIColor* remainingShadow = shadowColor;
 			
 			CGContextSetFillColorWithColor(context, [progressShadow CGColor]);
 			CGContextFillRect(context, progressShadowRect);
@@ -275,4 +331,61 @@
 	
 	return nil;
 }
+
+#pragma mark - custom animation
+
+-(void)setupDisplayLink
+{
+    if(!self.displayLink)
+    {
+        self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateProgressAnimation:)];
+        [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [[NSRunLoop currentRunLoop] run];
+    }
+}
+
+-(void)updateProgressAnimation:(CADisplayLink*)displayLink
+{
+    if(self.startTime == 0)
+    {
+        self.startTime = displayLink.timestamp;
+    }
+    
+    CFTimeInterval time = displayLink.timestamp - self.startTime;
+    
+    if(time>animationDuration)
+    {
+        //Tear down display link and thread
+        self.transitionalProgress = self.progress;
+        [self resetBackgroundImages];
+        [self setBackgroundImages];
+        [displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        self.displayLink = nil;
+        [self.animationThread cancel];
+        self.animationThread = nil;
+        self.startTime = 0;
+        return;
+    }
+    
+    CFTimeInterval normalisedTime = time / (animationDuration/2);
+    
+    
+    //Quadratic ease in/out http://gizma.com/easing/
+    if(normalisedTime < 1 )
+    {
+        self.transitionalProgress = self.progressStartPoint + (self.progress - self.progressStartPoint)/2*normalisedTime*normalisedTime ;
+    }
+    else
+    {
+        normalisedTime--;
+        self.transitionalProgress = self.progressStartPoint + (-(self.progress - self.progressStartPoint)/2 * (normalisedTime*(normalisedTime-2) - 1));
+    }
+    
+    //Drawing and setting images seems efficient enough. Want to avoid custom class since this baseclass is used everywhere.
+    [self resetBackgroundImages];
+    [self setBackgroundImages];
+    
+}
+
+
 @end

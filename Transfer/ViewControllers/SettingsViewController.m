@@ -41,6 +41,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 @property (weak, nonatomic) IBOutlet UILabel *sendAsBusinessLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *sendAsBusinessSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
+@property (weak, nonatomic) IBOutlet UILabel *pRefLabel;
 
 @end
 
@@ -81,6 +82,8 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     User *user = [self.objectModel currentUser];
     [self.sendAsBusinessSwitch setOnTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
     self.sendAsBusinessSwitch.on = user.sendAsBusinessDefaultSettingValue;
+    
+    self.pRefLabel.text = user.pReference;
 }
 
 - (IBAction)infoTapped:(id)sender

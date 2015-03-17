@@ -39,6 +39,8 @@
 #import "NameSuggestionCellProvider.h"
 #import "EmailLookupWrapper.h"
 #import "GoogleAnalytics.h"
+#import "ColoredButton.h"
+#import "PendingPayment+ColoredButton.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -141,6 +143,12 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    if([self.footerButton isKindOfClass:[ColoredButton class]])
+    {
+        ColoredButton* coloredButton = (ColoredButton*)self.footerButton;
+        [self.payment addProgressAnimationToButton:coloredButton];
+    }
     
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
     

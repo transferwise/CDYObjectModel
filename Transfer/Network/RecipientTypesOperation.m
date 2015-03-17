@@ -15,12 +15,21 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
 
 @implementation RecipientTypesOperation
 
+static RecipientTypesOperation *runningAllTypesOperation;
+static NSMutableSet *allTypesOperationsWaitingForResponse;
+
 - (void)execute {
+    __block __weak RecipientTypesOperation *weakSelf = self;
+    
+    if(![self shouldExecuteRequest:weakSelf])
+    {
+        return;
+    }
+    
     NSString *path = [self addTokenToPath:kRecipientTypesPath];
 
-    __block __weak RecipientTypesOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.resultHandler(error,nil);
+        [weakSelf completeRequest:weakSelf error:error typeList:nil];
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
@@ -40,7 +49,7 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
             }
 
             [weakSelf.workModel saveContext:^{
-                weakSelf.resultHandler(nil, [recipients valueForKey:@"type"]);
+                [weakSelf completeRequest:weakSelf error:nil typeList:[recipients valueForKey:@"type"]];
             }];
         }];
     }];
@@ -52,6 +61,52 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
     else
     {
         [self getDataFromPath:path];
+    }
+}
+
+-(BOOL)shouldExecuteRequest:(RecipientTypesOperation*)operation
+{
+    if(!operation.sourceCurrency)
+    {
+        //No source currency means we're getting a list of all recipient types.
+        //We'll only execute one of these requests and keep the others around and call their completion
+        //when the request completes.
+        
+        if(!allTypesOperationsWaitingForResponse)
+        {
+            allTypesOperationsWaitingForResponse = [NSMutableSet set];
+        }
+        [allTypesOperationsWaitingForResponse addObject:operation];
+        
+        if(runningAllTypesOperation)
+        {
+            return NO;
+        }
+        else
+        {
+            runningAllTypesOperation = operation;
+        }
+    }
+    return YES;
+
+}
+
+-(void)completeRequest:(RecipientTypesOperation*)operation error:(NSError*) error typeList:(NSArray*)typeList
+{
+    if(!operation.sourceCurrency)
+    {
+        //No source currency means we're getting a list of all recipient types.
+        //complete all queued requests
+        for(RecipientTypesOperation* target in allTypesOperationsWaitingForResponse)
+        {
+            target.resultHandler(error,typeList);
+        }
+        allTypesOperationsWaitingForResponse = nil;
+        runningAllTypesOperation = nil;
+    }
+    else
+    {
+        operation.resultHandler(error, typeList);
     }
 }
 
