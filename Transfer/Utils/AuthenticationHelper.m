@@ -346,7 +346,6 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
                         [[TransferwiseClient sharedClient] clearCredentials];
                     }
                     [Credentials clearCredentials];
-					[[GPPSignIn sharedInstance] signOut];
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
                     [TransferwiseClient clearCookies];
                     if(completionBlock)
