@@ -84,12 +84,6 @@
 #define COCOAPODS_VERSION_MINOR_Mixpanel_MPCategoryHelpers 6
 #define COCOAPODS_VERSION_PATCH_Mixpanel_MPCategoryHelpers 2
 
-// NXOAuth2Client
-#define COCOAPODS_POD_AVAILABLE_NXOAuth2Client
-#define COCOAPODS_VERSION_MAJOR_NXOAuth2Client 1
-#define COCOAPODS_VERSION_MINOR_NXOAuth2Client 2
-#define COCOAPODS_VERSION_PATCH_NXOAuth2Client 8
-
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
 #define COCOAPODS_VERSION_MAJOR_Reachability 3
