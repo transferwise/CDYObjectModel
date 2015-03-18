@@ -34,6 +34,7 @@
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
+#import <GooglePlus/GooglePlus.h>
 
 @interface AppDelegate ()
 
@@ -83,7 +84,6 @@
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
     
 	UIViewController* controller;
-
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
 	{
@@ -214,6 +214,10 @@
                                   fallbackHandler:^(FBAppCall *call) {
                                       MCLog(@"Unhandled deep link: %@", url);
                                   }];
+	urlWasHandled = urlWasHandled || [GPPURLHandler handleURL:url
+											sourceApplication:sourceApplication
+												   annotation:annotation];
+	
     
     return urlWasHandled;
 }

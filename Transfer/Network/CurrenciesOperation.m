@@ -67,7 +67,8 @@ NSString *const kCurrencyListPath = @"/currency/list";
     [self setOperation:operation];
     [operation setObjectModel:self.objectModel];
     [operation setResultHandler:^(NSError *error, NSArray* returnedRecipientTypeIdentifiers) {
-        if (error) {
+        if (error)
+		{
             self.resultHandler(error);
             return;
         }
@@ -78,11 +79,15 @@ NSString *const kCurrencyListPath = @"/currency/list";
     [operation execute];
 }
 
-- (BOOL)haveAllNeededRecipientTypes:(NSArray *)currencies {
-    for (NSDictionary *currencyData in currencies) {
+- (BOOL)haveAllNeededRecipientTypes:(NSArray *)currencies
+{
+    for (NSDictionary *currencyData in currencies)
+	{
         NSArray *types = currencyData[@"recipientTypes"];
-        for (NSString *type in types) {
-            if (![self.objectModel haveRecipientTypeWithCode:type]) {
+        for (NSString *type in types)
+		{
+            if (![self.objectModel haveRecipientTypeWithCode:type])
+			{
                 MCLog(@"Mossing type %@", type);
                 return NO;
             }
@@ -92,7 +97,8 @@ NSString *const kCurrencyListPath = @"/currency/list";
     return YES;
 }
 
-+ (CurrenciesOperation *)operation {
++ (CurrenciesOperation *)operation
+{
     return [[CurrenciesOperation alloc] init];
 }
 

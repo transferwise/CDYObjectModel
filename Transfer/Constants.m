@@ -23,7 +23,8 @@ NSString *const TRWServerAddress = @"https://transferwise.com";
 NSString *const TransferSandboxUsername = @"mooncascade";
 NSString *const TransferSandboxPassword = @"DayAndNight";
 
-NSString *const TRWSupportCallNumber = @"+442081234020";
+NSString *const TRWSupportCallNumber = @"+442036950999";
+NSString *const TRWSupportCallNumberUS = @"+18889083833";
 NSString *const TRWSupportEmail = @"support@transferwise.com";
 NSString *const TRWFeedbackEmail = @"feedback@transferwise.com";
 NSString *const TRWIdentificationEmail = @"id@transferwise.com";
@@ -57,3 +58,9 @@ NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
 NSString *AppsFlyerIdentifier = @"612261027;6g8vUfZXve88zupKDb94pk";
 
 NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
+
+#if DEV_VERSION
+NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";
+#else
+NSString *const GoogleOAuthClientId = @"701373431167-p3ojp62mps5f444o28dfrdpr8uanbbec.apps.googleusercontent.com";
+#endif

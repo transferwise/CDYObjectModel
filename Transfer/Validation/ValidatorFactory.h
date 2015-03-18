@@ -14,9 +14,8 @@ typedef NS_ENUM(short, ValidatorType)
 {
 	ValidateBusinessProfile = 1,
 	ValidateEmail = 2,
-	ValidatePayment = 3,
-	ValidatePersonalProfile = 4,
-	ValidateRecipientProfile = 5,
+	ValidatePersonalProfile = 3,
+	ValidateRecipientProfile = 4
 };
 
 @interface ValidatorFactory : NSObject

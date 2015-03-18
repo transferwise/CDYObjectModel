@@ -28,6 +28,7 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
+#import <GoogleOpenSource/GoogleOpenSource.h>
 
 IB_DESIGNABLE
 
@@ -73,6 +74,7 @@ IB_DESIGNABLE
 -(void)commonSetup
 {
     _loginHelper = [[AuthenticationHelper alloc] init];
+	[self initGPlus];
 }
 
 #pragma mark - View Life-cycle
@@ -124,6 +126,60 @@ IB_DESIGNABLE
 	[super viewWillDisappear:animated];
 }
 
+#pragma mark - Google Plus
+- (void)initGPlus
+{
+	GPPSignIn *signIn = [GPPSignIn sharedInstance];
+	signIn.shouldFetchGooglePlusUser = NO;
+	signIn.shouldFetchGoogleUserEmail = YES;
+	signIn.clientID = GoogleOAuthClientId;
+	signIn.scopes = @[ @"https://www.googleapis.com/auth/plus.profile.emails.read" ];
+	signIn.delegate = self;
+	signIn.attemptSSO = YES;
+}
+
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
+				   error:(NSError *)error
+{
+	if (error)
+	{
+		//sign out if error happens so user can try another account.
+		[[GPPSignIn sharedInstance] signOut];
+		
+		NSString *message = nil;
+		//400 token has been revoked
+		//401 means that the token is probably expired
+		if (error.code == 400 || error.code == 401)
+		{
+			message = NSLocalizedString(@"login.error.oauth.expired", nil);
+		}
+		
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+														   message:message];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+		return;
+
+	}
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		__weak typeof(self) weakSelf = self;
+		[weakSelf.loginHelper preformOAuthLoginWithToken:auth.accessToken
+												provider:@"Google"
+									  keepPendingPayment:NO
+									navigationController:weakSelf.navigationController
+											 objectModel:weakSelf.objectModel
+											successBlock:^{
+												[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+												[weakSelf processSuccessfulLogin:NO];
+											}
+											  errorBlock:^{
+												  [[GPPSignIn sharedInstance] signOut];
+											  }
+							   waitForDetailsCompletions:YES];
+	});
+}
+
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -159,7 +215,7 @@ IB_DESIGNABLE
 - (IBAction)loginPressed:(id)sender
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-            __weak typeof(self) weakSelf = self;
+		__weak typeof(self) weakSelf = self;
 		[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailTextField.text
 													   password:self.passwordTextField.text
                                              keepPendingPayment:NO
@@ -167,29 +223,35 @@ IB_DESIGNABLE
 													objectModel:self.objectModel
 												   successBlock:^{
                                                        [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
-                                                       [weakSelf processSuccessfulLogin];
+													   [weakSelf processSuccessfulLogin:YES];
 												   }
 									  waitForDetailsCompletions:YES];
     });
 }
 
--(void)processSuccessfulLogin
+-(void)processSuccessfulLogin:(BOOL)useTouchId
 {
-    if([TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
+    if(useTouchId && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
     {
         TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
         prompt.touchIdDelegate = self;
-        [prompt presentOnViewController:self.navigationController.parentViewController withUsername:self.emailTextField.text password:self.passwordTextField.text];
+        [prompt presentOnViewController:self.navigationController.parentViewController
+						   withUsername:self.emailTextField.text
+							   password:self.passwordTextField.text];
     }
     else
     {
-        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
+															   objectModel:self.objectModel];
     }
 }
 
-- (IBAction)googleLogInPressed:(id)sender
+- (IBAction)googleLoginPressed:(id)sender
 {
-    [self presentOpenIDLogInWithProvider:@"google" name:@"Google"];
+	if(![[GPPSignIn sharedInstance] hasAuthInKeychain] || ![[GPPSignIn sharedInstance] trySilentAuthentication])
+	{
+		[[GPPSignIn sharedInstance] authenticate];
+	}
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
@@ -204,7 +266,8 @@ IB_DESIGNABLE
     [controller setProvider:provider];
     //FYI: this is a concious decision not to add email to open id any more
     [controller setProviderName:providerName];
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller
+										 animated:YES];
 }
 
 #pragma mark - Password reset
@@ -221,7 +284,8 @@ IB_DESIGNABLE
 	self.emailTextField.text = email;
 }
 
-- (IBAction)touchIdTapped:(id)sender {
+- (IBAction)touchIdTapped:(id)sender
+{
     [TouchIDHelper retrieveStoredCredentials:^(BOOL success, NSString *username, NSString *password) {
         if(success)
         {
@@ -235,7 +299,7 @@ IB_DESIGNABLE
                                                            successBlock:^{
                                                                
                                                                [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"touchID"];
-                                                               [weakSelf processSuccessfulLogin];
+															   [weakSelf processSuccessfulLogin:NO];
                                                            }
                                                              errorBlock:^(NSError *error) {
                                                                  //Error logging in with stored credentials
@@ -243,9 +307,11 @@ IB_DESIGNABLE
                                                                  if ([error isTransferwiseError])
                                                                  {
                                                                      BOOL isIncorrectCredentials = NO;
-                                                                     if (error.code == ResponseCumulativeError) {
+                                                                     if (error.code == ResponseCumulativeError)
+																	 {
                                                                          NSArray *errors = error.userInfo[TRWErrors];
-                                                                         for (NSDictionary *error in errors) {
+                                                                         for (NSDictionary *error in errors)
+																		 {
                                                                              NSString *code = error[@"code"];
                                                                              if ([@"CRD_NOT_VALID" caseInsensitiveCompare:code] == NSOrderedSame)
                                                                              {

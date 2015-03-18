@@ -129,7 +129,8 @@
 																		  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
 																												 withLabel:messages];
 																	  }
-																				 flow:weakSelf];
+																				 flow:weakSelf
+																		   controller:controller];
 												  }];
 												  
 												  [self.executedOperation execute];
@@ -163,7 +164,7 @@
 																}
 																					 flow:weakSelf];
 											   
-											   [(VerifyFormOperation *)self.executedOperation setResultHandler:^(NSError *error, BOOL success) {
+											   [(VerifyFormOperation *)self.executedOperation setResultHandler:^(NSError *error, BOOL success, AchBank *mfaForm) {
 												   //handle known errors
 												   if (error)
 												   {
@@ -175,6 +176,8 @@
 																					   controller:controller
 																						  message:@"ach.failure.message.account"
 																					  actionBlock:^{
+																						  //mfa item id is not reusable, need to start from the first login form
+																						  [weakSelf resetToFirstLoginView:controller];
 																						  [weakSelf.waitingViewController dismiss];
 																					  }
 																					 successBlock:nil
@@ -205,34 +208,46 @@
 												   //no known errors so let standard handler deal with it
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
-																		  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH success shown"];
-																		  [weakSelf presentCustomInfoWithSuccess:YES
-																									  controller:controller
-																										 message:@"ach.success.message"
-																									 actionBlock:^{
-																										 if (IPAD)
-																										 {
-																											 [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+																		  //no errors, but we have gotten another form for MFA, show it
+																		  if (mfaForm)
+																		  {
+																			  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH MFA screen shown"];
+																			  [weakSelf pushLoginController:mfaForm
+																								   weakSelf:weakSelf
+																								 controller:controller];
+																		  }
+																		  else
+																		  {
+																			  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH success shown"];
+																			  [weakSelf presentCustomInfoWithSuccess:YES
+																										  controller:controller
+																											 message:@"ach.success.message"
+																										 actionBlock:^{
+																											 if (IPAD)
+																											 {
+																												 [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+																											 }
+																											 else
+																											 {
+																												 TransferWaitingViewController *waitingController = [TransferWaitingViewController endOfFlowInstanceForPayment:weakSelf.payment
+																																																				   objectModel:weakSelf.objectModel];
+																												 [controller.topViewController switchToViewController:waitingController];
+																											 }
 																										 }
-																										 else
-																										 {
-																											 TransferWaitingViewController *waitingController = [TransferWaitingViewController endOfFlowInstanceForPayment:weakSelf.payment
-																																																			   objectModel:weakSelf.objectModel];
-																											 [controller.topViewController switchToViewController:waitingController];
-																										 }
-																									 }
-																									successBlock:^{
-																										[weakSelf.objectModel performBlock:^{
-																											[weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
-																										}];
-																									}
-																											flow:weakSelf];
+																										successBlock:^{
+																											[weakSelf.objectModel performBlock:^{
+																												[weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
+																											}];
+																										}
+																												flow:weakSelf];
+																		  }
 																	  }
 																   trackErrorBlock:^(NSString* messages){
 																	   [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
 																											  withLabel:messages];
 																   }
-																			  flow:weakSelf];
+																			  flow:weakSelf
+																		controller:controller];
 											   }];
 											   
 											   [self.executedOperation execute];
@@ -275,6 +290,7 @@
 				 successBlock:(void (^)())successBlock
 			  trackErrorBlock:(void (^)(NSString* messages))trackErrorBlock
 						 flow:(AchFlow *)flow
+				   controller:(UINavigationController *)controller
 {
 	//operation might have been cancelled before reaching here
 	//but it might not have
@@ -296,10 +312,9 @@
 			
 			trackErrorBlock(messages);
 			
-			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			[self.waitingViewController dismiss];
-			[alertView show];
+			[self showErrorAlertWithMessages:messages];
+			//mfa item id is not reusable, so need to pop to first login form
+			[self resetToFirstLoginView:controller];
 			return;
 		}
 		
@@ -370,6 +385,35 @@
 			weakCustomInfo.actionButtonBlock();
 		}
 	});
+}
+
+- (void)showErrorAlertWithMessages:(NSString *)messages
+{
+	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
+	[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+	[self.waitingViewController dismiss];
+	[alertView show];
+}
+
+//pops failed ACH MFA to login from
+- (void)resetToFirstLoginView:(UINavigationController *)controller
+{
+	NSUInteger count = [controller.viewControllers count];
+	
+	//if the last pushed viewcontroller is not AchLoginViewController, then we have failed before getting to MFA, ignore
+	if ([controller.viewControllers[count - 1] isKindOfClass:[AchLoginViewController class]])
+	{
+		for (NSUInteger i = count - 1; i > 0; i--)
+		{
+			//there can be multiple AchLoginViewControllers in the stack, find the controller before and show the first.
+			if (![controller.viewControllers[i] isKindOfClass:[AchLoginViewController class]])
+			{
+				[controller popToViewController:controller.viewControllers[i]
+			 					   animated:YES];
+				break;
+			}
+		}
+	}
 }
 
 @end

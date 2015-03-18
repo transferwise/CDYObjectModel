@@ -8,6 +8,11 @@
 
 #import "TransferwiseOperation.h"
 
+extern NSString *const SetSSNErrorDomain;
+typedef NS_ENUM(short, SetSSNErrorCodes) {
+    SSN_MISSING = -1
+};
+
 @interface SetSSNOperation : TransferwiseOperation
 
 +(instancetype)operationWithSsn:(NSString*)ssn resultHandler:(void(^)(NSError* error))resultHandler;

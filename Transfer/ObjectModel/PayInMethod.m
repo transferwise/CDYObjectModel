@@ -17,7 +17,7 @@
 			 @"REGULAR" : @1,
 			 @"DATA_CASH" : @0,
 			 @"SWIFT" : @2,
-//			 @"ADYEN" : @0,
+			 @"ADYEN" : @0,
 			 @"ACH" : @0
 			 };
 }

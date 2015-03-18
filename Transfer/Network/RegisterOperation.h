@@ -7,11 +7,12 @@
 //
 
 #import "TransferwiseOperation.h"
-#import "LoginOperation.h"
+
+typedef void (^RegisterResponseBlock)(NSError *error);
 
 @interface RegisterOperation : TransferwiseOperation
 
-@property (nonatomic, copy) LoginResponseBlock completionHandler;
+@property (nonatomic, copy) RegisterResponseBlock completionHandler;
 
 + (RegisterOperation *)operationWithEmail:(NSString *)email password:(NSString *)password;
 

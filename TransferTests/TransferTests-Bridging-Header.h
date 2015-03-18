@@ -23,7 +23,6 @@
 #import "PaymentFlowViewControllerFactory.h"
 #import "BusinessProfileValidator.h"
 #import "EmailValidator.h"
-#import "PaymentValidator.h"
 #import "PersonalProfileValidator.h"
 #import "RecipientProfileValidator.h"
 #import "ValidatorFactory.h"

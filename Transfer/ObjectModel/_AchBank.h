@@ -4,16 +4,20 @@
 #import <CoreData/CoreData.h>
 
 extern const struct AchBankAttributes {
+	__unsafe_unretained NSString *fieldType;
 	__unsafe_unretained NSString *id;
+	__unsafe_unretained NSString *itemId;
 	__unsafe_unretained NSString *title;
 } AchBankAttributes;
 
 extern const struct AchBankRelationships {
 	__unsafe_unretained NSString *fieldGroups;
+	__unsafe_unretained NSString *mfaFields;
 	__unsafe_unretained NSString *user;
 } AchBankRelationships;
 
 @class FieldGroup;
+@class MfaField;
 @class User;
 
 @interface AchBankID : NSManagedObjectID {}
@@ -25,6 +29,10 @@ extern const struct AchBankRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AchBankID* objectID;
 
+@property (nonatomic, strong) NSString* fieldType;
+
+//- (BOOL)validateFieldType:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSNumber* id;
 
 @property (atomic) int32_t idValue;
@@ -33,6 +41,14 @@ extern const struct AchBankRelationships {
 
 //- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* itemId;
+
+@property (atomic) int32_t itemIdValue;
+- (int32_t)itemIdValue;
+- (void)setItemIdValue:(int32_t)value_;
+
+//- (BOOL)validateItemId:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
@@ -40,6 +56,10 @@ extern const struct AchBankRelationships {
 @property (nonatomic, strong) NSOrderedSet *fieldGroups;
 
 - (NSMutableOrderedSet*)fieldGroupsSet;
+
+@property (nonatomic, strong) NSOrderedSet *mfaFields;
+
+- (NSMutableOrderedSet*)mfaFieldsSet;
 
 @property (nonatomic, strong) User *user;
 
@@ -62,7 +82,25 @@ extern const struct AchBankRelationships {
 
 @end
 
+@interface _AchBank (MfaFieldsCoreDataGeneratedAccessors)
+- (void)addMfaFields:(NSOrderedSet*)value_;
+- (void)removeMfaFields:(NSOrderedSet*)value_;
+- (void)addMfaFieldsObject:(MfaField*)value_;
+- (void)removeMfaFieldsObject:(MfaField*)value_;
+
+- (void)insertObject:(MfaField*)value inMfaFieldsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromMfaFieldsAtIndex:(NSUInteger)idx;
+- (void)insertMfaFields:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeMfaFieldsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInMfaFieldsAtIndex:(NSUInteger)idx withObject:(MfaField*)value;
+- (void)replaceMfaFieldsAtIndexes:(NSIndexSet *)indexes withMfaFields:(NSArray *)values;
+
+@end
+
 @interface _AchBank (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSString*)primitiveFieldType;
+- (void)setPrimitiveFieldType:(NSString*)value;
 
 - (NSNumber*)primitiveId;
 - (void)setPrimitiveId:(NSNumber*)value;
@@ -70,11 +108,20 @@ extern const struct AchBankRelationships {
 - (int32_t)primitiveIdValue;
 - (void)setPrimitiveIdValue:(int32_t)value_;
 
+- (NSNumber*)primitiveItemId;
+- (void)setPrimitiveItemId:(NSNumber*)value;
+
+- (int32_t)primitiveItemIdValue;
+- (void)setPrimitiveItemIdValue:(int32_t)value_;
+
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
 
 - (NSMutableOrderedSet*)primitiveFieldGroups;
 - (void)setPrimitiveFieldGroups:(NSMutableOrderedSet*)value;
+
+- (NSMutableOrderedSet*)primitiveMfaFields;
+- (void)setPrimitiveMfaFields:(NSMutableOrderedSet*)value;
 
 - (User*)primitiveUser;
 - (void)setPrimitiveUser:(User*)value;

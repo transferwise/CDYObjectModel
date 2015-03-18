@@ -14,6 +14,7 @@
 #import "DropdownCell.h"
 #import "RecipientFieldCell.h"
 #import "ObjectModel+RecipientTypes.h"
+#import "CaptchaCell.h"
 
 @implementation TypeFieldHelper
 
@@ -23,6 +24,7 @@
 							valueGetter:(GetAllowedTypeFieldValueBlock)valueGetterBlock
 							titleGetter:(StringGetterBlock)titleGetterBlock
 							 typeGetter:(StringGetterBlock)typeGetterBlock
+							imageGetter:(GetImageBlock)imageGetterBlock
 {
 	NSDictionary *cleanedData = [data dictionaryByRemovingNullObjects];
 	NSString *name = nameGetterBlock();
@@ -36,6 +38,7 @@
 	[field setTitle:titleGetterBlock(cleanedData)];
 	[field setValidationRegexp:cleanedData[@"validationRegexp"]];
 	[field setType:typeGetterBlock(cleanedData)];
+	[field setImage:imageGetterBlock(cleanedData)];
 	
 	NSArray *allowedValues = cleanedData[@"valuesAllowed"];
 	
@@ -77,6 +80,13 @@
 			[cell configureWithTitle:field.title value:@""];
 			[cell setType:field];
 			[cell addSingleSeparator];
+			[result addObject:cell];
+			createdCell = cell;
+		}
+		else if (field.image)
+		{
+			CaptchaCell *cell = [tableView dequeueReusableCellWithIdentifier:TWCaptchaCellIdentifier];
+			[cell setFieldType:field];
 			[result addObject:cell];
 			createdCell = cell;
 		}

@@ -37,6 +37,8 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 @property (nonatomic) BOOL separatorsAdded;
 
 @property (nonatomic, strong) NSCalendar *gregorianCalendar;
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *usDateConstraints;
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *defaultDateConstraints;
 @end
 
 @implementation DateEntryCell
@@ -56,6 +58,7 @@ NSInteger const kYearField = 3;
 {
 	[super layoutSubviews];
 	[self setSeparators];
+    [self refreshFieldPositions];
 }
 
 - (void)commonSetup
@@ -293,7 +296,7 @@ NSInteger const kYearField = 3;
 		return;
 	}
 	
-	[self.dayTextField becomeFirstResponder];
+    [self.usDateOrder?self.monthTextField:self.dayTextField becomeFirstResponder];
 	[self changeHeaderColor];
 }
 
@@ -320,14 +323,15 @@ NSInteger const kYearField = 3;
 	{
 		if (!withValidation || textField.text.length == DAY_MONTH_MAX_LENGTH)
 		{
-			[self.monthTextField becomeFirstResponder];
+            
+            [self.usDateOrder?self.yearTextField:self.monthTextField becomeFirstResponder];
 		}
 	}
 	else if (textField.tag == kMonthField)
 	{
 		if (!withValidation || textField.text.length == DAY_MONTH_MAX_LENGTH)
 		{
-			[self.yearTextField becomeFirstResponder];
+            [self.usDateOrder?self.dayTextField:self.yearTextField becomeFirstResponder];
 		}
 	}
 	else if (textField.tag == kYearField)
@@ -358,5 +362,35 @@ static NSDateFormatter *__rawDateFormatter;
 
     return __rawDateFormatter;
 }
+
+#pragma mark - US date order
+
+-(void)setUsDateOrder:(BOOL)USDateOrder
+{
+    if(USDateOrder != _usDateOrder)
+    {
+        _usDateOrder = USDateOrder;
+        [self refreshFieldPositions];
+    }
+}
+
+-(void)refreshFieldPositions
+{
+    for (NSLayoutConstraint* usConstraint in self.usDateConstraints)
+    {
+        usConstraint.priority = self.usDateOrder?UILayoutPriorityDefaultHigh:UILayoutPriorityDefaultLow;
+    }
+    for (NSLayoutConstraint* normalConstraint in self.defaultDateConstraints)
+    {
+        normalConstraint.priority = self.usDateOrder?UILayoutPriorityDefaultLow:UILayoutPriorityDefaultHigh;
+    }
+    
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.dayTextField layoutIfNeeded];
+        [self.monthTextField layoutIfNeeded];
+    } completion:nil];
+}
+
+
 
 @end

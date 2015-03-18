@@ -12,6 +12,8 @@ extern NSString *const TWDateEntryCellIdentifier;
 
 @interface DateEntryCell : MultipleEntryCell<UITextFieldDelegate>
 
+@property (nonatomic, assign) BOOL usDateOrder;
+
 - (void)setDateValue:(NSDate *)date;
 - (BOOL)isValidDate;
 

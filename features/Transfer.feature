@@ -2,12 +2,6 @@
 
 
 #####################################
-# Pre-conditions: 
-# burkskinka@matsomatic.co.uk is a registered user with a filled personal profile on api-sandbox
-#
-# build the calabash-cal target for profiling, as if using instruments
-#
-#####################################
 # Execute in simulator:
 #
 # reset simulator prior to running

@@ -23,7 +23,6 @@
 #import "PersonalProfileValidation.h"
 #import "BusinessProfileValidation.h"
 #import "RecipientProfileValidation.h"
-#import "PaymentValidation.h"
 #import "NSObject+NSNull.h"
 #import "Currency.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
@@ -38,7 +37,6 @@ NSString * const kPendingPayment = @"pendingPayment";
 NSString * const kPersonalProfileValidator = @"personalProfileValidator";
 NSString * const kRecipientProfileValidator = @"recipientProfileValidator";
 NSString * const kBusinessProfileValidator = @"businessProfileValidator";
-NSString * const kPaymentValidator = @"paymentValidator";
 NSString * const kNextActionBlock = @"nextActionBlock";
 NSString * const kValidationBlock = @"validationBlock";
 NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
@@ -84,8 +82,7 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 			return [self getBusinessProfileViewController:[NSObject getObjectOrNil:params[kBusinessProfileValidator]]];
 			break;
 		case ConfirmPaymentController:
-			return [self getConfirmPaymentViewController:[NSObject getObjectOrNil:params[kPaymentValidator]]
-											successBlock:[NSObject getObjectOrNil:params[kNextActionBlock]]];
+			return [self getConfirmPaymentViewController:[NSObject getObjectOrNil:params[kNextActionBlock]]];
 			break;
 		case PersonalProfileIdentificationController:
 			return [self getPersonalProfileIdentificationViewController:[NSObject getObjectOrNil:params[kPendingPayment]]
@@ -207,10 +204,8 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 	return controller;
 }
 
-- (ConfirmPaymentViewController *)getConfirmPaymentViewController:(id<PaymentValidation>)paymentValidator
-													 successBlock:(TRWActionBlock)successBlock;
+- (ConfirmPaymentViewController *)getConfirmPaymentViewController:(TRWActionBlock)successBlock;
 {
-	NSAssert(paymentValidator, @"payment validator is nil");
 	NSAssert(successBlock, @"sucess block is nil");
 	
 	ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
@@ -226,7 +221,6 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 	[controller setObjectModel:self.objectModel];
 	[controller setPayment:[self.objectModel pendingPayment]];
 	[controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-	[controller setPaymentValidator:paymentValidator];
 	[controller setSucessBlock:successBlock];
 	
 	return controller;

@@ -16,6 +16,7 @@
 #import "UIDevice-Hardware.h"
 #import "GoogleAnalytics.h"
 #import "NavigationBarCustomiser.h"
+#import "LocationHelper.h"
 
 @interface SupportCoordinator () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
@@ -92,7 +93,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     if (buttonIndex == self.callButtonIndex)
 	{
         MCLog(@"Call pressed");
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", TRWSupportCallNumber]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [LocationHelper getSupportPhoneNumber]]]];
     }
 
     if (buttonIndex != self.writeButtonIndex)
@@ -123,7 +124,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [controller setToRecipients:@[[NSString stringWithFormat:@"%@ <%@>", NSLocalizedString(@"support.email.to.name", nil), TRWSupportEmail]]];
     [controller setSubject:self.emailSubject ? self.emailSubject : NSLocalizedString(@"support.generic.email.subject", nil)];
     NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"support.email.message.body.base", nil),
-							 [NSString stringWithFormat:@"https://transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
+							 [NSString stringWithFormat:@"https://ninjas.transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
 							 [[self.objectModel currentUser] displayName],
 							 [[UIDevice currentDevice] platformString],
 							 [[UIDevice currentDevice] systemVersion],

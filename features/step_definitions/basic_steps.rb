@@ -1,35 +1,57 @@
-Given /^I am on the Welcome Screen$/ do
+Given /^I am past the Welcome Screen$/ do
   element_exists("view")
-  sleep(STEP_PAUSE)
+  passWelcomeScreen()
 end
 
 Given /^I am logged in$/ do
-  sleep(STEP_PAUSE)
-  if(element_exists("button marked:'Log in'"))
-  	touch("button marked:'Log in'")
-  	touch(query("view marked:'Your email'"))
-  	keyboard_enter_text("burkskinka@matsomatic.co.uk")
-  	done
-  	keyboard_enter_text("banana")
-  	done
-  	touch(query ("button marked:'Log in'"))
-  	wait_for_elements_do_not_exist(["view marked:'Log in'"], :timeout => 20)
+  	passWelcomeScreen()
+  	if(element_exists("button marked:'Register'"))
+  		touch("button marked:'Register'")
+  		touch(query("view marked:'Your email'"))
+  		username = Time.now.to_i
+  		keyboard_enter_text("#{username}@transferwise.com")
+  		done
+  		keyboard_enter_text("banana")
+  		done
+  		keyboard_enter_text("banana")
+  		done
+  		touch(query ("button marked:'Register'"))
+  		wait_for_elements_do_not_exist(["view marked:'Register'"], :timeout => 20)
+  		sleep(STEP_PAUSE)
+  		closePaymentScreen()
+  		if(query("button marked:'CloseButton'").count() > 0)
+  			touch(query("button marked:'CloseButton'"))
+  			sleep(STEP_PAUSE)
+  		end
+  		wait_for_elements_exist(["view marked:'Profile"], :timeout => 10)
+  		sleep(STEP_PAUSE)
+  		touch(query("view marked:'Profile'"))
+  		wait_for_elements_exist(["view marked:'First name'"], :timeout => 10)
+  		sleep(STEP_PAUSE)
+  		touch(query("view marked:'First name'"))
+  		keyboard_enter_text("Glenn")
+  		done
+  		keyboard_enter_text("Fish")
+  		done
+  		keyboard_enter_text("gbr")
+  		done
+  		keyboard_enter_text("#{rand(200000)} street")
+  		done
+  		keyboard_enter_text("n#{rand(100)} #{rand(100)}qq")
+  		done
+  		keyboard_enter_text("London")
+  		done
+  		keyboard_enter_text("#{rand(100000000)}")
+  		done
+  		keyboard_enter_text("#{10+rand(20)}")
+  		keyboard_enter_text("12")
+  		keyboard_enter_text("19#{30+rand(50)}")
+  		touch("button marked:'Save'")
+  		macro 'I wait and dismiss alert'
+  		touch("view marked:'Transfers'")
+  	end
   	sleep(STEP_PAUSE)
-  	if(query("view marked:'No'").count() > 0)
-  		touch(query("view marked:'No'"))
-  		sleep(STEP_PAUSE)
-  	end
-  	if(query("button marked:'CloseButton'").count() > 0)
-  		touch(query("button marked:'CloseButton'"))
-  		sleep(STEP_PAUSE)
-  	end
-  else
-    if(element_exists("button marked:'Got it'"))
-    	touch ("button marked:'Got it'")
-    end
-  end
-  sleep(STEP_PAUSE)
-  wait_for_elements_exist( ["view marked:'Send'"], :timeout => 2)
+  	wait_for_elements_exist( ["view marked:'Send'"], :timeout => 2)
   
 end
 
@@ -57,7 +79,6 @@ Given /^I grant access to Address Book in form field (.*)$/ do |key|
 end	
 
 Given /^I enter (.*) into form field (.*)$/ do |value,key|
-
 	sleep(STEP_PAUSE)
 	if (key != "-" and value != "-")
 		if(key[0,1] == ">")
@@ -101,4 +122,78 @@ Given /^I scroll the table all the way (up|down)$/ do |direction|
    		end
    		sleep(STEP_PAUSE)
    	end
+end
+
+def passWelcomeScreen()
+	sleep(STEP_PAUSE)
+	if element_exists("button marked:'Got it'")
+		touch ("button marked:'Got it'")
+		sleep(STEP_PAUSE)
+	end
+end
+
+def closePaymentScreen()
+	if(query("button marked:'CloseButton'").count() > 0)
+		touch(query("button marked:'CloseButton'"))
+		sleep(STEP_PAUSE)
+	end
+end
+
+Then /^I see a "([^\"]*)"$/ do |view_name|
+	screenshot_and_raise if query("view:'#{view_name}'").empty?
+end
+
+Given /^I log out$/ do
+	closePaymentScreen()
+	if(query("collectionViewCell label marked:'Profile'").count() > 0)
+		touch(query("collectionViewCell label marked:'Profile'"))
+		wait_for_elements_do_not_exist(["view marked:'Loading profile...'"], :timeout => 20)
+		touch("button marked:'Settings'")
+		wait_for_elements_exist(["button marked:'Log out'"], :timeout => 20)
+		touch("button marked:'Log out'")
+		wait_for_elements_exist(["button marked:'Log in'"], :timeout => 1)
+	end
+end
+
+Given /^I enter (.*) into web view field (.*)$/ do |value, key|
+	if (key != "-" and value != "-")
+		touch("webView css:'input[name=\"#{key}\"]'")
+		sleep(STEP_PAUSE)
+		keyboard_enter_text("#{value}")
+	end
+end
+
+Given /^I touch web view field (.*)$/ do |key|
+	if (key != "-")
+		touch("webView css:'input[name=\"#{key}\"]'")
+	end
+end
+
+Given /^I wait for web view field (.*) to appear$/ do |key|
+	wait_for_elements_exist(["webView css:'input[name=\"#{key}\"]'"], :timeout => 10)
+end
+
+Given /^I touch web view button with id (.*)$/ do |key|
+	if (key != "-")
+		touch("webView css:'button[id=\"#{key}\"]'")
+	end
+end
+
+Given /^I wait for web view button with id (.*) to appear$/ do |key|
+	wait_for_elements_exist(["webView css:'button[id=\"#{key}\"]'"], :timeout => 10)
+end
+
+Given /^I wait to see alert with text (.*)$/ do |text|
+	wait_poll(:until_exists => 'alertView', :timeout => 5) do
+		actual = query('alertView child label', :text).first
+		unless actual.eql? text
+			screenshot_and_raise "should see alert view with message '#{text}' but found '#{actual}'"
+		end
+	end
+end
+
+Given /^I wait and dismiss alert$/ do
+	wait_for_elements_exist(["view marked:'OK'"], :timeout => 60)
+	sleep(STEP_PAUSE)
+	touch("view marked:'OK'")
 end
