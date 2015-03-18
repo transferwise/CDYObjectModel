@@ -144,6 +144,7 @@
 			  navigationController:(UINavigationController *)navigationController
 					   objectModel:(ObjectModel *)objectModel
 					  successBlock:(TRWActionBlock)successBlock
+						errorBlock:(TRWActionBlock)errorBlock
 		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
 {
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:navigationController.view];
@@ -190,10 +191,10 @@
 													   withLabel:error.localizedDescription];
 			}
 			
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];			
 			[alertView show];
-			[navigationController popViewControllerAnimated:YES];
+			
+			errorBlock();
 		});
 	}];
 	
