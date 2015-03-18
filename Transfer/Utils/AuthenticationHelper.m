@@ -348,6 +348,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
                     }
                     [Credentials clearCredentials];
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
+                    [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":[NSNull null]}];
                     [TransferwiseClient clearCookies];
                     if(completionBlock)
                     {
