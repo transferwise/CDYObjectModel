@@ -143,11 +143,23 @@ IB_DESIGNABLE
 {
 	if (error)
 	{
+		//sign out if error happens so user can try another account.
+		[[GPPSignIn sharedInstance] signOut];
+		
+		NSString *message = nil;
+		//400 token has been revoked
+		//401 means that the token is probably expired
+		if (error.code == 400 || error.code == 401)
+		{
+			message = NSLocalizedString(@"login.error.oauth.expired", nil);
+		}
+		
 		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-														   message:nil];
+														   message:message];
 		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 		[alertView show];
 		return;
+
 	}
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
@@ -161,6 +173,9 @@ IB_DESIGNABLE
 												[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
 												[weakSelf processSuccessfulLogin:NO];
 											}
+											  errorBlock:^{
+												  [[GPPSignIn sharedInstance] signOut];
+											  }
 							   waitForDetailsCompletions:YES];
 	});
 }

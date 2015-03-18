@@ -194,6 +194,7 @@ Une révolution dans votre poche.";
 "login.email.field.title" = "Votre addresse email";
 "login.error.generic.message" = "Erreur de connexion. Essayez de nouveau.";
 "login.error.title" = "Impossible de se connecter";
+"login.error.oauth.expired" = "Votre jeton d'OAuth a expiré. Essayez à nouveau s'il vous plait.";
 "login.password.field.title" = "Mot de passe";
 "login.validation.email.missing" = "Adresse email manquante";
 "login.validation.email.not.valid" = "L'émail saisi n'est pas valide";
