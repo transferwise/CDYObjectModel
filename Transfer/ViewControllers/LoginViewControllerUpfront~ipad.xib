@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -77,10 +77,10 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5AO-Ch-ke6" customClass="IntrinsicSizeUIView">
-                    <rect key="frame" x="0.0" y="415.5" width="1024" height="352.5"/>
+                    <rect key="frame" x="0.0" y="416" width="1024" height="353"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2S-88-Izr" userLabel="Or Label">
-                            <rect key="frame" x="491" y="45" width="42" height="20.5"/>
+                            <rect key="frame" x="491" y="45" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -89,7 +89,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8f-4O-fgG" userLabel="Yahoo Login Button" customClass="YahooButton">
-                            <rect key="frame" x="297" y="155.5" width="430" height="55"/>
+                            <rect key="frame" x="297" y="156" width="430" height="55"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="55" id="P8x-ZE-LrH"/>
                             </constraints>
@@ -104,7 +104,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQJ-ts-mwH" userLabel="Google Login Button" customClass="GoogleButton">
-                            <rect key="frame" x="297" y="80.5" width="430" height="55"/>
+                            <rect key="frame" x="297" y="81" width="430" height="55"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="55" id="dpd-QZ-jck"/>
                             </constraints>
@@ -115,7 +115,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="eB3-YK-I7C"/>
+                                <action selector="googleLoginPressed:" destination="-1" eventType="touchUpInside" id="TQF-4r-5Xn"/>
                             </connections>
                         </button>
                     </subviews>
@@ -133,7 +133,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVw-3E-NCJ" userLabel="Forgot Password Label">
-                    <rect key="frame" x="685" y="295" width="42" height="20.5"/>
+                    <rect key="frame" x="685" y="295" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -142,7 +142,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nja-qb-Bvk">
-                    <rect key="frame" x="489.5" y="343.5" width="45" height="45"/>
+                    <rect key="frame" x="490" y="344" width="45" height="45"/>
                     <state key="normal" image="touch_id_icon">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

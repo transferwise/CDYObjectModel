@@ -28,10 +28,7 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
-#import "NXOAuth2AccountStore.h"
-#import "OAuthViewController.h"
-#import "NXOAuth2Account.h"
-#import "NXOAuth2AccessToken.h"
+#import <GoogleOpenSource/GoogleOpenSource.h>
 
 IB_DESIGNABLE
 
@@ -77,19 +74,7 @@ IB_DESIGNABLE
 -(void)commonSetup
 {
     _loginHelper = [[AuthenticationHelper alloc] init];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(oauthSucess:)
-												 name:NXOAuth2AccountStoreAccountsDidChangeNotification
-											   object:[NXOAuth2AccountStore sharedStore]];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(oauthFail:)
-												 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-											   object:[NXOAuth2AccountStore sharedStore]];
-}
-
--(void)dealloc
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[self initGPlus];
 }
 
 #pragma mark - View Life-cycle
@@ -141,6 +126,60 @@ IB_DESIGNABLE
 	[super viewWillDisappear:animated];
 }
 
+#pragma mark - Google Plus
+- (void)initGPlus
+{
+	GPPSignIn *signIn = [GPPSignIn sharedInstance];
+	signIn.shouldFetchGooglePlusUser = NO;
+	signIn.shouldFetchGoogleUserEmail = YES;
+	signIn.clientID = GoogleOAuthClientId;
+	signIn.scopes = @[ @"https://www.googleapis.com/auth/plus.profile.emails.read" ];
+	signIn.delegate = self;
+	signIn.attemptSSO = YES;
+}
+
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
+				   error:(NSError *)error
+{
+	if (error)
+	{
+		//sign out if error happens so user can try another account.
+		[[GPPSignIn sharedInstance] signOut];
+		
+		NSString *message = nil;
+		//400 token has been revoked
+		//401 means that the token is probably expired
+		if (error.code == 400 || error.code == 401)
+		{
+			message = NSLocalizedString(@"login.error.oauth.expired", nil);
+		}
+		
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+														   message:message];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+		return;
+
+	}
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		__weak typeof(self) weakSelf = self;
+		[weakSelf.loginHelper preformOAuthLoginWithToken:auth.accessToken
+												provider:@"Google"
+									  keepPendingPayment:NO
+									navigationController:weakSelf.navigationController
+											 objectModel:weakSelf.objectModel
+											successBlock:^{
+												[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+												[weakSelf processSuccessfulLogin:NO];
+											}
+											  errorBlock:^{
+												  [[GPPSignIn sharedInstance] signOut];
+											  }
+							   waitForDetailsCompletions:YES];
+	});
+}
+
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -176,7 +215,7 @@ IB_DESIGNABLE
 - (IBAction)loginPressed:(id)sender
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-            __weak typeof(self) weakSelf = self;
+		__weak typeof(self) weakSelf = self;
 		[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailTextField.text
 													   password:self.passwordTextField.text
                                              keepPendingPayment:NO
@@ -207,27 +246,17 @@ IB_DESIGNABLE
     }
 }
 
-- (IBAction)googleLogInPressed:(id)sender
+- (IBAction)googleLoginPressed:(id)sender
 {
-	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+	if(![[GPPSignIn sharedInstance] hasAuthInKeychain] || ![[GPPSignIn sharedInstance] trySilentAuthentication])
+	{
+		[[GPPSignIn sharedInstance] authenticate];
+	}
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
     [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
-}
-
-- (void)presentOAuthLogInWithProvider:(NSString *)provider
-{
-	__weak typeof(self) weakSelf = self;
-	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
-								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
-									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
-																												   url:preparedURL
-																										   objectModel:weakSelf.objectModel];
-									   [weakSelf.navigationController pushViewController:controller
-																				animated:YES];
-								   }];
 }
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
@@ -330,44 +359,6 @@ IB_DESIGNABLE
 {
     [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-}
-
-#pragma mark - OAuth events
--(void)oauthSucess:(NSNotification *)note
-{
-	MCLog(@"OAuth success");
-	__weak typeof(self) weakSelf = self;
-	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
-	if (newAccount)
-	{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
-													provider:newAccount.accountType
-										  keepPendingPayment:NO
-										navigationController:weakSelf.navigationController
-												 objectModel:weakSelf.objectModel
-												successBlock:^{
-													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-													[weakSelf processSuccessfulLogin:NO];
-												}
-								   waitForDetailsCompletions:YES];
-		});
-	}
-}
-
--(void)oauthFail:(NSNotification *)note
-{
-	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-	MCLog(@"OAuth failure");
-	[self.navigationController popViewControllerAnimated:YES];
-	
-	//-1005 - user has cancelled logging in
-	if (error.code != -1005)
-	{
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
-		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-		[alertView show];
-	}
 }
 
 @end

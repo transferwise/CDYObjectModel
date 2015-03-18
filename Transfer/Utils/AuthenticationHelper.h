@@ -31,12 +31,13 @@
                                    errorBlock:(void(^)(NSError* error))errorBlock
                     waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
 
-- (void)preformOAuthLoginWithToken:(NSString *)email
+- (void)preformOAuthLoginWithToken:(NSString *)token
 						  provider:(NSString *)provider
 				keepPendingPayment:(BOOL)keepPendingPayment
 			  navigationController:(UINavigationController *)navigationController
 					   objectModel:(ObjectModel *)objectModel
 					  successBlock:(TRWActionBlock)successBlock
+						errorBlock:(TRWActionBlock)errorBlock
 		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
 
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller

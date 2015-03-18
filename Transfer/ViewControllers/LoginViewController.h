@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "DismissKeyboardViewController.h"
 #import "ResetPasswordViewController.h"
+#import <GooglePlus/GooglePlus.h>
 
 @class ObjectModel;
 
-@interface LoginViewController : DismissKeyboardViewController<UITextFieldDelegate, ResetPasswordViewControllerDelegate>
+@interface LoginViewController : DismissKeyboardViewController<UITextFieldDelegate, ResetPasswordViewControllerDelegate, GPPSignInDelegate>
 
 @property (nonatomic, strong) ObjectModel* objectModel;
 
