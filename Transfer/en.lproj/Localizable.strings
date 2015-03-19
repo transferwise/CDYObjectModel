@@ -205,11 +205,11 @@ A revolution in your pocket.";
 
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";
-"money.entry.they.receive.title" = "Receiver gets";
+"money.entry.they.receive.title" = "Receiver gets approximately";
 "money.entry.they.receive.exactly.title" = "Receiver gets exactly";
 "money.entry.you.send.title" = "You send";
 "money.entry.you.send.exactly.title" = "You send exactly";
-"money.entry.recipient.receive.title" = "%@ gets";
+"money.entry.recipient.receive.title" = "%@ gets approximately";
 "money.entry.recipient.receive.exactly.title" = "%@ gets exactly";
 
 "openid.login.error.title" = "Login failed";
@@ -384,10 +384,10 @@ It generally takes 1-2 business day.";
 
 "refund.details.account.details.section.header" = "Your bank details";
 "refund.details.controller.title" = "Your refund account";
-"refund.details.header.description" = "To guarantee that %@ receives exactly %@, we asked you to send a little extra money.
+"refund.details.header.description" = "To guarantee that %@ receives exactly %@, we ask you to send 3%% extra money.
 
 We'll refund the remaining money to your bank account once the transfer is complete.";
-"refund.details.header.description.iPad" = "To guarantee that %@ receives exactly %@, we asked you to send a little extra money.
+"refund.details.header.description.iPad" = "To guarantee that %@ receives exactly %@, we ask you to send 3%% extra money.
 
 We'll refund the remaining money to your bank account once the transfer is complete.";
 "refund.details.holders.name.label" = "Your account holder name";
@@ -563,7 +563,7 @@ Payment #%@";
 "payment.method.description.REGULAR" = "You transfer us the money via a \n wire transfer and we do the rest.";
 "payment.method.description.ADYEN" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.SWIFT" = "If your USD account is not in the US, please use this option.";
-"payment.method.description.ACH" = "Instantly withdraw money\n from your USD account.";
+"payment.method.description.ACH" = "Directly withdraw money\n from your USD account.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";
