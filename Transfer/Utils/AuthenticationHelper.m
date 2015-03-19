@@ -178,7 +178,7 @@
 			if ([error isTransferwiseError])
 			{
 				NSString *message = [error localizedTransferwiseMessage];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
 													   withLabel:message];
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:message];
@@ -187,7 +187,7 @@
 			{
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:NSLocalizedString(@"login.error.generic.message", nil)];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
 													   withLabel:error.localizedDescription];
 			}
 			
