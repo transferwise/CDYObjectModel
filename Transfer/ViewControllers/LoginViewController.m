@@ -158,8 +158,10 @@ IB_DESIGNABLE
 														   message:message];
 		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 		[alertView show];
+		
+		[[GoogleAnalytics sharedInstance] sendAppEvent:@"OAuthTokenError" withLabel:[NSString stringWithFormat:@"code: %lu", (long)error.code]];
+		
 		return;
-
 	}
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
