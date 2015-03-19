@@ -203,11 +203,11 @@ Une révolution dans votre poche.";
 
 "money.entry.priority.payment.title" = "Transfert prioritaire";
 "money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";
-"money.entry.they.receive.title" = "Destinataire reçoit";
+"money.entry.they.receive.title" = "Destinataire reçoit approximativement";
 "money.entry.they.receive.exactly.title" = "Destinataire reçoit éxactement";
 "money.entry.you.send.title" = "Vous envoyez";
 "money.entry.you.send.exactly.title" = "Vous envoyez éxactement";
-"money.entry.recipient.receive.title" = "%@ reçoit";
+"money.entry.recipient.receive.title" = "%@ reçoit approximativement";
 "money.entry.recipient.receive.exactly.title" = "%@ reçoit éxactement";
 
 "openid.login.error.title" = "Erreur de connexion";
@@ -380,10 +380,10 @@ Une révolution dans votre poche.";
 
 "refund.details.account.details.section.header" = "Vos détails bancaires";
 "refund.details.controller.title" = "Votre compte en cas de remboursement";
-"refund.details.header.description" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé 3%% extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
-"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé 3%% extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
 "refund.details.holders.name.label" = "Nom du détenteur du compte";
