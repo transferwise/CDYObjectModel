@@ -34,6 +34,7 @@
 #import "TransferWaitingViewController.h"
 #import "UIViewController+SwitchToViewController.h"
 #import "NSString+Presentation.h"
+#import "Mixpanel+Customisation.h"
 
 @interface BankTransferViewController ()
 
@@ -225,12 +226,15 @@
 									   sourceCurrencyCode:weakSelf.payment.sourceCurrency.code
 										bankTransferBlock:^{
 											[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
+                                            [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"BankTransfer"}];
 										}
 											   swiftBlock:^{
 												   [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"Swift"];
+                                                   [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"Swift"}];
 											   }
 												wireBlock:^{
 													[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"WireTransfer"];
+                                                    [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"WireTransfer"}];
 												}];
 		
         if ([Credentials temporaryAccount])

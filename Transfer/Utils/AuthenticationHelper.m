@@ -35,6 +35,7 @@
 #import "FacebookSDK.h"
 #import "Mixpanel+Customisation.h"
 #import "LoginOrRegisterWithOauthOperation.h"
+#import <GooglePlus/GooglePlus.h>
 
 @interface AuthenticationHelper ()
 
@@ -143,6 +144,7 @@
 			  navigationController:(UINavigationController *)navigationController
 					   objectModel:(ObjectModel *)objectModel
 					  successBlock:(TRWActionBlock)successBlock
+						errorBlock:(TRWActionBlock)errorBlock
 		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
 {
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:navigationController.view];
@@ -176,7 +178,7 @@
 			if ([error isTransferwiseError])
 			{
 				NSString *message = [error localizedTransferwiseMessage];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
 													   withLabel:message];
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:message];
@@ -185,14 +187,14 @@
 			{
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:NSLocalizedString(@"login.error.generic.message", nil)];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
 													   withLabel:error.localizedDescription];
 			}
 			
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];			
 			[alertView show];
-			[navigationController popViewControllerAnimated:YES];
+			
+			errorBlock();
 		});
 	}];
 	
@@ -346,6 +348,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
                     }
                     [Credentials clearCredentials];
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
+                    [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":[NSNull null]}];
                     [TransferwiseClient clearCookies];
                     if(completionBlock)
                     {

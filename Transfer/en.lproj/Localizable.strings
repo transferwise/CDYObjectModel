@@ -196,6 +196,7 @@ A revolution in your pocket.";
 "login.email.field.title" = "Your email";
 "login.error.generic.message" = "Login failed. Please try again.";
 "login.error.title" = "Can't log in";
+"login.error.oauth.expired" = "Your OAuth token has expired or is revoked. Please try again.";
 "login.password.field.title" = "Password";
 "login.validation.email.missing" = "You haven't entered an email";
 "login.validation.email.not.valid" = "The entered email is not correct";

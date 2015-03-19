@@ -969,6 +969,21 @@
 		474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
 		474D1AA61951A500008BC7A7 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* GradientButton.m */; };
 		474D1AA71951A500008BC7A7 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* GradientButton.m */; };
+		474FF61C1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */; };
+		474FF61D1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */; };
+		474FF61E1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */; };
+		474FF6221AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */; };
+		474FF6231AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */; };
+		474FF6241AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */; };
+		474FF6261AB6F0B6008DF343 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6251AB6F0B6008DF343 /* AssetsLibrary.framework */; };
+		474FF6281AB6F0D5008DF343 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6271AB6F0D5008DF343 /* MediaPlayer.framework */; };
+		474FF62A1AB6F0EC008DF343 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6291AB6F0EC008DF343 /* CoreMotion.framework */; };
+		474FF62B1AB6F10D008DF343 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6251AB6F0B6008DF343 /* AssetsLibrary.framework */; };
+		474FF62C1AB6F114008DF343 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6271AB6F0D5008DF343 /* MediaPlayer.framework */; };
+		474FF62D1AB6F123008DF343 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6291AB6F0EC008DF343 /* CoreMotion.framework */; };
+		474FF62E1AB6F12D008DF343 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6251AB6F0B6008DF343 /* AssetsLibrary.framework */; };
+		474FF62F1AB6F134008DF343 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6271AB6F0D5008DF343 /* MediaPlayer.framework */; };
+		474FF6301AB6F13A008DF343 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474FF6291AB6F0EC008DF343 /* CoreMotion.framework */; };
 		475122061A920B3900CC22F7 /* CaptchaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475122041A920B3900CC22F7 /* CaptchaCell.m */; };
 		475122071A920B3900CC22F7 /* CaptchaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475122041A920B3900CC22F7 /* CaptchaCell.m */; };
 		475122081A920B3900CC22F7 /* CaptchaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475122041A920B3900CC22F7 /* CaptchaCell.m */; };
@@ -1128,12 +1143,6 @@
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47FC53C11A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */; };
 		47FC53C21A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */; };
-		47FD9FEB1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */; };
-		47FD9FEC1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */; };
-		47FD9FED1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */; };
-		47FD9FEE1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
-		47FD9FEF1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
-		47FD9FF01A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */; };
 		47FD9FF31A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */; };
 		47FD9FF41A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */; };
 		47FD9FF51A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */; };
@@ -1937,6 +1946,11 @@
 		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColoredButton.m; path = Views/ColoredButton.m; sourceTree = "<group>"; };
 		474D1AA41951A500008BC7A7 /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientButton.h; path = Views/GradientButton.h; sourceTree = "<group>"; };
 		474D1AA51951A500008BC7A7 /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientButton.m; path = Views/GradientButton.m; sourceTree = "<group>"; };
+		474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = GooglePlus/GoogleOpenSource.framework; sourceTree = "<group>"; };
+		474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = GooglePlus/GooglePlus.framework; sourceTree = "<group>"; };
+		474FF6251AB6F0B6008DF343 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		474FF6271AB6F0D5008DF343 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		474FF6291AB6F0EC008DF343 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		475122031A920B3900CC22F7 /* CaptchaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptchaCell.h; sourceTree = "<group>"; };
 		475122041A920B3900CC22F7 /* CaptchaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptchaCell.m; sourceTree = "<group>"; };
 		475122051A920B3900CC22F7 /* CaptchaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaptchaCell.xib; sourceTree = "<group>"; };
@@ -2074,9 +2088,6 @@
 		47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeFieldHelper.h; sourceTree = "<group>"; };
 		47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldHelper.m; sourceTree = "<group>"; };
 		47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v6.xcdatamodel; sourceTree = "<group>"; };
-		47FD9FE81A9DD9CF00E95D7E /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
-		47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
-		47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthViewController.xib; sourceTree = "<group>"; };
 		47FD9FF11A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOrRegisterWithOauthOperation.h; sourceTree = "<group>"; };
 		47FD9FF21A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOrRegisterWithOauthOperation.m; sourceTree = "<group>"; };
 		7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -2382,11 +2393,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474FF6301AB6F13A008DF343 /* CoreMotion.framework in Frameworks */,
+				474FF62F1AB6F134008DF343 /* MediaPlayer.framework in Frameworks */,
+				474FF62E1AB6F12D008DF343 /* AssetsLibrary.framework in Frameworks */,
 				388E5BB21A5A955000AF6EB9 /* CFNetwork.framework in Frameworks */,
+				474FF6241AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */,
 				388E5BB11A5A950E00AF6EB9 /* calabash.framework in Frameworks */,
 				388E5AFF1A5A949500AF6EB9 /* libsqlite3.dylib in Frameworks */,
 				388E5B001A5A949500AF6EB9 /* AdSupport.framework in Frameworks */,
 				388E5B011A5A949500AF6EB9 /* QuartzCore.framework in Frameworks */,
+				474FF61E1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */,
 				388E5B021A5A949500AF6EB9 /* AddressBook.framework in Frameworks */,
 				388E5B031A5A949500AF6EB9 /* AddressBookUI.framework in Frameworks */,
 				388E5B041A5A949500AF6EB9 /* CoreText.framework in Frameworks */,
@@ -2418,7 +2434,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474FF62D1AB6F123008DF343 /* CoreMotion.framework in Frameworks */,
+				474FF62C1AB6F114008DF343 /* MediaPlayer.framework in Frameworks */,
+				474FF62B1AB6F10D008DF343 /* AssetsLibrary.framework in Frameworks */,
 				3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */,
+				474FF61D1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */,
 				EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */,
 				EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */,
 				EA31A1BF17DDB29B00F937F7 /* AddressBook.framework in Frameworks */,
@@ -2438,6 +2458,7 @@
 				EA31A1CC17DDB29B00F937F7 /* MessageUI.framework in Frameworks */,
 				EA31A1CD17DDB29B00F937F7 /* libPods.a in Frameworks */,
 				38AEB3C4196436F800B852E1 /* libAppsFlyerLib.a in Frameworks */,
+				474FF6231AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2445,7 +2466,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474FF62A1AB6F0EC008DF343 /* CoreMotion.framework in Frameworks */,
+				474FF6281AB6F0D5008DF343 /* MediaPlayer.framework in Frameworks */,
+				474FF6261AB6F0B6008DF343 /* AssetsLibrary.framework in Frameworks */,
 				3812FA3B19DAD9C1003F9904 /* libsqlite3.dylib in Frameworks */,
+				474FF61C1AB6EC9E008DF343 /* GoogleOpenSource.framework in Frameworks */,
 				EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */,
 				EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */,
 				BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */,
@@ -2465,6 +2490,7 @@
 				EA0253BA17D5D28900F54C18 /* MessageUI.framework in Frameworks */,
 				BC92EA001E7D4BE89CF454A0 /* libPods.a in Frameworks */,
 				EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */,
+				474FF6221AB6EC9E008DF343 /* GooglePlus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2797,6 +2823,15 @@
 				474206FF1A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift */,
 			);
 			name = PaymentFlow;
+			sourceTree = "<group>";
+		};
+		474FF6181AB6EC81008DF343 /* GooglePlus */ = {
+			isa = PBXGroup;
+			children = (
+				474FF6191AB6EC9E008DF343 /* GoogleOpenSource.framework */,
+				474FF61B1AB6EC9E008DF343 /* GooglePlus.framework */,
+			);
+			name = GooglePlus;
 			sourceTree = "<group>";
 		};
 		4757BE5B1A3B0634005D7BDD /* PaymentFlow */ = {
@@ -3257,6 +3292,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				474FF6181AB6EC81008DF343 /* GooglePlus */,
 				380579AA1A1A5C65005E94DD /* GoogleAnalyticsServicesiOS_3.10 */,
 				38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
@@ -3378,6 +3414,9 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				474FF6291AB6F0EC008DF343 /* CoreMotion.framework */,
+				474FF6271AB6F0D5008DF343 /* MediaPlayer.framework */,
+				474FF6251AB6F0B6008DF343 /* AssetsLibrary.framework */,
 				38495CB71A389B2B005E6AA7 /* CFNetwork.framework */,
 				38495CB51A389ABF005E6AA7 /* calabash.framework */,
 				3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */,
@@ -3619,9 +3658,6 @@
 				471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */,
 				471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */,
 				471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */,
-				47FD9FE81A9DD9CF00E95D7E /* OAuthViewController.h */,
-				47FD9FE91A9DD9CF00E95D7E /* OAuthViewController.m */,
-				47FD9FEA1A9DD9CF00E95D7E /* OAuthViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -3845,7 +3881,6 @@
 				388E5B171A5A949500AF6EB9 /* CurrencyCell~ipad.xib in Resources */,
 				388E5B181A5A949500AF6EB9 /* MoneyEntryCell~ipad.xib in Resources */,
 				388E5B191A5A949500AF6EB9 /* RecipientCell~ipad.xib in Resources */,
-				47FD9FF01A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */,
 				388E5B1A1A5A949500AF6EB9 /* AchLoginViewController.xib in Resources */,
 				388E5B1B1A5A949500AF6EB9 /* DoubleEntryCell.xib in Resources */,
 				388E5B1C1A5A949500AF6EB9 /* CurrencySelectorViewController~ipad.xib in Resources */,
@@ -4013,7 +4048,6 @@
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				385A668B197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
-				47FD9FEF1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */,
 				47C4D0521A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				47F84D6E198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
@@ -4174,7 +4208,6 @@
 				3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
 				38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
-				47FD9FEE1A9DD9CF00E95D7E /* OAuthViewController.xib in Resources */,
 				47C4D0511A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
@@ -4611,7 +4644,6 @@
 				388E59F71A5A949500AF6EB9 /* InvitationProgressIndicatorView.m in Sources */,
 				388E59F81A5A949500AF6EB9 /* TRWProgressHUD.m in Sources */,
 				388E59F91A5A949500AF6EB9 /* UIViewController+SwitchToViewController.m in Sources */,
-				47FD9FED1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */,
 				388E59FA1A5A949500AF6EB9 /* ValidatorFactory.m in Sources */,
 				388E59FB1A5A949500AF6EB9 /* TransferwiseOperation.m in Sources */,
 				388E59FC1A5A949500AF6EB9 /* LoginOperation.m in Sources */,
@@ -4951,7 +4983,6 @@
 				38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */,
 				EA31A13817DDB29B00F937F7 /* TRWProgressHUD.m in Sources */,
 				476D78C619B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */,
-				47FD9FEC1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */,
 				47C1F7501A3F2BC600014F55 /* ValidatorFactory.m in Sources */,
 				EA31A13917DDB29B00F937F7 /* TransferwiseOperation.m in Sources */,
 				EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */,
@@ -5538,7 +5569,6 @@
 				47233CD6196D457300449042 /* LoginViewController.m in Sources */,
 				38CC81A51A1E368F007D965A /* ACHCheckView.m in Sources */,
 				EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
-				47FD9FEB1A9DD9CF00E95D7E /* OAuthViewController.m in Sources */,
 				471DAA7D1A276DD00077E341 /* VerifyFormOperation.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				4740A7801A8B9A1F0044F0CD /* _MfaField.m in Sources */,
@@ -5594,6 +5624,7 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5638,6 +5669,7 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5747,8 +5779,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
+					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5785,8 +5818,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
+					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5883,8 +5917,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
+					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5920,8 +5955,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
+					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5977,7 +6013,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ee88535e-ac1d-47db-ac1d-1a57297b963a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "080603ef-3a37-4e03-a8a6-488643032529";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

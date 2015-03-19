@@ -15,6 +15,7 @@
 #import "Currency.h"
 #import "Recipient.h"
 #import "Constants.h"
+#import "Mixpanel+Customisation.h"
 
 @implementation ObjectModel (Users)
 
@@ -34,6 +35,7 @@
     [Credentials setUserEmail:email];
     User *user = [self userWithEmail:email];
     [user setPReference:data[@"pReference"]];
+    [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":user.pReference}];
 
     NSDictionary *personalProfileData = data[@"personalProfile"];
     if (personalProfileData) {
