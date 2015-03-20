@@ -129,16 +129,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
     [super viewWillAppear:animated];
 
-    [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
-
     if (!self.payments)
-	{
-		self.payments = [[NSArray alloc] initWithArray:[self.objectModel allPayments]];
-        [self.tableView reloadData];
+    {
+        self.payments = [[NSArray alloc] initWithArray:[self.objectModel allPayments]];
     }
-
-	self.isViewAppearing = YES;
-    [self refreshPaymentsList];
+    
+    [self.tableView reloadData];
+    
+    if(self.refreshOnAppear)
+    {
+        [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
+        self.isViewAppearing = YES;
+        [self refreshPaymentsList];
+        self.refreshOnAppear = NO;
+    }
+    
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
 

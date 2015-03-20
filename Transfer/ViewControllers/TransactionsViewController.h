@@ -18,6 +18,7 @@
 @interface TransactionsViewController : CancellableCellViewController<TransferPayIpadViewControllerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, assign) BOOL refreshOnAppear;
 
 - (void)clearData;
 

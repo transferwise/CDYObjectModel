@@ -39,8 +39,16 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    __weak typeof(self) weakSelf = self;
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        if(weakSelf.presentingViewController)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        }
+        else
+        {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
     }]];
 }
 
