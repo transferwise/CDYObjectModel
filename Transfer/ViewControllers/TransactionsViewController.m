@@ -47,6 +47,7 @@
 #import "LoggedInPaymentFlow.h"
 #import "ConnectionAwareViewController.h"
 
+static const NSInteger refreshInterval = 300;
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -72,6 +73,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @property (nonatomic, strong) NewPaymentHelper *paymentHelper;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
+@property (nonatomic,strong) NSDate* refreshTimestamp;
 
 
 @end
@@ -136,7 +138,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     
     [self.tableView reloadData];
     
-    if(self.refreshOnAppear)
+    if(self.refreshOnAppear || ABS([self.refreshTimestamp timeIntervalSinceNow]) > refreshInterval)
     {
         [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
         self.isViewAppearing = YES;
@@ -284,6 +286,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation setCompletion:^(NSInteger totalCount, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
+            
+            if(!error && offset == 0)
+            {
+                self.refreshTimestamp = [NSDate date];
+            }
+            
 			NSInteger currentCount = self.payments.count;
 			self.payments = [self.objectModel allPayments];
 			NSInteger delta = self.payments.count - currentCount;
