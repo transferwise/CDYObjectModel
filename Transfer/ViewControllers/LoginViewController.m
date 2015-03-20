@@ -164,7 +164,7 @@ IB_DESIGNABLE
 		return;
 	}
 	
-	dispatch_async(dispatch_get_main_queue(), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		__weak typeof(self) weakSelf = self;
 		[weakSelf.loginHelper preformOAuthLoginWithToken:auth.accessToken
 												provider:@"Google"

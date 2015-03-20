@@ -42,6 +42,8 @@ Scenario: Pay by Adyen
 	Then I wait to see "Creating transfer"
 	And I skip verification if needed
 	And I wait to see "Debit card"
-	Then I wait for web view field "Card number" to appear
-	And I enter "5555 5555 5555 4444" into web view field "Card number"
-	And I enter "Somebody Somewhere" into web view field "Card holder's name (as printed on the card)"
+	Then I wait to see "Click here"
+	And I wait a bit
+	And I wait a bit
+	Then I enter "5555 5555 5555 4444" into iframe field number "1"
+	#And I enter "Somebody Somewhere" into iframe field number "2"
