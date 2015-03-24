@@ -1,5 +1,6 @@
 Given /^I select source (.*)$/ do |currencyCode|
   wait_for_elements_exist(["tableViewCell index:0"], :timeout => 20)
+  sleep(STEP_PAUSE)
   touch("tableViewCell index:0 button")
   sleep(STEP_PAUSE)
   selectCurrency(currencyCode)
@@ -7,6 +8,7 @@ end
 
 Given /^I select target (.*)$/ do |currencyCode|
   wait_for_elements_exist(["tableViewCell index:1"], :timeout => 20)
+  sleep(STEP_PAUSE)
   touch("tableViewCell index:1 button")
   sleep(STEP_PAUSE)
   selectCurrency(currencyCode)
