@@ -68,21 +68,6 @@
 	[super setUpHeader];
 }
 
-- (void)setBackOrCloseButton
-{
-	if (IPAD)
-	{
-		[super setBackOrCloseButton];
-	}
-	else
-	{
-		//On iphone this view might be shown as the end for payment process, thus special handling necessary
-		[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-		}]];
-	}
-}
-
 - (IBAction)noTransferButtonTap:(id)sender {
     __weak typeof(self) weakSelf = self;
     [self.objectModel performBlock:^{

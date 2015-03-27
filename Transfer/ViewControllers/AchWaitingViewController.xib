@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AchWaitingViewController">
@@ -20,6 +21,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiW-51-o7V">
                     <rect key="frame" x="0.0" y="20" width="42" height="42"/>
+                    <accessibility key="accessibilityConfiguration" label="CloseButton"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="NgE-E2-LE7"/>
                         <constraint firstAttribute="width" constant="42" id="eyU-NB-c99"/>
@@ -44,7 +46,7 @@
                         <constraint firstAttribute="width" constant="260" id="Rgy-tb-MfN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@22.CoreFont"/>
@@ -78,6 +80,9 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+            <accessibility key="accessibilityConfiguration" label="AchWaitingView">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="zT5-MG-sUE" secondAttribute="bottom" id="AXW-dM-W15"/>
                 <constraint firstItem="X08-9Q-AFy" firstAttribute="height" secondItem="Avb-ju-O3W" secondAttribute="height" id="Iu8-ec-sSr"/>

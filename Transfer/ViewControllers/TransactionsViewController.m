@@ -47,6 +47,7 @@
 #import "LoggedInPaymentFlow.h"
 #import "ConnectionAwareViewController.h"
 
+static const NSInteger refreshInterval = 300;
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -72,6 +73,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @property (nonatomic, strong) NewPaymentHelper *paymentHelper;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
+@property (nonatomic,strong) NSDate* refreshTimestamp;
 
 
 @end
@@ -129,16 +131,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
     [super viewWillAppear:animated];
 
-    [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
-
     if (!self.payments)
-	{
-		self.payments = [[NSArray alloc] initWithArray:[self.objectModel allPayments]];
-        [self.tableView reloadData];
+    {
+        self.payments = [[NSArray alloc] initWithArray:[self.objectModel allPayments]];
     }
-
-	self.isViewAppearing = YES;
-    [self refreshPaymentsList];
+    
+    [self.tableView reloadData];
+    
+    if(self.refreshOnAppear || ABS([self.refreshTimestamp timeIntervalSinceNow]) > refreshInterval)
+    {
+        [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
+        self.isViewAppearing = YES;
+        [self refreshPaymentsList];
+        self.refreshOnAppear = NO;
+    }
+    
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
 
@@ -279,6 +286,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation setCompletion:^(NSInteger totalCount, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
+            
+            if(!error && offset == 0)
+            {
+                self.refreshTimestamp = [NSDate date];
+            }
+            
 			NSInteger currentCount = self.payments.count;
 			self.payments = [self.objectModel allPayments];
 			NSInteger delta = self.payments.count - currentCount;

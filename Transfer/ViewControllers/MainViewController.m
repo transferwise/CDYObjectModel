@@ -73,6 +73,8 @@
 
 - (void)setUpTabs
 {
+    
+    __weak typeof(self) weakSelf = self;
 	TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
 	[self setTransactionsController:transactionsController];
 	[transactionsController setObjectModel:self.objectModel];
@@ -81,6 +83,10 @@
 	transactionsItem.title = transactionsItem.accessibilityLabel = NSLocalizedString(@"transactions.controller.tabbar.title", nil);
 	transactionsItem.icon = [UIImage imageNamed:@"Transfers"];
 	transactionsItem.selectedIcon = [UIImage imageNamed:@"Transfers_selected"];
+    transactionsItem.actionBlock = ^(TabItem* item){
+        weakSelf.transactionsController.refreshOnAppear = YES;
+        return YES;
+    };
 	
 	
 	InvitationsViewController* invitationController = [[InvitationsViewController alloc] init];
@@ -101,9 +107,9 @@
     paymentItem.flashColor = [UIColor colorFromStyle:@"TWElectricblueDarker"];
 	[paymentItem setActionBlock:^(TabItem* item){
 		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-		[controller setObjectModel:self.objectModel];
+		[controller setObjectModel:weakSelf.objectModel];
 		ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
-		[self presentViewController:wrapper animated:YES completion:nil];
+		[weakSelf presentViewController:wrapper animated:YES completion:nil];
 		return NO;
 	}];
 	

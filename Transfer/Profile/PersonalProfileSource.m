@@ -305,7 +305,7 @@ NSUInteger const kUserPersonalSection = 1;
             }
 
             [self loadDetailsToCells];
-
+            
             completion(nil);
         });
     }];

@@ -36,7 +36,8 @@
 #import "Mixpanel+Customisation.h"
 #import "UIView+Container.h"
 #import "UITextField+CaretPosition.h"
-
+#import "ColoredButton.h"
+#import "PendingPayment+ColoredButton.h"
 
 @interface ConfirmPaymentViewController ()
 
@@ -103,6 +104,13 @@
     self.referenceExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
     
     [[Mixpanel sharedInstance] sendPageView:@"Confirm"];
+    
+    if([self.actionButton isKindOfClass:[ColoredButton class]])
+    {
+        ColoredButton* coloredButton = (ColoredButton*)self.actionButton;
+        [[self.objectModel pendingPayment] addProgressAnimationToButton:coloredButton];
+    }
+    
 }
 
 - (void)createContent

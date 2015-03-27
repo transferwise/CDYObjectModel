@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class ColoredButton;
+
 @interface TabbedHeaderViewController : UIViewController
 
 @property (nonatomic) BOOL showFullWidth;
 @property (nonatomic) BOOL showButtonForIphone;
+@property (nonatomic,weak) IBOutlet ColoredButton *actionButton;
 
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles;

@@ -32,15 +32,23 @@
     [self.tableview registerNib:nib forCellReuseIdentifier:PaymentMethodCellName];
     [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];
 	self.sortedPayInMethods = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
-			return (NSInteger)[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type] > (NSInteger)[[PayInMethod supportedPayInMethods] objectForKey:method2.type];
+			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type]integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type]integerValue];
 	}];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    __weak typeof(self) weakSelf = self;
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        if(weakSelf.presentingViewController)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        }
+        else
+        {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
     }]];
 }
 

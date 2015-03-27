@@ -185,7 +185,7 @@
             }
 
             [self loadDetailsToCells];
-
+            
             completion(nil);
         });
     }];

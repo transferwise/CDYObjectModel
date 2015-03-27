@@ -44,6 +44,8 @@
 #import "NavigationBarCustomiser.h"
 #import "NewPaymentHelper.h"
 #import "LocationHelper.h"
+#import "Mixpanel+Customisation.h"
+
 
 
 #define	PERSONAL_PROFILE	@"personal"
@@ -202,6 +204,7 @@ static NSUInteger const kRowYouSend = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?@"New payment":@"Start screen"];
+    [[Mixpanel sharedInstance] sendPageView:@"New payment"];
     
 	[self generateUsdLegaleze];
 }

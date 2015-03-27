@@ -14,10 +14,10 @@
 +(NSDictionary*)supportedPayInMethods
 {
     return @{
-			 @"REGULAR" : @1,
-			 @"DATA_CASH" : @0,
-			 @"SWIFT" : @2,
-			 @"ADYEN" : @0,
+			 @"REGULAR" : @3,
+			 @"DATA_CASH" : @2,
+			 @"SWIFT" : @4,
+			 @"ADYEN" : @1,
 			 @"ACH" : @0
 			 };
 }
