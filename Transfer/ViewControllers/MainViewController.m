@@ -241,17 +241,23 @@
 - (void)moveToPaymentsList
 {
     [self.tabController selectIndex:IPAD?1:0];
-    [self popToRootViewControllerAnimated:YES];
-	[self setViewControllers:@[self.tabController]];
+    [self setViewControllers:@[self.tabController] animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)moveToPaymentView
 {
-    [self.tabController selectIndex:IPAD?0:2];
-    [self popToRootViewControllerAnimated:YES];
-	[self setViewControllers:@[self.tabController]];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(self.presentedViewController)
+    {
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.tabController selectIndex:IPAD?0:2];
+        }];
+    }
+    else
+    {
+        [self.tabController selectIndex:IPAD?0:2];
+    }
+    
 }
 
 -(void)preloadCurrencies
@@ -283,6 +289,27 @@
     {
         [self.tabController turnOffFlashForItemAtIndex:IPAD?0:2];
     }
+}
+
+
+#pragma mark - deeplink
+-(BOOL)handleDeeplink:(NSURL *)deepLink
+{
+    NSString *absolute = [deepLink absoluteString];
+    NSRange startingPoint = [absolute rangeOfString:@"://"];
+    NSString *parameterString = [absolute substringFromIndex:startingPoint.location + startingPoint.length];
+    NSArray *parameters = [parameterString componentsSeparatedByString:@"/"];
+    MCLog(@"Parameters: %@",parameters);
+    
+    if([parameters count] > 0)
+    {
+        if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end
