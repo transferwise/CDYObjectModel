@@ -46,6 +46,7 @@
 #import "NewPaymentViewController.h"
 #import "LoggedInPaymentFlow.h"
 #import "ConnectionAwareViewController.h"
+#import "PullPaymentDetailsOperation.h"
 
 static const NSInteger refreshInterval = 300;
 
@@ -138,7 +139,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     
     [self.tableView reloadData];
     
-    if(self.refreshOnAppear || ABS([self.refreshTimestamp timeIntervalSinceNow]) > refreshInterval)
+    
+    if(self.deeplinkPaymentID)
+    {
+        [self presentDeeplinkPayment];
+    }
+    else if(self.refreshOnAppear || ABS([self.refreshTimestamp timeIntervalSinceNow]) > refreshInterval)
     {
         [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
         self.isViewAppearing = YES;
@@ -781,6 +787,40 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
         [weakSelf presentViewController:wrapper animated:YES completion:nil];
     }];
+}
+
+#pragma mark - deeplinking
+-(void)presentDeeplinkPayment
+{
+    if(self.deeplinkPaymentID)
+    {
+        PullPaymentDetailsOperation* operation = [PullPaymentDetailsOperation operationWithPaymentId:self.deeplinkPaymentID];
+        operation.resultHandler = ^(NSError* error){
+            self.executedOperation = nil;
+            if(!error)
+            {
+                self.payments = [self.objectModel allPayments];
+                NSArray* loadedIds = [self.payments valueForKey:@"remoteId"];
+                if([loadedIds containsObject:self.deeplinkPaymentID])
+                {
+                    NSInteger index = [loadedIds indexOfObject:self.deeplinkPaymentID];
+                    [self selectPaymentAtIndex:index];
+                }
+            }
+        };
+        self.deeplinkPaymentID = nil;
+        self.executedOperation = operation;
+        [operation execute];
+    }
+}
+
+-(void)selectPaymentAtIndex:(NSUInteger)index
+{
+    if(index!= NSNotFound && index < [self.payments count])
+    {
+        [self showPayment:self.payments[index]];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:IPAD scrollPosition:UITableViewScrollPositionTop];
+    }
 }
 
 @end

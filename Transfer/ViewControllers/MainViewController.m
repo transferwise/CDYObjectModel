@@ -305,7 +305,16 @@
     {
         if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
+            [self moveToPaymentView];
+            return YES;
+        }
+        if ([[parameters[0] lowercaseString] isEqualToString:@"details"])
+        {
+            if(parameters[1])
+            {
+                self.transactionsController.deeplinkPaymentID = @([parameters[1] integerValue]);
+                [self moveToPaymentsList];
+            }
             return YES;
         }
     }

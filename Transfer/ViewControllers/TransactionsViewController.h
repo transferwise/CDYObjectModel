@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL refreshOnAppear;
+@property (nonatomic, strong) NSNumber* deeplinkPaymentID;
 
 - (void)clearData;
 
