@@ -260,6 +260,16 @@
     
 }
 
+- (void)moveToInvitationsView
+{
+    [self.tabController selectIndex:IPAD?2:1];
+    [self setViewControllers:@[self.tabController] animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
 -(void)preloadCurrencies
 {
 	CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
@@ -303,18 +313,31 @@
     
     if([parameters count] > 0)
     {
-        if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
-        {
-            [self moveToPaymentView];
-            return YES;
-        }
         if ([[parameters[0] lowercaseString] isEqualToString:@"details"])
         {
             if(parameters[1])
             {
+                self.transactionsController.deeplinkDisplayVerification = NO;
                 self.transactionsController.deeplinkPaymentID = @([parameters[1] integerValue]);
                 [self moveToPaymentsList];
             }
+            return YES;
+        }
+        else if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
+        {
+            [self moveToPaymentView];
+            return YES;
+        }
+        else if ([[parameters[0] lowercaseString] isEqualToString:@"invite"])
+        {
+            [self moveToInvitationsView];
+            return YES;
+        }
+        else if ([[parameters[0] lowercaseString] isEqualToString:@"verification"])
+        {
+            self.transactionsController.deeplinkDisplayVerification = YES;
+            self.transactionsController.deeplinkPaymentID = nil;
+            [self moveToPaymentsList];
             return YES;
         }
     }

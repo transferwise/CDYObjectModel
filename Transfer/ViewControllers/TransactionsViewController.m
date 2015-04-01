@@ -501,6 +501,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             [self configureForVerificationNeeded:somethingNeeded];
 			[weakSelf setShowIdentificationView:somethingNeeded];
 		}
+        
+        if(self.deeplinkDisplayVerification)
+        {
+            self.deeplinkDisplayVerification = NO;
+            if(somethingNeeded)
+            {
+                [self pushIdentificationScreen];
+            }
+        }
 	}];
 	[operation execute];
 }
