@@ -267,9 +267,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-
-
 -(void)preloadCurrencies
 {
 	CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
