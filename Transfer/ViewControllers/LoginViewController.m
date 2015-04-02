@@ -151,7 +151,10 @@ IB_DESIGNABLE
 												 objectModel:weakSelf.objectModel
 												successBlock:^{
 													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-													[weakSelf processSuccessfulLogin];
+													[weakSelf processSuccessfulLogin:NO];
+												}
+												  errorBlock:^{
+													  //log out here
 												}
 								   waitForDetailsCompletions:YES];
 		});
@@ -242,14 +245,27 @@ IB_DESIGNABLE
     }
 }
 
-- (IBAction)googleLoginPressed:(id)sender
+- (IBAction)googleLogInPressed:(id)sender
 {
-	
+	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
-    [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+	[self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+}
+
+- (void)presentOAuthLogInWithProvider:(NSString *)provider
+{
+	__weak typeof(self) weakSelf = self;
+	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
+								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
+									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
+																												   url:preparedURL
+																										   objectModel:weakSelf.objectModel];
+									   [weakSelf.navigationController pushViewController:controller
+																				animated:YES];
+								   }];
 }
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
