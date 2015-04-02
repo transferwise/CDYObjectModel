@@ -386,7 +386,7 @@ static SMPageControlStyleDefaults _defaultStyleForSystemVersion;
 
 - (void)updatePageNumberForScrollView:(UIScrollView *)scrollView
 {
-	NSInteger page = (int)roundf(scrollView.contentOffset.x / scrollView.bounds.size.width);
+	NSInteger page = (int)floorf(scrollView.contentOffset.x / scrollView.bounds.size.width);
 	self.currentPage = page;
 }
 
