@@ -28,6 +28,7 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
+#import <NXOAuth2AccountStore.h>
 
 IB_DESIGNABLE
 
@@ -72,7 +73,15 @@ IB_DESIGNABLE
 
 -(void)commonSetup
 {
-    _loginHelper = [[AuthenticationHelper alloc] init];
+	_loginHelper = [[AuthenticationHelper alloc] init];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(oauthSucess:)
+												 name:NXOAuth2AccountStoreAccountsDidChangeNotification
+											   object:[NXOAuth2AccountStore sharedStore]];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(oauthFail:)
+												 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+											   object:[NXOAuth2AccountStore sharedStore]];
 }
 
 #pragma mark - View Life-cycle
