@@ -28,7 +28,6 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
-#import <GoogleOpenSource/GoogleOpenSource.h>
 
 IB_DESIGNABLE
 

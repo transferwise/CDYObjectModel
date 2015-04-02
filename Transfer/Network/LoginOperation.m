@@ -11,7 +11,7 @@
 #import "Credentials.h"
 #import "TransferwiseClient.h"
 #import "ObjectModel+RecipientTypes.h"
-#import "FBAppEvents.h"
+#import <FBSDKAppEvents.h>
 #import "GoogleAnalytics.h"
 #import "AppsFlyerTracker.h"
 #import "ObjectModel+Users.h"

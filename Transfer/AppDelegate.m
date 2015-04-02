@@ -21,20 +21,19 @@
 #import "GoogleAnalytics.h"
 #import "AppsFlyerTracker.h"
 #import "NanTracking.h"
-#import "FBSettings.h"
-#import "FBAppEvents.h"
 #import "Mixpanel.h"
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "UIImage+Color.h"
 #import "NavigationBarCustomiser.h"
-#import <FBAppCall.h>
 #import "EventTracker.h"
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
-#import <GooglePlus/GooglePlus.h>
+#import <FBSDKAppEvents.h>
+#import <FBSDKSettings.h>
+#import <FBSDKApplicationDelegate.h>
 
 @interface AppDelegate ()
 
@@ -133,8 +132,8 @@
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
-    [FBSettings setDefaultAppID:@"274548709260402"];
-    [FBAppEvents activateApp];
+	[FBSDKSettings setAppID:@"274548709260402"];
+    [FBSDKAppEvents activateApp];
 #endif
 
 #if USE_APPSFLYER_EVENTS
@@ -209,15 +208,14 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
-                                sourceApplication:sourceApplication
-                                  fallbackHandler:^(FBAppCall *call) {
-                                      MCLog(@"Unhandled deep link: %@", url);
-                                  }];
-	urlWasHandled = urlWasHandled || [GPPURLHandler handleURL:url
-											sourceApplication:sourceApplication
-												   annotation:annotation];
-	
+    BOOL urlWasHandled = [[FBSDKApplicationDelegate sharedInstance] application:application
+																		openURL:url
+															  sourceApplication:sourceApplication
+																	 annotation:annotation];
+	if (!urlWasHandled)
+	{
+		 MCLog(@"Unhandled deep link: %@", url);
+	}	
     
     return urlWasHandled;
 }
