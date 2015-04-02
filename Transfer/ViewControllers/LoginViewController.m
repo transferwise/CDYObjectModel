@@ -28,10 +28,6 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
-#import <NXOAuth2AccountStore.h>
-#import <NXOAuth2Account.h>
-#import <NXOAuth2AccessToken.h>
-#import "OAuthViewController.h"
 
 IB_DESIGNABLE
 
@@ -77,19 +73,6 @@ IB_DESIGNABLE
 - (void)commonSetup
 {
 	_loginHelper = [[AuthenticationHelper alloc] init];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(oauthSucess:)
-												 name:NXOAuth2AccountStoreAccountsDidChangeNotification
-											   object:[NXOAuth2AccountStore sharedStore]];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(oauthFail:)
-												 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-											   object:[NXOAuth2AccountStore sharedStore]];
-}
-
-- (void)dealloc
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - View Life-cycle
@@ -139,39 +122,6 @@ IB_DESIGNABLE
 {
 	[NavigationBarCustomiser setDefault];
 	[super viewWillDisappear:animated];
-}
-
-#pragma mark - OAuth notifications
--(void)oauthSucess:(NSNotification *)note
-{
-	MCLog(@"OAuth success");
-	__weak typeof(self) weakSelf = self;
-	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
-	if (newAccount)
-	{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf authWithOAuthAccount:newAccount
-								isExisting:NO];
-		});
-	}
-}
-
--(void)oauthFail:(NSNotification *)note
-{
-	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-	MCLog(@"OAuth failure");
-	[self.navigationController popViewControllerAnimated:YES];
-	
-	//-1005 - user has cancelled logging in
-	if (error.code != -1005)
-	{
-		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
-											   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
-		
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
-		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-		[alertView show];
-	}
 }
 
 #pragma mark - TextField delegate
@@ -240,60 +190,20 @@ IB_DESIGNABLE
     }
 }
 
-- (void)authWithOAuthAccount:(NXOAuth2Account *)account
-				  isExisting:(BOOL)isExisting
-{
-	__weak typeof(self) weakSelf = self;
-	[self.loginHelper preformOAuthLoginWithToken:account.accessToken.accessToken
-										provider:account.accountType
-							  keepPendingPayment:NO
-							navigationController:self.navigationController
-									 objectModel:self.objectModel
-									successBlock:^{
-											[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-											[weakSelf processSuccessfulLogin:NO];
-										}
-									  errorBlock:^{
-										  if (isExisting)
-										  {
-											  //if this is an existing account and auth failed show login
-											  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
-											  [self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
-										  }
-										}
-					   waitForDetailsCompletions:YES
-										isSilent:isExisting];
-}
-
 - (IBAction)googleLogInPressed:(id)sender
 {
-	for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts])
-	{
-		//if we have an existing account, try to use that
-		[self authWithOAuthAccount:account
-						isExisting:YES];
-		return;
-	};
-	
-	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+	__weak typeof(self) weakSelf = self;
+	[self.loginHelper performOAuthLoginWithProvider:GoogleOAuthServiceName
+							   navigationController:self.navigationController
+										objectModel:self.objectModel
+									 successHandler:^{
+										 [weakSelf processSuccessfulLogin:NO];
+									 }];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
 	[self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
-}
-
-- (void)presentOAuthLogInWithProvider:(NSString *)provider
-{
-	__weak typeof(self) weakSelf = self;
-	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
-								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
-									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
-																												   url:preparedURL
-																										   objectModel:weakSelf.objectModel];
-									   [weakSelf.navigationController pushViewController:controller
-																				animated:YES];
-								   }];
 }
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
