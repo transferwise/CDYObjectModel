@@ -259,40 +259,6 @@
 	[oauthLoginOperation execute];
 }
 
-#pragma mark - OAuth notifications
--(void)oauthSucess:(NSNotification *)note
-{
-	MCLog(@"OAuth success");
-	__weak typeof(self) weakSelf = self;
-	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
-	if (newAccount)
-	{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf authWithOAuthAccount:newAccount
-							  successBlock:self.oauthSuccessBlock
-								isExisting:NO];
-		});
-	}
-}
-
--(void)oauthFail:(NSNotification *)note
-{
-	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-	MCLog(@"OAuth failure");
-	[self.navigationController popViewControllerAnimated:YES];
-	
-	//-1005 - user has cancelled logging in
-	if (error.code != -1005)
-	{
-		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
-											   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
-		
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
-		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-		[alertView show];
-	}
-}
-
 - (void)authWithOAuthAccount:(NXOAuth2Account *)account
 				successBlock:(TRWActionBlock)successBlock
 				  isExisting:(BOOL)isExisting
@@ -330,6 +296,40 @@
 									   [weakSelf.navigationController pushViewController:controller
 																				animated:YES];
 								   }];
+}
+
+#pragma mark - OAuth notifications
+-(void)oauthSucess:(NSNotification *)note
+{
+	MCLog(@"OAuth success");
+	__weak typeof(self) weakSelf = self;
+	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+	if (newAccount)
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[weakSelf authWithOAuthAccount:newAccount
+							  successBlock:self.oauthSuccessBlock
+								isExisting:NO];
+		});
+	}
+}
+
+-(void)oauthFail:(NSNotification *)note
+{
+	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+	MCLog(@"OAuth failure");
+	[self.navigationController popViewControllerAnimated:YES];
+	
+	//-1005 - user has cancelled logging in
+	if (error.code != -1005)
+	{
+		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+											   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
+		
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
 }
 
 #pragma mark - Logout

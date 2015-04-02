@@ -72,4 +72,4 @@ NSString *const GoogleOAuthTokenUrl = @"https://accounts.google.com/o/oauth2/tok
 NSString *const GoogleOAuthRedirectUrl = @"http://localhost/";
 NSString *const GoogleOAuthServiceName = @"Google";
 NSString *const GoogleOAuthEmailScope = @"https://www.googleapis.com/auth/userinfo.email";
-NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/userinfo.profile";
+NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/plus.profile.emails.read";
