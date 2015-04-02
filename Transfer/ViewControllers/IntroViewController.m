@@ -38,6 +38,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteRegisterButton;
+@property (weak, nonatomic) IBOutlet UIButton *googleButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteGoogleButton;
 @property (weak, nonatomic) IBOutlet UIView *upfrontRegistrationcontainer;
 @property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
@@ -78,6 +80,9 @@
     
     [self.loginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
     [self.whiteLoginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
+    
+    [self.googleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteGoogleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -345,6 +350,11 @@
     SignUpViewController *signup = [[SignUpViewController alloc] init];
     signup.objectModel = self.objectModel;
     [self fadeInDismissableViewController:signup];
+}
+- (IBAction)googleTapped:(id)sender {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Not implemented" message:@"Waiting for Google oAuth to be finalised..." delegate:nil cancelButtonTitle:@"Bollocks!" otherButtonTitles:nil];
+    [alertView show];
+    
 }
 
 -(void)fadeInDismissableViewController:(UIViewController*)viewController
