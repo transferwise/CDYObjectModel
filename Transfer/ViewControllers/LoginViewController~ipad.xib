@@ -113,7 +113,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="googleLoginPressed:" destination="-1" eventType="touchUpInside" id="mG0-R8-bdp"/>
+                                <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="UlJ-BW-YXl"/>
                             </connections>
                         </button>
                     </subviews>

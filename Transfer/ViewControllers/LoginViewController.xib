@@ -112,7 +112,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="googleLoginPressed:" destination="-1" eventType="touchUpInside" id="N52-XJ-Gdv"/>
+                                <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="ug1-Dz-OQ2"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-eB-1cd">

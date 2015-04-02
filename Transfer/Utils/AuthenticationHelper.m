@@ -44,6 +44,16 @@
 
 @implementation AuthenticationHelper
 
+- (instancetype)init
+{
+	self = [super init];
+	if (self)
+	{
+		
+	}
+	return self;
+}
+
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
 									 password:(NSString *)password
                            keepPendingPayment:(BOOL)keepPendingPayment
@@ -145,6 +155,7 @@
 					  successBlock:(TRWActionBlock)successBlock
 						errorBlock:(TRWActionBlock)errorBlock
 		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+						  isSilent:(BOOL)isSilent
 {
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:navigationController.view];
 	[hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
@@ -190,8 +201,12 @@
 													   withLabel:error.localizedDescription];
 			}
 			
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];			
-			[alertView show];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			
+			if (!isSilent)
+			{
+				[alertView show];
+			}
 			
 			errorBlock();
 		});

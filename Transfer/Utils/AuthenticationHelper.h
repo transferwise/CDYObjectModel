@@ -38,7 +38,8 @@
 					   objectModel:(ObjectModel *)objectModel
 					  successBlock:(TRWActionBlock)successBlock
 						errorBlock:(TRWActionBlock)errorBlock
-		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
+		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+						  isSilent:(BOOL)isSilent;
 
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller
 										 objectModel:(ObjectModel*)objectModel;

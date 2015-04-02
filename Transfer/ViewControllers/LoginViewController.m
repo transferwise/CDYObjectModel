@@ -31,6 +31,7 @@
 #import <NXOAuth2AccountStore.h>
 #import <NXOAuth2Account.h>
 #import <NXOAuth2AccessToken.h>
+#import "OAuthViewController.h"
 
 IB_DESIGNABLE
 
@@ -63,7 +64,7 @@ IB_DESIGNABLE
     return self;
 }
 
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self)
@@ -73,7 +74,7 @@ IB_DESIGNABLE
     return self;
 }
 
--(void)commonSetup
+- (void)commonSetup
 {
 	_loginHelper = [[AuthenticationHelper alloc] init];
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -84,6 +85,11 @@ IB_DESIGNABLE
 											 selector:@selector(oauthFail:)
 												 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
 											   object:[NXOAuth2AccountStore sharedStore]];
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - View Life-cycle
@@ -144,19 +150,8 @@ IB_DESIGNABLE
 	if (newAccount)
 	{
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
-													provider:newAccount.accountType
-										  keepPendingPayment:NO
-										navigationController:weakSelf.navigationController
-												 objectModel:weakSelf.objectModel
-												successBlock:^{
-													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-													[weakSelf processSuccessfulLogin:NO];
-												}
-												  errorBlock:^{
-													  //log out here
-												}
-								   waitForDetailsCompletions:YES];
+			[weakSelf authWithOAuthAccount:newAccount
+								isExisting:NO];
 		});
 	}
 }
@@ -245,8 +240,41 @@ IB_DESIGNABLE
     }
 }
 
+- (void)authWithOAuthAccount:(NXOAuth2Account *)account
+				  isExisting:(BOOL)isExisting
+{
+	__weak typeof(self) weakSelf = self;
+	[self.loginHelper preformOAuthLoginWithToken:account.accessToken.accessToken
+										provider:account.accountType
+							  keepPendingPayment:NO
+							navigationController:self.navigationController
+									 objectModel:self.objectModel
+									successBlock:^{
+											[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+											[weakSelf processSuccessfulLogin:NO];
+										}
+									  errorBlock:^{
+										  if (isExisting)
+										  {
+											  //if this is an existing account and auth failed show login
+											  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+											  [self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+										  }
+										}
+					   waitForDetailsCompletions:YES
+										isSilent:isExisting];
+}
+
 - (IBAction)googleLogInPressed:(id)sender
 {
+	for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts])
+	{
+		//if we have an existing account, try to use that
+		[self authWithOAuthAccount:account
+						isExisting:YES];
+		return;
+	};
+	
 	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
 }
 
