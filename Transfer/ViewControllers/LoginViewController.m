@@ -29,6 +29,8 @@
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
 #import <NXOAuth2AccountStore.h>
+#import <NXOAuth2Account.h>
+#import <NXOAuth2AccessToken.h>
 
 IB_DESIGNABLE
 
@@ -131,6 +133,47 @@ IB_DESIGNABLE
 {
 	[NavigationBarCustomiser setDefault];
 	[super viewWillDisappear:animated];
+}
+
+#pragma mark - OAuth notifications
+-(void)oauthSucess:(NSNotification *)note
+{
+	MCLog(@"OAuth success");
+	__weak typeof(self) weakSelf = self;
+	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+	if (newAccount)
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[weakSelf.loginHelper preformOAuthLoginWithToken:newAccount.accessToken.accessToken
+													provider:newAccount.accountType
+										  keepPendingPayment:NO
+										navigationController:weakSelf.navigationController
+												 objectModel:weakSelf.objectModel
+												successBlock:^{
+													[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+													[weakSelf processSuccessfulLogin];
+												}
+								   waitForDetailsCompletions:YES];
+		});
+	}
+}
+
+-(void)oauthFail:(NSNotification *)note
+{
+	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+	MCLog(@"OAuth failure");
+	[self.navigationController popViewControllerAnimated:YES];
+	
+	//-1005 - user has cancelled logging in
+	if (error.code != -1005)
+	{
+		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+											   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
+		
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
 }
 
 #pragma mark - TextField delegate
