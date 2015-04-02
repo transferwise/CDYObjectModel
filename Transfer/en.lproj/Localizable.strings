@@ -486,6 +486,7 @@ This can't be undone.";
 "upload.money.notification.label" = "Your payment will be activated when we receive your deposit.";
 "upload.money.pulling.data.message" = "Pulling data...";
 "upload.money.reference.title" = "Reference";
+"upload.money.reference.title.CHF" = "Reason for payment";
 "upload.money.title" = "How do you want to pay?";
 "upload.money.title.single.method" = "How to pay";
 "upload.money.to.title" = "To";
