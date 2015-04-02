@@ -31,9 +31,10 @@
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
-#import <FBSDKAppEvents.h>
-#import <FBSDKSettings.h>
-#import <FBSDKApplicationDelegate.h>
+#import <FBAppEvents.h>
+#import <FBSettings.h>
+#import <FBAppCall.h>
+#import <NXOAuth2AccountStore.h>
 
 @interface AppDelegate ()
 
@@ -81,6 +82,8 @@
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+	
+	[self initOauth];
     
 	UIViewController* controller;
     
@@ -132,8 +135,8 @@
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
-	[FBSDKSettings setAppID:@"274548709260402"];
-    [FBSDKAppEvents activateApp];
+	[FBSettings setDefaultAppID:@"274548709260402"];
+    [FBAppEvents activateApp];
 #endif
 
 #if USE_APPSFLYER_EVENTS
@@ -208,16 +211,26 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    BOOL urlWasHandled = [[FBSDKApplicationDelegate sharedInstance] application:application
-																		openURL:url
-															  sourceApplication:sourceApplication
-																	 annotation:annotation];
-	if (!urlWasHandled)
-	{
-		 MCLog(@"Unhandled deep link: %@", url);
-	}	
-    
+	BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+								sourceApplication:sourceApplication
+								  fallbackHandler:^(FBAppCall *call) {
+									  MCLog(@"Unhandled deep link: %@", url);
+								  }];
+	
+	
     return urlWasHandled;
+}
+
+- (void)initOauth
+{
+	[[NXOAuth2AccountStore sharedStore] setClientID:GoogleOAuthClientId
+											 secret:GoogleOAuthClientSecret
+											  scope:[NSSet setWithObjects:GoogleOAuthEmailScope, GoogleOAuthProfileScope, nil]
+								   authorizationURL:[NSURL URLWithString:GoogleOAuthAuthorizationUrl]
+										   tokenURL:[NSURL URLWithString:GoogleOAuthTokenUrl]
+										redirectURL:[NSURL URLWithString:GoogleOAuthRedirectUrl]
+									  keyChainGroup:@""
+									 forAccountType:GoogleOAuthServiceName];
 }
 
 @end

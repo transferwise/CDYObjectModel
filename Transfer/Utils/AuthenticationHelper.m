@@ -32,7 +32,7 @@
 #import "AppsFlyerTracker.h"
 #import "PaymentsOperation.h"
 #import "ObjectModel+RecipientTypes.h"
-#import <FBSDKAppEvents.h>
+#import <FacebookSDK.h>
 #import "Mixpanel+Customisation.h"
 #import "LoginOrRegisterWithOauthOperation.h"
 
@@ -234,7 +234,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 	[objectModel removeOtherUsers];
 	
 #if USE_FACEBOOK_EVENTS
-	[FBSDKAppEvents logEvent:@"loggedIn"];
+	[FBAppEvents logEvent:@"loggedIn"];
 #endif
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 	

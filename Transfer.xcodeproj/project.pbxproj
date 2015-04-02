@@ -5571,7 +5571,6 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5616,7 +5615,6 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5728,7 +5726,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
-					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5767,7 +5764,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
-					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5866,7 +5862,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
-					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -5904,7 +5899,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/Thirdparty\"",
-					"$(PROJECT_DIR)/Thirdparty/GooglePlus",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";

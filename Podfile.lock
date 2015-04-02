@@ -8,22 +8,8 @@ PODS:
     - CDYObjectModel/Core (= 1.0)
   - CDYObjectModel/Core (1.0)
   - CXAlertView (1.0.1)
-  - Facebook-iOS-SDK (4.0):
+  - Facebook-iOS-SDK (3.21.1):
     - Bolts (~> 1.0)
-    - Facebook-iOS-SDK/CoreKit (= 4.0)
-    - Facebook-iOS-SDK/LoginKit (= 4.0)
-    - Facebook-iOS-SDK/ShareKit (= 4.0)
-  - Facebook-iOS-SDK/CoreKit (4.0):
-    - Bolts (~> 1.0)
-    - Facebook-iOS-SDK/CoreKit/no-arc (= 4.0)
-  - Facebook-iOS-SDK/CoreKit/no-arc (4.0):
-    - Bolts (~> 1.0)
-  - Facebook-iOS-SDK/LoginKit (4.0):
-    - Bolts (~> 1.0)
-    - Facebook-iOS-SDK/CoreKit
-  - Facebook-iOS-SDK/ShareKit (4.0):
-    - Bolts (~> 1.0)
-    - Facebook-iOS-SDK/CoreKit
   - JVFloatLabeledTextField (0.0.9)
   - Lockbox (2.1.0)
   - MBProgressHUD (0.9.1)
@@ -39,7 +25,7 @@ DEPENDENCIES:
   - CDYAnalyticsCoordinator (from `https://github.com/coodly/CDYAnalyticsCoordinator.git`)
   - CDYObjectModel (from `https://github.com/coodly/CDYObjectModel.git`)
   - CXAlertView (~> 1.0.1)
-  - Facebook-iOS-SDK
+  - Facebook-iOS-SDK (~> 3.21.1)
   - JVFloatLabeledTextField (~> 0.0.9)
   - Lockbox
   - MBProgressHUD
@@ -68,7 +54,7 @@ SPEC CHECKSUMS:
   CDYAnalyticsCoordinator: 75094418537506be1355dd6cc0248f622d9f591e
   CDYObjectModel: da0ab52fa697ba2df41b32219f3bb90dea544270
   CXAlertView: 767f92f23c482a163e723d39865e46f11b9bc2ef
-  Facebook-iOS-SDK: 523ee69fdd3c37cdca6578c79912f47943035806
+  Facebook-iOS-SDK: 20e413a6e34f9155d7a34484e0c08247fae3e47f
   JVFloatLabeledTextField: 46a6adc518b128ac59f77da5e855acb29902e22f
   Lockbox: 16442da35d9d4286966936763be728a931d589c3
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
