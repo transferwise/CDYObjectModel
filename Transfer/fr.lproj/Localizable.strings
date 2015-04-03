@@ -482,6 +482,7 @@ C'est irréversible.";
 "upload.money.notification.label" = "Votre transfert démarrera dés que nous aurons reçus votre argent.";
 "upload.money.pulling.data.message" = "Chargement des données...";
 "upload.money.reference.title" = "Référence";
+"upload.money.reference.title.CHF" = "Raison du paiement";
 "upload.money.title" = "Choisir comment payer";
 "upload.money.title.single.method" = "Comment payer";
 "upload.money.to.title" = "A";
