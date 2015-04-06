@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSURL *requestUrl;
 @property (nonatomic, strong) NSString *provider;
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, assign) NSHTTPCookieAcceptPolicy bufferedPolicy;
 
 @end
 
@@ -37,6 +38,8 @@
 		self.provider = provider;
 		self.requestUrl = requestUrl;
 		self.objectModel = objectModel;
+		self.bufferedPolicy = [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy;
+		[NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
 	}
 	return self;
 }
@@ -45,7 +48,7 @@
 {
 	self.webView.delegate = nil;
 	[self.webView stopLoading];
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = _bufferedPolicy;
 }
 
 - (void)viewWillAppear:(BOOL)animated
