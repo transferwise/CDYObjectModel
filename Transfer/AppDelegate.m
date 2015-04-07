@@ -21,20 +21,20 @@
 #import "GoogleAnalytics.h"
 #import "AppsFlyerTracker.h"
 #import "NanTracking.h"
-#import "FBSettings.h"
-#import "FBAppEvents.h"
 #import "Mixpanel.h"
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "UIImage+Color.h"
 #import "NavigationBarCustomiser.h"
-#import <FBAppCall.h>
 #import "EventTracker.h"
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
-#import <GooglePlus/GooglePlus.h>
+#import <FBAppEvents.h>
+#import <FBSettings.h>
+#import <FBAppCall.h>
+#import <NXOAuth2AccountStore.h>
 
 @interface AppDelegate ()
 
@@ -82,6 +82,8 @@
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+	
+	[self initOauth];
     
 	UIViewController* controller;
     
@@ -133,7 +135,7 @@
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
-    [FBSettings setDefaultAppID:@"274548709260402"];
+	[FBSettings setDefaultAppID:@"274548709260402"];
     [FBAppEvents activateApp];
 #endif
 
@@ -209,17 +211,26 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
-                                sourceApplication:sourceApplication
-                                  fallbackHandler:^(FBAppCall *call) {
-                                      MCLog(@"Unhandled deep link: %@", url);
-                                  }];
-	urlWasHandled = urlWasHandled || [GPPURLHandler handleURL:url
-											sourceApplication:sourceApplication
-												   annotation:annotation];
+	BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+								sourceApplication:sourceApplication
+								  fallbackHandler:^(FBAppCall *call) {
+									  MCLog(@"Unhandled deep link: %@", url);
+								  }];
 	
-    
+	
     return urlWasHandled;
+}
+
+- (void)initOauth
+{
+	[[NXOAuth2AccountStore sharedStore] setClientID:GoogleOAuthClientId
+											 secret:GoogleOAuthClientSecret
+											  scope:[NSSet setWithObjects:GoogleOAuthEmailScope, GoogleOAuthProfileScope, nil]
+								   authorizationURL:[NSURL URLWithString:GoogleOAuthAuthorizationUrl]
+										   tokenURL:[NSURL URLWithString:GoogleOAuthTokenUrl]
+										redirectURL:[NSURL URLWithString:GoogleOAuthRedirectUrl]
+									  keyChainGroup:@""
+									 forAccountType:GoogleOAuthServiceName];
 }
 
 @end
