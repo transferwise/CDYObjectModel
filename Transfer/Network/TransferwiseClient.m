@@ -85,8 +85,6 @@ NSString *const kAPIPathBase = @"/api";
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         } else if ([domain rangeOfString:@"yahoo"].location != NSNotFound) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-        } else if ([domain rangeOfString:@"google"].location != NSNotFound) {
-            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
     }
 }

@@ -32,18 +32,6 @@
 				<string>fb274548709260402</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLIconFile</key>
-			<string></string>
-			<key>CFBundleURLName</key>
-			<string>com.transferwise.dev.Transferwise</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.transferwise.dev.Transferwise</string>
-			</array>
-		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>Generated</string>
