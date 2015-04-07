@@ -39,14 +39,17 @@
 #import <NXOAuth2Account.h>
 #import <NXOAuth2AccessToken.h>
 #import "OAuthViewController.h"
+#import "TouchIDHelper.h"
+#import "TouchIdPromptViewController.h"
 
-@interface AuthenticationHelper ()
+@interface AuthenticationHelper ()<TouchIdPromptViewControllerDelegate>
 
 @property (strong, nonatomic) TransferwiseOperation *executedOperation;
 //used to pop to LoginView from OAuth error
 @property (weak, nonatomic) UINavigationController *navigationController;
 @property (weak, nonatomic) ObjectModel *objectModel;
 @property (nonatomic, copy)	TRWActionBlock oauthSuccessBlock;
+@property (nonatomic, copy)	TRWActionBlock touchIdSuccessBlock;
 
 @end
 
@@ -83,6 +86,7 @@
 								  objectModel:(ObjectModel *)objectModel
 								 successBlock:(TRWActionBlock)successBlock
 					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+                                  touchIDHost:(UIViewController*)touchIdHost
 {
 	[self validateInputAndPerformLoginWithEmail:email
 									   password:password
@@ -112,7 +116,8 @@
 										 
 										 [alertView show];
 									 }
-					  waitForDetailsCompletions:waitForDetailsCompletion];
+					  waitForDetailsCompletions:waitForDetailsCompletion
+                                    touchIDHost:touchIdHost];
 }
 
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
@@ -123,6 +128,7 @@
                                  successBlock:(TRWActionBlock)successBlock
                                    errorBlock:(void(^)(NSError* error))errorBlock
                     waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+                                  touchIDHost:(UIViewController*)touchIdHost
 {
 	[UIApplication dismissKeyboard];
 	
@@ -152,7 +158,22 @@
 				NSString *token = response[@"token"];
 				[self logUserIn:token
 						  email:email
-				   successBlock:successBlock
+				   successBlock:^{
+                       if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
+                       {
+                           self.touchIdSuccessBlock = successBlock;
+                           TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
+                           prompt.touchIdDelegate = self;
+                           [prompt presentOnViewController:touchIdHost
+                                              withUsername:email
+                                                  password:password];
+                       }
+                       else
+                       {
+                           successBlock();
+                       }
+                
+                   }
 							hud:hud
 					objectModel:objectModel
 	   waitForDetailsCompletion:waitForDetailsCompletion];
@@ -191,7 +212,7 @@
 	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
 }
 
-- (void)preformOAuthLoginWithToken:(NSString *)token
+- (void)performOAuthLoginWithToken:(NSString *)token
 						  provider:(NSString *)provider
 				keepPendingPayment:(BOOL)keepPendingPayment
 			  navigationController:(UINavigationController *)navigationController
@@ -264,7 +285,7 @@
 				  isExisting:(BOOL)isExisting
 {
 	__weak typeof(self) weakSelf = self;
-	[self preformOAuthLoginWithToken:account.accessToken.accessToken
+	[self performOAuthLoginWithToken:account.accessToken.accessToken
 							provider:account.accountType
 				  keepPendingPayment:NO
 				navigationController:self.navigationController
@@ -438,6 +459,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     return [NSString stringWithString:issues];
 }
 
+
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller
 										 objectModel:(ObjectModel*)objectModel
 {
@@ -491,6 +513,17 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
             [mainController setObjectModel:objectModel];
             [root replaceWrappedViewControllerWithController:mainController];
         }
+    }
+}
+
+#pragma mark - touch ID prompt delegate
+
+-(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
+{
+    if(self.touchIdSuccessBlock)
+    {
+        self.touchIdSuccessBlock();
+        self.touchIdSuccessBlock = nil;
     }
 }
 @end

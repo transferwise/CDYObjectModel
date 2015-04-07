@@ -22,6 +22,7 @@
 #import "ConnectionAwareViewController.h"
 #import "LoginViewController.h"
 #import "Mixpanel+Customisation.h"
+#import "AuthenticationHelper.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -46,18 +47,17 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *blueButtons;
 @property (nonatomic, assign) CGSize lastLaidoutPageSize;
 
+@property (strong, nonatomic) AuthenticationHelper *loginHelper;
+
 - (IBAction)startPressed;
 
 @end
 
 @implementation IntroViewController
 
-- (id)init
+-(id)init
 {
     self = [super initWithNibName:@"IntroViewController" bundle:nil];
-    if (self)
-	{
-    }
     return self;
 }
 
@@ -123,6 +123,8 @@
     self.lastLoadedIndex = -1;
     self.upfrontRegistrationcontainer.hidden = !self.requireRegistration;
     self.noRegistrationContainer.hidden = self.requireRegistration;
+    
+    self.loginHelper = [[AuthenticationHelper alloc] init];
     
     [[Mixpanel sharedInstance] sendPageView:@"Intro screen"];
 	[[GoogleAnalytics sharedInstance] sendScreen:@"Intro screen"];
@@ -352,8 +354,13 @@
     [self fadeInDismissableViewController:signup];
 }
 - (IBAction)googleTapped:(id)sender {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Not implemented" message:@"Waiting for Google oAuth to be finalised..." delegate:nil cancelButtonTitle:@"Bollocks!" otherButtonTitles:nil];
-    [alertView show];
+    __weak typeof(self) weakSelf = self;
+    [self.loginHelper performOAuthLoginWithProvider:GoogleOAuthServiceName
+                               navigationController:self.navigationController
+                                        objectModel:self.objectModel
+                                     successHandler:^{
+                                         [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:weakSelf objectModel:weakSelf.objectModel];
+                                     }];
     
 }
 
