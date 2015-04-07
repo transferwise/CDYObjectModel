@@ -32,19 +32,50 @@
 #import "AppsFlyerTracker.h"
 #import "PaymentsOperation.h"
 #import "ObjectModel+RecipientTypes.h"
-#import "FacebookSDK.h"
+#import <FacebookSDK.h>
 #import "Mixpanel+Customisation.h"
 #import "LoginOrRegisterWithOauthOperation.h"
-#import <GooglePlus/GooglePlus.h>
+#import <NXOAuth2AccountStore.h>
+#import <NXOAuth2Account.h>
+#import <NXOAuth2AccessToken.h>
+#import "OAuthViewController.h"
 
 @interface AuthenticationHelper ()
 
 @property (strong, nonatomic) TransferwiseOperation *executedOperation;
+//used to pop to LoginView from OAuth error
+@property (weak, nonatomic) UINavigationController *navigationController;
+@property (weak, nonatomic) ObjectModel *objectModel;
+@property (nonatomic, copy)	TRWActionBlock oauthSuccessBlock;
 
 @end
 
 @implementation AuthenticationHelper
 
+#pragma mark - Init
+- (instancetype)init
+{
+	self = [super init];
+	if (self)
+	{
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(oauthSucess:)
+													 name:NXOAuth2AccountStoreAccountsDidChangeNotification
+												   object:[NXOAuth2AccountStore sharedStore]];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(oauthFail:)
+													 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+												   object:[NXOAuth2AccountStore sharedStore]];
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - TW
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
 									 password:(NSString *)password
                            keepPendingPayment:(BOOL)keepPendingPayment
@@ -138,6 +169,28 @@
     [loginOperation execute];
 }
 
+#pragma mark - OAuth
+- (void)performOAuthLoginWithProvider:(NSString *)providerName
+				 navigationController:(UINavigationController *)navigationController
+						  objectModel:(ObjectModel *)objectModel
+					   successHandler:(TRWActionBlock)successBlock
+{
+	self.navigationController = navigationController;
+	self.objectModel = objectModel;
+	self.oauthSuccessBlock = successBlock;
+	
+	for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts])
+	{
+		//if we have an existing account, try to use that
+		[self authWithOAuthAccount:account
+					  successBlock:successBlock
+						isExisting:YES];
+		return;
+	};
+	
+	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+}
+
 - (void)preformOAuthLoginWithToken:(NSString *)token
 						  provider:(NSString *)provider
 				keepPendingPayment:(BOOL)keepPendingPayment
@@ -146,6 +199,7 @@
 					  successBlock:(TRWActionBlock)successBlock
 						errorBlock:(TRWActionBlock)errorBlock
 		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+						  isSilent:(BOOL)isSilent
 {
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:navigationController.view];
 	[hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
@@ -191,8 +245,12 @@
 													   withLabel:error.localizedDescription];
 			}
 			
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];			
-			[alertView show];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			
+			if (!isSilent)
+			{
+				[alertView show];
+			}
 			
 			errorBlock();
 		});
@@ -201,6 +259,112 @@
 	[oauthLoginOperation execute];
 }
 
+- (void)authWithOAuthAccount:(NXOAuth2Account *)account
+				successBlock:(TRWActionBlock)successBlock
+				  isExisting:(BOOL)isExisting
+{
+	__weak typeof(self) weakSelf = self;
+	[self preformOAuthLoginWithToken:account.accessToken.accessToken
+							provider:account.accountType
+				  keepPendingPayment:NO
+				navigationController:self.navigationController
+						 objectModel:self.objectModel
+						successBlock:^{
+							[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+							successBlock();
+						}
+						  errorBlock:^{
+							  if (isExisting)
+							  {
+								  //if this is an existing account and auth failed show login
+								  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+								  [weakSelf presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+							  }
+						  }
+		   waitForDetailsCompletions:YES
+							isSilent:isExisting];
+}
+
+- (void)presentOAuthLogInWithProvider:(NSString *)provider
+{
+	__weak typeof(self) weakSelf = self;
+	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
+								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
+									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
+																												   url:preparedURL
+																										   objectModel:weakSelf.objectModel];
+									   [weakSelf.navigationController pushViewController:controller
+																				animated:YES];
+								   }];
+}
+
+#pragma mark - OAuth notifications
+-(void)oauthSucess:(NSNotification *)note
+{
+	MCLog(@"OAuth success");
+	__weak typeof(self) weakSelf = self;
+	NXOAuth2Account *newAccount = note.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+	if (newAccount)
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[weakSelf authWithOAuthAccount:newAccount
+							  successBlock:self.oauthSuccessBlock
+								isExisting:NO];
+		});
+	}
+}
+
+-(void)oauthFail:(NSNotification *)note
+{
+	NSError *error = [note.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+	MCLog(@"OAuth failure");
+	[self.navigationController popViewControllerAnimated:YES];
+	
+	//-1005 - user has cancelled logging in
+	if (error.code != -1005)
+	{
+		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+											   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
+		
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
+}
+
+#pragma mark - Logout
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel
+           tokenNeedsClearing:(BOOL)clearToken
+              completionBlock:(void (^)(void))completionBlock;
+{
+    if([Credentials userLoggedIn])
+    {
+        [objectModel performBlock:^{
+            [objectModel deleteObject:objectModel.currentUser];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([Credentials userLoggedIn])
+                {
+                    [PendingPayment removePossibleImages];
+                    if(clearToken)
+                    {
+                        [[TransferwiseClient sharedClient] clearCredentials];
+                    }
+                    [Credentials clearCredentials];
+                    [[GoogleAnalytics sharedInstance] markLoggedIn];
+                    [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":[NSNull null]}];
+                    [TransferwiseClient clearCookies];
+                    if(completionBlock)
+                    {
+                        completionBlock();
+                    }
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+                }
+            });
+        }];
+    }	
+}
+
+#pragma mark - Helpers
 - (void)logUserIn:(NSString *)token
 			email:(NSString *)email
 	 successBlock:(TRWActionBlock)successBlock
@@ -329,36 +493,4 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
         }
     }
 }
-
-+ (void)logOutWithObjectModel:(ObjectModel *)objectModel
-		   tokenNeedsClearing:(BOOL)clearToken
-			  completionBlock:(void (^)(void))completionBlock;
-{
-    if([Credentials userLoggedIn])
-    {
-        [objectModel performBlock:^{
-            [objectModel deleteObject:objectModel.currentUser];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if([Credentials userLoggedIn])
-                {
-                    [PendingPayment removePossibleImages];
-                    if(clearToken)
-                    {
-                        [[TransferwiseClient sharedClient] clearCredentials];
-                    }
-                    [Credentials clearCredentials];
-                    [[GoogleAnalytics sharedInstance] markLoggedIn];
-                    [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":[NSNull null]}];
-                    [TransferwiseClient clearCookies];
-                    if(completionBlock)
-                    {
-                        completionBlock();
-                    }
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
-                }
-            });
-        }];
-    }	
-}
-
 @end

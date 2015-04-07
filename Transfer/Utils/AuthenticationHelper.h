@@ -31,14 +31,10 @@
                                    errorBlock:(void(^)(NSError* error))errorBlock
                     waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
 
-- (void)preformOAuthLoginWithToken:(NSString *)token
-						  provider:(NSString *)provider
-				keepPendingPayment:(BOOL)keepPendingPayment
-			  navigationController:(UINavigationController *)navigationController
-					   objectModel:(ObjectModel *)objectModel
-					  successBlock:(TRWActionBlock)successBlock
-						errorBlock:(TRWActionBlock)errorBlock
-		 waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
+- (void)performOAuthLoginWithProvider:(NSString *)providerName
+				 navigationController:(UINavigationController *)navigationController
+						  objectModel:(ObjectModel *)objectModel
+					   successHandler:(TRWActionBlock)successBlock;
 
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller
 										 objectModel:(ObjectModel*)objectModel;
