@@ -486,10 +486,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		return;
 	}
 
+    TRWProgressHUD *hud = nil;
+    if(self.deeplinkDisplayVerification)
+    {
+        hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"deeplink.verification.message", nil)];
+
+    }
+    
 	CheckPersonalProfileVerificationOperation *operation = [CheckPersonalProfileVerificationOperation operation];
 	[self setCheckOperation:operation];
     __weak typeof(self) weakSelf = self;
 	[operation setResultHandler:^(IdentificationRequired identificationRequired) {
+        [hud hide];
 		[weakSelf setCheckOperation:nil];
 
 		[weakSelf setIdentificationRequired:identificationRequired];
@@ -508,6 +517,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             if(somethingNeeded)
             {
                 [self pushIdentificationScreen];
+            }
+            else
+            {
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"deeplink.no.verification.message", nil) message:nil];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+                return;
             }
         }
 	}];
@@ -803,18 +819,30 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
     if(self.deeplinkPaymentID)
     {
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"deeplink.payment.detail.message", nil)];
         PullPaymentDetailsOperation* operation = [PullPaymentDetailsOperation operationWithPaymentId:self.deeplinkPaymentID];
+        operation.objectModel = self.objectModel;
+        NSNumber *deeplinkPaymentID = self.deeplinkPaymentID;
         operation.resultHandler = ^(NSError* error){
+            [hud hide];
             self.executedOperation = nil;
             if(!error)
             {
                 self.payments = [self.objectModel allPayments];
                 NSArray* loadedIds = [self.payments valueForKey:@"remoteId"];
-                if([loadedIds containsObject:self.deeplinkPaymentID])
+                if([loadedIds containsObject:deeplinkPaymentID])
                 {
-                    NSInteger index = [loadedIds indexOfObject:self.deeplinkPaymentID];
+                    NSInteger index = [loadedIds indexOfObject:deeplinkPaymentID];
                     [self selectPaymentAtIndex:index];
                 }
+            }
+            else
+            {
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+                return;
             }
         };
         self.deeplinkPaymentID = nil;

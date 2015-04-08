@@ -73,6 +73,8 @@ extern NSString *const TRWToSUrl;
 extern NSString *const TRWPrivacyUrl;
 extern NSString *const TRWStateSpecificTermsUrl;
 
+extern NSString *const TRWDeeplinkScheme;
+
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);
 

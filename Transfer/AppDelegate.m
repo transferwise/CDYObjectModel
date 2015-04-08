@@ -230,7 +230,7 @@
 
 -(BOOL)handleURL:(NSURL*)url
 {
-    if([[[url scheme] lowercaseString] isEqualToString:[[[NSBundle mainBundle] bundleIdentifier] lowercaseString]])
+    if([[[url scheme] lowercaseString] isEqualToString:TRWDeeplinkScheme])
     {
         ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
         if([root.wrappedViewController isKindOfClass:[MainViewController class]])
