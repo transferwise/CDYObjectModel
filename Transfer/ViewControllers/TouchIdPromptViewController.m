@@ -58,6 +58,7 @@
 
 -(IBAction)finish
 {
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self.touchIdDelegate touchIdPromptIsFinished:self];
 }
 

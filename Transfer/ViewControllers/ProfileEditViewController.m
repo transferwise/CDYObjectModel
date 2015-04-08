@@ -629,7 +629,8 @@
 												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment
 																			  sendAsBusiness:sendAsBusiness];
 											   }
-								  waitForDetailsCompletions:YES];
+								  waitForDetailsCompletions:YES
+                                                touchIDHost:nil];
 }
 
 - (void)reloadDataAfterLoginWithPayment:(PendingPayment *)payment

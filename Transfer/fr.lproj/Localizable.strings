@@ -623,6 +623,7 @@ Veuillez joindre vos documents à cet email et envoyez ce dernier.<br />
 "intro.start.button.title" = "Ok";
 "intro.login.button.title" = "Connexion";
 "intro.register.button.title" = "S'enregistrer";
+"intro.google.button.title" = "Connexion via Google";
 "intro.tagline.one" = "ARGENT
 SANS
 FRONTIERES";

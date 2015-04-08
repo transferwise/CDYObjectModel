@@ -31,7 +31,7 @@
 
 IB_DESIGNABLE
 
-@interface LoginViewController () <UITextFieldDelegate, TouchIdPromptViewControllerDelegate>
+@interface LoginViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *emailTextField;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
@@ -168,27 +168,11 @@ IB_DESIGNABLE
 													objectModel:self.objectModel
 												   successBlock:^{
                                                        [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
-													   [weakSelf processSuccessfulLogin:YES];
+                                                       [weakSelf proceedFromSuccessfulLogin];
 												   }
-									  waitForDetailsCompletions:YES];
+									  waitForDetailsCompletions:YES
+                                                    touchIDHost:self.navigationController.parentViewController];
     });
-}
-
--(void)processSuccessfulLogin:(BOOL)useTouchId
-{
-    if(useTouchId && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
-    {
-        TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
-        prompt.touchIdDelegate = self;
-        [prompt presentOnViewController:self.navigationController.parentViewController
-						   withUsername:self.emailTextField.text
-							   password:self.passwordTextField.text];
-    }
-    else
-    {
-        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
-															   objectModel:self.objectModel];
-    }
 }
 
 - (IBAction)googleLogInPressed:(id)sender
@@ -198,8 +182,14 @@ IB_DESIGNABLE
 							   navigationController:self.navigationController
 										objectModel:self.objectModel
 									 successHandler:^{
-										 [weakSelf processSuccessfulLogin:NO];
+										 [weakSelf proceedFromSuccessfulLogin];
 									 }];
+}
+
+-(void)proceedFromSuccessfulLogin
+{
+    [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
+                                                           objectModel:self.objectModel];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
@@ -247,7 +237,7 @@ IB_DESIGNABLE
                                                            successBlock:^{
                                                                
                                                                [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"touchID"];
-															   [weakSelf processSuccessfulLogin:NO];
+                                                               [weakSelf proceedFromSuccessfulLogin];
                                                            }
                                                              errorBlock:^(NSError *error) {
                                                                  //Error logging in with stored credentials
@@ -296,17 +286,12 @@ IB_DESIGNABLE
                                                                      [alertView show];
                                                                  }
                                                              }
-                                                             waitForDetailsCompletions:YES];
+                                                             waitForDetailsCompletions:YES
+                                                            touchIDHost:nil];
             });
         }
     }];
     
-}
-
--(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
-{
-    [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
 @end
