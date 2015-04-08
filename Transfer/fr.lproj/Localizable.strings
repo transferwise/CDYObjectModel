@@ -763,3 +763,6 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 "repeat.transfer.creation" = "Rafraîchissement du taux de change";
 
+"deeplink.payment.detail.message" = "Raffraichissement des details...";
+"deeplink.verification.message" = "Raffraichissement des documents requis...";
+"deeplink.no.verification.message" = "Pas des documents requis!";

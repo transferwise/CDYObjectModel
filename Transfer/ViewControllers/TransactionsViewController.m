@@ -46,6 +46,7 @@
 #import "NewPaymentViewController.h"
 #import "LoggedInPaymentFlow.h"
 #import "ConnectionAwareViewController.h"
+#import "PullPaymentDetailsOperation.h"
 
 static const NSInteger refreshInterval = 300;
 
@@ -138,7 +139,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     
     [self.tableView reloadData];
     
-    if(self.refreshOnAppear || ABS([self.refreshTimestamp timeIntervalSinceNow]) > refreshInterval)
+    
+    if(self.deeplinkPaymentID)
+    {
+        [self presentDeeplinkPayment];
+    }
+    else if(self.refreshOnAppear || ABS([self.refreshTimestamp timeIntervalSinceNow]) > refreshInterval)
     {
         [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
         self.isViewAppearing = YES;
@@ -480,10 +486,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		return;
 	}
 
+    TRWProgressHUD *hud = nil;
+    if(self.deeplinkDisplayVerification)
+    {
+        hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"deeplink.verification.message", nil)];
+
+    }
+    
 	CheckPersonalProfileVerificationOperation *operation = [CheckPersonalProfileVerificationOperation operation];
 	[self setCheckOperation:operation];
     __weak typeof(self) weakSelf = self;
 	[operation setResultHandler:^(IdentificationRequired identificationRequired) {
+        [hud hide];
 		[weakSelf setCheckOperation:nil];
 
 		[weakSelf setIdentificationRequired:identificationRequired];
@@ -495,6 +510,22 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             [self configureForVerificationNeeded:somethingNeeded];
 			[weakSelf setShowIdentificationView:somethingNeeded];
 		}
+        
+        if(self.deeplinkDisplayVerification)
+        {
+            self.deeplinkDisplayVerification = NO;
+            if(somethingNeeded)
+            {
+                [self pushIdentificationScreen];
+            }
+            else
+            {
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"deeplink.no.verification.message", nil) message:nil];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+                return;
+            }
+        }
 	}];
 	[operation execute];
 }
@@ -781,6 +812,52 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
         [weakSelf presentViewController:wrapper animated:YES completion:nil];
     }];
+}
+
+#pragma mark - deeplinking
+-(void)presentDeeplinkPayment
+{
+    if(self.deeplinkPaymentID)
+    {
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"deeplink.payment.detail.message", nil)];
+        PullPaymentDetailsOperation* operation = [PullPaymentDetailsOperation operationWithPaymentId:self.deeplinkPaymentID];
+        operation.objectModel = self.objectModel;
+        NSNumber *deeplinkPaymentID = self.deeplinkPaymentID;
+        operation.resultHandler = ^(NSError* error){
+            [hud hide];
+            self.executedOperation = nil;
+            if(!error)
+            {
+                self.payments = [self.objectModel allPayments];
+                NSArray* loadedIds = [self.payments valueForKey:@"remoteId"];
+                if([loadedIds containsObject:deeplinkPaymentID])
+                {
+                    NSInteger index = [loadedIds indexOfObject:deeplinkPaymentID];
+                    [self selectPaymentAtIndex:index];
+                }
+            }
+            else
+            {
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+                return;
+            }
+        };
+        self.deeplinkPaymentID = nil;
+        self.executedOperation = operation;
+        [operation execute];
+    }
+}
+
+-(void)selectPaymentAtIndex:(NSUInteger)index
+{
+    if(index!= NSNotFound && index < [self.payments count])
+    {
+        [self showPayment:self.payments[index]];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:IPAD scrollPosition:UITableViewScrollPositionTop];
+    }
 }
 
 @end

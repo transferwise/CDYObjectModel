@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
+-(BOOL)handleDeeplink:(NSURL *)deepLink;
+
 @end

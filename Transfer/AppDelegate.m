@@ -218,8 +218,31 @@
 								  }];
 	
 	
+    if(!urlWasHandled)
+    {
+        urlWasHandled = [self handleURL:url];
+    }
+    
     return urlWasHandled;
 }
+
+#pragma mark - deeplinking
+
+-(BOOL)handleURL:(NSURL*)url
+{
+    if([[[url scheme] lowercaseString] isEqualToString:TRWDeeplinkScheme])
+    {
+        ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
+        if([root.wrappedViewController isKindOfClass:[MainViewController class]])
+        {
+            MainViewController* mainController = (MainViewController*) root.wrappedViewController;
+            return [mainController handleDeeplink:url];
+        }
+    }
+    return NO;
+}
+
+#pragma mark - oauth
 
 - (void)initOauth
 {
