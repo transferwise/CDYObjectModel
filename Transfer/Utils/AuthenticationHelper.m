@@ -151,19 +151,20 @@
 	self.executedOperation = loginOperation;
     [loginOperation setObjectModel:objectModel];
 	
+    __weak typeof(self) weakSelf = self;
     [loginOperation setResponseHandler:^(NSError *error, NSDictionary *response) {
 		if (!error)
 		{
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
-				[self logUserIn:token
+				[weakSelf logUserIn:token
 						  email:email
 				   successBlock:^{
                        if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
                        {
-                           self.touchIdSuccessBlock = successBlock;
+                           weakSelf.touchIdSuccessBlock = successBlock;
                            TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
-                           prompt.touchIdDelegate = self;
+                           prompt.touchIdDelegate = weakSelf;
                            [prompt presentOnViewController:touchIdHost
                                               withUsername:email
                                                   password:password];
@@ -231,13 +232,15 @@
 																														   keepPendingPayment:keepPendingPayment];
 	self.executedOperation = oauthLoginOperation;
 	
+    __weak typeof(self) weakSelf = self;
+    
 	[oauthLoginOperation setResponseHandler:^(NSError *error, NSDictionary *response) {
 		if (!error)
 		{
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
-				[self logUserIn:token
+				[weakSelf logUserIn:token
 						  email:email
 				   successBlock:successBlock
 							hud:hud
@@ -329,7 +332,7 @@
 	{
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[weakSelf authWithOAuthAccount:newAccount
-							  successBlock:self.oauthSuccessBlock
+							  successBlock:weakSelf.oauthSuccessBlock
 								isExisting:NO];
 		});
 	}
@@ -395,6 +398,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 {
 	[Credentials setUserToken:token];
 	[Credentials setUserEmail:email];
+    __weak typeof(self) weakSelf = self;
 	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS
 		[AppsFlyerTracker sharedTracker].customerUserID = objectModel.currentUser.pReference;
@@ -404,7 +408,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 		{
 			//Attempt to retreive the user's transactions prior to showing the first logged in screen.
 			PaymentsOperation *operation = [PaymentsOperation operationWithOffset:0];
-			self.executedOperation = operation;
+			weakSelf.executedOperation = operation;
 			[operation setObjectModel:objectModel];
 			[operation setCompletion:^(NSInteger totalCount, NSError *error)
 			 {
