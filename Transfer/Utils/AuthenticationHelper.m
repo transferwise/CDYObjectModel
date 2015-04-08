@@ -49,29 +49,12 @@
 @property (weak, nonatomic) UINavigationController *navigationController;
 @property (weak, nonatomic) ObjectModel *objectModel;
 @property (nonatomic, copy)	TRWActionBlock oauthSuccessBlock;
+@property (nonatomic, assign) BOOL hasRegisteredForOauthNotifications;
 @property (nonatomic, copy)	TRWActionBlock touchIdSuccessBlock;
 
 @end
 
 @implementation AuthenticationHelper
-
-#pragma mark - Init
-- (instancetype)init
-{
-	self = [super init];
-	if (self)
-	{
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(oauthSucess:)
-													 name:NXOAuth2AccountStoreAccountsDidChangeNotification
-												   object:[NXOAuth2AccountStore sharedStore]];
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(oauthFail:)
-													 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-												   object:[NXOAuth2AccountStore sharedStore]];
-	}
-	return self;
-}
 
 - (void)dealloc
 {
@@ -312,9 +295,10 @@
 - (void)presentOAuthLogInWithProvider:(NSString *)provider
 {
 	__weak typeof(self) weakSelf = self;
-	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
-								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
-									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
+    [self registerForOauthNotifications];
+    [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
+                                   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
+                                       OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
 																												   url:preparedURL
 																										   objectModel:weakSelf.objectModel];
 									   [weakSelf.navigationController pushViewController:controller
@@ -323,6 +307,37 @@
 }
 
 #pragma mark - OAuth notifications
+
+-(void)registerForOauthNotifications
+{
+    if(! self.hasRegisteredForOauthNotifications)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(oauthSucess:)
+                                                     name:NXOAuth2AccountStoreAccountsDidChangeNotification
+                                                   object:[NXOAuth2AccountStore sharedStore]];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(oauthFail:)
+                                                     name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+                                                   object:[NXOAuth2AccountStore sharedStore]];
+        self.hasRegisteredForOauthNotifications = YES;
+    }
+}
+
+-(void)deRegisterForOauthNotifications
+{
+    if(self.hasRegisteredForOauthNotifications)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NXOAuth2AccountStoreAccountsDidChangeNotification
+                                                      object:[NXOAuth2AccountStore sharedStore]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+                                                      object:[NXOAuth2AccountStore sharedStore]];
+        self.hasRegisteredForOauthNotifications = NO;
+    }
+}
+
 -(void)oauthSucess:(NSNotification *)note
 {
 	MCLog(@"OAuth success");
@@ -336,6 +351,7 @@
 								isExisting:NO];
 		});
 	}
+    [self deRegisterForOauthNotifications];
 }
 
 -(void)oauthFail:(NSNotification *)note
@@ -354,6 +370,7 @@
 		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 		[alertView show];
 	}
+    [self deRegisterForOauthNotifications];
 }
 
 #pragma mark - Logout
