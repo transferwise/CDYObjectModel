@@ -30,6 +30,11 @@
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) PullPaymentDetailsOperation *executedOperation;
 @property (nonatomic, assign) NSHTTPCookieAcceptPolicy bufferedPolicy;
+@property (weak, nonatomic) IBOutlet UIView *errorView;
+@property (weak, nonatomic) IBOutlet UIImageView *errorImage;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel
+;
+@property (weak, nonatomic) IBOutlet UIButton *errorButton;
 
 @end
 
@@ -70,6 +75,12 @@
 {
     [super viewDidAppear:animated];
     [self loadCardView];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.errorView.hidden = YES;
 }
 
 
@@ -130,17 +141,20 @@
 }
 
 - (void)loadPaymentPage {
-    __weak typeof(self) weakSelf = self;
-    self.initialRequestProvider(^(NSURLRequest* request){
-        if(request)
-        {
-            [weakSelf.webView loadRequest:request];
-        }
-        else
-        {
-            [weakSelf.webView loadHTMLString:@"" baseURL:nil];
-        }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showError];
     });
+//    __weak typeof(self) weakSelf = self;
+//    self.initialRequestProvider(^(NSURLRequest* request){
+//        if(request)
+//        {
+//            [weakSelf.webView loadRequest:request];
+//        }
+//        else
+//        {
+//            [weakSelf.webView loadHTMLString:@"" baseURL:nil];
+//        }
+//    });
 }
 
 - (void)pushNextScreen {
@@ -246,20 +260,18 @@
 
 -(void)showError
 {
-    CustomInfoViewController * customInfo = [[CustomInfoViewController alloc] init];
-    customInfo.infoText = NSLocalizedString(@"upload.money.card.no.payment.message", nil);
-    customInfo.actionButtonTitle = NSLocalizedString(@"upload.money.card.retry", nil);
-    customInfo.infoImage = [UIImage imageNamed:@"RedCross"];
-    __weak typeof(self) weakSelf = self;
-    __weak typeof(customInfo) weakCustomInfo = customInfo;
-    customInfo.actionButtonBlock = ^{
-        [weakCustomInfo dismiss];
-        [weakSelf loadCardView];
-    };
-    [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
+    self.errorLabel.text = NSLocalizedString(@"upload.money.card.no.payment.message", nil);
+    [self.errorButton setTitle:NSLocalizedString(@"upload.money.card.retry", nil) forState:UIControlStateNormal];
+    self.errorImage.image = [UIImage imageNamed:@"RedCross"];
+    self.errorView.hidden = NO;
+    self.errorView.alpha = 0.0f;
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.errorView.alpha = 1.0f;
+    } completion:nil];
 }
 
 - (IBAction)refreshTapped:(id)sender {
+    self.errorView.hidden = YES;
     [self loadCardView];
 }
 
