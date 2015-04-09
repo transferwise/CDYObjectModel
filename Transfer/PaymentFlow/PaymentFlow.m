@@ -87,7 +87,11 @@
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
 						 isExisting:(BOOL)isExisting
 {
-    [[Mixpanel sharedInstance] sendPageView:@"Your details"];
+    PendingPayment *pendingPayment = self.objectModel.pendingPayment;
+    if(pendingPayment)
+    {
+        [[Mixpanel sharedInstance] sendPageView:@"Your details" withProperties:[pendingPayment trackingProperties]];
+    }
 
 	id<PersonalProfileValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePersonalProfile];
 	
@@ -130,7 +134,7 @@
 				updateRecipient:(Recipient*)updateRecipient
 {
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
-    [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
+    [[Mixpanel sharedInstance] sendPageView:@"Select recipient" withProperties:[self.objectModel.pendingPayment trackingProperties]];
 	
     if([self isAZOrOK])
     {
@@ -649,7 +653,7 @@
             details[@"userType"] = createdPayment.profileUsed;
 
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Transfer created" properties:details];
+            [mixpanel track:@"Payment created" properties:details];
             
 #if !TARGET_IPHONE_SIMULATOR
             if ([weakSelf.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])

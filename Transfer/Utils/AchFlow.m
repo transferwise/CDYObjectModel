@@ -24,6 +24,7 @@
 #import "UIViewController+SwitchToViewController.h"
 #import "NSError+TRWErrors.h"
 #import "GoogleAnalytics.h"
+#import "Mixpanel+Customisation.h"
 
 #define WAIT_SCREEN_MIN_SHOW_TIME	2
 
@@ -84,9 +85,11 @@
 - (UIViewController *)getAccountAndRoutingNumberController
 {
 	[[GoogleAnalytics sharedInstance] sendScreen:@"ACH step 1 shown"];
+    [[Mixpanel sharedInstance] sendPageView:@"ACH step 1"];
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
 											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller, AchDetailsViewController *detailsController) {
 												  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH waiting 1 shown"];
+                                                  [[Mixpanel sharedInstance] sendPageView:@"ACH waiting 1"];
 												  
 												  __weak typeof(self) weakSelf = self;
 												  [self setOperationWithNavigationController:controller
@@ -149,11 +152,13 @@
 - (UIViewController *)getLoginForm:(AchBank *)form
 {
 	[[GoogleAnalytics sharedInstance] sendScreen:@"ACH step 2 shown"];
+    [[Mixpanel sharedInstance] sendPageView:@"ACH step 2"];
 	return [[AchLoginViewController alloc] initWithForm:form
 												payment:self.payment
 											objectModel:self.objectModel
 										   initiatePull:^(NSDictionary *form, UINavigationController *controller){
 											   [[GoogleAnalytics sharedInstance] sendScreen:@"ACH waiting 2 shown"];
+                                               [[Mixpanel sharedInstance] sendPageView:@"ACH waiting 2"];
 											   
 											   __weak typeof(self) weakSelf = self;
 											   [self setOperationWithNavigationController:controller

@@ -11,5 +11,6 @@
 @interface Mixpanel (Customisation)
 
 - (void)sendPageView:(NSString *)page;
+- (void)sendPageView:(NSString *)page withProperties:(NSDictionary*)properties;
 
 @end

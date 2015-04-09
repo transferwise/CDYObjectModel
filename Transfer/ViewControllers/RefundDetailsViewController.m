@@ -41,6 +41,7 @@
 #import "GoogleAnalytics.h"
 #import "ColoredButton.h"
 #import "PendingPayment+ColoredButton.h"
+#import "Mixpanel+Customisation.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -209,6 +210,11 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
     
     [[GoogleAnalytics sharedInstance] refundDetailsScreenShown];
+    PendingPayment* pendingPayment = [self.objectModel pendingPayment];
+    if(pendingPayment)
+    {
+        [[Mixpanel sharedInstance] sendPageView:@"Refund account" withProperties:[pendingPayment trackingProperties]];
+    }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];

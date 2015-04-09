@@ -28,6 +28,7 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
+#import "Mixpanel+Customisation.h"
 
 IB_DESIGNABLE
 
@@ -116,6 +117,7 @@ IB_DESIGNABLE
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
+    [[Mixpanel sharedInstance] sendPageView:@"Login"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

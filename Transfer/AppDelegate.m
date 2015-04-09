@@ -87,6 +87,12 @@
     
 	UIViewController* controller;
     
+    if([Credentials userLoggedIn])
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+    }
+    
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];

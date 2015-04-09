@@ -201,6 +201,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
+    [[Mixpanel sharedInstance] sendPageView:@"Bank transfer payment"];
     [super viewDidAppear:animated];
 }
 
