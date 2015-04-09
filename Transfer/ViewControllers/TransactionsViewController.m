@@ -839,7 +839,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             }
             else
             {
-                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"deeplink.payment.detail.error", nil)];
                 [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
                 [alertView show];
                 return;
