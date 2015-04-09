@@ -141,20 +141,17 @@
 }
 
 - (void)loadPaymentPage {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self showError];
+    __weak typeof(self) weakSelf = self;
+    self.initialRequestProvider(^(NSURLRequest* request){
+        if(request)
+        {
+            [weakSelf.webView loadRequest:request];
+        }
+        else
+        {
+            [weakSelf.webView loadHTMLString:@"" baseURL:nil];
+        }
     });
-//    __weak typeof(self) weakSelf = self;
-//    self.initialRequestProvider(^(NSURLRequest* request){
-//        if(request)
-//        {
-//            [weakSelf.webView loadRequest:request];
-//        }
-//        else
-//        {
-//            [weakSelf.webView loadHTMLString:@"" baseURL:nil];
-//        }
-//    });
 }
 
 - (void)pushNextScreen {
