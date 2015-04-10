@@ -35,7 +35,8 @@
     [Credentials setUserEmail:email];
     User *user = [self userWithEmail:email];
     [user setPReference:data[@"pReference"]];
-    [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":user.pReference}];
+    NSInteger mixpanelId = [user deducedId];
+    [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":@(mixpanelId)}];
 
     NSDictionary *personalProfileData = data[@"personalProfile"];
     if (personalProfileData) {

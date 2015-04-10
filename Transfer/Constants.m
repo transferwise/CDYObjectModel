@@ -50,6 +50,12 @@ NSString *const TRWToSUrl = @"/terms-of-use";
 NSString *const TRWPrivacyUrl = @"/privacy-policy";
 NSString *const TRWStateSpecificTermsUrl = @"/terms-and-conditions?execution=e1s2";
 
+#if DEV_VERSION
+NSString *const TRWDeeplinkScheme = @"transferdev";
+#else
+NSString *const TRWDeeplinkScheme = @"transferwise";
+#endif
+
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
 }
@@ -58,6 +64,7 @@ NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
 NSString *AppsFlyerIdentifier = @"612261027;6g8vUfZXve88zupKDb94pk";
 
 NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
+NSString *const TRWIsRegisteredSettingsKey = @"isRegistered";
 
 #if DEV_VERSION
 NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";

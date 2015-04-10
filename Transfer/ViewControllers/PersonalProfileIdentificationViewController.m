@@ -24,6 +24,8 @@
 #import "ColoredButton.h"
 #import "MOMStyle.h"
 #import "NetworkErrorCodes.h"
+#import "Mixpanel+Customisation.h"
+#import "ObjectModel+PendingPayments.h"
 
 #define textCellHeight (IPAD?70.0f:60.0f)
 
@@ -83,6 +85,10 @@
     [self.tableView registerNib:[UINib nibWithNibName:IPAD?@"TextEntryCellValidation":@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     
     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Personal verification"]];
+    if(self.objectModel.pendingPayment)
+    {
+        [[Mixpanel sharedInstance] sendPageView:@"Verification" withProperties:[self.objectModel.pendingPayment trackingProperties]];
+    }
     
     
 }

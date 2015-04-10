@@ -22,7 +22,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 @interface MoneyEntryCell () <UITextFieldDelegate, NSFetchedResultsControllerDelegate, CurrencySelectorDelegate>
 
-@property (nonatomic, strong) IBOutlet UITextField *moneyField;
+@property (nonatomic, strong) IBOutlet FloatingLabelTextField *moneyField;
 @property (nonatomic, strong) Currency *selectedCurrency;
 @property (nonatomic, strong) Currency *forced;
 @property (nonatomic, strong) PairSourceCurrency *source;
@@ -282,6 +282,11 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 - (void)setMoneyValue:(NSString *)moneyString
 {
     [self.moneyField setText:moneyString];
+}
+
+- (void)setTitleHighlighted:(BOOL)isHighlighted;
+{
+    [self.titleLabel setTextColor:[UIColor colorFromStyle:isHighlighted?@"TWElectricBlue":self.titleLabel.fontStyle]];
 }
 
 @end

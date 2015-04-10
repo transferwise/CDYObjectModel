@@ -171,7 +171,7 @@
     }
     
     PlainPresentationCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.reference.title", nil)] text:method.paymentReference];
+    [referenceCell configureWithTitle: [self addColon:[NSString localizedStringForKey:[NSString stringWithFormat:@"upload.money.reference.title.%@",self.payment.sourceCurrency.code] withFallback:@"upload.money.reference.title"]] text:method.paymentReference];
     [presentedCells addObject:referenceCell];
 
     if ([currencyCode caseInsensitiveCompare:@"EUR"]==NSOrderedSame)
@@ -201,6 +201,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
+    [[Mixpanel sharedInstance] sendPageView:@"Bank transfer payment"];
     [super viewDidAppear:animated];
 }
 

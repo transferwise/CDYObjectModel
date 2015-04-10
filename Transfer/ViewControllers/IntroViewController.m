@@ -22,6 +22,7 @@
 #import "ConnectionAwareViewController.h"
 #import "LoginViewController.h"
 #import "Mixpanel+Customisation.h"
+#import "AuthenticationHelper.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -38,11 +39,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteRegisterButton;
+@property (weak, nonatomic) IBOutlet UIButton *googleButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteGoogleButton;
 @property (weak, nonatomic) IBOutlet UIView *upfrontRegistrationcontainer;
 @property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *blueButtons;
 @property (nonatomic, assign) CGSize lastLaidoutPageSize;
+
+@property (strong, nonatomic) AuthenticationHelper *loginHelper;
 
 - (IBAction)startPressed;
 
@@ -50,12 +55,9 @@
 
 @implementation IntroViewController
 
-- (id)init
+-(id)init
 {
     self = [super initWithNibName:@"IntroViewController" bundle:nil];
-    if (self)
-	{
-    }
     return self;
 }
 
@@ -78,6 +80,9 @@
     
     [self.loginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
     [self.whiteLoginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
+    
+    [self.googleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteGoogleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -119,8 +124,22 @@
     self.upfrontRegistrationcontainer.hidden = !self.requireRegistration;
     self.noRegistrationContainer.hidden = self.requireRegistration;
     
-    [[Mixpanel sharedInstance] sendPageView:@"Intro screen"];
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Intro screen"];
+    self.loginHelper = [[AuthenticationHelper alloc] init];
+    
+    
+    if(self.requireRegistration)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        BOOL isRegistered = [defaults boolForKey:TRWIsRegisteredSettingsKey];
+        NSString *isRegisteredString = isRegistered?@"true":@"false";
+        [[Mixpanel sharedInstance] sendPageView:@"Intro" withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Intro screen"];
+    }
+    else
+    {
+        [[Mixpanel sharedInstance] sendPageView:@"What's new"];
+        [[GoogleAnalytics sharedInstance] sendScreen:@"What's new screen"];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -345,6 +364,16 @@
     SignUpViewController *signup = [[SignUpViewController alloc] init];
     signup.objectModel = self.objectModel;
     [self fadeInDismissableViewController:signup];
+}
+- (IBAction)googleTapped:(id)sender {
+    __weak typeof(self) weakSelf = self;
+    [self.loginHelper performOAuthLoginWithProvider:GoogleOAuthServiceName
+                               navigationController:self.navigationController
+                                        objectModel:self.objectModel
+                                     successHandler:^{
+                                         [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:weakSelf objectModel:weakSelf.objectModel];
+                                     }];
+    
 }
 
 -(void)fadeInDismissableViewController:(UIViewController*)viewController

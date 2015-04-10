@@ -14,6 +14,8 @@
 #import "Currency.h"
 #import "PayInMethod.h"
 #import "UploadMoneyViewController.h"
+#import "GoogleAnalytics.h"
+#import "Mixpanel+Customisation.h"
 
 #define PaymentMethodCellName @"PaymentMethodCell"
 
@@ -34,6 +36,8 @@
 	self.sortedPayInMethods = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
 			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type]integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type]integerValue];
 	}];
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Payment method selector"];
+    [[Mixpanel sharedInstance] sendPageView:@"Payment method selector"];
 }
 
 -(void)viewWillAppear:(BOOL)animated

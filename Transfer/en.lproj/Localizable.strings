@@ -486,6 +486,7 @@ This can't be undone.";
 "upload.money.notification.label" = "Your payment will be activated when we receive your deposit.";
 "upload.money.pulling.data.message" = "Pulling data...";
 "upload.money.reference.title" = "Reference";
+"upload.money.reference.title.CHF" = "Reason for payment";
 "upload.money.title" = "How do you want to pay?";
 "upload.money.title.single.method" = "How to pay";
 "upload.money.to.title" = "To";
@@ -626,6 +627,7 @@ Please attach your documents to this email and send it our way.<br />
 "intro.start.button.title" = "Got it";
 "intro.login.button.title" = "Log in";
 "intro.register.button.title" = "Register";
+"intro.google.button.title" = "Connect via Google";
 "intro.tagline.one" = "MONEY
 WITHOUT
 BORDERS";
@@ -774,3 +776,9 @@ We'll send you an email in order to let you choose a new password.";
 "no.payin.methods.template" = "It is not possible to proceed with this %@ transfer at the moment. You may need to verify yourself first on TransferWise.com";
 
 "repeat.transfer.creation" = "Applying current exchange rate";
+
+"deeplink.payment.detail.message" = "Refreshing details...";
+"deeplink.payment.detail.error" = "This transfer doesn't exist in your account.";
+"deeplink.verification.message" = "Refreshing documents required...";
+"deeplink.no.verification.message" = "No verification needed!";
+
