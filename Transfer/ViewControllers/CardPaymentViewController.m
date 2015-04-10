@@ -18,6 +18,8 @@
 #import "TransferDetailsViewController.h" 
 #import "FeedbackCoordinator.h"
 #import "CustomInfoViewController.h"
+#import "GoogleAnalytics.h"
+#import "Mixpanel+Customisation.h"
 
 
 #ifdef DEV_VERSION
@@ -75,6 +77,9 @@
 {
     [super viewDidAppear:animated];
     [self loadCardView];
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
+    [[Mixpanel sharedInstance] sendPageView:@"Debit card payment"];
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated

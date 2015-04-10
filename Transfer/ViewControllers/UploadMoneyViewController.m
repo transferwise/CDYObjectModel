@@ -79,18 +79,6 @@
     
 }
 
-- (void)willSelectViewController:(UIViewController *)controller atIndex:(NSUInteger)index
-{
-	if([controller isKindOfClass:[CardPaymentViewController class]])
-	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
-	}
-	else if([controller isKindOfClass:[BankTransferViewController class]])
-	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-	}
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

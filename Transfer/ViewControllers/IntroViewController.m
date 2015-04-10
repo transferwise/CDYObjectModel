@@ -126,8 +126,20 @@
     
     self.loginHelper = [[AuthenticationHelper alloc] init];
     
-    [[Mixpanel sharedInstance] sendPageView:@"Intro screen"];
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Intro screen"];
+    
+    if(self.requireRegistration)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        BOOL isRegistered = [defaults boolForKey:TRWIsRegisteredSettingsKey];
+        NSString *isRegisteredString = isRegistered?@"true":@"false";
+        [[Mixpanel sharedInstance] sendPageView:@"Intro" withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Intro screen"];
+    }
+    else
+    {
+        [[Mixpanel sharedInstance] sendPageView:@"What's new"];
+        [[GoogleAnalytics sharedInstance] sendScreen:@"What's new screen"];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

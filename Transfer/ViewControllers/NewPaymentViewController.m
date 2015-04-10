@@ -204,7 +204,7 @@ static NSUInteger const kRowYouSend = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?@"New payment":@"Start screen"];
-    [[Mixpanel sharedInstance] sendPageView:@"New payment"];
+    [[Mixpanel sharedInstance] sendPageView:@"New transfer"];
     
 	[self generateUsdLegaleze];
 }

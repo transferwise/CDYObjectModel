@@ -103,7 +103,7 @@
     
     self.referenceExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
     
-    [[Mixpanel sharedInstance] sendPageView:@"Confirm"];
+    [[Mixpanel sharedInstance] sendPageView:@"Confirmation" withProperties:[self.payment trackingProperties]];
     
     if([self.actionButton isKindOfClass:[ColoredButton class]])
     {

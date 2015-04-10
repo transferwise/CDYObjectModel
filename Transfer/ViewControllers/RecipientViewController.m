@@ -62,7 +62,6 @@
 #import "CountrySuggestionCellProvider.h"
 #import "StateSuggestionCellProvider.h"
 #import "RecipientUpdateOperation.h"
-#import "Mixpanel+Customisation.h"
 #import "TypeFieldHelper.h"
 #import "TargetCountryProvider.h"
 #import "CurrencyLoader.h"

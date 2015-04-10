@@ -490,6 +490,9 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     [objectModel markIntroShown];
     [objectModel markExistingUserIntroShown];
     
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+    
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UIWindow* window = appDelegate.window;
     
