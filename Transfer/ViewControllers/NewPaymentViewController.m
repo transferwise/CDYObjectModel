@@ -520,6 +520,9 @@ static NSUInteger const kRowYouSend = 0;
         }
     }
     
+    [self.theyReceiveCell setTitleHighlighted:self.result.isFixedTargetPayment];
+    [self.youSendCell setTitleHighlighted:!self.result.isFixedTargetPayment];
+    
     PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency target:self.theyReceiveCell.currency];
     [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];
     
