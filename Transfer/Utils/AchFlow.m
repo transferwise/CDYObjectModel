@@ -65,6 +65,7 @@
 	
 	sharedObject.payment = payment;
 	sharedObject.objectModel = objectModel;
+    sharedObject.successHandler = successHandler;
 	
 	return sharedObject;
 }
@@ -238,6 +239,10 @@
 																											[weakSelf.objectModel performBlock:^{
 																												[weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
 																											}];
+                                                                                                            if(weakSelf.successHandler)
+                                                                                                            {
+                                                                                                                weakSelf.successHandler();
+                                                                                                            }
 																										}
 																												flow:weakSelf];
 																		  }
