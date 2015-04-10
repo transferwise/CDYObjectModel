@@ -7,5 +7,6 @@
 - (BusinessProfile *)businessProfileObject;
 - (BOOL)personalProfileFilled;
 - (BOOL)businessProfileFilled;
+- (NSInteger)deducedId;
 
 @end
