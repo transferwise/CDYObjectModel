@@ -232,8 +232,9 @@
 {
     if([[[url scheme] lowercaseString] isEqualToString:TRWDeeplinkScheme])
     {
+        
         ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
-        if([root.wrappedViewController isKindOfClass:[MainViewController class]])
+        if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
         {
             MainViewController* mainController = (MainViewController*) root.wrappedViewController;
             return [mainController handleDeeplink:url];
