@@ -225,6 +225,7 @@
 																		  else
 																		  {
 																			  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH success shown"];
+                                                                              [[Mixpanel sharedInstance] sendPageView:@"ACH success"];
 																			  [weakSelf presentCustomInfoWithSuccess:YES
 																										  controller:controller
 																											 message:@"ach.success.message"
