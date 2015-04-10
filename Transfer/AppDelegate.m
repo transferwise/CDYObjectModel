@@ -171,6 +171,7 @@
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
 #else
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
+    [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
 #endif
 	
 	[AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
@@ -178,8 +179,6 @@
 	
 	
 	[NanTracking setFbAppId:@"274548709260402"];
-	
-	[Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
 	
 	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 	
