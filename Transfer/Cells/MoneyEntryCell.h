@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TextEntryCell.h"
+#import "FloatingLabelTextField.h"
 
 @class Currency;
 
@@ -17,7 +18,7 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 
 @interface MoneyEntryCell : TextEntryCell
 
-@property (nonatomic, strong, readonly) UITextField *moneyField;
+@property (nonatomic, strong, readonly) FloatingLabelTextField *moneyField;
 @property (nonatomic, strong) CurrencyChangBlock currencyChangedHandler;
 @property (nonatomic, strong) NSFetchedResultsController *currencies;
 @property (nonatomic, weak) UIViewController* hostForCurrencySelector;
@@ -35,5 +36,6 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 - (void)setForcedCurrency:(Currency *)currency;
 - (void)setMoneyValue:(NSString *)moneyString;
 - (void)initializeSelectorBackground;
+- (void)setTitleHighlighted:(BOOL)isHighlighted;
 
 @end
