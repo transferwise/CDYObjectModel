@@ -16,6 +16,8 @@ typedef NS_ENUM(short, ConnectionAwareAnimationStyle)
 
 @interface ConnectionAwareViewController : UIViewController
 
+@property (nonatomic, readonly) UIViewController* wrappedViewController;
+
 /**
  *  convenience method for making the supplied viewcontroller the root of a navigationcontroller, in its turn wrapped in a connection aware view controller.
  *

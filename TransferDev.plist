@@ -36,10 +36,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.transferwise.dev.Transferwise</string>
+			<string>TransferdevDeeplink</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.transferwise.dev.Transferwise</string>
+				<string>transferdev</string>
 			</array>
 		</dict>
 	</array>

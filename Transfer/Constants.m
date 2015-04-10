@@ -50,6 +50,12 @@ NSString *const TRWToSUrl = @"/terms-of-use";
 NSString *const TRWPrivacyUrl = @"/privacy-policy";
 NSString *const TRWStateSpecificTermsUrl = @"/terms-and-conditions?execution=e1s2";
 
+#if DEV_VERSION
+NSString *const TRWDeeplinkScheme = @"transferdev";
+#else
+NSString *const TRWDeeplinkScheme = @"transferwise";
+#endif
+
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
 }
@@ -58,9 +64,19 @@ NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
 NSString *AppsFlyerIdentifier = @"612261027;6g8vUfZXve88zupKDb94pk";
 
 NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
+NSString *const TRWIsRegisteredSettingsKey = @"isRegistered";
 
 #if DEV_VERSION
 NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";
+NSString *const GoogleOAuthClientSecret = @"18voZHT-sCWXExY_1ZQZ35nC";
 #else
 NSString *const GoogleOAuthClientId = @"701373431167-p3ojp62mps5f444o28dfrdpr8uanbbec.apps.googleusercontent.com";
+NSString *const GoogleOAuthClientSecret = @"PUOv0g5LvP3qPxUGVOzGHcnu";
 #endif
+
+NSString *const GoogleOAuthAuthorizationUrl = @"https://accounts.google.com/o/oauth2/auth";
+NSString *const GoogleOAuthTokenUrl = @"https://accounts.google.com/o/oauth2/token";
+NSString *const GoogleOAuthRedirectUrl = @"http://localhost/";
+NSString *const GoogleOAuthServiceName = @"Google";
+NSString *const GoogleOAuthEmailScope = @"https://www.googleapis.com/auth/userinfo.email";
+NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/plus.profile.emails.read";

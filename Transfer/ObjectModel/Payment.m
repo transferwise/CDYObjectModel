@@ -225,4 +225,8 @@ static NSDateFormatter *__shortDateFormatter;
     return status;
 }
 
+-(NSDictionary*)trackingProperties
+{
+    return @{@"SourceCurrency":self.sourceCurrency.code,@"SourceAmount":self.payInString};
+}
 @end

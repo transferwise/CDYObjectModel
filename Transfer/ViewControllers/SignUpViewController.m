@@ -22,6 +22,7 @@
 #import "NavigationBarCustomiser.h"
 #import "AuthenticationHelper.h"
 #import "MOMStyle.h"
+#import "Mixpanel+Customisation.h"
 
 
 @interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate>
@@ -142,6 +143,7 @@
     [NavigationBarCustomiser setWhite];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
+    [[Mixpanel sharedInstance] sendPageView:@"Registration"];
     [[GoogleAnalytics sharedInstance] sendScreen:@"Start screen register"];
 }
 

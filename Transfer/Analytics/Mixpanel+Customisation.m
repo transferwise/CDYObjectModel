@@ -15,4 +15,8 @@
     [self track:[NSString stringWithFormat:@"Page View - %@", page]];
 }
 
+- (void)sendPageView:(NSString *)page withProperties:(NSDictionary*)properties
+{
+    [self track:[NSString stringWithFormat:@"Page View - %@", page] properties:properties];
+}
 @end

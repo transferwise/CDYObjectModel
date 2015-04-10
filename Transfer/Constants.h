@@ -53,6 +53,7 @@ extern NSString *const TRWImpactRadiusAppId;
 extern NSString *const TRWGoogleTagManagerContainerId;
 
 extern NSString *const TRWAppInstalledSettingsKey;
+extern NSString *const TRWIsRegisteredSettingsKey;
 
 
 extern NSString *const TransferSandboxUsername;
@@ -72,6 +73,8 @@ extern NSString *const TRWRateAppUrl;
 extern NSString *const TRWToSUrl;
 extern NSString *const TRWPrivacyUrl;
 extern NSString *const TRWStateSpecificTermsUrl;
+
+extern NSString *const TRWDeeplinkScheme;
 
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);

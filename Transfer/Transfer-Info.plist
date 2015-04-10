@@ -38,10 +38,10 @@
 			<key>CFBundleURLIconFile</key>
 			<string></string>
 			<key>CFBundleURLName</key>
-			<string>com.transferwise.Transferwise</string>
+			<string>TransferwiseDeeplink</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.transferwise.Transferwise</string>
+				<string>transferwise</string>
 			</array>
 		</dict>
 	</array>

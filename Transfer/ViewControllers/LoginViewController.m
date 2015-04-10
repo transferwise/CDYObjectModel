@@ -28,11 +28,11 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
-#import <GoogleOpenSource/GoogleOpenSource.h>
+#import "Mixpanel+Customisation.h"
 
 IB_DESIGNABLE
 
-@interface LoginViewController () <UITextFieldDelegate, TouchIdPromptViewControllerDelegate>
+@interface LoginViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *emailTextField;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
@@ -61,7 +61,7 @@ IB_DESIGNABLE
     return self;
 }
 
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self)
@@ -71,10 +71,9 @@ IB_DESIGNABLE
     return self;
 }
 
--(void)commonSetup
+- (void)commonSetup
 {
-    _loginHelper = [[AuthenticationHelper alloc] init];
-	[self initGPlus];
+	_loginHelper = [[AuthenticationHelper alloc] init];
 }
 
 #pragma mark - View Life-cycle
@@ -118,6 +117,7 @@ IB_DESIGNABLE
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
+    [[Mixpanel sharedInstance] sendPageView:@"Login"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -126,61 +126,6 @@ IB_DESIGNABLE
 	[super viewWillDisappear:animated];
 }
 
-#pragma mark - Google Plus
-- (void)initGPlus
-{
-	GPPSignIn *signIn = [GPPSignIn sharedInstance];
-	signIn.shouldFetchGooglePlusUser = NO;
-	signIn.shouldFetchGoogleUserEmail = YES;
-	signIn.clientID = GoogleOAuthClientId;
-	signIn.scopes = @[ @"https://www.googleapis.com/auth/plus.profile.emails.read" ];
-	signIn.delegate = self;
-	signIn.attemptSSO = YES;
-}
-
-- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
-				   error:(NSError *)error
-{
-	if (error)
-	{
-		//sign out if error happens so user can try another account.
-		[[GPPSignIn sharedInstance] signOut];
-		
-		NSString *message = nil;
-		//400 token has been revoked
-		//401 means that the token is probably expired
-		if (error.code == 400 || error.code == 401)
-		{
-			message = NSLocalizedString(@"login.error.oauth.expired", nil);
-		}
-		
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-														   message:message];
-		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-		[alertView show];
-		
-		[[GoogleAnalytics sharedInstance] sendAppEvent:@"OAuthTokenError" withLabel:[NSString stringWithFormat:@"code: %lu", (long)error.code]];
-		
-		return;
-	}
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		__weak typeof(self) weakSelf = self;
-		[weakSelf.loginHelper preformOAuthLoginWithToken:auth.accessToken
-												provider:@"Google"
-									  keepPendingPayment:NO
-									navigationController:weakSelf.navigationController
-											 objectModel:weakSelf.objectModel
-											successBlock:^{
-												[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-												[weakSelf processSuccessfulLogin:NO];
-											}
-											  errorBlock:^{
-												  [[GPPSignIn sharedInstance] signOut];
-											  }
-							   waitForDetailsCompletions:YES];
-	});
-}
 
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -225,40 +170,33 @@ IB_DESIGNABLE
 													objectModel:self.objectModel
 												   successBlock:^{
                                                        [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
-													   [weakSelf processSuccessfulLogin:YES];
+                                                       [weakSelf proceedFromSuccessfulLogin];
 												   }
-									  waitForDetailsCompletions:YES];
+									  waitForDetailsCompletions:YES
+                                                    touchIDHost:self.navigationController.parentViewController];
     });
 }
 
--(void)processSuccessfulLogin:(BOOL)useTouchId
+- (IBAction)googleLogInPressed:(id)sender
 {
-    if(useTouchId && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
-    {
-        TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
-        prompt.touchIdDelegate = self;
-        [prompt presentOnViewController:self.navigationController.parentViewController
-						   withUsername:self.emailTextField.text
-							   password:self.passwordTextField.text];
-    }
-    else
-    {
-        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
-															   objectModel:self.objectModel];
-    }
+	__weak typeof(self) weakSelf = self;
+	[self.loginHelper performOAuthLoginWithProvider:GoogleOAuthServiceName
+							   navigationController:self.navigationController
+										objectModel:self.objectModel
+									 successHandler:^{
+										 [weakSelf proceedFromSuccessfulLogin];
+									 }];
 }
 
-- (IBAction)googleLoginPressed:(id)sender
+-(void)proceedFromSuccessfulLogin
 {
-	if(![[GPPSignIn sharedInstance] hasAuthInKeychain] || ![[GPPSignIn sharedInstance] trySilentAuthentication])
-	{
-		[[GPPSignIn sharedInstance] authenticate];
-	}
+    [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
+                                                           objectModel:self.objectModel];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
-    [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+	[self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
 }
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
@@ -301,7 +239,7 @@ IB_DESIGNABLE
                                                            successBlock:^{
                                                                
                                                                [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"touchID"];
-															   [weakSelf processSuccessfulLogin:NO];
+                                                               [weakSelf proceedFromSuccessfulLogin];
                                                            }
                                                              errorBlock:^(NSError *error) {
                                                                  //Error logging in with stored credentials
@@ -350,17 +288,12 @@ IB_DESIGNABLE
                                                                      [alertView show];
                                                                  }
                                                              }
-                                                             waitForDetailsCompletions:YES];
+                                                             waitForDetailsCompletions:YES
+                                                            touchIDHost:nil];
             });
         }
     }];
     
-}
-
--(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
-{
-    [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
 @end

@@ -468,7 +468,7 @@ C'est irréversible.";
 "upload.money.bank.name.title" = "Nom de la banque";
 "upload.money.bic.title" = "BIC";
 "upload.money.data.error.title" = "Erreur de donnée";
-"upload.money.done.button.title" = "J'ai fais ce virement";
+"upload.money.done.button.title" = "J'ai fait ce virement";
 "upload.money.cancel.button.title" = "Annuler";
 "upload.money.our.address.label" = "Notre adresse: %@";
 "upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit.";
@@ -623,6 +623,7 @@ Veuillez joindre vos documents à cet email et envoyez ce dernier.<br />
 "intro.start.button.title" = "Ok";
 "intro.login.button.title" = "Connexion";
 "intro.register.button.title" = "S'enregistrer";
+"intro.google.button.title" = "Connexion via Google";
 "intro.tagline.one" = "ARGENT
 SANS
 FRONTIERES";
@@ -762,3 +763,7 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 "repeat.transfer.creation" = "Rafraîchissement du taux de change";
 
+"deeplink.payment.detail.message" = "Raffraichissement...";
+"deeplink.payment.detail.error" = "Ce transfert n'éxiste pas dans votre compte";
+"deeplink.verification.message" = "Raffraichissement des documents requis...";
+"deeplink.no.verification.message" = "Aucun document requis!";

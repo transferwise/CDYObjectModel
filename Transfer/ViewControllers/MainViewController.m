@@ -241,16 +241,29 @@
 - (void)moveToPaymentsList
 {
     [self.tabController selectIndex:IPAD?1:0];
-    [self popToRootViewControllerAnimated:YES];
-	[self setViewControllers:@[self.tabController]];
+    [self setViewControllers:@[self.tabController] animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)moveToPaymentView
 {
-    [self.tabController selectIndex:IPAD?0:2];
-    [self popToRootViewControllerAnimated:YES];
-	[self setViewControllers:@[self.tabController]];
+    if(self.presentedViewController)
+    {
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.tabController selectIndex:IPAD?0:2];
+        }];
+    }
+    else
+    {
+        [self.tabController selectIndex:IPAD?0:2];
+    }
+    
+}
+
+- (void)moveToInvitationsView
+{
+    [self.tabController selectIndex:IPAD?2:1];
+    [self setViewControllers:@[self.tabController] animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -283,6 +296,49 @@
     {
         [self.tabController turnOffFlashForItemAtIndex:IPAD?0:2];
     }
+}
+
+
+#pragma mark - deeplink
+-(BOOL)handleDeeplink:(NSURL *)deepLink
+{
+    NSString *absolute = [deepLink absoluteString];
+    NSRange startingPoint = [absolute rangeOfString:@"://"];
+    NSString *parameterString = [absolute substringFromIndex:startingPoint.location + startingPoint.length];
+    NSArray *parameters = [parameterString componentsSeparatedByString:@"/"];
+    MCLog(@"Parameters: %@",parameters);
+    
+    if([parameters count] > 0)
+    {
+        if ([[parameters[0] lowercaseString] isEqualToString:@"details"])
+        {
+            if(parameters[1])
+            {
+                self.transactionsController.deeplinkDisplayVerification = NO;
+                self.transactionsController.deeplinkPaymentID = @([parameters[1] integerValue]);
+                [self moveToPaymentsList];
+            }
+            return YES;
+        }
+        else if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
+        {
+            [self moveToPaymentView];
+            return YES;
+        }
+        else if ([[parameters[0] lowercaseString] isEqualToString:@"invite"])
+        {
+            [self moveToInvitationsView];
+            return YES;
+        }
+        else if ([[parameters[0] lowercaseString] isEqualToString:@"verification"])
+        {
+            self.transactionsController.deeplinkDisplayVerification = YES;
+            self.transactionsController.deeplinkPaymentID = nil;
+            [self moveToPaymentsList];
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

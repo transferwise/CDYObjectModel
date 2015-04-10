@@ -204,7 +204,7 @@ static NSUInteger const kRowYouSend = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?@"New payment":@"Start screen"];
-    [[Mixpanel sharedInstance] sendPageView:@"New payment"];
+    [[Mixpanel sharedInstance] sendPageView:@"New transfer"];
     
 	[self generateUsdLegaleze];
 }
@@ -519,6 +519,9 @@ static NSUInteger const kRowYouSend = 0;
             [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
         }
     }
+    
+    [self.theyReceiveCell setTitleHighlighted:self.result.isFixedTargetPayment];
+    [self.youSendCell setTitleHighlighted:!self.result.isFixedTargetPayment];
     
     PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency target:self.theyReceiveCell.currency];
     [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];
