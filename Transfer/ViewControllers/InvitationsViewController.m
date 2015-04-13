@@ -166,7 +166,7 @@
             
             if(totalCount >0)
             {
-                [[GoogleAnalytics sharedInstance] sendEvent:GAExpatsfoundinab category:@"recipient" label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAExpatsfoundinab category:GACategoryRecipient label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
             }
             
         });

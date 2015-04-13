@@ -28,9 +28,9 @@
     if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
         ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
             if (granted) {
-                [[GoogleAnalytics sharedInstance] sendEvent:GAAbpermission category:@"permission" label:@"granted"];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAAbpermission category:GACategoryPermission label:@"granted"];
             } else {
-                [[GoogleAnalytics sharedInstance] sendEvent:GAAbpermission category:@"permission" label:@"declined"];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAAbpermission category:GACategoryPermission label:@"declined"];
             }
         });
     }

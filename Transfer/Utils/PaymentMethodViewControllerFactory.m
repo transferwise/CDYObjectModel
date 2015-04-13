@@ -56,7 +56,7 @@
                 [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentmade withLabel:methodName];
                 [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":methodName}];
             } else {
-                [[GoogleAnalytics sharedInstance] sendEvent:GAErrordebitcardpayment category:@"Error" label:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAErrordebitcardpayment category:GACategoryError label:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
             }
         }];
 

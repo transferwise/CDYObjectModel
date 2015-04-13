@@ -203,7 +203,7 @@ static NSUInteger const kRowYouSend = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
-    [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?GANewPayment:@"Start screen"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GANewPayment];
     [[Mixpanel sharedInstance] sendPageView:MPNewTransfer];
     
 	[self generateUsdLegaleze];

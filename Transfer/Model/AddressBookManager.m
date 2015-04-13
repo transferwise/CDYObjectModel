@@ -352,12 +352,12 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
                 if (granted) {
                     self.addressBook = addressBook;
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[GoogleAnalytics sharedInstance] sendEvent:GAGaabpermission category:@"permission" label:@"granted"];
+                        [[GoogleAnalytics sharedInstance] sendEvent:GAAbpermission category:GACategoryPermission label:@"granted"];
                         ABAddressBookRegisterExternalChangeCallback(self.addressBook, addressBookExternalChangeCallback, (__bridge void *)(self));
                     });
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[GoogleAnalytics sharedInstance] sendEvent:GAGaabpermission category:@"permission" label:@"declined"];
+                        [[GoogleAnalytics sharedInstance] sendEvent:GAAbpermission category:GACategoryPermission label:@"declined"];
                     });
                     self.addressBook = NULL;
                 }

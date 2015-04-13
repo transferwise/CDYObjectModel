@@ -227,15 +227,15 @@
 		[BankTransferViewController trackForPaymentMethod:weakSelf.method.type
 									   sourceCurrencyCode:weakSelf.payment.sourceCurrency.code
 										bankTransferBlock:^{
-											[[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:@"payment" label:@"BankTransfer"];
+											[[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"BankTransfer"];
                                             [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"BankTransfer"}];
 										}
 											   swiftBlock:^{
-												   [[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:@"payment" label:@"Swift"];
+												   [[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"Swift"];
                                                    [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"Swift"}];
 											   }
 												wireBlock:^{
-													[[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:@"payment" label:@"WireTransfer"];
+													[[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"WireTransfer"];
                                                     [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"WireTransfer"}];
 												}];
 		
