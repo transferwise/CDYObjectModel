@@ -53,7 +53,7 @@
 }
 
 - (void)presentFeedbackAlert {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"Seen review notification"];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:GAGaseenreviewnotification];
 
     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"feedback.alert.title", nil)
                                                        message:NSLocalizedString(@"feedback.alert.message", nil)];
@@ -79,12 +79,12 @@
 }
 
 - (void)sendToAppStorePage {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"Clicked review notification"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAGaclickedreviewnotification];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TRWRateAppUrl]];
 }
 
 - (void)presentFeedbackEmail {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"SendFeedbackClicked"];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:GAGasendfeedbackclicked];
 
 	if (![MFMailComposeViewController canSendMail]) {
 		TRWAlertView *alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title", nil)

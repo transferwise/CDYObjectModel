@@ -100,7 +100,7 @@
 
     [self.navigationController flattenStack];
 
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Success register"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GASuccessRegister];
 }
 
 

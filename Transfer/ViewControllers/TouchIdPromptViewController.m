@@ -41,16 +41,16 @@
 }
 
 - (IBAction)noTapped:(id)sender {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIdPrompted" withLabel:@"Declined"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GATouchidprompted withLabel:@"Declined"];
     [TouchIDHelper blockStorageForUsername:self.username];
     [self finish];
 }
 - (IBAction)yesTapped:(id)sender {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIdPrompted" withLabel:@"Accepted"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GATouchidprompted withLabel:@"Accepted"];
     [TouchIDHelper storeCredentialsWithUsername:self.username password:self.password result:^(BOOL success) {
         if(success)
         {
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIDSetup"];
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GATouchidsetup];
             [self finish];
         }
     }];

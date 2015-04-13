@@ -71,7 +71,7 @@
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 
     if (!self.registerUser) {
-        [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Login %@", self.provider]];
+        [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:GALoginFormat, self.provider]];
     }
     [NavigationBarCustomiser setWhite];
 }
@@ -111,7 +111,7 @@
     [[GoogleAnalytics sharedInstance] markLoggedIn];
 
     if ([Credentials userLoggedIn]) {
-        [[Mixpanel sharedInstance] track:@"UserLogged"];
+        [[Mixpanel sharedInstance] track:MPUserLogged];
         __weak typeof(self) weakSelf = self;
         [self.objectModel removeOtherUsers];
         [self.objectModel saveContext:^{
@@ -127,7 +127,7 @@
 #endif
                 }];
 
-                NSString *event = [absoluteString rangeOfString:@"/openId/registered"].location != NSNotFound ? @"UserRegistered" : @"UserLogged";
+                NSString *event = [absoluteString rangeOfString:@"/openId/registered"].location != NSNotFound ? GAUserregistered : GAUserlogged;
                 [[GoogleAnalytics sharedInstance] sendAppEvent:event withLabel:self.provider];
 
                 PaymentsOperation *operation = [PaymentsOperation operationWithOffset:0];

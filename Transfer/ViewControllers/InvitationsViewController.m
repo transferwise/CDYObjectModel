@@ -82,7 +82,7 @@
              animated:NO];
     [self loadInviteStatus];
     
-	[[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
+	[[GoogleAnalytics sharedInstance] sendScreen:GAInvite];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -166,7 +166,7 @@
             
             if(totalCount >0)
             {
-                [[GoogleAnalytics sharedInstance] sendEvent:@"expatsfoundinAB" category:@"recipient" label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAExpatsfoundinab category:@"recipient" label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
             }
             
         });

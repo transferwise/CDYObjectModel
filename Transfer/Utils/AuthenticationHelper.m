@@ -82,7 +82,7 @@
 										 if ([error isTransferwiseError])
 										 {
 											 NSString *message = [error localizedTransferwiseMessage];
-											 [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+											 [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginincorrectcredentials
 																					withLabel:message];
 											 alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 																				  message:message];
@@ -91,7 +91,7 @@
 										 {
 											 alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 																				  message:NSLocalizedString(@"login.error.generic.message", nil)];
-											 [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+											 [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginincorrectcredentials
 																					withLabel:error.localizedDescription];
 										 }
 										 
@@ -239,7 +239,7 @@
 			if ([error isTransferwiseError])
 			{
 				NSString *message = [error localizedTransferwiseMessage];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 													   withLabel:message];
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:message];
@@ -248,7 +248,7 @@
 			{
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:NSLocalizedString(@"login.error.generic.message", nil)];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 													   withLabel:error.localizedDescription];
 			}
 			
@@ -277,7 +277,7 @@
 				navigationController:self.navigationController
 						 objectModel:self.objectModel
 						successBlock:^{
-							[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
+							[[GoogleAnalytics sharedInstance] sendAppEvent:GAUserlogged withLabel:@"OAuth"];
 							successBlock();
 						}
 						  errorBlock:^{
@@ -363,7 +363,7 @@
 	//-1005 - user has cancelled logging in
 	if (error.code != -1005)
 	{
-		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+		[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 											   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
 		
 		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
@@ -445,7 +445,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 #endif
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 	
-	[[Mixpanel sharedInstance] track:@"UserLogged"];
+	[[Mixpanel sharedInstance] track:MPUserLogged];
 	
 	[objectModel saveContext:^{
 		if (!waitForDetailsCompletion)

@@ -55,7 +55,7 @@
 - (void)presentOnController:(UIViewController *)controller
 			   emailSubject:(NSString *)emailSubject
 {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport"];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:GAContactsupport];
     [self setPresentedOnController:controller];
     [self setEmailSubject:emailSubject];
 

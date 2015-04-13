@@ -117,11 +117,11 @@
 {
 	if (controller == self.personalProfile)
 	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Personal profile"];
+		[[GoogleAnalytics sharedInstance] sendScreen:GAPersonalProfile];
 	}
 	else if(controller == self.businessProfile)
 	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Business profile"];
+		[[GoogleAnalytics sharedInstance] sendScreen:GABusinessProfile];
 	}
 }
 

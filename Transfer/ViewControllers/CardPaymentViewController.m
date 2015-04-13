@@ -77,8 +77,8 @@
 {
     [super viewDidAppear:animated];
     [self loadCardView];
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
-    [[Mixpanel sharedInstance] sendPageView:@"Debit card payment"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GADebitCardPayment];
+    [[Mixpanel sharedInstance] sendPageView:MPDebitCardPayment];
 
 }
 

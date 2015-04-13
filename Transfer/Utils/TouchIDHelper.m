@@ -78,7 +78,7 @@ static BOOL validationInProgress;
                                               TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
                                               [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
                                               [alert show];
-                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:@"TouchIDError" withLabel:[error localizedDescription]];
+                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:GATouchiderror withLabel:[error localizedDescription]];
                                           }
                                           
                                           if(resultBlock)

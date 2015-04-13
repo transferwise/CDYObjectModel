@@ -75,7 +75,7 @@
 		}
 		else if (!available)
 		{
-			[[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
+			[[GoogleAnalytics sharedInstance] sendAlertEvent:GAEmailtakenduringpaymentalert withLabel:@""];
 			//TODO: Replace with login screen showing
 			NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain
 															 code:ResponseLocalError

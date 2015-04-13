@@ -116,8 +116,8 @@ IB_DESIGNABLE
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
-    [[Mixpanel sharedInstance] sendPageView:@"Login"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GALogin];
+    [[Mixpanel sharedInstance] sendPageView:MPLogin];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -169,7 +169,7 @@ IB_DESIGNABLE
 									   navigationControllerView:self.navigationController.view
 													objectModel:self.objectModel
 												   successBlock:^{
-                                                       [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
+                                                       [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserlogged withLabel:@"tw"];
                                                        [weakSelf proceedFromSuccessfulLogin];
 												   }
 									  waitForDetailsCompletions:YES
@@ -238,7 +238,7 @@ IB_DESIGNABLE
                                                             objectModel:self.objectModel
                                                            successBlock:^{
                                                                
-                                                               [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"touchID"];
+                                                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserlogged withLabel:@"touchID"];
                                                                [weakSelf proceedFromSuccessfulLogin];
                                                            }
                                                              errorBlock:^(NSError *error) {
@@ -267,12 +267,12 @@ IB_DESIGNABLE
                                                                              [TouchIDHelper clearCredentials];
                                                                              message = [message stringByAppendingString:@"\n"];
                                                                              message = [message stringByAppendingString:NSLocalizedString(@"touchid.cleared", nil)];
-                                                                             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentialsTouchID" withLabel:message];
+                                                                             [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginincorrectcredentialstouchid withLabel:message];
                                                                              self.touchIdButton.hidden = YES;
                                                                          }
                                                                          else
                                                                          {
-                                                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginErrorTouchID" withLabel:error.localizedDescription];
+                                                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginerrortouchid withLabel:error.localizedDescription];
                                                                          }
                                                                          alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
                                                                      }
@@ -280,7 +280,7 @@ IB_DESIGNABLE
                                                                      {
                                                                          alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
                                                                                                               message:NSLocalizedString(@"login.error.generic.message", nil)];
-                                                                         [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginErrorTouchID" withLabel:error.localizedDescription];
+                                                                         [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginerrortouchid withLabel:error.localizedDescription];
                                                                      }
                                                                      
                                                                      [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];

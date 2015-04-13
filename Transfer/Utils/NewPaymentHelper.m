@@ -92,7 +92,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
     self.currentOperation = operation;
     [operation execute];
     
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferSelected"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GARepeattransferselected];
     
 }
 

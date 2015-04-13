@@ -22,15 +22,15 @@
 @implementation PhoneBookProfileSelector
 
 - (void)presentOnController:(UIViewController *)controller completionHandler:(PhoneBookProfileBlock)completion {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"AbImportClicked"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAAbimportclicked];
 
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(nil, nil);
     if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
         ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
             if (granted) {
-                [[GoogleAnalytics sharedInstance] sendEvent:@"ABpermission" category:@"permission" label:@"granted"];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAAbpermission category:@"permission" label:@"granted"];
             } else {
-                [[GoogleAnalytics sharedInstance] sendEvent:@"ABpermission" category:@"permission" label:@"declined"];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAAbpermission category:@"permission" label:@"declined"];
             }
         });
     }
@@ -43,9 +43,9 @@
     [controller presentViewController:pickerController animated:YES completion:nil];
 
     if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Device Address Book"];
+        [[GoogleAnalytics sharedInstance] sendScreen:GADeviceAddressBook];
     } else {
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Device Address Book No Access"];
+        [[GoogleAnalytics sharedInstance] sendScreen:GADeviceAddressBookNoAccess];
     }
 }
 
