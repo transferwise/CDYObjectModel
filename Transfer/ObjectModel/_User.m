@@ -5,6 +5,7 @@
 
 const struct UserAttributes UserAttributes = {
 	.anonymous = @"anonymous",
+	.deviceToken = @"deviceToken",
 	.email = @"email",
 	.invitationReward = @"invitationReward",
 	.invitationRewardCurrency = @"invitationRewardCurrency",
@@ -92,6 +93,8 @@ const struct UserRelationships UserRelationships = {
 - (void)setPrimitiveAnonymousValue:(BOOL)value_ {
 	[self setPrimitiveAnonymous:[NSNumber numberWithBool:value_]];
 }
+
+@dynamic deviceToken;
 
 @dynamic email;
 

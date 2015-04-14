@@ -19,17 +19,21 @@
 
 @implementation ObjectModel (Users)
 
-- (User *)userWithEmail:(NSString *)email {
+- (User *)userWithEmail:(NSString *)email
+{
     NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"email = %@", email];
-    User *user = [self fetchEntityNamed:[User entityName] withPredicate:emailPredicate];
-    if (!user) {
+    User *user = [self fetchEntityNamed:[User entityName]
+						  withPredicate:emailPredicate];
+    if (!user)
+	{
         user = [User insertInManagedObjectContext:self.managedObjectContext];
         [user setEmail:email];
     }
     return user;
 }
 
-- (void)createOrUpdateUserWithData:(NSDictionary *)rawData {
+- (void)createOrUpdateUserWithData:(NSDictionary *)rawData
+{
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSString *email = data[@"email"];
     [Credentials setUserEmail:email];
@@ -39,25 +43,34 @@
     [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":@(mixpanelId)}];
 
     NSDictionary *personalProfileData = data[@"personalProfile"];
-    if (personalProfileData) {
-        [user setPersonalProfile:[self personalProfileWithData:personalProfileData forUser:user]];
+    if (personalProfileData)
+	{
+        [user setPersonalProfile:[self personalProfileWithData:personalProfileData
+													   forUser:user]];
     }
 
     NSDictionary *businessProfileData = data[@"businessProfile"];
-    if (businessProfileData) {
-        [user setBusinessProfile:[self businessProfileWithData:businessProfileData forUser:user]];
+    if (businessProfileData)
+	{
+        [user setBusinessProfile:[self businessProfileWithData:businessProfileData
+													   forUser:user]];
     }
 }
 
-- (PersonalProfile *)personalProfileWithData:(NSDictionary *)rawData forUser:(User *)user {
-    if (!rawData) {
+- (PersonalProfile *)personalProfileWithData:(NSDictionary *)rawData
+									 forUser:(User *)user
+{
+    if (!rawData)
+	{
         return nil;
     }
 
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-    PersonalProfile *profile = [self fetchEntityNamed:[PersonalProfile entityName] withPredicate:userPredicate];
-    if (!profile) {
+    PersonalProfile *profile = [self fetchEntityNamed:[PersonalProfile entityName]
+										withPredicate:userPredicate];
+    if (!profile)
+	{
         profile = [PersonalProfile insertInManagedObjectContext:self.managedObjectContext];
     }
 
@@ -77,15 +90,20 @@
     return profile;
 }
 
-- (BusinessProfile *)businessProfileWithData:(NSDictionary *)rawData forUser:(User *)user {
-    if (!rawData) {
+- (BusinessProfile *)businessProfileWithData:(NSDictionary *)rawData
+									 forUser:(User *)user
+{
+    if (!rawData)
+	{
         return nil;
     }
 
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-    BusinessProfile *profile = [self fetchEntityNamed:[BusinessProfile entityName] withPredicate:userPredicate];
-    if (!profile) {
+    BusinessProfile *profile = [self fetchEntityNamed:[BusinessProfile entityName]
+										withPredicate:userPredicate];
+    if (!profile)
+	{
         profile = [BusinessProfile insertInManagedObjectContext:self.managedObjectContext];
     }
 
@@ -102,18 +120,23 @@
     return profile;
 }
 
-- (User *)currentUser {
-    if ([Credentials userLoggedIn]) {
+- (User *)currentUser
+{
+    if ([Credentials userLoggedIn])
+	{
         return [self userWithEmail:[Credentials userEmail]];
     }
 
     return [self anonymousUser];
 }
 
-- (User *)anonymousUser {
+- (User *)anonymousUser
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"anonymous = YES"];
-    User *user = [self fetchEntityNamed:[User entityName] withPredicate:predicate];
-    if (!user) {
+    User *user = [self fetchEntityNamed:[User entityName]
+						  withPredicate:predicate];
+    if (!user)
+	{
         user = [User insertInManagedObjectContext:self.managedObjectContext];
         [user setAnonymousValue:YES];
     }
@@ -152,18 +175,28 @@
     
 }
 
-- (void)removeAnonymousUser {
+- (void)removeAnonymousUser
+{
     User *anonymous = [self anonymousUser];
-    if (anonymous) {
+    if (anonymous)
+	{
         [self deleteObject:anonymous saveAfter:NO];
     }
 }
 
-- (void)markAnonUserWithEmail:(NSString *)email {
+- (void)markAnonUserWithEmail:(NSString *)email
+{
     User *user = [self anonymousUser];
     MCAssert(user);
     [user setEmail:email];
     [user setAnonymousValue:NO];
+}
+
+- (void)saveDeviceToken:(NSString *)deviceToken
+{
+	User* user = [self currentUser];
+	
+	user.deviceToken = deviceToken;
 }
 
 @end
