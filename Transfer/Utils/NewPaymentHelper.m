@@ -68,6 +68,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
 													  profile:paymentToRepeat.profileUsed
 												 successBlock:^(PendingPayment *payment) {
 													 payment.paymentReference = paymentToRepeat.paymentReference;
+                                                     payment.isRepeatValue = YES;
                                                      if(payment.isFixedAmountValue)
                                                      {
                                                          payment.refundRecipient = paymentToRepeat.refundRecipient;

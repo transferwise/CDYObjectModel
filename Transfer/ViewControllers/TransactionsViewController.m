@@ -501,9 +501,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [hud hide];
 		[weakSelf setCheckOperation:nil];
 
-		[weakSelf setIdentificationRequired:identificationRequired];
+        [weakSelf setIdentificationRequired:identificationRequired];
 
-		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
+        BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
 
 		if (somethingNeeded != weakSelf.showIdentificationView)
 		{
@@ -568,7 +568,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		   completionHandler:(TRWActionBlock)completion
 {
     if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:GAVerification withLabel:@"sent"];
         [self uploadSocialSecurityNumber:ssn errorHandler:errorBlock completionHandler:completion];
         return;
     }
@@ -584,8 +583,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 errorBlock(error);
                 return;
             }
-
-            [[GoogleAnalytics sharedInstance] sendAppEvent:GAVerification withLabel:@"sent"];
             MCLog(@"uploadPaymentPurpose done");
             [weakSelf uploadSocialSecurityNumber:ssn errorHandler:errorBlock completionHandler:completion];
         });

@@ -25,7 +25,6 @@
 #import "DropdownCell.h"
 #import "ButtonCell.h"
 #import "ObjectModel.h"
-#import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "Credentials.h"
 #import "UITableView+FooterPositioning.h"
@@ -99,8 +98,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) RecipientType *recipientType;
 
 @property (nonatomic, strong) Recipient *recipient;
-
-@property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
 @property (nonatomic, strong) DataEntryDefaultHeader *recipientFieldsHeader;
 
@@ -322,7 +319,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [super viewWillAppear:animated];
 
     if (self.reportingType != RecipientReportingNone) {
-        [[GoogleAnalytics sharedInstance] sendScreen:(self.reportingType == RecipientReportingNotLoggedIn ? GAEnterRecipientDetails : @"Enter recipient details 2")];
+        [[GoogleAnalytics sharedInstance] sendScreen:(self.reportingType == RecipientReportingNotLoggedIn ? GAEnterRecipientDetails : GAEnterRecipientDetails2)];
     }
     
     [self refreshTableViewSizes];

@@ -386,7 +386,6 @@
 		388E5A761A5A949500AF6EB9 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66758174A51B900D29BCB /* ButtonCell.m */; };
 		388E5A771A5A949500AF6EB9 /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
 		388E5A781A5A949500AF6EB9 /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
-		388E5A791A5A949500AF6EB9 /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
 		388E5A7A1A5A949500AF6EB9 /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
 		388E5A7B1A5A949500AF6EB9 /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
 		388E5A7C1A5A949500AF6EB9 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */; };
@@ -1280,7 +1279,6 @@
 		EA31A16F17DDB29B00F937F7 /* RegisterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861E21746442900BD01BB /* RegisterOperation.m */; };
 		EA31A17017DDB29B00F937F7 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66758174A51B900D29BCB /* ButtonCell.m */; };
 		EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
-		EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
 		EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
 		EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
 		EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
@@ -1480,7 +1478,6 @@
 		EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675C174A565500D29BCB /* AddressBook.framework */; };
 		EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675D174A565500D29BCB /* AddressBookUI.framework */; };
 		EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
-		EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
 		EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
 		EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
 		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
@@ -1600,6 +1597,7 @@
 		38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodViewControllerFactory.m; sourceTree = "<group>"; };
 		382C134A1ADBE76A00370F39 /* AnalyticsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsConstants.h; sourceTree = "<group>"; };
 		382C134B1ADBE76A00370F39 /* AnalyticsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsConstants.m; sourceTree = "<group>"; };
+		382C134F1ADD1D7A00370F39 /* Transfer_v10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v10.xcdatamodel; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831DCC319B764B900151A3D /* existingUserIntro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = existingUserIntro.plist; sourceTree = "<group>"; };
@@ -2354,8 +2352,6 @@
 		EAD6675D174A565500D29BCB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookProfile.h; sourceTree = "<group>"; };
 		EAD66780174CB34600D29BCB /* PhoneBookProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookProfile.m; sourceTree = "<group>"; };
-		EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookProfileSelector.h; sourceTree = "<group>"; };
-		EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookProfileSelector.m; sourceTree = "<group>"; };
 		EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookAddress.h; sourceTree = "<group>"; };
 		EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookAddress.m; sourceTree = "<group>"; };
 		EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardTableView.h; sourceTree = "<group>"; };
@@ -3668,8 +3664,6 @@
 				EA333F3B18A4C00000D8A44E /* PageZoom.m */,
 				38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */,
 				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
-				EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */,
-				EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */,
 				38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */,
 				38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */,
 				3859E7AC1A65670300B85A3F /* NewPaymentHelper.h */,
@@ -4756,7 +4750,6 @@
 				388E5A761A5A949500AF6EB9 /* ButtonCell.m in Sources */,
 				388E5A771A5A949500AF6EB9 /* CancelHelper.m in Sources */,
 				388E5A781A5A949500AF6EB9 /* PhoneBookProfile.m in Sources */,
-				388E5A791A5A949500AF6EB9 /* PhoneBookProfileSelector.m in Sources */,
 				388E5A7A1A5A949500AF6EB9 /* PhoneBookAddress.m in Sources */,
 				388E5A7B1A5A949500AF6EB9 /* DismissKeyboardTableView.m in Sources */,
 				388E5A7C1A5A949500AF6EB9 /* PersonalProfileValidator.m in Sources */,
@@ -5097,7 +5090,6 @@
 				EA31A17017DDB29B00F937F7 /* ButtonCell.m in Sources */,
 				3887CBBF1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */,
-				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
 				47C1F7481A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */,
@@ -5417,7 +5409,6 @@
 				3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				47C1F70C1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */,
-				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				4757BE621A3B064B005D7BDD /* PaymentFlow.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
@@ -6053,6 +6044,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				382C134F1ADD1D7A00370F39 /* Transfer_v10.xcdatamodel */,
 				381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */,
 				4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */,
 				381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */,
@@ -6066,7 +6058,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */;
+			currentVersion = 382C134F1ADD1D7A00370F39 /* Transfer_v10.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

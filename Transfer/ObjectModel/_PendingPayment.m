@@ -4,6 +4,7 @@
 #import "_PendingPayment.h"
 
 const struct PendingPaymentAttributes PendingPaymentAttributes = {
+	.isRepeat = @"isRepeat",
 	.paymentFlowProgress = @"paymentFlowProgress",
 	.paymentFlowProgressPrevious = @"paymentFlowProgressPrevious",
 	.paymentPurpose = @"paymentPurpose",
@@ -45,6 +46,11 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"isRepeatValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isRepeat"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"paymentFlowProgressValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"paymentFlowProgress"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -72,6 +78,26 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 	}
 
 	return keyPaths;
+}
+
+@dynamic isRepeat;
+
+- (BOOL)isRepeatValue {
+	NSNumber *result = [self isRepeat];
+	return [result boolValue];
+}
+
+- (void)setIsRepeatValue:(BOOL)value_ {
+	[self setIsRepeat:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIsRepeatValue {
+	NSNumber *result = [self primitiveIsRepeat];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsRepeatValue:(BOOL)value_ {
+	[self setPrimitiveIsRepeat:[NSNumber numberWithBool:value_]];
 }
 
 @dynamic paymentFlowProgress;

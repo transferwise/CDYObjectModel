@@ -93,15 +93,17 @@
 	NSString* currencyCode = self.payment.sourceCurrency.code;
 	
 	[BankTransferViewController trackForPaymentMethod:method.type
-								   sourceCurrencyCode:currencyCode
-									bankTransferBlock:nil
-										   swiftBlock:^{
-											   [[GoogleAnalytics sharedInstance] sendScreen:GASwiftTransfer];
-										   }
-											wireBlock:^{
-												[[GoogleAnalytics sharedInstance] sendScreen:GAWireTransfer];
-											}];
-		
+                                   sourceCurrencyCode:currencyCode
+                                    bankTransferBlock:^{
+                                        [[GoogleAnalytics sharedInstance] sendScreen:GABankTransferPayment];
+                                    }
+                                           swiftBlock:^{
+                                               [[GoogleAnalytics sharedInstance] sendScreen:GASwiftTransfer];
+                                           }
+                                            wireBlock:^{
+                                                [[GoogleAnalytics sharedInstance] sendScreen:GAWireTransfer];
+                                            }];
+    
     //Header
     NSString *exactlyString = NSLocalizedString(@"upload.money.header.label.exactly", @"");
     exactlyString = [NSString stringWithFormat:exactlyString,self.payment.payInWithCurrency];
@@ -201,7 +203,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[GoogleAnalytics sharedInstance] sendScreen:GABankTransferPayment];
     [[Mixpanel sharedInstance] sendPageView:MPBankTransferPayment];
     [super viewDidAppear:animated];
 }

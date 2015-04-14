@@ -75,7 +75,7 @@
 		}
 		else if (!available)
 		{
-			[[GoogleAnalytics sharedInstance] sendAlertEvent:GAEmailtakenduringpaymentalert withLabel:@""];
+			[[GoogleAnalytics sharedInstance] sendAlertEvent:GAEmailtakenduringpaymentalert withLabel: NSLocalizedString(@"personal.profile.email.taken.message", nil)];
 			//TODO: Replace with login screen showing
 			NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain
 															 code:ResponseLocalError

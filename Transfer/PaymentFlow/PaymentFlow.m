@@ -257,15 +257,6 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentUploadMoneyController");
-        if ([self isKindOfClass:[LoggedInPaymentFlow class]])
-		{
-            [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentcreated withLabel:@"logged"];
-        }
-		else
-		{
-            [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentcreated withLabel:@"not logged"];
-        }
-        
         Payment* payment = (id) [self.objectModel.managedObjectContext objectWithID:paymentID];
         
         
@@ -604,7 +595,9 @@
 
 	NSNumber *transferFee = [payment transferwiseTransferFee];
 	NSString *currencyCode = [payment.sourceCurrency code];
-
+    
+    BOOL isRepeat = payment.isRepeatValue;
+    
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[payment objectID]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
@@ -632,6 +625,8 @@
             [__formatter setCurrencyDecimalSeparator:@"."];
             [__formatter setCurrencyGroupingSeparator:@""];
         }
+        
+        [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentcreated withLabel:[NSString stringWithFormat:@"%@ - %@", currencyCode, isRepeat?@"repeat":@"new"]];
 
 #if USE_APPSFLYER_EVENTS
         MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
