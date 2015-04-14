@@ -24,7 +24,7 @@
 @implementation PushNotificationsHelper
 
 #pragma mark - Init
-- (instancetype)sharedInstanceWithApplication:(UIApplication *)application
++ (instancetype)sharedInstanceWithApplication:(UIApplication *)application
 								  objectModel:(ObjectModel *)objectModel
 {
 	static dispatch_once_t pred = 0;
@@ -52,17 +52,25 @@
 #pragma mark - PushNotificationProvider implementation
 - (BOOL)pushNotificationsGranted
 {
-	UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+	UIRemoteNotificationType enabledTypes = [self.application enabledRemoteNotificationTypes];
 	return  enabledTypes & UIRemoteNotificationTypeAlert && self.objectModel.currentUser.deviceToken;
 }
 
-- (void)registerForPushNotifications
+- (void)registerForPushNotifications:(BOOL)isLaunch
 {
-	UIUserNotificationType types = UIUserNotificationTypeAlert;
-	UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types
-																			 categories:nil];
-	
-	[[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+	if ([self pushNotificationsGranted] || !isLaunch)
+	{
+		if(IOS_8)
+		{
+			UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
+																								 categories:nil];
+			[[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+		}
+		else
+		{
+			[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+		}
+	}
 }
 
 - (void)handleRegistrationsSuccess:(NSData *)deviceToken

@@ -13,7 +13,7 @@
 @protocol PushNotificationsProvider<NSObject>
 
 - (BOOL)pushNotificationsGranted;
-- (void)registerForPushNotifications;
+- (void)registerForPushNotifications:(BOOL)isLaunch;
 - (void)handleRegistrationsSuccess:(NSData *)deviceToken;
 - (void)handleRegistrationFailure:(NSError *)error;
 - (void)handleNotificationArrival:(NSDictionary *)userInfo
@@ -25,7 +25,7 @@
 @interface PushNotificationsHelper : NSObject<PushNotificationsProvider>
 
 - (id)init __attribute__((unavailable("init unavailable, use sharedInstance")));
-- (instancetype)sharedInstanceWithApplication:(UIApplication *)application
++ (instancetype)sharedInstanceWithApplication:(UIApplication *)application
 								  objectModel:(ObjectModel *)objectModel;
 
 @end

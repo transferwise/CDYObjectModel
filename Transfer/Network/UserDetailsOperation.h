@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TransferwiseOperation.h"
+#import "Constants.h"
 
 typedef void (^TWProfileDetailsHandler)(NSError *error);
 
