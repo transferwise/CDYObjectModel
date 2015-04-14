@@ -7,11 +7,17 @@
 //
 
 #import "PushNotificationsHelper.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
+#import "AddUserDeviceOperation.h"
+#import "RemoveUserDeviceOperation.h"
+#import "UpdateuserDeviceOperation.h"
 
 @interface PushNotificationsHelper ()
 
 @property (strong, nonatomic) ObjectModel *objectModel;
 @property (weak, nonatomic) UIApplication *application;
+@property (strong, nonatomic) TransferwiseOperation *executingOperation;
 
 @end
 
@@ -47,7 +53,7 @@
 - (BOOL)pushNotificationsGranted
 {
 	UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-	return  enabledTypes & UIRemoteNotificationTypeAlert;
+	return  enabledTypes & UIRemoteNotificationTypeAlert && self.objectModel.currentUser.deviceToken;
 }
 
 - (void)registerForPushNotifications
@@ -61,13 +67,46 @@
 
 - (void)handleRegistrationsSuccess:(NSData *)deviceToken
 {
-	//save token to backend
-	//enable notifications
+	NSString* tokenString = [deviceToken base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+	
+	if ([self pushNotificationsGranted])
+	{
+		//if notification are granted update token
+		UpdateUserDeviceOperation *operation = [UpdateUserDeviceOperation updateDeviceOperation];
+		
+		operation.objectModel = self.objectModel;
+		operation.existingToken = self.objectModel.currentUser.deviceToken;
+		operation.updatedToken = tokenString;
+		operation.completionHandler = ^(NSError *error) {
+			if (error)
+			{
+				MCLog(@"Token update failed: %@", error.domain);
+			}
+		};
+		self.executingOperation = operation;
+		[operation execute];
+	}
+	else
+	{
+		//this is the first time, add token
+		AddUserDeviceOperation *operation = [AddUserDeviceOperation addDeviceOperation];
+		
+		operation.objectModel = self.objectModel;
+		operation.token = tokenString;
+		operation.completionHandler = ^(NSError *error) {
+			if (error)
+			{
+				MCLog(@"Token adding failed: %@", error.domain);
+			}
+		};
+		self.executingOperation = operation;
+		[operation execute];
+	}
 }
 
 - (void)handleRegistrationFailure:(NSError *)error
 {
-	//log failure
+	MCLog(@"Token registration failed: %@", error.domain);
 }
 
 - (void)handleNotificationArrival:(NSDictionary *)userInfo
@@ -79,7 +118,22 @@
 
 - (void)handleLoggingOut
 {
+	if ([self pushNotificationsGranted])
+	{
+		//remove device from receiving notifications
+		RemoveUserDeviceOperation *operation = [RemoveUserDeviceOperation removeDeviceOperation];
 	
+		operation.objectModel = self.objectModel;
+		operation.token = self.objectModel.currentUser.deviceToken;
+		operation.completionHandler = ^(NSError *error) {
+			if (error)
+			{
+				MCLog(@"Token removing failed: %@", error.domain);
+			}
+		};
+		self.executingOperation = operation;
+		[operation execute];
+	}
 }
 
 @end

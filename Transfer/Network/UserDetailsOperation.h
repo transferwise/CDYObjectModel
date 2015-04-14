@@ -13,7 +13,7 @@ typedef void (^TWProfileDetailsHandler)(NSError *error);
 
 @interface UserDetailsOperation : TransferwiseOperation
 
-@property (nonatomic, copy) TWProfileDetailsHandler completionHandler;
+@property (nonatomic, copy) TRWErrorBlock completionHandler;
 
 + (UserDetailsOperation *)detailsOperation;
 
