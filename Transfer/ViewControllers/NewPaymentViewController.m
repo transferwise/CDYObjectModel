@@ -203,8 +203,8 @@ static NSUInteger const kRowYouSend = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
-    [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?@"New payment":@"Start screen"];
-    [[Mixpanel sharedInstance] sendPageView:@"New transfer"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GANewPayment];
+    [[Mixpanel sharedInstance] sendPageView:MPNewTransfer];
     
 	[self generateUsdLegaleze];
 }
@@ -431,8 +431,8 @@ static NSUInteger const kRowYouSend = 0;
                                                                                                          validatorFactory:validatorFactory];
         [self setPaymentFlow:paymentFlow];
         
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:[self.theyReceiveCell currency].code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency1Selected withLabel:[self.youSendCell currency].code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency2Selected withLabel:[self.theyReceiveCell currency].code];
         
         
         [NavigationBarCustomiser setDefault];

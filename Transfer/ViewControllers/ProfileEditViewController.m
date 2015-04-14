@@ -123,7 +123,7 @@
 	
     if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAEnterSenderDetails];
     }
 }
 
@@ -625,7 +625,7 @@
 								   navigationControllerView:self.navigationController.view
 												objectModel:self.objectModel
 											   successBlock:^{
-                                                   [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
+                                                   [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserlogged withLabel:@"tw"];
 												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment
 																			  sendAsBusiness:sendAsBusiness];
 											   }

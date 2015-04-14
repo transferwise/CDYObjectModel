@@ -57,7 +57,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Settings"]];
+    [[GoogleAnalytics sharedInstance] sendScreen:GASettings];
 
 }
 - (void)didReceiveMemoryWarning {
@@ -94,7 +94,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 - (IBAction)customerServiceTapped:(id)sender
 {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Settings"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAContactsupport withLabel:@"Settings"];
 	[[SupportCoordinator sharedInstance] presentOnController:IPAD ? self : self.hostViewController];
 }
 

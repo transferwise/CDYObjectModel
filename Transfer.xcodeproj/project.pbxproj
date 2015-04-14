@@ -93,6 +93,9 @@
 		38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */; };
 		38288F5419C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
 		38288F5519C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
+		382C134C1ADBE76A00370F39 /* AnalyticsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 382C134B1ADBE76A00370F39 /* AnalyticsConstants.m */; };
+		382C134D1ADBE76A00370F39 /* AnalyticsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 382C134B1ADBE76A00370F39 /* AnalyticsConstants.m */; };
+		382C134E1ADBE76A00370F39 /* AnalyticsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 382C134B1ADBE76A00370F39 /* AnalyticsConstants.m */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831DCC419B764B900151A3D /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
@@ -1595,6 +1598,8 @@
 		38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentMethodCell.xib; sourceTree = "<group>"; };
 		38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodViewControllerFactory.h; sourceTree = "<group>"; };
 		38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodViewControllerFactory.m; sourceTree = "<group>"; };
+		382C134A1ADBE76A00370F39 /* AnalyticsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsConstants.h; sourceTree = "<group>"; };
+		382C134B1ADBE76A00370F39 /* AnalyticsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsConstants.m; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831DCC319B764B900151A3D /* existingUserIntro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = existingUserIntro.plist; sourceTree = "<group>"; };
@@ -3692,6 +3697,8 @@
 		EABD864218E2B63A004A5A57 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				382C134A1ADBE76A00370F39 /* AnalyticsConstants.h */,
+				382C134B1ADBE76A00370F39 /* AnalyticsConstants.m */,
 				BA665E006BBEF0C455DE7F84 /* GoogleAnalytics.h */,
 				BA66546EEC8C630867200E77 /* GoogleAnalytics.m */,
 				38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */,
@@ -4589,6 +4596,7 @@
 				388E59DC1A5A949500AF6EB9 /* TransferDetialsRecipientView.m in Sources */,
 				388E59DD1A5A949500AF6EB9 /* TransactionsViewController.m in Sources */,
 				388E59DE1A5A949500AF6EB9 /* ContactsViewController.m in Sources */,
+				382C134E1ADBE76A00370F39 /* AnalyticsConstants.m in Sources */,
 				388E59DF1A5A949500AF6EB9 /* _Recipient.m in Sources */,
 				388E59E01A5A949500AF6EB9 /* NewPaymentViewController.m in Sources */,
 				388E59E11A5A949500AF6EB9 /* TableHeaderView.m in Sources */,
@@ -4929,6 +4937,7 @@
 				479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
 				EA31A12B17DDB29B00F937F7 /* ContactsViewController.m in Sources */,
+				382C134D1ADBE76A00370F39 /* AnalyticsConstants.m in Sources */,
 				389F680E198FC1C6006CF1F6 /* _Recipient.m in Sources */,
 				EA31A12D17DDB29B00F937F7 /* NewPaymentViewController.m in Sources */,
 				EA31A12E17DDB29B00F937F7 /* TableHeaderView.m in Sources */,
@@ -5458,6 +5467,7 @@
 				389F6841198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
 				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
+				382C134C1ADBE76A00370F39 /* AnalyticsConstants.m in Sources */,
 				EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */,
 				38B093171951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
 				389F6803198FC1C6006CF1F6 /* _PayInMethod.m in Sources */,

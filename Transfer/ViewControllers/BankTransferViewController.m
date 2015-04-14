@@ -96,10 +96,10 @@
 								   sourceCurrencyCode:currencyCode
 									bankTransferBlock:nil
 										   swiftBlock:^{
-											   [[GoogleAnalytics sharedInstance] sendScreen:@"SWIFT transfer"];
+											   [[GoogleAnalytics sharedInstance] sendScreen:GASwiftTransfer];
 										   }
 											wireBlock:^{
-												[[GoogleAnalytics sharedInstance] sendScreen:@"Wire transfer"];
+												[[GoogleAnalytics sharedInstance] sendScreen:GAWireTransfer];
 											}];
 		
     //Header
@@ -201,8 +201,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-    [[Mixpanel sharedInstance] sendPageView:@"Bank transfer payment"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GABankTransferPayment];
+    [[Mixpanel sharedInstance] sendPageView:MPBankTransferPayment];
     [super viewDidAppear:animated];
 }
 
@@ -227,16 +227,16 @@
 		[BankTransferViewController trackForPaymentMethod:weakSelf.method.type
 									   sourceCurrencyCode:weakSelf.payment.sourceCurrency.code
 										bankTransferBlock:^{
-											[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
-                                            [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"BankTransfer"}];
+											[[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"BankTransfer"];
+                                            [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"BankTransfer"}];
 										}
 											   swiftBlock:^{
-												   [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"Swift"];
-                                                   [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"Swift"}];
+												   [[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"Swift"];
+                                                   [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"Swift"}];
 											   }
 												wireBlock:^{
-													[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"WireTransfer"];
-                                                    [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"WireTransfer"}];
+													[[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"WireTransfer"];
+                                                    [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"WireTransfer"}];
 												}];
 		
         if ([Credentials temporaryAccount])

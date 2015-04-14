@@ -78,7 +78,7 @@
     
     self.flagIcon.image = [UIImage imageNamed:self.recipient.currency.code?[NSString stringWithFormat:@"%@_flag_30px",self.recipient.currency.code]:@"flag_default_30px"];
     
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Contact details"]];
+    [[GoogleAnalytics sharedInstance] sendScreen:GAContactDetails];
     
     //TODO: m@s replace with loading user image once API is implemented.
     if (self.recipient.email)
@@ -156,7 +156,7 @@
         return;
     }
     
-    [[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GANewPaymentTo];
     NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setRecipient:self.recipient];
