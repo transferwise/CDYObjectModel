@@ -878,6 +878,9 @@
 		38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
+		470B112D1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
+		470B112E1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
+		470B112F1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
 		470C131D1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */; };
 		470C131E1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */; };
 		470C13211A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C13201A12660300EEAF25 /* ObjectModel+ReferralLinks.m */; };
@@ -1858,6 +1861,9 @@
 		38FC0B9619EE84E000173E07 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
 		38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Customisation.h"; sourceTree = "<group>"; };
 		38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Customisation.m"; sourceTree = "<group>"; };
+		470B112B1ADBB682008729E9 /* PushNotificationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationsHelper.h; sourceTree = "<group>"; };
+		470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationsHelper.m; sourceTree = "<group>"; };
+		470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v10.xcdatamodel; sourceTree = "<group>"; };
 		470C131B1A12598300EEAF25 /* ReferralLinksOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLinksOperation.h; sourceTree = "<group>"; };
 		470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLinksOperation.m; sourceTree = "<group>"; };
 		470C131F1A12660300EEAF25 /* ObjectModel+ReferralLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+ReferralLinks.h"; sourceTree = "<group>"; };
@@ -3647,6 +3653,8 @@
 				3887CBBD1976AF2B004DFFFD /* CancelHelper.m */,
 				47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */,
 				47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */,
+				478C6FF61A8E2C0600431882 /* CurrencyLoader.h */,
+				478C6FF71A8E2C0600431882 /* CurrencyLoader.m */,
 				47C4D0561A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.h */,
 				47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */,
 				478C6FE81A8CC71500431882 /* LocationHelper.h */,
@@ -3675,6 +3683,8 @@
 				383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
+				470B112B1ADBB682008729E9 /* PushNotificationsHelper.h */,
+				470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */,
 				47334E811A37121A004C19F7 /* TargetCountryProvider.h */,
 				47334E821A37121A004C19F7 /* TargetCountryProvider.m */,
 				380579A71A1A3520005E94DD /* TransferDevWebTools.h */,
@@ -3683,8 +3693,6 @@
 				38504B0819C1E83700276203 /* TouchIDHelper.m */,
 				47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */,
 				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
-				478C6FF61A8E2C0600431882 /* CurrencyLoader.h */,
-				478C6FF71A8E2C0600431882 /* CurrencyLoader.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4773,6 +4781,7 @@
 				388E5A8E1A5A949500AF6EB9 /* PaymentMethodSelectorViewController.m in Sources */,
 				388E5A8F1A5A949500AF6EB9 /* UIView+RenderBlur.m in Sources */,
 				388E5A901A5A949500AF6EB9 /* TargetCountryProvider.m in Sources */,
+				470B112F1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */,
 				388E5A911A5A949500AF6EB9 /* PaymentFlowViewControllerFactory.m in Sources */,
 				388E5A921A5A949500AF6EB9 /* ClaimAccountViewController.m in Sources */,
 				388E5A931A5A949500AF6EB9 /* ClaimAccountOperation.m in Sources */,
@@ -5113,6 +5122,7 @@
 				38288F4819C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */,
 				388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */,
 				47334E841A37121A004C19F7 /* TargetCountryProvider.m in Sources */,
+				470B112E1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */,
 				4757BE671A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */,
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
@@ -5357,6 +5367,7 @@
 				38B52F97199B622D00B6AEBD /* ValidationCell.m in Sources */,
 				389F6821198FC1C6006CF1F6 /* ObjectModel+Countries.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
+				470B112D1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				389F6843198FC1C6006CF1F6 /* PersonalProfile.m in Sources */,
@@ -6043,6 +6054,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */,
 				381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */,
 				4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */,
 				381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */,
@@ -6056,7 +6068,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */;
+			currentVersion = 470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";
