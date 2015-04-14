@@ -9,7 +9,6 @@
 #import "CustomInfoViewController.h"
 
 @interface CustomInfoViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *infoImageView;
@@ -23,7 +22,7 @@
     self = [super init];
     if(self)
     {
-        [self setDefaultAction];
+        [self commonSetup];
     }
     return self;
 }
@@ -33,7 +32,7 @@
     self = [super initWithCoder:aDecoder];
     if(self)
     {
-        [self setDefaultAction];
+        [self commonSetup];
     }
     return self;
 }
@@ -43,22 +42,20 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self)
     {
-        [self setDefaultAction];
+        [self commonSetup];
     }
     return self;
 }
 
--(void)setDefaultAction
+-(void)commonSetup
 {
-    __weak typeof(self) weakSelf = self;
-    self.actionButtonBlock = ^{
-        [weakSelf dismiss];
-    };
+    _mapCloseButtonToActionIndex = NSNotFound;
 }
+
 
 -(void)viewDidLoad
 {
-    [self.actionButton setTitle:self.actionButtonTitle forState:UIControlStateNormal];
+    [self setActionButtonTitles:self.actionButtonTitles];
     self.infoLabel.text = self.infoText;
     self.titleLabel.text = self.titleText;
     self.infoImageView.image = self.infoImage;
@@ -77,10 +74,34 @@
     self.titleLabel.text = title;
 }
 
--(void)setActionButtonTitle:(NSString *)dismissButtonTitle
+-(void)setActionButtonTitles:(NSArray *)actionButtonTitles
 {
-    _actionButtonTitle = dismissButtonTitle;
-    [self.actionButton setTitle:dismissButtonTitle forState:UIControlStateNormal];
+    _actionButtonTitles = actionButtonTitles;
+    NSUInteger buttonCount = [self.actionButtons count];
+    [actionButtonTitles enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if(idx < buttonCount)
+        {
+            if([obj isKindOfClass:[NSString class]])
+            {
+                [self.actionButtons[idx] setTitle:obj forState:UIControlStateNormal];
+            }
+            else
+            {
+                [self.actionButtons[idx] setTitle:@"" forState:UIControlStateNormal];
+            }
+        }
+    }];
+    
+}
+
+-(void)setActionButtonBlocks:(NSArray *)actionButtonBlocks
+{
+    NSMutableArray* clone = [NSMutableArray arrayWithCapacity:[actionButtonBlocks count]];
+    for (id block in actionButtonBlocks)
+    {
+        [clone addObject:[block copy]];
+    }
+    _actionButtonBlocks = clone;
 }
 
 -(void)setInfoImage:(UIImage *)infoImage
@@ -89,24 +110,35 @@
     self.infoImageView.image = infoImage;
 }
 
--(IBAction)actionButtonTapped
+-(IBAction)actionButtonTapped:(UIButton*)target
 {
-    if(self.actionButtonBlock)
+    NSUInteger index = [self.actionButtons indexOfObject:target];
+    if(![self executeButtonActionBlockAtIndex:index])
     {
-        self.actionButtonBlock();
+        [self dismiss];
     }
+    
 }
+
+-(BOOL)executeButtonActionBlockAtIndex:(NSUInteger)index
+{
+    if(index != NSNotFound && index < [self.actionButtonBlocks count])
+    {
+        id actionBlock = self.actionButtonBlocks[index];
+        if(![actionBlock isEqual:[NSNull null]])
+        {
+            ActionButtonBlock actionButtonBlock = (ActionButtonBlock) actionBlock;
+            actionButtonBlock();
+            return YES;
+        }
+    }
+    return NO;
+}
+
 
 -(IBAction)closebuttonTapped
 {
-	if(self.mapCloseButtonToAction)
-    {
-        if(self.actionButtonBlock)
-        {
-            self.actionButtonBlock();
-        }
-    }
-    else
+    if(![self executeButtonActionBlockAtIndex:self.mapCloseButtonToActionIndex])
     {
         [self dismiss];
     }
@@ -130,9 +162,9 @@
 {
 	CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
 	customInfo.infoText = NSLocalizedString(messageKey, nil);
-	customInfo.actionButtonTitle = NSLocalizedString(@"button.title.ok", nil);
+	customInfo.actionButtonTitles = @[NSLocalizedString(@"button.title.ok", nil)];
 	customInfo.infoImage = [UIImage imageNamed:imageName];
-	customInfo.mapCloseButtonToAction = YES;
+	customInfo.mapCloseButtonToActionIndex = 1;
 	
 	return customInfo;
 }

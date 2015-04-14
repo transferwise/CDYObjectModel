@@ -40,9 +40,9 @@
 #import <NXOAuth2AccessToken.h>
 #import "OAuthViewController.h"
 #import "TouchIDHelper.h"
-#import "TouchIdPromptViewController.h"
+#import "CustomInfoViewController+TouchId.h"
 
-@interface AuthenticationHelper ()<TouchIdPromptViewControllerDelegate>
+@interface AuthenticationHelper ()
 
 @property (strong, nonatomic) TransferwiseOperation *executedOperation;
 //used to pop to LoginView from OAuth error
@@ -50,7 +50,6 @@
 @property (weak, nonatomic) ObjectModel *objectModel;
 @property (nonatomic, copy)	TRWActionBlock oauthSuccessBlock;
 @property (nonatomic, assign) BOOL hasRegisteredForOauthNotifications;
-@property (nonatomic, copy)	TRWActionBlock touchIdSuccessBlock;
 
 @end
 
@@ -145,12 +144,10 @@
 				   successBlock:^{
                        if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
                        {
-                           weakSelf.touchIdSuccessBlock = successBlock;
-                           TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
-                           prompt.touchIdDelegate = weakSelf;
-                           [prompt presentOnViewController:touchIdHost
-                                              withUsername:email
-                                                  password:password];
+                           CustomInfoViewController* prompt = [CustomInfoViewController touchIdCustomInfoWithUsername:email password:password completionBlock:^{
+                               successBlock();
+                           }];
+                           [prompt presentOnViewController:touchIdHost];
                        }
                        else
                        {
@@ -538,17 +535,6 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
             [mainController setObjectModel:objectModel];
             [root replaceWrappedViewControllerWithController:mainController];
         }
-    }
-}
-
-#pragma mark - touch ID prompt delegate
-
--(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
-{
-    if(self.touchIdSuccessBlock)
-    {
-        self.touchIdSuccessBlock();
-        self.touchIdSuccessBlock = nil;
     }
 }
 @end

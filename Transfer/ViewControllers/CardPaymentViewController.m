@@ -182,7 +182,7 @@
         __weak typeof(self) weakSelf = self;
         __weak typeof(customInfo) weakCustomInfo = customInfo;
         __block BOOL shouldAutoDismiss = YES;
-        customInfo.actionButtonBlock = ^{
+        ActionButtonBlock action = ^{
             if(weakSelf.executedOperation)
             {
                 TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:weakCustomInfo.view];
@@ -221,6 +221,8 @@
             }
             
         };
+        customInfo.actionButtonBlocks = @[action];
+        
         [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
         
         PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
