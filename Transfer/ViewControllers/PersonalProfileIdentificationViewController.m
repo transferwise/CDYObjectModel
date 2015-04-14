@@ -322,13 +322,8 @@
 	hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
 	[hud setMessage:self.completionMessage];
 	
-    if (skip)
+    if (!skip)
 	{
-        [[GoogleAnalytics sharedInstance] sendAppEvent:GAVerification withLabel:@"skipped"];
-    }
-	else
-	{
-        [[GoogleAnalytics sharedInstance] sendAppEvent:GAVerification withLabel:@"sent"];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:TRWUploadProgressNotification object:nil];
     }
     
@@ -336,8 +331,13 @@
 		[hud hide];
 		if (!skip)
 		{
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GAVerification withLabel:@"sent"];
 			[[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
 		}
+        else
+        {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GAVerification withLabel:@"skipped"];
+        }
 		[PendingPayment removePossibleImages];
     }, ^(NSError *error) {
         [hud hide];

@@ -76,6 +76,10 @@
     if ([Credentials userLoggedIn]) {
         email = [Credentials userEmail];
     }
+    else
+    {
+        [self sendAppEvent:GASignout];
+    }
 
     [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:1] value:email];
     [self markHasCompletedPayments];
@@ -134,7 +138,7 @@
 {
     [self sendEvent:GARecipientAdded category:GACategoryRecipient label:label];
     [self sendEvent:GARecipientOrigin category:GACategoryRecipient label:self.pendingRecipientOrigin];
-    self.pendingRecipientOrigin = @"Manual";
+    self.pendingRecipientOrigin = GAManual;
 }
 
 

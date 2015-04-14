@@ -106,7 +106,6 @@
 		introController.plistFilenameOverride = @"existingUserIntro";
 		[introController setObjectModel:self.objectModel];
         introController.requireRegistration = ![Credentials userLoggedIn];
-		[[GoogleAnalytics sharedInstance] sendScreen:GAWhatsNewScreen];
         controller = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	}
 	else

@@ -223,14 +223,18 @@
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
-				[weakSelf logUserIn:token
-						  email:email
-				   successBlock:successBlock
-							hud:hud
-					objectModel:objectModel
-	   waitForDetailsCompletion:waitForDetailsCompletion];
-			}];
-			return;
+                BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
+                [weakSelf logUserIn:token
+                              email:email
+                       successBlock:^{
+                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:provider];
+                           successBlock();
+                       }
+                                hud:hud
+                        objectModel:objectModel
+           waitForDetailsCompletion:waitForDetailsCompletion];
+            }];
+            return;
 		}
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -276,10 +280,7 @@
 				  keepPendingPayment:NO
 				navigationController:self.navigationController
 						 objectModel:self.objectModel
-						successBlock:^{
-							[[GoogleAnalytics sharedInstance] sendAppEvent:GAUserlogged withLabel:@"OAuth"];
-							successBlock();
-						}
+						successBlock:successBlock
 						  errorBlock:^{
 							  if (isExisting)
 							  {

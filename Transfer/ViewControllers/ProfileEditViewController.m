@@ -13,7 +13,6 @@
 #import "SelectionCell.h"
 #import "TRWAlertView.h"
 #import "TransferwiseClient.h"
-#import "PhoneBookProfileSelector.h"
 #import "TRWProgressHUD.h"
 #import "PhoneBookProfile.h"
 #import "ObjectModel.h"
