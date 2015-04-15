@@ -20,6 +20,7 @@
 #import "CustomInfoViewController.h"
 #import "GoogleAnalytics.h"
 #import "Mixpanel+Customisation.h"
+#import "CustomInfoViewController+Notifications.h"
 
 
 #ifdef DEV_VERSION
@@ -205,6 +206,7 @@
                         details.payment = weakSelf.payment;
                         details.objectModel = self.objectModel;
                         details.showClose = YES;
+                        details.promptForNotifications = [CustomInfoViewController shouldPresentNotificationsPrompt];
                         
                         [self.navigationController pushViewController:details animated:NO];
                         [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
@@ -242,6 +244,9 @@
                 TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
                 details.payment = weakSelf.payment;
                 details.showClose = YES;
+                details.objectModel = self.objectModel;
+                details.showClose = YES;
+                details.promptForNotifications = [CustomInfoViewController shouldPresentNotificationsPrompt];
                 
                 [self.navigationController pushViewController:details animated:NO];
                 [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {

@@ -876,6 +876,15 @@
 		38FAE52F1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */; };
 		38FAE5301ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */; };
 		38FAE5311ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */; };
+		38FAE5341ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
+		38FAE5351ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
+		38FAE5361ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
+		38FAE5391ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */; };
+		38FAE53A1ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */; };
+		38FAE53B1ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */; };
+		38FAE53C1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */; };
+		38FAE53D1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */; };
+		38FAE53E1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */; };
 		38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
@@ -1856,6 +1865,10 @@
 		38FAE5261ADD75F2006CD53C /* CustomInfoViewController+TouchId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+TouchId.m"; sourceTree = "<group>"; };
 		38FAE52A1ADD7837006CD53C /* CustomInfo_TouchId.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfo_TouchId.xib; sourceTree = "<group>"; };
 		38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfo_TouchId~ipad.xib"; sourceTree = "<group>"; };
+		38FAE5321ADE569E006CD53C /* CustomInfoViewController+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+Notifications.h"; sourceTree = "<group>"; };
+		38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+Notifications.m"; sourceTree = "<group>"; };
+		38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfo_Notifications.xib; sourceTree = "<group>"; };
+		38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfo_Notifications~ipad.xib"; sourceTree = "<group>"; };
 		38FC0B9419EE84E000173E07 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		38FC0B9519EE84E000173E07 /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
 		38FC0B9619EE84E000173E07 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
@@ -3192,6 +3205,10 @@
 				38FAE5261ADD75F2006CD53C /* CustomInfoViewController+TouchId.m */,
 				38FAE52A1ADD7837006CD53C /* CustomInfo_TouchId.xib */,
 				38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */,
+				38FAE5321ADE569E006CD53C /* CustomInfoViewController+Notifications.h */,
+				38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */,
+				38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */,
+				38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3932,6 +3949,7 @@
 				388E5B611A5A949500AF6EB9 /* TSAlertViewBackground2.png in Resources */,
 				388E5B621A5A949500AF6EB9 /* TSAlertViewBackground.png in Resources */,
 				388E5B631A5A949500AF6EB9 /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
+				38FAE53B1ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */,
 				388E5B641A5A949500AF6EB9 /* TransferTypeSelectionHeader.xib in Resources */,
 				388E5B651A5A949500AF6EB9 /* LoginViewController~ipad.xib in Resources */,
 				388E5B661A5A949500AF6EB9 /* SignUpViewController~ipad.xib in Resources */,
@@ -3939,6 +3957,7 @@
 				388E5B681A5A949500AF6EB9 /* InvitationsViewController.xib in Resources */,
 				388E5B691A5A949500AF6EB9 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				388E5B6A1A5A949500AF6EB9 /* PaymentMethodCell.xib in Resources */,
+				38FAE53E1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */,
 				388E5B6B1A5A949500AF6EB9 /* ResetPasswordViewController.xib in Resources */,
 				388E5B6C1A5A949500AF6EB9 /* DateEntryCell.xib in Resources */,
 				388E5B6D1A5A949500AF6EB9 /* AchDetailsViewController~ipad.xib in Resources */,
@@ -4100,6 +4119,7 @@
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
+				38FAE53A1ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
@@ -4107,6 +4127,7 @@
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				3863B82519E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
+				38FAE53D1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
 				388B5CE01A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */,
@@ -4261,6 +4282,7 @@
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
+				38FAE5391ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 				38B093111951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
@@ -4268,6 +4290,7 @@
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
 				3863B82419E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
+				38FAE53C1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				388B5CDF1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */,
@@ -4648,6 +4671,7 @@
 				388E5A121A5A949500AF6EB9 /* TouchIDHelper.m in Sources */,
 				388E5A131A5A949500AF6EB9 /* MoneyCalculator.m in Sources */,
 				388E5A141A5A949500AF6EB9 /* BusinessPaymentProfileViewController.m in Sources */,
+				38FAE5361ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */,
 				388E5A151A5A949500AF6EB9 /* TransferCalculationsOperation.m in Sources */,
 				388E5A161A5A949500AF6EB9 /* MOMBaseStyle.m in Sources */,
 				388E5A171A5A949500AF6EB9 /* CalculationResult.m in Sources */,
@@ -4988,6 +5012,7 @@
 				38504B0A19C1E83700276203 /* TouchIDHelper.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
 				472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
+				38FAE5351ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */,
 				EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */,
 				380021C9192CC531009B1D53 /* MOMBaseStyle.m in Sources */,
 				EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */,
@@ -5552,6 +5577,7 @@
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 				38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */,
+				38FAE5341ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */,
 				47C1F70E1A3B3F4200014F55 /* PersonalProfileSource.m in Sources */,
 				47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
 			);

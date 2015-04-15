@@ -18,6 +18,7 @@
 #import "NSString+Presentation.h"
 #import "PaymentMethodSelectorViewController.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
+#import "CustomInfoViewController+Notifications.h"
 
 @interface TransferWaitingViewController ()
 
@@ -121,6 +122,7 @@
     waitingController.payment = payment;
     waitingController.objectModel = objectModel;
     waitingController.showClose = YES;
+    waitingController.promptForNotifications = [CustomInfoViewController shouldPresentNotificationsPrompt];
 
     return waitingController;
 }

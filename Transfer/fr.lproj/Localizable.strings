@@ -767,3 +767,6 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "deeplink.payment.detail.error" = "Ce transfert n'éxiste pas dans votre compte";
 "deeplink.verification.message" = "Raffraichissement des documents requis...";
 "deeplink.no.verification.message" = "Aucun document requis!";
+
+"notifications.info.format" = "Souhaitez-vous être notifié lorsque %@ reçoit votre argent?";
+"notifications.yes" = "Oui!";

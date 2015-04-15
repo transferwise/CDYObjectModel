@@ -7,11 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AchWaitingViewController">
             <connections>
-                <outlet property="actionButton" destination="zT5-MG-sUE" id="itx-0t-zNG"/>
                 <outlet property="image" destination="KXk-CC-Thp" id="04W-fz-nP0"/>
                 <outlet property="infoImageView" destination="KXk-CC-Thp" id="bTK-Zs-BRd"/>
                 <outlet property="infoLabel" destination="xGc-tE-8cX" id="7Zx-g2-VTw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="actionButtons" destination="zT5-MG-sUE" id="27S-Hm-mQj"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -61,7 +61,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="actionButtonTapped" destination="-1" eventType="touchUpInside" id="6xl-M0-7iL"/>
+                        <action selector="actionButtonTapped:" destination="-1" eventType="touchUpInside" id="Tg1-O5-yM6"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-ju-O3W" userLabel="TopSpacer">

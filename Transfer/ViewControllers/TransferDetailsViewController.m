@@ -23,6 +23,7 @@
 #import "LoggedInPaymentFlow.h"
 #import "Currency.h"
 #import "TRWProgressHUD.h"
+#import "CustomInfoViewController+Notifications.h"
 
 
 @interface TransferDetailsViewController ()
@@ -53,6 +54,17 @@
 	
 	[self setBackOrCloseButton];
 	[self setData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(self.promptForNotifications)
+    {
+        self.promptForNotifications = NO;
+        CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name];
+        [notificationsPrompt presentOnViewController:self.navigationController?:self withPresentationStyle:TransparentPresentationFade];
+    }
 }
 
 - (void)setBackOrCloseButton
