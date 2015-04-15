@@ -19,6 +19,7 @@
 - (void)handleNotificationArrival:(NSDictionary *)userInfo
 					resultHandler:(void (^)(UIBackgroundFetchResult result))handler;
 - (void)handleLoggingOut;
+- (void)handleDeviceRegistering;
 
 @end
 

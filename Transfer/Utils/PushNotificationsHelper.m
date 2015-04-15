@@ -12,12 +12,14 @@
 #import "AddUserDeviceOperation.h"
 #import "RemoveUserDeviceOperation.h"
 #import "UpdateuserDeviceOperation.h"
+#import "Credentials.h"
 
 @interface PushNotificationsHelper ()
 
 @property (strong, nonatomic) ObjectModel *objectModel;
 @property (weak, nonatomic) UIApplication *application;
 @property (strong, nonatomic) TransferwiseOperation *executingOperation;
+@property (strong, nonatomic) NSString *deviceTokenString;
 
 @end
 
@@ -52,8 +54,15 @@
 #pragma mark - PushNotificationProvider implementation
 - (BOOL)pushNotificationsGranted
 {
-	UIRemoteNotificationType enabledTypes = [self.application enabledRemoteNotificationTypes];
-	return  enabledTypes & UIRemoteNotificationTypeAlert && self.objectModel.currentUser.deviceToken;
+	if (IOS_8)
+	{
+		return [self.application isRegisteredForRemoteNotifications];
+	}
+	else
+	{
+		UIRemoteNotificationType enabledTypes = [self.application enabledRemoteNotificationTypes];
+		return  enabledTypes & UIRemoteNotificationTypeAlert;
+	}
 }
 
 - (void)registerForPushNotifications:(BOOL)isLaunch
@@ -75,40 +84,49 @@
 
 - (void)handleRegistrationsSuccess:(NSData *)deviceToken
 {
-	NSString* tokenString = [deviceToken base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+	self.deviceTokenString = [deviceToken base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
 	
-	if ([self pushNotificationsGranted])
+	[self handleDeviceRegistering];
+}
+
+- (void)handleDeviceRegistering
+{
+	//only register device token when logged in
+	if ([Credentials userLoggedIn] && self.deviceTokenString)
 	{
-		//if notification are granted update token
-		UpdateUserDeviceOperation *operation = [UpdateUserDeviceOperation updateDeviceOperation];
-		
-		operation.objectModel = self.objectModel;
-		operation.existingToken = self.objectModel.currentUser.deviceToken;
-		operation.updatedToken = tokenString;
-		operation.completionHandler = ^(NSError *error) {
-			if (error)
-			{
-				NSLog(@"Token update failed: %@", error.domain);
-			}
-		};
-		self.executingOperation = operation;
-		[operation execute];
-	}
-	else
-	{
-		//this is the first time, add token
-		AddUserDeviceOperation *operation = [AddUserDeviceOperation addDeviceOperation];
-		
-		operation.objectModel = self.objectModel;
-		operation.token = tokenString;
-		operation.completionHandler = ^(NSError *error) {
-			if (error)
-			{
-				NSLog(@"Token adding failed: %@", error);
-			}
-		};
-		self.executingOperation = operation;
-		[operation execute];
+		if ([self pushNotificationsGranted] && [self.objectModel.currentUser.deviceToken length] > 0)
+		{
+			//if notification are granted update token
+			UpdateUserDeviceOperation *operation = [UpdateUserDeviceOperation updateDeviceOperation];
+			
+			operation.objectModel = self.objectModel;
+			operation.existingToken = self.objectModel.currentUser.deviceToken;
+			operation.updatedToken = self.deviceTokenString;
+			operation.completionHandler = ^(NSError *error) {
+				if (error)
+				{
+					NSLog(@"Token update failed: %@", error.domain);
+				}
+			};
+			self.executingOperation = operation;
+			[operation execute];
+		}
+		else
+		{
+			//this is the first time, add token
+			AddUserDeviceOperation *operation = [AddUserDeviceOperation addDeviceOperation];
+			
+			operation.objectModel = self.objectModel;
+			operation.token = self.deviceTokenString;
+			operation.completionHandler = ^(NSError *error) {
+				if (error)
+				{
+					NSLog(@"Token adding failed: %@", error);
+				}
+			};
+			self.executingOperation = operation;
+			[operation execute];
+		}
 	}
 }
 
@@ -126,7 +144,7 @@
 
 - (void)handleLoggingOut
 {
-	if ([self pushNotificationsGranted])
+	if ([self pushNotificationsGranted] && [self.objectModel.currentUser.deviceToken length] > 0)
 	{
 		//remove device from receiving notifications
 		RemoveUserDeviceOperation *operation = [RemoveUserDeviceOperation removeDeviceOperation];

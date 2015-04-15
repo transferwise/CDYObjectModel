@@ -225,11 +225,11 @@
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
 				[weakSelf logUserIn:token
-						  email:email
-				   successBlock:successBlock
-							hud:hud
-					objectModel:objectModel
-	   waitForDetailsCompletion:waitForDetailsCompletion];
+							  email:email
+					   successBlock:successBlock
+								hud:hud
+						objectModel:objectModel
+		   waitForDetailsCompletion:waitForDetailsCompletion];
 			}];
 			return;
 		}
@@ -421,6 +421,10 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 {
 	[Credentials setUserToken:token];
 	[Credentials setUserEmail:email];
+	//add device to receive push notifications, if they have been authorized
+	PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																					 objectModel:objectModel];
+	[pushHelper handleDeviceRegistering];
     __weak typeof(self) weakSelf = self;
 	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS
