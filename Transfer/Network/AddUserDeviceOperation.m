@@ -10,7 +10,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "ObjectModel+Users.h"
 
-NSString *const kUserDeviceAddPath = @"/userdevice/add";
+NSString *const kUserDeviceAddPath = @"/device/add";
 
 @implementation AddUserDeviceOperation
 
@@ -38,10 +38,10 @@ NSString *const kUserDeviceAddPath = @"/userdevice/add";
 	}];
 	
 	NSString *fullPath = [self addTokenToPath:kUserDeviceAddPath];
-	NSDictionary *params = @{@"deviceToken" : self.token,
+	NSDictionary *data = @{@"deviceToken" : self.token,
 							 @"deviceName" : [[UIDevice currentDevice] name]};
-	[self getDataFromPath:fullPath
-				   params:params];
+	[self postData:data
+			toPath:fullPath];
 }
 
 + (AddUserDeviceOperation *)addDeviceOperation

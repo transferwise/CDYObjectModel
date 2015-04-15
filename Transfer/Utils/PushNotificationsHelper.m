@@ -88,7 +88,7 @@
 		operation.completionHandler = ^(NSError *error) {
 			if (error)
 			{
-				MCLog(@"Token update failed: %@", error.domain);
+				NSLog(@"Token update failed: %@", error.domain);
 			}
 		};
 		self.executingOperation = operation;
@@ -104,7 +104,7 @@
 		operation.completionHandler = ^(NSError *error) {
 			if (error)
 			{
-				MCLog(@"Token adding failed: %@", error.domain);
+				NSLog(@"Token adding failed: %@", error);
 			}
 		};
 		self.executingOperation = operation;
@@ -114,7 +114,7 @@
 
 - (void)handleRegistrationFailure:(NSError *)error
 {
-	MCLog(@"Token registration failed: %@", error.domain);
+	NSLog(@"Token registration failed: %@", error);
 }
 
 - (void)handleNotificationArrival:(NSDictionary *)userInfo
@@ -136,7 +136,7 @@
 		operation.completionHandler = ^(NSError *error) {
 			if (error)
 			{
-				MCLog(@"Token removing failed: %@", error.domain);
+				NSLog(@"Token removing failed: %@", error);
 			}
 		};
 		self.executingOperation = operation;

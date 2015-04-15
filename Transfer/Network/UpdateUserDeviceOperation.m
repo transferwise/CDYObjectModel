@@ -10,7 +10,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "ObjectModel+Users.h"
 
-NSString *const kUserDeviceUpdatePath = @"/userdevice/update";
+NSString *const kUserDeviceUpdatePath = @"/device/update";
 
 @implementation UpdateUserDeviceOperation
 
@@ -38,10 +38,10 @@ NSString *const kUserDeviceUpdatePath = @"/userdevice/update";
 	}];
 	
 	NSString *fullPath = [self addTokenToPath:kUserDeviceUpdatePath];
-	NSDictionary *params = @{@"existingDeviceToken" : self.existingToken,
+	NSDictionary *data = @{@"existingDeviceToken" : self.existingToken,
 							 @"newDeviceToken" : self.updatedToken};
-	[self getDataFromPath:fullPath
-				   params:params];
+	[self postData:data
+			toPath:fullPath];
 }
 
 + (UpdateUserDeviceOperation *)updateDeviceOperation

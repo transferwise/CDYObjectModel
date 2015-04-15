@@ -10,7 +10,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "ObjectModel+Users.h"
 
-NSString *const kUserDeviceRemovePath = @"/userdevice/remove";
+NSString *const kUserDeviceRemovePath = @"/device/remove";
 
 @implementation RemoveUserDeviceOperation
 
@@ -38,9 +38,9 @@ NSString *const kUserDeviceRemovePath = @"/userdevice/remove";
 	}];
 	
 	NSString *fullPath = [self addTokenToPath:kUserDeviceRemovePath];
-	NSDictionary *params = @{@"deviceToken" : self.token};
-	[self getDataFromPath:fullPath
-				   params:params];
+	NSDictionary *data = @{@"deviceToken" : self.token};
+	[self postData:data
+			toPath:fullPath];
 }
 
 + (RemoveUserDeviceOperation *)removeDeviceOperation
