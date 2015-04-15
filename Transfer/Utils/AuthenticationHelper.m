@@ -41,6 +41,7 @@
 #import "OAuthViewController.h"
 #import "TouchIDHelper.h"
 #import "TouchIdPromptViewController.h"
+#import "PushNotificationsHelper.h"
 
 @interface AuthenticationHelper ()<TouchIdPromptViewControllerDelegate>
 
@@ -381,6 +382,10 @@
     if([Credentials userLoggedIn])
     {
         [objectModel performBlock:^{
+			//remove device from receiving push notifications, if it has been registred to receive them
+			PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																							 objectModel:objectModel];
+			[pushHelper handleLoggingOut];			
             [objectModel deleteObject:objectModel.currentUser];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if([Credentials userLoggedIn])
@@ -394,6 +399,7 @@
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
                     [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":[NSNull null]}];
                     [TransferwiseClient clearCookies];
+					
                     if(completionBlock)
                     {
                         completionBlock();
