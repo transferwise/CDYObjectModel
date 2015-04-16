@@ -1020,6 +1020,9 @@
 		4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
+		478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
+		478BE9531ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
+		478BE9541ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
 		478C6FEA1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
 		478C6FEB1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
 		478C6FEC1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
@@ -1992,6 +1995,8 @@
 		4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Presentation.h"; sourceTree = "<group>"; };
 		4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Presentation.m"; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
+		478BE9501ADF9A7F00B8999D /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HexString.h"; sourceTree = "<group>"; };
+		478BE9511ADF9A7F00B8999D /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HexString.m"; sourceTree = "<group>"; };
 		478C6FE81A8CC71500431882 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
 		478C6FE91A8CC71500431882 /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
 		478C6FF61A8E2C0600431882 /* CurrencyLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyLoader.h; sourceTree = "<group>"; };
@@ -3156,6 +3161,8 @@
 				4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */,
 				EA225CA1178EB591009D6B83 /* NSDate+ServerTime.h */,
 				EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */,
+				478BE9501ADF9A7F00B8999D /* NSData+HexString.h */,
+				478BE9511ADF9A7F00B8999D /* NSData+HexString.m */,
 				EA225C83178EB21C009D6B83 /* NSDictionary+Cleanup.h */,
 				EA225C84178EB21C009D6B83 /* NSDictionary+Cleanup.m */,
 				EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */,
@@ -4869,6 +4876,7 @@
 				388E5ACC1A5A949500AF6EB9 /* SwipeActionCell.m in Sources */,
 				388E5ACD1A5A949500AF6EB9 /* MOMRoundedCornerStyle.m in Sources */,
 				383D30D61A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
+				478BE9541ADF9A7F00B8999D /* NSData+HexString.m in Sources */,
 				388E5ACE1A5A949500AF6EB9 /* UploadMoneyViewController.m in Sources */,
 				388E5ACF1A5A949500AF6EB9 /* PullPaymentDetailsOperation.m in Sources */,
 				388E5AD01A5A949500AF6EB9 /* MOMStyleFactory.m in Sources */,
@@ -5213,6 +5221,7 @@
 				476C6B89196C18BF007002F9 /* SwipeActionCell.m in Sources */,
 				380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
 				383D30D51A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
+				478BE9531ADF9A7F00B8999D /* NSData+HexString.m in Sources */,
 				EAD3648617E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
 				EAD33EAC17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */,
 				380021CB192CC531009B1D53 /* MOMStyleFactory.m in Sources */,
@@ -5579,6 +5588,7 @@
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				383FC0FC19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
+				478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */,
 				470C13211A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,
 				383FC0F019AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */,
 				380021FF192F443E009B1D53 /* CurrencyCell.m in Sources */,
@@ -6024,7 +6034,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "080603ef-3a37-4e03-a8a6-488643032529";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6fc19856-2ed5-40fb-aa66-cf267055ea7c";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

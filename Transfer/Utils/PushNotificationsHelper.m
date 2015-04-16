@@ -13,6 +13,7 @@
 #import "RemoveUserDeviceOperation.h"
 #import "UpdateuserDeviceOperation.h"
 #import "Credentials.h"
+#import "NSData+HexString.h"
 
 @interface PushNotificationsHelper ()
 
@@ -84,7 +85,7 @@
 
 - (void)handleRegistrationsSuccess:(NSData *)deviceToken
 {
-	self.deviceTokenString = [deviceToken base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+	self.deviceTokenString = [deviceToken hexString];
 	
 	[self handleDeviceRegistering];
 }
@@ -92,11 +93,13 @@
 - (void)handleDeviceRegistering
 {
 	//only register device token when logged in
-	if ([Credentials userLoggedIn] && self.deviceTokenString)
+	if ([Credentials userLoggedIn]
+		&& [self pushNotificationsGranted]
+		&& self.deviceTokenString)
 	{
-		if ([self pushNotificationsGranted] && [self.objectModel.currentUser.deviceToken length] > 0)
+		if ([self.objectModel.currentUser.deviceToken length] > 0)
 		{
-			//if notification are granted update token
+			//if token exist update token just in case (as per Apple docs)
 			UpdateUserDeviceOperation *operation = [UpdateUserDeviceOperation updateDeviceOperation];
 			
 			operation.objectModel = self.objectModel;

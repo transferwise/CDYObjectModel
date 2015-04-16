@@ -93,10 +93,10 @@
     [operation setThreadPriority:0.1];
     [operation setQueuePriority:NSOperationQueuePriorityLow];
 	
-#if DEV_VERSION
+	//#if DEV_VERSION
 	//if you want to run app against localhost then it has invalid cert
 	[operation setAllowsInvalidSSLCertificate:YES];
-#endif
+	//#endif
     __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
 		if (self.hasBeenCancelled) {

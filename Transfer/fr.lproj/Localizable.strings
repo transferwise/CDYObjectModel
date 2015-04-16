@@ -273,6 +273,7 @@ Une révolution dans votre poche.";
 "payment.status.transferred.description.eta.past" = "& devrait être arrivé le";
 "payment.status.receivedWaitingRecipient.description" = "En attente du destinataire";
 "payment.status.unknown.description" = "Inconnu";
+"payment.status.notification" = "Votre transfert no %@ est %@";
 
 "profile.post.code.label" = "Code postale";
 "profile.post.code.usa.label" = "Zip code";
