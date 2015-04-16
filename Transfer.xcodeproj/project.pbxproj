@@ -50,6 +50,7 @@
 		38002200192F443E009B1D53 /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021FE192F443E009B1D53 /* CurrencyCell.m */; };
 		3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
 		3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
+		380125A91ADFCE69004E5CA9 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		380579A91A1A3520005E94DD /* TransferDevWebTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 380579A81A1A3520005E94DD /* TransferDevWebTools.m */; };
 		38057ABF1A1A5C66005E94DD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38057A251A1A5C65005E94DD /* libGoogleAnalyticsServices.a */; };
 		38057AC01A1A5C66005E94DD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38057A251A1A5C65005E94DD /* libGoogleAnalyticsServices.a */; };
@@ -877,7 +878,6 @@
 		38FAE53D1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */; };
 		38FAE53E1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */; };
 		38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
-		38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		470C131D1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */; };
@@ -2431,8 +2431,8 @@
 				EA31A1C217DDB29B00F937F7 /* libz.dylib in Frameworks */,
 				EA31A1C317DDB29B00F937F7 /* Security.framework in Frameworks */,
 				EA31A1C417DDB29B00F937F7 /* MobileCoreServices.framework in Frameworks */,
-				38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */,
 				EA31A1C517DDB29B00F937F7 /* SystemConfiguration.framework in Frameworks */,
+				380125A91ADFCE69004E5CA9 /* libEventTracker.a in Frameworks */,
 				EA31A1C617DDB29B00F937F7 /* UIKit.framework in Frameworks */,
 				EA31A1C717DDB29B00F937F7 /* Foundation.framework in Frameworks */,
 				EA31A1C817DDB29B00F937F7 /* CoreGraphics.framework in Frameworks */,

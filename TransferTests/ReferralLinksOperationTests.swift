@@ -63,6 +63,6 @@ class ReferralLinksOperationTests: XCTestCase
 		XCTAssertNotNil(sut.params, "params not set");
 		XCTAssertEqual(sut.params.count, 1, "invlid number of params")
 		XCTAssertNotNil(sut.params["invitePlatform"], "invitePlatform not submitted")
-		XCTAssertTrue(sut.params["invitePlatform"] as! NSString == TRWAppType, "invalid platform submitted")
+		XCTAssertTrue(sut.params["invitePlatform"] as? NSString == TRWAppType, "invalid platform submitted")
 	}
 }

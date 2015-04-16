@@ -33,15 +33,15 @@
                         <action selector="dismiss" destination="-1" eventType="touchUpInside" id="Nsz-Zd-5m1"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="refreshFlag0" translatesAutoresizingMaskIntoConstraints="NO" id="KXk-CC-Thp">
-                    <rect key="frame" x="149" y="173" width="22" height="22"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="refreshFlag0" translatesAutoresizingMaskIntoConstraints="NO" id="KXk-CC-Thp">
+                    <rect key="frame" x="149" y="172" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="22" id="8Hd-jN-QvX"/>
                         <constraint firstAttribute="height" constant="22" id="t2Q-zm-ZcZ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="xGc-tE-8cX">
-                    <rect key="frame" x="30" y="225" width="260" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="xGc-tE-8cX">
+                    <rect key="frame" x="30" y="224" width="260" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="260" id="Rgy-tb-MfN"/>
                     </constraints>
@@ -64,8 +64,8 @@
                         <action selector="actionButtonTapped:" destination="-1" eventType="touchUpInside" id="HQf-vW-GKX"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-ju-O3W" userLabel="TopSpacer">
-                    <rect key="frame" x="155" y="0.0" width="10" height="173"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-ju-O3W" userLabel="TopSpacer">
+                    <rect key="frame" x="155" y="0.0" width="10" height="172"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="UJu-QO-RKf"/>

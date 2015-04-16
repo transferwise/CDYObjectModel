@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecipientViewController">
@@ -26,22 +27,17 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-KC-Di1">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="488" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz" customClass="IntrinsicSizeUIView">
                             <rect key="frame" x="60" y="120" width="1024" height="488"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                                     <rect key="frame" x="0.0" y="0.0" width="410" height="488"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="488" id="WNq-7i-U6Z"/>
                                         <constraint firstAttribute="width" constant="410" id="qZw-aU-9D1"/>
                                     </constraints>
-                                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                                     <color key="separatorColor" red="0.88627450980392153" green="0.89803921568627454" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     <connections>
@@ -51,14 +47,11 @@
                                 </tableView>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JU1-IW-1ic">
                                     <rect key="frame" x="494" y="0.0" width="410" height="488"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="410" id="KN3-uB-efK"/>
                                         <constraint firstAttribute="height" constant="488" id="Kcl-Pf-3Gx"/>
                                     </constraints>
-                                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                                     <color key="separatorColor" red="0.8862745098" green="0.8980392157" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     <connections>
@@ -86,7 +79,6 @@
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="BlueRoundedButton">
                     <rect key="frame" x="784" y="674" width="190" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="SEa-xR-1wN"/>
                         <constraint firstAttribute="width" constant="190" id="sra-le-R6H"/>
@@ -106,7 +98,13 @@
                 <constraint firstAttribute="trailing" secondItem="dT4-Xh-GCh" secondAttribute="trailing" constant="50" id="nJT-de-MZo"/>
                 <constraint firstAttribute="bottom" secondItem="dT4-Xh-GCh" secondAttribute="bottom" constant="50" id="xGN-LV-u1u"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

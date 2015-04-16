@@ -229,7 +229,7 @@
 		CGPoint translation = [gestureRecognizer translationInView:[cell superview]];
 		
 		// Check for horizontal gesture
-		if (fabsf(translation.x) > fabsf(translation.y))
+		if (fabs(translation.x) > fabs(translation.y))
 		{
 			return YES;
 		}
@@ -299,11 +299,11 @@
         BOOL easeOutOnly;
         NSTimeInterval duration = 0.0f;
         
-        if(fabsf(velocity.x) > SLOW_FLICK_VELOCITY)
+        if(fabs(velocity.x) > SLOW_FLICK_VELOCITY)
         {
             // Flick
             shouldShow = velocity.x < 0;
-            duration = 1/fabsf(velocity.x);
+            duration = 1/fabs(velocity.x);
             easeOutOnly = YES;
         }
         else
