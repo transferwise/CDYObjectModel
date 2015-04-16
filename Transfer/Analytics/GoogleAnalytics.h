@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AnalyticsConstants.h"
 
 @class ObjectModel;
 

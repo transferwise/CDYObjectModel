@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController">
@@ -50,10 +50,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36r-Gh-1de" userLabel="NonRegistrationControls">
-                    <rect key="frame" x="0.0" y="604" width="1024" height="108"/>
+                    <rect key="frame" x="0.0" y="636" width="1024" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFu-gX-LtS" customClass="BlueRoundedButton">
-                            <rect key="frame" x="462" y="0.0" width="100" height="108"/>
+                            <rect key="frame" x="462" y="0.0" width="100" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Kbp-pK-zsI"/>
                             </constraints>
@@ -66,7 +66,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcf-PL-6rF" userLabel="WhiteGetstarted" customClass="WhiteRoundedButton">
-                            <rect key="frame" x="462" y="0.0" width="100" height="108"/>
+                            <rect key="frame" x="462" y="0.0" width="100" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Get starteD">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,6 +86,7 @@
                         <constraint firstItem="Lcf-PL-6rF" firstAttribute="width" secondItem="KFu-gX-LtS" secondAttribute="width" id="Yf4-8O-tAl"/>
                         <constraint firstItem="Lcf-PL-6rF" firstAttribute="centerY" secondItem="KFu-gX-LtS" secondAttribute="centerY" id="jdW-yY-nGH"/>
                         <constraint firstAttribute="centerY" secondItem="KFu-gX-LtS" secondAttribute="centerY" id="qQ4-Mr-Wrq"/>
+                        <constraint firstAttribute="height" constant="44" id="zy4-yr-dfy"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mby-7N-hH5" userLabel="UpfrontRegistrationControls">
@@ -214,7 +215,6 @@
                 <constraint firstAttribute="centerY" secondItem="Mby-7N-hH5" secondAttribute="centerY" constant="-274" id="8Up-Cz-IOn"/>
                 <constraint firstItem="36r-Gh-1de" firstAttribute="width" secondItem="Mby-7N-hH5" secondAttribute="width" id="H28-VD-yAD"/>
                 <constraint firstAttribute="centerX" secondItem="Mby-7N-hH5" secondAttribute="centerX" id="Mwq-XJ-Ks3"/>
-                <constraint firstItem="36r-Gh-1de" firstAttribute="height" secondItem="Mby-7N-hH5" secondAttribute="height" id="QE0-dL-0zQ"/>
                 <constraint firstItem="Mby-7N-hH5" firstAttribute="top" secondItem="NiX-z4-79M" secondAttribute="bottom" constant="40" id="Uca-6Z-oCa"/>
                 <constraint firstAttribute="trailing" secondItem="vVN-5a-Y2I" secondAttribute="trailing" id="Xw8-dJ-LvM"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="top" secondItem="1" secondAttribute="top" id="YXh-52-aGZ"/>

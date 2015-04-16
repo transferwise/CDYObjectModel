@@ -132,13 +132,13 @@
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         BOOL isRegistered = [defaults boolForKey:TRWIsRegisteredSettingsKey];
         NSString *isRegisteredString = isRegistered?@"true":@"false";
-        [[Mixpanel sharedInstance] sendPageView:@"Intro" withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Intro screen"];
+        [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen];
     }
     else
     {
-        [[Mixpanel sharedInstance] sendPageView:@"What's new"];
-        [[GoogleAnalytics sharedInstance] sendScreen:@"What's new screen"];
+        [[Mixpanel sharedInstance] sendPageView:MPWhatsNew];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAWhatsNewScreen];
     }
 }
 
@@ -324,7 +324,7 @@
     [self setReportedPage:currentPage];
     MCLog(@"Report page:%ld", (long)currentPage);
 
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"IntroScreensSlided" withLabel:[NSString stringWithFormat:@"%ld", (long) currentPage + 1]];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAIntroscreensslided withLabel:[NSString stringWithFormat:@"%ld", (long) currentPage + 1]];
 }
 
 -(void)modifyViews:(NSArray*)viewArray withBlock:(void(^)(UIView* view))modificationBlock

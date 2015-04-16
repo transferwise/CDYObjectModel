@@ -68,6 +68,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
 													  profile:paymentToRepeat.profileUsed
 												 successBlock:^(PendingPayment *payment) {
 													 payment.paymentReference = paymentToRepeat.paymentReference;
+                                                     payment.isRepeatValue = YES;
                                                      if(payment.isFixedAmountValue)
                                                      {
                                                          payment.refundRecipient = paymentToRepeat.refundRecipient;
@@ -92,7 +93,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
     self.currentOperation = operation;
     [operation execute];
     
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"RepeatTransferSelected"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GARepeattransferselected];
     
 }
 

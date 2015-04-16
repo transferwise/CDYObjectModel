@@ -112,7 +112,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 {
 	[super viewDidAppear:animated];
 
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Recipients"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GARecipients];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -203,7 +203,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 			return;
 		}
 		
-		[[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
+		[[GoogleAnalytics sharedInstance] sendScreen:GANewPaymentTo];
 		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
 		[controller setObjectModel:self.objectModel];
 		[controller setRecipient:recipient];
@@ -274,7 +274,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (IBAction)addContactPressed
 {
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Add recipient"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GAAddRecipient];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     [controller setObjectModel:self.objectModel];
@@ -285,7 +285,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [controller setRecipientValidation:committer];
     __weak typeof(self) weakSelf = self;
     [controller setAfterSaveAction:^{
-        [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:@"AddRecipientScreen"];
+        [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:GAAddrecipientscreen];
         [weakSelf closeModal];
     }];
     controller.noPendingPayment = YES;
