@@ -40,7 +40,7 @@
 #import <NXOAuth2AccessToken.h>
 #import "OAuthViewController.h"
 #import "TouchIDHelper.h"
-#import "CustomInfoViewController+TouchId.h"
+#import "CustomInfoViewController.h"
 
 @interface AuthenticationHelper ()
 
@@ -144,7 +144,7 @@
 				   successBlock:^{
                        if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
                        {
-                           CustomInfoViewController* prompt = [CustomInfoViewController touchIdCustomInfoWithUsername:email password:password completionBlock:^{
+                           CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
                                successBlock();
                            }];
                            [prompt presentOnViewController:touchIdHost];

@@ -867,15 +867,6 @@
 		38FAE5221ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */; };
 		38FAE5231ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */; };
 		38FAE5241ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */; };
-		38FAE5271ADD75F2006CD53C /* CustomInfoViewController+TouchId.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5261ADD75F2006CD53C /* CustomInfoViewController+TouchId.m */; };
-		38FAE5281ADD75F2006CD53C /* CustomInfoViewController+TouchId.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5261ADD75F2006CD53C /* CustomInfoViewController+TouchId.m */; };
-		38FAE5291ADD75F2006CD53C /* CustomInfoViewController+TouchId.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5261ADD75F2006CD53C /* CustomInfoViewController+TouchId.m */; };
-		38FAE52C1ADD7837006CD53C /* CustomInfo_TouchId.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52A1ADD7837006CD53C /* CustomInfo_TouchId.xib */; };
-		38FAE52D1ADD7837006CD53C /* CustomInfo_TouchId.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52A1ADD7837006CD53C /* CustomInfo_TouchId.xib */; };
-		38FAE52E1ADD7837006CD53C /* CustomInfo_TouchId.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52A1ADD7837006CD53C /* CustomInfo_TouchId.xib */; };
-		38FAE52F1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */; };
-		38FAE5301ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */; };
-		38FAE5311ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */; };
 		38FAE5341ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
 		38FAE5351ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
 		38FAE5361ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
@@ -1861,10 +1852,6 @@
 		38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientUpdateOperation.m; sourceTree = "<group>"; };
 		38FAE5201ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+NoPayInMethods.h"; sourceTree = "<group>"; };
 		38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+NoPayInMethods.m"; sourceTree = "<group>"; };
-		38FAE5251ADD75F2006CD53C /* CustomInfoViewController+TouchId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+TouchId.h"; sourceTree = "<group>"; };
-		38FAE5261ADD75F2006CD53C /* CustomInfoViewController+TouchId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+TouchId.m"; sourceTree = "<group>"; };
-		38FAE52A1ADD7837006CD53C /* CustomInfo_TouchId.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfo_TouchId.xib; sourceTree = "<group>"; };
-		38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfo_TouchId~ipad.xib"; sourceTree = "<group>"; };
 		38FAE5321ADE569E006CD53C /* CustomInfoViewController+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+Notifications.h"; sourceTree = "<group>"; };
 		38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+Notifications.m"; sourceTree = "<group>"; };
 		38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfo_Notifications.xib; sourceTree = "<group>"; };
@@ -3201,10 +3188,6 @@
 				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
 				38FAE5201ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.h */,
 				38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */,
-				38FAE5251ADD75F2006CD53C /* CustomInfoViewController+TouchId.h */,
-				38FAE5261ADD75F2006CD53C /* CustomInfoViewController+TouchId.m */,
-				38FAE52A1ADD7837006CD53C /* CustomInfo_TouchId.xib */,
-				38FAE52B1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib */,
 				38FAE5321ADE569E006CD53C /* CustomInfoViewController+Notifications.h */,
 				38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */,
 				38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */,
@@ -3884,7 +3867,6 @@
 				388E5B251A5A949500AF6EB9 /* MainViewController.xib in Resources */,
 				388E5B261A5A949500AF6EB9 /* spinner.html in Resources */,
 				388E5B271A5A949500AF6EB9 /* SettingsViewController~ipad.xib in Resources */,
-				38FAE52E1ADD7837006CD53C /* CustomInfo_TouchId.xib in Resources */,
 				388E5B281A5A949500AF6EB9 /* TransactionsViewController.xib in Resources */,
 				388E5B291A5A949500AF6EB9 /* RefundDetailsViewController.xib in Resources */,
 				388E5B2A1A5A949500AF6EB9 /* ValidationCell.xib in Resources */,
@@ -3929,7 +3911,6 @@
 				388E5B4F1A5A949500AF6EB9 /* NoRefCurrencyMessages.plist in Resources */,
 				388E5B501A5A949500AF6EB9 /* ContactsViewController~ipad.xib in Resources */,
 				388E5B511A5A949500AF6EB9 /* TSAlertViewCancelButtonBackground.png in Resources */,
-				38FAE5311ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */,
 				388E5B521A5A949500AF6EB9 /* SeeHowViewController.xib in Resources */,
 				388E5B531A5A949500AF6EB9 /* IntroViewController.xib in Resources */,
 				388E5B541A5A949500AF6EB9 /* CurrencyCell.xib in Resources */,
@@ -4054,7 +4035,6 @@
 				EA31A1D217DDB29B00F937F7 /* MainViewController.xib in Resources */,
 				EA84056A17F0A40B00F44916 /* spinner.html in Resources */,
 				3840862B19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
-				38FAE52D1ADD7837006CD53C /* CustomInfo_TouchId.xib in Resources */,
 				EA31A1D317DDB29B00F937F7 /* TransactionsViewController.xib in Resources */,
 				EA0523FA191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				38B52F9A199B622D00B6AEBD /* ValidationCell.xib in Resources */,
@@ -4099,7 +4079,6 @@
 				385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */,
 				385A668E1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
-				38FAE5301ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */,
 				383FC10D19AE1B8400465FCA /* SeeHowViewController.xib in Resources */,
 				EA0450D717EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */,
@@ -4217,7 +4196,6 @@
 				EAD3968B171BD82300F6D011 /* NewPaymentViewController.xib in Resources */,
 				3840862D19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */,
 				EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */,
-				38FAE52C1ADD7837006CD53C /* CustomInfo_TouchId.xib in Resources */,
 				380021AA192B91A9009B1D53 /* TabViewController~ipad.xib in Resources */,
 				EA0450DD17EC64E4008921DA /* IntroView.xib in Resources */,
 				383FC10C19AE1B8400465FCA /* SeeHowViewController.xib in Resources */,
@@ -4262,7 +4240,6 @@
 				38B0930B1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
 				47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
-				38FAE52F1ADD7837006CD53C /* CustomInfo_TouchId~ipad.xib in Resources */,
 				385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
@@ -4871,7 +4848,6 @@
 				388E5AD51A5A949500AF6EB9 /* EmailLookupWrapper.m in Sources */,
 				388E5AD61A5A949500AF6EB9 /* PaymentFlow.m in Sources */,
 				388E5AD71A5A949500AF6EB9 /* SpinningImageView.m in Sources */,
-				38FAE5291ADD75F2006CD53C /* CustomInfoViewController+TouchId.m in Sources */,
 				388E5AD81A5A949500AF6EB9 /* _PairTargetCurrency.m in Sources */,
 				388E5AD91A5A949500AF6EB9 /* NSString+Presentation.m in Sources */,
 				388E5ADA1A5A949500AF6EB9 /* ObjectModel+Payments.m in Sources */,
@@ -5212,7 +5188,6 @@
 				383FC0F919AE1ABC00465FCA /* EmailLookupWrapper.m in Sources */,
 				4757BE631A3B064B005D7BDD /* PaymentFlow.m in Sources */,
 				EA31A1B617DDB29B00F937F7 /* SpinningImageView.m in Sources */,
-				38FAE5281ADD75F2006CD53C /* CustomInfoViewController+TouchId.m in Sources */,
 				389F6802198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EA31A1B717DDB29B00F937F7 /* NSString+Presentation.m in Sources */,
 				389F682A198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
@@ -5408,7 +5383,6 @@
 				389F67FF198FC1C6006CF1F6 /* _PairSourceCurrency.m in Sources */,
 				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
 				EAB6170E191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
-				38FAE5271ADD75F2006CD53C /* CustomInfoViewController+TouchId.m in Sources */,
 				389F6827198FC1C6006CF1F6 /* ObjectModel+PayInMethod.m in Sources */,
 				478C6FEA1A8CC71500431882 /* LocationHelper.m in Sources */,
 				BB29BD47173CD2FF0016A6E9 /* BankTransferViewController.m in Sources */,

@@ -164,7 +164,7 @@
 	customInfo.infoText = NSLocalizedString(messageKey, nil);
 	customInfo.actionButtonTitles = @[NSLocalizedString(@"button.title.ok", nil)];
 	customInfo.infoImage = [UIImage imageNamed:imageName];
-	customInfo.mapCloseButtonToActionIndex = 1;
+	customInfo.mapCloseButtonToActionIndex = 0;
 	
 	return customInfo;
 }
