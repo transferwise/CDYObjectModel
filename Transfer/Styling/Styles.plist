@@ -123,7 +123,7 @@
 			<key>GreenProgress</key>
 			<dict>
 				<key>color</key>
-				<string>429C30</string>
+				<string>57ab3d</string>
 			</dict>
 			<key>invite0_1</key>
 			<dict>
@@ -308,7 +308,7 @@
 			<key>bgStyle</key>
 			<string>Green</string>
 			<key>selectedBgStyle</key>
-			<string>GreenProgress</string>
+			<string>Greenprogress</string>
 		</dict>
 		<key>blueButton</key>
 		<dict>
