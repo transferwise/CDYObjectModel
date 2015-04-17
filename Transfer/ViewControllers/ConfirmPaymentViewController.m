@@ -41,7 +41,7 @@
 
 @interface ConfirmPaymentViewController ()
 
-@property (nonatomic, strong) IBOutlet UIButton *actionButton;
+@property (nonatomic, strong) IBOutlet ColoredButton *actionButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
@@ -62,6 +62,8 @@
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @property (nonatomic, strong) NSCharacterSet *referenceExclusionSet;
+
+@property (nonatomic, copy) TRWActionBlock animatedSuccessWrapper;
 
 //iPad
 @property (nonatomic,weak) IBOutlet UITextField *referenceField;
@@ -104,12 +106,18 @@
     self.referenceExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
     
     [[Mixpanel sharedInstance] sendPageView:MPConfirmation withProperties:[self.payment trackingProperties]];
-    
-    if([self.actionButton isKindOfClass:[ColoredButton class]])
-    {
-        ColoredButton* coloredButton = (ColoredButton*)self.actionButton;
-        [[self.objectModel pendingPayment] addProgressAnimationToButton:coloredButton];
-    }
+
+    ColoredButton* coloredButton = (ColoredButton*)self.actionButton;
+    PendingPayment* pendingPayment = [self.objectModel pendingPayment];
+    [pendingPayment addProgressAnimationToButton:coloredButton];
+
+    __weak typeof(self) weakSelf = self;
+    self.animatedSuccessWrapper = ^{
+        [coloredButton animateProgressFrom:[pendingPayment.paymentFlowProgress floatValue] to:1.0f delay:0.0f];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            weakSelf.sucessBlock();
+            });
+    };
     
 }
 
@@ -527,25 +535,27 @@
                     [alertView show];
                     return;
                 }
-                weakSelf.sucessBlock();
+                weakSelf.animatedSuccessWrapper();
             }];
             self.executedOperation = updateOperation;
             [updateOperation execute];
         }
         else
         {
-            weakSelf.sucessBlock();
+            weakSelf.animatedSuccessWrapper();
         }
     }
     else
     {
-        weakSelf.sucessBlock();
+        weakSelf.animatedSuccessWrapper();
     }
 }
 
 -(void)handleValidationError:(NSError *)error
 {
     [self.hud hide];
+    
+    [self.actionButton animateProgressFrom:1.0f to:[[self.objectModel pendingPayment].paymentFlowProgress floatValue] delay:0.0f];
     if (error)
     {
         [[GoogleAnalytics sharedInstance] sendAlertEvent:GACreatingpaymentalert

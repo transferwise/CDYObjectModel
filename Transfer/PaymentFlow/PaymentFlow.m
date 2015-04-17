@@ -52,11 +52,11 @@
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
 
-#define kProgressRecipient 0.4f
+#define kProgressRecipient 0.3f
 #define kProgressPersonalProfile 0.6f
 #define kProgressBusinessProfile 0.7f
 #define kProgressRefundRecipient 0.8f
-#define kProgressConfirm 1.0f
+#define kProgressConfirm 0.9f
 
 @interface PaymentFlow ()
 
