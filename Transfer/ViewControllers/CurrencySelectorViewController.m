@@ -105,7 +105,7 @@
 	if(IPAD)
 	{
 		//ipad, landscape
-		if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+		if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
 			return CGSizeMake(1024.f, height);
 		}
 		//ipad protrait

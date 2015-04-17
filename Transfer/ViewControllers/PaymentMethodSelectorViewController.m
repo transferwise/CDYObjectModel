@@ -36,8 +36,8 @@
 	self.sortedPayInMethods = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
 			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type]integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type]integerValue];
 	}];
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Payment method selector"];
-    [[Mixpanel sharedInstance] sendPageView:@"Payment method selector"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GAPaymentMethodSelector];
+    [[Mixpanel sharedInstance] sendPageView:MPPaymentMethodSelector];
 }
 
 -(void)viewWillAppear:(BOOL)animated

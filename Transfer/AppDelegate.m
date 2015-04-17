@@ -111,7 +111,6 @@
 		introController.plistFilenameOverride = @"existingUserIntro";
 		[introController setObjectModel:self.objectModel];
         introController.requireRegistration = ![Credentials userLoggedIn];
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Whats new screen"];
         controller = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	}
 	else
@@ -181,7 +180,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AppStarted"];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:GAAppstarted];
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS

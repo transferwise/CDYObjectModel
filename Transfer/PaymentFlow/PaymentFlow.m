@@ -90,7 +90,7 @@
     PendingPayment *pendingPayment = self.objectModel.pendingPayment;
     if(pendingPayment)
     {
-        [[Mixpanel sharedInstance] sendPageView:@"Your details" withProperties:[pendingPayment trackingProperties]];
+        [[Mixpanel sharedInstance] sendPageView:MPYourDetails withProperties:[pendingPayment trackingProperties]];
     }
 
 	id<PersonalProfileValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePersonalProfile];
@@ -134,7 +134,7 @@
 				updateRecipient:(Recipient*)updateRecipient
 {
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
-    [[Mixpanel sharedInstance] sendPageView:@"Select recipient" withProperties:[self.objectModel.pendingPayment trackingProperties]];
+    [[Mixpanel sharedInstance] sendPageView:GASelectRecipient withProperties:[self.objectModel.pendingPayment trackingProperties]];
 	
     if([self isAZOrOK])
     {
@@ -229,7 +229,7 @@
 
 - (void)presentVerificationScreen
 {
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GAPersonalIdentification];
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	
@@ -257,15 +257,6 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentUploadMoneyController");
-        if ([self isKindOfClass:[LoggedInPaymentFlow class]])
-		{
-            [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"logged"];
-        }
-		else
-		{
-            [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"not logged"];
-        }
-        
         Payment* payment = (id) [self.objectModel.managedObjectContext objectWithID:paymentID];
         
         
@@ -348,7 +339,7 @@
 
 - (void)presentBusinessVerificationScreen
 {
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GABusinessVerification];
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	__weak typeof(self) weakSelf = self;
@@ -604,7 +595,9 @@
 
 	NSNumber *transferFee = [payment transferwiseTransferFee];
 	NSString *currencyCode = [payment.sourceCurrency code];
-
+    
+    BOOL isRepeat = payment.isRepeatValue;
+    
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[payment objectID]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
@@ -632,6 +625,8 @@
             [__formatter setCurrencyDecimalSeparator:@"."];
             [__formatter setCurrencyGroupingSeparator:@""];
         }
+        
+        [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentcreated withLabel:[NSString stringWithFormat:@"%@ - %@", currencyCode, isRepeat?@"repeat":@"new"]];
 
 #if USE_APPSFLYER_EVENTS
         MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
@@ -648,7 +643,7 @@
             details[@"SourceCurrency"] = createdPayment.sourceCurrency.code;
             details[@"SourceAmount"] = createdPayment.payIn;
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Payment created" properties:details];
+            [mixpanel track:MPPaymentCreated properties:details];
             
 #if !TARGET_IPHONE_SIMULATOR
             if ([weakSelf.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
@@ -697,7 +692,7 @@
         if ([payment needsToCommitRecipientData])
 		{
             MCLog(@"commit recipient");
-            [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:@"DuringPayment"];
+            [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:GADuringpayment];
             [self commitRecipient:payment.recipient];
         }
 		else if ([payment needsToCommitRefundRecipientData])

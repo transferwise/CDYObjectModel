@@ -20,6 +20,7 @@
 #import "CustomInfoViewController.h"
 #import "GoogleAnalytics.h"
 #import "Mixpanel+Customisation.h"
+#import "CustomInfoViewController+Notifications.h"
 
 
 #ifdef DEV_VERSION
@@ -77,8 +78,8 @@
 {
     [super viewDidAppear:animated];
     [self loadCardView];
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
-    [[Mixpanel sharedInstance] sendPageView:@"Debit card payment"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GADebitCardPayment];
+    [[Mixpanel sharedInstance] sendPageView:MPDebitCardPayment];
 
 }
 
@@ -182,7 +183,7 @@
         __weak typeof(self) weakSelf = self;
         __weak typeof(customInfo) weakCustomInfo = customInfo;
         __block BOOL shouldAutoDismiss = YES;
-        customInfo.actionButtonBlock = ^{
+        ActionButtonBlock action = ^{
             if(weakSelf.executedOperation)
             {
                 TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:weakCustomInfo.view];
@@ -205,6 +206,7 @@
                         details.payment = weakSelf.payment;
                         details.objectModel = self.objectModel;
                         details.showClose = YES;
+                        details.promptForNotifications = [CustomInfoViewController shouldPresentNotificationsPrompt];
                         
                         [self.navigationController pushViewController:details animated:NO];
                         [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
@@ -221,6 +223,8 @@
             }
             
         };
+        customInfo.actionButtonBlocks = @[action];
+        
         [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
         
         PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
@@ -240,6 +244,9 @@
                 TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
                 details.payment = weakSelf.payment;
                 details.showClose = YES;
+                details.objectModel = self.objectModel;
+                details.showClose = YES;
+                details.promptForNotifications = [CustomInfoViewController shouldPresentNotificationsPrompt];
                 
                 [self.navigationController pushViewController:details animated:NO];
                 [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {

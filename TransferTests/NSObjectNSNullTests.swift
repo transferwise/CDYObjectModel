@@ -15,7 +15,7 @@ class NSObjectNSNullTests: XCTestCase
 	{
 		let o : NSObject = NSObject()
 		
-		let result : NSObject = NSObject.getObjectOrNsNull(o) as NSObject;
+		let result : NSObject = NSObject.getObjectOrNsNull(o) as! NSObject;
 		
 		XCTAssertNotNil(result, "result can't be nil");
 		XCTAssertEqual(result as NSObject, o, "invalid result returned");
@@ -28,7 +28,7 @@ class NSObjectNSNullTests: XCTestCase
 		let result: AnyObject? = NSObject.getObjectOrNsNull(o);
 		
 		XCTAssertNotNil(result, "result can't be nil");
-		XCTAssertEqual(result! as NSNull, NSNull(), "invalid result returned");
+		XCTAssertEqual(result! as! NSNull, NSNull(), "invalid result returned");
 	}
 	
 	func testGetObjectOrNsNullReturnsNsNullWhenObjectIsNsNull()
@@ -38,14 +38,14 @@ class NSObjectNSNullTests: XCTestCase
 		let result: AnyObject? = NSObject.getObjectOrNsNull(o);
 		
 		XCTAssertNotNil(result, "result can't be nil");
-		XCTAssertEqual(result! as NSNull, NSNull(), "invalid result returned");
+		XCTAssertEqual(result! as! NSNull, NSNull(), "invalid result returned");
 	}
 	
 	func testGetObjectOrNilReturnsObjectWheObjectExists()
 	{
 		let o : NSObject = NSObject()
 		
-		let result : NSObject = NSObject.getObjectOrNil(o) as NSObject;
+		let result : NSObject = NSObject.getObjectOrNil(o) as! NSObject;
 		
 		XCTAssertNotNil(result, "result can't be nil");
 		XCTAssertEqual(result as NSObject, o, "invalid result returned");

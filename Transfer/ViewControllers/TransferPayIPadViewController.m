@@ -28,6 +28,8 @@
 
 @implementation TransferPayIPadViewController
 
+@dynamic objectModel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -95,7 +97,7 @@
 
 - (IBAction)contactSupportPressed
 {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Transfer details"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAContactsupport withLabel:@"Transfer details"];
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }

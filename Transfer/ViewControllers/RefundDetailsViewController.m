@@ -213,7 +213,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     PendingPayment* pendingPayment = [self.objectModel pendingPayment];
     if(pendingPayment)
     {
-        [[Mixpanel sharedInstance] sendPageView:@"Refund account" withProperties:[pendingPayment trackingProperties]];
+        [[Mixpanel sharedInstance] sendPageView:MPRefundAccount withProperties:[pendingPayment trackingProperties]];
     }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];

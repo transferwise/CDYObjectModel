@@ -7,6 +7,7 @@
 //
 
 #import "Mixpanel.h"
+#import "AnalyticsConstants.h"
 
 @interface Mixpanel (Customisation)
 

@@ -16,6 +16,7 @@
 @interface TransferDetailsViewController : UIViewController
 
 @property (nonatomic) BOOL showClose;
+@property (nonatomic,assign) BOOL promptForNotifications;
 @property (strong, nonatomic) Payment *payment;
 @property (strong, nonatomic) ObjectModel *objectModel;
 

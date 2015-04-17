@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AchBank" representedClassName="AchBank" syncable="YES">
         <attribute name="fieldType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -115,6 +115,7 @@
         <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="paymentMadeIndicator" inverseEntity="Payment" syncable="YES"/>
     </entity>
     <entity name="PendingPayment" representedClassName="PendingPayment" parentEntity="Payment" syncable="YES">
+        <attribute name="isRepeat" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="paymentFlowProgress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="paymentFlowProgressPrevious" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="paymentPurpose" optional="YES" attributeType="String" syncable="YES"/>
@@ -202,7 +203,7 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="anonymous" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
+		<attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invitationReward" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="invitationRewardCurrency" optional="YES" attributeType="String" syncable="YES"/>
@@ -230,7 +231,7 @@
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
         <element name="Payment" positionX="459" positionY="18" width="128" height="390"/>
         <element name="PaymentMadeIndicator" positionX="-405" positionY="-279" width="128" height="90"/>
-        <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="193"/>
+        <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="210"/>
         <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="240"/>
         <element name="Recipient" positionX="745" positionY="255" width="128" height="285"/>
         <element name="RecipientType" positionX="205" positionY="-432" width="128" height="178"/>
@@ -238,6 +239,6 @@
         <element name="ReferralLink" positionX="-218" positionY="-405" width="128" height="88"/>
         <element name="Setting" positionX="-441" positionY="-405" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="18" positionY="504" width="128" height="88"/>
-        <element name="User" positionX="-360" positionY="207" width="128" height="270"/>
+        <element name="User" positionX="-360" positionY="207" width="128" height="253"/>
     </elements>
 </model>

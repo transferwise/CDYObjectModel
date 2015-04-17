@@ -103,7 +103,7 @@
     
     self.referenceExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
     
-    [[Mixpanel sharedInstance] sendPageView:@"Confirmation" withProperties:[self.payment trackingProperties]];
+    [[Mixpanel sharedInstance] sendPageView:MPConfirmation withProperties:[self.payment trackingProperties]];
     
     if([self.actionButton isKindOfClass:[ColoredButton class]])
     {
@@ -255,11 +255,11 @@
     
     if(self.reportingType == ConfirmPaymentReportingLoggedIn)
     {
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment 2"];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAConfirmPayment2];
     }
     else if (self.reportingType == ConfirmPaymentReportingNotLoggedIn)
     {
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment"];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAConfirmPayment];
     }
 }
 
@@ -522,7 +522,7 @@
                 if(error)
                 {
                     [self.hud hide];
-                    [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                    [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:[error localizedTransferwiseMessage]];
                     TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                     [alertView show];
                     return;
@@ -548,7 +548,7 @@
     [self.hud hide];
     if (error)
     {
-        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert"
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:GACreatingpaymentalert
                                                withLabel:[error localizedTransferwiseMessage]];
         TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
         [alertView show];
