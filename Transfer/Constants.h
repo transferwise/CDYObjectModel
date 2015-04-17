@@ -54,7 +54,7 @@ extern NSString *const TRWGoogleTagManagerContainerId;
 
 extern NSString *const TRWAppInstalledSettingsKey;
 extern NSString *const TRWIsRegisteredSettingsKey;
-extern NSString *const TRWDeclinedNotificationsSettingsKey;
+extern NSString *const TRWHasRespondedToNotificationsPromptSettingsKey;
 
 
 extern NSString *const TransferSandboxUsername;

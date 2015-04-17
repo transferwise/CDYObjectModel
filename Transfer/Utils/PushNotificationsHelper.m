@@ -165,4 +165,13 @@
 	}
 }
 
+#pragma mark - custom user prompt
+
++(BOOL)shouldPresentNotificationsPrompt
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasDeclined = [defaults boolForKey:TRWHasRespondedToNotificationsPromptSettingsKey];
+    return !hasDeclined;
+}
+
 @end

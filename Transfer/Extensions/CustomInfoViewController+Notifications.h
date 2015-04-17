@@ -8,10 +8,10 @@
 
 #import "CustomInfoViewController.h"
 
+@class ObjectModel;
+
 @interface CustomInfoViewController (Notifications)
 
-+(BOOL)shouldPresentNotificationsPrompt;
-
-+(instancetype)notificationsCustomInfoWithName:(NSString*)recipientName;
++(instancetype)notificationsCustomInfoWithName:(NSString*)recipientName objectModel:(ObjectModel*)objectModel;
 
 @end

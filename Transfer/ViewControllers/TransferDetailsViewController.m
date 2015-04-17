@@ -62,7 +62,7 @@
     if(self.promptForNotifications)
     {
         self.promptForNotifications = NO;
-        CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name];
+        CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name objectModel:self.objectModel];
         [notificationsPrompt presentOnViewController:self.navigationController?:self withPresentationStyle:TransparentPresentationFade];
     }
 }

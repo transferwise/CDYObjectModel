@@ -21,6 +21,8 @@
 - (void)handleLoggingOut;
 - (void)handleDeviceRegistering;
 
++ (BOOL)shouldPresentNotificationsPrompt;
+
 @end
 
 @interface PushNotificationsHelper : NSObject<PushNotificationsProvider>

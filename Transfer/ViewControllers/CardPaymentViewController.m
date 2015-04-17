@@ -21,6 +21,7 @@
 #import "GoogleAnalytics.h"
 #import "Mixpanel+Customisation.h"
 #import "CustomInfoViewController+Notifications.h"
+#import "PushNotificationsHelper.h"
 
 
 #ifdef DEV_VERSION
@@ -206,7 +207,7 @@
                         details.payment = weakSelf.payment;
                         details.objectModel = self.objectModel;
                         details.showClose = YES;
-                        details.promptForNotifications = [CustomInfoViewController shouldPresentNotificationsPrompt];
+                        details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
                         
                         [self.navigationController pushViewController:details animated:NO];
                         [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
@@ -246,7 +247,7 @@
                 details.showClose = YES;
                 details.objectModel = self.objectModel;
                 details.showClose = YES;
-                details.promptForNotifications = [CustomInfoViewController shouldPresentNotificationsPrompt];
+                details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
                 
                 [self.navigationController pushViewController:details animated:NO];
                 [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
