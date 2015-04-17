@@ -7,18 +7,13 @@
 //
 
 #import "CustomInfoViewController+Notifications.h"
+#import "PushNotificationsHelper.h"
 #import "Constants.h"
+#import "ObjectModel.h"
 
 @implementation CustomInfoViewController (Notifications)
 
-+(BOOL)shouldPresentNotificationsPrompt
-{
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    BOOL hasDeclined = [defaults boolForKey:TRWDeclinedNotificationsSettingsKey];
-    return !hasDeclined;
-}
-
-+(instancetype)notificationsCustomInfoWithName:(NSString*)recipientName
++(instancetype)notificationsCustomInfoWithName:(NSString*)recipientName objectModel:(ObjectModel*)objectModel
 {
     CustomInfoViewController *result = [[CustomInfoViewController alloc] initWithNibName:@"CustomInfo_Notifications" bundle:nil];
     result.infoText = [NSString stringWithFormat:NSLocalizedString(@"notifications.info.format", nil),recipientName];
@@ -27,12 +22,15 @@
     result.actionButtonTitles = @[NSLocalizedString(@"notifications.yes", nil), NSLocalizedString(@"button.title.no", nil)];
 
     ActionButtonBlock yesBlock = ^{
-        //TODO: add Notifications specific YES code here...
+        PushNotificationsHelper *helper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication] objectModel:objectModel];
+        [helper registerForPushNotifications:NO];
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:TRWHasRespondedToNotificationsPromptSettingsKey];
         [result dismiss];
     };
     ActionButtonBlock noBlock = ^{
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:YES forKey:TRWDeclinedNotificationsSettingsKey];
+        [defaults setBool:YES forKey:TRWHasRespondedToNotificationsPromptSettingsKey];
         [result dismiss];
     };
 

@@ -36,6 +36,7 @@
 #import "NSString+Presentation.h"
 #import "Mixpanel+Customisation.h"
 #import "CustomInfoViewController+Notifications.h"
+#import "PushNotificationsHelper.h"
 
 @interface BankTransferViewController ()<TransparentModalViewControllerDelegate>
 
@@ -251,9 +252,9 @@
         {
             if (IPAD)
             {
-                if([CustomInfoViewController shouldPresentNotificationsPrompt])
+                if([PushNotificationsHelper shouldPresentNotificationsPrompt])
                 {
-                    CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name];
+                    CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name objectModel:self.objectModel];
                     [notificationsPrompt presentOnViewController:self.navigationController?:self withPresentationStyle:TransparentPresentationFade];
                     notificationsPrompt.delegate = self;
                 }
