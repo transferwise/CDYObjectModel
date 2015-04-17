@@ -74,9 +74,7 @@
 
 	self.notificationHelper = [PushNotificationsHelper sharedInstanceWithApplication:application
 																		 objectModel:self.objectModel];
-	//HACK to ask for access right away.
-	[self.notificationHelper registerForPushNotifications:NO];
-	//[self.notificationHelper registerForPushNotifications:YES];
+	[self.notificationHelper registerForPushNotifications:YES];
 	
     [[GoogleAnalytics sharedInstance] setObjectModel:model];
 
@@ -130,26 +128,32 @@
 }
 
 //IOS_7
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
 	[self.notificationHelper handleRegistrationsSuccess:deviceToken];
 }
 
 //IOS_7
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
 	[self.notificationHelper handleRegistrationFailure:error];
 }
 
 //IOS_8
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+- (void)application:(UIApplication *)application
+didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
 	[application registerForRemoteNotifications];
 }
 
 //IOS_8
 //For interactive notification only
-- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+- (void)application:(UIApplication *)application
+handleActionWithIdentifier:(NSString *)identifier
+forRemoteNotification:(NSDictionary *)userInfo
+  completionHandler:(void(^)())completionHandler
 {
 	
 }
