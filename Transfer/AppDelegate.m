@@ -35,10 +35,12 @@
 #import <FBSettings.h>
 #import <FBAppCall.h>
 #import <NXOAuth2AccountStore.h>
+#import "PushNotificationsHelper.h"
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, strong) id<PushNotificationsProvider> notificationHelper;
 
 @end
 
@@ -58,7 +60,6 @@
     [lagFreeField becomeFirstResponder];
     [lagFreeField resignFirstResponder];
     [lagFreeField removeFromSuperview];
-    
 
 	[self setupThirdParties];
 
@@ -71,6 +72,10 @@
     [model removeAnonymousUser];
     [model loadBaseData];
 
+	self.notificationHelper = [PushNotificationsHelper sharedInstanceWithApplication:application
+																		 objectModel:self.objectModel];
+	[self.notificationHelper registerForPushNotifications:YES];
+	
     [[GoogleAnalytics sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
@@ -119,6 +124,45 @@
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
 	return YES;
+}
+
+//IOS_7
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+	[self.notificationHelper handleRegistrationsSuccess:deviceToken];
+}
+
+//IOS_7
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+	[self.notificationHelper handleRegistrationFailure:error];
+}
+
+//IOS_8
+- (void)application:(UIApplication *)application
+didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+	[application registerForRemoteNotifications];
+}
+
+//IOS_8
+//For interactive notification only
+- (void)application:(UIApplication *)application
+handleActionWithIdentifier:(NSString *)identifier
+forRemoteNotification:(NSDictionary *)userInfo
+  completionHandler:(void(^)())completionHandler
+{
+	
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+	[self.notificationHelper handleNotificationArrival:userInfo
+										 resultHandler:completionHandler];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -41,6 +41,7 @@
 #import "OAuthViewController.h"
 #import "TouchIDHelper.h"
 #import "CustomInfoViewController.h"
+#import "PushNotificationsHelper.h"
 
 @interface AuthenticationHelper ()
 
@@ -50,6 +51,7 @@
 @property (weak, nonatomic) ObjectModel *objectModel;
 @property (nonatomic, copy)	TRWActionBlock oauthSuccessBlock;
 @property (nonatomic, assign) BOOL hasRegisteredForOauthNotifications;
+@property (nonatomic, copy)	TRWActionBlock touchIdSuccessBlock;
 
 @end
 
@@ -379,6 +381,10 @@
     if([Credentials userLoggedIn])
     {
         [objectModel performBlock:^{
+			//remove device from receiving push notifications, if it has been registred to receive them
+			PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																							 objectModel:objectModel];
+			[pushHelper handleLoggingOut];			
             [objectModel deleteObject:objectModel.currentUser];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if([Credentials userLoggedIn])
@@ -392,6 +398,7 @@
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
                     [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":[NSNull null]}];
                     [TransferwiseClient clearCookies];
+					
                     if(completionBlock)
                     {
                         completionBlock();
@@ -413,6 +420,10 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 {
 	[Credentials setUserToken:token];
 	[Credentials setUserEmail:email];
+	//add device to receive push notifications, if they have been authorized
+	PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																					 objectModel:objectModel];
+	[pushHelper handleDeviceRegistering];
     __weak typeof(self) weakSelf = self;
 	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS

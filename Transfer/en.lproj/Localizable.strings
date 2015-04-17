@@ -277,6 +277,7 @@ It generally takes 1-2 business day.";
 "payment.status.transferred.description.eta.past" = "& should have arrived on";
 "payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
+"payment.status.notification" = "Your payment #%@ is now %@";
 
 "profile.post.code.label" = "Post code";
 "profile.post.code.usa.label" = "Zip code";

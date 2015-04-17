@@ -203,6 +203,7 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="anonymous" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+		<attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invitationReward" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="invitationRewardCurrency" optional="YES" attributeType="String" syncable="YES"/>

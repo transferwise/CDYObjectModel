@@ -18,5 +18,6 @@
 - (void)removeAnonymousUser;
 - (void)markAnonUserWithEmail:(NSString *)email;
 - (void)saveReferralData:(NSDictionary*)data;
+- (void)saveDeviceToken:(NSString *)deviceToken;
 
 @end
