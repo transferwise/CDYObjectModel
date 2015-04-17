@@ -108,6 +108,7 @@ IB_DESIGNABLE
 		dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
 			completion();
             weakSelf.view.userInteractionEnabled = YES;
+            weakSelf.willDismiss = NO;
 		});
 		
 		[self.view endEditing:YES];

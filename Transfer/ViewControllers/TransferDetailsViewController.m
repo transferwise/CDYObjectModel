@@ -23,6 +23,7 @@
 #import "LoggedInPaymentFlow.h"
 #import "Currency.h"
 #import "TRWProgressHUD.h"
+#import "CustomInfoViewController+Notifications.h"
 
 
 @interface TransferDetailsViewController ()
@@ -53,6 +54,17 @@
 	
 	[self setBackOrCloseButton];
 	[self setData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(self.promptForNotifications)
+    {
+        self.promptForNotifications = NO;
+        CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name];
+        [notificationsPrompt presentOnViewController:self.navigationController?:self withPresentationStyle:TransparentPresentationFade];
+    }
 }
 
 - (void)setBackOrCloseButton
@@ -196,7 +208,7 @@
 	}
 	else
 	{
-		[[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Transfer details"];
+		[[GoogleAnalytics sharedInstance] sendAppEvent:GAContactsupport withLabel:@"Transfer details"];
 		NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
 		[[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 	}
@@ -235,8 +247,8 @@
 
         [weakSelf setPaymentFlow:paymentFlow];
         
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:weakSelf.payment.sourceCurrency.code];
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:weakSelf.payment.targetCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency1Selected withLabel:weakSelf.payment.sourceCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency2Selected withLabel:weakSelf.payment.targetCurrency.code];
         
         
         [paymentFlow setObjectModel:weakSelf.objectModel];

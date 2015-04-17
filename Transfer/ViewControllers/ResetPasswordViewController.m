@@ -67,7 +67,7 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"reset.password.controller.title", nil)];
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Reset password"]];
+    [[GoogleAnalytics sharedInstance] sendScreen:GAResetPassword];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

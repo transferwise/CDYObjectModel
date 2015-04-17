@@ -25,7 +25,7 @@
 					withHandler:(PersonalProfileValidationBlock)handler
 {
     MCLog(@"Commit profile");
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"PersonalProfileSaved"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAPersonalprofilesaved];
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:profileID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];

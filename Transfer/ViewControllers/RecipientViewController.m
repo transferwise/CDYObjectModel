@@ -25,7 +25,6 @@
 #import "DropdownCell.h"
 #import "ButtonCell.h"
 #import "ObjectModel.h"
-#import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "Credentials.h"
 #import "UITableView+FooterPositioning.h"
@@ -99,8 +98,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) RecipientType *recipientType;
 
 @property (nonatomic, strong) Recipient *recipient;
-
-@property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
 @property (nonatomic, strong) DataEntryDefaultHeader *recipientFieldsHeader;
 
@@ -322,7 +319,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [super viewWillAppear:animated];
 
     if (self.reportingType != RecipientReportingNone) {
-        [[GoogleAnalytics sharedInstance] sendScreen:(self.reportingType == RecipientReportingNotLoggedIn ? @"Enter recipient details" : @"Enter recipient details 2")];
+        [[GoogleAnalytics sharedInstance] sendScreen:(self.reportingType == RecipientReportingNotLoggedIn ? GAEnterRecipientDetails : GAEnterRecipientDetails2)];
     }
     
     [self refreshTableViewSizes];
@@ -486,7 +483,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
     }];
     
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ABRecipientSelected"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAAbrecipientselected];
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient
@@ -554,7 +551,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     //We're using an existing recipient.
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAExistingrecipientselected];
     [self.nameCell setValue:recipient.name];
     [self.emailCell setValue:recipient.email];
     
@@ -625,7 +622,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)handleCurrencySelection:(Currency *)currency {
     void(^selectBlock)(void) = ^{
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"CurrencyRecipientSelected" withLabel:currency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrencyrecipientselected withLabel:currency.code];
         
         MCLog(@"Did select currency:%@. Default type:%@", currency.code, currency.defaultRecipientType.type);
         
@@ -728,7 +725,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     NSString *issues = [self validateInput];
     if ([issues hasValue]) {
-        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:issues];
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:issues];
 
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"recipient.save.error.title", nil) message:issues];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
@@ -737,7 +734,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     
 
-    [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:@"Manual"];
+    [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:GAManual];
     
     PendingPayment *payment = [self pendingPayment];
 
@@ -794,7 +791,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [hud hide];
             if(error)
             {
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:[error localizedTransferwiseMessage]];
                 TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                 [alertView show];
                 return;
@@ -809,14 +806,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         if(self.lastSelectedWrapper && [[self.lastSelectedWrapper presentableString:FirstNameFirst] caseInsensitiveCompare:recipientInput.name] == NSOrderedSame && [self.lastSelectedWrapper.email caseInsensitiveCompare:recipientInput.email] == NSOrderedSame)
         {
-            [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:@"AB"];
+            [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:GAAb];
         }
         [self.recipientValidation validateRecipient:recipientInput.objectID completion:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
                 
                 if (error) {
-                    [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                    [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:[error localizedTransferwiseMessage]];
                     
                     TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                     [alertView show];

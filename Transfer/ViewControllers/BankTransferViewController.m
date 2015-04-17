@@ -35,8 +35,9 @@
 #import "UIViewController+SwitchToViewController.h"
 #import "NSString+Presentation.h"
 #import "Mixpanel+Customisation.h"
+#import "CustomInfoViewController+Notifications.h"
 
-@interface BankTransferViewController ()
+@interface BankTransferViewController ()<TransparentModalViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
@@ -93,15 +94,17 @@
 	NSString* currencyCode = self.payment.sourceCurrency.code;
 	
 	[BankTransferViewController trackForPaymentMethod:method.type
-								   sourceCurrencyCode:currencyCode
-									bankTransferBlock:nil
-										   swiftBlock:^{
-											   [[GoogleAnalytics sharedInstance] sendScreen:@"SWIFT transfer"];
-										   }
-											wireBlock:^{
-												[[GoogleAnalytics sharedInstance] sendScreen:@"Wire transfer"];
-											}];
-		
+                                   sourceCurrencyCode:currencyCode
+                                    bankTransferBlock:^{
+                                        [[GoogleAnalytics sharedInstance] sendScreen:GABankTransferPayment];
+                                    }
+                                           swiftBlock:^{
+                                               [[GoogleAnalytics sharedInstance] sendScreen:GASwiftTransfer];
+                                           }
+                                            wireBlock:^{
+                                                [[GoogleAnalytics sharedInstance] sendScreen:GAWireTransfer];
+                                            }];
+    
     //Header
     NSString *exactlyString = NSLocalizedString(@"upload.money.header.label.exactly", @"");
     exactlyString = [NSString stringWithFormat:exactlyString,self.payment.payInWithCurrency];
@@ -201,8 +204,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-    [[Mixpanel sharedInstance] sendPageView:@"Bank transfer payment"];
+    [[Mixpanel sharedInstance] sendPageView:MPBankTransferPayment];
     [super viewDidAppear:animated];
 }
 
@@ -227,16 +229,16 @@
 		[BankTransferViewController trackForPaymentMethod:weakSelf.method.type
 									   sourceCurrencyCode:weakSelf.payment.sourceCurrency.code
 										bankTransferBlock:^{
-											[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
-                                            [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"BankTransfer"}];
+											[[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"BankTransfer"];
+                                            [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"BankTransfer"}];
 										}
 											   swiftBlock:^{
-												   [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"Swift"];
-                                                   [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"Swift"}];
+												   [[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"Swift"];
+                                                   [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"Swift"}];
 											   }
 												wireBlock:^{
-													[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"WireTransfer"];
-                                                    [[Mixpanel sharedInstance] track:@"PaymentMade" properties:@{@"Payment Method":@"WireTransfer"}];
+													[[GoogleAnalytics sharedInstance] sendEvent:GAPaymentmade category:GACategoryPayment label:@"WireTransfer"];
+                                                    [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"WireTransfer"}];
 												}];
 		
         if ([Credentials temporaryAccount])
@@ -249,7 +251,16 @@
         {
             if (IPAD)
             {
-                [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                if([CustomInfoViewController shouldPresentNotificationsPrompt])
+                {
+                    CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name];
+                    [notificationsPrompt presentOnViewController:self.navigationController?:self withPresentationStyle:TransparentPresentationFade];
+                    notificationsPrompt.delegate = self;
+                }
+                else
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                }
             }
             else
             {
@@ -313,6 +324,13 @@
 			}
 		}
 	}
+}
+
+#pragma mark - Transparent modal view controller delegate
+
+-(void)dismissCompleted:(TransparentModalViewController *)dismissedController
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
 @end
 

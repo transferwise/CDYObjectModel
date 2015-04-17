@@ -46,7 +46,7 @@ NSString *const kUploadPath = @"/verification/uploadFile";
     }];
     
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"FileUploaded"];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GAFileuploaded];
         weakSelf.completionHandler(nil);
     }];
 

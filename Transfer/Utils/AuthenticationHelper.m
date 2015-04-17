@@ -40,9 +40,9 @@
 #import <NXOAuth2AccessToken.h>
 #import "OAuthViewController.h"
 #import "TouchIDHelper.h"
-#import "TouchIdPromptViewController.h"
+#import "CustomInfoViewController.h"
 
-@interface AuthenticationHelper ()<TouchIdPromptViewControllerDelegate>
+@interface AuthenticationHelper ()
 
 @property (strong, nonatomic) TransferwiseOperation *executedOperation;
 //used to pop to LoginView from OAuth error
@@ -50,7 +50,6 @@
 @property (weak, nonatomic) ObjectModel *objectModel;
 @property (nonatomic, copy)	TRWActionBlock oauthSuccessBlock;
 @property (nonatomic, assign) BOOL hasRegisteredForOauthNotifications;
-@property (nonatomic, copy)	TRWActionBlock touchIdSuccessBlock;
 
 @end
 
@@ -82,7 +81,7 @@
 										 if ([error isTransferwiseError])
 										 {
 											 NSString *message = [error localizedTransferwiseMessage];
-											 [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+											 [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginincorrectcredentials
 																					withLabel:message];
 											 alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 																				  message:message];
@@ -91,7 +90,7 @@
 										 {
 											 alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 																				  message:NSLocalizedString(@"login.error.generic.message", nil)];
-											 [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+											 [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginincorrectcredentials
 																					withLabel:error.localizedDescription];
 										 }
 										 
@@ -145,12 +144,10 @@
 				   successBlock:^{
                        if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
                        {
-                           weakSelf.touchIdSuccessBlock = successBlock;
-                           TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
-                           prompt.touchIdDelegate = weakSelf;
-                           [prompt presentOnViewController:touchIdHost
-                                              withUsername:email
-                                                  password:password];
+                           CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
+                               successBlock();
+                           }];
+                           [prompt presentOnViewController:touchIdHost];
                        }
                        else
                        {
@@ -223,14 +220,18 @@
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
-				[weakSelf logUserIn:token
-						  email:email
-				   successBlock:successBlock
-							hud:hud
-					objectModel:objectModel
-	   waitForDetailsCompletion:waitForDetailsCompletion];
-			}];
-			return;
+                BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
+                [weakSelf logUserIn:token
+                              email:email
+                       successBlock:^{
+                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:provider];
+                           successBlock();
+                       }
+                                hud:hud
+                        objectModel:objectModel
+           waitForDetailsCompletion:waitForDetailsCompletion];
+            }];
+            return;
 		}
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -239,7 +240,7 @@
 			if ([error isTransferwiseError])
 			{
 				NSString *message = [error localizedTransferwiseMessage];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 													   withLabel:message];
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:message];
@@ -248,7 +249,7 @@
 			{
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:NSLocalizedString(@"login.error.generic.message", nil)];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 													   withLabel:error.localizedDescription];
 			}
 			
@@ -276,10 +277,7 @@
 				  keepPendingPayment:NO
 				navigationController:self.navigationController
 						 objectModel:self.objectModel
-						successBlock:^{
-							[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-							successBlock();
-						}
+						successBlock:successBlock
 						  errorBlock:^{
 							  if (isExisting)
 							  {
@@ -363,7 +361,7 @@
 	//-1005 - user has cancelled logging in
 	if (error.code != -1005)
 	{
-		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+		[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 											   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
 		
 		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
@@ -445,7 +443,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 #endif
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 	
-	[[Mixpanel sharedInstance] track:@"UserLogged"];
+	[[Mixpanel sharedInstance] track:MPUserLogged];
 	
 	[objectModel saveContext:^{
 		if (!waitForDetailsCompletion)
@@ -537,17 +535,6 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
             [mainController setObjectModel:objectModel];
             [root replaceWrappedViewControllerWithController:mainController];
         }
-    }
-}
-
-#pragma mark - touch ID prompt delegate
-
--(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
-{
-    if(self.touchIdSuccessBlock)
-    {
-        self.touchIdSuccessBlock();
-        self.touchIdSuccessBlock = nil;
     }
 }
 @end

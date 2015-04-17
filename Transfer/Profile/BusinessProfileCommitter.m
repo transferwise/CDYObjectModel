@@ -22,7 +22,7 @@
 - (void)validateBusinessProfile:(NSManagedObjectID *)profile
 					withHandler:(BusinessProfileValidationBlock)handler
 {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"BusinessProfileSaved"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GABusinessprofilesaved];
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:profile];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];

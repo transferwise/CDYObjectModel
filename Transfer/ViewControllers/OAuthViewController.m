@@ -67,7 +67,7 @@
 	
 	if (!self.registerUser)
 	{
-		[[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Login %@", self.provider]];
+		[[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:GALoginFormat, self.provider]];
 	}
 	[NavigationBarCustomiser setWhite];
 }

@@ -168,7 +168,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	[[GoogleAnalytics sharedInstance] sendScreen:@"View transfers"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -244,7 +244,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         return;
     }
 
-	[[GoogleAnalytics sharedInstance] sendScreen:@"View payment"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GAViewPayment];
 	[self removeCancellingFromCell];
 
 	[self showPayment:payment];
@@ -501,9 +501,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [hud hide];
 		[weakSelf setCheckOperation:nil];
 
-		[weakSelf setIdentificationRequired:identificationRequired];
+        [weakSelf setIdentificationRequired:identificationRequired];
 
-		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
+        BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
 
 		if (somethingNeeded != weakSelf.showIdentificationView)
 		{
@@ -568,7 +568,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		   completionHandler:(TRWActionBlock)completion
 {
     if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
         [self uploadSocialSecurityNumber:ssn errorHandler:errorBlock completionHandler:completion];
         return;
     }
@@ -584,8 +583,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 errorBlock(error);
                 return;
             }
-
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
             MCLog(@"uploadPaymentPurpose done");
             [weakSelf uploadSocialSecurityNumber:ssn errorHandler:errorBlock completionHandler:completion];
         });
@@ -791,8 +788,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         
         [weakSelf setPaymentFlow:paymentFlow];
         
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:payment.sourceCurrency.code];
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:payment.targetCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency1Selected withLabel:payment.sourceCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency2Selected withLabel:payment.targetCurrency.code];
         
         
         [paymentFlow setObjectModel:weakSelf.objectModel];

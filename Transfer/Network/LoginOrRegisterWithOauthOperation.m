@@ -24,6 +24,8 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
 @implementation LoginOrRegisterWithOauthOperation
 
+@dynamic objectModel;
+
 - (instancetype)initWithProvider:(NSString *)provider
 						   token:(NSString *)token
 					 objectModel:(ObjectModel *)objectModel

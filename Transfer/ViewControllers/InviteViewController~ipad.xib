@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InviteViewController">
             <connections>
                 <outlet property="contextLabel" destination="gOr-BK-Bjb" id="FOH-J2-POc"/>
                 <outlet property="emailButton" destination="aFd-eX-qvc" id="JDm-nL-wHN"/>
-                <outlet property="facebookButton" destination="JOS-XU-Ncc" id="Ard-9y-hyo"/>
                 <outlet property="smsButton" destination="Tdp-xG-KTm" id="pgM-ug-ZPF"/>
                 <outlet property="titleLabel" destination="wSR-ns-7AU" id="quI-Xl-YBj"/>
                 <outlet property="urlCopyButton" destination="ZbM-yQ-nVs" id="vmA-hh-nvI"/>
@@ -49,24 +48,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@19.coreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOS-XU-Ncc" userLabel="FacebookButton">
-                    <rect key="frame" x="234" y="303" width="300" height="44"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
-                    <state key="normal" title="Button" image="FBLogo">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="FBBlue"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="rounded"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{16,17}.white"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="highlightedBgStyle" value="FBBlue.alpha7"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="facebookTapped:" destination="-1" eventType="touchUpInside" id="PQ2-3e-dhM"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFd-eX-qvc" userLabel="Emailbutton" customClass="BlueRoundedButton">
-                    <rect key="frame" x="234" y="362" width="300" height="44"/>
+                    <rect key="frame" x="234" y="303" width="300" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="95j-0P-dkZ"/>
                         <constraint firstAttribute="width" constant="300" id="VJB-2N-Q3g"/>
@@ -79,7 +62,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdp-xG-KTm" userLabel="SmsButton" customClass="BlueRoundedButton">
-                    <rect key="frame" x="234" y="421" width="300" height="44"/>
+                    <rect key="frame" x="234" y="362" width="300" height="44"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -88,7 +71,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZbM-yQ-nVs" userLabel="CopyButton" customClass="BlueRoundedButton">
-                    <rect key="frame" x="236" y="480" width="300" height="44"/>
+                    <rect key="frame" x="236" y="421" width="300" height="44"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -97,7 +80,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="gOr-BK-Bjb" userLabel="Context">
-                    <rect key="frame" x="234" y="253" width="300" height="21"/>
+                    <rect key="frame" x="234" y="194" width="300" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="ogi-Ui-2xq"/>
                     </constraints>
@@ -112,25 +95,21 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="GCT-Rm-NS4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="21" id="0sh-ch-ENZ"/>
-                <constraint firstItem="JOS-XU-Ncc" firstAttribute="width" secondItem="Tdp-xG-KTm" secondAttribute="width" id="6Ll-gf-OLP"/>
+                <constraint firstItem="aFd-eX-qvc" firstAttribute="top" secondItem="gOr-BK-Bjb" secondAttribute="bottom" constant="88" id="1ez-2Z-8qL"/>
                 <constraint firstItem="ZbM-yQ-nVs" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" constant="1.5" id="7pC-px-S3p"/>
-                <constraint firstItem="JOS-XU-Ncc" firstAttribute="width" secondItem="aFd-eX-qvc" secondAttribute="width" id="81b-bC-5uk"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="G3W-ve-zOi"/>
+                <constraint firstItem="Tdp-xG-KTm" firstAttribute="width" secondItem="aFd-eX-qvc" secondAttribute="width" id="GSx-bB-btO"/>
                 <constraint firstAttribute="centerX" secondItem="wSR-ns-7AU" secondAttribute="centerX" id="L4I-HT-Kop"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="top" secondItem="aFd-eX-qvc" secondAttribute="bottom" constant="15" id="PvX-06-7VE"/>
                 <constraint firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="S8N-5e-gAt"/>
                 <constraint firstItem="GCT-Rm-NS4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Uo4-uf-dfR"/>
-                <constraint firstItem="JOS-XU-Ncc" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="XWZ-yN-KOp"/>
                 <constraint firstItem="ZbM-yQ-nVs" firstAttribute="top" secondItem="Tdp-xG-KTm" secondAttribute="bottom" constant="15" id="ciY-rx-fIW"/>
                 <constraint firstItem="wSR-ns-7AU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="dx4-6C-95S"/>
-                <constraint firstItem="JOS-XU-Ncc" firstAttribute="centerX" secondItem="gOr-BK-Bjb" secondAttribute="centerX" id="eqk-wF-gUd"/>
                 <constraint firstItem="ZbM-yQ-nVs" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="j5f-sn-TUQ"/>
-                <constraint firstItem="JOS-XU-Ncc" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="jMP-LN-eKZ"/>
-                <constraint firstItem="aFd-eX-qvc" firstAttribute="top" secondItem="JOS-XU-Ncc" secondAttribute="bottom" constant="15" id="kIH-4S-DF1"/>
-                <constraint firstAttribute="centerY" secondItem="aFd-eX-qvc" secondAttribute="centerY" id="phZ-QF-egr"/>
+                <constraint firstAttribute="centerY" secondItem="aFd-eX-qvc" secondAttribute="centerY" constant="59" id="phZ-QF-egr"/>
                 <constraint firstItem="ZbM-yQ-nVs" firstAttribute="width" secondItem="aFd-eX-qvc" secondAttribute="width" id="sbJ-nx-sni"/>
+                <constraint firstItem="aFd-eX-qvc" firstAttribute="centerX" secondItem="gOr-BK-Bjb" secondAttribute="centerX" id="uwV-Vr-HY9"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="xxf-nn-Cbc"/>
-                <constraint firstItem="JOS-XU-Ncc" firstAttribute="top" secondItem="gOr-BK-Bjb" secondAttribute="bottom" constant="30" id="zZT-1d-9SZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <userDefinedRuntimeAttributes>
@@ -139,7 +118,6 @@
         </view>
     </objects>
     <resources>
-        <image name="FBLogo" width="18" height="29"/>
         <image name="ModalClose" width="42" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

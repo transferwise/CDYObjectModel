@@ -782,3 +782,7 @@ We'll send you an email in order to let you choose a new password.";
 "deeplink.verification.message" = "Refreshing documents required...";
 "deeplink.no.verification.message" = "No verification needed!";
 
+"notifications.info.format" = "Want to be notified when %@ receives your money?";
+"notifications.yes" = "Yes please!";
+
+

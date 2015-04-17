@@ -59,7 +59,7 @@ NSString *const kRegisterPath = @"/account/register";
                 weakSelf.completionHandler(nil);
             }];
         }];
-        [[Mixpanel sharedInstance] track:@"UserRegistered"];
+        [[Mixpanel sharedInstance] track:MPUserregistered];
     }];
 
     [self postData:@{@"email" : self.email, @"password" : self.password} toPath:path];
