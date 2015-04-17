@@ -280,7 +280,7 @@
 	{
 		CGRect newHeaderFrame = self.headerView.frame;
 		CGRect newFooterFrame = self.footerView.frame;
-		if(UIInterfaceOrientationIsLandscape(orientation))
+		if (UIInterfaceOrientationIsLandscape(orientation))
 		{
 			newHeaderFrame.size.height = 60.0f;
 			newFooterFrame.size.height = 224.0f;

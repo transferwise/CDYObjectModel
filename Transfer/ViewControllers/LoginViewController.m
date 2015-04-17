@@ -19,8 +19,6 @@
 #import "UIColor+MOMStyle.h"
 #import "NavigationBarCustomiser.h"
 #import "AuthenticationHelper.h"
-#import "TouchIDHelper.h"
-#import "TouchIdPromptViewController.h"
 #import "TRWAlertView.h"
 #import "NSError+TRWErrors.h"
 #import "NetworkErrorCodes.h"
@@ -29,6 +27,7 @@
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
 #import "Mixpanel+Customisation.h"
+#import "TouchIDHelper.h"
 
 IB_DESIGNABLE
 

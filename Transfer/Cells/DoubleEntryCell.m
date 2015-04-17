@@ -22,6 +22,8 @@ NSString *const TWDoubleEntryCellIdentifier = @"DoubleEntryCell";
 
 @implementation DoubleEntryCell
 
+@dynamic secondSeparator;
+
 NSInteger const kFirstTextField = 1;
 NSInteger const kSecondTextField = 2;
 

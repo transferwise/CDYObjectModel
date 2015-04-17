@@ -8,27 +8,39 @@
 
 #import "TransparentModalViewController.h"
 
+typedef void(^ActionButtonBlock)(void);
+
 @interface CustomInfoViewController : TransparentModalViewController
 
 @property (nonatomic, copy) NSString *titleText;
 @property (nonatomic, copy) NSString *infoText;
-@property (nonatomic, copy) NSString *actionButtonTitle;
 @property (nonatomic, strong) UIImage *infoImage;
 
 /**
- *  Set to override the behaviour when the action button is tapped. Default behaviour is call to dismiss.
+ *  Array of action buttons. Must be assigned in code or in xib.
  */
-@property (nonatomic,copy) void(^actionButtonBlock)(void);
+@property (nonatomic, strong) IBOutletCollection(UIButton)NSArray *actionButtons;
 
 /**
- *  set to YES to make the close button invoke the actionButtonBlock rather than just dismiss.
+ *  Array of titles to assign to the action buttons. Object must be NSString or title is set empty.
  */
-@property (nonatomic,assign) BOOL mapCloseButtonToAction;
+@property (nonatomic, copy) NSArray *actionButtonTitles;
 
 /**
- *  Invokes the actionButtonBlock.
+ *  Set to override the behaviour when the action buttons are tapped. Order should match order of buttons in actionButtons. 
+ *  Objects in array *MUST* be of type ActionButtonBlock or NSNull. NSNull automatically dismisses.
  */
--(IBAction)actionButtonTapped;
+@property (nonatomic,copy) NSArray *actionButtonBlocks;
+
+/**
+ *  set to the index of an action button to make the close button invoke the associated actionButtonBlock rather than just dismiss.
+ */
+@property (nonatomic,assign) NSUInteger mapCloseButtonToActionIndex;
+
+/**
+ *  Invokes the actionButtonBlock for an action button.
+ */
+-(IBAction)actionButtonTapped:(UIButton*)target;
 
 /**
  *  convenince method for getting an instance with a green tick and mapCloseToAction set to YES.

@@ -299,10 +299,10 @@ NSString * const kVerificationCompletionBlock = @"verificationCompletionBlock";
 {
     NSAssert(payment, @"payment is nil");
     CustomInfoViewController* controller = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:payment.sourceCurrency];
-    controller.actionButtonBlock = ^{
+    controller.actionButtonBlocks = @[^{
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    };
+    }];
     
     return controller;
 }
