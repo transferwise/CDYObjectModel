@@ -160,20 +160,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [self setValueModified:YES];
 }
 
-- (BOOL)validateAlphaNumeric:(NSString *)value
-{
-	if(!self.validateAlphaNumeric)
-	{
-		return YES;
-	}
-	
-	NSMutableCharacterSet *alphanumerics = [NSMutableCharacterSet alphanumericCharacterSet];
-	[alphanumerics addCharactersInString:@"."];
-	NSCharacterSet *unwantedCharacters = [alphanumerics invertedSet];
-	
-    return ([value rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
-}
-
 - (void)setGrayedOut:(BOOL)isGrayedOut
 {
 	if (isGrayedOut)
