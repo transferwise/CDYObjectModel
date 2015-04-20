@@ -61,8 +61,6 @@
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
-@property (nonatomic, strong) NSCharacterSet *referenceExclusionSet;
-
 @property (nonatomic, copy) TRWActionBlock animatedSuccessWrapper;
 
 //iPad
@@ -100,10 +98,6 @@
     
     //Set background colour again because of ios 8.1 bug
     self.tableView.bgStyle = self.tableView.bgStyle;
-    
-    
-    
-    self.referenceExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
     
     [[Mixpanel sharedInstance] sendPageView:MPConfirmation withProperties:[self.payment trackingProperties]];
 
@@ -636,32 +630,5 @@
     {
         return [super textFieldShouldReturn:textField];
     }
-}
-
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-   
-    TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
-    if(self.referenceField == textField || (cell && cell == self.referenceCell))
-    {
-        NSString *text = textField.text;
-        NSString *strippedAccentsReplacement = [self stripAccentsFromString:string];
-        NSString *modified = [text stringByReplacingCharactersInRange:range withString:strippedAccentsReplacement];
-        if([modified length] < [self getReferenceMaxLength:self.payment])
-        {
-            [textField setText:modified];
-            [textField moveCaretToAfterRange:NSMakeRange(range.location, [strippedAccentsReplacement length])];
-        }
-        return NO;
-    }
-    
-    return [super textField:textField shouldChangeCharactersInRange:range replacementString:string];
-}
-
--(NSString*)stripAccentsFromString:(NSString*)source
-{
-    NSString *modified = [source decomposedStringWithCanonicalMapping];
-    modified = [[modified componentsSeparatedByCharactersInSet:self.referenceExclusionSet] componentsJoinedByString:@""];
-    return modified;
 }
 @end
