@@ -951,6 +951,9 @@
 		4723EA341975644A00B4345F /* RedRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA321975644A00B4345F /* RedRoundedButton.m */; };
 		4723EA3719756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
 		4723EA3819756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
+		472915341AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
+		472915351AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
+		472915361AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
 		472D5642198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
@@ -1029,7 +1032,6 @@
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
-		478BE9531ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
 		478BE9541ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
 		478C6FEA1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
 		478C6FEB1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
@@ -1934,6 +1936,8 @@
 		4723EA321975644A00B4345F /* RedRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedRoundedButton.m; path = Views/RedRoundedButton.m; sourceTree = "<group>"; };
 		4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundedButtonWithInsets.h; path = Views/RoundedButtonWithInsets.h; sourceTree = "<group>"; };
 		4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundedButtonWithInsets.m; path = Views/RoundedButtonWithInsets.m; sourceTree = "<group>"; };
+		472915321AE549EA00301260 /* PushNotificationDispather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationDispather.h; sourceTree = "<group>"; };
+		472915331AE549EA00301260 /* PushNotificationDispather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationDispather.m; sourceTree = "<group>"; };
 		472D5640198FE98500257BB8 /* PersonalPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPaymentProfileViewController.h; sourceTree = "<group>"; };
 		472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPaymentProfileViewController.m; sourceTree = "<group>"; };
 		472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPaymentProfileViewController.h; sourceTree = "<group>"; };
@@ -3719,6 +3723,8 @@
 				383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
+				472915321AE549EA00301260 /* PushNotificationDispather.h */,
+				472915331AE549EA00301260 /* PushNotificationDispather.m */,
 				470B112B1ADBB682008729E9 /* PushNotificationsHelper.h */,
 				470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */,
 				47334E811A37121A004C19F7 /* TargetCountryProvider.h */,
@@ -4870,6 +4876,7 @@
 				388E5AB61A5A949500AF6EB9 /* AchBank.m in Sources */,
 				388E5AB71A5A949500AF6EB9 /* NSObject+NSNull.m in Sources */,
 				388E5AB81A5A949500AF6EB9 /* PayInMethod.m in Sources */,
+				472915361AE549EA00301260 /* PushNotificationDispather.m in Sources */,
 				388E5AB91A5A949500AF6EB9 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				388E5ABA1A5A949500AF6EB9 /* ReferralLinksOperation.m in Sources */,
 				388E5ABB1A5A949500AF6EB9 /* SuggestionCell.m in Sources */,
@@ -5143,6 +5150,7 @@
 				EA31A16E17DDB29B00F937F7 /* UINavigationController+StackManipulations.m in Sources */,
 				EA31A16F17DDB29B00F937F7 /* RegisterOperation.m in Sources */,
 				389F684C198FC1C6006CF1F6 /* Setting.m in Sources */,
+				472915351AE549EA00301260 /* PushNotificationDispather.m in Sources */,
 				389F681C198FC1C6006CF1F6 /* BusinessProfile.m in Sources */,
 				471CA005197FCB2200BCA3B4 /* TabbedHeaderViewController.m in Sources */,
 				EA31A17017DDB29B00F937F7 /* ButtonCell.m in Sources */,
@@ -5473,6 +5481,7 @@
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				47C1F70C1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */,
 				4757BE621A3B064B005D7BDD /* PaymentFlow.m in Sources */,
+				472915341AE549EA00301260 /* PushNotificationDispather.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
@@ -5976,7 +5985,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f8611e6a-e8a2-44fb-a4ee-9072d624372f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

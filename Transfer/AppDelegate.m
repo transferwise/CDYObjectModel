@@ -154,15 +154,18 @@ handleActionWithIdentifier:(NSString *)identifier
 forRemoteNotification:(NSDictionary *)userInfo
   completionHandler:(void(^)())completionHandler
 {
-	
+	[self.notificationHelper handleNotificationArrival:userInfo];
+	//we aren't loading any data here
+	completionHandler(UIBackgroundFetchResultNoData);
 }
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-	[self.notificationHelper handleNotificationArrival:userInfo
-										 resultHandler:completionHandler];
+	[self.notificationHelper handleNotificationArrival:userInfo];
+	//we aren't loading any data here
+	completionHandler(UIBackgroundFetchResultNoData);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
