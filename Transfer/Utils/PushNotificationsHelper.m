@@ -14,6 +14,7 @@
 #import "UpdateuserDeviceOperation.h"
 #import "Credentials.h"
 #import "NSData+HexString.h"
+#import "PushNotificationDispather.h"
 
 @interface PushNotificationsHelper ()
 
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) UIApplication *application;
 @property (strong, nonatomic) TransferwiseOperation *executingOperation;
 @property (strong, nonatomic) NSString *deviceTokenString;
+@property (strong, nonatomic) id<PushNotificationDispatcher> notificationDispatcher;
 
 @end
 
@@ -38,6 +40,7 @@
 	
 	sharedObject.objectModel = objectModel;
 	sharedObject.application = application;
+	sharedObject.notificationDispatcher = [[PushNotificationDispather alloc] init];
 	
 	return sharedObject;
 }
@@ -139,10 +142,9 @@
 }
 
 - (void)handleNotificationArrival:(NSDictionary *)userInfo
-					resultHandler:(void (^)(UIBackgroundFetchResult result))handler
 {
-	//do the deeplinking magic here
-	handler(UIBackgroundFetchResultNoData);
+	[self.notificationDispatcher dispatchNotification:userInfo
+									  withApplication:self.application];
 }
 
 - (void)handleLoggingOut

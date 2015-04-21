@@ -16,8 +16,7 @@
 - (void)registerForPushNotifications:(BOOL)isLaunch;
 - (void)handleRegistrationsSuccess:(NSData *)deviceToken;
 - (void)handleRegistrationFailure:(NSError *)error;
-- (void)handleNotificationArrival:(NSDictionary *)userInfo
-					resultHandler:(void (^)(UIBackgroundFetchResult result))handler;
+- (void)handleNotificationArrival:(NSDictionary *)userInfo;
 - (void)handleLoggingOut;
 - (void)handleDeviceRegistering;
 
