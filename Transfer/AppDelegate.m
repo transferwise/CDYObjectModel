@@ -36,7 +36,7 @@
 #import <FBAppCall.h>
 #import <NXOAuth2AccountStore.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<AppsFlyerTrackerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
@@ -175,7 +175,9 @@
 	
 	[AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
 	[AppsFlyerTracker sharedTracker].appleAppID = AppsFlyerIdentifier;
-	
+#if DEBUG
+    [AppsFlyerTracker sharedTracker].delegate = self;
+#endif
 	
 	[NanTracking setFbAppId:@"274548709260402"];
 	
@@ -260,5 +262,24 @@
 									  keyChainGroup:@""
 									 forAccountType:GoogleOAuthServiceName];
 }
+
+#pragma AppsFlyerTrackerDelegate methods
+- (void) onConversionDataReceived:(NSDictionary*) installData{
+    id status = [installData objectForKey:@"af_status"];
+    if([status isEqualToString:@"Non-organic"]) {
+        id sourceID = [installData objectForKey:@"media_source"];
+        id campaign = [installData objectForKey:@"campaign"];
+        MCLog(@"This is a none organic install.");
+        MCLog(@"Media source: %@",sourceID);
+        MCLog(@"Campaign: %@",campaign);
+    } else if([status isEqualToString:@"Organic"]) {
+        MCLog(@"This is an organic install.");
+    }
+}
+
+- (void) onConversionDataRequestFailure:(NSError *)error{
+    MCLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
+}
+
 
 @end
