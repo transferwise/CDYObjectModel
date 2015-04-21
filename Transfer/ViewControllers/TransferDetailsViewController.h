@@ -17,6 +17,7 @@
 
 @property (nonatomic) BOOL showClose;
 @property (nonatomic,assign) BOOL promptForNotifications;
+@property (nonatomic,assign) BOOL showRateTheApp;
 @property (strong, nonatomic) Payment *payment;
 @property (strong, nonatomic) ObjectModel *objectModel;
 
