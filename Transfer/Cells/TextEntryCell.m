@@ -114,12 +114,13 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     }
     
     
-    [self.entryField setText:modified];
+    self.entryField.text = modified;
     if(![pattern hasValue] && caretRange.location + caretRange.length < [modified length])
     {
         [self.entryField moveCaretToAfterRange:caretRange];
     }
     [self setValueModified:YES];
+    [self.entryField sendActionsForControlEvents:UIControlEventEditingChanged];
     return NO;
 
 }
