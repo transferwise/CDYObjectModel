@@ -15,8 +15,7 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "PullPaymentDetailsOperation.h"
-#import "TransferDetailsViewController.h" 
-#import "FeedbackCoordinator.h"
+#import "TransferDetailsViewController.h"
 #import "CustomInfoViewController.h"
 #import "GoogleAnalytics.h"
 #import "Mixpanel+Customisation.h"
@@ -208,11 +207,9 @@
                         details.objectModel = self.objectModel;
                         details.showClose = YES;
                         details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
+                        details.showRateTheApp = YES;
                         
                         [self.navigationController pushViewController:details animated:NO];
-                        [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                            return YES;
-                        }];
                         [weakCustomInfo dismiss];
                     });
                 }];
@@ -248,11 +245,8 @@
                 details.objectModel = self.objectModel;
                 details.showClose = YES;
                 details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
-                
+                details.showRateTheApp = YES;
                 [self.navigationController pushViewController:details animated:NO];
-                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                    return YES;
-                }];
                 if(shouldAutoDismiss)
                 {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
