@@ -161,6 +161,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    nameCell.validateAlphaNumeric = YES;
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
     [nameCell setSelectionHandler:^(Recipient *recipient) {
         [weakSelf didSelectRecipient:recipient];
