@@ -435,7 +435,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 	if (!self.recipient && !self.noPendingPayment)
 	{
 		//set the recipient country based on targent currency, if pending payment exists
-		if (self.objectModel.pendingPayment
+		if (self.recipientType.recipientAddressRequiredValue && self.objectModel.pendingPayment
 			&& self.objectModel.pendingPayment.targetCurrency
 			&& [@"eur" caseInsensitiveCompare:self.objectModel.pendingPayment.targetCurrency.code] != NSOrderedSame)
 		{
@@ -760,19 +760,21 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.currency = self.currency;
     recipientInput.type = self.recipientType;
     recipientInput.email = self.emailCell.value;
-    recipientInput.addressFirstLine = [self.addressCell value];
-    recipientInput.addressPostCode = [self.postCodeCell value];
-    recipientInput.addressCity = [self.cityCell value];
-    recipientInput.addressCountryCode = [self.countryCell value];
-    if ([@"usa" caseInsensitiveCompare:self.countryCell.value]== NSOrderedSame)
+    if(self.recipientType.recipientAddressRequiredValue)
     {
-        State* state = [self.stateCellProvider getByCodeOrName:self.stateCell.value];
-        if(state)
+        recipientInput.addressFirstLine = [self.addressCell value];
+        recipientInput.addressPostCode = [self.postCodeCell value];
+        recipientInput.addressCity = [self.cityCell value];
+        recipientInput.addressCountryCode = [self.countryCell value];
+        if ([@"usa" caseInsensitiveCompare:self.countryCell.value]== NSOrderedSame)
         {
-            recipientInput.addressState = state.code;
+            State* state = [self.stateCellProvider getByCodeOrName:self.stateCell.value];
+            if(state)
+            {
+                recipientInput.addressState = state.code;
+            }
         }
     }
-
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
             continue;
