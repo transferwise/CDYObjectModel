@@ -120,7 +120,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
         [self.entryField moveCaretToAfterRange:caretRange];
     }
     [self setValueModified:YES];
-    [self.entryField sendActionsForControlEvents:UIControlEventEditingChanged];
+    [textField sendActionsForControlEvents:UIControlEventEditingChanged];
     return NO;
 
 }
