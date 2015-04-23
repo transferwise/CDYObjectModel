@@ -117,7 +117,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     textField.text = modified;
     if(![pattern hasValue] && caretRange.location + caretRange.length < [modified length])
     {
-        [self.entryField moveCaretToAfterRange:caretRange];
+        [textField moveCaretToAfterRange:caretRange];
     }
     [self setValueModified:YES];
     [textField sendActionsForControlEvents:UIControlEventEditingChanged];
