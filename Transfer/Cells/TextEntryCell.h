@@ -42,6 +42,5 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (void)textFieldEntryFinished;
 - (void)setGrayedOut:(BOOL)isGrayedOut;
 + (void)setTextColor:(UITextField *)textField editable:(BOOL)editable;
--(NSString*)stripAccentsFromString:(NSString*)source;
 
 @end

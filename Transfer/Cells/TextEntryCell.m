@@ -14,6 +14,7 @@
 #import <JVFloatLabeledTextField.h>
 #import "NSString+Presentation.h"
 #import "UITextField+CaretPosition.h"
+#import "UITextField+CustomDelegate.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -24,7 +25,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @property (nonatomic, strong) IBOutlet UIButton *errorButton;
 @property (nonatomic, copy) NSString *validationIssue;
 @property (nonatomic, strong) UIView* maskView;
-@property (nonatomic, strong) NSCharacterSet *englishCharacterExclusionSet;
 
 - (IBAction)errorButtonTapped;
 
@@ -75,53 +75,13 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    NSString* originalText = textField.text?:@"";
-    if(self.validateAlphaNumeric)
+    NSString* original = textField.text;
+    BOOL result = [UITextField textField:textField shouldChangeCharactersInRange:range replacementString:string presentationPattern:self.presentationPattern maxValueLength:self.maxValueLength enforceAlphaNumeric:self.validateAlphaNumeric];
+    if(![original isEqualToString:textField.text])
     {
-        string = [self stripAccentsFromString:string];
+        [self setValueModified:YES];
     }
-    
-	NSString *modified = [originalText stringByReplacingCharactersInRange:range withString:string];
-    NSRange caretRange = NSMakeRange(range.location, [string length]);
-    
-    
-    NSString *pattern = self.presentationPattern;
-    
-    if([pattern hasValue])
-    {
-        if ([pattern hasValue] && [modified length] > [pattern length])
-        {
-            return NO;
-        }
-        
-        if ([string length] == 0)
-        {
-            modified = [modified stringByRemovingPatterChar:pattern];
-        }
-        else
-        {
-            modified = [modified applyPattern:pattern];
-            modified = [modified stringByAddingPatternChar:pattern];
-        }
-
-    }
-    else
-    {
-        if (self.maxValueLength > 0 && [modified length] > self.maxValueLength)
-        {
-            return NO;
-        }
-    }
-    
-    
-    textField.text = modified;
-    if(![pattern hasValue] && caretRange.location + caretRange.length < [modified length])
-    {
-        [textField moveCaretToAfterRange:caretRange];
-    }
-    [self setValueModified:YES];
-    [textField sendActionsForControlEvents:UIControlEventEditingChanged];
-    return NO;
+    return result;
 
 }
 
@@ -193,21 +153,5 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 	[textField setTextColor:(editable ? [UIColor colorFromStyle:textField.fontStyle] : [UIColor colorFromStyle:@"CoreFont"])];
 }
 
--(NSCharacterSet *)englishCharacterExclusionSet
-{
-    if (!_englishCharacterExclusionSet)
-    {
-        _englishCharacterExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
-    }
-    
-    return _englishCharacterExclusionSet;
-}
-
--(NSString*)stripAccentsFromString:(NSString*)source
-{
-    NSString *modified = [source decomposedStringWithCanonicalMapping];
-    modified = [[modified componentsSeparatedByCharactersInSet:self.englishCharacterExclusionSet] componentsJoinedByString:@""];
-    return modified;
-}
 
 @end
