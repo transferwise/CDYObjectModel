@@ -468,7 +468,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (void)loadDataFromWrapper:(EmailLookupWrapper *)wrapper {
     [self didSelectRecipient:nil];
     self.lastSelectedWrapper = wrapper;
-    self.nameCell.value = [wrapper presentableString:FirstNameFirst];
+    self.nameCell.value = [self.nameCell stripAccentsFromString:[wrapper presentableString:FirstNameFirst]];
     self.emailCell.value = wrapper.email;
     
     [self updateUserNameText];

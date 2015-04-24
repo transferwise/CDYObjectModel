@@ -75,13 +75,13 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    
+    NSString* originalText = textField.text?:@"";
     if(self.validateAlphaNumeric)
     {
         string = [self stripAccentsFromString:string];
     }
     
-	NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
+	NSString *modified = [originalText stringByReplacingCharactersInRange:range withString:string];
     NSRange caretRange = NSMakeRange(range.location, [string length]);
     
     
@@ -114,13 +114,13 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     }
     
     
-    self.entryField.text = modified;
+    textField.text = modified;
     if(![pattern hasValue] && caretRange.location + caretRange.length < [modified length])
     {
-        [self.entryField moveCaretToAfterRange:caretRange];
+        [textField moveCaretToAfterRange:caretRange];
     }
     [self setValueModified:YES];
-    [self.entryField sendActionsForControlEvents:UIControlEventEditingChanged];
+    [textField sendActionsForControlEvents:UIControlEventEditingChanged];
     return NO;
 
 }
