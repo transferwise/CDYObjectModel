@@ -824,6 +824,9 @@
 		38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */; };
 		38B52FA4199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
 		38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
+		38B8876E1AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */; };
+		38B8876F1AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */; };
+		38B887701AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */; };
 		38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BBE4671990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
@@ -1815,6 +1818,8 @@
 		38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationsViewController.xib; sourceTree = "<group>"; };
 		38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationProgressIndicatorView.h; sourceTree = "<group>"; };
 		38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationProgressIndicatorView.m; sourceTree = "<group>"; };
+		38B8876C1AEA4AED0079C9BD /* UITextField+CustomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+CustomDelegate.h"; sourceTree = "<group>"; };
+		38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CustomDelegate.m"; sourceTree = "<group>"; };
 		38BBE4651990F43500A14B9F /* IntroView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroView~ipad.xib"; sourceTree = "<group>"; };
 		38BCE11619B8C8EF0003D0EE /* TransferDev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransferDev.plist; sourceTree = SOURCE_ROOT; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
@@ -3188,6 +3193,8 @@
 				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
 				383D30D21A60039500171189 /* CustomInfoViewController+NoPayInMethods.h */,
 				383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */,
+				38B8876C1AEA4AED0079C9BD /* UITextField+CustomDelegate.h */,
+				38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4665,6 +4672,7 @@
 				388E5A231A5A949500AF6EB9 /* Credentials.m in Sources */,
 				388E5A241A5A949500AF6EB9 /* CustomInfoViewController.m in Sources */,
 				388E5A251A5A949500AF6EB9 /* DataEntryViewController.m in Sources */,
+				38B887701AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */,
 				478C6FEC1A8CC71500431882 /* LocationHelper.m in Sources */,
 				388E5A261A5A949500AF6EB9 /* PersonalProfileViewController.m in Sources */,
 				388E5A271A5A949500AF6EB9 /* _Country.m in Sources */,
@@ -5005,6 +5013,7 @@
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */,
+				38B8876F1AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */,
 				478C6FEB1A8CC71500431882 /* LocationHelper.m in Sources */,
 				EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */,
 				389F67FC198FC1C6006CF1F6 /* _Country.m in Sources */,
@@ -5342,6 +5351,7 @@
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
 				EA88E68E172F97E20021492C /* SelectionCell.m in Sources */,
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
+				38B8876E1AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */,
 				3856691D198157C600BC4230 /* CircleStyle.m in Sources */,
 				47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,
@@ -5984,7 +5994,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "080603ef-3a37-4e03-a8a6-488643032529";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3c41ed8b-a6b1-4150-8d79-25bc597f327d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

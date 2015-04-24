@@ -65,6 +65,7 @@
 #import "TargetCountryProvider.h"
 #import "CurrencyLoader.h"
 #import "PendingPayment+ColoredButton.h"
+#import "UITextField+CustomDelegate.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -468,7 +469,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (void)loadDataFromWrapper:(EmailLookupWrapper *)wrapper {
     [self didSelectRecipient:nil];
     self.lastSelectedWrapper = wrapper;
-    self.nameCell.value = [self.nameCell stripAccentsFromString:[wrapper presentableString:FirstNameFirst]];
+    self.nameCell.value = [UITextField stripAccentsFromString:[wrapper presentableString:FirstNameFirst]];
     self.emailCell.value = wrapper.email;
     
     [self updateUserNameText];
