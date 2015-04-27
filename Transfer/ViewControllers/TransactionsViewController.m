@@ -171,7 +171,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[super viewDidAppear:animated];
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
 	
-	if (self.lastSelectedIndexPath)
+	if (IPAD && self.lastSelectedIndexPath)
 	{
 		[self selectRowAtIndexPath:self.lastSelectedIndexPath];
 	}
@@ -354,14 +354,11 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			{
 				self.isViewAppearing = NO;
 				
-				if (IPAD && self.payments.count > 0)
+				if (IPAD && self.payments.count > 0 && delta > 0)
 				{
-					if (delta > 0)
-					{
-						NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
-																   inSection:0];
-						[self selectRowAtIndexPath:firstRow];
-					}
+					NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
+															   inSection:0];
+					[self selectRowAtIndexPath:firstRow];
 				}
 			}
             
