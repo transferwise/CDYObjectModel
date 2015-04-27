@@ -38,8 +38,9 @@
 #import "UITextField+CaretPosition.h"
 #import "ColoredButton.h"
 #import "PendingPayment+ColoredButton.h"
+#import "UITextField+CustomDelegate.h"
 
-@interface ConfirmPaymentViewController ()
+@interface ConfirmPaymentViewController ()<UITextViewDelegate>
 
 @property (nonatomic, strong) IBOutlet ColoredButton *actionButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
@@ -631,4 +632,22 @@
         return [super textFieldShouldReturn:textField];
     }
 }
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField == self.referenceField || textField == self.emailField)
+    {
+        if(textField == self.referenceField)
+        {
+            return [UITextField textField:textField shouldChangeCharactersInRange:range replacementString:string presentationPattern:nil maxValueLength:[self getReferenceMaxLength:self.payment] enforceAlphaNumeric:YES];
+        }
+        else
+        {
+            return [UITextField textField:textField shouldChangeCharactersInRange:range replacementString:string presentationPattern:nil maxValueLength:0 enforceAlphaNumeric:NO];
+        }
+    }
+
+    return [super textField:textField shouldChangeCharactersInRange:range replacementString:string];
+}
+
 @end
