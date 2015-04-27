@@ -32,7 +32,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3F13C8C5-BC8C-4078-BE21-F557E1C5A8C0" id="iHM-Sf-tbU">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="74B27924-24FA-4FAF-AF8A-794C9AA71A0F" id="iHM-Sf-tbU">
                     <rect key="frame" x="152" y="30" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -89,7 +89,7 @@
         </view>
     </objects>
     <resources>
-        <image name="3F13C8C5-BC8C-4078-BE21-F557E1C5A8C0" width="16" height="16">
+        <image name="74B27924-24FA-4FAF-AF8A-794C9AA71A0F" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
