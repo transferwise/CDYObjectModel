@@ -3865,9 +3865,19 @@
 					};
 					EA31A12117DDB29B00F937F7 = {
 						DevelopmentTeam = W53MTDV45J;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					EAAA1467171BC911005B9430 = {
 						DevelopmentTeam = W53MTDV45J;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
