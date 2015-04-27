@@ -2092,6 +2092,7 @@
 		47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoViewControllerDelegateHelper.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
+		47DC5EFA1AEE3E9F00C6FA50 /* Transfer_v11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v11.xcdatamodel; sourceTree = "<group>"; };
 		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47DC89841A03950F0042054B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47F667661A1DD2A0003C018A /* AchFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchFlow.h; sourceTree = "<group>"; };
@@ -6118,6 +6119,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				47DC5EFA1AEE3E9F00C6FA50 /* Transfer_v11.xcdatamodel */,
 				470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */,
 				381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */,
 				4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */,
@@ -6132,7 +6134,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */;
+			currentVersion = 47DC5EFA1AEE3E9F00C6FA50 /* Transfer_v11.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

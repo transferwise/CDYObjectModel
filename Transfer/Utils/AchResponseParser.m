@@ -114,7 +114,7 @@ static NSString *const SUCCESS = @"success";
 {
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	
-	[dict setValue:bank.id forKey:@"verifiableAccountId"];
+	[dict setValue:bank.remoteId forKey:@"verifiableAccountId"];
 	
 	if (bank.fieldType)
 	{
