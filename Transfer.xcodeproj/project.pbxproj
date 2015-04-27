@@ -211,6 +211,9 @@
 		388B1F761990E04200DF13E8 /* WhiteRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */; };
 		388B5CDF1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */; };
 		388B5CE01A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */; };
+		388B6DAC1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */; };
+		388B6DAD1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */; };
+		388B6DAE1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */; };
 		388E59CB1A5A949500AF6EB9 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
 		388E59CC1A5A949500AF6EB9 /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
 		388E59CD1A5A949500AF6EB9 /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
@@ -1701,6 +1704,8 @@
 		388B1F731990E04200DF13E8 /* WhiteRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteRoundedButton.h; sourceTree = "<group>"; };
 		388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteRoundedButton.m; sourceTree = "<group>"; };
 		388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AchDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
+		388B6DAA1AEE5B8F001A14B5 /* UITextField+CustomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+CustomDelegate.h"; sourceTree = "<group>"; };
+		388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CustomDelegate.m"; sourceTree = "<group>"; };
 		388E5BAF1A5A949500AF6EB9 /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388E5BB01A5A949600AF6EB9 /* TransferDev-cal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TransferDev-cal-Info.plist"; path = "/Users/matstrovik/Documents/iOSDev/github/transferwise-ios/TransferDev-cal-Info.plist"; sourceTree = "<absolute>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
@@ -3206,6 +3211,10 @@
 				EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */,
 				BB9A2E81176B711400C5E058 /* UITableView+FooterPositioning.h */,
 				BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */,
+				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
+				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
+				388B6DAA1AEE5B8F001A14B5 /* UITextField+CustomDelegate.h */,
+				388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */,
 				EA88E678172F97C40021492C /* UIView+Container.h */,
 				EA88E679172F97C40021492C /* UIView+Container.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
@@ -3224,8 +3233,6 @@
 				476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */,
 				47126B5319C2DCD40049F4C5 /* UIView+InheritantOf.h */,
 				47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */,
-				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
-				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
 				38FAE5201ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.h */,
 				38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */,
 				38FAE5321ADE569E006CD53C /* CustomInfoViewController+Notifications.h */,
@@ -4855,6 +4862,7 @@
 				388E5A971A5A949500AF6EB9 /* MultipleEntryCell.m in Sources */,
 				388E5A981A5A949500AF6EB9 /* HeaderTabView.m in Sources */,
 				388E5A991A5A949500AF6EB9 /* ConnectionAwareViewController.m in Sources */,
+				388B6DAE1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				388E5A9A1A5A949500AF6EB9 /* ImageColoredButton.m in Sources */,
 				478C6FF11A8DF04700431882 /* (null) in Sources */,
 				388E5A9B1A5A949500AF6EB9 /* PersonalPaymentProfileViewController.m in Sources */,
@@ -5249,6 +5257,7 @@
 				EA31A1A317DDB29B00F937F7 /* RecipientsOperation.m in Sources */,
 				EA0450DB17EC64BC008921DA /* IntroView.m in Sources */,
 				389F67FA198FC1C6006CF1F6 /* _BusinessProfile.m in Sources */,
+				388B6DAD1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				389F6818198FC1C6006CF1F6 /* _User.m in Sources */,
 				380021E0192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
 				38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */,
@@ -5580,6 +5589,7 @@
 				38B093191951FA8300315BE4 /* SettlementRecipient.m in Sources */,
 				38B0930D1951FA2A00315BE4 /* TextFieldSuggestionTable.m in Sources */,
 				3856690B1980FA1200BC4230 /* UIImage+RenderBlur.m in Sources */,
+				388B6DAC1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */,
 				380021D2192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
 				EAD3648517E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
