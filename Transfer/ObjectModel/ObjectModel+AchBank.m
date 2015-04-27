@@ -40,7 +40,7 @@
 	}
 
 	//this id changes per each request and it needs to be submitted back
-	[bank setId:[NSNumber numberWithInteger:[formId integerValue]]];
+	[bank setRemoteId:[NSNumber numberWithInteger:[formId integerValue]]];
 	
 	//this id might be present and it changes per each request and it needs to be submitted back if present
 	if (itemId)

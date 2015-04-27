@@ -5,8 +5,8 @@
 
 extern const struct AchBankAttributes {
 	__unsafe_unretained NSString *fieldType;
-	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *itemId;
+	__unsafe_unretained NSString *remoteId;
 	__unsafe_unretained NSString *title;
 } AchBankAttributes;
 
@@ -33,14 +33,6 @@ extern const struct AchBankRelationships {
 
 //- (BOOL)validateFieldType:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* id;
-
-@property (atomic) int32_t idValue;
-- (int32_t)idValue;
-- (void)setIdValue:(int32_t)value_;
-
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* itemId;
 
 @property (atomic) int32_t itemIdValue;
@@ -48,6 +40,14 @@ extern const struct AchBankRelationships {
 - (void)setItemIdValue:(int32_t)value_;
 
 //- (BOOL)validateItemId:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* remoteId;
+
+@property (atomic) int32_t remoteIdValue;
+- (int32_t)remoteIdValue;
+- (void)setRemoteIdValue:(int32_t)value_;
+
+//- (BOOL)validateRemoteId:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* title;
 
@@ -102,17 +102,17 @@ extern const struct AchBankRelationships {
 - (NSString*)primitiveFieldType;
 - (void)setPrimitiveFieldType:(NSString*)value;
 
-- (NSNumber*)primitiveId;
-- (void)setPrimitiveId:(NSNumber*)value;
-
-- (int32_t)primitiveIdValue;
-- (void)setPrimitiveIdValue:(int32_t)value_;
-
 - (NSNumber*)primitiveItemId;
 - (void)setPrimitiveItemId:(NSNumber*)value;
 
 - (int32_t)primitiveItemIdValue;
 - (void)setPrimitiveItemIdValue:(int32_t)value_;
+
+- (NSNumber*)primitiveRemoteId;
+- (void)setPrimitiveRemoteId:(NSNumber*)value;
+
+- (int32_t)primitiveRemoteIdValue;
+- (void)setPrimitiveRemoteIdValue:(int32_t)value_;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
