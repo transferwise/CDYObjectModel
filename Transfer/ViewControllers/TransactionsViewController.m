@@ -76,6 +76,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic,strong) NSDate* refreshTimestamp;
 
+@property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
 
 @end
 
@@ -138,8 +139,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
     
     [self.tableView reloadData];
-    
-    
+	
     if(self.deeplinkPaymentID)
     {
         [self presentDeeplinkPayment];
@@ -157,18 +157,24 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     [self configureForVerificationNeeded:self.showIdentificationView];
 	[self checkPersonalVerificationNeeded];
+	
 	[self presentDetail:nil];
+	
     self.noTransfersMessage.hidden = YES;
     
     self.paymentFlow = nil;
     self.paymentHelper = nil;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
+	
+	if (self.lastSelectedIndexPath)
+	{
+		[self selectRowAtIndexPath:self.lastSelectedIndexPath];
+	}
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -247,6 +253,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewPayment];
 	[self removeCancellingFromCell];
 
+	self.lastSelectedIndexPath = indexPath;
 	[self showPayment:payment];
 }
 
@@ -349,12 +356,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 				
 				if (IPAD && self.payments.count > 0)
 				{
-					NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
-															   inSection:0];
-					[self tableView:self.tableView didSelectRowAtIndexPath:firstRow];
-					[self.tableView selectRowAtIndexPath:firstRow
-												animated:NO
-										  scrollPosition:UITableViewScrollPositionMiddle];
+					if (delta > 0)
+					{
+						NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
+																   inSection:0];
+						[self selectRowAtIndexPath:firstRow];
+					}
 				}
 			}
             
@@ -376,6 +383,14 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }];
 
     [operation execute];
+}
+
+- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+	[self.tableView selectRowAtIndexPath:indexPath
+								animated:NO
+						  scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
