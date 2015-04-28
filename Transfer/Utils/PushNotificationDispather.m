@@ -7,10 +7,10 @@
 //
 
 #import "PushNotificationDispather.h"
+#import "Constants.h"
+#import "AppDelegate.h"
 
 NSString *const kPaymentStatus = @"PAYMENT_STATUS";
-NSString *const kTWProtocol = @"transferwise";
-NSString *const kPaymentDetails = @"details";
 
 @implementation PushNotificationDispather
 
@@ -27,9 +27,10 @@ NSString *const kPaymentDetails = @"details";
 - (void)handlePaymentStatusChangeNotification:(NSString *)paymentId
 								  application:(UIApplication *)application
 {
-	NSString *deepLink = [NSString stringWithFormat:@"%@://%@/%@", kTWProtocol, kPaymentDetails, paymentId];
+	AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	
-	[application openURL:[NSURL URLWithString:deepLink]];
+	[delegate performNavigation:PaymentDetails
+				 withParameters:@{kNavigationParamsPaymentId: paymentId}];
 }
 
 @end

@@ -81,3 +81,5 @@ NSString *const GoogleOAuthRedirectUrl = @"http://localhost/";
 NSString *const GoogleOAuthServiceName = @"Google";
 NSString *const GoogleOAuthEmailScope = @"https://www.googleapis.com/auth/userinfo.email";
 NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/plus.profile.emails.read";
+
+NSString *const kNavigationParamsPaymentId = @"NavigationPaymentId";
