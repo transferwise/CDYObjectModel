@@ -132,6 +132,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	
+	self.noTransfersMessage.hidden = YES;
 
     if (!self.payments)
     {
@@ -151,7 +153,11 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [self refreshPaymentsList];
         self.refreshOnAppear = NO;
     }
-    
+	else if([self.payments count] < 1)
+	{
+		[self showNoTransfersMessage];
+	}
+		
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
 
@@ -159,8 +165,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self checkPersonalVerificationNeeded];
 	
 	[self presentDetail:nil];
-	
-    self.noTransfersMessage.hidden = YES;
     
     self.paymentFlow = nil;
     self.paymentHelper = nil;
@@ -315,11 +319,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             
             if(!error && totalCount == 0)
             {
-                self.noTransfersMessage.hidden = NO;
-                self.noTransfersMessage.alpha = 0.0f;
-                [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-                    self.noTransfersMessage.alpha = 1.0f;
-                } completion:nil];
+				[self showNoTransfersMessage];
                 if(self.isViewLoaded && self.view.window)
                 {
                     [SendButtonFlashHelper setSendFlash:YES];
@@ -380,6 +380,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }];
 
     [operation execute];
+}
+
+- (void)showNoTransfersMessage
+{
+	self.noTransfersMessage.hidden = NO;
+	self.noTransfersMessage.alpha = 0.0f;
+	[UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+		self.noTransfersMessage.alpha = 1.0f;
+	} completion:nil];
 }
 
 - (void)selectRowAtIndexPath:(NSIndexPath *)indexPath
