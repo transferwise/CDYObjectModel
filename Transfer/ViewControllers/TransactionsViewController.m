@@ -171,7 +171,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[super viewDidAppear:animated];
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
 	
-	if (IPAD && self.lastSelectedIndexPath)
+	if (IPAD && self.lastSelectedIndexPath && [self.payments count] >= self.lastSelectedIndexPath.row)
 	{
 		[self selectRowAtIndexPath:self.lastSelectedIndexPath];
 	}
