@@ -29,8 +29,8 @@ NSString *const kPaymentStatus = @"PAYMENT_STATUS";
 {
 	AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	
-	[delegate dispatchNotification:PaymentDetails
-							itemId:@([paymentId integerValue])];
+	[delegate performNavigation:PaymentDetails
+				 withParameters:@{kNavigationParamsPaymentId: paymentId}];
 }
 
 @end

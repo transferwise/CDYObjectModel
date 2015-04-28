@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (BOOL)dispatchNotification:(NotificationToDispatch)notificationToDispatch
-					  itemId:(NSNumber *)itemId;
+- (BOOL)performNavigation:(NavigationAction)navigationAction
+		   withParameters:(NSDictionary *)params;
 
 @end

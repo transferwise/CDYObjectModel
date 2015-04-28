@@ -303,27 +303,27 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 		{
 			if(parameters[1])
 			{
-				[self dispatchNotification:PaymentDetails
-									itemId:@([parameters[1] integerValue])];
+				[self performNavigation:PaymentDetails
+						 withParameters:@{kNavigationParamsPaymentId: parameters[1]}];
 			}
 			return YES;
 		}
 		else if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
 		{
-			[self dispatchNotification:NewPayment
-								itemId:nil];
+			[self performNavigation:NewPayment
+								withParameters:nil];
 			return YES;
 		}
 		else if ([[parameters[0] lowercaseString] isEqualToString:@"invite"])
 		{
-			[self dispatchNotification:Invite
-								itemId:nil];
+			[self performNavigation:Invite
+								withParameters:nil];
 			return YES;
 		}
 		else if ([[parameters[0] lowercaseString] isEqualToString:@"verification"])
 		{
-			[self dispatchNotification:Verification
-								itemId:nil];
+			[self performNavigation:Verification
+								withParameters:nil];
 			return YES;
 		}
 	}
@@ -332,15 +332,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 
 #pragma mark - Notification dispatching
 
-- (BOOL)dispatchNotification:(NotificationToDispatch)notificationToDispatch
-					  itemId:(NSNumber *)itemId
+- (BOOL)performNavigation:(NavigationAction)navigationAction
+		   withParameters:(NSDictionary *)params
 {
 	ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
 	if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
 	{
 		MainViewController* mainController = (MainViewController*) root.wrappedViewController;
-		return [mainController dispatchNotification:notificationToDispatch
-											 itemId:itemId];
+		return [mainController performNavigation:navigationAction
+								  withParameters:params];
 	}
 	return NO;
 }

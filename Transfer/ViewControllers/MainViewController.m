@@ -301,15 +301,16 @@
 
 #pragma mark - Notification Dispatch
 
-- (BOOL)dispatchNotification:(NotificationToDispatch)notificationToDispatch
-					  itemId:(NSNumber *)itemId
+- (BOOL)performNavigation:(NavigationAction)navigationAction
+		   withParameters:(NSDictionary *)params
 {
-	switch (notificationToDispatch) {
+	switch (navigationAction) {
 		case PaymentDetails:
-			NSAssert(itemId, @"itemId cannot be nil");
+			NSAssert(params, @"itemId cannot be nil");
+			NSAssert(params[kNavigationParamsPaymentId], @"paymentId net supplied in params");
 			
 			self.transactionsController.deeplinkDisplayVerification = NO;
-			self.transactionsController.deeplinkPaymentID = itemId;
+			self.transactionsController.deeplinkPaymentID = @([params[kNavigationParamsPaymentId] integerValue]);
 			[self moveToPaymentsList];
 			
 			return YES;
