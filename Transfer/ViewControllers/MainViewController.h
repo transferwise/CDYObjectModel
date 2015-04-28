@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @class ObjectModel;
 
@@ -14,6 +15,7 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
--(BOOL)handleDeeplink:(NSURL *)deepLink;
+- (BOOL)dispatchNotification:(NotificationToDispatch)notificationToDispatch
+					  itemId:(NSNumber *)itemId;
 
 @end

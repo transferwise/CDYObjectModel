@@ -118,4 +118,9 @@ extern NSString *const GoogleOAuthProfileScope;
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
-
+typedef NS_ENUM(short, NotificationToDispatch) {
+	PaymentDetails,
+	NewPayment,
+	Invite,
+	Verification
+};

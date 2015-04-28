@@ -11,7 +11,6 @@
 #import "ObjectModel.h"
 #import "MainViewController.h"
 #import "SettingsViewController.h"
-#import "Constants.h"
 #import "TransferwiseClient.h"
 #import "ObjectModel+Users.h"
 #import "GAI.h"
@@ -284,16 +283,66 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 -(BOOL)handleURL:(NSURL*)url
 {
     if([[[url scheme] lowercaseString] isEqualToString:TRWDeeplinkScheme])
-    {
-        
-        ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
-        if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
-        {
-            MainViewController* mainController = (MainViewController*) root.wrappedViewController;
-            return [mainController handleDeeplink:url];
-        }
+    {        
+		return [self handleDeeplink:url];
     }
     return NO;
+}
+
+- (BOOL)handleDeeplink:(NSURL *)deepLink
+{
+	NSString *absolute = [deepLink absoluteString];
+	NSRange startingPoint = [absolute rangeOfString:@"://"];
+	NSString *parameterString = [absolute substringFromIndex:startingPoint.location + startingPoint.length];
+	NSArray *parameters = [parameterString componentsSeparatedByString:@"/"];
+	MCLog(@"Parameters: %@",parameters);
+	
+	if([parameters count] > 0)
+	{
+		if ([[parameters[0] lowercaseString] isEqualToString:@"details"])
+		{
+			if(parameters[1])
+			{
+				[self dispatchNotification:PaymentDetails
+									itemId:@([parameters[1] integerValue])];
+			}
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
+		{
+			[self dispatchNotification:NewPayment
+								itemId:nil];
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"invite"])
+		{
+			[self dispatchNotification:Invite
+								itemId:nil];
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"verification"])
+		{
+			[self dispatchNotification:Verification
+								itemId:nil];
+			return YES;
+		}
+	}
+	return NO;
+}
+
+#pragma mark - Notification dispatching
+
+- (BOOL)dispatchNotification:(NotificationToDispatch)notificationToDispatch
+					  itemId:(NSNumber *)itemId
+{
+	ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
+	if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
+	{
+		MainViewController* mainController = (MainViewController*) root.wrappedViewController;
+		return [mainController dispatchNotification:notificationToDispatch
+											 itemId:itemId];
+	}
+	return NO;
 }
 
 #pragma mark - oauth

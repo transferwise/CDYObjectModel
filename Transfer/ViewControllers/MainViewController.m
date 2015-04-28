@@ -299,46 +299,42 @@
 }
 
 
-#pragma mark - deeplink
--(BOOL)handleDeeplink:(NSURL *)deepLink
+#pragma mark - Notification Dispatch
+
+- (BOOL)dispatchNotification:(NotificationToDispatch)notificationToDispatch
+					  itemId:(NSNumber *)itemId
 {
-    NSString *absolute = [deepLink absoluteString];
-    NSRange startingPoint = [absolute rangeOfString:@"://"];
-    NSString *parameterString = [absolute substringFromIndex:startingPoint.location + startingPoint.length];
-    NSArray *parameters = [parameterString componentsSeparatedByString:@"/"];
-    MCLog(@"Parameters: %@",parameters);
-    
-    if([parameters count] > 0)
-    {
-        if ([[parameters[0] lowercaseString] isEqualToString:@"details"])
-        {
-            if(parameters[1])
-            {
-                self.transactionsController.deeplinkDisplayVerification = NO;
-                self.transactionsController.deeplinkPaymentID = @([parameters[1] integerValue]);
-                [self moveToPaymentsList];
-            }
-            return YES;
-        }
-        else if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
-        {
-            [self moveToPaymentView];
-            return YES;
-        }
-        else if ([[parameters[0] lowercaseString] isEqualToString:@"invite"])
-        {
-            [self moveToInvitationsView];
-            return YES;
-        }
-        else if ([[parameters[0] lowercaseString] isEqualToString:@"verification"])
-        {
-            self.transactionsController.deeplinkDisplayVerification = YES;
-            self.transactionsController.deeplinkPaymentID = nil;
-            [self moveToPaymentsList];
-            return YES;
-        }
-    }
-    return NO;
+	switch (notificationToDispatch) {
+		case PaymentDetails:
+			NSAssert(itemId, @"itemId cannot be nil");
+			
+			self.transactionsController.deeplinkDisplayVerification = NO;
+			self.transactionsController.deeplinkPaymentID = itemId;
+			[self moveToPaymentsList];
+			
+			return YES;
+			break;
+		case NewPayment:
+			[self moveToPaymentView];
+			
+			return YES;
+			break;
+		case Invite:
+			[self moveToInvitationsView];
+			
+			return YES;
+			break;
+		case Verification:
+			self.transactionsController.deeplinkDisplayVerification = YES;
+			self.transactionsController.deeplinkPaymentID = nil;
+			[self moveToPaymentsList];
+			
+			return YES;
+			break;
+		default:
+			return NO;
+			break;
+	}
 }
 
 @end
