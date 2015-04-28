@@ -842,6 +842,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 NSArray* loadedIds = [self.payments valueForKey:@"remoteId"];
                 if([loadedIds containsObject:deeplinkPaymentID])
                 {
+					[self.tableView reloadData];
+					
                     NSInteger index = [loadedIds indexOfObject:deeplinkPaymentID];
                     [self selectPaymentAtIndex:index];
                 }
