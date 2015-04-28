@@ -330,7 +330,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	return NO;
 }
 
-#pragma mark - Notification dispatching
+#pragma mark - Perform Navigation
 
 - (BOOL)performNavigation:(NavigationAction)navigationAction
 		   withParameters:(NSDictionary *)params

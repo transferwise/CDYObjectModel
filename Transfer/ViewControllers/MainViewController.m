@@ -299,7 +299,7 @@
 }
 
 
-#pragma mark - Notification Dispatch
+#pragma mark - Perform Navigation
 
 - (BOOL)performNavigation:(NavigationAction)navigationAction
 		   withParameters:(NSDictionary *)params
