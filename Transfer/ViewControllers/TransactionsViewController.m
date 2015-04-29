@@ -162,7 +162,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
 	else if([self.payments count] < 1)
 	{
-		[self showNoTransfersMessageAnsFlashButton];
+		[self showNoTransfersMessageAndFlashButton];
 	}
 		
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
@@ -328,7 +328,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             
             if(!error && totalCount == 0)
             {
-				[self showNoTransfersMessageAnsFlashButton];
+				[self showNoTransfersMessageAndFlashButton];
             }
 			
             BOOL footerUpdateScheduled = NO;
@@ -382,7 +382,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation execute];
 }
 
-- (void)showNoTransfersMessageAnsFlashButton
+- (void)showNoTransfersMessageAndFlashButton
 {
 	self.noTransfersMessage.hidden = NO;
 	self.noTransfersMessage.alpha = 0.0f;
@@ -405,7 +405,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)selectRowContainingPayment:(Payment *)payment
 {
 	//don't select anything when not on iPad
-	if (!IPAD)
+	if (!IPAD || self.payments.count < 1)
 	{
 		return;
 	}
@@ -768,7 +768,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[CancelHelper cancelPayment:payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
         if(!error)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
         }
     } dontCancelBlock:nil];
 }
@@ -806,7 +806,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[CancelHelper cancelPayment:payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
         if(!error)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
         }
         [self removeCancellingFromCell];
     } dontCancelBlock:^{
