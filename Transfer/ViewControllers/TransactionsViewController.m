@@ -390,14 +390,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
 	self.noTransfersMessage.hidden = NO;
 	self.noTransfersMessage.alpha = 0.0f;
-	[UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-		self.noTransfersMessage.alpha = 1.0f;
-	} completion:nil];
-	
-	if(self.isViewLoaded && self.view.window)
-	{
-		[SendButtonFlashHelper setSendFlash:YES];
-	}
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:0.2f
+						  delay:0.0f
+						options:UIViewAnimationOptionCurveEaseOut
+					 animations:^{
+						 self.noTransfersMessage.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {
+						 if(weakSelf.isViewLoaded && weakSelf.view.window)
+						 {
+							 [SendButtonFlashHelper setSendFlash:YES];
+						 }
+					 }];
 }
 
 #pragma mark - Select row
