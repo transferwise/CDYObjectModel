@@ -155,7 +155,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
 	else if([self.payments count] < 1)
 	{
-		[self showNoTransfersMessage];
+		[self showNoTransfersMessageAnsFlashButton];
 	}
 		
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
@@ -327,11 +327,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             
             if(!error && totalCount == 0)
             {
-				[self showNoTransfersMessage];
-                if(self.isViewLoaded && self.view.window)
-                {
-                    [SendButtonFlashHelper setSendFlash:YES];
-                }
+				[self showNoTransfersMessageAnsFlashButton];
             }
 			
             BOOL footerUpdateScheduled = NO;
@@ -390,13 +386,18 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation execute];
 }
 
-- (void)showNoTransfersMessage
+- (void)showNoTransfersMessageAnsFlashButton
 {
 	self.noTransfersMessage.hidden = NO;
 	self.noTransfersMessage.alpha = 0.0f;
 	[UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
 		self.noTransfersMessage.alpha = 1.0f;
 	} completion:nil];
+	
+	if(self.isViewLoaded && self.view.window)
+	{
+		[SendButtonFlashHelper setSendFlash:YES];
+	}
 }
 
 #pragma mark - Select row
