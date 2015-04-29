@@ -74,9 +74,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @property (nonatomic, strong) NewPaymentHelper *paymentHelper;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
-@property (nonatomic,strong) NSDate* refreshTimestamp;
+@property (nonatomic, strong) NSDate* refreshTimestamp;
 
-@property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
+@property (nonatomic, weak) Payment *lastSelectedPayment;
 
 @end
 
@@ -179,9 +179,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[super viewDidAppear:animated];
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
 	
-	if (IPAD && self.lastSelectedIndexPath && [self.payments count] >= self.lastSelectedIndexPath.row)
+	if (IPAD && self.lastSelectedPayment)
 	{
-		[self selectRowAtIndexPath:self.lastSelectedIndexPath];
+		[self selectRowContainingPayment:self.lastSelectedPayment];
 	}
 }
 
@@ -263,7 +263,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewPayment];
 	[self removeCancellingFromCell];
 
-	self.lastSelectedIndexPath = indexPath;
+	self.lastSelectedPayment = payment;
 	[self showPayment:payment];
 }
 
@@ -271,7 +271,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)moveToPaymentsList
 {
 	//cancel latest selection, we arrive here, because a new payment has been created.
-	self.lastSelectedIndexPath = nil;
+	self.lastSelectedPayment = nil;
 	[self refreshSelectedPayment];
 }
 
@@ -366,10 +366,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 				
 				if (IPAD && self.payments.count > 0)
 				{
-					//if we have refreshed the payments list then select the first payment, because the last selected payment might have moved in the list
-					self.lastSelectedIndexPath = [NSIndexPath indexPathForRow:0
-																	inSection:0];
-					[self selectRowAtIndexPath:self.lastSelectedIndexPath];
+					[self selectRowContainingPayment:self.lastSelectedPayment];
 				}
 			}
             
@@ -413,10 +410,28 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 #pragma mark - Select row
-- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)selectRowContainingPayment:(Payment *)payment
 {
-	[self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-	[self.tableView selectRowAtIndexPath:indexPath
+	NSIndexPath *paymentIndexPath;
+	
+	//if no payment to select select the first payment
+	//if payment is not in the list of avialble payment, select the first payment
+	if(!payment || ![self.payments containsObject:payment])
+	{
+		paymentIndexPath = [NSIndexPath indexPathForRow:0
+											  inSection:0];
+	}
+	//get index path for the payment. payments are displayed lineraly
+	else
+	{
+		paymentIndexPath = [NSIndexPath indexPathForRow:[self.payments indexOfObject:payment]
+											  inSection:0];
+	}
+
+	NSAssert(paymentIndexPath, @"paymentIndexPath can not be nil");
+	
+	[self tableView:self.tableView didSelectRowAtIndexPath:paymentIndexPath];
+	[self.tableView selectRowAtIndexPath:paymentIndexPath
 								animated:NO
 						  scrollPosition:UITableViewScrollPositionMiddle];
 }
@@ -812,7 +827,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)clearData
 {
 	self.payments = nil;
-	self.lastSelectedIndexPath = nil;
+	self.lastSelectedPayment = nil;
 	[self.tableView reloadData];
 }
 
