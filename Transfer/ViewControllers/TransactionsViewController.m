@@ -261,7 +261,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self showPayment:payment];
 }
 
+#pragma mark - Payment List actions
 - (void)moveToPaymentsList
+{
+	//cancel latest selection, we arrive here, because a new payment has been created.
+	self.lastSelectedIndexPath = nil;
+	[self refreshSelectedPayment];
+}
+
+- (void)refreshSelectedPayment
 {
 	//if we are redisplaying transfers list on IPAD reload the selected transfer because it might have changed
 	if (IPAD)
@@ -354,7 +362,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			{
 				self.isViewAppearing = NO;
 				
-				if (IPAD && self.payments.count > 0 && delta > 0)
+				if (IPAD && self.payments.count > 0)
 				{
 					NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
 															   inSection:0];
@@ -391,6 +399,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	} completion:nil];
 }
 
+#pragma mark - Select row
 - (void)selectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
@@ -399,6 +408,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 						  scrollPosition:UITableViewScrollPositionMiddle];
 }
 
+#pragma mark - ScrollView delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self checkReloadNeeded];
@@ -419,6 +429,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.refreshView scrollViewDidScroll:scrollView];
 }
 
+#pragma mark - Helpers
 - (void)checkReloadNeeded
 {
     if (!self.tableView.tableFooterView)
@@ -498,6 +509,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self presentDetail:resultController];
 }
 
+#pragma mark - Verification
 - (void)checkPersonalVerificationNeeded
 {
 	MCLog(@"checkPersonalVerificationNeeded", nil);
@@ -581,6 +593,31 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}
     }];
 	[self.navigationController pushViewController:controller animated:YES];
+}
+
+-(void)configureForVerificationNeeded:(BOOL)verificationNeeded
+{
+	if(IPAD)
+	{
+		self.verificationBar.hidden = !verificationNeeded;
+	}
+	else
+	{
+		NSString* title = verificationNeeded?NSLocalizedString(@"validation.documents.needed",nil) : NSLocalizedString(@"transactions.controller.title", nil);
+		if(verificationNeeded)
+		{
+			[NavigationBarCustomiser applyVerificationNeededStyle:self.navigationController.navigationBar];
+		}
+		else
+		{
+			[NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
+		}
+		self.title = title;
+		((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.title = self.title;
+		UIBarButtonItem* button =verificationNeeded? [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"validation.view",nil) style:UIBarButtonItemStylePlain target:self action:@selector(pushIdentificationScreen)]:nil;
+		[button setTitleTextAttributes: self.navigationController.navigationBar.titleTextAttributes forState:UIControlStateNormal];
+		((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.rightBarButtonItem = button;
+	}
 }
 
 - (void)uploadPaymentPurpose:(NSString *)purpose
@@ -749,31 +786,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     } dontCancelBlock:^{
         [self removeCancellingFromCell];
     }];
-}
-
--(void)configureForVerificationNeeded:(BOOL)verificationNeeded
-{
-    if(IPAD)
-    {
-        self.verificationBar.hidden = !verificationNeeded;
-    }
-    else
-    {
-        NSString* title = verificationNeeded?NSLocalizedString(@"validation.documents.needed",nil) : NSLocalizedString(@"transactions.controller.title", nil);
-        if(verificationNeeded)
-        {
-            [NavigationBarCustomiser applyVerificationNeededStyle:self.navigationController.navigationBar];
-        }
-        else
-        {
-            [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
-        }
-        self.title = title;
-        ((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.title = self.title;
-        UIBarButtonItem* button =verificationNeeded? [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"validation.view",nil) style:UIBarButtonItemStylePlain target:self action:@selector(pushIdentificationScreen)]:nil;
-        [button setTitleTextAttributes: self.navigationController.navigationBar.titleTextAttributes forState:UIControlStateNormal];
-        ((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.rightBarButtonItem = button;
-    }
 }
 
 #pragma mark - PullToRefresh
