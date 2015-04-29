@@ -179,10 +179,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[super viewDidAppear:animated];
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
 	
-	if (IPAD && self.lastSelectedPayment)
-	{
-		[self selectRowContainingPayment:self.lastSelectedPayment];
-	}
+	[self selectRowContainingPayment:self.lastSelectedPayment];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -229,20 +226,24 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     PaymentCell *cell = [tableView dequeueReusableCellWithIdentifier:kPaymentCellIdentifier];
     Payment *payment = [self.payments objectAtIndex:indexPath.row];
 	
-    [cell configureWithPayment:payment willShowActionButtonBlock:^{
-        //this will be called each time a touch starts
-        //including the touch that hides the button
-        //so not cancelling if the same cell is receiving touches
-        if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
-        {
-            [self removeCancellingFromCell];
-        }
-    } didShowActionButtonBlock:^{
-        self.cancellingCellIndex = indexPath;
-    } didHideActionButtonBlock:^{
-        self.cancellingCellIndex = nil;
-    } actionTappedBlock:^{
-        [self actionTappedOnPayment:payment cellIndex:indexPath];
+	[cell configureWithPayment:payment
+	 willShowActionButtonBlock:^{
+		 //this will be called each time a touch starts
+		 //including the touch that hides the button
+		 //so not cancelling if the same cell is receiving touches
+		 if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
+		 {
+			 [self removeCancellingFromCell];
+		 }
+	 }
+	  didShowActionButtonBlock:^{
+		  self.cancellingCellIndex = indexPath;
+	  }
+	  didHideActionButtonBlock:^{
+		  self.cancellingCellIndex = nil;
+	  }
+			 actionTappedBlock:^{
+				 [self actionTappedOnPayment:payment cellIndex:indexPath];
     }];
 
 	//set cancelling visible when scrolling
@@ -364,10 +365,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			{
 				self.isViewAppearing = NO;
 				
-				if (IPAD && self.payments.count > 0)
-				{
-					[self selectRowContainingPayment:self.lastSelectedPayment];
-				}
+				[self selectRowContainingPayment:self.lastSelectedPayment];
 			}
             
             if(!footerUpdateScheduled)
@@ -412,6 +410,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 #pragma mark - Select row
 - (void)selectRowContainingPayment:(Payment *)payment
 {
+	//don't select anything when not on iPad
+	if (!IPAD)
+	{
+		return;
+	}
+	
 	NSIndexPath *paymentIndexPath;
 	
 	//if no payment to select select the first payment
