@@ -335,6 +335,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 - (BOOL)performNavigation:(NavigationAction)navigationAction
 		   withParameters:(NSDictionary *)params
 {
+	//don't deliver payment status notifications when app is running
+	if (navigationAction == PaymentDetails && [UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+	{
+		return NO;
+	}
+	
 	ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
 	if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
 	{
