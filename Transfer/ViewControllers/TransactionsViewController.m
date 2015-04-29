@@ -82,6 +82,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @implementation TransactionsViewController
 
+#pragma mark - Init
+
 - (id)init
 {
     self = [super initWithNibName:@"TransactionsViewController" bundle:nil];
@@ -99,6 +101,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+#pragma mark - View life-cycle
 
 - (void)viewDidLoad
 {
@@ -150,7 +154,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     {
         [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
         self.isViewAppearing = YES;
-        [self refreshPaymentsList];
+		[self refreshPaymentsList];
         self.refreshOnAppear = NO;
     }
 	else if([self.payments count] < 1)
@@ -197,6 +201,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [super viewDidDisappear:animated];
     [self.refreshView refreshComplete];
 }
+
+#pragma mark - Inteface orientation
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
@@ -280,7 +286,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)refreshPaymentsList
 {
-    if (self.executedOperation)
+	if (self.executedOperation)
 	{
         return;
     }
@@ -360,9 +366,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 				
 				if (IPAD && self.payments.count > 0)
 				{
-					NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
-															   inSection:0];
-					[self selectRowAtIndexPath:firstRow];
+					//if we have refreshed the payments list then select the first payment, because the last selected payment might have moved in the list
+					self.lastSelectedIndexPath = [NSIndexPath indexPathForRow:0
+																	inSection:0];
+					[self selectRowAtIndexPath:self.lastSelectedIndexPath];
 				}
 			}
             
@@ -798,7 +805,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 -(void)refreshRequested:(PullToRefreshView *)refreshView
 {
-    [self refreshPaymentsList];
+	[self refreshPaymentsList];
 }
 
 #pragma mark - Clear Data
