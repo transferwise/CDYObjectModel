@@ -800,6 +800,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)clearData
 {
 	self.payments = nil;
+	self.lastSelectedIndexPath = nil;
 	[self.tableView reloadData];
 }
 
