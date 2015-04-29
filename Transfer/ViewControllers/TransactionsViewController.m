@@ -77,7 +77,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) NSDate* refreshTimestamp;
 
 @property (nonatomic, weak) Payment *lastSelectedPayment;
-@property (nonatomic) BOOL isManualRefresh;
+
+//set this to refresh selected payment details on iPad
+@property (nonatomic) BOOL refreshPaymentDetail;
 
 @end
 
@@ -274,16 +276,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
 	//cancel latest selection, we arrive here, because a new payment has been created.
 	self.lastSelectedPayment = nil;
-	[self refreshSelectedPayment];
-}
-
-- (void)refreshSelectedPayment
-{
-	//if we are redisplaying transfers list on IPAD reload the selected transfer because it might have changed
-	if (IPAD)
-	{
-		[self presentDetail:nil];
-	}
+	self.refreshPaymentDetail = YES;
 }
 
 - (void)refreshPaymentsList
@@ -362,9 +355,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 [CATransaction commit];
             }
 			
-			if(self.isViewAppearing || self.isManualRefresh)
+			if(self.isViewAppearing || self.refreshPaymentDetail)
 			{
-				self.isViewAppearing = self.isManualRefresh = NO;
+				self.isViewAppearing = self.refreshPaymentDetail = NO;
 				
 				[self selectRowContainingPayment:self.lastSelectedPayment];
 			}
@@ -825,7 +818,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 -(void)refreshRequested:(PullToRefreshView *)refreshView
 {
-	self.isManualRefresh = YES;
+	self.refreshPaymentDetail = YES;
 	[self refreshPaymentsList];
 }
 
