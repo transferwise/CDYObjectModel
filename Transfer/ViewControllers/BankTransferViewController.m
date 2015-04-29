@@ -285,7 +285,7 @@
     [CancelHelper cancelPayment:self.payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
         if(!error)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
         }
     } dontCancelBlock:nil];
 }
