@@ -212,7 +212,6 @@
         UIView *view = self.slideInAnimationViews[i];
         [postAnimationConstraintConstants addObject:@(constraint.constant)];
         constraint.constant = (constraint.constant >= 0 ? -1 : 1) * view.bounds.size.width;
-        NSLog(@"%@",constraint.description);
         view.alpha = 0.4f;
         view.hidden = NO;
         [view layoutIfNeeded];
