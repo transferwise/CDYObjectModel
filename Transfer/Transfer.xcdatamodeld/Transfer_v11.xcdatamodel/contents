@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AchBank" representedClassName="AchBank" syncable="YES">
         <attribute name="fieldType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -104,7 +104,7 @@
         <relationship name="payInMethods" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PayInMethod" inverseName="payment" inverseEntity="PayInMethod" syncable="YES"/>
         <relationship name="paymentMadeIndicator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PaymentMadeIndicator" inverseName="payment" inverseEntity="PaymentMadeIndicator" syncable="YES"/>
         <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="payments" inverseEntity="Recipient" syncable="YES"/>
-        <relationship name="refundRecipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="refundForPayment" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="refundRecipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="refundForPayments" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="sourceCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sourceForPayments" inverseEntity="Currency" syncable="YES"/>
         <relationship name="targetCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targetForPayments" inverseEntity="Currency" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
@@ -156,7 +156,7 @@
         <relationship name="fieldValues" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TypeFieldValue" inverseName="recipient" inverseEntity="TypeFieldValue" syncable="YES"/>
         <relationship name="payInMethods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PayInMethod" inverseName="recipient" inverseEntity="PayInMethod" syncable="YES"/>
         <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="recipient" inverseEntity="Payment" syncable="YES"/>
-        <relationship name="refundForPayment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="refundRecipient" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="refundForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="refundRecipient" inverseEntity="Payment" syncable="YES"/>
         <relationship name="type" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="recipients" inverseEntity="RecipientType" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="contacts" inverseEntity="User" syncable="YES"/>
     </entity>
