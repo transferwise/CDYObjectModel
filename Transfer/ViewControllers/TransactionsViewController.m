@@ -77,6 +77,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) NSDate* refreshTimestamp;
 
 @property (nonatomic, weak) Payment *lastSelectedPayment;
+@property (nonatomic) BOOL isManualRefresh;
 
 @end
 
@@ -361,9 +362,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 [CATransaction commit];
             }
 			
-			if(self.isViewAppearing)
+			if(self.isViewAppearing || self.isManualRefresh)
 			{
-				self.isViewAppearing = NO;
+				self.isViewAppearing = self.isManualRefresh = NO;
 				
 				[self selectRowContainingPayment:self.lastSelectedPayment];
 			}
@@ -824,6 +825,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 -(void)refreshRequested:(PullToRefreshView *)refreshView
 {
+	self.isManualRefresh = YES;
 	[self refreshPaymentsList];
 }
 
