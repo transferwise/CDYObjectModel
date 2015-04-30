@@ -80,6 +80,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 //set this to refresh selected payment details on iPad
 @property (nonatomic) BOOL refreshPaymentDetail;
+//if this is set, then the first payment after data refresh will be selected
+@property (nonatomic) BOOL dontSelectPaymentOnce;
 
 @end
 
@@ -182,7 +184,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[super viewDidAppear:animated];
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
 	
-	[self selectRowContainingPayment:self.lastSelectedPayment];
+	//If we are arriving from tranfer creation process' end then don't bother selecting anything
+	//after refresh the first payment will be selected.
+	if (!self.dontSelectPaymentOnce)
+	{
+		[self selectRowContainingPayment:self.lastSelectedPayment];
+	}
+	else
+	{
+		self.dontSelectPaymentOnce = NO;
+	}
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -277,6 +288,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	//cancel latest selection, we arrive here, because a new payment has been created.
 	self.lastSelectedPayment = nil;
 	self.refreshPaymentDetail = YES;
+	self.dontSelectPaymentOnce = YES;
 }
 
 - (void)refreshPaymentsList
