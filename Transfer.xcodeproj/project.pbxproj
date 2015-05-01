@@ -689,6 +689,12 @@
 		3893A1C31AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
 		3893A1C41AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
 		3893A1C51AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
+		389B59A21AF2892000A0A60C /* libYozio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389B59A01AF2892000A0A60C /* libYozio.a */; };
+		389B59A31AF2892100A0A60C /* libYozio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389B59A01AF2892000A0A60C /* libYozio.a */; };
+		389B59A41AF2892100A0A60C /* libYozio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389B59A01AF2892000A0A60C /* libYozio.a */; };
+		389B59A51AF2892100A0A60C /* YozioDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 389B59A11AF2892000A0A60C /* YozioDefaults.plist */; };
+		389B59A61AF2892100A0A60C /* YozioDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 389B59A11AF2892000A0A60C /* YozioDefaults.plist */; };
+		389B59A71AF2892100A0A60C /* YozioDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 389B59A11AF2892000A0A60C /* YozioDefaults.plist */; };
 		389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
 		389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
 		389F67F9198FC1C6006CF1F6 /* _BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A0198FC1C5006CF1F6 /* _BusinessProfile.m */; };
@@ -1715,6 +1721,11 @@
 		388F09FE1936434A00DBD93D /* InsetRespectingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsetRespectingButton.m; path = Views/InsetRespectingButton.m; sourceTree = "<group>"; };
 		3893A1C11AB04C7E004D0560 /* PendingPayment+ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PendingPayment+ColoredButton.h"; sourceTree = "<group>"; };
 		3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PendingPayment+ColoredButton.m"; sourceTree = "<group>"; };
+		389B599D1AF2892000A0A60C /* AcceptsYozioMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptsYozioMetaData.h; sourceTree = "<group>"; };
+		389B599E1AF2892000A0A60C /* Yozio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yozio.h; sourceTree = "<group>"; };
+		389B599F1AF2892000A0A60C /* YozioMetaDataCallbackable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YozioMetaDataCallbackable.h; sourceTree = "<group>"; };
+		389B59A01AF2892000A0A60C /* libYozio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYozio.a; sourceTree = "<group>"; };
+		389B59A11AF2892000A0A60C /* YozioDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YozioDefaults.plist; sourceTree = "<group>"; };
 		389F679D198FC1C5006CF1F6 /* _AllowedTypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AllowedTypeFieldValue.h; sourceTree = "<group>"; };
 		389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AllowedTypeFieldValue.m; sourceTree = "<group>"; };
 		389F679F198FC1C5006CF1F6 /* _BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BusinessProfile.h; sourceTree = "<group>"; };
@@ -2446,6 +2457,7 @@
 				388E5B051A5A949500AF6EB9 /* libz.dylib in Frameworks */,
 				388E5B061A5A949500AF6EB9 /* Security.framework in Frameworks */,
 				388E5B071A5A949500AF6EB9 /* MobileCoreServices.framework in Frameworks */,
+				389B59A41AF2892100A0A60C /* libYozio.a in Frameworks */,
 				388E5B081A5A949500AF6EB9 /* libEventTracker.a in Frameworks */,
 				388E5B091A5A949500AF6EB9 /* SystemConfiguration.framework in Frameworks */,
 				388E5B0A1A5A949500AF6EB9 /* UIKit.framework in Frameworks */,
@@ -2478,6 +2490,7 @@
 				EA31A1C017DDB29B00F937F7 /* AddressBookUI.framework in Frameworks */,
 				EA31A1C117DDB29B00F937F7 /* CoreText.framework in Frameworks */,
 				EA31A1C217DDB29B00F937F7 /* libz.dylib in Frameworks */,
+				389B59A31AF2892100A0A60C /* libYozio.a in Frameworks */,
 				EA31A1C317DDB29B00F937F7 /* Security.framework in Frameworks */,
 				EA31A1C417DDB29B00F937F7 /* MobileCoreServices.framework in Frameworks */,
 				EA31A1C517DDB29B00F937F7 /* SystemConfiguration.framework in Frameworks */,
@@ -2505,6 +2518,7 @@
 				EAEA626117202D6100A96770 /* libz.dylib in Frameworks */,
 				EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */,
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
+				389B59A21AF2892000A0A60C /* libYozio.a in Frameworks */,
 				EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */,
 				EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */,
 				38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */,
@@ -2694,6 +2708,26 @@
 				4723EA101973D9B500B4345F /* YahooButton.m */,
 			);
 			name = Buttons;
+			sourceTree = "<group>";
+		};
+		389B599B1AF2892000A0A60C /* Yozio */ = {
+			isa = PBXGroup;
+			children = (
+				389B599C1AF2892000A0A60C /* headers */,
+				389B59A01AF2892000A0A60C /* libYozio.a */,
+				389B59A11AF2892000A0A60C /* YozioDefaults.plist */,
+			);
+			path = Yozio;
+			sourceTree = "<group>";
+		};
+		389B599C1AF2892000A0A60C /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				389B599D1AF2892000A0A60C /* AcceptsYozioMetaData.h */,
+				389B599E1AF2892000A0A60C /* Yozio.h */,
+				389B599F1AF2892000A0A60C /* YozioMetaDataCallbackable.h */,
+			);
+			path = headers;
 			sourceTree = "<group>";
 		};
 		389F679C198FC1C5006CF1F6 /* ObjectModel */ = {
@@ -3325,6 +3359,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				389B599B1AF2892000A0A60C /* Yozio */,
 				380579AA1A1A5C65005E94DD /* GoogleAnalyticsServicesiOS_3.10 */,
 				38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
@@ -3955,6 +3990,7 @@
 				388E5B2D1A5A949500AF6EB9 /* NewPaymentViewController.xib in Resources */,
 				388E5B2E1A5A949500AF6EB9 /* MoneyEntryCell.xib in Resources */,
 				388E5B2F1A5A949500AF6EB9 /* SwitchCell~ipad.xib in Resources */,
+				389B59A71AF2892100A0A60C /* YozioDefaults.plist in Resources */,
 				388E5B301A5A949500AF6EB9 /* LoginViewController.xib in Resources */,
 				388E5B311A5A949500AF6EB9 /* DoublePasswordEntryCell.xib in Resources */,
 				388E5B321A5A949500AF6EB9 /* TabViewController~ipad.xib in Resources */,
@@ -4124,6 +4160,7 @@
 				EA31A1D617DDB29B00F937F7 /* NewPaymentViewController.xib in Resources */,
 				EA31A1D717DDB29B00F937F7 /* MoneyEntryCell.xib in Resources */,
 				478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */,
+				389B59A61AF2892100A0A60C /* YozioDefaults.plist in Resources */,
 				47233CD9196D457300449042 /* LoginViewController.xib in Resources */,
 				47535CB21981362600DC39D6 /* DoublePasswordEntryCell.xib in Resources */,
 				380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */,
@@ -4286,6 +4323,7 @@
 				EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */,
 				385AC116198FE5500088DCD6 /* intro.plist in Resources */,
 				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
+				389B59A51AF2892100A0A60C /* YozioDefaults.plist in Resources */,
 				47233CD8196D457300449042 /* LoginViewController.xib in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */,
@@ -5723,6 +5761,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -5767,6 +5806,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -5878,6 +5918,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = TransferDev;
@@ -5916,6 +5957,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = TransferDev;
@@ -6013,6 +6055,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6050,6 +6093,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
