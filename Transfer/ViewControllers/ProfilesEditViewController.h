@@ -8,9 +8,8 @@
 
 #import "TabbedHeaderViewController.h"
 #import "ObjectModel.h"
-#import "TransparentModalViewController.h"
 
-@interface ProfilesEditViewController : TabbedHeaderViewController<TransparentModalViewControllerDelegate>
+@interface ProfilesEditViewController : TabbedHeaderViewController
 
 @property (nonatomic, strong) ObjectModel* objectModel;
 
