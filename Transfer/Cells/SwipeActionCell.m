@@ -214,9 +214,12 @@
 
 - (void)setIsActionbuttonVisible:(BOOL)isCancelVisible
 {
-	_isActionbuttonVisible = isCancelVisible;
-    self.contentViewTrailing.constant = isCancelVisible ? self.actionButton.bounds.size.width : 0.0f;
-    [self layoutIfNeeded];
+    if(_isActionbuttonVisible != isCancelVisible)
+    {
+        _isActionbuttonVisible = isCancelVisible;
+        self.contentViewTrailing.constant = isCancelVisible ? self.actionButton.bounds.size.width : 0.0f;
+        [self layoutIfNeeded];
+    }
 }
 
 #pragma mark - pan + tap

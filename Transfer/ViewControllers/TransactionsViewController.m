@@ -177,23 +177,23 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     
     self.paymentFlow = nil;
     self.paymentHelper = nil;
+    
+    //If we are arriving from tranfer creation process' end then don't bother selecting anything
+    //after refresh the first payment will be selected.
+    if (!self.dontSelectPaymentOnce)
+    {
+        [self selectRowContainingPayment:self.lastSelectedPayment];
+    }
+    else
+    {
+        self.dontSelectPaymentOnce = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
-	
-	//If we are arriving from tranfer creation process' end then don't bother selecting anything
-	//after refresh the first payment will be selected.
-	if (!self.dontSelectPaymentOnce)
-	{
-		[self selectRowContainingPayment:self.lastSelectedPayment];
-	}
-	else
-	{
-		self.dontSelectPaymentOnce = NO;
-	}
 }
 
 -(void)viewWillDisappear:(BOOL)animated
