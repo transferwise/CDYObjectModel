@@ -11,7 +11,6 @@
 #import "TransferBackButtonItem.h"
 #import "FloatingLabelTextField.h"
 #import "GreenButton.h"
-#import "OpenIDViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "GoogleButton.h"
@@ -195,19 +194,13 @@ IB_DESIGNABLE
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
-	[self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+    ResetPasswordViewController *controller = self.xibNameForResetPassword?[[ResetPasswordViewController alloc] initWithNibName:self.xibNameForResetPassword bundle:nil]:[[ResetPasswordViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
+    controller.isYahooReset = YES;
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
-{
-    OpenIDViewController *controller = [[OpenIDViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setProvider:provider];
-    //FYI: this is a concious decision not to add email to open id any more
-    [controller setProviderName:providerName];
-    [self.navigationController pushViewController:controller
-										 animated:YES];
-}
 
 #pragma mark - Password reset
 - (void)forgotPasswordTapped

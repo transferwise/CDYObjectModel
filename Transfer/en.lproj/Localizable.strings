@@ -786,4 +786,7 @@ We'll send you an email in order to let you choose a new password.";
 "notifications.info.format" = "Want to be notified when %@ receives your money?";
 "notifications.yes" = "Yes please!";
 
-
+"reset.password.controller.yahoo.title" = "Yahoo! Login discontinued";
+"reset.password.header.yahoo.description" = "We're discontinuing Yahoo! login, but no worries you can still access your account by resetting your password.";
+"reset.password.header.yahoo.description.ipad" = "We're discontinuing Yahoo! login, but no worries
+you can still access your account by resetting your password.";

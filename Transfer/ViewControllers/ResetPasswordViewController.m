@@ -57,7 +57,8 @@
 
 	[self.continueButton setTitle:NSLocalizedString(@"reset.controller.footer.button.title", nil) forState:UIControlStateNormal];
 	
-	[self.messageLabel setText:NSLocalizedString([@"reset.password.header.description" deviceSpecificLocalization], nil)];
+    [self.messageLabel setText:self.isYahooReset?NSLocalizedString([@"reset.password.header.yahoo.description" deviceSpecificLocalization], nil):NSLocalizedString([@"reset.password.header.description" deviceSpecificLocalization], nil)];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -66,7 +67,7 @@
 	
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationItem setTitle:NSLocalizedString(@"reset.password.controller.title", nil)];
+    [self.navigationItem setTitle:self.isYahooReset?NSLocalizedString(@"reset.password.controller.yahoo.title", nil):NSLocalizedString(@"reset.password.controller.title", nil)];
     [[GoogleAnalytics sharedInstance] sendScreen:GAResetPassword];
 }
 
