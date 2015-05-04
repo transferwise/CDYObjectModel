@@ -771,3 +771,8 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 "notifications.info.format" = "Souhaitez-vous être notifié lorsque %@ reçoit votre argent?";
 "notifications.yes" = "Oui!";
+
+"reset.password.controller.yahoo.title" = "Yahoo! n'est plus disponible";
+"reset.password.header.yahoo.description" = "Nous avons retiré l'option de connexion avec Yahoo!, mais pas d'inquiètude, vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
+"reset.password.header.yahoo.description.ipad" = "Nous avons retiré l'option de connexion avec Yahoo!, mais pas d'inquiètude,
+vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";

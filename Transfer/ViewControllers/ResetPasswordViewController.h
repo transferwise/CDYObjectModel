@@ -20,5 +20,6 @@
 
 @property (nonatomic, strong) ObjectModel* objectModel;
 @property (weak, nonatomic) id<ResetPasswordViewControllerDelegate> delegate;
+@property (nonatomic, assign) BOOL isYahooReset;
 
 @end

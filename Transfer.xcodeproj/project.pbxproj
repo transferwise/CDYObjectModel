@@ -398,7 +398,6 @@
 		388E5A841A5A949500AF6EB9 /* _TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67BC198FC1C5006CF1F6 /* _TypeFieldValue.m */; };
 		388E5A851A5A949500AF6EB9 /* CurrencySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */; };
 		388E5A861A5A949500AF6EB9 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F6FA1A3B3F4200014F55 /* BusinessProfileCommitter.m */; };
-		388E5A871A5A949500AF6EB9 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		388E5A881A5A949500AF6EB9 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093141951FA8300315BE4 /* NameSuggestionCellProvider.m */; };
 		388E5A891A5A949500AF6EB9 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F0198FC1C6006CF1F6 /* RecipientTypeField.m */; };
 		388E5A8A1A5A949500AF6EB9 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
@@ -659,7 +658,6 @@
 		388E5B8C1A5A949500AF6EB9 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
 		388E5B8D1A5A949500AF6EB9 /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
 		388E5B8E1A5A949500AF6EB9 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
-		388E5B8F1A5A949500AF6EB9 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		388E5B901A5A949500AF6EB9 /* TransferWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */; };
 		388E5B911A5A949500AF6EB9 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
 		388E5B921A5A949500AF6EB9 /* DateEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */; };
@@ -1309,7 +1307,6 @@
 		EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
 		EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
-		EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		EA31A17917DDB29B00F937F7 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
 		EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
 		EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
@@ -1376,7 +1373,6 @@
 		EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */; };
 		EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
 		EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
-		EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */; };
@@ -1403,8 +1399,6 @@
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
 		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
-		EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
-		EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
 		EA677B45189B855200505139 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
 		EA677B46189B855200505139 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
@@ -2248,9 +2242,6 @@
 		EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadVerificationFileOperation.m; sourceTree = "<group>"; };
 		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
 		EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailCheckOperation.m; sourceTree = "<group>"; };
-		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
-		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
-		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
 		EA61557417A69A5A008B6C79 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		EA677B43189B855200505139 /* StartPaymentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartPaymentButton.h; path = Views/StartPaymentButton.h; sourceTree = "<group>"; };
 		EA677B44189B855200505139 /* StartPaymentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartPaymentButton.m; path = Views/StartPaymentButton.m; sourceTree = "<group>"; };
@@ -3607,9 +3598,6 @@
 				471DBFEB1ACD40E100DC133C /* OAuthViewController.h */,
 				471DBFEC1ACD40E100DC133C /* OAuthViewController.m */,
 				471DBFED1ACD40E100DC133C /* OAuthViewController.xib */,
-				EA59298B1758CD6C007C0072 /* OpenIDViewController.h */,
-				EA59298C1758CD6C007C0072 /* OpenIDViewController.m */,
-				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
 				3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */,
 				3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */,
 				38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */,
@@ -4045,7 +4033,6 @@
 				388E5B8C1A5A949500AF6EB9 /* DoubleEntryCell~ipad.xib in Resources */,
 				388E5B8D1A5A949500AF6EB9 /* existingUserIntro.plist in Resources */,
 				388E5B8E1A5A949500AF6EB9 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
-				388E5B8F1A5A949500AF6EB9 /* OpenIDViewController.xib in Resources */,
 				388E5B901A5A949500AF6EB9 /* TransferWaitingViewController~ipad.xib in Resources */,
 				388E5B911A5A949500AF6EB9 /* intro.plist in Resources */,
 				388E5B921A5A949500AF6EB9 /* DateEntryCell~ipad.xib in Resources */,
@@ -4215,7 +4202,6 @@
 				47971C6B199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
 				3831DCC519B764B900151A3D /* existingUserIntro.plist in Resources */,
 				38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
-				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				385AC117198FE5500088DCD6 /* intro.plist in Resources */,
 				47971C62199A3C1C0018FDA8 /* DateEntryCell~ipad.xib in Resources */,
@@ -4382,7 +4368,6 @@
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				38B52FA0199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
-				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				4723EA201974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */,
 				478C6FF31A8DF61D00431882 /* (null) in Resources */,
@@ -4842,7 +4827,6 @@
 				388E5A841A5A949500AF6EB9 /* _TypeFieldValue.m in Sources */,
 				388E5A851A5A949500AF6EB9 /* CurrencySelectorViewController.m in Sources */,
 				388E5A861A5A949500AF6EB9 /* BusinessProfileCommitter.m in Sources */,
-				388E5A871A5A949500AF6EB9 /* OpenIDViewController.m in Sources */,
 				388E5A881A5A949500AF6EB9 /* NameSuggestionCellProvider.m in Sources */,
 				388E5A891A5A949500AF6EB9 /* RecipientTypeField.m in Sources */,
 				388E5A8A1A5A949500AF6EB9 /* EmailCheckOperation.m in Sources */,
@@ -5190,7 +5174,6 @@
 				389F6816198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
 				380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
 				47C1F7091A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */,
-				EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */,
 				38B093181951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
 				389F684A198FC1C6006CF1F6 /* RecipientTypeField.m in Sources */,
 				EA31A17917DDB29B00F937F7 /* EmailCheckOperation.m in Sources */,
@@ -5508,7 +5491,6 @@
 				47C4D0441A232AC1005EC7C6 /* AchBank.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
 				380021EF192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
-				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
 				389F6831198FC1C6006CF1F6 /* ObjectModel+Settings.m in Sources */,
 				38B093091951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
 				47C1F7081A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */,
