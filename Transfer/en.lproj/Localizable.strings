@@ -47,6 +47,8 @@
 "business.profile.password.lable" = "Password";
 "business.profile.confirm.payment.button.title" = "Continue";
 "business.profile.controller.title" = "Business details";
+"business.profile.company.role.title" = "Your role";
+"business.profile.company.type.title" = "Type of company";
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";

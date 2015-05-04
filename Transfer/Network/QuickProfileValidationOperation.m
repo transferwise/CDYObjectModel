@@ -105,4 +105,12 @@
 	[self.data setNotNilValue:value forKey:@"occupation"];
 }
 
+- (void)setCompanyRole:(NSString *)value {
+	[self.data setNotNilValue:value forKey:@"companyRole"];
+}
+
+- (void)setCompanyType:(NSString *)value {
+	[self.data setNotNilValue:value forKey:@"companyType"];
+}
+
 @end
