@@ -116,6 +116,8 @@
     [profile setCountryCode:data[@"countryCode"]];
     [profile setReadonlyFields:[data[@"readonlyFields"] componentsJoinedByString:@"|"]];
     [profile setState:data[@"state"]];
+	[profile setCompanyRole:data[@"companyRole"]];
+	[profile setCompanyType:data[@"companyType"]];
 
     return profile;
 }
