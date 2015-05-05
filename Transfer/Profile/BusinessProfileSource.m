@@ -20,6 +20,7 @@
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
 #import "StateSuggestionCellProvider.h"
+#import "DropdownCell.h"
 
 @interface BusinessProfileSource ()
 
@@ -27,8 +28,8 @@
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
-@property (nonatomic, strong) TextEntryCell *companyRoleCell;
-@property (nonatomic, strong) TextEntryCell *companyTypeCell;
+@property (nonatomic, strong) DropdownCell *companyRoleCell;
+@property (nonatomic, strong) DropdownCell *companyTypeCell;
 
 @end
 
@@ -75,19 +76,19 @@
     [descriptionCell setCellTag:@"descriptionOfBusiness"];
 	[descriptionCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
 	
-	TextEntryCell *companyRoleCell = [TextEntryCell loadInstance];
+	DropdownCell *companyRoleCell = [DropdownCell loadInstance];
 	[self setCompanyRoleCell:companyRoleCell];
 	[firstColumnCells addObject:companyRoleCell];
+	[companyRoleCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyRole]];
 	[companyRoleCell configureWithTitle:NSLocalizedString(@"business.profile.company.role.title", nil) value:@""];
-	[companyRoleCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
 	[companyRoleCell setCellTag:@"companyRole"];
 	
-	TextEntryCell *companyTypeCell = [TextEntryCell loadInstance];
+	DropdownCell *companyTypeCell = [DropdownCell loadInstance];
 	[self setCompanyTypeCell:companyTypeCell];
 	[firstColumnCells addObject:companyTypeCell];
+	[companyTypeCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyType]];
 	[companyTypeCell configureWithTitle:NSLocalizedString(@"business.profile.company.type.title", nil) value:@""];
-	[companyTypeCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
-	[companyTypeCell setCellTag:@"companyTypeCell"];
+	[companyTypeCell setCellTag:@"companyRole"];
 
     NSMutableArray *secondColumnCells = [NSMutableArray array];
 	

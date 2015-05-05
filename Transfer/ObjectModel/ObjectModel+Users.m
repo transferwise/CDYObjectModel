@@ -237,4 +237,12 @@
 	return result;
 }
 
+//Use additionalAttributesForType, when CD has been disconnected and DropDownCell refactored
+- (NSFetchedResultsController *)fetchedControllerForAttributesOfType:(AdditionalAttributeType)type
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType = %@", type];
+	NSSortDescriptor *valueSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"value" ascending:YES];
+	return [self fetchedControllerForEntity:[AdditionalAttribute entityName] predicate:predicate sortDescriptors:@[valueSortDescriptor]];
+}
+
 @end

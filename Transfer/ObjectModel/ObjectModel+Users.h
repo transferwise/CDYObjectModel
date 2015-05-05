@@ -29,5 +29,6 @@ typedef NS_ENUM(int, AdditionalAttributeType)
 									key:(NSString *)key
 								  value:(NSString *)value;
 - (NSDictionary *)additionalAttributesForType:(AdditionalAttributeType)type;
+- (NSFetchedResultsController *)fetchedControllerForAttributesOfType:(AdditionalAttributeType)type;
 
 @end
