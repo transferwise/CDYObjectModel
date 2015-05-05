@@ -42,6 +42,9 @@ typedef void (^TRWErrorBlock)(NSError *error);
 extern NSString *const TRWLoggedOutNotification;
 extern NSString *const TRWMoveToPaymentsListNotification;
 extern NSString *const TRWMoveToPaymentViewNotification;
+extern NSString *const TRWWillUpdateBaseDataNotification;
+extern NSString *const TRWDidUpdateBaseDataNotification;
+
 extern NSString *const TRWApplicationKey;
 extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;

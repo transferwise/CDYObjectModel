@@ -343,7 +343,6 @@
 		388E5A4B1A5A949500AF6EB9 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */; };
 		388E5A4C1A5A949500AF6EB9 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		388E5A4D1A5A949500AF6EB9 /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
-		388E5A4E1A5A949500AF6EB9 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
 		388E5A4F1A5A949500AF6EB9 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		388E5A501A5A949500AF6EB9 /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		388E5A511A5A949500AF6EB9 /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
@@ -1396,8 +1395,6 @@
 		EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = EA333F3B18A4C00000D8A44E /* PageZoom.m */; };
 		EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
 		EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
-		EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
-		EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
@@ -2241,8 +2238,6 @@
 		EA333F3718A4BEDC00D8A44E /* page_zoom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_zoom.json; sourceTree = "<group>"; };
 		EA333F3A18A4C00000D8A44E /* PageZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageZoom.h; sourceTree = "<group>"; };
 		EA333F3B18A4C00000D8A44E /* PageZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageZoom.m; sourceTree = "<group>"; };
-		EA347746180D694F00104417 /* ConfigurationOptionsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationOptionsOperation.h; sourceTree = "<group>"; };
-		EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationOptionsOperation.m; sourceTree = "<group>"; };
 		EA35C76A1732790D005602F7 /* PaymentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsOperation.h; sourceTree = "<group>"; };
 		EA35C76B1732790D005602F7 /* PaymentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsOperation.m; sourceTree = "<group>"; };
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
@@ -3352,8 +3347,6 @@
 				EAB93B471761C74700A7337C /* ClaimAccountOperation.m */,
 				4777C0C31AF88B7D0042721F /* CompanyAttributesOperation.h */,
 				4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */,
-				EA347746180D694F00104417 /* ConfigurationOptionsOperation.h */,
-				EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EAAF8FAE17436730008DF9E2 /* CreatePaymentOperation.h */,
@@ -4798,7 +4791,6 @@
 				388E5A4B1A5A949500AF6EB9 /* UIResponder+FirstResponder.m in Sources */,
 				388E5A4C1A5A949500AF6EB9 /* CurrencySelectionCell.m in Sources */,
 				388E5A4D1A5A949500AF6EB9 /* RecipientFieldCell.m in Sources */,
-				388E5A4E1A5A949500AF6EB9 /* ConfigurationOptionsOperation.m in Sources */,
 				388E5A4F1A5A949500AF6EB9 /* FloatingLabelTextField.m in Sources */,
 				388E5A501A5A949500AF6EB9 /* GrayRoundedButton.m in Sources */,
 				388E5A511A5A949500AF6EB9 /* RecipientOperation.m in Sources */,
@@ -5149,7 +5141,6 @@
 				38AEB3C81966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
-				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
@@ -5474,7 +5465,6 @@
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				4777C0BE1AF7A2940042721F /* NSString+NullString.m in Sources */,
 				389F6843198FC1C6006CF1F6 /* PersonalProfile.m in Sources */,
-				EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
 				388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
