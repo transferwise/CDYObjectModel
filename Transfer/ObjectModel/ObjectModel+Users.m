@@ -16,6 +16,7 @@
 #import "Recipient.h"
 #import "Constants.h"
 #import "Mixpanel+Customisation.h"
+#import "NSString+NullString.h"
 
 @implementation ObjectModel (Users)
 
@@ -116,8 +117,9 @@
     [profile setCountryCode:data[@"countryCode"]];
     [profile setReadonlyFields:[data[@"readonlyFields"] componentsJoinedByString:@"|"]];
     [profile setState:data[@"state"]];
-	[profile setCompanyRole:data[@"companyRole"]];
-	[profile setCompanyType:data[@"companyType"]];
+	//api will return "null" as a string value, if these haven't been submitted
+	[profile setCompanyRole:[data[@"companyRole"] getNullOnNullAsValue]];
+	[profile setCompanyType:[data[@"companyType"] getNullOnNullAsValue]];
 
     return profile;
 }

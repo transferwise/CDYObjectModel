@@ -1030,6 +1030,13 @@
 		477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
 		4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
+		4777C0BE1AF7A2940042721F /* NSString+NullString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0BD1AF7A2940042721F /* NSString+NullString.m */; };
+		4777C0BF1AF7A2940042721F /* NSString+NullString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0BD1AF7A2940042721F /* NSString+NullString.m */; };
+		4777C0C01AF7A2940042721F /* NSString+NullString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0BD1AF7A2940042721F /* NSString+NullString.m */; };
+		4777C0C21AF7A3D60042721F /* NSStringNullStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C11AF7A3D60042721F /* NSStringNullStringTests.swift */; };
+		4777C0C51AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */; };
+		4777C0C61AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */; };
+		4777C0C71AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
@@ -2008,6 +2015,11 @@
 		4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Presentation.h"; sourceTree = "<group>"; };
 		4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Presentation.m"; sourceTree = "<group>"; };
 		4777C0BB1AF791450042721F /* Transfer_v12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v12.xcdatamodel; sourceTree = "<group>"; };
+		4777C0BC1AF7A2940042721F /* NSString+NullString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NullString.h"; sourceTree = "<group>"; };
+		4777C0BD1AF7A2940042721F /* NSString+NullString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NullString.m"; sourceTree = "<group>"; };
+		4777C0C11AF7A3D60042721F /* NSStringNullStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNullStringTests.swift; sourceTree = "<group>"; };
+		4777C0C31AF88B7D0042721F /* CompanyAttributesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyAttributesOperation.h; sourceTree = "<group>"; };
+		4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyAttributesOperation.m; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
 		478BE9501ADF9A7F00B8999D /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HexString.h"; sourceTree = "<group>"; };
 		478BE9511ADF9A7F00B8999D /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HexString.m"; sourceTree = "<group>"; };
@@ -2913,6 +2925,7 @@
 			children = (
 				474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */,
 				47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */,
+				4777C0C11AF7A3D60042721F /* NSStringNullStringTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3183,12 +3196,14 @@
 				EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */,
 				EA8FF683171D1A320090A658 /* NSMutableString+Issues.h */,
 				EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */,
+				47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */,
+				47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */,
+				4777C0BC1AF7A2940042721F /* NSString+NullString.h */,
+				4777C0BD1AF7A2940042721F /* NSString+NullString.m */,
 				EAA6AD0517A91A95006A347D /* NSString+Presentation.h */,
 				EAA6AD0617A91A95006A347D /* NSString+Presentation.m */,
 				EA8FF680171D19B50090A658 /* NSString+Validation.h */,
 				EA8FF681171D19B50090A658 /* NSString+Validation.m */,
-				47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */,
-				47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */,
 				47C1F7511A443F1500014F55 /* NSObject+NSNull.h */,
 				47C1F7521A443F1500014F55 /* NSObject+NSNull.m */,
 				EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */,
@@ -3324,6 +3339,8 @@
 				EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */,
 				EAB93B461761C74700A7337C /* ClaimAccountOperation.h */,
 				EAB93B471761C74700A7337C /* ClaimAccountOperation.m */,
+				4777C0C31AF88B7D0042721F /* CompanyAttributesOperation.h */,
+				4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */,
 				EA347746180D694F00104417 /* ConfigurationOptionsOperation.h */,
 				EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
@@ -4850,6 +4867,7 @@
 				388B6DAE1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				388E5A9A1A5A949500AF6EB9 /* ImageColoredButton.m in Sources */,
 				478C6FF11A8DF04700431882 /* (null) in Sources */,
+				4777C0C01AF7A2940042721F /* NSString+NullString.m in Sources */,
 				388E5A9B1A5A949500AF6EB9 /* PersonalPaymentProfileViewController.m in Sources */,
 				388E5A9C1A5A949500AF6EB9 /* Payment.m in Sources */,
 				388E5A9D1A5A949500AF6EB9 /* LightBlueButton.m in Sources */,
@@ -4867,6 +4885,7 @@
 				388E5AA91A5A949500AF6EB9 /* DataEntryDefaultHeader.m in Sources */,
 				388E5AAA1A5A949500AF6EB9 /* InviteViewController.m in Sources */,
 				388E5AAB1A5A949500AF6EB9 /* GoogleButton.m in Sources */,
+				4777C0C71AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */,
 				388E5AAC1A5A949500AF6EB9 /* NSString+MOMStyle.m in Sources */,
 				388E5AAD1A5A949500AF6EB9 /* TabBarActivityIndicatorView.m in Sources */,
 				388E5AAE1A5A949500AF6EB9 /* SettlementRecipient.m in Sources */,
@@ -4968,6 +4987,7 @@
 				3856960D1A7A4C4C00D9F833 /* CalculationResultTests.swift in Sources */,
 				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
+				4777C0C21AF7A3D60042721F /* NSStringNullStringTests.swift in Sources */,
 				474207031A5BF4AB00DF6477 /* XCTestCase+Exceptions.m in Sources */,
 				474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */,
 			);
@@ -5105,6 +5125,7 @@
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
 				38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */,
+				4777C0BF1AF7A2940042721F /* NSString+NullString.m in Sources */,
 				389F6822198FC1C6006CF1F6 /* ObjectModel+Countries.m in Sources */,
 				47C1F74A1A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */,
 				EA0450D017EC3635008921DA /* TextContainerView.m in Sources */,
@@ -5220,6 +5241,7 @@
 				389F681A198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
 				38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
+				4777C0C61AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */,
 				38057AD01A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				47C1F74C1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
@@ -5436,6 +5458,7 @@
 				470B112D1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
+				4777C0BE1AF7A2940042721F /* NSString+NullString.m in Sources */,
 				389F6843198FC1C6006CF1F6 /* PersonalProfile.m in Sources */,
 				EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
@@ -5551,6 +5574,7 @@
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
 				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
+				4777C0C51AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
 				474D1AA61951A500008BC7A7 /* GradientButton.m in Sources */,
 				389F683B198FC1C6006CF1F6 /* PayInMethod.m in Sources */,

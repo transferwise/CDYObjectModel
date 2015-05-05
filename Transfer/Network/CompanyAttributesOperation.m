@@ -1,0 +1,41 @@
+//
+//  CompanyAttributesOperation.m
+//  Transfer
+//
+//  Created by Juhan Hion on 05.05.15.
+//  Copyright (c) 2015 Mooncascade OÜ. All rights reserved.
+//
+
+#import "CompanyAttributesOperation.h"
+#import "TransferwiseOperation+Private.h"
+
+NSString *const kCompanyAttributesOperationPath = @"/user/companyAttributes";
+
+@implementation CompanyAttributesOperation
+
+- (void)execute
+{
+	MCAssert(self.objectModel);
+	
+	NSString *path = [self addTokenToPath:kCompanyAttributesOperationPath];
+	
+	__weak CompanyAttributesOperation *weakSelf = self;
+	
+	[self setOperationErrorHandler:^(NSError *error) {
+		weakSelf.resultHandler(error);
+	}];
+	
+	[self setOperationSuccessHandler:^(NSDictionary *response) {
+		
+		weakSelf.resultHandler(nil);
+	}];
+	
+	[self getDataFromPath:path];
+}
+
++ (CompanyAttributesOperation *)operation
+{
+	return [[CompanyAttributesOperation alloc] init];
+}
+
+@end
