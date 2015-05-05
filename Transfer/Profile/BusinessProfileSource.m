@@ -79,16 +79,16 @@
 	DropdownCell *companyRoleCell = [DropdownCell loadInstance];
 	[self setCompanyRoleCell:companyRoleCell];
 	[firstColumnCells addObject:companyRoleCell];
-	[companyRoleCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyRole]];
 	[companyRoleCell configureWithTitle:NSLocalizedString(@"business.profile.company.role.title", nil) value:@""];
 	[companyRoleCell setCellTag:@"companyRole"];
 	
 	DropdownCell *companyTypeCell = [DropdownCell loadInstance];
 	[self setCompanyTypeCell:companyTypeCell];
 	[firstColumnCells addObject:companyTypeCell];
-	[companyTypeCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyType]];
 	[companyTypeCell configureWithTitle:NSLocalizedString(@"business.profile.company.type.title", nil) value:@""];
 	[companyTypeCell setCellTag:@"companyRole"];
+	
+	[self reloadDropDowns];
 
     NSMutableArray *secondColumnCells = [NSMutableArray array];
 	
@@ -240,6 +240,18 @@
 	[self.zipCityCell setSecondValue:@""];
 	[self.countryCell setValue:@""];
 	[self.stateCell setValue:@""];
+}
+
+- (void)reloadDropDowns
+{
+	if (self.companyRoleCell)
+	{
+		[self.companyRoleCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyRole]];
+	}
+	if (self.companyTypeCell)
+	{		
+		[self.companyTypeCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyType]];
+	}
 }
 
 @end

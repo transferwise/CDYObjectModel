@@ -130,6 +130,7 @@ vos amis sur TransferWise";
 
 "generic.error.message" = "Nous travaillons sur le probleme. Reessayer plus tard.";
 "generic.error.title" = "Oops. Quelque chose n'a pas marché.";
+"generic.data.reloading" = "Rechargement en cours...";
 
 "identification.controller.title" = "%d documents requis";
 "identification.controller.single.title" = "%d document requis";

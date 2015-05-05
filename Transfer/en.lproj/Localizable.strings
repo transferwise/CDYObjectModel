@@ -130,6 +130,7 @@ your friends to TransferWise";
 
 "generic.error.message" = "We are working on the issue. Please try again later.";
 "generic.error.title" = "Oops. Something went wrong.";
+"generic.data.reloading" = "Reloading...";
 
 "identification.controller.title" = "%d documents required";
 "identification.controller.single.title" = "%d document required";

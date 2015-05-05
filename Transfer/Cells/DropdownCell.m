@@ -117,7 +117,7 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 }
 
 - (IBAction)cellTapped:(id)sender
-{    
+{
     if(self.entryField.isFirstResponder)
     {
         [self.entryField resignFirstResponder];
