@@ -17,6 +17,7 @@
 #import "Constants.h"
 #import "Mixpanel+Customisation.h"
 #import "NSString+NullString.h"
+#import "AdditionalAttribute.h"
 
 @implementation ObjectModel (Users)
 
@@ -201,6 +202,39 @@
 	User* user = [self currentUser];
 	
 	user.deviceToken = deviceToken;
+}
+
+- (void)saveAdditionalAttributeWithType:(AdditionalAttributeType)type
+									key:(NSString *)key
+								  value:(NSString *)value
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType == %i AND key == %@", type, key];
+	AdditionalAttribute *attribute = [self fetchEntityNamed:[AdditionalAttribute entityName]
+											  withPredicate:predicate];
+	if (!attribute)
+	{
+		attribute = [AdditionalAttribute insertInManagedObjectContext:self.managedObjectContext];
+		attribute.attributeType = [NSNumber numberWithInt:type];
+		attribute.key = key;
+	}
+	
+	attribute.value = value;
+}
+
+- (NSDictionary *)additionalAttributesForType:(AdditionalAttributeType)type
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType == %i", type];
+	NSArray *attributes = [self fetchEntitiesNamed:[AdditionalAttribute entityName]
+									 withPredicate:predicate];
+	
+	NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithCapacity:attributes.count];
+	
+	for (AdditionalAttribute *attribute in attributes)
+	{
+		[result setObject:attribute.value forKey:attribute.key];
+	}
+	
+	return result;
 }
 
 @end

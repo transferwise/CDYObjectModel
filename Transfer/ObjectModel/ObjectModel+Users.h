@@ -11,6 +11,12 @@
 @class User;
 @class Currency;
 
+typedef NS_ENUM(int, AdditionalAttributeType)
+{
+	CompanyRole,
+	CompanyType
+};
+
 @interface ObjectModel (Users)
 
 - (void)createOrUpdateUserWithData:(NSDictionary *)data;
@@ -19,5 +25,9 @@
 - (void)markAnonUserWithEmail:(NSString *)email;
 - (void)saveReferralData:(NSDictionary*)data;
 - (void)saveDeviceToken:(NSString *)deviceToken;
+- (void)saveAdditionalAttributeWithType:(AdditionalAttributeType)type
+									key:(NSString *)key
+								  value:(NSString *)value;
+- (NSDictionary *)additionalAttributesForType:(AdditionalAttributeType)type;
 
 @end

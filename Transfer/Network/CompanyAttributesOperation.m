@@ -8,6 +8,7 @@
 
 #import "CompanyAttributesOperation.h"
 #import "TransferwiseOperation+Private.h"
+#import "ObjectModel+Users.h"
 
 NSString *const kCompanyAttributesOperationPath = @"/user/companyAttributes";
 
@@ -26,6 +27,22 @@ NSString *const kCompanyAttributesOperationPath = @"/user/companyAttributes";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
+		if (response[@"companyTypes"] && response[@"companyRoles"])
+		{
+			for (NSDictionary *companyType in response[@"companyTypes"])
+			{
+				[weakSelf.objectModel saveAdditionalAttributeWithType:CompanyType
+																  key:companyType[@"id"]
+																value:companyType[@"title"]];
+			}
+			
+			for (NSDictionary *companyRole in response[@"companyRoles"])
+			{
+				[weakSelf.objectModel saveAdditionalAttributeWithType:CompanyRole
+																  key:companyRole[@"id"]
+																value:companyRole[@"title"]];
+			}
+		}
 		
 		weakSelf.resultHandler(nil);
 	}];

@@ -9,6 +9,11 @@
         <relationship name="mfaFields" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="MfaField" inverseName="achBank" inverseEntity="MfaField" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="achBanks" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="AdditionalAttribute" representedClassName="AdditionalAttribute" syncable="YES">
+        <attribute name="attributeType" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="key" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -222,6 +227,7 @@
     </entity>
     <elements>
         <element name="AchBank" positionX="619" positionY="-324" width="128" height="150"/>
+        <element name="AdditionalAttribute" positionX="-72" positionY="-90" width="128" height="90"/>
         <element name="AllowedTypeFieldValue" positionX="655" positionY="63" width="128" height="90"/>
         <element name="BusinessProfile" positionX="-396" positionY="-99" width="128" height="225"/>
         <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
