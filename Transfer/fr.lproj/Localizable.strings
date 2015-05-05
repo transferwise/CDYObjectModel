@@ -348,7 +348,6 @@ Une révolution dans votre poche.";
 "recipient.controller.recipients.preload.error.title" = "Impossible de charger les contacts";
 "recipient.controller.refreshing.message" = "Chargement...";
 "recipient.controller.sattes.load.error.title" = "Erreur de donnée";
-"recipient.controller.save.error.title" = "Erreur d'ajout";
 "recipient.controller.section.title.currency" = "Monnaie";
 "recipient.controller.section.title.recipient" = "A qui voulez-vous envoyer de l'argent?";
 "recipient.controller.section.title.sender" = "Envoyeur";
