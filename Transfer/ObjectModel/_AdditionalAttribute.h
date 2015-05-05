@@ -5,8 +5,8 @@
 
 extern const struct AdditionalAttributeAttributes {
 	__unsafe_unretained NSString *attributeType;
-	__unsafe_unretained NSString *key;
-	__unsafe_unretained NSString *value;
+	__unsafe_unretained NSString *code;
+	__unsafe_unretained NSString *title;
 } AdditionalAttributeAttributes;
 
 @interface AdditionalAttributeID : NSManagedObjectID {}
@@ -26,13 +26,13 @@ extern const struct AdditionalAttributeAttributes {
 
 //- (BOOL)validateAttributeType:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* key;
+@property (nonatomic, strong) NSString* code;
 
-//- (BOOL)validateKey:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateCode:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* value;
+@property (nonatomic, strong) NSString* title;
 
-//- (BOOL)validateValue:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
 @end
 
@@ -44,10 +44,10 @@ extern const struct AdditionalAttributeAttributes {
 - (int16_t)primitiveAttributeTypeValue;
 - (void)setPrimitiveAttributeTypeValue:(int16_t)value_;
 
-- (NSString*)primitiveKey;
-- (void)setPrimitiveKey:(NSString*)value;
+- (NSString*)primitiveCode;
+- (void)setPrimitiveCode:(NSString*)value;
 
-- (NSString*)primitiveValue;
-- (void)setPrimitiveValue:(NSString*)value;
+- (NSString*)primitiveTitle;
+- (void)setPrimitiveTitle:(NSString*)value;
 
 @end

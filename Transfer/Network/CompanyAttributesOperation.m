@@ -32,15 +32,15 @@ NSString *const kCompanyAttributesOperationPath = @"/user/companyAttributes";
 			for (NSDictionary *companyType in response[@"companyTypes"])
 			{
 				[weakSelf.objectModel saveAdditionalAttributeWithType:CompanyType
-																  key:companyType[@"id"]
-																value:companyType[@"title"]];
+																  code:companyType[@"id"]
+																title:companyType[@"title"]];
 			}
 			
 			for (NSDictionary *companyRole in response[@"companyRoles"])
 			{
 				[weakSelf.objectModel saveAdditionalAttributeWithType:CompanyRole
-																  key:companyRole[@"id"]
-																value:companyRole[@"title"]];
+																  code:companyRole[@"id"]
+																title:companyRole[@"title"]];
 			}
 		}
 		

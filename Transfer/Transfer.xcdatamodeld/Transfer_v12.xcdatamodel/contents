@@ -11,8 +11,8 @@
     </entity>
     <entity name="AdditionalAttribute" representedClassName="AdditionalAttribute" syncable="YES">
         <attribute name="attributeType" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="key" attributeType="String" syncable="YES"/>
-        <attribute name="value" attributeType="String" syncable="YES"/>
+        <attribute name="code" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>

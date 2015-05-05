@@ -5,8 +5,8 @@
 
 const struct AdditionalAttributeAttributes AdditionalAttributeAttributes = {
 	.attributeType = @"attributeType",
-	.key = @"key",
-	.value = @"value",
+	.code = @"code",
+	.title = @"title",
 };
 
 @implementation AdditionalAttributeID
@@ -64,9 +64,9 @@ const struct AdditionalAttributeAttributes AdditionalAttributeAttributes = {
 	[self setPrimitiveAttributeType:[NSNumber numberWithShort:value_]];
 }
 
-@dynamic key;
+@dynamic code;
 
-@dynamic value;
+@dynamic title;
 
 @end
 

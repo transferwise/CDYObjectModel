@@ -26,8 +26,8 @@ typedef NS_ENUM(int, AdditionalAttributeType)
 - (void)saveReferralData:(NSDictionary*)data;
 - (void)saveDeviceToken:(NSString *)deviceToken;
 - (void)saveAdditionalAttributeWithType:(AdditionalAttributeType)type
-									key:(NSString *)key
-								  value:(NSString *)value;
+								   code:(NSString *)code
+								  title:(NSString *)title;
 - (NSDictionary *)additionalAttributesForType:(AdditionalAttributeType)type;
 - (NSFetchedResultsController *)fetchedControllerForAttributesOfType:(AdditionalAttributeType)type;
 

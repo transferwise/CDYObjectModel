@@ -205,20 +205,20 @@
 }
 
 - (void)saveAdditionalAttributeWithType:(AdditionalAttributeType)type
-									key:(NSString *)key
-								  value:(NSString *)value
+								   code:(NSString *)code
+								  title:(NSString *)title
 {
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType == %i AND key == %@", type, key];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType == %i AND code == %@", type, code];
 	AdditionalAttribute *attribute = [self fetchEntityNamed:[AdditionalAttribute entityName]
 											  withPredicate:predicate];
 	if (!attribute)
 	{
 		attribute = [AdditionalAttribute insertInManagedObjectContext:self.managedObjectContext];
 		attribute.attributeType = [NSNumber numberWithInt:type];
-		attribute.key = key;
+		attribute.code = code;
 	}
 	
-	attribute.value = value;
+	attribute.title = title;
 }
 
 - (NSDictionary *)additionalAttributesForType:(AdditionalAttributeType)type
@@ -231,7 +231,7 @@
 	
 	for (AdditionalAttribute *attribute in attributes)
 	{
-		[result setObject:attribute.value forKey:attribute.key];
+		[result setObject:attribute.title forKey:attribute.code];
 	}
 	
 	return result;
@@ -240,8 +240,8 @@
 //Use additionalAttributesForType, when CD has been disconnected and DropDownCell refactored
 - (NSFetchedResultsController *)fetchedControllerForAttributesOfType:(AdditionalAttributeType)type
 {
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType = %@", type];
-	NSSortDescriptor *valueSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"value" ascending:YES];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType = %i", type];
+	NSSortDescriptor *valueSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
 	return [self fetchedControllerForEntity:[AdditionalAttribute entityName] predicate:predicate sortDescriptors:@[valueSortDescriptor]];
 }
 
