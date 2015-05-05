@@ -16,6 +16,8 @@
 #import "Recipient.h"
 #import "Constants.h"
 #import "Mixpanel+Customisation.h"
+#import "NSString+NullString.h"
+#import "AdditionalAttribute.h"
 
 @implementation ObjectModel (Users)
 
@@ -116,6 +118,9 @@
     [profile setCountryCode:data[@"countryCode"]];
     [profile setReadonlyFields:[data[@"readonlyFields"] componentsJoinedByString:@"|"]];
     [profile setState:data[@"state"]];
+	//api will return "null" as a string value, if these haven't been submitted
+	[profile setCompanyRole:[data[@"companyRole"] getNullOnNullAsValue]];
+	[profile setCompanyType:[data[@"companyType"] getNullOnNullAsValue]];
 
     return profile;
 }
@@ -197,6 +202,47 @@
 	User* user = [self currentUser];
 	
 	user.deviceToken = deviceToken;
+}
+
+- (void)saveAdditionalAttributeWithType:(AdditionalAttributeType)type
+								   code:(NSString *)code
+								  title:(NSString *)title
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType == %i AND code == %@", type, code];
+	AdditionalAttribute *attribute = [self fetchEntityNamed:[AdditionalAttribute entityName]
+											  withPredicate:predicate];
+	if (!attribute)
+	{
+		attribute = [AdditionalAttribute insertInManagedObjectContext:self.managedObjectContext];
+		attribute.attributeType = [NSNumber numberWithInt:type];
+		attribute.code = code;
+	}
+	
+	attribute.title = title;
+}
+
+- (NSDictionary *)additionalAttributesForType:(AdditionalAttributeType)type
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType == %i", type];
+	NSArray *attributes = [self fetchEntitiesNamed:[AdditionalAttribute entityName]
+									 withPredicate:predicate];
+	
+	NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithCapacity:attributes.count];
+	
+	for (AdditionalAttribute *attribute in attributes)
+	{
+		[result setObject:attribute.title forKey:attribute.code];
+	}
+	
+	return result;
+}
+
+//Use additionalAttributesForType, when CD has been disconnected and DropDownCell refactored
+- (NSFetchedResultsController *)fetchedControllerForAttributesOfType:(AdditionalAttributeType)type
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType = %i", type];
+	NSSortDescriptor *valueSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+	return [self fetchedControllerForEntity:[AdditionalAttribute entityName] predicate:predicate sortDescriptors:@[valueSortDescriptor]];
 }
 
 @end

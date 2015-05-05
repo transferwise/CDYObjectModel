@@ -47,6 +47,8 @@
 "business.profile.password.lable" = "Mot de passe";
 "business.profile.confirm.payment.button.title" = "Continuer";
 "business.profile.controller.title" = "Infos sur votre entreprise";
+"business.profile.company.role.title" = "Votre rôle";
+"business.profile.company.type.title" = "Type de l'entreprise";
 
 "button.title.back" = "Retour";
 "button.title.cancel" = "Annuler";
@@ -128,6 +130,7 @@ vos amis sur TransferWise";
 
 "generic.error.message" = "Nous travaillons sur le probleme. Reessayer plus tard.";
 "generic.error.title" = "Oops. Quelque chose n'a pas marché.";
+"generic.data.reloading" = "Rechargement en cours...";
 
 "identification.controller.title" = "%d documents requis";
 "identification.controller.single.title" = "%d document requis";

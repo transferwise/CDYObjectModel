@@ -23,7 +23,7 @@
     self = [super initWithSource:[[BusinessProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation businessProfileValidation]];
     if (self)
 	{
-        // Custom initialization
+		self.reloadBaseData = YES;
     }
     return self;
 }
@@ -33,8 +33,9 @@
 	self = [super initWithSource:[[BusinessProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation businessProfileValidation] buttonTitle:title];
 	if (self)
 	{
-		// Custom init
+		self.reloadBaseData = YES;
 	}
 	return self;
 }
+
 @end

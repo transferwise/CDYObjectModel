@@ -70,7 +70,13 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnLeftMargin;
 
 /**
- * signifies that constraints should be tightened to fit on screen with tab bar
+ *	set this to YES if your inheriting controller requires base data reload
+ *	don't forget to ovveride doReload if this is set to YES
+ */
+@property (nonatomic) BOOL reloadBaseData;
+
+/**
+ *	signifies that constraints should be tightened to fit on screen with tab bar
  */
 @property (nonatomic) BOOL showInsideTabControllerForIpad;
 
@@ -166,5 +172,10 @@
  *  @return BOOL to signal that the move should happen
  */
 - (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell;
+
+/**
+ *	override to handle action to take on base data reload
+ */
+- (void)reload;
 
 @end

@@ -33,3 +33,4 @@
 #import "TransparentModalViewController.h"
 #import "CustomInfoViewController.h"
 #import "CalculationResult.h"
+#import "NSString+NullString.h"

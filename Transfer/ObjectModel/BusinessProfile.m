@@ -18,6 +18,8 @@
     data[@"businessName"] = self.name;
     data[@"registrationNumber"] = self.registrationNumber;
     data[@"descriptionOfBusiness"] = self.businessDescription;
+	data[@"companyRole"] = self.companyRole;
+	data[@"companyType"] = self.companyType;
     data[@"addressFirstLine"] = self.addressFirstLine;
     data[@"postCode"] = self.postCode;
     data[@"city"] = self.city;

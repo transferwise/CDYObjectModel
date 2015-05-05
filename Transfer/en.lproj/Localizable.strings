@@ -47,6 +47,8 @@
 "business.profile.password.lable" = "Password";
 "business.profile.confirm.payment.button.title" = "Continue";
 "business.profile.controller.title" = "Business details";
+"business.profile.company.role.title" = "Your role";
+"business.profile.company.type.title" = "Type of company";
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";
@@ -128,6 +130,7 @@ your friends to TransferWise";
 
 "generic.error.message" = "We are working on the issue. Please try again later.";
 "generic.error.title" = "Oops. Something went wrong.";
+"generic.data.reloading" = "Reloading...";
 
 "identification.controller.title" = "%d documents required";
 "identification.controller.single.title" = "%d document required";

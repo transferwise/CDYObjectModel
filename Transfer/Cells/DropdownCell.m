@@ -19,15 +19,18 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 
 @implementation DropdownCell
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+	{
         // Initialization code
     }
     return self;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
@@ -37,21 +40,24 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
     [pickerView setDelegate:self];
     
     [self.entryField setInputView:pickerView];
-    
 }
 
-- (NSString *)value {
+- (NSString *)value
+{
     return self.selectedObject ? [self.selectedObject valueForKeyPath:@"code"] : @"";
 }
 
-- (void)setAllElements:(NSFetchedResultsController *)allElements {
+- (void)setAllElements:(NSFetchedResultsController *)allElements
+{
     _allElements = allElements;
     [self selectedElement:allElements.fetchedObjects[0]];
 }
 
-- (void)setValue:(NSString *)value {
+- (void)setValue:(NSString *)value
+{
     id element = [self findValueWithName:value];
-    if (!element) {
+    if (!element)
+	{
         return;
     }
 
@@ -60,35 +66,43 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
     [self.picker selectRow:index inComponent:0 animated:NO];
 }
 
-- (id)findValueWithName:(NSString *)name {
-    for (id element in self.allElements.fetchedObjects) {
+- (id)findValueWithName:(NSString *)name
+{
+    for (id element in self.allElements.fetchedObjects)
+	{
         NSString *elementName = [element valueForKeyPath:@"code"];
-        if ([elementName isEqualToString:name]) {
+        if ([elementName isEqualToString:name])
+		{
             return element;
         }
     }
     return nil;
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
     return [self.allElements.fetchedObjects count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
     id rowObject = [self.allElements objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     return [[rowObject valueForKeyPath:@"title"] capitalizedString];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
     id rowObject = [self.allElements objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     [self selectedElement:rowObject];
 }
 
-- (void)selectedElement:(id)rowObject {
+- (void)selectedElement:(id)rowObject
+{
     [self setSelectedObject:rowObject];
     [self.entryField setText:[[rowObject valueForKeyPath:@"title"] capitalizedString]];
 }
@@ -102,8 +116,8 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
     }
 }
 
-- (IBAction)cellTapped:(id)sender {
-    
+- (IBAction)cellTapped:(id)sender
+{
     if(self.entryField.isFirstResponder)
     {
         [self.entryField resignFirstResponder];

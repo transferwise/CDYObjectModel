@@ -42,6 +42,7 @@
 #import "StateSuggestionCellProvider.h"
 #import "ValidatorFactory.h"
 #import "EmailValidation.h"
+#import "BusinessProfileSource.h"
 
 @interface ProfileEditViewController ()<SelectionCellDelegate, TextEntryCellDelegate>
 
@@ -703,5 +704,14 @@
 {
 	[self.profileSource clearData];
 	[self reloadTableViews];
+}
+
+- (void)reload
+{
+	//only business profile needs reloading
+	if ([self.profileSource isKindOfClass:[BusinessProfileSource class]])
+	{
+		[(BusinessProfileSource *)self.profileSource reloadDropDowns];
+	}
 }
 @end

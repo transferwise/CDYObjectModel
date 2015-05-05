@@ -29,11 +29,22 @@
 @property (nonatomic, copy) TRWOperationErrorBlock operationErrorHandler;
 @property (nonatomic, copy) TRWUploadOperationProgressBlock uploadProgressHandler;
 @property (nonatomic, strong) ObjectModel *workModel;
+@property (nonatomic) BOOL isAnonymous;
 @property (nonatomic) BOOL hasBeenCancelled;
 
 @end
 
 @implementation TransferwiseOperation
+
+- (instancetype)init
+{
+	self = [super init];
+	if (self)
+	{
+		self.isAnonymous = NO;
+	}
+	return self;
+}
 
 - (void)execute {
     ABSTRACT_METHOD;
@@ -85,7 +96,8 @@
 }
 
 - (void)executeRequest:(NSMutableURLRequest *)request {
-    [TransferwiseOperation provideAuthenticationHeaders:request];
+    [TransferwiseOperation provideAuthenticationHeaders:request
+											isAnonymous:self.isAnonymous];
 
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
@@ -209,8 +221,11 @@
     }
 }
 
-+ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request {
-    if ([Credentials userLoggedIn]) {
++ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request
+						 isAnonymous:(BOOL)isAnonymous
+{
+    if (!isAnonymous && [Credentials userLoggedIn])
+	{
         [request setValue:[Credentials accessToken] forHTTPHeaderField:@"X-Authorization-token"];
     }
 
@@ -258,11 +273,13 @@
     return _workModel;
 }
 
-+ (NSURLRequest*)getRequestForApiPath:(NSString*)path parameters:(NSDictionary*)params
++ (NSURLRequest*)getRequestForApiPath:(NSString*)path
+						   parameters:(NSDictionary*)params
 {
     NSString *tokenizedPath = [[TransferwiseClient sharedClient] addTokenToPath:path];
     NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:tokenizedPath parameters:params];
-    [TransferwiseOperation provideAuthenticationHeaders:request];
+    [TransferwiseOperation provideAuthenticationHeaders:request
+											isAnonymous:NO];
     return request;
 }
 

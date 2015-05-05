@@ -14,12 +14,16 @@
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
+#import "TRWProgressHUD.h"
 
 #define kInsetsNotSet UIEdgeInsetsMake(-1, -1, -1, -1)
 
 @interface DataEntryMultiColumnViewController() <MultipleEntryCellDelegate>
+
 @property (nonatomic, assign) BOOL keyboardIsVisible;
 @property (nonatomic, weak) UITapGestureRecognizer* dismissKeyboardTaprecognizer;
+@property (nonatomic, strong) TRWProgressHUD *hud;
+
 @end
 
 @implementation DataEntryMultiColumnViewController
@@ -27,6 +31,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(willReload)
+												 name:TRWWillUpdateBaseDataNotification
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(didReload)
+												 name:TRWDidUpdateBaseDataNotification
+											   object:nil];
     
     self.cachedInsets = kInsetsNotSet;
     
@@ -37,26 +50,31 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
--(void)didMoveToParentViewController:(UIViewController *)parent
+- (void)didMoveToParentViewController:(UIViewController *)parent
 {
     [self configureForInterfaceOrientation:parent.interfaceOrientation];
 }
@@ -148,12 +166,12 @@
     return UITableViewAutomaticDimension;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     return nil;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSString* title = [self tableView:tableView titleForHeaderInSection:section];
     if(title)
@@ -165,7 +183,7 @@
     return nil;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return nil;
 }
@@ -657,6 +675,32 @@
 {
     [self.containerScrollView removeGestureRecognizer:recognizer];
     [self.view endEditing:YES];
+}
+
+#pragma mark - Reload Base Data
+- (void)willReload
+{
+	if (self.reloadBaseData)
+	{
+		//show hud
+		self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+		[self.hud setMessage:NSLocalizedString(@"generic.data.reloading", nil)];
+	}
+}
+
+- (void)didReload
+{
+	if (self.reloadBaseData)
+	{
+		[self reload];
+		[self.hud hide];
+		self.hud = nil;
+	}
+}
+
+- (void)reload
+{
+	//override in an inheriting class to cause base data reload
 }
 
 @end

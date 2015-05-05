@@ -195,7 +195,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [[AppsFlyerTracker sharedTracker] trackAppLaunch];
 #endif
 
-    [[TransferwiseClient sharedClient] updateConfigurationOptions];
+    [[TransferwiseClient sharedClient] updateBaseData];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
