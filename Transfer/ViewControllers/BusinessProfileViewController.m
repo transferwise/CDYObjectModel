@@ -38,8 +38,4 @@
 	return self;
 }
 
-- (void)reload
-{
-	
-}
 @end
