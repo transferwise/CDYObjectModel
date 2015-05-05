@@ -352,7 +352,6 @@ It generally takes 1-2 business day.";
 "recipient.controller.recipients.preload.error.title" = "Can't load contacts";
 "recipient.controller.refreshing.message" = "Loading...";
 "recipient.controller.sattes.load.error.title" = "Data error";
-"recipient.controller.save.error.title" = "Add error";
 "recipient.controller.section.title.currency" = "Currency";
 "recipient.controller.section.title.recipient" = "Who are you sending money to?";
 "recipient.controller.section.title.sender" = "Sender";
