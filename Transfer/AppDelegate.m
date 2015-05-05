@@ -279,7 +279,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	
     if(!urlWasHandled)
     {
-        urlWasHandled = [self handleURL:url];
+        urlWasHandled = [Yozio handleDeeplink:url];
+        if(!urlWasHandled)
+        {
+            urlWasHandled = [self handleURL:url];
+        }
     }
     
     return urlWasHandled;
@@ -394,7 +398,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 
 -(void)onCallbackWithTargetViewControllerName:(NSString *)targetViewControllerName andMetaData:(NSDictionary *)metaData
 {
-    MCLog(@"name: %@ \n metaData: %@",targetViewControllerName, metaData);
+    NSString* referrer = metaData[TRWReferrerKey];
+    if(referrer)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:referrer forKey:TRWReferrerKey];
+    }
 }
 
 
