@@ -52,7 +52,10 @@ NSString *const kCompanyAttributesOperationPath = @"/user/companyAttributes";
 
 + (CompanyAttributesOperation *)operation
 {
-	return [[CompanyAttributesOperation alloc] init];
+	CompanyAttributesOperation *operation = [[CompanyAttributesOperation alloc] init];
+	operation.isAnonymous = YES;
+	
+	return operation;
 }
 
 @end
