@@ -35,8 +35,9 @@
 #import <FBAppCall.h>
 #import <NXOAuth2AccountStore.h>
 #import "PushNotificationsHelper.h"
+#import "Yozio.h"
 
-@interface AppDelegate ()<AppsFlyerTrackerDelegate>
+@interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) id<PushNotificationsProvider> notificationHelper;
@@ -217,6 +218,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 #else
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
     [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
+    
+    [Yozio initializeWithAppKey:@"6e774e8a-7d01-46c1-918a-ea053bb46dc9"
+                   andSecretKey:@"dd39f3e4-54b3-42cc-a49a-67da6af61ac2"
+  andNewInstallMetaDataCallback: self
+    andDeepLinkMetaDataCallback: self];
+    
 #endif
 	
 	[AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
@@ -272,7 +279,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	
     if(!urlWasHandled)
     {
-        urlWasHandled = [self handleURL:url];
+        urlWasHandled = [Yozio handleDeeplink:url];
+        if(!urlWasHandled)
+        {
+            urlWasHandled = [self handleURL:url];
+        }
     }
     
     return urlWasHandled;
@@ -382,6 +393,19 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 - (void) onConversionDataRequestFailure:(NSError *)error{
     MCLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
 }
+
+#pragma mark - Yozio
+
+-(void)onCallbackWithTargetViewControllerName:(NSString *)targetViewControllerName andMetaData:(NSDictionary *)metaData
+{
+    NSString* referrer = metaData[TRWReferrerKey];
+    if(referrer)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:referrer forKey:TRWReferrerKey];
+    }
+}
+
 
 
 @end
