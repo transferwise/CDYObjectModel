@@ -62,6 +62,14 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 	NSMutableDictionary *params = [NSMutableDictionary dictionary];
 	params[@"provider"] = self.provider;
 	params[@"token"] = self.token;
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString* referrer = [defaults objectForKey:TRWReferrerKey];
+    if(referrer)
+    {
+        params[TRWReferrerKey] = referrer;
+    }
+
 	
 	//Ensure no stale data is present before logging in.
 	[self.objectModel clearUserRelatedDataKeepingPendingPayment:self.keepPendingPayment];
