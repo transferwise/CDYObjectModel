@@ -64,10 +64,10 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 	params[@"token"] = self.token;
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSString* referrer = [defaults objectForKey:TRWReferrerKey];
+    NSString* referrer = [defaults objectForKey:TRWReferralTokenKey];
     if(referrer)
     {
-        params[TRWReferrerKey] = referrer;
+        params[TRWReferralTokenKey] = referrer;
     }
 
 	

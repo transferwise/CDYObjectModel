@@ -191,6 +191,15 @@
             introFrame.origin.x = index * self.scrollView.bounds.size.width;
             [intro setFrame:introFrame];
             [intro setUpWithDictionary:self.introData[index]];
+            if(index ==0 && self.requireRegistration)
+            {
+                NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+                NSString* referrer = [defaults objectForKey:TRWReferrerKey];
+                if(referrer)
+                {
+                    intro.taglineLabel.text = [NSString stringWithFormat:NSLocalizedString(@"intro.referral.title.format", nil), [referrer uppercaseString]];
+                }
+            }
             [self.scrollView addSubview:intro];
             index++;
         }

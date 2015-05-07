@@ -18,7 +18,6 @@
 @interface IntroView ()
 
 @property (nonatomic, strong) IBOutlet UIImageView *introImage;
-@property (nonatomic, strong) IBOutlet UILabel *taglineLabel;
 @property (nonatomic, strong) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *flagCenterConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagLineCenterConstraint;

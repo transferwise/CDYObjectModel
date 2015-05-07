@@ -68,7 +68,8 @@ NSString *AppsFlyerIdentifier = @"612261027";
 NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
 NSString *const TRWIsRegisteredSettingsKey = @"isRegistered";
 NSString *const TRWHasRespondedToNotificationsPromptSettingsKey = @"TRWHasRespondedToNotificationsPromptSettingsKey";
-NSString *const TRWReferrerKey = @"referralToken";
+NSString *const TRWReferralTokenKey = @"referralToken";
+NSString *const TRWReferrerKey = @"referralUser";
 
 #if DEV_VERSION
 NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";
