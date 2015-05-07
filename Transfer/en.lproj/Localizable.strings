@@ -785,7 +785,7 @@ We'll send you an email in order to let you choose a new password.";
 "deeplink.verification.message" = "Refreshing documents required...";
 "deeplink.no.verification.message" = "No verification needed!";
 
-"notifications.info.format" = "Want to be notified when %@ receives your money?";
+"notifications.info.format" = "Want to be notified when we have sent your money to %@?";
 "notifications.yes" = "Yes please!";
 
 "reset.password.controller.yahoo.title" = "Yahoo! Login discontinued";
