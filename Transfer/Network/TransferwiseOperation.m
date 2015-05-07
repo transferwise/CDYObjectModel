@@ -114,7 +114,10 @@
 							  path:(NSString *)path
 						parameters:(NSDictionary *)parameters
 {
-    [self executeOperationWithMethod:method path:path parameters:parameters timeOut:-1];
+    [self executeOperationWithMethod:method
+								path:path
+						  parameters:parameters
+							 timeOut:-1];
 }
     
 - (void)executeOperationWithMethod:(NSString *)method
@@ -122,8 +125,7 @@
 						parameters:(NSDictionary *)parameters
 						   timeOut:(NSTimeInterval)timeout
 {
-	parameters = [[self class] addMessageLocaleToParameters:parameters];
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method
+	NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method
 																				   path:path
 																			 parameters:parameters];
     if(timeout >0)
@@ -138,6 +140,7 @@
 {
     [TransferwiseOperation provideAuthenticationHeaders:request
 											isAnonymous:self.isAnonymous];
+	[TransferwiseOperation provideLanguageHeader:request];
 
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
@@ -267,11 +270,20 @@
 {
     if (!isAnonymous && [Credentials userLoggedIn])
 	{
-        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"X-Authorization-token"];
+        [request setValue:[Credentials accessToken]
+	   forHTTPHeaderField:@"X-Authorization-token"];
     }
 
-    [request setValue:TRWApplicationKey forHTTPHeaderField:@"X-Authorization-key"];
-    [request setValue:[[[GAI sharedInstance] defaultTracker] get:kGAIClientId] forHTTPHeaderField:@"Customer-identifier"];
+    [request setValue:TRWApplicationKey
+   forHTTPHeaderField:@"X-Authorization-key"];
+    [request setValue:[[[GAI sharedInstance] defaultTracker] get:kGAIClientId]
+   forHTTPHeaderField:@"Customer-identifier"];
+}
+
++ (void)provideLanguageHeader:(NSMutableURLRequest *)request
+{
+	[request setValue:[LocationHelper getLanguage]
+   forHTTPHeaderField:@"X-language"];
 }
 
 - (BOOL)isCurrencyPairsOperation
@@ -330,7 +342,9 @@
 						   parameters:(NSDictionary*)params
 {
     NSString *tokenizedPath = [[TransferwiseClient sharedClient] addTokenToPath:path];
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:tokenizedPath parameters:params];
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET"
+																				   path:tokenizedPath
+																			 parameters:params];
     [TransferwiseOperation provideAuthenticationHeaders:request
 											isAnonymous:NO];
     return request;
@@ -344,16 +358,6 @@
 - (void)cancel
 {
 	self.hasBeenCancelled = YES;
-}
-
-+ (NSDictionary *)addMessageLocaleToParameters:(NSDictionary *)parameters
-{
-	NSMutableDictionary *dict = [parameters mutableCopy];
-	
-	[dict setObject:[LocationHelper getLanguage]
-			 forKey:@"messageLocale"];
-	
-	return [[NSDictionary alloc] initWithDictionary:dict];
 }
 
 @end
