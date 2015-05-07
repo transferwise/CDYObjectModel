@@ -771,7 +771,7 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "deeplink.verification.message" = "Raffraichissement des documents requis...";
 "deeplink.no.verification.message" = "Aucun document requis!";
 
-"notifications.info.format" = "Souhaitez-vous être notifié lorsque %@ reçoit votre argent?";
+"notifications.info.format" = "Souhaitez-vous être notifié lorsque nous avons envoyé votre argent à %@?";
 "notifications.yes" = "Oui!";
 
 "reset.password.controller.yahoo.title" = "Yahoo! n'est plus disponible";
