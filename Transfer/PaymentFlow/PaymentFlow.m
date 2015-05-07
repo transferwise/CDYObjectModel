@@ -804,7 +804,7 @@
             
 			[self presentBusinessProfileScreen];
 		}
-		else if (payment.isFixedAmountValue && (!payment.refundRecipient || payment.refundRecipient.hiddenValue))
+		else if (payment.isFixedAmountValue && (!payment.refundRecipient || (payment.refundRecipient.remoteIdValue != 0 && payment.refundRecipient.hiddenValue)))
 		{
             payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
             payment.paymentFlowProgressValue = kProgressRefundRecipient;
