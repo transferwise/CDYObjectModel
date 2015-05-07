@@ -22,6 +22,7 @@
 #import "GoogleAnalytics.h"
 #import "GAIFields.h"
 #import "AuthenticationHelper.h"
+#import "LocationHelper.h"
 
 @interface TransferwiseOperation ()
 
@@ -36,6 +37,7 @@
 
 @implementation TransferwiseOperation
 
+#pragma mark - Init
 - (instancetype)init
 {
 	self = [super init];
@@ -46,48 +48,84 @@
 	return self;
 }
 
+#pragma mark - Abstract Methods
 - (void)execute {
     ABSTRACT_METHOD;
 }
 
-- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath
+#pragma mark - Post and Get Data
+- (void)postData:(NSDictionary *)data
+		  toPath:(NSString *)postPath
 {
-    [self postData:data toPath:postPath timeOut:-1];
+    [self postData:data
+			toPath:postPath
+		   timeOut:-1];
 }
 
-- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath timeOut:(NSTimeInterval) timeOut{
+- (void)postData:(NSDictionary *)data
+		  toPath:(NSString *)postPath
+		 timeOut:(NSTimeInterval) timeOut
+{
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Post %@ to %@", [data sensibleDataHidden], [postPath stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
-    [self executeOperationWithMethod:@"POST" path:postPath parameters:data timeOut:timeOut];
+	
+    [self executeOperationWithMethod:@"POST"
+								path:postPath
+						  parameters:data
+							 timeOut:timeOut];
 }
 
-- (void)getDataFromPath:(NSString *)path {
-    [self getDataFromPath:path params:nil];
+- (void)getDataFromPath:(NSString *)path
+{
+    [self getDataFromPath:path
+				   params:nil];
 }
 
-- (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params {
+- (void)getDataFromPath:(NSString *)path
+				 params:(NSDictionary *)params
+{
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Server: %@", TRWServerAddress);
     MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
+	
     MCLog(@"Params:%@", [params sensibleDataHidden]);
-    [self executeOperationWithMethod:@"GET" path:path parameters:params];
+    [self executeOperationWithMethod:@"GET"
+								path:path
+						  parameters:params];
 }
 
-- (void)postBinaryDataFromFile:(NSString *)filePath withName:(NSString *)fileName usingParams:(NSDictionary *)params toPath:(NSString *)postPath {
+- (void)postBinaryDataFromFile:(NSString *)filePath
+					  withName:(NSString *)fileName
+				   usingParams:(NSDictionary *)params
+						toPath:(NSString *)postPath
+{
     MCLog(@"Post binary. Params:%@", [params sensibleDataHidden]);
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] multipartFormRequestWithMethod:@"POST" path:postPath parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
-        [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:fileName error:nil];
-    }];
+	NSMutableURLRequest *request = [[TransferwiseClient sharedClient] multipartFormRequestWithMethod:@"POST"
+																								path:postPath
+																						  parameters:params
+																		   constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
+																			   [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:fileName error:nil];
+																		   }];
 
     [self executeRequest:request];
 }
 
-- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
+- (void)executeOperationWithMethod:(NSString *)method
+							  path:(NSString *)path
+						parameters:(NSDictionary *)parameters
+{
     [self executeOperationWithMethod:method path:path parameters:parameters timeOut:-1];
 }
     
-- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters timeOut:(NSTimeInterval)timeout{
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method path:path parameters:parameters];
+- (void)executeOperationWithMethod:(NSString *)method
+							  path:(NSString *)path
+						parameters:(NSDictionary *)parameters
+						   timeOut:(NSTimeInterval)timeout
+{
+	parameters = [[self class] addMessageLocaleToParameters:parameters];
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method
+																				   path:path
+																			 parameters:parameters];
     if(timeout >0)
     {
         request.timeoutInterval = timeout;
@@ -95,7 +133,9 @@
     [self executeRequest:request];
 }
 
-- (void)executeRequest:(NSMutableURLRequest *)request {
+#pragma mark - Request Execution
+- (void)executeRequest:(NSMutableURLRequest *)request
+{
     [TransferwiseOperation provideAuthenticationHeaders:request
 											isAnonymous:self.isAnonymous];
 
@@ -221,6 +261,7 @@
     }
 }
 
+#pragma mark - Helpers
 + (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request
 						 isAnonymous:(BOOL)isAnonymous
 {
@@ -233,25 +274,34 @@
     [request setValue:[[[GAI sharedInstance] defaultTracker] get:kGAIClientId] forHTTPHeaderField:@"Customer-identifier"];
 }
 
-- (BOOL)isCurrencyPairsOperation {
+- (BOOL)isCurrencyPairsOperation
+{
     return [self isKindOfClass:[CurrencyPairsOperation class]];
 }
 
-- (NSError *)createCumulativeError:(NSArray *)errors {
+- (NSError *)createCumulativeError:(NSArray *)errors
+{
     //TODO jaanus: maybe can improve this
     NSDictionary *userInfo = @{TRWErrors: errors};
     NSError *error = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseCumulativeError userInfo:userInfo];
     return error;
 }
 
-- (BOOL)containsExpiredTokenError:(NSArray *)errors {
-    for (NSDictionary *data in errors) {
+- (BOOL)containsExpiredTokenError:(NSArray *)errors
+{
+    for (NSDictionary *data in errors)
+	{
         NSString *code = data[@"code"];
-        if ([TRWNetworkErrorExpiredToken isEqualToString:code]) {
+        if ([TRWNetworkErrorExpiredToken isEqualToString:code])
+		{
             return YES;
-        } else if ([TRWNetworkErrorInvalidToken isEqualToString:code]) {
+        }
+		else if ([TRWNetworkErrorInvalidToken isEqualToString:code])
+		{
             return YES;
-        } else if ([TRWNetworkErrorNoToken isEqualToString:code]) {
+        }
+		else if ([TRWNetworkErrorNoToken isEqualToString:code])
+		{
             return YES;
         }
     }
@@ -259,15 +309,18 @@
     return NO;
 }
 
-- (NSString *)addTokenToPath:(NSString *)path {
+- (NSString *)addTokenToPath:(NSString *)path
+{
     path = [NSString stringWithFormat:@"/%@%@",[self apiVersion],path];
     return [[TransferwiseClient sharedClient] addTokenToPath:path];
 }
 
-- (ObjectModel *)workModel {
+- (ObjectModel *)workModel
+{
     MCAssert(self.objectModel);
 
-    if (!_workModel) {
+    if (!_workModel)
+	{
         _workModel = [self.objectModel spawnBackgroundInstance];
     }
     return _workModel;
@@ -291,6 +344,16 @@
 - (void)cancel
 {
 	self.hasBeenCancelled = YES;
+}
+
++ (NSDictionary *)addMessageLocaleToParameters:(NSDictionary *)parameters
+{
+	NSMutableDictionary *dict = [parameters mutableCopy];
+	
+	[dict setObject:[LocationHelper getLanguage]
+			 forKey:@"messageLocale"];
+	
+	return [[NSDictionary alloc] initWithDictionary:dict];
 }
 
 @end

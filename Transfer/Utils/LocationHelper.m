@@ -40,10 +40,22 @@
 
 + (BOOL)isUS
 {
+	//you can have different actual languages used in US
+	return [[self localeIdentifier] hasSuffix:@"_US"];
+}
+
++ (NSString *)getLanguage
+{
+	NSString* localeIdentifier = [self localeIdentifier];
+	
+	return [localeIdentifier substringToIndex:2];
+}
+
++ (NSString *)localeIdentifier
+{
 	NSLocale *currentLocale = [NSLocale currentLocale];
 	
-	//you can have different actual languages used in US
-	return [currentLocale.localeIdentifier hasSuffix:@"_US"];
+	return currentLocale.localeIdentifier;
 }
 
 @end
