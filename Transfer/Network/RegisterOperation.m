@@ -65,10 +65,10 @@ NSString *const kRegisterPath = @"/account/register";
 
     NSMutableDictionary* parameters = [@{@"email" : self.email, @"password" : self.password} mutableCopy];
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSString* referrer = [defaults objectForKey:TRWReferrerKey];
+    NSString* referrer = [defaults objectForKey:TRWReferralTokenKey];
     if(referrer)
     {
-        parameters[TRWReferrerKey] = referrer;
+        parameters[TRWReferralTokenKey] = referrer;
     }
     [self postData:parameters toPath:path];
 }

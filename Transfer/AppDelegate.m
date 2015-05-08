@@ -398,12 +398,20 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 
 -(void)onCallbackWithTargetViewControllerName:(NSString *)targetViewControllerName andMetaData:(NSDictionary *)metaData
 {
-    NSString* referrer = metaData[TRWReferrerKey];
+    NSString* referralToken = metaData[TRWReferralTokenKey];
+    if(referralToken)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:referralToken forKey:TRWReferralTokenKey];
+    }
+    
+    NSString* referrer = [metaData[TRWReferrerKey] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     if(referrer)
     {
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:referrer forKey:TRWReferrerKey];
     }
+    
 }
 
 
