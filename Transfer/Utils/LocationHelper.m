@@ -46,4 +46,9 @@
 	return [currentLocale.localeIdentifier hasSuffix:@"_US"];
 }
 
++ (NSString *)getLanguage
+{
+	return [[NSBundle mainBundle] preferredLocalizations][0];
+}
+
 @end
