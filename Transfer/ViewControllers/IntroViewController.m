@@ -343,6 +343,7 @@
     [self.objectModel markIntroShown];
     [self.objectModel markExistingUserIntroShown];
 	
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 	MainViewController *mainController = [[MainViewController alloc] init];
 	[mainController setObjectModel:self.objectModel];
 	ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
