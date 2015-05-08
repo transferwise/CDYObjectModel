@@ -74,7 +74,6 @@
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
     
-    self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.header", nil),[[ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel] rewardAmountString]];
     [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
 
@@ -205,6 +204,7 @@
     self.numberLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)progress];
     NSUInteger truncatedProgress = progress % 3;
     NSString* rewardString = [[ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel] rewardAmountString];
+     self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.header", nil),rewardString];
     if(truncatedProgress > 0)
     {
         self.indicatorContainer.hidden = YES;
@@ -328,21 +328,34 @@
 {
 	__weak InvitationsViewController *weakSelf = self;
 	
+    User *user = [self.objectModel currentUser];
+    NSInteger amount = user.invitationRewardValue;
     [[ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel] requestRewardStatus:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error)
             {
+                BOOL needsToRefresh = NO;
                 User *user = [self.objectModel currentUser];
+                if(amount != user.invitationRewardValue)
+                {
+                    needsToRefresh = YES;
+                }
                 if(user.successfulInviteCount)
                 {
                     NSInteger successCount = user.successfulInviteCountValue;
                     if (successCount > self.numberOfFriends)
                     {
                         self.numberOfFriends = successCount;
-                        [weakSelf setProgress:successCount
-                                     animated:self.numberOfFriends == 0];
+                        needsToRefresh = YES;
                     }
                 }
+                
+                if(needsToRefresh)
+                {
+                    [weakSelf setProgress:self.numberOfFriends
+                                 animated:self.numberOfFriends == 0];
+                }
+
             }
         });
     }];
