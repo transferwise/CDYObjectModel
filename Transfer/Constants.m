@@ -69,6 +69,7 @@ NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
 NSString *const TRWIsRegisteredSettingsKey = @"isRegistered";
 NSString *const TRWHasRespondedToNotificationsPromptSettingsKey = @"TRWHasRespondedToNotificationsPromptSettingsKey";
 NSString *const TRWReferralTokenKey = @"referralToken";
+NSString *const TRWReferralSourceKey = @"referralSource";
 NSString *const TRWReferrerKey = @"referralUser";
 
 #if DEV_VERSION

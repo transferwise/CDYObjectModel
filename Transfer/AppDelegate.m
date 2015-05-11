@@ -405,6 +405,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         [defaults setObject:referralToken forKey:TRWReferralTokenKey];
     }
     
+    NSString* referralSource = metaData[TRWReferralSourceKey];
+    if(referralSource)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:referralSource forKey:TRWReferralSourceKey];
+    }
+    
+    
     NSString* referrer = [metaData[TRWReferrerKey] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     if(referrer)
     {

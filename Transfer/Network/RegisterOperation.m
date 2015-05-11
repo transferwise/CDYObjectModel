@@ -70,6 +70,11 @@ NSString *const kRegisterPath = @"/account/register";
     {
         parameters[TRWReferralTokenKey] = referrer;
     }
+    NSString* source = [defaults objectForKey:TRWReferralSourceKey];
+    if(source)
+    {
+        parameters[TRWReferralSourceKey] = source;
+    }
     [self postData:parameters toPath:path];
 }
 
