@@ -69,6 +69,11 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
     {
         params[TRWReferralTokenKey] = referrer;
     }
+    NSString* source = [defaults objectForKey:TRWReferralSourceKey];
+    if(source)
+    {
+        params[TRWReferralSourceKey] = source;
+    }
 
 	
 	//Ensure no stale data is present before logging in.
