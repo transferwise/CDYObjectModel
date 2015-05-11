@@ -163,7 +163,6 @@ your friends to TransferWise";
 "identification.only.purpose.ipad" = "You're almost done. Fill the field : Purpose of transfer";
 "identification.well.done.format" = "Well done %@!";
 "identification.error" = "Error";
-"identification.optional.suffix" = " (Optional)";
 "identification.ssn.short" = "Social security number is too short";
 "identification.ssn.error.title" = "SSN invalid";
 "identification.ssn.generic.error" = "Please provide a valid SSN number or provide of photo of your ID.";
@@ -344,7 +343,7 @@ It generally takes 1-2 business day.";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
-"recipient.controller.cell.label.email" = "Recipient's Email (Optional)";
+"recipient.controller.cell.label.email" = "Recipient's Email";
 "recipient.controller.cell.label.name" = "Recipient's Name";
 "recipient.controller.cell.title.recipient.currency.generic" = "Recipient's currency";
 "recipient.controller.cell.title.recipient.currency" = "%@'s currency";
@@ -366,6 +365,7 @@ It generally takes 1-2 business day.";
 "recipient.controller.validation.error.field.empty" = "%@ is missing";
 "recipient.controller.validation.error.title" = "Validation error";
 "recipient.controller.validation.error.bic.required" = "BIC is required for transfers to %@";
+"recipient.controller.validation.error.email.required" = "Email is required for transfers to %@";
 "recipient.controller.validation.error.email.format" = "Email is invalid";
 "recipient.controller.validation.error.address" = "Address has empty fields";
 "recipient.controller.validation.error.country" = "Invalid country";
@@ -792,3 +792,5 @@ We'll send you an email in order to let you choose a new password.";
 "reset.password.header.yahoo.description" = "We're discontinuing Yahoo! login, but no worries you can still access your account by resetting your password.";
 "reset.password.header.yahoo.description.ipad" = "We're discontinuing Yahoo! login, but no worries
 you can still access your account by resetting your password.";
+
+"field.optional.suffix" = " (Optional)";
