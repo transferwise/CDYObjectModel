@@ -228,6 +228,11 @@
                               email:email
                        successBlock:^{
                            [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:provider];
+                           NSString *referralToken = [ReferralsCoordinator referralToken];
+                           if(referralToken)
+                           {
+                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+                           }
                            successBlock();
                        }
                                 hud:hud
