@@ -525,7 +525,7 @@
     if ([input.recipientEmail length] <= 0 && [input.targetCurrency.recipientEmailRequired boolValue])
     {
         [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil)];
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil)  message:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil)];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil),input.targetCurrency.code] delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
         [alertView show];
         return;
     }
