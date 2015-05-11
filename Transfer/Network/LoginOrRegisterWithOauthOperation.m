@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
 #import "ObjectModel+Users.h"
+#import "ReferralsCoordinator.h"
 
 NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
@@ -63,13 +64,12 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 	params[@"provider"] = self.provider;
 	params[@"token"] = self.token;
     
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSString* referrer = [defaults objectForKey:TRWReferralTokenKey];
+    NSString* referrer = [ReferralsCoordinator referralToken];
     if(referrer)
     {
         params[TRWReferralTokenKey] = referrer;
     }
-    NSString* source = [defaults objectForKey:TRWReferralSourceKey];
+    NSString* source = [ReferralsCoordinator referralSource];
     if(source)
     {
         params[TRWReferralSourceKey] = source;

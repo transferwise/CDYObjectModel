@@ -42,6 +42,7 @@
 #import "TouchIDHelper.h"
 #import "CustomInfoViewController.h"
 #import "PushNotificationsHelper.h"
+#import "ReferralsCoordinator.h"
 
 @interface AuthenticationHelper ()
 
@@ -227,6 +228,11 @@
                               email:email
                        successBlock:^{
                            [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:provider];
+                           NSString *referralToken = [ReferralsCoordinator referralToken];
+                           if(referralToken)
+                           {
+                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+                           }
                            successBlock();
                        }
                                 hud:hud
@@ -501,6 +507,8 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+    
+    [ReferralsCoordinator ignoreReferralUser];
     
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UIWindow* window = appDelegate.window;

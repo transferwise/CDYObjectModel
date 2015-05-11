@@ -21,6 +21,8 @@
 #define defaultRewardCurrency @"GBP"
 #define amountUpdateDeltaT -86400
 
+#define kIgnoreReferrerName @"ignore"
+
 @interface ReferralsCoordinator ()
 
 @property (nonatomic, strong) TransferwiseOperation* currentOperation;
@@ -217,4 +219,64 @@
 	self.lastRewardUpdateDate = nil;
 }
 
++(void)handleReferralParameters:(NSDictionary*)parameters
+{
+    NSString* referralToken = parameters[TRWReferralTokenKey];
+    if(referralToken)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:referralToken forKey:TRWReferralTokenKey];
+    }
+    
+    NSString* referralSource = parameters[TRWReferralSourceKey];
+    if(referralSource)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:referralSource forKey:TRWReferralSourceKey];
+    }
+    
+    
+    NSString* referrer = [parameters[TRWReferrerKey] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    if(referrer)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        NSString *existingReferrer = [defaults objectForKey:TRWReferrerKey];
+        if(![kIgnoreReferrerName isEqualToString:existingReferrer])
+        {
+            [defaults setObject:referrer forKey:TRWReferrerKey];
+        }
+    }
+    
+}
+
++(NSString*)referralUser
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString *existingReferrer = [defaults objectForKey:TRWReferrerKey];
+    if(![kIgnoreReferrerName isEqualToString:existingReferrer])
+    {
+        return existingReferrer;
+    }
+    
+    return nil;
+}
+
++(void)ignoreReferralUser
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:kIgnoreReferrerName forKey:TRWReferrerKey];
+    
+}
+
++(NSString *)referralToken
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    return[defaults objectForKey:TRWReferralTokenKey];
+}
+
++(NSString *)referralSource
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    return[defaults objectForKey:TRWReferralSourceKey];
+}
 @end

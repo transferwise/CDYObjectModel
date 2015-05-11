@@ -51,6 +51,14 @@
     [[[GAI sharedInstance] defaultTracker] send:dictionary];
 }
 
+- (void)sendScreen:(NSString *)screenName withAdditionalParameters:(NSDictionary*)additionalParameters
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"screen name"];
+    [tracker send:[[[GAIDictionaryBuilder createScreenView] setAll:additionalParameters] build]];
+    
+}
+
 - (void)sendAppEvent:(NSString *)event {
     [self sendAppEvent:event withLabel:@""];
 }

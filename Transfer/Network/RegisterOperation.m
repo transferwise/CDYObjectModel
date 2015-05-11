@@ -12,6 +12,7 @@
 #import "ObjectModel+Users.h"
 #import "Mixpanel+Customisation.h"
 #import "Constants.h"
+#import "ReferralsCoordinator.h"
 
 NSString *const kRegisterPath = @"/account/register";
 
@@ -64,13 +65,13 @@ NSString *const kRegisterPath = @"/account/register";
     }];
 
     NSMutableDictionary* parameters = [@{@"email" : self.email, @"password" : self.password} mutableCopy];
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSString* referrer = [defaults objectForKey:TRWReferralTokenKey];
+
+    NSString* referrer = [ReferralsCoordinator referralToken];
     if(referrer)
     {
         parameters[TRWReferralTokenKey] = referrer;
     }
-    NSString* source = [defaults objectForKey:TRWReferralSourceKey];
+    NSString* source = [ReferralsCoordinator referralSource];
     if(source)
     {
         parameters[TRWReferralSourceKey] = source;

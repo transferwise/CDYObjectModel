@@ -23,6 +23,7 @@
 #import "LoginViewController.h"
 #import "Mixpanel+Customisation.h"
 #import "AuthenticationHelper.h"
+#import "ReferralsCoordinator.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -132,8 +133,17 @@
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         BOOL isRegistered = [defaults boolForKey:TRWIsRegisteredSettingsKey];
         NSString *isRegisteredString = isRegistered?@"true":@"false";
-        [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
-        [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen];
+        NSString* referrer = [ReferralsCoordinator referralUser];
+        if(referrer)
+        {
+            [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen withAdditionalParameters:@{@"utm_source":@"invite"}];
+             [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString,@"utm_source":@"invite"}];
+        }
+        else
+        {
+            [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen];
+            [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
+        }
     }
     else
     {
@@ -193,8 +203,7 @@
             [intro setUpWithDictionary:self.introData[index]];
             if(index ==0 && self.requireRegistration)
             {
-                NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-                NSString* referrer = [defaults objectForKey:TRWReferrerKey];
+                NSString* referrer = [ReferralsCoordinator referralUser];
                 if(referrer)
                 {
                     intro.taglineLabel.text = [NSString stringWithFormat:NSLocalizedString(@"intro.referral.title.format", nil), [referrer uppercaseString]];

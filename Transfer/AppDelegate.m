@@ -36,6 +36,7 @@
 #import <NXOAuth2AccountStore.h>
 #import "PushNotificationsHelper.h"
 #import "Yozio.h"
+#import "ReferralsCoordinator.h"
 
 @interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
 
@@ -398,28 +399,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 
 -(void)onCallbackWithTargetViewControllerName:(NSString *)targetViewControllerName andMetaData:(NSDictionary *)metaData
 {
-    NSString* referralToken = metaData[TRWReferralTokenKey];
-    if(referralToken)
-    {
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:referralToken forKey:TRWReferralTokenKey];
-    }
-    
-    NSString* referralSource = metaData[TRWReferralSourceKey];
-    if(referralSource)
-    {
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:referralSource forKey:TRWReferralSourceKey];
-    }
-    
-    
-    NSString* referrer = [metaData[TRWReferrerKey] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-    if(referrer)
-    {
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:referrer forKey:TRWReferrerKey];
-    }
-    
+    [ReferralsCoordinator handleReferralParameters:metaData];
 }
 
 
