@@ -42,6 +42,7 @@
 #import "TouchIDHelper.h"
 #import "CustomInfoViewController.h"
 #import "PushNotificationsHelper.h"
+#import "ReferralsCoordinator.h"
 
 @interface AuthenticationHelper ()
 
@@ -501,6 +502,8 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+    
+    [ReferralsCoordinator ignoreReferralUser];
     
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UIWindow* window = appDelegate.window;

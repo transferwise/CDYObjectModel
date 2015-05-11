@@ -21,4 +21,10 @@
 - (void)presentOnController:(UIViewController *)controller;
 - (void)requestRewardStatus:(void(^)(NSError*))completionBlock;
 - (NSString*)rewardAmountString;
+
++(void)handleReferralParameters:(NSDictionary*)parameters;
++(NSString*)referralUser;
++(void)ignoreReferralUser;
++(NSString*)referralToken;
++(NSString*)referralSource;
 @end
