@@ -30,8 +30,9 @@
 
 - (BOOL)isFilled
 {
-	return [self.name hasValue] && [self.registrationNumber hasValue] && [self.addressFirstLine hasValue] && [self.postCode hasValue]
-			&& [self.city hasValue] && [self.countryCode hasValue];
+	return [self.name hasValue] && [self.registrationNumber hasValue] && [self.registrationNumber hasValue]
+	&& [self.businessDescription hasValue] && [self.companyRole hasValue] && [self.companyType hasValue]
+	&& [self.addressFirstLine hasValue] && [self.postCode hasValue] && [self.city hasValue] && [self.countryCode hasValue];
 }
 
 @end

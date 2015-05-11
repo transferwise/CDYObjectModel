@@ -400,7 +400,8 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"updateSenderProfile");
-        if ([self.objectModel.currentUser.businessProfile isFilled])
+        if (self.objectModel.currentUser.sendAsBusinessDefaultSettingValue
+			&& [self.objectModel.currentUser.businessProfile isFilled])
 		{
             [self updateBusinessProfile:completion];
         }
