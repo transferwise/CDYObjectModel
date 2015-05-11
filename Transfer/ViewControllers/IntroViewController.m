@@ -132,8 +132,17 @@
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         BOOL isRegistered = [defaults boolForKey:TRWIsRegisteredSettingsKey];
         NSString *isRegisteredString = isRegistered?@"true":@"false";
-        [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
-        [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen];
+        NSString* referrer = [defaults objectForKey:TRWReferrerKey];
+        if(referrer)
+        {
+            [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen withAdditionalParameters:@{@"utm_source":@"invite"}];
+             [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString,@"utm_source":@"invite"}];
+        }
+        else
+        {
+            [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen];
+            [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
+        }
     }
     else
     {
