@@ -51,6 +51,7 @@ extern NSString *const GAFindingusaccountalert;
 extern NSString *const GAIntroScreen;
 extern NSString *const GAIntroscreensslided;
 extern NSString *const GAInvite;
+extern NSString *const GAInvitedUserJoined;
 extern NSString *const GAInviteFriendsModal;
 extern NSString *const GAInviteviaemailinitiated;
 extern NSString *const GAInviteviaemailsent;
@@ -106,6 +107,7 @@ extern NSString *const GAViewPayment;
 extern NSString *const GAViewTransfers;
 extern NSString *const GAWhatsNewScreen;
 extern NSString *const GAWireTransfer;
+
 
 
 //Mixpanel

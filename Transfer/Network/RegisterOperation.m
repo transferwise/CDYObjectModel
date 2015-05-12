@@ -11,6 +11,8 @@
 #import "Credentials.h"
 #import "ObjectModel+Users.h"
 #import "Mixpanel+Customisation.h"
+#import "Constants.h"
+#import "ReferralsCoordinator.h"
 
 NSString *const kRegisterPath = @"/account/register";
 
@@ -62,7 +64,19 @@ NSString *const kRegisterPath = @"/account/register";
         [[Mixpanel sharedInstance] track:MPUserregistered];
     }];
 
-    [self postData:@{@"email" : self.email, @"password" : self.password} toPath:path];
+    NSMutableDictionary* parameters = [@{@"email" : self.email, @"password" : self.password} mutableCopy];
+
+    NSString* referrer = [ReferralsCoordinator referralToken];
+    if(referrer)
+    {
+        parameters[TRWReferralTokenKey] = referrer;
+    }
+    NSString* source = [ReferralsCoordinator referralSource];
+    if(source)
+    {
+        parameters[TRWReferralSourceKey] = source;
+    }
+    [self postData:parameters toPath:path];
 }
 
 + (RegisterOperation *)operationWithEmail:(NSString *)email password:(NSString *)password

@@ -23,6 +23,7 @@
 #import "AuthenticationHelper.h"
 #import "MOMStyle.h"
 #import "Mixpanel+Customisation.h"
+#import "ReferralsCoordinator.h"
 
 
 @interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate>
@@ -187,6 +188,12 @@
 
         [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserregistered withLabel:@"tw"];
         [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+        NSString *referralToken = [ReferralsCoordinator referralToken];
+        if(referralToken)
+        {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+        }
+
     }];
 
     [operation execute];

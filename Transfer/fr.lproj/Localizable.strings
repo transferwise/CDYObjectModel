@@ -779,4 +779,8 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "reset.password.header.yahoo.description.ipad" = "Nous avons retiré l'option de connexion avec Yahoo!, mais pas d'inquiètude,
 vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
 
+
+"intro.referral.title.format" = "%@\nVOUS OFFRE un\nTRANSFERT GRATUIT";
+
 "field.optional.suffix" = " (Optionnel)";
+

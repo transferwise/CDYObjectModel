@@ -50,6 +50,7 @@ NSString *const GAFindingusaccountalert = @"FindingUSaccountAlert";
 NSString *const GAIntroScreen = @"Intro screen";
 NSString *const GAIntroscreensslided = @"IntroScreensSlided";
 NSString *const GAInvite = @"Invite";
+NSString *const GAInvitedUserJoined = @"invited user joined";
 NSString *const GAInviteFriendsModal = @"Invite friends modal";
 NSString *const GAInviteviaemailinitiated = @"InviteViaEmailInitiated";
 NSString *const GAInviteviaemailsent = @"InviteViaEmailSent";

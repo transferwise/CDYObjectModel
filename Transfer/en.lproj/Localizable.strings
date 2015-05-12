@@ -793,4 +793,8 @@ We'll send you an email in order to let you choose a new password.";
 "reset.password.header.yahoo.description.ipad" = "We're discontinuing Yahoo! login, but no worries
 you can still access your account by resetting your password.";
 
+
+"intro.referral.title.format" = "%@\nGOT YOU A\nFREE TRANSFER";
+
 "field.optional.suffix" = " (Optional)";
+

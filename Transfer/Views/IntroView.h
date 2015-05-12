@@ -10,6 +10,8 @@
 
 @interface IntroView : UIView
 
+@property (nonatomic, strong) IBOutlet UILabel *taglineLabel; //Exposed in order to be able to override title.
+
 - (void)setUpWithDictionary:(NSDictionary*)dictionary;
 
 - (void)shiftCenter:(CGFloat)relativeOffset;

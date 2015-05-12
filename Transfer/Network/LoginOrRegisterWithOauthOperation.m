@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
 #import "ObjectModel+Users.h"
+#import "ReferralsCoordinator.h"
 
 NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
@@ -62,6 +63,18 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 	NSMutableDictionary *params = [NSMutableDictionary dictionary];
 	params[@"provider"] = self.provider;
 	params[@"token"] = self.token;
+    
+    NSString* referrer = [ReferralsCoordinator referralToken];
+    if(referrer)
+    {
+        params[TRWReferralTokenKey] = referrer;
+    }
+    NSString* source = [ReferralsCoordinator referralSource];
+    if(source)
+    {
+        params[TRWReferralSourceKey] = source;
+    }
+
 	
 	//Ensure no stale data is present before logging in.
 	[self.objectModel clearUserRelatedDataKeepingPendingPayment:self.keepPendingPayment];
