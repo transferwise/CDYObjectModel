@@ -72,11 +72,11 @@
     [self setObjectModel:model];
     [model removeAnonymousUser];
     [model loadBaseData];
-
-	self.notificationHelper = [PushNotificationsHelper sharedInstanceWithApplication:application
-																		 objectModel:self.objectModel];
-	[self.notificationHelper registerForPushNotifications:YES];
 	
+    
+    self.notificationHelper = [PushNotificationsHelper sharedInstanceWithApplication:application
+                                                                         objectModel:self.objectModel];
+    
     [[GoogleAnalytics sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
@@ -198,6 +198,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 #endif
 
     [[TransferwiseClient sharedClient] updateBaseData];
+    
+    [self.notificationHelper registerForPushNotifications:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
