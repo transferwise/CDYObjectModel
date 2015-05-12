@@ -227,7 +227,7 @@
                 [weakSelf logUserIn:token
                               email:email
                        successBlock:^{
-                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:provider];
+                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
                            NSString *referralToken = [ReferralsCoordinator referralToken];
                            if(referralToken)
                            {
