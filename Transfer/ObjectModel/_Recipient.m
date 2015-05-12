@@ -20,7 +20,7 @@ const struct RecipientRelationships RecipientRelationships = {
 	.fieldValues = @"fieldValues",
 	.payInMethods = @"payInMethods",
 	.payments = @"payments",
-	.refundForPayment = @"refundForPayment",
+	.refundForPayments = @"refundForPayments",
 	.type = @"type",
 	.user = @"user",
 };
@@ -154,7 +154,16 @@ const struct RecipientRelationships RecipientRelationships = {
 	return result;
 }
 
-@dynamic refundForPayment;
+@dynamic refundForPayments;
+
+- (NSMutableSet*)refundForPaymentsSet {
+	[self willAccessValueForKey:@"refundForPayments"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"refundForPayments"];
+
+	[self didAccessValueForKey:@"refundForPayments"];
+	return result;
+}
 
 @dynamic type;
 

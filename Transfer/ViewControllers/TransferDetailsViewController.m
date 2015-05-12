@@ -23,9 +23,11 @@
 #import "LoggedInPaymentFlow.h"
 #import "Currency.h"
 #import "TRWProgressHUD.h"
+#import "CustomInfoViewController+Notifications.h"
+#import "FeedbackCoordinator.h"
 
 
-@interface TransferDetailsViewController ()
+@interface TransferDetailsViewController () <TransparentModalViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet TransferDetialsHeaderView *headerView;
 @property (strong, nonatomic) IBOutlet UIImageView *statusIcon;
@@ -53,6 +55,24 @@
 	
 	[self setBackOrCloseButton];
 	[self setData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(self.promptForNotifications)
+    {
+        self.promptForNotifications = NO;
+        CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name objectModel:self.objectModel];
+        [notificationsPrompt presentOnViewController:self.navigationController?:self withPresentationStyle:TransparentPresentationFade];
+    }
+    else
+    {
+        if(self.showRateTheApp)
+        {
+            [self presentRateTheApp];
+        }
+    }
 }
 
 - (void)setBackOrCloseButton
@@ -257,6 +277,22 @@
         [weakSelf presentViewController:wrapper animated:YES completion:nil];
     }];
     
+}
+
+-(void)presentRateTheApp
+{
+    self.showRateTheApp = NO;
+    [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
+        return YES;
+    }];
+}
+
+-(void)dismissCompleted:(TransparentModalViewController *)dismissedController
+{
+    if(self.showRateTheApp)
+    {
+        [self presentRateTheApp];
+    }
 }
 
 @end

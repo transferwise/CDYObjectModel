@@ -50,6 +50,13 @@
 		38002200192F443E009B1D53 /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021FE192F443E009B1D53 /* CurrencyCell.m */; };
 		3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
 		3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
+		380125A91ADFCE69004E5CA9 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		380125AC1AE1254E004E5CA9 /* CustomInfo_TouchId.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380125AA1AE1254E004E5CA9 /* CustomInfo_TouchId.xib */; };
+		380125AD1AE1254E004E5CA9 /* CustomInfo_TouchId.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380125AA1AE1254E004E5CA9 /* CustomInfo_TouchId.xib */; };
+		380125AE1AE1254E004E5CA9 /* CustomInfo_TouchId.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380125AA1AE1254E004E5CA9 /* CustomInfo_TouchId.xib */; };
+		380125AF1AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380125AB1AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib */; };
+		380125B01AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380125AB1AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib */; };
+		380125B11AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380125AB1AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib */; };
 		380579A91A1A3520005E94DD /* TransferDevWebTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 380579A81A1A3520005E94DD /* TransferDevWebTools.m */; };
 		38057ABF1A1A5C66005E94DD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38057A251A1A5C65005E94DD /* libGoogleAnalyticsServices.a */; };
 		38057AC01A1A5C66005E94DD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38057A251A1A5C65005E94DD /* libGoogleAnalyticsServices.a */; };
@@ -59,19 +66,12 @@
 		38057AD21A1D03BF005E94DD /* AchWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */; };
 		38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
-		3811674519C1E9A800B29151 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */; };
-		3811674619C1E9A800B29151 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */; };
-		3811674719C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
-		3811674819C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
 		3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
 		3812FA3B19DAD9C1003F9904 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
 		3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3818605719C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
 		3818605819C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
-		381DC2951A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */; };
-		381DC2961A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */; };
-		381DC2971A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */; };
 		381EF8851A7908A600485C7F /* PresentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 381EF8841A7908A600485C7F /* PresentationCell.m */; };
 		381EF8861A7908A600485C7F /* PresentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 381EF8841A7908A600485C7F /* PresentationCell.m */; };
 		381EF8871A7908A600485C7F /* PresentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 381EF8841A7908A600485C7F /* PresentationCell.m */; };
@@ -104,9 +104,6 @@
 		3831DCC819B8646000151A3D /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC619B8646000151A3D /* PullToRefreshView.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
-		383D30D41A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */; };
-		383D30D51A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */; };
-		383D30D61A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */; };
 		383FC0F019AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */; };
 		383FC0F119AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */; };
 		383FC0F819AE1ABC00465FCA /* EmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */; };
@@ -214,6 +211,9 @@
 		388B1F761990E04200DF13E8 /* WhiteRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */; };
 		388B5CDF1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */; };
 		388B5CE01A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */; };
+		388B6DAC1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */; };
+		388B6DAD1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */; };
+		388B6DAE1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */; };
 		388E59CB1A5A949500AF6EB9 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
 		388E59CC1A5A949500AF6EB9 /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
 		388E59CD1A5A949500AF6EB9 /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
@@ -340,11 +340,9 @@
 		388E5A471A5A949500AF6EB9 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */; };
 		388E5A481A5A949500AF6EB9 /* RecipientTypesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */; };
 		388E5A491A5A949500AF6EB9 /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67EA198FC1C6006CF1F6 /* PersonalProfile.m */; };
-		388E5A4A1A5A949500AF6EB9 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */; };
 		388E5A4B1A5A949500AF6EB9 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */; };
 		388E5A4C1A5A949500AF6EB9 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		388E5A4D1A5A949500AF6EB9 /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
-		388E5A4E1A5A949500AF6EB9 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
 		388E5A4F1A5A949500AF6EB9 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		388E5A501A5A949500AF6EB9 /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		388E5A511A5A949500AF6EB9 /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
@@ -399,7 +397,6 @@
 		388E5A841A5A949500AF6EB9 /* _TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67BC198FC1C5006CF1F6 /* _TypeFieldValue.m */; };
 		388E5A851A5A949500AF6EB9 /* CurrencySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */; };
 		388E5A861A5A949500AF6EB9 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F6FA1A3B3F4200014F55 /* BusinessProfileCommitter.m */; };
-		388E5A871A5A949500AF6EB9 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		388E5A881A5A949500AF6EB9 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093141951FA8300315BE4 /* NameSuggestionCellProvider.m */; };
 		388E5A891A5A949500AF6EB9 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F0198FC1C6006CF1F6 /* RecipientTypeField.m */; };
 		388E5A8A1A5A949500AF6EB9 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
@@ -660,7 +657,6 @@
 		388E5B8C1A5A949500AF6EB9 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
 		388E5B8D1A5A949500AF6EB9 /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
 		388E5B8E1A5A949500AF6EB9 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
-		388E5B8F1A5A949500AF6EB9 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		388E5B901A5A949500AF6EB9 /* TransferWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */; };
 		388E5B911A5A949500AF6EB9 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
 		388E5B921A5A949500AF6EB9 /* DateEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */; };
@@ -669,7 +665,6 @@
 		388E5B951A5A949500AF6EB9 /* Styles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021D6192CC570009B1D53 /* Styles.plist */; };
 		388E5B961A5A949500AF6EB9 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		388E5B971A5A949500AF6EB9 /* BusinessProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */; };
-		388E5B981A5A949500AF6EB9 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
 		388E5B991A5A949500AF6EB9 /* TabbedHeaderViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */; };
 		388E5B9A1A5A949500AF6EB9 /* RecipientsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */; };
 		388E5B9B1A5A949500AF6EB9 /* ContactDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */; };
@@ -694,6 +689,12 @@
 		3893A1C31AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
 		3893A1C41AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
 		3893A1C51AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */; };
+		389B59A21AF2892000A0A60C /* libYozio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389B59A01AF2892000A0A60C /* libYozio.a */; };
+		389B59A31AF2892100A0A60C /* libYozio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389B59A01AF2892000A0A60C /* libYozio.a */; };
+		389B59A41AF2892100A0A60C /* libYozio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389B59A01AF2892000A0A60C /* libYozio.a */; };
+		389B59A51AF2892100A0A60C /* YozioDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 389B59A11AF2892000A0A60C /* YozioDefaults.plist */; };
+		389B59A61AF2892100A0A60C /* YozioDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 389B59A11AF2892000A0A60C /* YozioDefaults.plist */; };
+		389B59A71AF2892100A0A60C /* YozioDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 389B59A11AF2892000A0A60C /* YozioDefaults.plist */; };
 		389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
 		389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
 		389F67F9198FC1C6006CF1F6 /* _BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A0198FC1C5006CF1F6 /* _BusinessProfile.m */; };
@@ -824,9 +825,6 @@
 		38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */; };
 		38B52FA4199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
 		38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
-		38B8876E1AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */; };
-		38B8876F1AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */; };
-		38B887701AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */; };
 		38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BBE4671990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
@@ -879,10 +877,33 @@
 		38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */; };
 		38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */; };
 		38F6DE6019D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */; };
+		38FAE5221ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */; };
+		38FAE5231ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */; };
+		38FAE5241ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */; };
+		38FAE5341ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
+		38FAE5351ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
+		38FAE5361ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */; };
+		38FAE5391ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */; };
+		38FAE53A1ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */; };
+		38FAE53B1ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */; };
+		38FAE53C1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */; };
+		38FAE53D1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */; };
+		38FAE53E1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */; };
 		38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
-		38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
+		470B112D1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
+		470B112E1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
+		470B112F1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
+		470B11331ADCF39E008729E9 /* AddUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */; };
+		470B11341ADCF39E008729E9 /* AddUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */; };
+		470B11351ADCF39E008729E9 /* AddUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */; };
+		470B11381ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */; };
+		470B11391ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */; };
+		470B113A1ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */; };
+		470B113D1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */; };
+		470B113E1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */; };
+		470B113F1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */; };
 		470C131D1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */; };
 		470C131E1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */; };
 		470C13211A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C13201A12660300EEAF25 /* ObjectModel+ReferralLinks.m */; };
@@ -936,6 +957,9 @@
 		4723EA341975644A00B4345F /* RedRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA321975644A00B4345F /* RedRoundedButton.m */; };
 		4723EA3719756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
 		4723EA3819756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
+		472915341AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
+		472915351AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
+		472915361AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
 		472D5642198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
@@ -1011,14 +1035,20 @@
 		477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
 		4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
+		4777C0BE1AF7A2940042721F /* NSString+NullString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0BD1AF7A2940042721F /* NSString+NullString.m */; };
+		4777C0BF1AF7A2940042721F /* NSString+NullString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0BD1AF7A2940042721F /* NSString+NullString.m */; };
+		4777C0C01AF7A2940042721F /* NSString+NullString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0BD1AF7A2940042721F /* NSString+NullString.m */; };
+		4777C0C21AF7A3D60042721F /* NSStringNullStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C11AF7A3D60042721F /* NSStringNullStringTests.swift */; };
+		4777C0C51AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */; };
+		4777C0C61AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */; };
+		4777C0C71AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
+		478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
+		478BE9541ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
 		478C6FEA1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
 		478C6FEB1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
 		478C6FEC1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
-		478C6FEF1A8DF04700431882 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		478C6FF01A8DF04700431882 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		478C6FF11A8DF04700431882 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		478C6FF31A8DF61D00431882 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		478C6FF41A8DF61D00431882 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		478C6FF51A8DF61D00431882 /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -1110,6 +1140,12 @@
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
+		47F346D31AF896E700F780ED /* _AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D01AF896E700F780ED /* _AdditionalAttribute.m */; };
+		47F346D41AF896E700F780ED /* AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D21AF896E700F780ED /* AdditionalAttribute.m */; };
+		47F346D51AF89F5600F780ED /* AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D21AF896E700F780ED /* AdditionalAttribute.m */; };
+		47F346D61AF89F5600F780ED /* _AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D01AF896E700F780ED /* _AdditionalAttribute.m */; };
+		47F346D71AF89F6B00F780ED /* AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D21AF896E700F780ED /* AdditionalAttribute.m */; };
+		47F346D81AF89F6B00F780ED /* _AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D01AF896E700F780ED /* _AdditionalAttribute.m */; };
 		47F667681A1DD2A0003C018A /* AchFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F667671A1DD2A0003C018A /* AchFlow.m */; };
 		47F667691A1DD2A0003C018A /* AchFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F667671A1DD2A0003C018A /* AchFlow.m */; };
 		47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
@@ -1286,7 +1322,6 @@
 		EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
 		EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
-		EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		EA31A17917DDB29B00F937F7 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
 		EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
 		EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
@@ -1353,7 +1388,6 @@
 		EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */; };
 		EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
 		EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
-		EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */; };
@@ -1367,8 +1401,6 @@
 		EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = EA333F3B18A4C00000D8A44E /* PageZoom.m */; };
 		EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
 		EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
-		EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
-		EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
@@ -1380,8 +1412,6 @@
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
 		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
-		EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
-		EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
 		EA677B45189B855200505139 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
 		EA677B46189B855200505139 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
@@ -1552,6 +1582,8 @@
 		380021FD192F443E009B1D53 /* CurrencyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCell.h; sourceTree = "<group>"; };
 		380021FE192F443E009B1D53 /* CurrencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCell.m; sourceTree = "<group>"; };
 		3800220B192F5774009B1D53 /* CurrencyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
+		380125AA1AE1254E004E5CA9 /* CustomInfo_TouchId.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfo_TouchId.xib; sourceTree = "<group>"; };
+		380125AB1AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfo_TouchId~ipad.xib"; sourceTree = "<group>"; };
 		380579A71A1A3520005E94DD /* TransferDevWebTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDevWebTools.h; sourceTree = "<group>"; };
 		380579A81A1A3520005E94DD /* TransferDevWebTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDevWebTools.m; sourceTree = "<group>"; };
 		380579D81A1A5C65005E94DD /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
@@ -1574,16 +1606,12 @@
 		38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchWaitingViewController.m; sourceTree = "<group>"; };
 		38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchWaitingViewController.xib; sourceTree = "<group>"; };
 		38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeader~ipad.xib"; sourceTree = "<group>"; };
-		3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdPromptViewController.h; sourceTree = "<group>"; };
-		3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdPromptViewController.m; sourceTree = "<group>"; };
-		3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouchIdPromptViewController.xib; sourceTree = "<group>"; };
 		3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfirmPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3818605519C9A206009A413E /* SetSSNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSSNOperation.h; sourceTree = "<group>"; };
 		3818605619C9A206009A413E /* SetSSNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSSNOperation.m; sourceTree = "<group>"; };
 		3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v4.xcdatamodel; sourceTree = "<group>"; };
 		381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v7.xcdatamodel; sourceTree = "<group>"; };
-		381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TouchIdPromptViewController~ipad.xib"; sourceTree = "<group>"; };
 		381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v9.xcdatamodel; sourceTree = "<group>"; };
 		381EF8831A7908A600485C7F /* PresentationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentationCell.h; sourceTree = "<group>"; };
 		381EF8841A7908A600485C7F /* PresentationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentationCell.m; sourceTree = "<group>"; };
@@ -1600,15 +1628,12 @@
 		38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodViewControllerFactory.m; sourceTree = "<group>"; };
 		382C134A1ADBE76A00370F39 /* AnalyticsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsConstants.h; sourceTree = "<group>"; };
 		382C134B1ADBE76A00370F39 /* AnalyticsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsConstants.m; sourceTree = "<group>"; };
-		382C134F1ADD1D7A00370F39 /* Transfer_v10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v10.xcdatamodel; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831DCC319B764B900151A3D /* existingUserIntro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = existingUserIntro.plist; sourceTree = "<group>"; };
 		3831DCC619B8646000151A3D /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshView.xib; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
-		383D30D21A60039500171189 /* CustomInfoViewController+NoPayInMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+NoPayInMethods.h"; sourceTree = "<group>"; };
-		383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+NoPayInMethods.m"; sourceTree = "<group>"; };
 		383FC0EE19AE1A1A00465FCA /* StateSuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateSuggestionCellProvider.h; sourceTree = "<group>"; };
 		383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateSuggestionCellProvider.m; sourceTree = "<group>"; };
 		383FC0F219AE1ABC00465FCA /* EmailLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailLookupWrapper.h; sourceTree = "<group>"; };
@@ -1686,6 +1711,8 @@
 		388B1F731990E04200DF13E8 /* WhiteRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteRoundedButton.h; sourceTree = "<group>"; };
 		388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteRoundedButton.m; sourceTree = "<group>"; };
 		388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AchDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
+		388B6DAA1AEE5B8F001A14B5 /* UITextField+CustomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+CustomDelegate.h"; sourceTree = "<group>"; };
+		388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CustomDelegate.m"; sourceTree = "<group>"; };
 		388E5BAF1A5A949500AF6EB9 /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388E5BB01A5A949600AF6EB9 /* TransferDev-cal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TransferDev-cal-Info.plist"; path = "/Users/matstrovik/Documents/iOSDev/github/transferwise-ios/TransferDev-cal-Info.plist"; sourceTree = "<absolute>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
@@ -1694,6 +1721,11 @@
 		388F09FE1936434A00DBD93D /* InsetRespectingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsetRespectingButton.m; path = Views/InsetRespectingButton.m; sourceTree = "<group>"; };
 		3893A1C11AB04C7E004D0560 /* PendingPayment+ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PendingPayment+ColoredButton.h"; sourceTree = "<group>"; };
 		3893A1C21AB04C7E004D0560 /* PendingPayment+ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PendingPayment+ColoredButton.m"; sourceTree = "<group>"; };
+		389B599D1AF2892000A0A60C /* AcceptsYozioMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptsYozioMetaData.h; sourceTree = "<group>"; };
+		389B599E1AF2892000A0A60C /* Yozio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yozio.h; sourceTree = "<group>"; };
+		389B599F1AF2892000A0A60C /* YozioMetaDataCallbackable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YozioMetaDataCallbackable.h; sourceTree = "<group>"; };
+		389B59A01AF2892000A0A60C /* libYozio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYozio.a; sourceTree = "<group>"; };
+		389B59A11AF2892000A0A60C /* YozioDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YozioDefaults.plist; sourceTree = "<group>"; };
 		389F679D198FC1C5006CF1F6 /* _AllowedTypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AllowedTypeFieldValue.h; sourceTree = "<group>"; };
 		389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AllowedTypeFieldValue.m; sourceTree = "<group>"; };
 		389F679F198FC1C5006CF1F6 /* _BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BusinessProfile.h; sourceTree = "<group>"; };
@@ -1818,8 +1850,6 @@
 		38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationsViewController.xib; sourceTree = "<group>"; };
 		38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationProgressIndicatorView.h; sourceTree = "<group>"; };
 		38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationProgressIndicatorView.m; sourceTree = "<group>"; };
-		38B8876C1AEA4AED0079C9BD /* UITextField+CustomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+CustomDelegate.h"; sourceTree = "<group>"; };
-		38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CustomDelegate.m"; sourceTree = "<group>"; };
 		38BBE4651990F43500A14B9F /* IntroView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroView~ipad.xib"; sourceTree = "<group>"; };
 		38BCE11619B8C8EF0003D0EE /* TransferDev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransferDev.plist; sourceTree = SOURCE_ROOT; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
@@ -1861,11 +1891,26 @@
 		38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldSuggestionTable.xib; sourceTree = "<group>"; };
 		38F6DE5D19D2DF5A00C5B4B5 /* RecipientUpdateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientUpdateOperation.h; sourceTree = "<group>"; };
 		38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientUpdateOperation.m; sourceTree = "<group>"; };
+		38FAE5201ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+NoPayInMethods.h"; sourceTree = "<group>"; };
+		38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+NoPayInMethods.m"; sourceTree = "<group>"; };
+		38FAE5321ADE569E006CD53C /* CustomInfoViewController+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+Notifications.h"; sourceTree = "<group>"; };
+		38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+Notifications.m"; sourceTree = "<group>"; };
+		38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfo_Notifications.xib; sourceTree = "<group>"; };
+		38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfo_Notifications~ipad.xib"; sourceTree = "<group>"; };
 		38FC0B9419EE84E000173E07 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		38FC0B9519EE84E000173E07 /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
 		38FC0B9619EE84E000173E07 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
 		38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Customisation.h"; sourceTree = "<group>"; };
 		38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Customisation.m"; sourceTree = "<group>"; };
+		470B112B1ADBB682008729E9 /* PushNotificationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationsHelper.h; sourceTree = "<group>"; };
+		470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationsHelper.m; sourceTree = "<group>"; };
+		470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v10.xcdatamodel; sourceTree = "<group>"; };
+		470B11311ADCF39E008729E9 /* AddUserDeviceOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUserDeviceOperation.h; sourceTree = "<group>"; };
+		470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUserDeviceOperation.m; sourceTree = "<group>"; };
+		470B11361ADCF3B3008729E9 /* RemoveUserDeviceOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveUserDeviceOperation.h; sourceTree = "<group>"; };
+		470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveUserDeviceOperation.m; sourceTree = "<group>"; };
+		470B113B1ADCF3CA008729E9 /* UpdateUserDeviceOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUserDeviceOperation.h; sourceTree = "<group>"; };
+		470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateUserDeviceOperation.m; sourceTree = "<group>"; };
 		470C131B1A12598300EEAF25 /* ReferralLinksOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLinksOperation.h; sourceTree = "<group>"; };
 		470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLinksOperation.m; sourceTree = "<group>"; };
 		470C131F1A12660300EEAF25 /* ObjectModel+ReferralLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+ReferralLinks.h"; sourceTree = "<group>"; };
@@ -1908,6 +1953,8 @@
 		4723EA321975644A00B4345F /* RedRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedRoundedButton.m; path = Views/RedRoundedButton.m; sourceTree = "<group>"; };
 		4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundedButtonWithInsets.h; path = Views/RoundedButtonWithInsets.h; sourceTree = "<group>"; };
 		4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundedButtonWithInsets.m; path = Views/RoundedButtonWithInsets.m; sourceTree = "<group>"; };
+		472915321AE549EA00301260 /* PushNotificationDispather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationDispather.h; sourceTree = "<group>"; };
+		472915331AE549EA00301260 /* PushNotificationDispather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationDispather.m; sourceTree = "<group>"; };
 		472D5640198FE98500257BB8 /* PersonalPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPaymentProfileViewController.h; sourceTree = "<group>"; };
 		472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPaymentProfileViewController.m; sourceTree = "<group>"; };
 		472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPaymentProfileViewController.h; sourceTree = "<group>"; };
@@ -1978,7 +2025,15 @@
 		477319F21A1B62BB00660770 /* AchDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchDetailsViewController.xib; sourceTree = "<group>"; };
 		4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Presentation.h"; sourceTree = "<group>"; };
 		4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Presentation.m"; sourceTree = "<group>"; };
+		4777C0BB1AF791450042721F /* Transfer_v12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v12.xcdatamodel; sourceTree = "<group>"; };
+		4777C0BC1AF7A2940042721F /* NSString+NullString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NullString.h"; sourceTree = "<group>"; };
+		4777C0BD1AF7A2940042721F /* NSString+NullString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NullString.m"; sourceTree = "<group>"; };
+		4777C0C11AF7A3D60042721F /* NSStringNullStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNullStringTests.swift; sourceTree = "<group>"; };
+		4777C0C31AF88B7D0042721F /* CompanyAttributesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyAttributesOperation.h; sourceTree = "<group>"; };
+		4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyAttributesOperation.m; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
+		478BE9501ADF9A7F00B8999D /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HexString.h"; sourceTree = "<group>"; };
+		478BE9511ADF9A7F00B8999D /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HexString.m"; sourceTree = "<group>"; };
 		478C6FE81A8CC71500431882 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
 		478C6FE91A8CC71500431882 /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
 		478C6FF61A8E2C0600431882 /* CurrencyLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyLoader.h; sourceTree = "<group>"; };
@@ -2060,8 +2115,13 @@
 		47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoViewControllerDelegateHelper.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
+		47DC5EFA1AEE3E9F00C6FA50 /* Transfer_v11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v11.xcdatamodel; sourceTree = "<group>"; };
 		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47DC89841A03950F0042054B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47F346CF1AF896E700F780ED /* _AdditionalAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AdditionalAttribute.h; sourceTree = "<group>"; };
+		47F346D01AF896E700F780ED /* _AdditionalAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AdditionalAttribute.m; sourceTree = "<group>"; };
+		47F346D11AF896E700F780ED /* AdditionalAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalAttribute.h; sourceTree = "<group>"; };
+		47F346D21AF896E700F780ED /* AdditionalAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalAttribute.m; sourceTree = "<group>"; };
 		47F667661A1DD2A0003C018A /* AchFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchFlow.h; sourceTree = "<group>"; };
 		47F667671A1DD2A0003C018A /* AchFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchFlow.m; sourceTree = "<group>"; };
 		47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySuggestionCellProvider.h; sourceTree = "<group>"; };
@@ -2189,8 +2249,6 @@
 		EA333F3718A4BEDC00D8A44E /* page_zoom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_zoom.json; sourceTree = "<group>"; };
 		EA333F3A18A4C00000D8A44E /* PageZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageZoom.h; sourceTree = "<group>"; };
 		EA333F3B18A4C00000D8A44E /* PageZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageZoom.m; sourceTree = "<group>"; };
-		EA347746180D694F00104417 /* ConfigurationOptionsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationOptionsOperation.h; sourceTree = "<group>"; };
-		EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationOptionsOperation.m; sourceTree = "<group>"; };
 		EA35C76A1732790D005602F7 /* PaymentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsOperation.h; sourceTree = "<group>"; };
 		EA35C76B1732790D005602F7 /* PaymentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsOperation.m; sourceTree = "<group>"; };
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
@@ -2210,9 +2268,6 @@
 		EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadVerificationFileOperation.m; sourceTree = "<group>"; };
 		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
 		EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailCheckOperation.m; sourceTree = "<group>"; };
-		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
-		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
-		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
 		EA61557417A69A5A008B6C79 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		EA677B43189B855200505139 /* StartPaymentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartPaymentButton.h; path = Views/StartPaymentButton.h; sourceTree = "<group>"; };
 		EA677B44189B855200505139 /* StartPaymentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartPaymentButton.m; path = Views/StartPaymentButton.m; sourceTree = "<group>"; };
@@ -2402,6 +2457,7 @@
 				388E5B051A5A949500AF6EB9 /* libz.dylib in Frameworks */,
 				388E5B061A5A949500AF6EB9 /* Security.framework in Frameworks */,
 				388E5B071A5A949500AF6EB9 /* MobileCoreServices.framework in Frameworks */,
+				389B59A41AF2892100A0A60C /* libYozio.a in Frameworks */,
 				388E5B081A5A949500AF6EB9 /* libEventTracker.a in Frameworks */,
 				388E5B091A5A949500AF6EB9 /* SystemConfiguration.framework in Frameworks */,
 				388E5B0A1A5A949500AF6EB9 /* UIKit.framework in Frameworks */,
@@ -2434,10 +2490,11 @@
 				EA31A1C017DDB29B00F937F7 /* AddressBookUI.framework in Frameworks */,
 				EA31A1C117DDB29B00F937F7 /* CoreText.framework in Frameworks */,
 				EA31A1C217DDB29B00F937F7 /* libz.dylib in Frameworks */,
+				389B59A31AF2892100A0A60C /* libYozio.a in Frameworks */,
 				EA31A1C317DDB29B00F937F7 /* Security.framework in Frameworks */,
 				EA31A1C417DDB29B00F937F7 /* MobileCoreServices.framework in Frameworks */,
-				38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */,
 				EA31A1C517DDB29B00F937F7 /* SystemConfiguration.framework in Frameworks */,
+				380125A91ADFCE69004E5CA9 /* libEventTracker.a in Frameworks */,
 				EA31A1C617DDB29B00F937F7 /* UIKit.framework in Frameworks */,
 				EA31A1C717DDB29B00F937F7 /* Foundation.framework in Frameworks */,
 				EA31A1C817DDB29B00F937F7 /* CoreGraphics.framework in Frameworks */,
@@ -2461,6 +2518,7 @@
 				EAEA626117202D6100A96770 /* libz.dylib in Frameworks */,
 				EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */,
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
+				389B59A21AF2892000A0A60C /* libYozio.a in Frameworks */,
 				EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */,
 				EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */,
 				38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */,
@@ -2652,11 +2710,33 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		389B599B1AF2892000A0A60C /* Yozio */ = {
+			isa = PBXGroup;
+			children = (
+				389B599C1AF2892000A0A60C /* headers */,
+				389B59A01AF2892000A0A60C /* libYozio.a */,
+				389B59A11AF2892000A0A60C /* YozioDefaults.plist */,
+			);
+			path = Yozio;
+			sourceTree = "<group>";
+		};
+		389B599C1AF2892000A0A60C /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				389B599D1AF2892000A0A60C /* AcceptsYozioMetaData.h */,
+				389B599E1AF2892000A0A60C /* Yozio.h */,
+				389B599F1AF2892000A0A60C /* YozioMetaDataCallbackable.h */,
+			);
+			path = headers;
+			sourceTree = "<group>";
+		};
 		389F679C198FC1C5006CF1F6 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
 				47C4D0401A232AC1005EC7C6 /* AchBank.h */,
 				47C4D0411A232AC1005EC7C6 /* AchBank.m */,
+				47F346D11AF896E700F780ED /* AdditionalAttribute.h */,
+				47F346D21AF896E700F780ED /* AdditionalAttribute.m */,
 				47C4D0421A232AC1005EC7C6 /* FieldGroup.h */,
 				47C4D0431A232AC1005EC7C6 /* FieldGroup.m */,
 				38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */,
@@ -2735,6 +2815,8 @@
 		389F6851198FC1D0006CF1F6 /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				47F346CF1AF896E700F780ED /* _AdditionalAttribute.h */,
+				47F346D01AF896E700F780ED /* _AdditionalAttribute.m */,
 				4740A77E1A8B9A1F0044F0CD /* _MfaField.h */,
 				4740A77F1A8B9A1F0044F0CD /* _MfaField.m */,
 				47C4D0381A232A9F005EC7C6 /* _AchBank.h */,
@@ -2883,6 +2965,7 @@
 			children = (
 				474206FC1A5A660300DF6477 /* NSStringValidationTests.swift */,
 				47C1F7561A44448D00014F55 /* NSObjectNSNullTests.swift */,
+				4777C0C11AF7A3D60042721F /* NSStringNullStringTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3141,6 +3224,8 @@
 				4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */,
 				EA225CA1178EB591009D6B83 /* NSDate+ServerTime.h */,
 				EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */,
+				478BE9501ADF9A7F00B8999D /* NSData+HexString.h */,
+				478BE9511ADF9A7F00B8999D /* NSData+HexString.m */,
 				EA225C83178EB21C009D6B83 /* NSDictionary+Cleanup.h */,
 				EA225C84178EB21C009D6B83 /* NSDictionary+Cleanup.m */,
 				EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */,
@@ -3151,12 +3236,14 @@
 				EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */,
 				EA8FF683171D1A320090A658 /* NSMutableString+Issues.h */,
 				EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */,
+				47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */,
+				47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */,
+				4777C0BC1AF7A2940042721F /* NSString+NullString.h */,
+				4777C0BD1AF7A2940042721F /* NSString+NullString.m */,
 				EAA6AD0517A91A95006A347D /* NSString+Presentation.h */,
 				EAA6AD0617A91A95006A347D /* NSString+Presentation.m */,
 				EA8FF680171D19B50090A658 /* NSString+Validation.h */,
 				EA8FF681171D19B50090A658 /* NSString+Validation.m */,
-				47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */,
-				47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */,
 				47C1F7511A443F1500014F55 /* NSObject+NSNull.h */,
 				47C1F7521A443F1500014F55 /* NSObject+NSNull.m */,
 				EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */,
@@ -3171,6 +3258,10 @@
 				EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */,
 				BB9A2E81176B711400C5E058 /* UITableView+FooterPositioning.h */,
 				BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */,
+				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
+				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
+				388B6DAA1AEE5B8F001A14B5 /* UITextField+CustomDelegate.h */,
+				388B6DAB1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m */,
 				EA88E678172F97C40021492C /* UIView+Container.h */,
 				EA88E679172F97C40021492C /* UIView+Container.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
@@ -3189,12 +3280,12 @@
 				476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */,
 				47126B5319C2DCD40049F4C5 /* UIView+InheritantOf.h */,
 				47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */,
-				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
-				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
-				383D30D21A60039500171189 /* CustomInfoViewController+NoPayInMethods.h */,
-				383D30D31A60039500171189 /* CustomInfoViewController+NoPayInMethods.m */,
-				38B8876C1AEA4AED0079C9BD /* UITextField+CustomDelegate.h */,
-				38B8876D1AEA4AED0079C9BD /* UITextField+CustomDelegate.m */,
+				38FAE5201ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.h */,
+				38FAE5211ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m */,
+				38FAE5321ADE569E006CD53C /* CustomInfoViewController+Notifications.h */,
+				38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */,
+				38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */,
+				38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3268,6 +3359,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				389B599B1AF2892000A0A60C /* Yozio */,
 				380579AA1A1A5C65005E94DD /* GoogleAnalyticsServicesiOS_3.10 */,
 				38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
@@ -3288,8 +3380,8 @@
 				EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */,
 				EAB93B461761C74700A7337C /* ClaimAccountOperation.h */,
 				EAB93B471761C74700A7337C /* ClaimAccountOperation.m */,
-				EA347746180D694F00104417 /* ConfigurationOptionsOperation.h */,
-				EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */,
+				4777C0C31AF88B7D0042721F /* CompanyAttributesOperation.h */,
+				4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EAAF8FAE17436730008DF9E2 /* CreatePaymentOperation.h */,
@@ -3359,6 +3451,12 @@
 				47B386491A1CDC9A00478402 /* VerificationFormOperation.m */,
 				471DAA7B1A276DD00077E341 /* VerifyFormOperation.h */,
 				471DAA7C1A276DD00077E341 /* VerifyFormOperation.m */,
+				470B11311ADCF39E008729E9 /* AddUserDeviceOperation.h */,
+				470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */,
+				470B11361ADCF3B3008729E9 /* RemoveUserDeviceOperation.h */,
+				470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */,
+				470B113B1ADCF3CA008729E9 /* UpdateUserDeviceOperation.h */,
+				470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -3519,6 +3617,8 @@
 				47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */,
 				3876768C19BF4914007B0EE5 /* CustomInfoViewController.h */,
 				3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */,
+				380125AA1AE1254E004E5CA9 /* CustomInfo_TouchId.xib */,
+				380125AB1AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib */,
 				3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */,
 				3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */,
 				38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */,
@@ -3555,9 +3655,6 @@
 				471DBFEB1ACD40E100DC133C /* OAuthViewController.h */,
 				471DBFEC1ACD40E100DC133C /* OAuthViewController.m */,
 				471DBFED1ACD40E100DC133C /* OAuthViewController.xib */,
-				EA59298B1758CD6C007C0072 /* OpenIDViewController.h */,
-				EA59298C1758CD6C007C0072 /* OpenIDViewController.m */,
-				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
 				3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */,
 				3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */,
 				38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */,
@@ -3609,10 +3706,6 @@
 				38E57F76192A51DD00D864A2 /* TabViewController.m */,
 				38E57F77192A51DD00D864A2 /* TabViewController.xib */,
 				380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */,
-				3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */,
-				3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */,
-				3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */,
-				381DC2941A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib */,
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
@@ -3655,6 +3748,8 @@
 				3887CBBD1976AF2B004DFFFD /* CancelHelper.m */,
 				47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */,
 				47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */,
+				478C6FF61A8E2C0600431882 /* CurrencyLoader.h */,
+				478C6FF71A8E2C0600431882 /* CurrencyLoader.m */,
 				47C4D0561A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.h */,
 				47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */,
 				478C6FE81A8CC71500431882 /* LocationHelper.h */,
@@ -3681,6 +3776,10 @@
 				383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
+				472915321AE549EA00301260 /* PushNotificationDispather.h */,
+				472915331AE549EA00301260 /* PushNotificationDispather.m */,
+				470B112B1ADBB682008729E9 /* PushNotificationsHelper.h */,
+				470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */,
 				47334E811A37121A004C19F7 /* TargetCountryProvider.h */,
 				47334E821A37121A004C19F7 /* TargetCountryProvider.m */,
 				380579A71A1A3520005E94DD /* TransferDevWebTools.h */,
@@ -3689,8 +3788,6 @@
 				38504B0819C1E83700276203 /* TouchIDHelper.m */,
 				47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */,
 				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
-				478C6FF61A8E2C0600431882 /* CurrencyLoader.h */,
-				478C6FF71A8E2C0600431882 /* CurrencyLoader.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3821,9 +3918,19 @@
 					};
 					EA31A12117DDB29B00F937F7 = {
 						DevelopmentTeam = W53MTDV45J;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					EAAA1467171BC911005B9430 = {
 						DevelopmentTeam = W53MTDV45J;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -3874,6 +3981,7 @@
 				388E5B251A5A949500AF6EB9 /* MainViewController.xib in Resources */,
 				388E5B261A5A949500AF6EB9 /* spinner.html in Resources */,
 				388E5B271A5A949500AF6EB9 /* SettingsViewController~ipad.xib in Resources */,
+				380125AE1AE1254E004E5CA9 /* CustomInfo_TouchId.xib in Resources */,
 				388E5B281A5A949500AF6EB9 /* TransactionsViewController.xib in Resources */,
 				388E5B291A5A949500AF6EB9 /* RefundDetailsViewController.xib in Resources */,
 				388E5B2A1A5A949500AF6EB9 /* ValidationCell.xib in Resources */,
@@ -3882,6 +3990,7 @@
 				388E5B2D1A5A949500AF6EB9 /* NewPaymentViewController.xib in Resources */,
 				388E5B2E1A5A949500AF6EB9 /* MoneyEntryCell.xib in Resources */,
 				388E5B2F1A5A949500AF6EB9 /* SwitchCell~ipad.xib in Resources */,
+				389B59A71AF2892100A0A60C /* YozioDefaults.plist in Resources */,
 				388E5B301A5A949500AF6EB9 /* LoginViewController.xib in Resources */,
 				388E5B311A5A949500AF6EB9 /* DoublePasswordEntryCell.xib in Resources */,
 				388E5B321A5A949500AF6EB9 /* TabViewController~ipad.xib in Resources */,
@@ -3918,6 +4027,7 @@
 				388E5B4F1A5A949500AF6EB9 /* NoRefCurrencyMessages.plist in Resources */,
 				388E5B501A5A949500AF6EB9 /* ContactsViewController~ipad.xib in Resources */,
 				388E5B511A5A949500AF6EB9 /* TSAlertViewCancelButtonBackground.png in Resources */,
+				380125B11AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */,
 				388E5B521A5A949500AF6EB9 /* SeeHowViewController.xib in Resources */,
 				388E5B531A5A949500AF6EB9 /* IntroViewController.xib in Resources */,
 				388E5B541A5A949500AF6EB9 /* CurrencyCell.xib in Resources */,
@@ -3935,9 +4045,9 @@
 				388E5B5F1A5A949500AF6EB9 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				388E5B601A5A949500AF6EB9 /* DropdownCell~ipad.xib in Resources */,
 				388E5B611A5A949500AF6EB9 /* TSAlertViewBackground2.png in Resources */,
-				381DC2971A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */,
 				388E5B621A5A949500AF6EB9 /* TSAlertViewBackground.png in Resources */,
 				388E5B631A5A949500AF6EB9 /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
+				38FAE53B1ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */,
 				388E5B641A5A949500AF6EB9 /* TransferTypeSelectionHeader.xib in Resources */,
 				388E5B651A5A949500AF6EB9 /* LoginViewController~ipad.xib in Resources */,
 				388E5B661A5A949500AF6EB9 /* SignUpViewController~ipad.xib in Resources */,
@@ -3945,6 +4055,7 @@
 				388E5B681A5A949500AF6EB9 /* InvitationsViewController.xib in Resources */,
 				388E5B691A5A949500AF6EB9 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				388E5B6A1A5A949500AF6EB9 /* PaymentMethodCell.xib in Resources */,
+				38FAE53E1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */,
 				388E5B6B1A5A949500AF6EB9 /* ResetPasswordViewController.xib in Resources */,
 				388E5B6C1A5A949500AF6EB9 /* DateEntryCell.xib in Resources */,
 				388E5B6D1A5A949500AF6EB9 /* AchDetailsViewController~ipad.xib in Resources */,
@@ -3980,7 +4091,6 @@
 				388E5B8C1A5A949500AF6EB9 /* DoubleEntryCell~ipad.xib in Resources */,
 				388E5B8D1A5A949500AF6EB9 /* existingUserIntro.plist in Resources */,
 				388E5B8E1A5A949500AF6EB9 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
-				388E5B8F1A5A949500AF6EB9 /* OpenIDViewController.xib in Resources */,
 				388E5B901A5A949500AF6EB9 /* TransferWaitingViewController~ipad.xib in Resources */,
 				388E5B911A5A949500AF6EB9 /* intro.plist in Resources */,
 				388E5B921A5A949500AF6EB9 /* DateEntryCell~ipad.xib in Resources */,
@@ -3990,7 +4100,6 @@
 				478C6FF51A8DF61D00431882 /* (null) in Resources */,
 				388E5B961A5A949500AF6EB9 /* ProfileEditViewController.xib in Resources */,
 				388E5B971A5A949500AF6EB9 /* BusinessProfileIdentificationViewController.xib in Resources */,
-				388E5B981A5A949500AF6EB9 /* TouchIdPromptViewController.xib in Resources */,
 				388E5B991A5A949500AF6EB9 /* TabbedHeaderViewController~ipad.xib in Resources */,
 				388E5B9A1A5A949500AF6EB9 /* RecipientsFooterView.xib in Resources */,
 				388E5B9B1A5A949500AF6EB9 /* ContactDetailsViewController~ipad.xib in Resources */,
@@ -4042,6 +4151,7 @@
 				EA31A1D217DDB29B00F937F7 /* MainViewController.xib in Resources */,
 				EA84056A17F0A40B00F44916 /* spinner.html in Resources */,
 				3840862B19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
+				380125AD1AE1254E004E5CA9 /* CustomInfo_TouchId.xib in Resources */,
 				EA31A1D317DDB29B00F937F7 /* TransactionsViewController.xib in Resources */,
 				EA0523FA191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				38B52F9A199B622D00B6AEBD /* ValidationCell.xib in Resources */,
@@ -4050,6 +4160,7 @@
 				EA31A1D617DDB29B00F937F7 /* NewPaymentViewController.xib in Resources */,
 				EA31A1D717DDB29B00F937F7 /* MoneyEntryCell.xib in Resources */,
 				478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */,
+				389B59A61AF2892100A0A60C /* YozioDefaults.plist in Resources */,
 				47233CD9196D457300449042 /* LoginViewController.xib in Resources */,
 				47535CB21981362600DC39D6 /* DoublePasswordEntryCell.xib in Resources */,
 				380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */,
@@ -4086,6 +4197,7 @@
 				385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */,
 				385A668E1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
+				380125B01AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */,
 				383FC10D19AE1B8400465FCA /* SeeHowViewController.xib in Resources */,
 				EA0450D717EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */,
@@ -4103,9 +4215,9 @@
 				38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
-				381DC2961A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
+				38FAE53A1ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
@@ -4113,6 +4225,7 @@
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				3863B82519E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
+				38FAE53D1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
 				388B5CE01A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */,
@@ -4148,7 +4261,6 @@
 				47971C6B199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
 				3831DCC519B764B900151A3D /* existingUserIntro.plist in Resources */,
 				38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
-				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				385AC117198FE5500088DCD6 /* intro.plist in Resources */,
 				47971C62199A3C1C0018FDA8 /* DateEntryCell~ipad.xib in Resources */,
@@ -4158,7 +4270,6 @@
 				478C6FF41A8DF61D00431882 /* (null) in Resources */,
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
 				EA0450CC17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
-				3811674819C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */,
 				471CA00A197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib in Resources */,
 				47343AD21977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */,
 				385669191981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */,
@@ -4203,6 +4314,7 @@
 				EAD3968B171BD82300F6D011 /* NewPaymentViewController.xib in Resources */,
 				3840862D19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */,
 				EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */,
+				380125AC1AE1254E004E5CA9 /* CustomInfo_TouchId.xib in Resources */,
 				380021AA192B91A9009B1D53 /* TabViewController~ipad.xib in Resources */,
 				EA0450DD17EC64E4008921DA /* IntroView.xib in Resources */,
 				383FC10C19AE1B8400465FCA /* SeeHowViewController.xib in Resources */,
@@ -4211,6 +4323,7 @@
 				EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */,
 				385AC116198FE5500088DCD6 /* intro.plist in Resources */,
 				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
+				389B59A51AF2892100A0A60C /* YozioDefaults.plist in Resources */,
 				47233CD8196D457300449042 /* LoginViewController.xib in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */,
@@ -4247,6 +4360,7 @@
 				38B0930B1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
 				47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
+				380125AF1AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */,
 				385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
@@ -4264,9 +4378,9 @@
 				38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
-				381DC2951A6E6BA1008F74B9 /* TouchIdPromptViewController~ipad.xib in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
+				38FAE5391ADE634B006CD53C /* CustomInfo_Notifications.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 				38B093111951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
@@ -4274,6 +4388,7 @@
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
 				3863B82419E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
+				38FAE53C1ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				388B5CDF1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */,
@@ -4313,13 +4428,11 @@
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				38B52FA0199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
-				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				4723EA201974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */,
 				478C6FF31A8DF61D00431882 /* (null) in Resources */,
 				3840D34619A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
-				3811674719C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */,
 				380021D7192CC570009B1D53 /* Styles.plist in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
 				EA0450CB17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
@@ -4577,6 +4690,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47F346D71AF89F6B00F780ED /* AdditionalAttribute.m in Sources */,
+				47F346D81AF89F6B00F780ED /* _AdditionalAttribute.m in Sources */,
 				388E59CB1A5A949500AF6EB9 /* InsetRespectingButton.m in Sources */,
 				388E59CC1A5A949500AF6EB9 /* TransferDetialsHeaderView.m in Sources */,
 				388E59CD1A5A949500AF6EB9 /* TransferDetailsViewController.m in Sources */,
@@ -4655,6 +4770,7 @@
 				388E5A121A5A949500AF6EB9 /* TouchIDHelper.m in Sources */,
 				388E5A131A5A949500AF6EB9 /* MoneyCalculator.m in Sources */,
 				388E5A141A5A949500AF6EB9 /* BusinessPaymentProfileViewController.m in Sources */,
+				38FAE5361ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */,
 				388E5A151A5A949500AF6EB9 /* TransferCalculationsOperation.m in Sources */,
 				388E5A161A5A949500AF6EB9 /* MOMBaseStyle.m in Sources */,
 				388E5A171A5A949500AF6EB9 /* CalculationResult.m in Sources */,
@@ -4672,7 +4788,6 @@
 				388E5A231A5A949500AF6EB9 /* Credentials.m in Sources */,
 				388E5A241A5A949500AF6EB9 /* CustomInfoViewController.m in Sources */,
 				388E5A251A5A949500AF6EB9 /* DataEntryViewController.m in Sources */,
-				38B887701AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */,
 				478C6FEC1A8CC71500431882 /* LocationHelper.m in Sources */,
 				388E5A261A5A949500AF6EB9 /* PersonalProfileViewController.m in Sources */,
 				388E5A271A5A949500AF6EB9 /* _Country.m in Sources */,
@@ -4698,6 +4813,7 @@
 				388E5A3B1A5A949500AF6EB9 /* PaymentsOperation.m in Sources */,
 				388E5A3C1A5A949500AF6EB9 /* TransferTypeSelectionHeader.m in Sources */,
 				388E5A3D1A5A949500AF6EB9 /* PaymentCell.m in Sources */,
+				470B11351ADCF39E008729E9 /* AddUserDeviceOperation.m in Sources */,
 				388E5A3E1A5A949500AF6EB9 /* StyledPlaceholderTextField.m in Sources */,
 				388E5A3F1A5A949500AF6EB9 /* TypeFieldHelper.m in Sources */,
 				388E5A401A5A949500AF6EB9 /* CurrencyPairsOperation.m in Sources */,
@@ -4710,11 +4826,9 @@
 				388E5A471A5A949500AF6EB9 /* TransferwiseClient.m in Sources */,
 				388E5A481A5A949500AF6EB9 /* RecipientTypesOperation.m in Sources */,
 				388E5A491A5A949500AF6EB9 /* PersonalProfile.m in Sources */,
-				388E5A4A1A5A949500AF6EB9 /* TouchIdPromptViewController.m in Sources */,
 				388E5A4B1A5A949500AF6EB9 /* UIResponder+FirstResponder.m in Sources */,
 				388E5A4C1A5A949500AF6EB9 /* CurrencySelectionCell.m in Sources */,
 				388E5A4D1A5A949500AF6EB9 /* RecipientFieldCell.m in Sources */,
-				388E5A4E1A5A949500AF6EB9 /* ConfigurationOptionsOperation.m in Sources */,
 				388E5A4F1A5A949500AF6EB9 /* FloatingLabelTextField.m in Sources */,
 				388E5A501A5A949500AF6EB9 /* GrayRoundedButton.m in Sources */,
 				388E5A511A5A949500AF6EB9 /* RecipientOperation.m in Sources */,
@@ -4735,6 +4849,7 @@
 				388E5A5E1A5A949500AF6EB9 /* _PairSourceCurrency.m in Sources */,
 				388E5A601A5A949500AF6EB9 /* RecipientEntrySelectionCell.m in Sources */,
 				388E5A611A5A949500AF6EB9 /* ObjectModel+PayInMethod.m in Sources */,
+				470B113F1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m in Sources */,
 				388E5A621A5A949500AF6EB9 /* DropdownCell.m in Sources */,
 				388E5A631A5A949500AF6EB9 /* _Currency.m in Sources */,
 				388E5A641A5A949500AF6EB9 /* ResetPasswordViewController.m in Sources */,
@@ -4760,6 +4875,7 @@
 				388E5A781A5A949500AF6EB9 /* PhoneBookProfile.m in Sources */,
 				388E5A7A1A5A949500AF6EB9 /* PhoneBookAddress.m in Sources */,
 				388E5A7B1A5A949500AF6EB9 /* DismissKeyboardTableView.m in Sources */,
+				38FAE5241ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				388E5A7C1A5A949500AF6EB9 /* PersonalProfileValidator.m in Sources */,
 				4740A7871A8B9A7C0044F0CD /* MfaField.m in Sources */,
 				388E5A7D1A5A949500AF6EB9 /* VerificationRequiredOperation.m in Sources */,
@@ -4772,7 +4888,6 @@
 				388E5A841A5A949500AF6EB9 /* _TypeFieldValue.m in Sources */,
 				388E5A851A5A949500AF6EB9 /* CurrencySelectorViewController.m in Sources */,
 				388E5A861A5A949500AF6EB9 /* BusinessProfileCommitter.m in Sources */,
-				388E5A871A5A949500AF6EB9 /* OpenIDViewController.m in Sources */,
 				388E5A881A5A949500AF6EB9 /* NameSuggestionCellProvider.m in Sources */,
 				388E5A891A5A949500AF6EB9 /* RecipientTypeField.m in Sources */,
 				388E5A8A1A5A949500AF6EB9 /* EmailCheckOperation.m in Sources */,
@@ -4782,6 +4897,7 @@
 				388E5A8E1A5A949500AF6EB9 /* PaymentMethodSelectorViewController.m in Sources */,
 				388E5A8F1A5A949500AF6EB9 /* UIView+RenderBlur.m in Sources */,
 				388E5A901A5A949500AF6EB9 /* TargetCountryProvider.m in Sources */,
+				470B112F1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */,
 				388E5A911A5A949500AF6EB9 /* PaymentFlowViewControllerFactory.m in Sources */,
 				388E5A921A5A949500AF6EB9 /* ClaimAccountViewController.m in Sources */,
 				388E5A931A5A949500AF6EB9 /* ClaimAccountOperation.m in Sources */,
@@ -4791,8 +4907,9 @@
 				388E5A971A5A949500AF6EB9 /* MultipleEntryCell.m in Sources */,
 				388E5A981A5A949500AF6EB9 /* HeaderTabView.m in Sources */,
 				388E5A991A5A949500AF6EB9 /* ConnectionAwareViewController.m in Sources */,
+				388B6DAE1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				388E5A9A1A5A949500AF6EB9 /* ImageColoredButton.m in Sources */,
-				478C6FF11A8DF04700431882 /* (null) in Sources */,
+				4777C0C01AF7A2940042721F /* NSString+NullString.m in Sources */,
 				388E5A9B1A5A949500AF6EB9 /* PersonalPaymentProfileViewController.m in Sources */,
 				388E5A9C1A5A949500AF6EB9 /* Payment.m in Sources */,
 				388E5A9D1A5A949500AF6EB9 /* LightBlueButton.m in Sources */,
@@ -4810,6 +4927,7 @@
 				388E5AA91A5A949500AF6EB9 /* DataEntryDefaultHeader.m in Sources */,
 				388E5AAA1A5A949500AF6EB9 /* InviteViewController.m in Sources */,
 				388E5AAB1A5A949500AF6EB9 /* GoogleButton.m in Sources */,
+				4777C0C71AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */,
 				388E5AAC1A5A949500AF6EB9 /* NSString+MOMStyle.m in Sources */,
 				388E5AAD1A5A949500AF6EB9 /* TabBarActivityIndicatorView.m in Sources */,
 				388E5AAE1A5A949500AF6EB9 /* SettlementRecipient.m in Sources */,
@@ -4823,6 +4941,7 @@
 				388E5AB61A5A949500AF6EB9 /* AchBank.m in Sources */,
 				388E5AB71A5A949500AF6EB9 /* NSObject+NSNull.m in Sources */,
 				388E5AB81A5A949500AF6EB9 /* PayInMethod.m in Sources */,
+				472915361AE549EA00301260 /* PushNotificationDispather.m in Sources */,
 				388E5AB91A5A949500AF6EB9 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				388E5ABA1A5A949500AF6EB9 /* ReferralLinksOperation.m in Sources */,
 				388E5ABB1A5A949500AF6EB9 /* SuggestionCell.m in Sources */,
@@ -4845,7 +4964,7 @@
 				388E5ACB1A5A949500AF6EB9 /* NameSuggestionCell.m in Sources */,
 				388E5ACC1A5A949500AF6EB9 /* SwipeActionCell.m in Sources */,
 				388E5ACD1A5A949500AF6EB9 /* MOMRoundedCornerStyle.m in Sources */,
-				383D30D61A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
+				478BE9541ADF9A7F00B8999D /* NSData+HexString.m in Sources */,
 				388E5ACE1A5A949500AF6EB9 /* UploadMoneyViewController.m in Sources */,
 				388E5ACF1A5A949500AF6EB9 /* PullPaymentDetailsOperation.m in Sources */,
 				388E5AD01A5A949500AF6EB9 /* MOMStyleFactory.m in Sources */,
@@ -4894,6 +5013,7 @@
 				388E5AF81A5A949500AF6EB9 /* AchDetailsViewController.m in Sources */,
 				388E5AF91A5A949500AF6EB9 /* ProfileSource.m in Sources */,
 				388E5AFA1A5A949500AF6EB9 /* TransferBackButtonItem.m in Sources */,
+				470B113A1ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */,
 				388E5AFB1A5A949500AF6EB9 /* BusinessProfileValidator.m in Sources */,
 				388E5AFC1A5A949500AF6EB9 /* GoogleAnalytics.m in Sources */,
 				388E5AFD1A5A949500AF6EB9 /* UIView+SeparatorLine.m in Sources */,
@@ -4909,6 +5029,7 @@
 				3856960D1A7A4C4C00D9F833 /* CalculationResultTests.swift in Sources */,
 				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
+				4777C0C21AF7A3D60042721F /* NSStringNullStringTests.swift in Sources */,
 				474207031A5BF4AB00DF6477 /* XCTestCase+Exceptions.m in Sources */,
 				474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */,
 			);
@@ -4918,6 +5039,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47F346D51AF89F5600F780ED /* AdditionalAttribute.m in Sources */,
+				47F346D61AF89F5600F780ED /* _AdditionalAttribute.m in Sources */,
 				47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */,
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
@@ -4996,6 +5119,7 @@
 				38504B0A19C1E83700276203 /* TouchIDHelper.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
 				472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
+				38FAE5351ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */,
 				EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */,
 				380021C9192CC531009B1D53 /* MOMBaseStyle.m in Sources */,
 				EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */,
@@ -5013,7 +5137,6 @@
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */,
-				38B8876F1AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */,
 				478C6FEB1A8CC71500431882 /* LocationHelper.m in Sources */,
 				EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */,
 				389F67FC198FC1C6006CF1F6 /* _Country.m in Sources */,
@@ -5039,23 +5162,23 @@
 				EA31A15517DDB29B00F937F7 /* PaymentsOperation.m in Sources */,
 				38B093101951FA2A00315BE4 /* TransferTypeSelectionHeader.m in Sources */,
 				EA31A15617DDB29B00F937F7 /* PaymentCell.m in Sources */,
+				470B11341ADCF39E008729E9 /* AddUserDeviceOperation.m in Sources */,
 				476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */,
 				47FC53C21A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */,
 				EA31A15717DDB29B00F937F7 /* CurrencyPairsOperation.m in Sources */,
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
 				38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */,
+				4777C0BF1AF7A2940042721F /* NSString+NullString.m in Sources */,
 				389F6822198FC1C6006CF1F6 /* ObjectModel+Countries.m in Sources */,
 				47C1F74A1A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */,
 				EA0450D017EC3635008921DA /* TextContainerView.m in Sources */,
 				EA31A15A17DDB29B00F937F7 /* TransferwiseClient.m in Sources */,
 				EA31A15B17DDB29B00F937F7 /* RecipientTypesOperation.m in Sources */,
 				389F6844198FC1C6006CF1F6 /* PersonalProfile.m in Sources */,
-				3811674619C1E9A800B29151 /* TouchIdPromptViewController.m in Sources */,
 				38AEB3C81966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
-				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
@@ -5076,6 +5199,7 @@
 				389F6800198FC1C6006CF1F6 /* _PairSourceCurrency.m in Sources */,
 				EA31A16817DDB29B00F937F7 /* RecipientEntrySelectionCell.m in Sources */,
 				389F6828198FC1C6006CF1F6 /* ObjectModel+PayInMethod.m in Sources */,
+				470B113E1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m in Sources */,
 				EA31A16917DDB29B00F937F7 /* DropdownCell.m in Sources */,
 				389F67FE198FC1C6006CF1F6 /* _Currency.m in Sources */,
 				EAB6170F191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
@@ -5094,6 +5218,7 @@
 				EA31A16E17DDB29B00F937F7 /* UINavigationController+StackManipulations.m in Sources */,
 				EA31A16F17DDB29B00F937F7 /* RegisterOperation.m in Sources */,
 				389F684C198FC1C6006CF1F6 /* Setting.m in Sources */,
+				472915351AE549EA00301260 /* PushNotificationDispather.m in Sources */,
 				389F681C198FC1C6006CF1F6 /* BusinessProfile.m in Sources */,
 				471CA005197FCB2200BCA3B4 /* TabbedHeaderViewController.m in Sources */,
 				EA31A17017DDB29B00F937F7 /* ButtonCell.m in Sources */,
@@ -5101,6 +5226,7 @@
 				EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
+				38FAE5231ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				47C1F7481A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */,
 				4740A7861A8B9A7C0044F0CD /* MfaField.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
@@ -5113,7 +5239,6 @@
 				389F6816198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
 				380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
 				47C1F7091A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */,
-				EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */,
 				38B093181951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
 				389F684A198FC1C6006CF1F6 /* RecipientTypeField.m in Sources */,
 				EA31A17917DDB29B00F937F7 /* EmailCheckOperation.m in Sources */,
@@ -5123,6 +5248,7 @@
 				38288F4819C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */,
 				388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */,
 				47334E841A37121A004C19F7 /* TargetCountryProvider.m in Sources */,
+				470B112E1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */,
 				4757BE671A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */,
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
@@ -5133,7 +5259,6 @@
 				38C7B29419742596004324E8 /* HeaderTabView.m in Sources */,
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
-				478C6FF01A8DF04700431882 /* (null) in Sources */,
 				472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				389F683E198FC1C6006CF1F6 /* Payment.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
@@ -5158,6 +5283,7 @@
 				389F681A198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
 				38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
+				4777C0C61AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */,
 				38057AD01A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				47C1F74C1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
@@ -5179,6 +5305,7 @@
 				EA31A1A317DDB29B00F937F7 /* RecipientsOperation.m in Sources */,
 				EA0450DB17EC64BC008921DA /* IntroView.m in Sources */,
 				389F67FA198FC1C6006CF1F6 /* _BusinessProfile.m in Sources */,
+				388B6DAD1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				389F6818198FC1C6006CF1F6 /* _User.m in Sources */,
 				380021E0192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
 				38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */,
@@ -5186,7 +5313,6 @@
 				38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */,
 				476C6B89196C18BF007002F9 /* SwipeActionCell.m in Sources */,
 				380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
-				383D30D51A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				EAD3648617E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
 				EAD33EAC17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */,
 				380021CB192CC531009B1D53 /* MOMStyleFactory.m in Sources */,
@@ -5235,6 +5361,7 @@
 				477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */,
 				47C1F7111A3B3F4200014F55 /* ProfileSource.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
+				470B11391ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */,
 				47C1F7421A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 				47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
@@ -5250,18 +5377,22 @@
 				47AC3F8D1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */,
 				EA0450D417EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */,
+				470B113D1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m in Sources */,
 				EAD3967B171BD51400F6D011 /* TransactionsViewController.m in Sources */,
 				383FC11219AE1BF400465FCA /* SeparatorViewCell.m in Sources */,
+				38FAE5221ADD75C3006CD53C /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				EAD39680171BD57000F6D011 /* ContactsViewController.m in Sources */,
 				EAD3968A171BD82300F6D011 /* NewPaymentViewController.m in Sources */,
 				EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */,
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
+				47F346D41AF896E700F780ED /* AdditionalAttribute.m in Sources */,
 				4723EA331975644A00B4345F /* RedRoundedButton.m in Sources */,
 				4723EA111973D9B500B4345F /* YahooButton.m in Sources */,
 				EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */,
 				380021DB192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
 				EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */,
+				470B11381ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */,
 				EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */,
 				47C4D0581A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m in Sources */,
 				389F680D198FC1C6006CF1F6 /* _Recipient.m in Sources */,
@@ -5273,6 +5404,7 @@
 				389F681F198FC1C6006CF1F6 /* Currency.m in Sources */,
 				EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */,
 				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
+				470B11331ADCF39E008729E9 /* AddUserDeviceOperation.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
 				47C1F7121A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */,
@@ -5338,7 +5470,6 @@
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
 				3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
-				383D30D41A60039500171189 /* CustomInfoViewController+NoPayInMethods.m in Sources */,
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
 				389F67FB198FC1C6006CF1F6 /* _Country.m in Sources */,
 				389F6839198FC1C6006CF1F6 /* PairTargetCurrency.m in Sources */,
@@ -5351,7 +5482,6 @@
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
 				EA88E68E172F97E20021492C /* SelectionCell.m in Sources */,
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
-				38B8876E1AEA4AED0079C9BD /* UITextField+CustomDelegate.m in Sources */,
 				3856691D198157C600BC4230 /* CircleStyle.m in Sources */,
 				47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,
@@ -5368,11 +5498,11 @@
 				38B52F97199B622D00B6AEBD /* ValidationCell.m in Sources */,
 				389F6821198FC1C6006CF1F6 /* ObjectModel+Countries.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
+				470B112D1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
+				4777C0BE1AF7A2940042721F /* NSString+NullString.m in Sources */,
 				389F6843198FC1C6006CF1F6 /* PersonalProfile.m in Sources */,
-				3811674519C1E9A800B29151 /* TouchIdPromptViewController.m in Sources */,
-				EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
 				388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
@@ -5420,13 +5550,14 @@
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				47C1F70C1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */,
 				4757BE621A3B064B005D7BDD /* PaymentFlow.m in Sources */,
+				472915341AE549EA00301260 /* PushNotificationDispather.m in Sources */,
+				47F346D31AF896E700F780ED /* _AdditionalAttribute.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
 				47C4D0441A232AC1005EC7C6 /* AchBank.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
 				380021EF192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
-				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
 				389F6831198FC1C6006CF1F6 /* ObjectModel+Settings.m in Sources */,
 				38B093091951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
 				47C1F7081A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */,
@@ -5486,6 +5617,7 @@
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
 				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
+				4777C0C51AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
 				474D1AA61951A500008BC7A7 /* GradientButton.m in Sources */,
 				389F683B198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
@@ -5507,6 +5639,7 @@
 				38B093191951FA8300315BE4 /* SettlementRecipient.m in Sources */,
 				38B0930D1951FA2A00315BE4 /* TextFieldSuggestionTable.m in Sources */,
 				3856690B1980FA1200BC4230 /* UIImage+RenderBlur.m in Sources */,
+				388B6DAC1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */,
 				380021D2192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
 				EAD3648517E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
@@ -5541,7 +5674,6 @@
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				38057ACF1A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
-				478C6FEF1A8DF04700431882 /* (null) in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
@@ -5549,6 +5681,7 @@
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				383FC0FC19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
+				478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */,
 				470C13211A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,
 				383FC0F019AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */,
 				380021FF192F443E009B1D53 /* CurrencyCell.m in Sources */,
@@ -5562,6 +5695,7 @@
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 				38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */,
+				38FAE5341ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */,
 				47C1F70E1A3B3F4200014F55 /* PersonalProfileSource.m in Sources */,
 				47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
 			);
@@ -5627,6 +5761,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -5671,6 +5806,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -5782,6 +5918,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = TransferDev;
@@ -5820,6 +5957,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = TransferDev;
@@ -5917,11 +6055,12 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f8611e6a-e8a2-44fb-a4ee-9072d624372f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5954,6 +6093,7 @@
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+					"$(PROJECT_DIR)/Thirdparty/Yozio",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -5994,7 +6134,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3c41ed8b-a6b1-4150-8d79-25bc597f327d";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6fc19856-2ed5-40fb-aa66-cf267055ea7c";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6054,7 +6194,9 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				382C134F1ADD1D7A00370F39 /* Transfer_v10.xcdatamodel */,
+				4777C0BB1AF791450042721F /* Transfer_v12.xcdatamodel */,
+				47DC5EFA1AEE3E9F00C6FA50 /* Transfer_v11.xcdatamodel */,
+				470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */,
 				381DE9661AAF1A5A0097E8A3 /* Transfer_v9.xcdatamodel */,
 				4740A7741A88F0250044F0CD /* Transfer_v8.xcdatamodel */,
 				381DC2931A6D023A008F74B9 /* Transfer_v7.xcdatamodel */,
@@ -6068,7 +6210,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 382C134F1ADD1D7A00370F39 /* Transfer_v10.xcdatamodel */;
+			currentVersion = 4777C0BB1AF791450042721F /* Transfer_v12.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

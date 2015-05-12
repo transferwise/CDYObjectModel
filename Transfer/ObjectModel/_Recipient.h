@@ -20,7 +20,7 @@ extern const struct RecipientRelationships {
 	__unsafe_unretained NSString *fieldValues;
 	__unsafe_unretained NSString *payInMethods;
 	__unsafe_unretained NSString *payments;
-	__unsafe_unretained NSString *refundForPayment;
+	__unsafe_unretained NSString *refundForPayments;
 	__unsafe_unretained NSString *type;
 	__unsafe_unretained NSString *user;
 } RecipientRelationships;
@@ -102,9 +102,9 @@ extern const struct RecipientRelationships {
 
 - (NSMutableSet*)paymentsSet;
 
-@property (nonatomic, strong) Payment *refundForPayment;
+@property (nonatomic, strong) NSSet *refundForPayments;
 
-//- (BOOL)validateRefundForPayment:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)refundForPaymentsSet;
 
 @property (nonatomic, strong) RecipientType *type;
 
@@ -144,6 +144,14 @@ extern const struct RecipientRelationships {
 - (void)removePayments:(NSSet*)value_;
 - (void)addPaymentsObject:(Payment*)value_;
 - (void)removePaymentsObject:(Payment*)value_;
+
+@end
+
+@interface _Recipient (RefundForPaymentsCoreDataGeneratedAccessors)
+- (void)addRefundForPayments:(NSSet*)value_;
+- (void)removeRefundForPayments:(NSSet*)value_;
+- (void)addRefundForPaymentsObject:(Payment*)value_;
+- (void)removeRefundForPaymentsObject:(Payment*)value_;
 
 @end
 
@@ -194,8 +202,8 @@ extern const struct RecipientRelationships {
 - (NSMutableSet*)primitivePayments;
 - (void)setPrimitivePayments:(NSMutableSet*)value;
 
-- (Payment*)primitiveRefundForPayment;
-- (void)setPrimitiveRefundForPayment:(Payment*)value;
+- (NSMutableSet*)primitiveRefundForPayments;
+- (void)setPrimitiveRefundForPayments:(NSMutableSet*)value;
 
 - (RecipientType*)primitiveType;
 - (void)setPrimitiveType:(RecipientType*)value;

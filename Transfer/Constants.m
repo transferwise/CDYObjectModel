@@ -11,6 +11,8 @@
 NSString *const TRWLoggedOutNotification = @"TRWLoggedOutNotification";
 NSString *const TRWMoveToPaymentsListNotification = @"TRWMoveToPaymentsListNotification";
 NSString *const TRWMoveToPaymentViewNotification = @"TRWMoveToPaymentViewNotification";
+NSString *const TRWWillUpdateBaseDataNotification = @"WillUpdateBaseDataNotification";
+NSString *const TRWDidUpdateBaseDataNotification = @"DidUpdateBaseDataNotification";
 
 #if DEV_VERSION
 NSString *const TRWApplicationKey = @"ad8d836d18ec18fbd4ccc7bffd71eb54";
@@ -65,6 +67,10 @@ NSString *AppsFlyerIdentifier = @"612261027";
 
 NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
 NSString *const TRWIsRegisteredSettingsKey = @"isRegistered";
+NSString *const TRWHasRespondedToNotificationsPromptSettingsKey = @"TRWHasRespondedToNotificationsPromptSettingsKey";
+NSString *const TRWReferralTokenKey = @"referralToken";
+NSString *const TRWReferralSourceKey = @"referralSource";
+NSString *const TRWReferrerKey = @"referralUser";
 
 #if DEV_VERSION
 NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";
@@ -80,3 +86,5 @@ NSString *const GoogleOAuthRedirectUrl = @"http://localhost/";
 NSString *const GoogleOAuthServiceName = @"Google";
 NSString *const GoogleOAuthEmailScope = @"https://www.googleapis.com/auth/userinfo.email";
 NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/plus.profile.emails.read";
+
+NSString *const kNavigationParamsPaymentId = @"NavigationPaymentId";

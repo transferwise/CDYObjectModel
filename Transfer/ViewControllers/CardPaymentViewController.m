@@ -15,11 +15,12 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "PullPaymentDetailsOperation.h"
-#import "TransferDetailsViewController.h" 
-#import "FeedbackCoordinator.h"
+#import "TransferDetailsViewController.h"
 #import "CustomInfoViewController.h"
 #import "GoogleAnalytics.h"
 #import "Mixpanel+Customisation.h"
+#import "CustomInfoViewController+Notifications.h"
+#import "PushNotificationsHelper.h"
 
 
 #ifdef DEV_VERSION
@@ -182,7 +183,7 @@
         __weak typeof(self) weakSelf = self;
         __weak typeof(customInfo) weakCustomInfo = customInfo;
         __block BOOL shouldAutoDismiss = YES;
-        customInfo.actionButtonBlock = ^{
+        ActionButtonBlock action = ^{
             if(weakSelf.executedOperation)
             {
                 TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:weakCustomInfo.view];
@@ -205,11 +206,10 @@
                         details.payment = weakSelf.payment;
                         details.objectModel = self.objectModel;
                         details.showClose = YES;
+                        details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
+                        details.showRateTheApp = YES;
                         
                         [self.navigationController pushViewController:details animated:NO];
-                        [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                            return YES;
-                        }];
                         [weakCustomInfo dismiss];
                     });
                 }];
@@ -221,6 +221,8 @@
             }
             
         };
+        customInfo.actionButtonBlocks = @[action];
+        
         [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
         
         PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
@@ -240,11 +242,11 @@
                 TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
                 details.payment = weakSelf.payment;
                 details.showClose = YES;
-                
+                details.objectModel = self.objectModel;
+                details.showClose = YES;
+                details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
+                details.showRateTheApp = YES;
                 [self.navigationController pushViewController:details animated:NO];
-                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                    return YES;
-                }];
                 if(shouldAutoDismiss)
                 {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

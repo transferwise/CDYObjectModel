@@ -372,16 +372,17 @@
 	
 	__weak typeof(customInfo) weakCustomInfo = customInfo;
 	__block BOOL shouldAutoDismiss = YES;
-	customInfo.actionButtonBlock = ^{
-		shouldAutoDismiss = NO;
-		
-		if (actionBlock)
-		{
-			actionBlock();
-		}
-		
-		[weakCustomInfo dismiss];
-	};
+    ActionButtonBlock action = ^{
+        shouldAutoDismiss = NO;
+        
+        if (actionBlock)
+        {
+            actionBlock();
+        }
+        
+        [weakCustomInfo dismiss];
+    };
+	customInfo.actionButtonBlocks = @[action];
 	
 	if (successBlock)
 	{
@@ -393,7 +394,7 @@
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		if(shouldAutoDismiss)
 		{
-			weakCustomInfo.actionButtonBlock();
+            action();
 		}
 	});
 }

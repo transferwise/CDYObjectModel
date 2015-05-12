@@ -35,8 +35,10 @@
 #import "UIViewController+SwitchToViewController.h"
 #import "NSString+Presentation.h"
 #import "Mixpanel+Customisation.h"
+#import "CustomInfoViewController+Notifications.h"
+#import "PushNotificationsHelper.h"
 
-@interface BankTransferViewController ()
+@interface BankTransferViewController ()<TransparentModalViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
@@ -250,7 +252,16 @@
         {
             if (IPAD)
             {
-                [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                if([PushNotificationsHelper shouldPresentNotificationsPrompt])
+                {
+                    CustomInfoViewController* notificationsPrompt = [CustomInfoViewController notificationsCustomInfoWithName:self.payment.recipient.name objectModel:self.objectModel];
+                    [notificationsPrompt presentOnViewController:self.navigationController?:self withPresentationStyle:TransparentPresentationFade];
+                    notificationsPrompt.delegate = self;
+                }
+                else
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                }
             }
             else
             {
@@ -274,7 +285,7 @@
     [CancelHelper cancelPayment:self.payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
         if(!error)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
         }
     } dontCancelBlock:nil];
 }
@@ -314,6 +325,13 @@
 			}
 		}
 	}
+}
+
+#pragma mark - Transparent modal view controller delegate
+
+-(void)dismissCompleted:(TransparentModalViewController *)dismissedController
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
 @end
 

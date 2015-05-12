@@ -400,7 +400,8 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"updateSenderProfile");
-        if ([self.objectModel.currentUser.businessProfile isFilled])
+        if (self.objectModel.currentUser.sendAsBusinessDefaultSettingValue
+			&& [self.objectModel.currentUser.businessProfile isFilled])
 		{
             [self updateBusinessProfile:completion];
         }
@@ -804,7 +805,7 @@
             
 			[self presentBusinessProfileScreen];
 		}
-		else if (payment.isFixedAmountValue && !payment.refundRecipient)
+		else if (payment.isFixedAmountValue && (!payment.refundRecipient || (payment.refundRecipient.remoteIdValue != 0 && payment.refundRecipient.hiddenValue)))
 		{
             payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
             payment.paymentFlowProgressValue = kProgressRefundRecipient;

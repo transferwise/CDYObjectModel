@@ -10,4 +10,6 @@
 
 @interface BusinessProfileSource : ProfileSource
 
+- (void)reloadDropDowns;
+
 @end

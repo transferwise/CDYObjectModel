@@ -173,8 +173,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.emailCell = emailCell;
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [emailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [emailCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.email", nil) value:@""];
-    
 
     [self setRecipientCells:@[nameCell,emailCell]];
 
@@ -518,14 +516,20 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     if (!self.recipient) {
         //We're creating a new recipient
+        
+        RecipientFieldCell* bicCell = nil;
+        
         if(self.templateRecipient)
         {
-            [self.nameCell setValue:self.templateRecipient.name];
-            [self.emailCell setValue:self.templateRecipient.email];
+            [self.nameCell setValue:self.templateRecipient.name];            [self.emailCell setValue:self.templateRecipient.email];
             
             for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells)
 			{
                 RecipientTypeField *field = fieldCell.type;
+                if (field.isBIC)
+                {
+                    bicCell = fieldCell;
+                }
                 [fieldCell setValue:[self.templateRecipient valueField:field]];
                 if([fieldCell.value length]>0)
                 {
@@ -541,6 +545,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [self.emailCell setValue:@""];
             [self.nameCell setEditable:YES];
             for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+                if (fieldCell.type.isBIC)
+                {
+                    bicCell = fieldCell;
+                }
                 [fieldCell setValue:@""];
                 [fieldCell setEditable:YES];
             }
@@ -548,6 +556,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         
         [self setAddressFieldsEditable:YES];
+        
+        if(bicCell)
+        {
+            [self refreshBicCell:bicCell];
+        }
         
         return;
     }
@@ -562,6 +575,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
         
         RecipientTypeField *field = fieldCell.type;
+        if (field.isBIC)
+        {
+            [self refreshBicCell:fieldCell];
+        }
+
         [fieldCell setValue:[recipient valueField:field]];
         if(self.updateRecipient!= recipient || [[fieldCell value] hasValue])
         {
@@ -655,6 +673,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)handleSelectionChangeToType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"handleSelectionChangeToType:%@", type.type);
+    [self refreshEmailLabel];
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
@@ -853,6 +872,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [issues appendIssue:NSLocalizedString(@"recipient.controller.validation.error.email.format", nil)];
         }
     }
+    else
+    {
+        if([self.currency.recipientEmailRequired boolValue])
+        {
+            [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil),self.currency.code]];
+        }
+        
+    }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
@@ -864,7 +891,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         NSString *valueIssue = [field hasIssueWithValue:value];
         if (![valueIssue hasValue]) {
-            if([@"bic" caseInsensitiveCompare:field.name]== NSOrderedSame && [value length] < 1 && self.currency.recipientBicRequiredValue)
+            if(field.isBIC && [value length] < 1 && self.currency.recipientBicRequiredValue)
             {
                 [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.bic.required", nil),self.currency.code]];
             }
@@ -1244,6 +1271,32 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         self.secondColumnTopConstraint.constant = 0.f;
     }
 
+}
+
+#pragma mark - email field
+
+-(void)refreshEmailLabel
+{
+    NSString* emailTitle = NSLocalizedString(@"recipient.controller.cell.label.email", nil);
+    
+    if(![self.currency.recipientEmailRequired boolValue])
+    {
+         emailTitle = [emailTitle stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+    }
+    
+    [self.emailCell configureWithTitle:emailTitle value:@""];
+}
+
+#pragma mark - bic field
+
+-(void)refreshBicCell:(RecipientFieldCell*)bicCell
+{
+    NSString *title = bicCell.type.title;
+    if(![self.currency.recipientBicRequired boolValue])
+    {
+        title = [title stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+    }
+    [bicCell configureWithTitle:title value:bicCell.value];
 }
 
 @end

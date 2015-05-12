@@ -7,6 +7,8 @@ const struct BusinessProfileAttributes BusinessProfileAttributes = {
 	.addressFirstLine = @"addressFirstLine",
 	.businessDescription = @"businessDescription",
 	.city = @"city",
+	.companyRole = @"companyRole",
+	.companyType = @"companyType",
 	.countryCode = @"countryCode",
 	.name = @"name",
 	.postCode = @"postCode",
@@ -53,6 +55,10 @@ const struct BusinessProfileRelationships BusinessProfileRelationships = {
 @dynamic businessDescription;
 
 @dynamic city;
+
+@dynamic companyRole;
+
+@dynamic companyType;
 
 @dynamic countryCode;
 

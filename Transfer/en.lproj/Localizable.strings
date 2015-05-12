@@ -47,6 +47,8 @@
 "business.profile.password.lable" = "Password";
 "business.profile.confirm.payment.button.title" = "Continue";
 "business.profile.controller.title" = "Business details";
+"business.profile.company.role.title" = "Your role";
+"business.profile.company.type.title" = "Type of company";
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";
@@ -128,6 +130,7 @@ your friends to TransferWise";
 
 "generic.error.message" = "We are working on the issue. Please try again later.";
 "generic.error.title" = "Oops. Something went wrong.";
+"generic.data.reloading" = "Reloading...";
 
 "identification.controller.title" = "%d documents required";
 "identification.controller.single.title" = "%d document required";
@@ -160,7 +163,6 @@ your friends to TransferWise";
 "identification.only.purpose.ipad" = "You're almost done. Fill the field : Purpose of transfer";
 "identification.well.done.format" = "Well done %@!";
 "identification.error" = "Error";
-"identification.optional.suffix" = " (Optional)";
 "identification.ssn.short" = "Social security number is too short";
 "identification.ssn.error.title" = "SSN invalid";
 "identification.ssn.generic.error" = "Please provide a valid SSN number or provide of photo of your ID.";
@@ -277,6 +279,7 @@ It generally takes 1-2 business day.";
 "payment.status.transferred.description.eta.past" = "& should have arrived on";
 "payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
+"payment.status.notification" = "Your transfer to %@ of %@ %@ is now %@";
 
 "profile.post.code.label" = "Post code";
 "profile.post.code.usa.label" = "Zip code";
@@ -340,7 +343,7 @@ It generally takes 1-2 business day.";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
-"recipient.controller.cell.label.email" = "Recipient's Email (Optional)";
+"recipient.controller.cell.label.email" = "Recipient's Email";
 "recipient.controller.cell.label.name" = "Recipient's Name";
 "recipient.controller.cell.title.recipient.currency.generic" = "Recipient's currency";
 "recipient.controller.cell.title.recipient.currency" = "%@'s currency";
@@ -351,7 +354,6 @@ It generally takes 1-2 business day.";
 "recipient.controller.recipients.preload.error.title" = "Can't load contacts";
 "recipient.controller.refreshing.message" = "Loading...";
 "recipient.controller.sattes.load.error.title" = "Data error";
-"recipient.controller.save.error.title" = "Add error";
 "recipient.controller.section.title.currency" = "Currency";
 "recipient.controller.section.title.recipient" = "Who are you sending money to?";
 "recipient.controller.section.title.sender" = "Sender";
@@ -363,6 +365,7 @@ It generally takes 1-2 business day.";
 "recipient.controller.validation.error.field.empty" = "%@ is missing";
 "recipient.controller.validation.error.title" = "Validation error";
 "recipient.controller.validation.error.bic.required" = "BIC is required for transfers to %@";
+"recipient.controller.validation.error.email.required" = "Email is required for transfers to %@";
 "recipient.controller.validation.error.email.format" = "Email is invalid";
 "recipient.controller.validation.error.address" = "Address has empty fields";
 "recipient.controller.validation.error.country" = "Invalid country";
@@ -781,4 +784,17 @@ We'll send you an email in order to let you choose a new password.";
 "deeplink.payment.detail.error" = "This transfer doesn't exist in your account.";
 "deeplink.verification.message" = "Refreshing documents required...";
 "deeplink.no.verification.message" = "No verification needed!";
+
+"notifications.info.format" = "Want to be notified when we have sent your money to %@?";
+"notifications.yes" = "Yes please!";
+
+"reset.password.controller.yahoo.title" = "Yahoo! Login discontinued";
+"reset.password.header.yahoo.description" = "We're discontinuing Yahoo! login, but no worries you can still access your account by resetting your password.";
+"reset.password.header.yahoo.description.ipad" = "We're discontinuing Yahoo! login, but no worries
+you can still access your account by resetting your password.";
+
+
+"intro.referral.title.format" = "%@\nGOT YOU A\nFREE TRANSFER";
+
+"field.optional.suffix" = " (Optional)";
 

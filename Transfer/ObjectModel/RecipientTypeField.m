@@ -56,4 +56,9 @@
     return [value stripPattern:self.presentationPattern];
 }
 
+- (BOOL)isBIC
+{
+    return self.name && [self.name caseInsensitiveCompare:@"bic"] == NSOrderedSame;
+}
+
 @end

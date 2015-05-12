@@ -11,7 +11,6 @@
 #import "ObjectModel.h"
 #import "MainViewController.h"
 #import "SettingsViewController.h"
-#import "Constants.h"
 #import "TransferwiseClient.h"
 #import "ObjectModel+Users.h"
 #import "GAI.h"
@@ -35,10 +34,14 @@
 #import <FBSettings.h>
 #import <FBAppCall.h>
 #import <NXOAuth2AccountStore.h>
+#import "PushNotificationsHelper.h"
+#import "Yozio.h"
+#import "ReferralsCoordinator.h"
 
-@interface AppDelegate ()<AppsFlyerTrackerDelegate>
+@interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, strong) id<PushNotificationsProvider> notificationHelper;
 
 @end
 
@@ -58,7 +61,6 @@
     [lagFreeField becomeFirstResponder];
     [lagFreeField resignFirstResponder];
     [lagFreeField removeFromSuperview];
-    
 
 	[self setupThirdParties];
 
@@ -71,6 +73,10 @@
     [model removeAnonymousUser];
     [model loadBaseData];
 
+	self.notificationHelper = [PushNotificationsHelper sharedInstanceWithApplication:application
+																		 objectModel:self.objectModel];
+	[self.notificationHelper registerForPushNotifications:YES];
+	
     [[GoogleAnalytics sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
@@ -121,6 +127,48 @@
 	return YES;
 }
 
+//IOS_7
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+	[self.notificationHelper handleRegistrationsSuccess:deviceToken];
+}
+
+//IOS_7
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+	[self.notificationHelper handleRegistrationFailure:error];
+}
+
+//IOS_8
+- (void)application:(UIApplication *)application
+didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+	[application registerForRemoteNotifications];
+}
+
+//IOS_8
+//For interactive notification only
+- (void)application:(UIApplication *)application
+handleActionWithIdentifier:(NSString *)identifier
+forRemoteNotification:(NSDictionary *)userInfo
+  completionHandler:(void(^)())completionHandler
+{
+	[self.notificationHelper handleNotificationArrival:userInfo];
+	//we aren't loading any data here
+	completionHandler(UIBackgroundFetchResultNoData);
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+	[self.notificationHelper handleNotificationArrival:userInfo];
+	//we aren't loading any data here
+	completionHandler(UIBackgroundFetchResultNoData);
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -149,7 +197,7 @@
     [[AppsFlyerTracker sharedTracker] trackAppLaunch];
 #endif
 
-    [[TransferwiseClient sharedClient] updateConfigurationOptions];
+    [[TransferwiseClient sharedClient] updateBaseData];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -171,6 +219,12 @@
 #else
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
     [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
+    
+    [Yozio initializeWithAppKey:@"6e774e8a-7d01-46c1-918a-ea053bb46dc9"
+                   andSecretKey:@"dd39f3e4-54b3-42cc-a49a-67da6af61ac2"
+  andNewInstallMetaDataCallback: self
+    andDeepLinkMetaDataCallback: self];
+    
 #endif
 	
 	[AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
@@ -226,7 +280,11 @@
 	
     if(!urlWasHandled)
     {
-        urlWasHandled = [self handleURL:url];
+        urlWasHandled = [Yozio handleDeeplink:url];
+        if(!urlWasHandled)
+        {
+            urlWasHandled = [self handleURL:url];
+        }
     }
     
     return urlWasHandled;
@@ -237,16 +295,92 @@
 -(BOOL)handleURL:(NSURL*)url
 {
     if([[[url scheme] lowercaseString] isEqualToString:TRWDeeplinkScheme])
-    {
-        
-        ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
-        if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
-        {
-            MainViewController* mainController = (MainViewController*) root.wrappedViewController;
-            return [mainController handleDeeplink:url];
-        }
+    {        
+		return [self handleDeeplink:url];
     }
     return NO;
+}
+
+- (BOOL)handleDeeplink:(NSURL *)deepLink
+{
+	NSString *absolute = [deepLink absoluteString];
+	NSRange startingPoint = [absolute rangeOfString:@"://"];
+	NSString *parameterString = [absolute substringFromIndex:startingPoint.location + startingPoint.length];
+	NSArray *parameters = [parameterString componentsSeparatedByString:@"/"];
+	MCLog(@"Parameters: %@",parameters);
+    
+	if([parameters count] > 0)
+	{
+		if ([[parameters[0] lowercaseString] isEqualToString:@"details"])
+		{
+			if(parameters[1])
+			{
+				[self performNavigation:PaymentDetails
+						 withParameters:@{kNavigationParamsPaymentId: parameters[1]}];
+			}
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
+		{
+			[self performNavigation:NewPayment
+								withParameters:nil];
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"invite"])
+		{
+			[self performNavigation:Invite
+								withParameters:nil];
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"verification"])
+		{
+			[self performNavigation:Verification
+								withParameters:nil];
+			return YES;
+		}
+	}
+	return NO;
+}
+
+#pragma mark - Perform Navigation
+
+- (BOOL)performNavigation:(NavigationAction)navigationAction
+		   withParameters:(NSDictionary *)params
+{
+	//don't deliver payment status notifications when app is running
+	if (navigationAction == PaymentDetails && [UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+	{
+		return NO;
+	}
+	
+	ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
+	if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
+	{
+        
+        NSString *trackingLabel;
+        switch (navigationAction) {
+            case PaymentDetails:
+                trackingLabel = @"payment details";
+                break;
+            case Invite:
+                trackingLabel = @"invite";
+                break;
+            case NewPayment:
+                trackingLabel = @"new payment";
+                break;
+            case Verification:
+                trackingLabel = @"verification";
+                break;
+        }
+        
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GADeeplink withLabel:trackingLabel];
+        [[Mixpanel sharedInstance] track:MPDeeplink properties:@{MPDeeplink:trackingLabel}];
+        
+		MainViewController* mainController = (MainViewController*) root.wrappedViewController;
+		return [mainController performNavigation:navigationAction
+								  withParameters:params];
+	}
+	return NO;
 }
 
 #pragma mark - oauth
@@ -280,6 +414,14 @@
 - (void) onConversionDataRequestFailure:(NSError *)error{
     MCLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
 }
+
+#pragma mark - Yozio
+
+-(void)onCallbackWithTargetViewControllerName:(NSString *)targetViewControllerName andMetaData:(NSDictionary *)metaData
+{
+    [ReferralsCoordinator handleReferralParameters:metaData];
+}
+
 
 
 @end

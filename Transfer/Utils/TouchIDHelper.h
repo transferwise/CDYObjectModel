@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class CustomInfoViewController;
+
 @interface TouchIDHelper : NSObject
 
 
@@ -69,4 +71,15 @@
  checks if any usernames are blocked
  */
 +(BOOL)isBlockedUserNameListEmpty;
+
+/**
+ *  factory method for touchID prompt used to store user credentials in the key chain.
+ *
+ *  @param username        username to store
+ *  @param password        password to store
+ *  @param completionBlock an action to perfom after the prompt has been dismissed.
+ *
+ *  @return a configured CustomInfoViewController ready to present.
+ */
++(CustomInfoViewController*)touchIdCustomInfoWithUsername:(NSString*)username password:(NSString*)password completionBlock:(void(^)(void))completionBlock;
 @end

@@ -20,6 +20,7 @@
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
 #import "StateSuggestionCellProvider.h"
+#import "DropdownCell.h"
 
 @interface BusinessProfileSource ()
 
@@ -27,6 +28,8 @@
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
+@property (nonatomic, strong) DropdownCell *companyRoleCell;
+@property (nonatomic, strong) DropdownCell *companyTypeCell;
 
 @end
 
@@ -72,6 +75,20 @@
     [descriptionCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [descriptionCell setCellTag:@"descriptionOfBusiness"];
 	[descriptionCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+	
+	DropdownCell *companyRoleCell = [DropdownCell loadInstance];
+	[self setCompanyRoleCell:companyRoleCell];
+	[firstColumnCells addObject:companyRoleCell];
+	[companyRoleCell configureWithTitle:NSLocalizedString(@"business.profile.company.role.title", nil) value:@""];
+	[companyRoleCell setCellTag:@"companyRole"];
+	
+	DropdownCell *companyTypeCell = [DropdownCell loadInstance];
+	[self setCompanyTypeCell:companyTypeCell];
+	[firstColumnCells addObject:companyTypeCell];
+	[companyTypeCell configureWithTitle:NSLocalizedString(@"business.profile.company.type.title", nil) value:@""];
+	[companyTypeCell setCellTag:@"companyRole"];
+	
+	[self reloadDropDowns];
 
     NSMutableArray *secondColumnCells = [NSMutableArray array];
 	
@@ -129,6 +146,8 @@
     [self.businessNameCell setValue:profile.name];
     [self.registrationNumberCell setValue:profile.registrationNumber];
     [self.descriptionCell setValue:profile.businessDescription];
+	[self.companyRoleCell setValue:profile.companyRole];
+	[self.companyTypeCell setValue:profile.companyType];
     [self.addressCell setValue:profile.addressFirstLine];
     [self.zipCityCell setValue:profile.postCode];
 	[self.zipCityCell setSecondValue:profile.city];
@@ -138,7 +157,8 @@
     [self.businessNameCell setEditable:![profile isFieldReadonly:@"name"]];
     [self.registrationNumberCell setEditable:![profile isFieldReadonly:@"registrationNumber"]];
     [self.descriptionCell setEditable:![profile isFieldReadonly:@"description"]];
-
+	[self.companyRoleCell setEditable:![profile isFieldReadonly:@"companyRole"]];
+	[self.companyTypeCell setEditable:![profile isFieldReadonly:@"copmanyType"]];
     [self.addressCell setEditable:![profile isFieldReadonly:@"addressFirstLine"]];
     [self.zipCityCell setEditable:![profile isFieldReadonly:@"postCode"]];
 	[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
@@ -152,7 +172,8 @@
 - (BOOL)inputValid
 {
     return [[self.businessNameCell value] hasValue] && [[self.registrationNumberCell value] hasValue]
-            && [[self.descriptionCell value] hasValue] && [[self.addressCell value] hasValue]
+            && [[self.descriptionCell value] hasValue] && [[self.companyRoleCell value] hasValue]
+			&& [[self.companyTypeCell value] hasValue] && [[self.addressCell value] hasValue]
             && [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
             && [[self.countryCell value] hasValue] && (![ProfileSource showStateCell:self.countryCell.value] || [[self.stateCell value] hasValue]);
 }
@@ -163,6 +184,8 @@
     [profile setName:[self.businessNameCell value]];
     [profile setRegistrationNumber:[self.registrationNumberCell value]];
     [profile setBusinessDescription:[self.descriptionCell value]];
+	[profile setCompanyRole:[self.companyRoleCell value]];
+	[profile setCompanyType:[self.companyTypeCell value]];
     [profile setAddressFirstLine:[self.addressCell value]];
     [profile setPostCode:self.zipCityCell.value];
     [profile setCity:self.zipCityCell.secondValue];
@@ -196,6 +219,8 @@
     [operation setName:[self.businessNameCell value]];
     [operation setRegistrationNumber:[self.registrationNumberCell value]];
     [operation setBusinessDescription:[self.descriptionCell value]];
+	[operation setCompanyRole:[self.companyRoleCell value]];
+	[operation setCompanyType:[self.companyTypeCell value]];
     [operation setAddressFirstLine:[self.addressCell value]];
     [operation setPostCode:[self.zipCityCell value]];
     [operation setCity:[self.zipCityCell secondValue]];
@@ -208,11 +233,25 @@
 	[self.businessNameCell setValue:@""];
 	[self.registrationNumberCell setValue:@""];
 	[self.descriptionCell setValue:@""];
+	[self.companyRoleCell setValue:@""];
+	[self.companyTypeCell setValue:@""];
 	[self.addressCell setValue:@""];
 	[self.zipCityCell setValue:@""];
 	[self.zipCityCell setSecondValue:@""];
 	[self.countryCell setValue:@""];
 	[self.stateCell setValue:@""];
+}
+
+- (void)reloadDropDowns
+{
+	if (self.companyRoleCell)
+	{
+		[self.companyRoleCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyRole]];
+	}
+	if (self.companyTypeCell)
+	{		
+		[self.companyTypeCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyType]];
+	}
 }
 
 @end

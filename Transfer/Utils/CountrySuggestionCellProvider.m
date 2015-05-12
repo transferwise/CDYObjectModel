@@ -46,16 +46,19 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		if([self.filterString length] > 0)
 		{
-			NSArray* filteredResults = [self getResultsFromArray:[self.results filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Country *evaluatedObject, NSDictionary *bindings) {
+			NSMutableArray* filteredResults = [[self getResultsFromArray:[self.results filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Country *evaluatedObject, NSDictionary *bindings) {
 				return evaluatedObject && [self isStartingWithNameOrCode:evaluatedObject
 															  nameOrCode:self.filterString];
-			}]]];
+			}]]]mutableCopy];
 			
-			filteredResults = [filteredResults sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
-				return [obj1 caseInsensitiveCompare:obj2];
-			}];
+            [filteredResults sortUsingSelector:@selector(caseInsensitiveCompare:)];
+
+            
+            NSArray* finalResults = [filteredResults filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@",self.filterString]];
+            [filteredResults removeObjectsInArray:finalResults];
+            finalResults = [finalResults arrayByAddingObjectsFromArray:filteredResults];
 			
-			self.dataSource = @[filteredResults];
+			self.dataSource = @[finalResults];
 		}
 		else
 		{

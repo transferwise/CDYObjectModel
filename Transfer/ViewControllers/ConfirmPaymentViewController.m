@@ -283,7 +283,7 @@
 	{
 		CGRect newHeaderFrame = self.headerView.frame;
 		CGRect newFooterFrame = self.footerView.frame;
-		if(UIInterfaceOrientationIsLandscape(orientation))
+		if (UIInterfaceOrientationIsLandscape(orientation))
 		{
 			newHeaderFrame.size.height = 60.0f;
 			newFooterFrame.size.height = 224.0f;
@@ -334,7 +334,12 @@
         self.tableView.tableFooterView = self.footerView;
     
         [self.receiverEmailCell setEditable:YES];
-        [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
+        NSString *emailTitle = NSLocalizedString(@"confirm.payment.email.label", nil);
+        if(![payment.targetCurrency.recipientEmailRequired boolValue])
+        {
+            emailTitle = [emailTitle stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+        }
+        [self.receiverEmailCell configureWithTitle:emailTitle value:[payment.recipient email]];
         
         [self.referenceCell setEditable:YES];
         [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:self.payment.paymentReference];
@@ -354,7 +359,12 @@
 		
         self.referenceField.placeholder = NSLocalizedString(@"confirm.payment.reference.label", nil);
         self.referenceField.text = self.payment.paymentReference;
-        self.emailField.placeholder = NSLocalizedString(@"confirm.payment.email.label", nil);
+        NSString *emailTitle = NSLocalizedString(@"confirm.payment.email.label", nil);
+        if(![payment.targetCurrency.recipientEmailRequired boolValue])
+        {
+            emailTitle = [emailTitle stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+        }
+        self.emailField.placeholder = emailTitle;
     }
 }
 
@@ -489,9 +499,6 @@
 
 -(void)sendForValidation
 {
-    self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [self.hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
-    
     PendingPayment *input = [self.objectModel pendingPayment];
     
     NSString *reference = IPAD?self.referenceField.text:[self.referenceCell value];
@@ -515,6 +522,17 @@
 	
 	__weak typeof(self) weakSelf = self;
 	
+    if ([input.recipientEmail length] <= 0 && [input.targetCurrency.recipientEmailRequired boolValue])
+    {
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil)];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil),input.targetCurrency.code] delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [self.hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
+    
     if(emailAdded)
     {
         self.payment.recipient.email = email;

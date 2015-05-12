@@ -7,6 +7,8 @@ extern const struct BusinessProfileAttributes {
 	__unsafe_unretained NSString *addressFirstLine;
 	__unsafe_unretained NSString *businessDescription;
 	__unsafe_unretained NSString *city;
+	__unsafe_unretained NSString *companyRole;
+	__unsafe_unretained NSString *companyType;
 	__unsafe_unretained NSString *countryCode;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *postCode;
@@ -41,6 +43,14 @@ extern const struct BusinessProfileRelationships {
 @property (nonatomic, strong) NSString* city;
 
 //- (BOOL)validateCity:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* companyRole;
+
+//- (BOOL)validateCompanyRole:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* companyType;
+
+//- (BOOL)validateCompanyType:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* countryCode;
 
@@ -82,6 +92,12 @@ extern const struct BusinessProfileRelationships {
 
 - (NSString*)primitiveCity;
 - (void)setPrimitiveCity:(NSString*)value;
+
+- (NSString*)primitiveCompanyRole;
+- (void)setPrimitiveCompanyRole:(NSString*)value;
+
+- (NSString*)primitiveCompanyType;
+- (void)setPrimitiveCompanyType:(NSString*)value;
 
 - (NSString*)primitiveCountryCode;
 - (void)setPrimitiveCountryCode:(NSString*)value;

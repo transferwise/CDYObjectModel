@@ -17,10 +17,19 @@ typedef void (^TRWUploadOperationProgressBlock)(NSUInteger bytes, long long tota
 - (void)setOperationSuccessHandler:(TRWOperationSuccessBlock)handler;
 - (void)setOperationErrorHandler:(TRWOperationErrorBlock)handler;
 - (void)setUploadProgressHandler:(TRWUploadOperationProgressBlock)handler;
-- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath;
+- (void)postData:(NSDictionary *)data
+		  toPath:(NSString *)postPath;
 - (void)getDataFromPath:(NSString *)path;
-- (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params;
-- (void)postBinaryDataFromFile:(NSString *)filePath withName:(NSString *)fileName usingParams:(NSDictionary *)params toPath:(NSString *)postPath;
+- (void)getDataFromPath:(NSString *)path
+				 params:(NSDictionary *)params;
+- (void)postBinaryDataFromFile:(NSString *)filePath
+					  withName:(NSString *)fileName
+				   usingParams:(NSDictionary *)params
+						toPath:(NSString *)postPath;
+/**
+ *	set this to YES if you are using a public API call that doesn't require users token
+ */
+- (void)setIsAnonymous:(BOOL)value;
 
 /**
  *  BEWARE! HERE BE DRAGONS! Only intended to be used with the long time-out ACH request.

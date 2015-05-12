@@ -18,6 +18,8 @@
     data[@"businessName"] = self.name;
     data[@"registrationNumber"] = self.registrationNumber;
     data[@"descriptionOfBusiness"] = self.businessDescription;
+	data[@"companyRole"] = self.companyRole;
+	data[@"companyType"] = self.companyType;
     data[@"addressFirstLine"] = self.addressFirstLine;
     data[@"postCode"] = self.postCode;
     data[@"city"] = self.city;
@@ -28,8 +30,9 @@
 
 - (BOOL)isFilled
 {
-	return [self.name hasValue] && [self.registrationNumber hasValue] && [self.addressFirstLine hasValue] && [self.postCode hasValue]
-			&& [self.city hasValue] && [self.countryCode hasValue];
+	return [self.name hasValue] && [self.registrationNumber hasValue] && [self.registrationNumber hasValue]
+	&& [self.businessDescription hasValue] && [self.companyRole hasValue] && [self.companyType hasValue]
+	&& [self.addressFirstLine hasValue] && [self.postCode hasValue] && [self.city hasValue] && [self.countryCode hasValue];
 }
 
 @end

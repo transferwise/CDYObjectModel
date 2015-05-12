@@ -36,6 +36,7 @@ extern NSString *const GACreatingpaymentalert;
 extern NSString *const GACurrency1Selected;
 extern NSString *const GACurrency2Selected;
 extern NSString *const GACurrencyrecipientselected;
+extern NSString *const GADeeplink;
 extern NSString *const GADebitCardPayment;
 extern NSString *const GADuringpayment;
 extern NSString *const GAEmailtakenduringpaymentalert;
@@ -50,6 +51,7 @@ extern NSString *const GAFindingusaccountalert;
 extern NSString *const GAIntroScreen;
 extern NSString *const GAIntroscreensslided;
 extern NSString *const GAInvite;
+extern NSString *const GAInvitedUserJoined;
 extern NSString *const GAInviteFriendsModal;
 extern NSString *const GAInviteviaemailinitiated;
 extern NSString *const GAInviteviaemailsent;
@@ -107,6 +109,7 @@ extern NSString *const GAWhatsNewScreen;
 extern NSString *const GAWireTransfer;
 
 
+
 //Mixpanel
 
 extern NSString *const MPAchStep1;
@@ -116,6 +119,7 @@ extern NSString *const MPAchWaiting1;
 extern NSString *const MPAchWaiting2;
 extern NSString *const MPBankTransferPayment;
 extern NSString *const MPConfirmation;
+extern NSString *const MPDeeplink;
 extern NSString *const MPDebitCardPayment;
 extern NSString *const MPIntro;
 extern NSString *const MPLogin;

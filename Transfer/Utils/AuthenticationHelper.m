@@ -40,9 +40,11 @@
 #import <NXOAuth2AccessToken.h>
 #import "OAuthViewController.h"
 #import "TouchIDHelper.h"
-#import "TouchIdPromptViewController.h"
+#import "CustomInfoViewController.h"
+#import "PushNotificationsHelper.h"
+#import "ReferralsCoordinator.h"
 
-@interface AuthenticationHelper ()<TouchIdPromptViewControllerDelegate>
+@interface AuthenticationHelper ()
 
 @property (strong, nonatomic) TransferwiseOperation *executedOperation;
 //used to pop to LoginView from OAuth error
@@ -145,12 +147,10 @@
 				   successBlock:^{
                        if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
                        {
-                           weakSelf.touchIdSuccessBlock = successBlock;
-                           TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
-                           prompt.touchIdDelegate = weakSelf;
-                           [prompt presentOnViewController:touchIdHost
-                                              withUsername:email
-                                                  password:password];
+                           CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
+                               successBlock();
+                           }];
+                           [prompt presentOnViewController:touchIdHost];
                        }
                        else
                        {
@@ -227,7 +227,12 @@
                 [weakSelf logUserIn:token
                               email:email
                        successBlock:^{
-                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:provider];
+                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
+                           NSString *referralToken = [ReferralsCoordinator referralToken];
+                           if(referralToken)
+                           {
+                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+                           }
                            successBlock();
                        }
                                 hud:hud
@@ -382,6 +387,10 @@
     if([Credentials userLoggedIn])
     {
         [objectModel performBlock:^{
+			//remove device from receiving push notifications, if it has been registred to receive them
+			PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																							 objectModel:objectModel];
+			[pushHelper handleLoggingOut];			
             [objectModel deleteObject:objectModel.currentUser];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if([Credentials userLoggedIn])
@@ -395,6 +404,7 @@
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
                     [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":[NSNull null]}];
                     [TransferwiseClient clearCookies];
+					
                     if(completionBlock)
                     {
                         completionBlock();
@@ -416,6 +426,10 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 {
 	[Credentials setUserToken:token];
 	[Credentials setUserEmail:email];
+	//add device to receive push notifications, if they have been authorized
+	PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																					 objectModel:objectModel];
+	[pushHelper handleDeviceRegistering];
     __weak typeof(self) weakSelf = self;
 	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS
@@ -494,6 +508,8 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
     
+    [ReferralsCoordinator ignoreReferralUser];
+    
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UIWindow* window = appDelegate.window;
     
@@ -538,17 +554,6 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
             [mainController setObjectModel:objectModel];
             [root replaceWrappedViewControllerWithController:mainController];
         }
-    }
-}
-
-#pragma mark - touch ID prompt delegate
-
--(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
-{
-    if(self.touchIdSuccessBlock)
-    {
-        self.touchIdSuccessBlock();
-        self.touchIdSuccessBlock = nil;
     }
 }
 @end
