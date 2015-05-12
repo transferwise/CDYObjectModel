@@ -5,5 +5,6 @@
 - (BOOL)hasPredefinedValues;
 - (NSString *)hasIssueWithValue:(NSString *)value;
 - (NSString *)stripPossiblePatternFromValue:(NSString *)value;
+- (BOOL)isBIC;
 
 @end

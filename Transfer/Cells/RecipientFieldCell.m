@@ -36,7 +36,12 @@ NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifie
     [self setType:field];
 	self.maxValueLength = [self.type maxLengthValue];
     self.presentationPattern = self.type.presentationPattern;
-    [self configureWithTitle:field.title value:nil];
+    NSString *title = field.title;
+    if(![field.required boolValue])
+    {
+        title = [title stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+    }
+    [self configureWithTitle:title value:nil];
 }
 
 @end

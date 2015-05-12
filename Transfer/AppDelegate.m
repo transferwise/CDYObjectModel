@@ -308,7 +308,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	NSString *parameterString = [absolute substringFromIndex:startingPoint.location + startingPoint.length];
 	NSArray *parameters = [parameterString componentsSeparatedByString:@"/"];
 	MCLog(@"Parameters: %@",parameters);
-	
+    
 	if([parameters count] > 0)
 	{
 		if ([[parameters[0] lowercaseString] isEqualToString:@"details"])
@@ -356,6 +356,26 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
 	if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
 	{
+        
+        NSString *trackingLabel;
+        switch (navigationAction) {
+            case PaymentDetails:
+                trackingLabel = @"payment details";
+                break;
+            case Invite:
+                trackingLabel = @"invite";
+                break;
+            case NewPayment:
+                trackingLabel = @"new payment";
+                break;
+            case Verification:
+                trackingLabel = @"verification";
+                break;
+        }
+        
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GADeeplink withLabel:trackingLabel];
+        [[Mixpanel sharedInstance] track:MPDeeplink properties:@{MPDeeplink:trackingLabel}];
+        
 		MainViewController* mainController = (MainViewController*) root.wrappedViewController;
 		return [mainController performNavigation:navigationAction
 								  withParameters:params];
