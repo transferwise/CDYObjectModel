@@ -64,6 +64,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.settingsViewController dismiss];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidLoad
