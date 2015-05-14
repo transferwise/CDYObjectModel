@@ -683,8 +683,11 @@
 	if (self.reloadBaseData)
 	{
 		//show hud
-		self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-		[self.hud setMessage:NSLocalizedString(@"generic.data.reloading", nil)];
+        if(self.navigationController)
+        {
+            self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+            [self.hud setMessage:NSLocalizedString(@"generic.data.reloading", nil)];
+        }
 	}
 }
 
