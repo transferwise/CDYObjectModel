@@ -115,6 +115,9 @@
                     waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
                                   touchIDHost:(UIViewController*)touchIdHost
 {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:NO forKey:TRWGoogleLoginUsedKey];
+    
 	[UIApplication dismissKeyboard];
 	
     NSString *issues = [self validateEmail:email password:password];
@@ -180,6 +183,12 @@
 						  objectModel:(ObjectModel *)objectModel
 					   successHandler:(TRWActionBlock)successBlock
 {
+    if([providerName isEqualToString:GoogleOAuthServiceName])
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:TRWGoogleLoginUsedKey];
+    }
+    
 	self.navigationController = navigationController;
 	self.objectModel = objectModel;
 	self.oauthSuccessBlock = successBlock;
@@ -402,7 +411,6 @@
                     }
                     [Credentials clearCredentials];
                     [[GoogleAnalytics sharedInstance] markLoggedIn];
-                    [[Mixpanel sharedInstance] registerSuperProperties:@{@"distinct_id":[NSNull null]}];
                     [TransferwiseClient clearCookies];
 					
                     if(completionBlock)

@@ -61,6 +61,7 @@ extern NSString *const TRWHasRespondedToNotificationsPromptSettingsKey;
 extern NSString *const TRWReferralTokenKey;
 extern NSString *const TRWReferralSourceKey;
 extern NSString *const TRWReferrerKey;
+extern NSString *const TRWGoogleLoginUsedKey;
 
 
 extern NSString *const TransferSandboxUsername;

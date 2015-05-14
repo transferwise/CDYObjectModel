@@ -84,6 +84,13 @@
     
     [self.googleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
     [self.whiteGoogleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if(![defaults boolForKey:TRWGoogleLoginUsedKey])
+    {
+        [self.googleButton removeFromSuperview];
+        [self.whiteGoogleButton removeFromSuperview];
+    }
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
