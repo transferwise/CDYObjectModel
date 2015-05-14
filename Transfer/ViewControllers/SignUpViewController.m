@@ -187,6 +187,10 @@
         }
 
         [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserregistered withLabel:@"tw"];
+
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:NO forKey:TRWGoogleLoginUsedKey];
+        
         [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
         NSString *referralToken = [ReferralsCoordinator referralToken];
         if(referralToken)
