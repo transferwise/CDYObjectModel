@@ -86,6 +86,8 @@ extern NSString *const GARegisterincorrectcredentials;
 extern NSString *const GARepeattransferselected;
 extern NSString *const GAResetPassword;
 extern NSString *const GASavingrecipientalert;
+extern NSString *const GASavingPersonalProfile;
+extern NSString *const GASavingBusinessProfile;
 extern NSString *const GASeeHowModal;
 extern NSString *const GASeenreviewnotification;
 extern NSString *const GASendfeedbackclicked;
