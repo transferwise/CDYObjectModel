@@ -207,11 +207,11 @@ A revolution in your pocket.";
 
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";
-"money.entry.they.receive.title" = "Receiver gets approximately";
+"money.entry.they.receive.title" = "Receiver gets";
 "money.entry.they.receive.exactly.title" = "Receiver gets exactly";
 "money.entry.you.send.title" = "You send";
 "money.entry.you.send.exactly.title" = "You send exactly";
-"money.entry.recipient.receive.title" = "%@ gets approximately";
+"money.entry.recipient.receive.title" = "%@ gets";
 "money.entry.recipient.receive.exactly.title" = "%@ gets exactly";
 
 "openid.login.error.title" = "Login failed";
