@@ -205,11 +205,11 @@ Une révolution dans votre poche.";
 
 "money.entry.priority.payment.title" = "Transfert prioritaire";
 "money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";
-"money.entry.they.receive.title" = "Destinataire reçoit approximativement";
+"money.entry.they.receive.title" = "Destinataire reçoit";
 "money.entry.they.receive.exactly.title" = "Destinataire reçoit éxactement";
 "money.entry.you.send.title" = "Vous envoyez";
 "money.entry.you.send.exactly.title" = "Vous envoyez éxactement";
-"money.entry.recipient.receive.title" = "%@ reçoit approximativement";
+"money.entry.recipient.receive.title" = "%@ reçoit";
 "money.entry.recipient.receive.exactly.title" = "%@ reçoit éxactement";
 
 "openid.login.error.title" = "Erreur de connexion";

@@ -595,7 +595,8 @@
     PendingPayment *payment = self.objectModel.pendingPayment;
 
 	NSNumber *transferFee = [payment transferwiseTransferFee];
-	NSString *currencyCode = [payment.sourceCurrency code];
+	NSString *sourceCurrencyCode = [payment.sourceCurrency code];
+    NSString *targetCurrencyCode = [payment.targetCurrency code];
     
     BOOL isRepeat = payment.isRepeatValue;
     
@@ -612,8 +613,8 @@
         }
 
 #if USE_FACEBOOK_EVENTS
-		MCLog(@"Log FB purchase %@ - %@", transferFee, currencyCode);
-		[FBAppEvents logPurchase:[transferFee floatValue] currency:currencyCode];
+		MCLog(@"Log FB purchase %@ - %@", transferFee, sourceCurrencyCode);
+		[FBAppEvents logPurchase:[transferFee floatValue] currency:[NSString stringWithFormat:@"%@ %@",sourceCurrencyCode, targetCurrencyCode]];
 #endif
 
         static NSNumberFormatter *__formatter;
@@ -627,11 +628,11 @@
             [__formatter setCurrencyGroupingSeparator:@""];
         }
         
-        [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentcreated withLabel:[NSString stringWithFormat:@"%@ - %@", currencyCode, isRepeat?@"repeat":@"new"]];
+        [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentcreated withLabel:[NSString stringWithFormat:@"%@ - %@", sourceCurrencyCode, isRepeat?@"repeat":@"new"]];
 
 #if USE_APPSFLYER_EVENTS
-        MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
-        [[AppsFlyerTracker sharedTracker] setCurrencyCode:currencyCode];
+        MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, sourceCurrencyCode);
+        [[AppsFlyerTracker sharedTracker] setCurrencyCode:sourceCurrencyCode];
         [AppsFlyerTracker sharedTracker].customerUserID = [weakSelf.objectModel.currentUser pReference];
         [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[__formatter stringFromNumber:transferFee]];
 #endif
