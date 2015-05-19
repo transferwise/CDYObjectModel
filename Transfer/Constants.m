@@ -72,6 +72,7 @@ NSString *const TRWReferralTokenKey = @"referralToken";
 NSString *const TRWReferralSourceKey = @"referralSource";
 NSString *const TRWReferrerKey = @"referralUser";
 NSString *const TRWGoogleLoginUsedKey = @"googleLoginUsed";
+NSString *const TRWGoogleRevokeUrlFormat = @"https://accounts.google.com/o/oauth2/revoke?%@";
 
 #if DEV_VERSION
 NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";

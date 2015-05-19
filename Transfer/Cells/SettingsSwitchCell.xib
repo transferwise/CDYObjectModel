@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <development version="6000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="SettingsSwitchCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcK-61-Vz7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ubr-Vy-3RL">
+                                <rect key="frame" x="251" y="14" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchToggled:" destination="KGk-i7-Jjw" eventType="valueChanged" id="S3U-Wt-kGr"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPV-vU-tEx">
+                                <rect key="frame" x="20" y="0.0" width="228" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="228" id="BHb-tf-ggO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.corefont"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgm-jd-TSB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="jiV-Ee-6LQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="greygory.alpha5"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GVX-0D-ldn">
+                                <rect key="frame" x="0.0" y="59" width="320" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="6fu-zD-YhU"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="greygory.alpha5"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ubr-Vy-3RL" firstAttribute="leading" secondItem="HPV-vU-tEx" secondAttribute="trailing" constant="3" id="3hU-V4-cg6"/>
+                            <constraint firstAttribute="trailing" secondItem="GVX-0D-ldn" secondAttribute="trailing" id="546-dh-15Y"/>
+                            <constraint firstAttribute="trailing" secondItem="Zgm-jd-TSB" secondAttribute="trailing" id="AgM-99-fZk"/>
+                            <constraint firstItem="Zgm-jd-TSB" firstAttribute="top" secondItem="YcK-61-Vz7" secondAttribute="top" id="HBe-a6-jeA"/>
+                            <constraint firstAttribute="centerX" secondItem="Ubr-Vy-3RL" secondAttribute="centerX" constant="-115.5" id="Uw1-yd-SRe"/>
+                            <constraint firstAttribute="centerY" secondItem="Ubr-Vy-3RL" secondAttribute="centerY" id="Ux9-dG-hYj"/>
+                            <constraint firstItem="HPV-vU-tEx" firstAttribute="top" secondItem="YcK-61-Vz7" secondAttribute="top" id="ecQ-8e-haV"/>
+                            <constraint firstAttribute="bottom" secondItem="HPV-vU-tEx" secondAttribute="bottom" constant="-1" id="gWB-yQ-mfN"/>
+                            <constraint firstItem="GVX-0D-ldn" firstAttribute="leading" secondItem="YcK-61-Vz7" secondAttribute="leading" id="gjp-ve-fpA"/>
+                            <constraint firstItem="Zgm-jd-TSB" firstAttribute="leading" secondItem="YcK-61-Vz7" secondAttribute="leading" id="jbY-Hu-BOL"/>
+                            <constraint firstAttribute="bottom" secondItem="GVX-0D-ldn" secondAttribute="bottom" constant="-1" id="m7T-Ug-LQZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="YcK-61-Vz7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="58f-ZT-ZFI"/>
+                    <constraint firstAttribute="trailing" secondItem="YcK-61-Vz7" secondAttribute="trailing" id="DeC-6U-8R5"/>
+                    <constraint firstItem="YcK-61-Vz7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ImR-I2-0GA"/>
+                    <constraint firstAttribute="bottom" secondItem="YcK-61-Vz7" secondAttribute="bottom" constant="20" id="v0s-YM-rTR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="0.2133821186" blue="0.18887848600000001" alpha="0.0" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="settingsSwitch" destination="Ubr-Vy-3RL" id="efE-qz-E5R"/>
+                <outlet property="titleLabel" destination="HPV-vU-tEx" id="XJG-F1-ToY"/>
+            </connections>
+            <point key="canvasLocation" x="487" y="319"/>
+        </tableViewCell>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

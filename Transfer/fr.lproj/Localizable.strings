@@ -400,7 +400,9 @@ Nous vous rembourserons l'argent non utilisé après le transfert.";
 "settings.row.about" = "A propos";
 "settings.row.touchid" = "Paramètres Touch ID";
 "settings.row.send.as.business" = "Envoyer en tant qu'entreprise";
-
+"settings.row.google" = "Google settings";
+"settings.google.alert.title" = "Google";
+"settings.google.alert.text" = "Revoke app access through Google account and log out?";
 
 "sign.up.controller.creating.message" = "Création du compte...";
 "sign.up.controller.signup.error.message" = "Erreur de création du compte";
