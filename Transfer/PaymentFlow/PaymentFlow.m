@@ -32,7 +32,7 @@
 #import "CalculationResult.h"
 #import "LoggedInPaymentFlow.h"
 #import "NanTracking.h"
-#import "FBAppEvents.h"
+#import <FBSDKAppEvents.h>
 #import "NetworkErrorCodes.h"
 #import "_RecipientType.h"
 #import "RecipientType.h"
@@ -614,7 +614,8 @@
 
 #if USE_FACEBOOK_EVENTS
 		MCLog(@"Log FB purchase %@ - %@", transferFee, sourceCurrencyCode);
-		[FBAppEvents logPurchase:[transferFee floatValue] currency:[NSString stringWithFormat:@"%@ %@",sourceCurrencyCode, targetCurrencyCode]];
+		[FBSDKAppEvents logPurchase:[transferFee floatValue]
+						   currency:[NSString stringWithFormat:@"%@ %@",sourceCurrencyCode, targetCurrencyCode]];
 #endif
 
         static NSNumberFormatter *__formatter;

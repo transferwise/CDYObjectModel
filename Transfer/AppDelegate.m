@@ -30,9 +30,8 @@
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
-#import <FBAppEvents.h>
-#import <FBSettings.h>
-#import <FBAppCall.h>
+#import <FBSDKAppEvents.h>
+#import <FBSDKSettings.h>
 #import <NXOAuth2AccountStore.h>
 #import "PushNotificationsHelper.h"
 #import "Yozio.h"
@@ -188,8 +187,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
-	[FBSettings setDefaultAppID:@"274548709260402"];
-    [FBAppEvents activateApp];
+	[FBSDKSettings setAppID:@"274548709260402"];
+    [FBSDKAppEvents activateApp];
 #endif
 
 #if USE_APPSFLYER_EVENTS
@@ -273,23 +272,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-	BOOL urlWasHandled = [FBAppCall handleOpenURL:url
-								sourceApplication:sourceApplication
-								  fallbackHandler:^(FBAppCall *call) {
-									  MCLog(@"Unhandled deep link: %@", url);
-								  }];
+	BOOL urlWasHandled = urlWasHandled = [Yozio handleDeeplink:url];
 	
+	if(!urlWasHandled)
+	{
+		urlWasHandled = [self handleURL:url];
+	}
 	
-    if(!urlWasHandled)
-    {
-        urlWasHandled = [Yozio handleDeeplink:url];
-        if(!urlWasHandled)
-        {
-            urlWasHandled = [self handleURL:url];
-        }
-    }
-    
-    return urlWasHandled;
+	return urlWasHandled;
 }
 
 #pragma mark - deeplinking
