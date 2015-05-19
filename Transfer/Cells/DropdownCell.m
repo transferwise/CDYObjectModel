@@ -10,7 +10,7 @@
 
 NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 
-@interface DropdownCell () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface DropdownCell () <UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIPickerView *picker;
 @property (nonatomic, strong) id selectedObject;
@@ -38,7 +38,12 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
     [pickerView setShowsSelectionIndicator:YES];
     [pickerView setDataSource:self];
     [pickerView setDelegate:self];
-    
+	
+	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+																					action:@selector(pickerTapped:)];
+	[pickerView addGestureRecognizer:tapRecognizer];
+	tapRecognizer.delegate = self;
+	
     [self.entryField setInputView:pickerView];
 }
 
@@ -105,6 +110,12 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 {
     [self setSelectedObject:rowObject];
     [self.entryField setText:[[rowObject valueForKeyPath:@"title"] capitalizedString]];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+	return YES;
 }
 
 -(void)pickerTapped:(UITapGestureRecognizer*)sender;
