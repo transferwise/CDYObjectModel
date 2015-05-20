@@ -32,7 +32,6 @@
 #import "AppsFlyerTracker.h"
 #import "PaymentsOperation.h"
 #import "ObjectModel+RecipientTypes.h"
-#import <FacebookSDK.h>
 #import "Mixpanel+Customisation.h"
 #import "LoginOrRegisterWithOauthOperation.h"
 #import <NXOAuth2AccountStore.h>
@@ -43,6 +42,7 @@
 #import "CustomInfoViewController.h"
 #import "PushNotificationsHelper.h"
 #import "ReferralsCoordinator.h"
+#import <FBSDKAppEvents.h>
 
 @interface AuthenticationHelper ()
 
@@ -464,7 +464,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 	[objectModel removeOtherUsers];
 	
 #if USE_FACEBOOK_EVENTS
-	[FBAppEvents logEvent:@"loggedIn"];
+	[FBSDKAppEvents logEvent:@"loggedIn"];
 #endif
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 	
