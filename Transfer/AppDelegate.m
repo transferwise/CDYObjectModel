@@ -190,7 +190,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
-	[FBSDKSettings setAppID:@"274548709260402"];
     [FBSDKAppEvents activateApp];
 #endif
 

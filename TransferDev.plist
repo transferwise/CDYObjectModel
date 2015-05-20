@@ -29,7 +29,7 @@
 			<string>Facebook</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb274548709260402</string>
+				<string>fb728076623889627</string>
 			</array>
 		</dict>
 		<dict>
@@ -47,6 +47,8 @@
 	<string>Generated</string>
 	<key>FacebookAppID</key>
 	<string>728076623889627</string>
+	<key>FacebookDisplayName</key>
+	<string>tw test app</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
@@ -72,7 +74,7 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0</real>
+				<real>0.0</real>
 				<key>Green</key>
 				<real>1</real>
 				<key>Red</key>
@@ -93,8 +95,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>FacebookDisplayName</key>
-	<string>TransferDev</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
