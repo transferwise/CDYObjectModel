@@ -462,7 +462,8 @@
 		return;
 	};
 
-	//do actual login
+	[self doFacebookLogin:successBlock
+			   isExisting:NO];
 }
 
 - (void)authWithFacebookAccount:(FBSDKAccessToken *)accessToken
@@ -471,12 +472,53 @@
 {
 	__weak typeof(self) weakSelf = self;
 	[self authWithOauthToken:accessToken.tokenString
-					provider:@"facebook"
+					provider:FacebookOAuthServiceName
 				 sucessBlock:successBlock
 				  errorBlock:^{
-					  //remove existing user and send to relogin
+					  //will only be executed for isExisting = YES case
+					  [weakSelf doFacebookLogin:successBlock
+									 isExisting:NO];
 				  }
 				  isExisting:isExisting];
+}
+
+- (void)doFacebookLogin:(TRWActionBlock)successBlock
+			 isExisting:(BOOL)isExisting
+{
+	FBSDKLoginManager *manager = [[FBSDKLoginManager alloc] init];
+	[manager logInWithReadPermissions:@[FacebookOAuthEmailScope, FacebookOAuthProfileScope] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+		if (error)
+		{
+			[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginError
+												   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
+			
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+															   message:nil];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+		}
+		else if (result.isCancelled)
+		{
+			// nothing to do here, move along
+		}
+		else
+		{
+			if ([result.grantedPermissions containsObject:FacebookOAuthEmailScope])
+			{
+				successBlock();
+			}
+			else
+			{
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginNoEmail
+													   withLabel:nil];
+
+				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+																   message:NSLocalizedString(@"", nil)];
+				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+				[alertView show];
+			}
+		}
+	}];
 }
 
 #pragma mark - Helpers

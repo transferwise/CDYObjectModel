@@ -109,8 +109,8 @@ extern NSString *const GAViewPayment;
 extern NSString *const GAViewTransfers;
 extern NSString *const GAWhatsNewScreen;
 extern NSString *const GAWireTransfer;
-
-
+extern NSString *const GAFBLoginError;
+extern NSString *const GAFBLoginNoEmail;
 
 //Mixpanel
 

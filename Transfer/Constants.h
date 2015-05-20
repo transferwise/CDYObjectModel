@@ -124,6 +124,10 @@ extern NSString *const GoogleOAuthServiceName;
 extern NSString *const GoogleOAuthEmailScope;
 extern NSString *const GoogleOAuthProfileScope;
 
+extern NSString *const FacebookOAuthServiceName;
+extern NSString *const FacebookOAuthEmailScope;
+extern NSString *const FacebookOAuthProfileScope;
+
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 typedef NS_ENUM(short, NavigationAction) {

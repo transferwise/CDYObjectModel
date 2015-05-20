@@ -108,7 +108,8 @@ NSString *const GAViewPayment = @"View payment";
 NSString *const GAViewTransfers = @"View transfers";
 NSString *const GAWhatsNewScreen = @"What's new screen";
 NSString *const GAWireTransfer = @"Wire transfer";
-
+NSString *const GAFBLoginError = @"FacebookLoginError";
+NSString *const GAFBLoginNoEmail = @"FacebookLoginNoEmail";
 
 // Mixpanel
 

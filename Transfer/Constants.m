@@ -90,3 +90,7 @@ NSString *const GoogleOAuthEmailScope = @"https://www.googleapis.com/auth/userin
 NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/plus.profile.emails.read";
 
 NSString *const kNavigationParamsPaymentId = @"NavigationPaymentId";
+
+NSString *const FacebookOAuthServiceName = @"Facebook";
+NSString *const FacebookOAuthEmailScope = @"email";
+NSString *const FacebookOAuthProfileScope = @"public_profile";
