@@ -476,6 +476,7 @@
 				 sucessBlock:successBlock
 				  errorBlock:^{
 					  //will only be executed for isExisting = YES case
+					  [[[FBSDKLoginManager alloc] init] logOut];
 					  [weakSelf doFacebookLogin:successBlock
 									 isExisting:NO];
 				  }
