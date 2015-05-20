@@ -38,6 +38,10 @@ touchIDHost:(UIViewController*)touchIdHost;
 						  objectModel:(ObjectModel *)objectModel
 					   successHandler:(TRWActionBlock)successBlock;
 
+- (void)performFacebookLoginWithNavigationController:(UINavigationController *)navigationController
+										 objectModel:(ObjectModel *)objectModel
+									  successHandler:(TRWActionBlock)successBlock;
+
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller
 										 objectModel:(ObjectModel*)objectModel;
 

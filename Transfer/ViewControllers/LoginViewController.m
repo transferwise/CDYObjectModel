@@ -194,11 +194,17 @@ IB_DESIGNABLE
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
-    ResetPasswordViewController *controller = self.xibNameForResetPassword?[[ResetPasswordViewController alloc] initWithNibName:self.xibNameForResetPassword bundle:nil]:[[ResetPasswordViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    controller.isYahooReset = YES;
-    controller.delegate = self;
-    [self.navigationController pushViewController:controller animated:YES];
+	__weak typeof(self) weakSelf = self;
+	[self.loginHelper performFacebookLoginWithNavigationController:self.navigationController
+													   objectModel:self.objectModel
+													successHandler:^{
+														[weakSelf proceedFromSuccessfulLogin];
+													}];
+//    ResetPasswordViewController *controller = self.xibNameForResetPassword?[[ResetPasswordViewController alloc] initWithNibName:self.xibNameForResetPassword bundle:nil]:[[ResetPasswordViewController alloc] init];
+//    [controller setObjectModel:self.objectModel];
+//    controller.isYahooReset = YES;
+//    controller.delegate = self;
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

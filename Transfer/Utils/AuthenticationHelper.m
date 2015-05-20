@@ -43,6 +43,8 @@
 #import "PushNotificationsHelper.h"
 #import "ReferralsCoordinator.h"
 #import <FBSDKAppEvents.h>
+#import <FBSDKLoginKit.h>
+#import <FBSDKAccessToken.h>
 
 @interface AuthenticationHelper ()
 
@@ -289,8 +291,24 @@
 				  isExisting:(BOOL)isExisting
 {
 	__weak typeof(self) weakSelf = self;
-	[self performOAuthLoginWithToken:account.accessToken.accessToken
-							provider:account.accountType
+	[self authWithOauthToken:account.accessToken.accessToken
+					provider:account.accountType
+				 sucessBlock:successBlock
+				  errorBlock:^{
+					  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+					  [weakSelf presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+				  }
+				  isExisting:isExisting];
+}
+
+- (void)authWithOauthToken:(NSString *)token
+				  provider:(NSString *)provider
+			   sucessBlock:(TRWActionBlock)successBlock
+				errorBlock:(TRWActionBlock)errorBlock
+				isExisting:(BOOL)isExisting
+{
+	[self performOAuthLoginWithToken:token
+							provider:provider
 				  keepPendingPayment:NO
 				navigationController:self.navigationController
 						 objectModel:self.objectModel
@@ -298,9 +316,8 @@
 						  errorBlock:^{
 							  if (isExisting)
 							  {
-								  //if this is an existing account and auth failed show login
-								  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
-								  [weakSelf presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+								  //if this is an existing account and auth failed do something
+								  errorBlock();
 							  }
 						  }
 		   waitForDetailsCompletions:YES
@@ -422,6 +439,44 @@
             });
         }];
     }	
+}
+
+#pragma mark - Facebook login
+- (void)performFacebookLoginWithNavigationController:(UINavigationController *)navigationController
+										 objectModel:(ObjectModel *)objectModel
+									  successHandler:(TRWActionBlock)successBlock
+{
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setBool:YES forKey:TRWFacebookLoginUsedKey];
+	
+	self.navigationController = navigationController;
+	self.objectModel = objectModel;
+	self.oauthSuccessBlock = successBlock;
+	
+	if ([FBSDKAccessToken currentAccessToken])
+	{
+		//if we have an existing account, try to use that
+		[self authWithFacebookAccount:[FBSDKAccessToken currentAccessToken]
+						 successBlock:successBlock
+						   isExisting:YES];
+		return;
+	};
+
+	//do actual login
+}
+
+- (void)authWithFacebookAccount:(FBSDKAccessToken *)accessToken
+				   successBlock:(TRWActionBlock)successBlock
+					 isExisting:(BOOL)isExisting
+{
+	__weak typeof(self) weakSelf = self;
+	[self authWithOauthToken:accessToken.tokenString
+					provider:@"facebook"
+				 sucessBlock:successBlock
+				  errorBlock:^{
+					  //remove existing user and send to relogin
+				  }
+				  isExisting:isExisting];
 }
 
 #pragma mark - Helpers
