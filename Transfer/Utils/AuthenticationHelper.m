@@ -317,7 +317,10 @@
 							  if (isExisting)
 							  {
 								  //if this is an existing account and auth failed do something
-								  errorBlock();
+								  if (errorBlock)
+								  {
+									  errorBlock();
+								  }
 							  }
 						  }
 		   waitForDetailsCompletions:YES
@@ -486,8 +489,10 @@
 - (void)doFacebookLogin:(TRWActionBlock)successBlock
 			 isExisting:(BOOL)isExisting
 {
+	__weak typeof(self) weakSelf = self;
 	FBSDKLoginManager *manager = [[FBSDKLoginManager alloc] init];
-	[manager logInWithReadPermissions:@[FacebookOAuthEmailScope, FacebookOAuthProfileScope] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+	[manager logInWithReadPermissions:@[FacebookOAuthEmailScope, FacebookOAuthProfileScope]
+							  handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
 		if (error)
 		{
 			[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginError
@@ -504,9 +509,11 @@
 		}
 		else
 		{
-			if ([result.grantedPermissions containsObject:FacebookOAuthEmailScope])
+			if ([result.grantedPermissions containsObject:FacebookOAuthEmailScope] && [FBSDKAccessToken currentAccessToken])
 			{
-				successBlock();
+				[weakSelf authWithFacebookAccount:[FBSDKAccessToken currentAccessToken]
+									 successBlock:successBlock
+									   isExisting:NO];
 			}
 			else
 			{
