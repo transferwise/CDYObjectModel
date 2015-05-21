@@ -689,6 +689,20 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "reset.password.not.found.alert.message" = "Aucun compte correspondant à cette adresse email.";
 "refund.controller.existing.recipients.preload.error.title" = "Impossible de charger vos contacts";
 
+"ask.email.controller.title" = "Your email address";
+"ask.email.controller.email.cell.label" = "Your email";
+"ask.email.header.description" = "Enter your email address.
+We need this to create your account
+but you haven't shared it
+with us on Facebook.";
+"ask.email.header.description.ipad" = "Enter your email address.
+We need this to create your account
+but you haven't shared it with us on Facebook.";
+"ask.email.controller.footer.button.title" = "Done";
+"ask.email.email.not.entered" = "Email is missing.";
+"ask.email.invaild.email.error" = "Please provide a valid email.";
+"ask.email.error.title" = "Oops!";
+
 "network.alert" = "Pas de connexion internet";
 "unknown.value" = "??";
 "contact.detail.send" = "Envoyer de l'argent";

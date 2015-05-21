@@ -1044,6 +1044,9 @@
 		4777C0C71AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
+		47852D651B0DE31E0028E11A /* AskEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47852D621B0DE31E0028E11A /* AskEmailViewController.m */; };
+		47852D661B0DE31E0028E11A /* AskEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47852D631B0DE31E0028E11A /* AskEmailViewController.xib */; };
+		47852D671B0DE31E0028E11A /* AskEmailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47852D641B0DE31E0028E11A /* AskEmailViewController~ipad.xib */; };
 		478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
 		478BE9541ADF9A7F00B8999D /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 478BE9511ADF9A7F00B8999D /* NSData+HexString.m */; };
 		478C6FEA1A8CC71500431882 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FE91A8CC71500431882 /* LocationHelper.m */; };
@@ -2032,6 +2035,10 @@
 		4777C0C31AF88B7D0042721F /* CompanyAttributesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyAttributesOperation.h; sourceTree = "<group>"; };
 		4777C0C41AF88B7D0042721F /* CompanyAttributesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyAttributesOperation.m; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
+		47852D611B0DE31E0028E11A /* AskEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskEmailViewController.h; sourceTree = "<group>"; };
+		47852D621B0DE31E0028E11A /* AskEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskEmailViewController.m; sourceTree = "<group>"; };
+		47852D631B0DE31E0028E11A /* AskEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskEmailViewController.xib; sourceTree = "<group>"; };
+		47852D641B0DE31E0028E11A /* AskEmailViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AskEmailViewController~ipad.xib"; sourceTree = "<group>"; };
 		478BE9501ADF9A7F00B8999D /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HexString.h"; sourceTree = "<group>"; };
 		478BE9511ADF9A7F00B8999D /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HexString.m"; sourceTree = "<group>"; };
 		478C6FE81A8CC71500431882 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
@@ -3576,6 +3583,10 @@
 				38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */,
 				38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */,
 				388632181A4211AF0033CB32 /* AchWaitingViewController~ipad.xib */,
+				47852D611B0DE31E0028E11A /* AskEmailViewController.h */,
+				47852D621B0DE31E0028E11A /* AskEmailViewController.m */,
+				47852D631B0DE31E0028E11A /* AskEmailViewController.xib */,
+				47852D641B0DE31E0028E11A /* AskEmailViewController~ipad.xib */,
 				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
@@ -4294,6 +4305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
+				47852D661B0DE31E0028E11A /* AskEmailViewController.xib in Resources */,
 				47F84D6D198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
 				3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
@@ -4426,6 +4438,7 @@
 				BB29BD49173CD30D0016A6E9 /* BankTransferViewController.xib in Resources */,
 				47AC3F9B1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
+				47852D671B0DE31E0028E11A /* AskEmailViewController~ipad.xib in Resources */,
 				38B52FA0199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
@@ -5443,6 +5456,7 @@
 				474C45211993CD38001F207C /* ProfilesEditViewController.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				47AC3F911987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
+				47852D651B0DE31E0028E11A /* AskEmailViewController.m in Sources */,
 				38504B0919C1E83700276203 /* TouchIDHelper.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				4757BE661A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */,

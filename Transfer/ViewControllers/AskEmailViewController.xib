@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AskEmailViewController">
+            <connections>
+                <outlet property="continueButton" destination="uSj-Tb-62N" id="Uus-gf-qoP"/>
+                <outlet property="emailTextField" destination="Sqf-jN-fvd" id="uDB-dp-GQz"/>
+                <outlet property="messageLabel" destination="2d1-LU-JcI" id="2XY-na-Dyg"/>
+                <outlet property="separatorViewHeight" destination="fek-HK-kQ5" id="aYl-Im-xib"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-jN-fvd" userLabel="Email TextField" customClass="FloatingLabelTextField">
+                    <rect key="frame" x="20" y="129" width="300" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" placeholder="YES" id="c5K-jG-eut"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOe-X8-gxb" userLabel="Separator View">
+                    <rect key="frame" x="10" y="208" width="310" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fek-HK-kQ5"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Tb-62N" userLabel="Continue Button" customClass="BlueRoundedButton">
+                    <rect key="frame" x="133" y="236" width="55" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="dEk-hB-rjg"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="donePressed" destination="-1" eventType="touchUpInside" id="Oxv-Ji-PHw"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eab-el-220" customClass="IntrinsicSizeUIView">
+                    <rect key="frame" x="0.0" y="276" width="320" height="292"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-LU-JcI" userLabel="Message Label">
+                            <rect key="frame" x="30" y="30" width="260" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="260" id="uGB-Tx-fLL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="2d1-LU-JcI" firstAttribute="top" secondItem="Eab-el-220" secondAttribute="top" constant="30" id="Kf9-PW-a11"/>
+                        <constraint firstAttribute="centerX" secondItem="2d1-LU-JcI" secondAttribute="centerX" id="PWp-g6-eGw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="OOe-X8-gxb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="8SA-gA-9iv"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="top" id="Ehu-CB-vo4"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="MOr-k6-BXT"/>
+                <constraint firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="bottom" id="OBE-MG-xlt"/>
+                <constraint firstAttribute="trailing" secondItem="OOe-X8-gxb" secondAttribute="trailing" id="cKb-1a-cpk"/>
+                <constraint firstAttribute="trailing" secondItem="Eab-el-220" secondAttribute="trailing" id="dii-nJ-N22"/>
+                <constraint firstAttribute="centerX" secondItem="uSj-Tb-62N" secondAttribute="centerX" id="fJl-9q-6E9"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="top" secondItem="OOe-X8-gxb" secondAttribute="bottom" constant="27" id="jYJ-E3-THw"/>
+                <constraint firstItem="OOe-X8-gxb" firstAttribute="top" secondItem="Sqf-jN-fvd" secondAttribute="bottom" constant="9" id="rYl-UV-Lzu"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="129" id="sbd-nD-ZJR"/>
+                <constraint firstAttribute="trailing" secondItem="Sqf-jN-fvd" secondAttribute="trailing" id="wIu-Cw-Ezs"/>
+                <constraint firstItem="Eab-el-220" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zFW-vm-IMh"/>
+            </constraints>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
