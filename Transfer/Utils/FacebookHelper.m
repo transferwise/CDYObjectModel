@@ -124,11 +124,14 @@
 		FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
 		
 		[request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-			if(!error)
+			if(!error && result[@"email"])
+			{
+				resultBlock(result[@"email"]);
+			}
+			else
 			{
 				resultBlock(nil);
 			}
-			resultBlock(nil);
 		}];
 	}
 }
