@@ -43,8 +43,7 @@
 #import "PushNotificationsHelper.h"
 #import "ReferralsCoordinator.h"
 #import <FBSDKAppEvents.h>
-#import <FBSDKLoginKit.h>
-#import <FBSDKAccessToken.h>
+#import "FacebookHelper.h"
 
 @interface AuthenticationHelper ()
 
@@ -209,6 +208,7 @@
 
 - (void)performOAuthLoginWithToken:(NSString *)token
 						  provider:(NSString *)provider
+							 email:(NSString *)email
 				keepPendingPayment:(BOOL)keepPendingPayment
 			  navigationController:(UINavigationController *)navigationController
 					   objectModel:(ObjectModel *)objectModel
@@ -222,6 +222,7 @@
 	
 	LoginOrRegisterWithOauthOperation *oauthLoginOperation = [LoginOrRegisterWithOauthOperation loginOrRegisterWithOauthOperationWithProvider:provider
 																																		token:token
+																																		email:email
 																																  objectModel:objectModel
 																														   keepPendingPayment:keepPendingPayment];
 	self.executedOperation = oauthLoginOperation;
@@ -293,6 +294,7 @@
 	__weak typeof(self) weakSelf = self;
 	[self authWithOauthToken:account.accessToken.accessToken
 					provider:account.accountType
+					   email:nil
 				 sucessBlock:successBlock
 				  errorBlock:^{
 					  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
@@ -303,12 +305,14 @@
 
 - (void)authWithOauthToken:(NSString *)token
 				  provider:(NSString *)provider
+					 email:(NSString *)email
 			   sucessBlock:(TRWActionBlock)successBlock
 				errorBlock:(TRWActionBlock)errorBlock
 				isExisting:(BOOL)isExisting
 {
 	[self performOAuthLoginWithToken:token
 							provider:provider
+							   email:email
 				  keepPendingPayment:NO
 				navigationController:self.navigationController
 						 objectModel:self.objectModel
@@ -449,84 +453,31 @@
 										 objectModel:(ObjectModel *)objectModel
 									  successHandler:(TRWActionBlock)successBlock
 {
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:YES forKey:TRWFacebookLoginUsedKey];
-	
 	self.navigationController = navigationController;
 	self.objectModel = objectModel;
 	self.oauthSuccessBlock = successBlock;
 	
-	if ([FBSDKAccessToken currentAccessToken])
-	{
-		//if we have an existing account, try to use that
-		[self authWithFacebookAccount:[FBSDKAccessToken currentAccessToken]
-						 successBlock:successBlock
-						   isExisting:YES];
-		return;
-	};
-
-	[self doFacebookLogin:successBlock
-			   isExisting:NO];
-}
-
-- (void)authWithFacebookAccount:(FBSDKAccessToken *)accessToken
-				   successBlock:(TRWActionBlock)successBlock
-					 isExisting:(BOOL)isExisting
-{
 	__weak typeof(self) weakSelf = self;
-	[self authWithOauthToken:accessToken.tokenString
-					provider:FacebookOAuthServiceName
-				 sucessBlock:successBlock
-				  errorBlock:^{
-					  //will only be executed for isExisting = YES case
-					  [[[FBSDKLoginManager alloc] init] logOut];
-					  [weakSelf doFacebookLogin:successBlock
-									 isExisting:NO];
-				  }
-				  isExisting:isExisting];
-}
-
-- (void)doFacebookLogin:(TRWActionBlock)successBlock
-			 isExisting:(BOOL)isExisting
-{
-	__weak typeof(self) weakSelf = self;
-	FBSDKLoginManager *manager = [[FBSDKLoginManager alloc] init];
-	[manager logInWithReadPermissions:@[FacebookOAuthEmailScope, FacebookOAuthProfileScope]
-							  handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-		if (error)
-		{
-			[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginError
-												   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
-			
-			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-															   message:nil];
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			[alertView show];
-		}
-		else if (result.isCancelled)
-		{
-			// nothing to do here, move along
-		}
-		else
-		{
-			if ([result.grantedPermissions containsObject:FacebookOAuthEmailScope] && [FBSDKAccessToken currentAccessToken])
-			{
-				[weakSelf authWithFacebookAccount:[FBSDKAccessToken currentAccessToken]
-									 successBlock:successBlock
-									   isExisting:NO];
-			}
-			else
-			{
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginNoEmail
-													   withLabel:nil];
-
-				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-																   message:NSLocalizedString(@"", nil)];
-				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-				[alertView show];
-			}
-		}
-	}];
+	//call out to FB helper to do the login magic
+	FacebookHelper *fbHelper = [[FacebookHelper alloc] init];
+	[fbHelper performFacebookLoginWithSuccessBlock:^(NSString *accessToken, NSString *email, BOOL isExisting) {
+		[weakSelf authWithOauthToken:accessToken
+							provider:FacebookOAuthServiceName
+							   email:email
+						 sucessBlock:successBlock
+						  errorBlock:^{
+							  //will only be executed for isExisting = YES case
+							  [fbHelper logOut];
+							  [weakSelf performFacebookLoginWithNavigationController:weakSelf.navigationController
+																		 objectModel:weakSelf.objectModel
+																	  successHandler:successBlock];
+						  }
+						  isExisting:isExisting];
+	}
+									   cancelBlock:^{
+										   //do something when FB login is cancelled
+									   }
+							  navigationController:navigationController];
 }
 
 #pragma mark - Helpers

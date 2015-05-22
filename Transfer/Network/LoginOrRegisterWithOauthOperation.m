@@ -18,6 +18,7 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
 @property (nonatomic, strong) NSString* provider;
 @property (nonatomic, strong) NSString* token;
+@property (nonatomic, strong) NSString* email;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic) BOOL keepPendingPayment;
 
@@ -29,6 +30,7 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
 - (instancetype)initWithProvider:(NSString *)provider
 						   token:(NSString *)token
+						   email:(NSString *)email
 					 objectModel:(ObjectModel *)objectModel
 			  keepPendingPayment:(BOOL)keepPendingPayment
 {
@@ -37,6 +39,7 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 	{
 		self.provider = provider;
 		self.token = token;
+		self.email = email;
 		self.objectModel = objectModel;
 		self.keepPendingPayment = keepPendingPayment;
 	}
@@ -45,11 +48,13 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 
 + (LoginOrRegisterWithOauthOperation *)loginOrRegisterWithOauthOperationWithProvider:(NSString *)provider
 																			   token:(NSString *)token
+																			   email:(NSString *)email
 																		 objectModel:(ObjectModel *)objectModel
 																  keepPendingPayment:(BOOL)keepPendingPayment
 {
 	return [[LoginOrRegisterWithOauthOperation alloc] initWithProvider:provider
 																 token:token
+																 email:email
 														   objectModel:objectModel
 													keepPendingPayment:keepPendingPayment];
 }
@@ -63,6 +68,11 @@ NSString *const kOauthPath = @"/account/loginOrRegisterWithOauth";
 	NSMutableDictionary *params = [NSMutableDictionary dictionary];
 	params[@"provider"] = self.provider;
 	params[@"token"] = self.token;
+	
+	if (self.email)
+	{
+		params[@"email"] = self.email;
+	}
     
     NSString* referrer = [ReferralsCoordinator referralToken];
     if(referrer)
