@@ -9,6 +9,7 @@
 #import "FacebookHelper.h"
 #import <FBSDKLoginKit.h>
 #import <FBSDKAccessToken.h>
+#import <FBSDKGraphRequest.h>
 #import "AskEmailViewController.h"
 #import "GoogleAnalytics.h"
 #import "TRWAlertView.h"
@@ -50,6 +51,7 @@
 	FBSDKLoginManager *manager = [[FBSDKLoginManager alloc] init];
 	[manager logInWithReadPermissions:@[FacebookOAuthEmailScope, FacebookOAuthProfileScope]
 							  handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+								  //show hud
 								  if (error)
 								  {
 									  //Something went pear shaped
@@ -81,29 +83,28 @@
 	if ([FBSDKAccessToken currentAccessToken])
 	{
 		//might be necessary to check for a permission here first
-		NSString *email = [self getUserEmail];
-		
-		if (!email)
-		{
-			__weak typeof(self) weakSelf = self;
-			//no access to email or it is missing
-			//show AskEmailViewController
-			AskEmailViewController *askEmailController = [[AskEmailViewController alloc] initWithReturnBlock:^(NSString *email) {
-				[weakSelf handleEmail:email
-						 successBlock:successBlock
-						   isExisting:isExisting];
-			}];
-			
-			[navigationController pushViewController:askEmailController
-											animated:YES];
-		}
-		else
-		{
-			[self handleEmail:email
-				 successBlock:successBlock
-				   isExisting:isExisting];
-		}
-		
+		[self getUserEmail:^(NSString *email) {
+			if (!email)
+			{
+				__weak typeof(self) weakSelf = self;
+				//no access to email or it is missing
+				//show AskEmailViewController
+				AskEmailViewController *askEmailController = [[AskEmailViewController alloc] initWithReturnBlock:^(NSString *email) {
+					[weakSelf handleEmail:email
+							 successBlock:successBlock
+							   isExisting:isExisting];
+				}];
+				
+				[navigationController pushViewController:askEmailController
+												animated:YES];
+			}
+			else
+			{
+				[self handleEmail:email
+					 successBlock:successBlock
+					   isExisting:isExisting];
+			}
+		}];
 	}
 	else
 	{
@@ -115,10 +116,21 @@
 	}
 }
 
-- (NSString *)getUserEmail
+- (void)getUserEmail:(void(^)(NSString * email))resultBlock
 {
-	//try to get email out of FB
-	return nil;
+	//Yes, I am paranoid
+	if ([FBSDKAccessToken currentAccessToken])
+	{
+		FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+		
+		[request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+			if(!error)
+			{
+				resultBlock(nil);
+			}
+			resultBlock(nil);
+		}];
+	}
 }
 
 - (void)handleEmail:(NSString *)email
