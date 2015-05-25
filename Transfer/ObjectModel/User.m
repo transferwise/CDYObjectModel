@@ -59,4 +59,9 @@
     return NO;
 }
 
+- (NSInteger)deducedId
+{
+    return [[self.pReference substringFromIndex:1] integerValue] - 10000;
+}
+
 @end

@@ -21,7 +21,7 @@
 - (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion;
 - (void)clearCredentials;
 - (NSString *)addTokenToPath:(NSString *)path;
-- (void)updateConfigurationOptions;
+- (void)updateBaseData;
 - (void)setBasicUsername:(NSString *)username password:(NSString *)password;
 
 + (void)clearCookies;

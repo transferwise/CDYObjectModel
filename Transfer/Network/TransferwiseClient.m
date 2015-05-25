@@ -11,7 +11,7 @@
 #import "Credentials.h"
 #import "RemoveTokenOperation.h"
 #import "ObjectModel+Users.h"
-#import "ConfigurationOptionsOperation.h"
+#import "CompanyAttributesOperation.h"
 
 NSString *const kAPIPathBase = @"/api";
 
@@ -19,22 +19,25 @@ NSString *const kAPIPathBase = @"/api";
 
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) ConfigurationOptionsOperation *configurationsOperation;
+@property (nonatomic, strong) CompanyAttributesOperation *companyAttributesOperation;
 
 @end
 
 @implementation TransferwiseClient
 
-- (id)initSingleton {
+- (id)initSingleton
+{
     self = [super initWithBaseURL:[NSURL URLWithString:TRWServerAddress]];
-    if (self) {
+    if (self)
+	{
         self.operationQueue.maxConcurrentOperationCount = TRW_MAX_CONCURRENT_OPERATIONS;
     }
 
     return self;
 }
 
-- (id)init {
+- (id)init
+{
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must use [%@ %@] instead",
                                                                      NSStringFromClass([self class]),
@@ -43,15 +46,18 @@ NSString *const kAPIPathBase = @"/api";
     return nil;
 }
 
-+ (TransferwiseClient *)sharedClient {
++ (TransferwiseClient *)sharedClient
+{
     DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
         return [[self alloc] initSingleton];
     });
 }
 
-- (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion {
+- (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion
+{
     MCLog(@"Update user details");
-    if (![Credentials userLoggedIn]) {
+    if (![Credentials userLoggedIn])
+	{
         MCLog(@"User not logged in.");
         return;
     }
@@ -61,7 +67,8 @@ NSString *const kAPIPathBase = @"/api";
     [detailsOperation setObjectModel:self.objectModel];
 
     [detailsOperation setCompletionHandler:^(NSError *error) {
-        if (completion) {
+        if (completion)
+		{
             completion(error);
         }
     }];
@@ -69,7 +76,8 @@ NSString *const kAPIPathBase = @"/api";
     [detailsOperation execute];
 }
 
-- (void)clearCredentials {
+- (void)clearCredentials
+{
     NSString *token = [Credentials accessToken];
     RemoveTokenOperation *operation = [[RemoveTokenOperation alloc] initWithToken:token];
     [operation setObjectModel:self.objectModel];
@@ -77,41 +85,51 @@ NSString *const kAPIPathBase = @"/api";
     [operation execute];
 }
 
-+ (void)clearCookies {
++ (void)clearCookies
+{
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-    for (NSHTTPCookie *cookie in cookies) {
+    for (NSHTTPCookie *cookie in cookies)
+	{
         NSString *domain = cookie.domain;
-        if ([domain rangeOfString:@"transferwise"].location != NSNotFound) {
-            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-        } else if ([domain rangeOfString:@"yahoo"].location != NSNotFound) {
+        if ([domain rangeOfString:@"transferwise"].location != NSNotFound)
+		{
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
     }
 }
 
-- (NSString *)addTokenToPath:(NSString *)path {
+- (NSString *)addTokenToPath:(NSString *)path
+{
     return [NSString stringWithFormat:@"%@%@", kAPIPathBase, path];
 }
 
-- (void)updateConfigurationOptions {
+- (void)updateBaseData
+{
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.configurationsOperation) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:TRWWillUpdateBaseDataNotification
+															object:nil];
+        if (self.companyAttributesOperation)
+		{
             return;
         }
 
-        ConfigurationOptionsOperation *operation = [[ConfigurationOptionsOperation alloc] init];
-        [self setConfigurationsOperation:operation];
+		CompanyAttributesOperation *operation = [CompanyAttributesOperation operation];
+        [self setCompanyAttributesOperation:operation];
         [operation setObjectModel:self.objectModel];
-        [operation setCompletion:^{
+        [operation setResultHandler:^(NSError *error){
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setConfigurationsOperation:nil];
+                [self setCompanyAttributesOperation:nil];
+				[[NSNotificationCenter defaultCenter] postNotificationName:TRWDidUpdateBaseDataNotification
+																	object:nil];
             });
         }];
         [operation execute];
     });
 }
 
-- (void)setBasicUsername:(NSString *)username password:(NSString *)password {
+- (void)setBasicUsername:(NSString *)username
+				password:(NSString *)password
+{
     [self clearAuthorizationHeader];
     [self setAuthorizationHeaderWithUsername:username password:password];
 }

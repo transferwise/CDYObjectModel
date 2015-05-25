@@ -36,11 +36,13 @@
 #import "Mixpanel+Customisation.h"
 #import "UIView+Container.h"
 #import "UITextField+CaretPosition.h"
+#import "ColoredButton.h"
+#import "PendingPayment+ColoredButton.h"
+#import "UITextField+CustomDelegate.h"
 
+@interface ConfirmPaymentViewController ()<UITextViewDelegate>
 
-@interface ConfirmPaymentViewController ()
-
-@property (nonatomic, strong) IBOutlet UIButton *actionButton;
+@property (nonatomic, strong) IBOutlet ColoredButton *actionButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
@@ -60,7 +62,7 @@
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
-@property (nonatomic, strong) NSCharacterSet *referenceExclusionSet;
+@property (nonatomic, copy) TRWActionBlock animatedSuccessWrapper;
 
 //iPad
 @property (nonatomic,weak) IBOutlet UITextField *referenceField;
@@ -98,11 +100,20 @@
     //Set background colour again because of ios 8.1 bug
     self.tableView.bgStyle = self.tableView.bgStyle;
     
+    [[Mixpanel sharedInstance] sendPageView:MPConfirmation withProperties:[self.payment trackingProperties]];
+
+    ColoredButton* coloredButton = (ColoredButton*)self.actionButton;
+    PendingPayment* pendingPayment = [self.objectModel pendingPayment];
+    [pendingPayment addProgressAnimationToButton:coloredButton];
+
+    __weak typeof(self) weakSelf = self;
+    self.animatedSuccessWrapper = ^{
+        [coloredButton animateProgressFrom:[pendingPayment.paymentFlowProgress floatValue] to:1.0f delay:0.0f];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            weakSelf.sucessBlock();
+            });
+    };
     
-    
-    self.referenceExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
-    
-    [[Mixpanel sharedInstance] sendPageView:@"Confirm"];
 }
 
 - (void)createContent
@@ -247,11 +258,11 @@
     
     if(self.reportingType == ConfirmPaymentReportingLoggedIn)
     {
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment 2"];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAConfirmPayment2];
     }
     else if (self.reportingType == ConfirmPaymentReportingNotLoggedIn)
     {
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment"];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAConfirmPayment];
     }
 }
 
@@ -272,7 +283,7 @@
 	{
 		CGRect newHeaderFrame = self.headerView.frame;
 		CGRect newFooterFrame = self.footerView.frame;
-		if UIInterfaceOrientationIsLandscape(orientation)
+		if (UIInterfaceOrientationIsLandscape(orientation))
 		{
 			newHeaderFrame.size.height = 60.0f;
 			newFooterFrame.size.height = 224.0f;
@@ -323,7 +334,12 @@
         self.tableView.tableFooterView = self.footerView;
     
         [self.receiverEmailCell setEditable:YES];
-        [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
+        NSString *emailTitle = NSLocalizedString(@"confirm.payment.email.label", nil);
+        if(![payment.targetCurrency.recipientEmailRequired boolValue])
+        {
+            emailTitle = [emailTitle stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+        }
+        [self.receiverEmailCell configureWithTitle:emailTitle value:[payment.recipient email]];
         
         [self.referenceCell setEditable:YES];
         [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:self.payment.paymentReference];
@@ -343,7 +359,12 @@
 		
         self.referenceField.placeholder = NSLocalizedString(@"confirm.payment.reference.label", nil);
         self.referenceField.text = self.payment.paymentReference;
-        self.emailField.placeholder = NSLocalizedString(@"confirm.payment.email.label", nil);
+        NSString *emailTitle = NSLocalizedString(@"confirm.payment.email.label", nil);
+        if(![payment.targetCurrency.recipientEmailRequired boolValue])
+        {
+            emailTitle = [emailTitle stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+        }
+        self.emailField.placeholder = emailTitle;
     }
 }
 
@@ -478,9 +499,6 @@
 
 -(void)sendForValidation
 {
-    self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [self.hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
-    
     PendingPayment *input = [self.objectModel pendingPayment];
     
     NSString *reference = IPAD?self.referenceField.text:[self.referenceCell value];
@@ -504,6 +522,17 @@
 	
 	__weak typeof(self) weakSelf = self;
 	
+    if ([input.recipientEmail length] <= 0 && [input.targetCurrency.recipientEmailRequired boolValue])
+    {
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil)];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil),input.targetCurrency.code] delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    self.hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [self.hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
+    
     if(emailAdded)
     {
         self.payment.recipient.email = email;
@@ -514,33 +543,35 @@
                 if(error)
                 {
                     [self.hud hide];
-                    [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                    [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:[error localizedTransferwiseMessage]];
                     TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                     [alertView show];
                     return;
                 }
-                weakSelf.sucessBlock();
+                weakSelf.animatedSuccessWrapper();
             }];
             self.executedOperation = updateOperation;
             [updateOperation execute];
         }
         else
         {
-            weakSelf.sucessBlock();
+            weakSelf.animatedSuccessWrapper();
         }
     }
     else
     {
-        weakSelf.sucessBlock();
+        weakSelf.animatedSuccessWrapper();
     }
 }
 
 -(void)handleValidationError:(NSError *)error
 {
     [self.hud hide];
+    
+    [self.actionButton animateProgressFrom:1.0f to:[[self.objectModel pendingPayment].paymentFlowProgress floatValue] delay:0.0f];
     if (error)
     {
-        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert"
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:GACreatingpaymentalert
                                                withLabel:[error localizedTransferwiseMessage]];
         TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
         [alertView show];
@@ -622,28 +653,19 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-   
-    TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
-    if(self.referenceField == textField || (cell && cell == self.referenceCell))
+    if(textField == self.referenceField || textField == self.emailField)
     {
-        NSString *text = textField.text;
-        NSString *strippedAccentsReplacement = [self stripAccentsFromString:string];
-        NSString *modified = [text stringByReplacingCharactersInRange:range withString:strippedAccentsReplacement];
-        if([modified length] < [self getReferenceMaxLength:self.payment])
+        if(textField == self.referenceField)
         {
-            [textField setText:modified];
-            [textField moveCaretToAfterRange:NSMakeRange(range.location, [strippedAccentsReplacement length])];
+            return [UITextField textField:textField shouldChangeCharactersInRange:range replacementString:string presentationPattern:nil maxValueLength:[self getReferenceMaxLength:self.payment] enforceAlphaNumeric:YES];
         }
-        return NO;
+        else
+        {
+            return [UITextField textField:textField shouldChangeCharactersInRange:range replacementString:string presentationPattern:nil maxValueLength:0 enforceAlphaNumeric:NO];
+        }
     }
-    
+
     return [super textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
--(NSString*)stripAccentsFromString:(NSString*)source
-{
-    NSString *modified = [source decomposedStringWithCanonicalMapping];
-    modified = [[modified componentsSeparatedByCharactersInSet:self.referenceExclusionSet] componentsJoinedByString:@""];
-    return modified;
-}
 @end

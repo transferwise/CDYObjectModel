@@ -13,6 +13,8 @@
 #import "MOMStyle.h"
 #import <JVFloatLabeledTextField.h>
 #import "NSString+Presentation.h"
+#import "UITextField+CaretPosition.h"
+#import "UITextField+CustomDelegate.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -73,42 +75,13 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-	NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
-	if(![self validateAlphaNumeric:modified])
-	{
-		return NO;
-	}
-	
-    NSString *pattern = self.presentationPattern;
-    
-    if (![pattern hasValue] && self.maxValueLength == 0)
-	{
-        return YES;
+    NSString* original = textField.text;
+    BOOL result = [UITextField textField:textField shouldChangeCharactersInRange:range replacementString:string presentationPattern:self.presentationPattern maxValueLength:self.maxValueLength enforceAlphaNumeric:self.validateAlphaNumeric];
+    if(![original isEqualToString:textField.text])
+    {
+        [self setValueModified:YES];
     }
-    
-    if ([pattern hasValue] && [modified length] > [pattern length])
-	{
-        return NO;
-    }
-    
-    if (self.maxValueLength > 0 && [modified length] > self.maxValueLength)
-	{
-        return NO;
-    }
-    
-    if ([string length] == 0)
-	{
-        modified = [modified stringByRemovingPatterChar:pattern];
-    }
-	else
-	{
-        modified = [modified applyPattern:pattern];
-        modified = [modified stringByAddingPatternChar:pattern];
-    }
-    
-    [self.entryField setText:modified];
-    [self setValueModified:YES];
-    return NO;
+    return result;
 
 }
 
@@ -148,20 +121,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [self setValueModified:YES];
 }
 
-- (BOOL)validateAlphaNumeric:(NSString *)value
-{
-	if(!self.validateAlphaNumeric)
-	{
-		return YES;
-	}
-	
-	NSMutableCharacterSet *alphanumerics = [NSMutableCharacterSet alphanumericCharacterSet];
-	[alphanumerics addCharactersInString:@"."];
-	NSCharacterSet *unwantedCharacters = [alphanumerics invertedSet];
-	
-    return ([value rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
-}
-
 - (void)setGrayedOut:(BOOL)isGrayedOut
 {
 	if (isGrayedOut)
@@ -188,9 +147,11 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 	self.userInteractionEnabled = !isGrayedOut;
 }
 
+
 + (void)setTextColor:(UITextField *)textField editable:(BOOL)editable
 {
 	[textField setTextColor:(editable ? [UIColor colorFromStyle:textField.fontStyle] : [UIColor colorFromStyle:@"CoreFont"])];
 }
+
 
 @end

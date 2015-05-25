@@ -73,6 +73,8 @@
 
 - (void)setUpTabs
 {
+    
+    __weak typeof(self) weakSelf = self;
 	TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
 	[self setTransactionsController:transactionsController];
 	[transactionsController setObjectModel:self.objectModel];
@@ -81,6 +83,10 @@
 	transactionsItem.title = transactionsItem.accessibilityLabel = NSLocalizedString(@"transactions.controller.tabbar.title", nil);
 	transactionsItem.icon = [UIImage imageNamed:@"Transfers"];
 	transactionsItem.selectedIcon = [UIImage imageNamed:@"Transfers_selected"];
+    transactionsItem.actionBlock = ^(TabItem* item){
+        weakSelf.transactionsController.refreshOnAppear = YES;
+        return YES;
+    };
 	
 	
 	InvitationsViewController* invitationController = [[InvitationsViewController alloc] init];
@@ -101,9 +107,9 @@
     paymentItem.flashColor = [UIColor colorFromStyle:@"TWElectricblueDarker"];
 	[paymentItem setActionBlock:^(TabItem* item){
 		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-		[controller setObjectModel:self.objectModel];
+		[controller setObjectModel:weakSelf.objectModel];
 		ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
-		[self presentViewController:wrapper animated:YES completion:nil];
+		[weakSelf presentViewController:wrapper animated:YES completion:nil];
 		return NO;
 	}];
 	
@@ -235,16 +241,29 @@
 - (void)moveToPaymentsList
 {
     [self.tabController selectIndex:IPAD?1:0];
-    [self popToRootViewControllerAnimated:YES];
-	[self setViewControllers:@[self.tabController]];
+    [self setViewControllers:@[self.tabController] animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)moveToPaymentView
 {
-    [self.tabController selectIndex:IPAD?0:2];
-    [self popToRootViewControllerAnimated:YES];
-	[self setViewControllers:@[self.tabController]];
+    if(self.presentedViewController)
+    {
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.tabController selectIndex:IPAD?0:2];
+        }];
+    }
+    else
+    {
+        [self.tabController selectIndex:IPAD?0:2];
+    }
+    
+}
+
+- (void)moveToInvitationsView
+{
+    [self.tabController selectIndex:IPAD?2:1];
+    [self setViewControllers:@[self.tabController] animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -277,6 +296,46 @@
     {
         [self.tabController turnOffFlashForItemAtIndex:IPAD?0:2];
     }
+}
+
+
+#pragma mark - Perform Navigation
+
+- (BOOL)performNavigation:(NavigationAction)navigationAction
+		   withParameters:(NSDictionary *)params
+{
+	switch (navigationAction) {
+		case PaymentDetails:
+			NSAssert(params, @"itemId cannot be nil");
+			NSAssert(params[kNavigationParamsPaymentId], @"paymentId net supplied in params");
+			
+			self.transactionsController.deeplinkDisplayVerification = NO;
+			self.transactionsController.deeplinkPaymentID = @([params[kNavigationParamsPaymentId] integerValue]);
+			[self moveToPaymentsList];
+			
+			return YES;
+			break;
+		case NewPayment:
+			[self moveToPaymentView];
+			
+			return YES;
+			break;
+		case Invite:
+			[self moveToInvitationsView];
+			
+			return YES;
+			break;
+		case Verification:
+			self.transactionsController.deeplinkDisplayVerification = YES;
+			self.transactionsController.deeplinkPaymentID = nil;
+			[self moveToPaymentsList];
+			
+			return YES;
+			break;
+		default:
+			return NO;
+			break;
+	}
 }
 
 @end

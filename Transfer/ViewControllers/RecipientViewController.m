@@ -25,7 +25,6 @@
 #import "DropdownCell.h"
 #import "ButtonCell.h"
 #import "ObjectModel.h"
-#import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "Credentials.h"
 #import "UITableView+FooterPositioning.h"
@@ -62,10 +61,11 @@
 #import "CountrySuggestionCellProvider.h"
 #import "StateSuggestionCellProvider.h"
 #import "RecipientUpdateOperation.h"
-#import "Mixpanel+Customisation.h"
 #import "TypeFieldHelper.h"
 #import "TargetCountryProvider.h"
 #import "CurrencyLoader.h"
+#import "PendingPayment+ColoredButton.h"
+#import "UITextField+CustomDelegate.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -99,8 +99,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) RecipientType *recipientType;
 
 @property (nonatomic, strong) Recipient *recipient;
-
-@property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
 @property (nonatomic, strong) DataEntryDefaultHeader *recipientFieldsHeader;
 
@@ -164,6 +162,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    nameCell.validateAlphaNumeric = YES;
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
     [nameCell setSelectionHandler:^(Recipient *recipient) {
         [weakSelf didSelectRecipient:recipient];
@@ -174,8 +173,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.emailCell = emailCell;
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [emailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [emailCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.email", nil) value:@""];
-    
 
     [self setRecipientCells:@[nameCell,emailCell]];
 
@@ -192,6 +189,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setCurrencyCells:currencyCells];
 
     [self.addButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+    PendingPayment* payment = [self pendingPayment];
+    [payment addProgressAnimationToButton:self.addButton];
 
     if (self.preLoadRecipientsWithCurrency) {
         [self.currencyCell setEditable:NO];
@@ -320,7 +319,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [super viewWillAppear:animated];
 
     if (self.reportingType != RecipientReportingNone) {
-        [[GoogleAnalytics sharedInstance] sendScreen:(self.reportingType == RecipientReportingNotLoggedIn ? @"Enter recipient details" : @"Enter recipient details 2")];
+        [[GoogleAnalytics sharedInstance] sendScreen:(self.reportingType == RecipientReportingNotLoggedIn ? GAEnterRecipientDetails : GAEnterRecipientDetails2)];
     }
     
     [self refreshTableViewSizes];
@@ -435,7 +434,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 	if (!self.recipient && !self.noPendingPayment)
 	{
 		//set the recipient country based on targent currency, if pending payment exists
-		if (self.objectModel.pendingPayment
+		if (self.recipientType.recipientAddressRequiredValue && self.objectModel.pendingPayment
 			&& self.objectModel.pendingPayment.targetCurrency
 			&& [@"eur" caseInsensitiveCompare:self.objectModel.pendingPayment.targetCurrency.code] != NSOrderedSame)
 		{
@@ -468,7 +467,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (void)loadDataFromWrapper:(EmailLookupWrapper *)wrapper {
     [self didSelectRecipient:nil];
     self.lastSelectedWrapper = wrapper;
-    self.nameCell.value = [wrapper presentableString:FirstNameFirst];
+    self.nameCell.value = [UITextField stripAccentsFromString:[wrapper presentableString:FirstNameFirst]];
     self.emailCell.value = wrapper.email;
     
     [self updateUserNameText];
@@ -484,7 +483,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
     }];
     
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ABRecipientSelected"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAAbrecipientselected];
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient
@@ -517,14 +516,20 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     if (!self.recipient) {
         //We're creating a new recipient
+        
+        RecipientFieldCell* bicCell = nil;
+        
         if(self.templateRecipient)
         {
-            [self.nameCell setValue:self.templateRecipient.name];
-            [self.emailCell setValue:self.templateRecipient.email];
+            [self.nameCell setValue:self.templateRecipient.name];            [self.emailCell setValue:self.templateRecipient.email];
             
             for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells)
 			{
                 RecipientTypeField *field = fieldCell.type;
+                if (field.isBIC)
+                {
+                    bicCell = fieldCell;
+                }
                 [fieldCell setValue:[self.templateRecipient valueField:field]];
                 if([fieldCell.value length]>0)
                 {
@@ -540,6 +545,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [self.emailCell setValue:@""];
             [self.nameCell setEditable:YES];
             for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+                if (fieldCell.type.isBIC)
+                {
+                    bicCell = fieldCell;
+                }
                 [fieldCell setValue:@""];
                 [fieldCell setEditable:YES];
             }
@@ -548,11 +557,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         
         [self setAddressFieldsEditable:YES];
         
+        if(bicCell)
+        {
+            [self refreshBicCell:bicCell];
+        }
+        
         return;
     }
 
     //We're using an existing recipient.
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAExistingrecipientselected];
     [self.nameCell setValue:recipient.name];
     [self.emailCell setValue:recipient.email];
     
@@ -561,6 +575,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
         
         RecipientTypeField *field = fieldCell.type;
+        if (field.isBIC)
+        {
+            [self refreshBicCell:fieldCell];
+        }
+
         [fieldCell setValue:[recipient valueField:field]];
         if(self.updateRecipient!= recipient || [[fieldCell value] hasValue])
         {
@@ -623,7 +642,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)handleCurrencySelection:(Currency *)currency {
     void(^selectBlock)(void) = ^{
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"CurrencyRecipientSelected" withLabel:currency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrencyrecipientselected withLabel:currency.code];
         
         MCLog(@"Did select currency:%@. Default type:%@", currency.code, currency.defaultRecipientType.type);
         
@@ -654,6 +673,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)handleSelectionChangeToType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"handleSelectionChangeToType:%@", type.type);
+    [self refreshEmailLabel];
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
@@ -726,18 +746,18 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     NSString *issues = [self validateInput];
     if ([issues hasValue]) {
-        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:issues];
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:issues];
 
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"recipient.save.error.title", nil) message:issues];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
         return;
     }
+    
 
-    [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:@"Manual"];
+    [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:GAManual];
     
     PendingPayment *payment = [self pendingPayment];
-    
 
     if (self.recipient && (self.updateRecipient != self.recipient)) {
         if([self.recipient.email isEqualToString:self.emailCell.value])
@@ -760,19 +780,21 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.currency = self.currency;
     recipientInput.type = self.recipientType;
     recipientInput.email = self.emailCell.value;
-    recipientInput.addressFirstLine = [self.addressCell value];
-    recipientInput.addressPostCode = [self.postCodeCell value];
-    recipientInput.addressCity = [self.cityCell value];
-    recipientInput.addressCountryCode = [self.countryCell value];
-    if ([@"usa" caseInsensitiveCompare:self.countryCell.value]== NSOrderedSame)
+    if(self.recipientType.recipientAddressRequiredValue)
     {
-        State* state = [self.stateCellProvider getByCodeOrName:self.stateCell.value];
-        if(state)
+        recipientInput.addressFirstLine = [self.addressCell value];
+        recipientInput.addressPostCode = [self.postCodeCell value];
+        recipientInput.addressCity = [self.cityCell value];
+        recipientInput.addressCountryCode = [self.countryCell value];
+        if ([@"usa" caseInsensitiveCompare:self.countryCell.value]== NSOrderedSame)
         {
-            recipientInput.addressState = state.code;
+            State* state = [self.stateCellProvider getByCodeOrName:self.stateCell.value];
+            if(state)
+            {
+                recipientInput.addressState = state.code;
+            }
         }
     }
-
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
             continue;
@@ -792,7 +814,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [hud hide];
             if(error)
             {
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:[error localizedTransferwiseMessage]];
                 TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                 [alertView show];
                 return;
@@ -807,14 +829,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         if(self.lastSelectedWrapper && [[self.lastSelectedWrapper presentableString:FirstNameFirst] caseInsensitiveCompare:recipientInput.name] == NSOrderedSame && [self.lastSelectedWrapper.email caseInsensitiveCompare:recipientInput.email] == NSOrderedSame)
         {
-            [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:@"AB"];
+            [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:GAAb];
         }
         [self.recipientValidation validateRecipient:recipientInput.objectID completion:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
                 
                 if (error) {
-                    [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                    [[GoogleAnalytics sharedInstance] sendAlertEvent:GASavingrecipientalert withLabel:[error localizedTransferwiseMessage]];
                     
                     TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                     [alertView show];
@@ -850,6 +872,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [issues appendIssue:NSLocalizedString(@"recipient.controller.validation.error.email.format", nil)];
         }
     }
+    else
+    {
+        if([self.currency.recipientEmailRequired boolValue])
+        {
+            [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.email.required", nil),self.currency.code]];
+        }
+        
+    }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
@@ -861,7 +891,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         NSString *valueIssue = [field hasIssueWithValue:value];
         if (![valueIssue hasValue]) {
-            if([@"bic" caseInsensitiveCompare:field.name]== NSOrderedSame && [value length] < 1 && self.currency.recipientBicRequiredValue)
+            if(field.isBIC && [value length] < 1 && self.currency.recipientBicRequiredValue)
             {
                 [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.bic.required", nil),self.currency.code]];
             }
@@ -1241,6 +1271,32 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         self.secondColumnTopConstraint.constant = 0.f;
     }
 
+}
+
+#pragma mark - email field
+
+-(void)refreshEmailLabel
+{
+    NSString* emailTitle = NSLocalizedString(@"recipient.controller.cell.label.email", nil);
+    
+    if(![self.currency.recipientEmailRequired boolValue])
+    {
+         emailTitle = [emailTitle stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+    }
+    
+    [self.emailCell configureWithTitle:emailTitle value:@""];
+}
+
+#pragma mark - bic field
+
+-(void)refreshBicCell:(RecipientFieldCell*)bicCell
+{
+    NSString *title = bicCell.type.title;
+    if(![self.currency.recipientBicRequired boolValue])
+    {
+        title = [title stringByAppendingString:NSLocalizedString(@"field.optional.suffix", nil)];
+    }
+    [bicCell configureWithTitle:title value:bicCell.value];
 }
 
 @end

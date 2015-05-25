@@ -30,7 +30,9 @@ typedef NS_ENUM(short, TRWNetworkErrorCode) {
 - (void)handleErrorResponseData:(NSDictionary *)errorData;
 - (void)cancel;
 
-+ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request;
-+ (NSURLRequest*)getRequestForApiPath:(NSString*)path parameters:(NSDictionary*)params;
++ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request
+						 isAnonymous:(BOOL)isAnonymous;
++ (NSURLRequest*)getRequestForApiPath:(NSString*)path
+						   parameters:(NSDictionary*)params;
 
 @end

@@ -18,6 +18,8 @@
 #import "NSString+Presentation.h"
 #import "PaymentMethodSelectorViewController.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
+#import "CustomInfoViewController+Notifications.h"
+#import "PushNotificationsHelper.h"
 
 @interface TransferWaitingViewController ()
 
@@ -66,21 +68,6 @@
     NSString *timingString = [NSString localizedStringForKey:key withFallback:[NSString localizedStringForKey:fallbackKey withFallback:NSLocalizedString(@"transfertime.default", nil)]];
     [self.messageLabel1 setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.message", nil),timingString]];
 	[super setUpHeader];
-}
-
-- (void)setBackOrCloseButton
-{
-	if (IPAD)
-	{
-		[super setBackOrCloseButton];
-	}
-	else
-	{
-		//On iphone this view might be shown as the end for payment process, thus special handling necessary
-		[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-		}]];
-	}
 }
 
 - (IBAction)noTransferButtonTap:(id)sender {
@@ -136,6 +123,7 @@
     waitingController.payment = payment;
     waitingController.objectModel = objectModel;
     waitingController.showClose = YES;
+    waitingController.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
 
     return waitingController;
 }

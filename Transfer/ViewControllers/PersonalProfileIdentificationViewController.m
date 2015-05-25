@@ -24,6 +24,8 @@
 #import "ColoredButton.h"
 #import "MOMStyle.h"
 #import "NetworkErrorCodes.h"
+#import "Mixpanel+Customisation.h"
+#import "ObjectModel+PendingPayments.h"
 
 #define textCellHeight (IPAD?70.0f:60.0f)
 
@@ -82,7 +84,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:IPAD?@"TextEntryCellValidation":@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Personal verification"]];
+    [[GoogleAnalytics sharedInstance] sendScreen:GAPersonalVerification];
+    if(self.objectModel.pendingPayment)
+    {
+        [[Mixpanel sharedInstance] sendPageView:MPVerification withProperties:[self.objectModel.pendingPayment trackingProperties]];
+    }
     
     
 }
@@ -300,7 +306,7 @@
     NSString *inputValidationError = [self validateEnteredText];
     if(inputValidationError)
     {
-        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"VerificationAlert" withLabel:inputValidationError];
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:GAVerificationalert withLabel:inputValidationError];
         TRWAlertView *alert = [[TRWAlertView alloc] initWithTitle:NSLocalizedString(@"identification.error",nil) message:inputValidationError delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
         [alert show];
     }
@@ -316,13 +322,8 @@
 	hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
 	[hud setMessage:self.completionMessage];
 	
-    if (skip)
+    if (!skip)
 	{
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"skipped"];
-    }
-	else
-	{
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:TRWUploadProgressNotification object:nil];
     }
     
@@ -330,8 +331,13 @@
 		[hud hide];
 		if (!skip)
 		{
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GAVerification withLabel:@"sent"];
 			[[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
 		}
+        else
+        {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GAVerification withLabel:@"skipped"];
+        }
 		[PendingPayment removePossibleImages];
     }, ^(NSError *error) {
         [hud hide];
@@ -364,7 +370,7 @@
                 alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
             }
             [alertView show];
-            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"VerificationAlert" withLabel:alertView.message];
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:GAVerificationalert withLabel:alertView.message];
             self.continueButton.progress = 0.0f;
         }
     });
@@ -585,12 +591,12 @@
         
         float progress = self.uploadProgressAddress + self.uploadProgressId;
         
-        if(self.identificationRequired && self.addressVerificationRowIndex)
+        if(self.identificationRequired && self.addressVerificationRowIndex != NSNotFound)
         {
             progress /= 2;
         }
         
-        self.continueButton.progress = progress;
+        [self.continueButton setProgress:progress animated:YES];
     });
     
 }

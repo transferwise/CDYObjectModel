@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController">
             <connections>
+                <outlet property="googleButton" destination="sxM-RC-tNZ" id="VKR-OE-mrQ"/>
                 <outlet property="loginButton" destination="ZXR-ic-jH3" id="Shc-cG-5kq"/>
                 <outlet property="noRegistrationContainer" destination="96q-Df-1oh" id="Itq-fB-62S"/>
                 <outlet property="pageControl" destination="NiX-z4-79M" id="LAG-XD-YuH"/>
@@ -16,6 +17,7 @@
                 <outlet property="startButton" destination="cy3-Mo-UYH" id="XOP-KB-M4P"/>
                 <outlet property="upfrontRegistrationcontainer" destination="nC2-nS-Nkq" id="VTL-29-bYn"/>
                 <outlet property="view" destination="1" id="3"/>
+                <outlet property="whiteGoogleButton" destination="sYm-Tu-PoD" id="DwL-xF-wJ7"/>
                 <outlet property="whiteLoginButton" destination="jd5-pH-5lu" id="K4t-cN-fUO"/>
                 <outlet property="whiteRegisterButton" destination="JO7-Z3-QyQ" id="aao-Dj-E3P"/>
                 <outlet property="whiteStartButton" destination="ggV-aM-cL6" id="dC0-0L-9Bd"/>
@@ -25,6 +27,8 @@
                 <outletCollection property="blueButtons" destination="cy3-Mo-UYH" id="eUv-cs-oOE"/>
                 <outletCollection property="whiteButtons" destination="ggV-aM-cL6" id="kQk-P2-afD"/>
                 <outletCollection property="whiteButtons" destination="JO7-Z3-QyQ" id="ZYA-Xj-6Gc"/>
+                <outletCollection property="blueButtons" destination="sxM-RC-tNZ" id="sr6-xo-iCF"/>
+                <outletCollection property="whiteButtons" destination="sYm-Tu-PoD" id="KlP-AL-LUW"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -39,7 +43,7 @@
                     </connections>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiX-z4-79M" customClass="SMPageControl">
-                    <rect key="frame" x="0.0" y="380" width="320" height="20"/>
+                    <rect key="frame" x="0.0" y="368" width="320" height="20"/>
                     <color key="backgroundColor" red="1" green="0.21002093062598115" blue="0.24231308778297178" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="X58-ko-0v2"/>
@@ -47,12 +51,13 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nC2-nS-Nkq" userLabel="UpfrontRegistrationControls">
-                    <rect key="frame" x="0.0" y="476" width="320" height="40"/>
+                    <rect key="frame" x="0.0" y="408" width="320" height="110"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-ic-jH3" userLabel="LogIn" customClass="BlueRoundedButton">
                             <rect key="frame" x="50" y="0.0" width="100" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="BNI-Ir-XzO"/>
+                                <constraint firstAttribute="height" constant="40" id="jQe-ei-rHb"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Get starteD">
@@ -66,6 +71,7 @@
                             <rect key="frame" x="170" y="0.0" width="100" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="7TE-5g-emQ"/>
+                                <constraint firstAttribute="height" constant="40" id="kak-gU-w7e"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Get starteD">
@@ -73,6 +79,19 @@
                             </state>
                             <connections>
                                 <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="LGA-yp-hP8"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-RC-tNZ" userLabel="Google" customClass="BlueRoundedButton">
+                            <rect key="frame" x="50" y="70" width="220" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Vnv-rc-yjG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="Get starteD">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="googleTapped:" destination="-1" eventType="touchUpInside" id="GMx-XJ-CCe"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jd5-pH-5lu" userLabel="WhiteLogIn" customClass="WhiteRoundedButton">
@@ -95,28 +114,45 @@
                                 <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="z31-D6-FOZ"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYm-Tu-PoD" userLabel="WhiteGoogle" customClass="WhiteRoundedButton">
+                            <rect key="frame" x="50" y="70" width="220" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="Get starteD">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="googleTapped:" destination="-1" eventType="touchUpInside" id="GKg-mG-H69"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="jd5-pH-5lu" firstAttribute="width" secondItem="ZXR-ic-jH3" secondAttribute="width" id="5X7-Yh-4kw"/>
-                        <constraint firstAttribute="bottom" secondItem="C83-aN-zCM" secondAttribute="bottom" id="7Q3-m6-AyU"/>
-                        <constraint firstAttribute="bottom" secondItem="ZXR-ic-jH3" secondAttribute="bottom" id="9f2-eX-cZR"/>
+                        <constraint firstItem="sYm-Tu-PoD" firstAttribute="height" secondItem="sxM-RC-tNZ" secondAttribute="height" id="AZr-7x-3qS"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="IgT-Vj-b7G"/>
+                        <constraint firstAttribute="bottom" secondItem="sxM-RC-tNZ" secondAttribute="bottom" id="KGF-Nn-cP1"/>
                         <constraint firstItem="jd5-pH-5lu" firstAttribute="centerX" secondItem="ZXR-ic-jH3" secondAttribute="centerX" id="NMz-Hh-zVT"/>
                         <constraint firstItem="jd5-pH-5lu" firstAttribute="centerY" secondItem="ZXR-ic-jH3" secondAttribute="centerY" id="OBN-4T-a9G"/>
                         <constraint firstItem="JO7-Z3-QyQ" firstAttribute="centerY" secondItem="C83-aN-zCM" secondAttribute="centerY" id="OPw-sS-e4V"/>
+                        <constraint firstItem="C83-aN-zCM" firstAttribute="trailing" secondItem="sxM-RC-tNZ" secondAttribute="trailing" id="RVI-tA-f25"/>
+                        <constraint firstAttribute="centerX" secondItem="sxM-RC-tNZ" secondAttribute="centerX" id="T9I-eB-Gbc"/>
                         <constraint firstItem="jd5-pH-5lu" firstAttribute="height" secondItem="ZXR-ic-jH3" secondAttribute="height" id="VGf-MJ-Afr"/>
                         <constraint firstItem="ZXR-ic-jH3" firstAttribute="top" secondItem="nC2-nS-Nkq" secondAttribute="top" id="Vnj-0i-qs6"/>
                         <constraint firstAttribute="centerX" secondItem="ZXR-ic-jH3" secondAttribute="trailing" constant="10" id="YJw-JR-eLH"/>
                         <constraint firstItem="JO7-Z3-QyQ" firstAttribute="width" secondItem="C83-aN-zCM" secondAttribute="width" id="Yno-X6-0dX"/>
-                        <constraint firstAttribute="height" constant="40" id="cit-TP-y4Y"/>
+                        <constraint firstAttribute="height" priority="800" constant="110" id="cit-TP-y4Y"/>
+                        <constraint firstItem="sYm-Tu-PoD" firstAttribute="centerX" secondItem="sxM-RC-tNZ" secondAttribute="centerX" id="dLe-0A-8MB"/>
+                        <constraint firstItem="sxM-RC-tNZ" firstAttribute="leading" secondItem="ZXR-ic-jH3" secondAttribute="leading" id="e9n-bn-QeC"/>
                         <constraint firstItem="C83-aN-zCM" firstAttribute="top" secondItem="nC2-nS-Nkq" secondAttribute="top" id="fRh-0E-k8s"/>
                         <constraint firstItem="JO7-Z3-QyQ" firstAttribute="centerX" secondItem="C83-aN-zCM" secondAttribute="centerX" id="mm4-d0-vOs"/>
                         <constraint firstItem="JO7-Z3-QyQ" firstAttribute="height" secondItem="C83-aN-zCM" secondAttribute="height" id="mut-cf-yXV"/>
+                        <constraint firstItem="sYm-Tu-PoD" firstAttribute="centerY" secondItem="sxM-RC-tNZ" secondAttribute="centerY" id="ofA-uz-1by"/>
                         <constraint firstAttribute="centerX" secondItem="C83-aN-zCM" secondAttribute="leading" constant="-10" id="pbE-ee-Olc"/>
+                        <constraint firstItem="sYm-Tu-PoD" firstAttribute="width" secondItem="sxM-RC-tNZ" secondAttribute="width" id="qkh-ma-iZ7"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96q-Df-1oh" userLabel="NonRegistrationControls">
-                    <rect key="frame" x="0.0" y="476" width="320" height="40"/>
+                    <rect key="frame" x="0.0" y="423" width="320" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cy3-Mo-UYH" customClass="BlueRoundedButton">
                             <rect key="frame" x="110" y="0.0" width="100" height="40"/>
@@ -158,17 +194,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="NiX-z4-79M" firstAttribute="top" secondItem="1" secondAttribute="top" constant="380" id="GVT-l4-eQ5"/>
-                <constraint firstItem="nC2-nS-Nkq" firstAttribute="centerY" secondItem="96q-Df-1oh" secondAttribute="centerY" id="HN2-2p-3Tx"/>
+                <constraint firstItem="NiX-z4-79M" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1" secondAttribute="top" constant="335" id="6W9-VQ-sqn"/>
+                <constraint firstItem="NiX-z4-79M" firstAttribute="top" secondItem="1" secondAttribute="top" priority="600" constant="380" id="GVT-l4-eQ5"/>
+                <constraint firstItem="nC2-nS-Nkq" firstAttribute="centerY" secondItem="96q-Df-1oh" secondAttribute="centerY" constant="20" id="HN2-2p-3Tx"/>
                 <constraint firstAttribute="trailing" secondItem="nC2-nS-Nkq" secondAttribute="trailing" id="IzJ-EU-bzN"/>
                 <constraint firstAttribute="trailing" secondItem="96q-Df-1oh" secondAttribute="trailing" id="KHT-Hi-S81"/>
                 <constraint firstItem="96q-Df-1oh" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="XXS-6p-mlW"/>
-                <constraint firstItem="nC2-nS-Nkq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NiX-z4-79M" secondAttribute="bottom" priority="850" constant="20" id="XlZ-Br-rpK"/>
+                <constraint firstItem="nC2-nS-Nkq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NiX-z4-79M" secondAttribute="bottom" priority="910" constant="20" id="XlZ-Br-rpK"/>
                 <constraint firstAttribute="trailing" secondItem="vVN-5a-Y2I" secondAttribute="trailing" id="Xw8-dJ-LvM"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="top" secondItem="1" secondAttribute="top" id="YXh-52-aGZ"/>
                 <constraint firstAttribute="bottom" secondItem="vVN-5a-Y2I" secondAttribute="bottom" id="bAG-VB-xGg"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nC2-nS-Nkq" secondAttribute="bottom" priority="900" constant="20" id="e0I-qz-BMF"/>
-                <constraint firstAttribute="bottom" secondItem="nC2-nS-Nkq" secondAttribute="bottom" priority="800" constant="52" id="e5z-i0-ks9"/>
+                <constraint firstAttribute="bottom" secondItem="nC2-nS-Nkq" secondAttribute="bottom" priority="800" constant="50" id="e5z-i0-ks9"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="emr-2d-vxL"/>
                 <constraint firstItem="nC2-nS-Nkq" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="hGF-80-1vj"/>
                 <constraint firstAttribute="centerX" secondItem="NiX-z4-79M" secondAttribute="centerX" id="zIP-e7-jol"/>

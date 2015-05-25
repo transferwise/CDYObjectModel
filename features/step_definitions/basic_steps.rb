@@ -83,13 +83,13 @@ Given /^I enter (.*) into form field (.*)$/ do |value,key|
 	if (key != "-" and value != "-")
 		if(key[0,1] == ">")
 			keyName = key[1,key.length-2]
-		    if(query("pickerTableView view marked:'#{value}'").count < 1)
-		    	touch (query("view:'DropdownCell' view text:'#{keyName}'"))
+		    if(query("pickerTableView view {text CONTAINS '#{value}'}").count < 1)
+		    	touch (query("view:'DropdownCell' view {text CONTAINS '#{keyName}'}"))
 		    	sleep(STEP_PAUSE)
 		    end
-			touch (query("pickerTableView view marked:'#{value}'"))
+			touch (query("pickerTableView view {text CONTAINS '#{value}'}"))
 			sleep(STEP_PAUSE)
-			touch (query("view:'DropdownCell' view text:'#{value}'"))
+			touch (query("view:'DropdownCell' view {text CONTAINS '#{value}'}"))
 		else
 			touch(query("textFieldLabel {text CONTAINS '#{key}'}"))
   			keyboard_enter_text(value)
@@ -139,7 +139,7 @@ def closePaymentScreen()
 	end
 end
 
-Then /^I see a "([^\"]*)"$/ do |view_name|
+Given /^I see (.*) displayed$/ do |view_name|
 	screenshot_and_raise if query("view:'#{view_name}'").empty?
 end
 
@@ -192,8 +192,31 @@ Given /^I wait to see alert with text (.*)$/ do |text|
 	end
 end
 
+Given /^I wait a long time until I see (.*)$/ do |key|
+	wait_for_elements_exist(["view marked:'#{key}'"], :timeout => 180)
+end
+
 Given /^I wait and dismiss alert$/ do
 	wait_for_elements_exist(["view marked:'OK'"], :timeout => 60)
 	sleep(STEP_PAUSE)
 	touch("view marked:'OK'")
+end
+
+Given /^I wait for an alert and agree with button (.*)$/ do |button|
+	wait_for_elements_exist(["view marked:'#{button}'"], :timeout => 5)
+	sleep(STEP_PAUSE)
+	touch("view marked:'#{button}'")
+end
+
+Given /^I see row with label (.*)$/ do |text|
+	element_exists(getRowWithLabel(text))
+end
+
+def getRowWithLabel(label)
+	query("view:'UITableViewCell' descendant view marked:'#{label}'")
+end
+
+Given /^I swipe left on a row with label (.*)$/ do |label|
+	#this does not work inside a scenario :(
+	swipe :left, :query => "view marked:'#{label}' parent UITableViewCell", :offset => {:x => 160, :y=> 0}, :"swipe-delta" => {:horizontal => { :dx => 200, :dy => 0 }}
 end

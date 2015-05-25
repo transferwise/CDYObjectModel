@@ -52,6 +52,12 @@
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
 
+#define kProgressRecipient 0.3f
+#define kProgressPersonalProfile 0.6f
+#define kProgressBusinessProfile 0.7f
+#define kProgressRefundRecipient 0.8f
+#define kProgressConfirm 0.9f
+
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
@@ -81,7 +87,11 @@
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
 						 isExisting:(BOOL)isExisting
 {
-    [[Mixpanel sharedInstance] sendPageView:@"Your details"];
+    PendingPayment *pendingPayment = self.objectModel.pendingPayment;
+    if(pendingPayment)
+    {
+        [[Mixpanel sharedInstance] sendPageView:MPYourDetails withProperties:[pendingPayment trackingProperties]];
+    }
 
 	id<PersonalProfileValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePersonalProfile];
 	
@@ -124,7 +134,7 @@
 				updateRecipient:(Recipient*)updateRecipient
 {
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
-    [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
+    [[Mixpanel sharedInstance] sendPageView:GASelectRecipient withProperties:[self.objectModel.pendingPayment trackingProperties]];
 	
     if([self isAZOrOK])
     {
@@ -219,7 +229,7 @@
 
 - (void)presentVerificationScreen
 {
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GAPersonalIdentification];
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	
@@ -247,15 +257,6 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentUploadMoneyController");
-        if ([self isKindOfClass:[LoggedInPaymentFlow class]])
-		{
-            [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"logged"];
-        }
-		else
-		{
-            [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"not logged"];
-        }
-        
         Payment* payment = (id) [self.objectModel.managedObjectContext objectWithID:paymentID];
         
         
@@ -338,7 +339,7 @@
 
 - (void)presentBusinessVerificationScreen
 {
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GABusinessVerification];
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	__weak typeof(self) weakSelf = self;
@@ -399,7 +400,8 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"updateSenderProfile");
-        if ([self.objectModel.currentUser.businessProfile isFilled])
+        if (self.objectModel.currentUser.sendAsBusinessDefaultSettingValue
+			&& [self.objectModel.currentUser.businessProfile isFilled])
 		{
             [self updateBusinessProfile:completion];
         }
@@ -593,8 +595,11 @@
     PendingPayment *payment = self.objectModel.pendingPayment;
 
 	NSNumber *transferFee = [payment transferwiseTransferFee];
-	NSString *currencyCode = [payment.sourceCurrency code];
-
+	NSString *sourceCurrencyCode = [payment.sourceCurrency code];
+    NSString *targetCurrencyCode = [payment.targetCurrency code];
+    
+    BOOL isRepeat = payment.isRepeatValue;
+    
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[payment objectID]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
@@ -608,8 +613,8 @@
         }
 
 #if USE_FACEBOOK_EVENTS
-		MCLog(@"Log FB purchase %@ - %@", transferFee, currencyCode);
-		[FBAppEvents logPurchase:[transferFee floatValue] currency:currencyCode];
+		MCLog(@"Log FB purchase %@ - %@", transferFee, sourceCurrencyCode);
+		[FBAppEvents logPurchase:[transferFee floatValue] currency:[NSString stringWithFormat:@"%@ %@",sourceCurrencyCode, targetCurrencyCode]];
 #endif
 
         static NSNumberFormatter *__formatter;
@@ -622,10 +627,12 @@
             [__formatter setCurrencyDecimalSeparator:@"."];
             [__formatter setCurrencyGroupingSeparator:@""];
         }
+        
+        [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentcreated withLabel:[NSString stringWithFormat:@"%@ - %@", sourceCurrencyCode, isRepeat?@"repeat":@"new"]];
 
 #if USE_APPSFLYER_EVENTS
-        MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
-        [[AppsFlyerTracker sharedTracker] setCurrencyCode:currencyCode];
+        MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, sourceCurrencyCode);
+        [[AppsFlyerTracker sharedTracker] setCurrencyCode:sourceCurrencyCode];
         [AppsFlyerTracker sharedTracker].customerUserID = [weakSelf.objectModel.currentUser pReference];
         [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[__formatter stringFromNumber:transferFee]];
 #endif
@@ -635,15 +642,10 @@
         [weakSelf.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [weakSelf.objectModel.managedObjectContext objectWithID:paymentID];
             NSMutableDictionary *details = [[NSMutableDictionary alloc] init];
-            details[@"recipientType"] = createdPayment.recipient.type.type;
-            details[@"sourceCurrency"] = createdPayment.sourceCurrency.code;
-            details[@"sourceValue"] = createdPayment.payIn;
-            details[@"targetCurrency"] = createdPayment.targetCurrency.code;
-            details[@"targetValue"] = createdPayment.payOut;
-            details[@"userType"] = createdPayment.profileUsed;
-
+            details[@"SourceCurrency"] = createdPayment.sourceCurrency.code;
+            details[@"SourceAmount"] = createdPayment.payIn;
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Transfer created" properties:details];
+            [mixpanel track:MPPaymentCreated properties:details];
             
 #if !TARGET_IPHONE_SIMULATOR
             if ([weakSelf.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
@@ -692,7 +694,7 @@
         if ([payment needsToCommitRecipientData])
 		{
             MCLog(@"commit recipient");
-            [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:@"DuringPayment"];
+            [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:GADuringpayment];
             [self commitRecipient:payment.recipient];
         }
 		else if ([payment needsToCommitRefundRecipientData])
@@ -758,28 +760,38 @@
         PendingPayment *payment = [self.objectModel pendingPayment];
         if (!payment.recipient)
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             [self presentRecipientDetails:[payment.user personalProfileFilled]];
         }
         else if ([payment.allowedRecipientTypes indexOfObject:payment.recipient.type] == NSNotFound)
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *template = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
         }
         else if ([payment.recipient.type recipientAddressRequiredValue] && ! [payment.recipient hasAddress])
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
         }
         else if ([payment.targetCurrency isBicRequiredForType:payment.recipient.type] && ! [[payment.recipient valueForFieldNamed:@"BIC"] length] > 0)
         {
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRecipient;
             Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
         }
 		else if (!payment.user.personalProfileFilled)
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressPersonalProfile;
             [self presentPersonalProfileEntry:YES
 								   isExisting:[Credentials userLoggedIn]];
         }
@@ -788,10 +800,16 @@
 		{
 			//reset flag so we won't be coming back here again
 			payment.user.personalProfile.sendAsBusinessValue = NO;
+            
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressBusinessProfile;
+            
 			[self presentBusinessProfileScreen];
 		}
-		else if (payment.isFixedAmountValue && !payment.refundRecipient)
+		else if (payment.isFixedAmountValue && (!payment.refundRecipient || (payment.refundRecipient.remoteIdValue != 0 && payment.refundRecipient.hiddenValue)))
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressRefundRecipient;
             [self presentRefundAccountViewController];
         }
         else if([self isAZOrOK])
@@ -800,6 +818,8 @@
         }
 		else
 		{
+            payment.paymentFlowProgressPreviousValue = payment.paymentFlowProgressValue;
+            payment.paymentFlowProgressValue = kProgressConfirm;
             [self presentPaymentConfirmation];
         }
     }];

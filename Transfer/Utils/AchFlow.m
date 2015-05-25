@@ -24,6 +24,7 @@
 #import "UIViewController+SwitchToViewController.h"
 #import "NSError+TRWErrors.h"
 #import "GoogleAnalytics.h"
+#import "Mixpanel+Customisation.h"
 
 #define WAIT_SCREEN_MIN_SHOW_TIME	2
 
@@ -65,6 +66,7 @@
 	
 	sharedObject.payment = payment;
 	sharedObject.objectModel = objectModel;
+    sharedObject.successHandler = successHandler;
 	
 	return sharedObject;
 }
@@ -82,10 +84,12 @@
 #pragma mark - Flow
 - (UIViewController *)getAccountAndRoutingNumberController
 {
-	[[GoogleAnalytics sharedInstance] sendScreen:@"ACH step 1 shown"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GAAchStep1Shown];
+    [[Mixpanel sharedInstance] sendPageView:MPAchStep1];
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
 											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller, AchDetailsViewController *detailsController) {
-												  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH waiting 1 shown"];
+												  [[GoogleAnalytics sharedInstance] sendScreen:GAAchWaiting1Shown];
+                                                  [[Mixpanel sharedInstance] sendPageView:MPAchWaiting1];
 												  
 												  __weak typeof(self) weakSelf = self;
 												  [self setOperationWithNavigationController:controller
@@ -105,7 +109,7 @@
 													  {
 														  if ([error containsTwCode:INVALID_ROUTING_NUMBER])
 														  {
-															  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
+															  [[GoogleAnalytics sharedInstance] sendAlertEvent:GAFindingusaccountalert
 																									 withLabel:@"Invalid routing number"];
 															  [weakSelf presentCustomInfoWithSuccess:NO
 																						  controller:controller
@@ -126,7 +130,7 @@
 																								controller:controller];
 																		 }
 																	  trackErrorBlock:^(NSString* messages){
-																		  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
+																		  [[GoogleAnalytics sharedInstance] sendAlertEvent:GAFindingusaccountalert
 																												 withLabel:messages];
 																	  }
 																				 flow:weakSelf
@@ -147,12 +151,14 @@
 
 - (UIViewController *)getLoginForm:(AchBank *)form
 {
-	[[GoogleAnalytics sharedInstance] sendScreen:@"ACH step 2 shown"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GAAchStep2Shown];
+    [[Mixpanel sharedInstance] sendPageView:MPAchStep2];
 	return [[AchLoginViewController alloc] initWithForm:form
 												payment:self.payment
 											objectModel:self.objectModel
 										   initiatePull:^(NSDictionary *form, UINavigationController *controller){
-											   [[GoogleAnalytics sharedInstance] sendScreen:@"ACH waiting 2 shown"];
+											   [[GoogleAnalytics sharedInstance] sendScreen:GAAchWaiting2Shown];
+                                               [[Mixpanel sharedInstance] sendPageView:MPAchWaiting2];
 											   
 											   __weak typeof(self) weakSelf = self;
 											   [self setOperationWithNavigationController:controller
@@ -170,7 +176,7 @@
 												   {
 													   if ([error containsTwCode:VERIFICATION_FAILURE])
 													   {
-														   [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+														   [[GoogleAnalytics sharedInstance] sendAlertEvent:GAPullingusaccountalert
 																								  withLabel:@"Account verification failed"];
 														   [weakSelf presentCustomInfoWithSuccess:NO
 																					   controller:controller
@@ -186,7 +192,7 @@
 													   }
 													   else if ([error containsTwCode:ACCOUNT_NUMBER_MISMATCH])
 													   {
-														   [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+														   [[GoogleAnalytics sharedInstance] sendAlertEvent:GAPullingusaccountalert
 																								  withLabel:@"Account number mismatch"];
 														   [weakSelf presentCustomInfoWithSuccess:NO
 																					   controller:controller
@@ -211,14 +217,15 @@
 																		  //no errors, but we have gotten another form for MFA, show it
 																		  if (mfaForm)
 																		  {
-																			  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH MFA screen shown"];
+																			  [[GoogleAnalytics sharedInstance] sendScreen:GAAchMfaScreenShown];
 																			  [weakSelf pushLoginController:mfaForm
 																								   weakSelf:weakSelf
 																								 controller:controller];
 																		  }
 																		  else
 																		  {
-																			  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH success shown"];
+																			  [[GoogleAnalytics sharedInstance] sendScreen:GAAchSuccessShown];
+                                                                              [[Mixpanel sharedInstance] sendPageView:MPAchSuccess];
 																			  [weakSelf presentCustomInfoWithSuccess:YES
 																										  controller:controller
 																											 message:@"ach.success.message"
@@ -238,12 +245,16 @@
 																											[weakSelf.objectModel performBlock:^{
 																												[weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
 																											}];
+                                                                                                            if(weakSelf.successHandler)
+                                                                                                            {
+                                                                                                                weakSelf.successHandler();
+                                                                                                            }
 																										}
 																												flow:weakSelf];
 																		  }
 																	  }
 																   trackErrorBlock:^(NSString* messages){
-																	   [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+																	   [[GoogleAnalytics sharedInstance] sendAlertEvent:GAPullingusaccountalert
 																											  withLabel:messages];
 																   }
 																			  flow:weakSelf
@@ -361,16 +372,17 @@
 	
 	__weak typeof(customInfo) weakCustomInfo = customInfo;
 	__block BOOL shouldAutoDismiss = YES;
-	customInfo.actionButtonBlock = ^{
-		shouldAutoDismiss = NO;
-		
-		if (actionBlock)
-		{
-			actionBlock();
-		}
-		
-		[weakCustomInfo dismiss];
-	};
+    ActionButtonBlock action = ^{
+        shouldAutoDismiss = NO;
+        
+        if (actionBlock)
+        {
+            actionBlock();
+        }
+        
+        [weakCustomInfo dismiss];
+    };
+	customInfo.actionButtonBlocks = @[action];
 	
 	if (successBlock)
 	{
@@ -382,7 +394,7 @@
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		if(shouldAutoDismiss)
 		{
-			weakCustomInfo.actionButtonBlock();
+            action();
 		}
 	});
 }

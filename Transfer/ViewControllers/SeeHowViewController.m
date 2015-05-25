@@ -17,7 +17,7 @@
 
 -(SeeHowView *)whyView
 {
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"See how modal"]];
+    [[GoogleAnalytics sharedInstance] sendScreen:GASeeHowModal];
     return (SeeHowView*)self.view;
     
     

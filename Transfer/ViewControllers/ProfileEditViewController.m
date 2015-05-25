@@ -13,7 +13,6 @@
 #import "SelectionCell.h"
 #import "TRWAlertView.h"
 #import "TransferwiseClient.h"
-#import "PhoneBookProfileSelector.h"
 #import "TRWProgressHUD.h"
 #import "PhoneBookProfile.h"
 #import "ObjectModel.h"
@@ -43,6 +42,7 @@
 #import "StateSuggestionCellProvider.h"
 #import "ValidatorFactory.h"
 #import "EmailValidation.h"
+#import "BusinessProfileSource.h"
 
 @interface ProfileEditViewController ()<SelectionCellDelegate, TextEntryCellDelegate>
 
@@ -123,7 +123,7 @@
 	
     if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAEnterSenderDetails];
     }
 }
 
@@ -454,19 +454,16 @@
 		
 		if (![personalProfile isValidDateOfBirth])
 		{
-			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
-															   message:NSLocalizedString(@"personal.profile.validation.dateofbirth.invalid.message", nil)];
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			[alertView show];
-			return;
+            [self showValidationAlertWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+                                    andMessage:NSLocalizedString(@"personal.profile.validation.dateofbirth.invalid.message", nil)];
+            return;
 		}
 		
 		if (![personalProfile isValidPhoneNumber])
 		{
-			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
-															   message:NSLocalizedString(@"personal.profile.validation.phone.invalid.message", nil)];
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			[alertView show];
+            [self showValidationAlertWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+                                    andMessage:NSLocalizedString(@"personal.profile.validation.phone.invalid.message", nil)];
+			
 			return;
 		}
 		
@@ -474,19 +471,13 @@
 		{
 			if (![personalProfile arePasswordsMatching])
 			{
-				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
-																   message:NSLocalizedString(@"personal.profile.validation.password.error.notmatching.message", nil)];
-				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-				[alertView show];
+                [self showValidationAlertWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil) andMessage:NSLocalizedString(@"personal.profile.validation.password.error.notmatching.message", nil)];
 				return;
 			}
 			
 			if (![personalProfile isPasswordLengthValid])
 			{
-				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
-																   message:NSLocalizedString(@"personal.profile.validation.password.error.invalid.length.message", nil)];
-				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-				[alertView show];
+                [self showValidationAlertWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil) andMessage:NSLocalizedString(@"personal.profile.validation.password.error.invalid.length.message", nil)];
 				return;
 			}
 		}
@@ -506,6 +497,8 @@
 		{
 			TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
 			[alertView show];
+            
+             [[GoogleAnalytics sharedInstance] sendAlertEvent:[self.profileSource isKindOfClass:[PersonalProfileSource class]]?GASavingPersonalProfile:GASavingBusinessProfile withLabel:alertView.message];
 			return;
         }
 		
@@ -518,6 +511,15 @@
 			[alertView show];
 		}
     }];
+}
+
+- (void)showValidationAlertWithTitle:(NSString*)title andMessage:(NSString*)message
+{
+    [[GoogleAnalytics sharedInstance] sendAlertEvent:[self.profileSource isKindOfClass:[PersonalProfileSource class]]?GASavingPersonalProfile:GASavingBusinessProfile withLabel:message];
+    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:title
+                                                       message:message];
+    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+    [alertView show];
 }
 
 - (void)textFieldEntryFinished
@@ -625,11 +627,12 @@
 								   navigationControllerView:self.navigationController.view
 												objectModel:self.objectModel
 											   successBlock:^{
-                                                   [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
+                                                   [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserlogged withLabel:@"tw"];
 												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment
 																			  sendAsBusiness:sendAsBusiness];
 											   }
-								  waitForDetailsCompletions:YES];
+								  waitForDetailsCompletions:YES
+                                                touchIDHost:nil];
 }
 
 - (void)reloadDataAfterLoginWithPayment:(PendingPayment *)payment
@@ -703,5 +706,14 @@
 {
 	[self.profileSource clearData];
 	[self reloadTableViews];
+}
+
+- (void)reload
+{
+	//only business profile needs reloading
+	if ([self.profileSource isKindOfClass:[BusinessProfileSource class]])
+	{
+		[(BusinessProfileSource *)self.profileSource reloadDropDowns];
+	}
 }
 @end

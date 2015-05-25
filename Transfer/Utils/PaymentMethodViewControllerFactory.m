@@ -16,6 +16,7 @@
 #import "Payment.h"
 #import <objc/runtime.h>
 #import "AchFlow.h"
+#import "Mixpanel+Customisation.h"
 
 @implementation PaymentMethodViewControllerFactory
 
@@ -50,10 +51,12 @@
         
         [cardController setResultHandler:^(BOOL success) {
             if (success) {
-                [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
-                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
+                NSString* methodName = isDataCash?@"debitcard_datacash":@"debitcard_adyen";
+                [[GoogleAnalytics sharedInstance] sendScreen:GASuccess];
+                [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentmade withLabel:methodName];
+                [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":methodName}];
             } else {
-                [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAErrordebitcardpayment category:GACategoryError label:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
             }
         }];
 
@@ -64,8 +67,9 @@
 		AchFlow *flow = [AchFlow sharedInstanceWithPayment:payment
 											   objectModel:objectModel
 											successHandler:^{
-												[[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade"
+												[[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentmade
 																						 withLabel:@"ACH"];
+                                                [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":@"ACH"}];
 											}];
 		return [flow getAccountAndRoutingNumberController];
 	}

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardPaymentViewController">
             <connections>
+                <outlet property="errorButton" destination="b2Y-LC-lih" id="FoT-Ya-D39"/>
+                <outlet property="errorImage" destination="dkh-fD-68E" id="eMM-DN-k4c"/>
+                <outlet property="errorLabel" destination="vNU-fH-zWw" id="UiO-Yt-cHp"/>
+                <outlet property="errorView" destination="NkJ-3G-Z15" id="weh-fe-IUA"/>
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="webView" destination="M8l-I3-O0R" id="RdY-IX-qPs"/>
             </connections>
@@ -18,19 +22,70 @@
             <subviews>
                 <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8l-I3-O0R">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Cxo-9C-uzz"/>
                     </connections>
                 </webView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkJ-3G-Z15" userLabel="ErrorView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dkh-fD-68E">
+                            <rect key="frame" x="93" y="157" width="134" height="134"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="134" id="VQ4-7h-VRG"/>
+                                <constraint firstAttribute="height" constant="134" id="tRl-sV-CK4"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="vNU-fH-zWw">
+                            <rect key="frame" x="30" y="317" width="260" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="260" id="tVk-Zn-WSo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.CoreFont"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2Y-LC-lih" customClass="BlueRoundedButton">
+                            <rect key="frame" x="110" y="478" width="100" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="7Ec-K8-YSk"/>
+                                <constraint firstAttribute="height" constant="40" id="h6P-DN-Rb5"/>
+                            </constraints>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="refreshTapped:" destination="-1" eventType="touchUpInside" id="fts-Iu-BN2"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="vNU-fH-zWw" firstAttribute="top" secondItem="dkh-fD-68E" secondAttribute="bottom" constant="26" id="4s4-gR-Bh9"/>
+                        <constraint firstAttribute="bottom" secondItem="b2Y-LC-lih" secondAttribute="bottom" constant="50" id="D1V-S4-TNY"/>
+                        <constraint firstAttribute="centerY" secondItem="dkh-fD-68E" secondAttribute="centerY" constant="60" id="G8Z-d5-x4R"/>
+                        <constraint firstAttribute="centerX" secondItem="dkh-fD-68E" secondAttribute="centerX" id="REp-UA-GCD"/>
+                        <constraint firstAttribute="centerX" secondItem="b2Y-LC-lih" secondAttribute="centerX" id="Smd-tx-pWg"/>
+                        <constraint firstAttribute="centerX" secondItem="vNU-fH-zWw" secondAttribute="centerX" id="iRt-ln-ycT"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="NkJ-3G-Z15" firstAttribute="top" secondItem="1" secondAttribute="top" id="L3U-yW-hoB"/>
+                <constraint firstItem="NkJ-3G-Z15" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Nb1-EC-Yfh"/>
                 <constraint firstAttribute="bottom" secondItem="M8l-I3-O0R" secondAttribute="bottom" id="Wcn-Ao-pGc"/>
+                <constraint firstAttribute="bottom" secondItem="NkJ-3G-Z15" secondAttribute="bottom" id="dXU-pW-9tB"/>
                 <constraint firstItem="M8l-I3-O0R" firstAttribute="top" secondItem="1" secondAttribute="top" id="grq-Nh-vKM"/>
                 <constraint firstItem="M8l-I3-O0R" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="lPY-J5-89M"/>
+                <constraint firstAttribute="trailing" secondItem="NkJ-3G-Z15" secondAttribute="trailing" id="r4N-iK-CYC"/>
                 <constraint firstAttribute="trailing" secondItem="M8l-I3-O0R" secondAttribute="trailing" id="sjY-xO-osH"/>
             </constraints>
+            <point key="canvasLocation" x="439" y="331"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

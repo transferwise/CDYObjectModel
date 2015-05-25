@@ -11,7 +11,6 @@
 #import "TransferBackButtonItem.h"
 #import "FloatingLabelTextField.h"
 #import "GreenButton.h"
-#import "OpenIDViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "GoogleButton.h"
@@ -19,8 +18,6 @@
 #import "UIColor+MOMStyle.h"
 #import "NavigationBarCustomiser.h"
 #import "AuthenticationHelper.h"
-#import "TouchIDHelper.h"
-#import "TouchIdPromptViewController.h"
 #import "TRWAlertView.h"
 #import "NSError+TRWErrors.h"
 #import "NetworkErrorCodes.h"
@@ -28,10 +25,12 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 #import "UITextField+CaretPosition.h"
+#import "Mixpanel+Customisation.h"
+#import "TouchIDHelper.h"
 
 IB_DESIGNABLE
 
-@interface LoginViewController () <UITextFieldDelegate, TouchIdPromptViewControllerDelegate>
+@interface LoginViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *emailTextField;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
@@ -115,7 +114,8 @@ IB_DESIGNABLE
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GALogin];
+    [[Mixpanel sharedInstance] sendPageView:MPLogin];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -123,6 +123,7 @@ IB_DESIGNABLE
 	[NavigationBarCustomiser setDefault];
 	[super viewWillDisappear:animated];
 }
+
 
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -166,28 +167,12 @@ IB_DESIGNABLE
 									   navigationControllerView:self.navigationController.view
 													objectModel:self.objectModel
 												   successBlock:^{
-                                                       [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
-													   [weakSelf processSuccessfulLogin:YES];
+                                                       [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserlogged withLabel:@"tw"];
+                                                       [weakSelf proceedFromSuccessfulLogin];
 												   }
-									  waitForDetailsCompletions:YES];
+									  waitForDetailsCompletions:YES
+                                                    touchIDHost:self.navigationController.parentViewController];
     });
-}
-
--(void)processSuccessfulLogin:(BOOL)useTouchId
-{
-    if(useTouchId && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
-    {
-        TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
-        prompt.touchIdDelegate = self;
-        [prompt presentOnViewController:self.navigationController.parentViewController
-						   withUsername:self.emailTextField.text
-							   password:self.passwordTextField.text];
-    }
-    else
-    {
-        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
-															   objectModel:self.objectModel];
-    }
 }
 
 - (IBAction)googleLogInPressed:(id)sender
@@ -197,25 +182,25 @@ IB_DESIGNABLE
 							   navigationController:self.navigationController
 										objectModel:self.objectModel
 									 successHandler:^{
-										 [weakSelf processSuccessfulLogin:NO];
+										 [weakSelf proceedFromSuccessfulLogin];
 									 }];
+}
+
+-(void)proceedFromSuccessfulLogin
+{
+    [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
+                                                           objectModel:self.objectModel];
 }
 
 - (IBAction)yahooLogInPressed:(id)sender
 {
-	[self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+    ResetPasswordViewController *controller = self.xibNameForResetPassword?[[ResetPasswordViewController alloc] initWithNibName:self.xibNameForResetPassword bundle:nil]:[[ResetPasswordViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
+    controller.isYahooReset = YES;
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
-{
-    OpenIDViewController *controller = [[OpenIDViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setProvider:provider];
-    //FYI: this is a concious decision not to add email to open id any more
-    [controller setProviderName:providerName];
-    [self.navigationController pushViewController:controller
-										 animated:YES];
-}
 
 #pragma mark - Password reset
 - (void)forgotPasswordTapped
@@ -245,8 +230,8 @@ IB_DESIGNABLE
                                                             objectModel:self.objectModel
                                                            successBlock:^{
                                                                
-                                                               [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"touchID"];
-															   [weakSelf processSuccessfulLogin:NO];
+                                                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserlogged withLabel:@"touchID"];
+                                                               [weakSelf proceedFromSuccessfulLogin];
                                                            }
                                                              errorBlock:^(NSError *error) {
                                                                  //Error logging in with stored credentials
@@ -274,12 +259,12 @@ IB_DESIGNABLE
                                                                              [TouchIDHelper clearCredentials];
                                                                              message = [message stringByAppendingString:@"\n"];
                                                                              message = [message stringByAppendingString:NSLocalizedString(@"touchid.cleared", nil)];
-                                                                             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentialsTouchID" withLabel:message];
+                                                                             [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginincorrectcredentialstouchid withLabel:message];
                                                                              self.touchIdButton.hidden = YES;
                                                                          }
                                                                          else
                                                                          {
-                                                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginErrorTouchID" withLabel:error.localizedDescription];
+                                                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginerrortouchid withLabel:error.localizedDescription];
                                                                          }
                                                                          alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
                                                                      }
@@ -287,7 +272,7 @@ IB_DESIGNABLE
                                                                      {
                                                                          alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
                                                                                                               message:NSLocalizedString(@"login.error.generic.message", nil)];
-                                                                         [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginErrorTouchID" withLabel:error.localizedDescription];
+                                                                         [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginerrortouchid withLabel:error.localizedDescription];
                                                                      }
                                                                      
                                                                      [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
@@ -295,17 +280,12 @@ IB_DESIGNABLE
                                                                      [alertView show];
                                                                  }
                                                              }
-                                                             waitForDetailsCompletions:YES];
+                                                             waitForDetailsCompletions:YES
+                                                            touchIDHost:nil];
             });
         }
     }];
     
-}
-
--(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
-{
-    [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
 @end

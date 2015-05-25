@@ -16,5 +16,6 @@
 - (id)init __attribute__((unavailable("init unavailable, this is a static class")));
 + (Currency *)getSourceCurrencyWithObjectModel:(ObjectModel *)objectModel;
 + (NSString *)getSupportPhoneNumber;
++ (NSString *)getLanguage;
 
 @end

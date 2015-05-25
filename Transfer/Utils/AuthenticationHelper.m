@@ -39,6 +39,10 @@
 #import <NXOAuth2Account.h>
 #import <NXOAuth2AccessToken.h>
 #import "OAuthViewController.h"
+#import "TouchIDHelper.h"
+#import "CustomInfoViewController.h"
+#import "PushNotificationsHelper.h"
+#import "ReferralsCoordinator.h"
 
 @interface AuthenticationHelper ()
 
@@ -47,28 +51,12 @@
 @property (weak, nonatomic) UINavigationController *navigationController;
 @property (weak, nonatomic) ObjectModel *objectModel;
 @property (nonatomic, copy)	TRWActionBlock oauthSuccessBlock;
+@property (nonatomic, assign) BOOL hasRegisteredForOauthNotifications;
+@property (nonatomic, copy)	TRWActionBlock touchIdSuccessBlock;
 
 @end
 
 @implementation AuthenticationHelper
-
-#pragma mark - Init
-- (instancetype)init
-{
-	self = [super init];
-	if (self)
-	{
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(oauthSucess:)
-													 name:NXOAuth2AccountStoreAccountsDidChangeNotification
-												   object:[NXOAuth2AccountStore sharedStore]];
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(oauthFail:)
-													 name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-												   object:[NXOAuth2AccountStore sharedStore]];
-	}
-	return self;
-}
 
 - (void)dealloc
 {
@@ -83,6 +71,7 @@
 								  objectModel:(ObjectModel *)objectModel
 								 successBlock:(TRWActionBlock)successBlock
 					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+                                  touchIDHost:(UIViewController*)touchIdHost
 {
 	[self validateInputAndPerformLoginWithEmail:email
 									   password:password
@@ -95,7 +84,7 @@
 										 if ([error isTransferwiseError])
 										 {
 											 NSString *message = [error localizedTransferwiseMessage];
-											 [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+											 [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginincorrectcredentials
 																					withLabel:message];
 											 alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 																				  message:message];
@@ -104,7 +93,7 @@
 										 {
 											 alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 																				  message:NSLocalizedString(@"login.error.generic.message", nil)];
-											 [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials"
+											 [[GoogleAnalytics sharedInstance] sendAlertEvent:GALoginincorrectcredentials
 																					withLabel:error.localizedDescription];
 										 }
 										 
@@ -112,7 +101,8 @@
 										 
 										 [alertView show];
 									 }
-					  waitForDetailsCompletions:waitForDetailsCompletion];
+					  waitForDetailsCompletions:waitForDetailsCompletion
+                                    touchIDHost:touchIdHost];
 }
 
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
@@ -123,7 +113,11 @@
                                  successBlock:(TRWActionBlock)successBlock
                                    errorBlock:(void(^)(NSError* error))errorBlock
                     waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+                                  touchIDHost:(UIViewController*)touchIdHost
 {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:NO forKey:TRWGoogleLoginUsedKey];
+    
 	[UIApplication dismissKeyboard];
 	
     NSString *issues = [self validateEmail:email password:password];
@@ -145,14 +139,28 @@
 	self.executedOperation = loginOperation;
     [loginOperation setObjectModel:objectModel];
 	
+    __weak typeof(self) weakSelf = self;
     [loginOperation setResponseHandler:^(NSError *error, NSDictionary *response) {
 		if (!error)
 		{
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
-				[self logUserIn:token
+				[weakSelf logUserIn:token
 						  email:email
-				   successBlock:successBlock
+				   successBlock:^{
+                       if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
+                       {
+                           CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
+                               successBlock();
+                           }];
+                           [prompt presentOnViewController:touchIdHost];
+                       }
+                       else
+                       {
+                           successBlock();
+                       }
+                
+                   }
 							hud:hud
 					objectModel:objectModel
 	   waitForDetailsCompletion:waitForDetailsCompletion];
@@ -175,6 +183,12 @@
 						  objectModel:(ObjectModel *)objectModel
 					   successHandler:(TRWActionBlock)successBlock
 {
+    if([providerName isEqualToString:GoogleOAuthServiceName])
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:TRWGoogleLoginUsedKey];
+    }
+    
 	self.navigationController = navigationController;
 	self.objectModel = objectModel;
 	self.oauthSuccessBlock = successBlock;
@@ -191,7 +205,7 @@
 	[self presentOAuthLogInWithProvider:GoogleOAuthServiceName];
 }
 
-- (void)preformOAuthLoginWithToken:(NSString *)token
+- (void)performOAuthLoginWithToken:(NSString *)token
 						  provider:(NSString *)provider
 				keepPendingPayment:(BOOL)keepPendingPayment
 			  navigationController:(UINavigationController *)navigationController
@@ -210,20 +224,31 @@
 																														   keepPendingPayment:keepPendingPayment];
 	self.executedOperation = oauthLoginOperation;
 	
+    __weak typeof(self) weakSelf = self;
+    
 	[oauthLoginOperation setResponseHandler:^(NSError *error, NSDictionary *response) {
 		if (!error)
 		{
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
-				[self logUserIn:token
-						  email:email
-				   successBlock:successBlock
-							hud:hud
-					objectModel:objectModel
-	   waitForDetailsCompletion:waitForDetailsCompletion];
-			}];
-			return;
+                BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
+                [weakSelf logUserIn:token
+                              email:email
+                       successBlock:^{
+                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
+                           NSString *referralToken = [ReferralsCoordinator referralToken];
+                           if(referralToken)
+                           {
+                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+                           }
+                           successBlock();
+                       }
+                                hud:hud
+                        objectModel:objectModel
+           waitForDetailsCompletion:waitForDetailsCompletion];
+            }];
+            return;
 		}
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -232,7 +257,7 @@
 			if ([error isTransferwiseError])
 			{
 				NSString *message = [error localizedTransferwiseMessage];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 													   withLabel:message];
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:message];
@@ -241,7 +266,7 @@
 			{
 				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
 													 message:NSLocalizedString(@"login.error.generic.message", nil)];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 													   withLabel:error.localizedDescription];
 			}
 			
@@ -264,15 +289,12 @@
 				  isExisting:(BOOL)isExisting
 {
 	__weak typeof(self) weakSelf = self;
-	[self preformOAuthLoginWithToken:account.accessToken.accessToken
+	[self performOAuthLoginWithToken:account.accessToken.accessToken
 							provider:account.accountType
 				  keepPendingPayment:NO
 				navigationController:self.navigationController
 						 objectModel:self.objectModel
-						successBlock:^{
-							[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"OAuth"];
-							successBlock();
-						}
+						successBlock:successBlock
 						  errorBlock:^{
 							  if (isExisting)
 							  {
@@ -288,9 +310,10 @@
 - (void)presentOAuthLogInWithProvider:(NSString *)provider
 {
 	__weak typeof(self) weakSelf = self;
-	[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
-								   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
-									   OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
+    [self registerForOauthNotifications];
+    [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:provider
+                                   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
+                                       OAuthViewController *controller = [[OAuthViewController alloc] initWithProvider:provider
 																												   url:preparedURL
 																										   objectModel:weakSelf.objectModel];
 									   [weakSelf.navigationController pushViewController:controller
@@ -299,6 +322,37 @@
 }
 
 #pragma mark - OAuth notifications
+
+-(void)registerForOauthNotifications
+{
+    if(! self.hasRegisteredForOauthNotifications)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(oauthSucess:)
+                                                     name:NXOAuth2AccountStoreAccountsDidChangeNotification
+                                                   object:[NXOAuth2AccountStore sharedStore]];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(oauthFail:)
+                                                     name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+                                                   object:[NXOAuth2AccountStore sharedStore]];
+        self.hasRegisteredForOauthNotifications = YES;
+    }
+}
+
+-(void)deRegisterForOauthNotifications
+{
+    if(self.hasRegisteredForOauthNotifications)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NXOAuth2AccountStoreAccountsDidChangeNotification
+                                                      object:[NXOAuth2AccountStore sharedStore]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+                                                      object:[NXOAuth2AccountStore sharedStore]];
+        self.hasRegisteredForOauthNotifications = NO;
+    }
+}
+
 -(void)oauthSucess:(NSNotification *)note
 {
 	MCLog(@"OAuth success");
@@ -308,10 +362,11 @@
 	{
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[weakSelf authWithOAuthAccount:newAccount
-							  successBlock:self.oauthSuccessBlock
+							  successBlock:weakSelf.oauthSuccessBlock
 								isExisting:NO];
 		});
 	}
+    [self deRegisterForOauthNotifications];
 }
 
 -(void)oauthFail:(NSNotification *)note
@@ -323,44 +378,50 @@
 	//-1005 - user has cancelled logging in
 	if (error.code != -1005)
 	{
-		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"OAuthLoginError"
+		[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
 											   withLabel:[NSString stringWithFormat:@"%lu", (long)error.code]];
 		
 		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)message:nil];
 		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 		[alertView show];
 	}
+    [self deRegisterForOauthNotifications];
 }
 
 #pragma mark - Logout
 + (void)logOutWithObjectModel:(ObjectModel *)objectModel
-		   tokenNeedsClearing:(BOOL)clearToken
-			  completionBlock:(void (^)(void))completionBlock;
+           tokenNeedsClearing:(BOOL)clearToken
+              completionBlock:(void (^)(void))completionBlock;
 {
-	if([Credentials userLoggedIn])
-	{
-		[objectModel performBlock:^{
-			[objectModel deleteObject:objectModel.currentUser];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				if([Credentials userLoggedIn])
-				{
-					[PendingPayment removePossibleImages];
-					if(clearToken)
-					{
-						[[TransferwiseClient sharedClient] clearCredentials];
-					}
-					[Credentials clearCredentials];
-					[[GoogleAnalytics sharedInstance] markLoggedIn];
-					[TransferwiseClient clearCookies];
-					if(completionBlock)
-					{
-						completionBlock();
-					}
-					[[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
-				}
-			});
-		}];
-	}
+    if([Credentials userLoggedIn])
+    {
+        [objectModel performBlock:^{
+			//remove device from receiving push notifications, if it has been registred to receive them
+			PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																							 objectModel:objectModel];
+			[pushHelper handleLoggingOut];			
+            [objectModel deleteObject:objectModel.currentUser];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([Credentials userLoggedIn])
+                {
+                    [PendingPayment removePossibleImages];
+                    if(clearToken)
+                    {
+                        [[TransferwiseClient sharedClient] clearCredentials];
+                    }
+                    [Credentials clearCredentials];
+                    [[GoogleAnalytics sharedInstance] markLoggedIn];
+                    [TransferwiseClient clearCookies];
+					
+                    if(completionBlock)
+                    {
+                        completionBlock();
+                    }
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+                }
+            });
+        }];
+    }	
 }
 
 #pragma mark - Helpers
@@ -373,6 +434,11 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 {
 	[Credentials setUserToken:token];
 	[Credentials setUserEmail:email];
+	//add device to receive push notifications, if they have been authorized
+	PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																					 objectModel:objectModel];
+	[pushHelper handleDeviceRegistering];
+    __weak typeof(self) weakSelf = self;
 	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS
 		[AppsFlyerTracker sharedTracker].customerUserID = objectModel.currentUser.pReference;
@@ -382,7 +448,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 		{
 			//Attempt to retreive the user's transactions prior to showing the first logged in screen.
 			PaymentsOperation *operation = [PaymentsOperation operationWithOffset:0];
-			self.executedOperation = operation;
+			weakSelf.executedOperation = operation;
 			[operation setObjectModel:objectModel];
 			[operation setCompletion:^(NSInteger totalCount, NSError *error)
 			 {
@@ -402,7 +468,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 #endif
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 	
-	[[Mixpanel sharedInstance] track:@"UserLogged"];
+	[[Mixpanel sharedInstance] track:MPUserLogged];
 	
 	[objectModel saveContext:^{
 		if (!waitForDetailsCompletion)
@@ -437,6 +503,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     return [NSString stringWithString:issues];
 }
 
+
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller
 										 objectModel:(ObjectModel*)objectModel
 {
@@ -445,6 +512,11 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     //If registration upfront is used, these flags won't be set by the intro screen. Set them after logging in.
     [objectModel markIntroShown];
     [objectModel markExistingUserIntroShown];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+    
+    [ReferralsCoordinator ignoreReferralUser];
     
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UIWindow* window = appDelegate.window;
@@ -492,5 +564,4 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
         }
     }
 }
-
 @end

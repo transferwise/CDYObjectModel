@@ -20,7 +20,8 @@
 					 navigationControllerView:(UIView *)navigationControllerView
 								  objectModel:(ObjectModel *)objectModel
 								 successBlock:(TRWActionBlock)successBlock
-					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
+					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+touchIDHost:(UIViewController*)touchIdHost;
 
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
                                      password:(NSString *)password
@@ -29,7 +30,8 @@
                                   objectModel:(ObjectModel *)objectModel
                                  successBlock:(TRWActionBlock)successBlock
                                    errorBlock:(void(^)(NSError* error))errorBlock
-                    waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
+                    waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+                                  touchIDHost:(UIViewController*)touchIdHost;
 
 - (void)performOAuthLoginWithProvider:(NSString *)providerName
 				 navigationController:(UINavigationController *)navigationController

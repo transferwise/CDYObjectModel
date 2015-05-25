@@ -44,6 +44,8 @@
 #import "NavigationBarCustomiser.h"
 #import "NewPaymentHelper.h"
 #import "LocationHelper.h"
+#import "Mixpanel+Customisation.h"
+
 
 
 #define	PERSONAL_PROFILE	@"personal"
@@ -201,7 +203,8 @@ static NSUInteger const kRowYouSend = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
-    [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?@"New payment":@"Start screen"];
+    [[GoogleAnalytics sharedInstance] sendScreen:GANewPayment];
+    [[Mixpanel sharedInstance] sendPageView:MPNewTransfer];
     
 	[self generateUsdLegaleze];
 }
@@ -428,8 +431,8 @@ static NSUInteger const kRowYouSend = 0;
                                                                                                          validatorFactory:validatorFactory];
         [self setPaymentFlow:paymentFlow];
         
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:[self.theyReceiveCell currency].code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency1Selected withLabel:[self.youSendCell currency].code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency2Selected withLabel:[self.theyReceiveCell currency].code];
         
         
         [NavigationBarCustomiser setDefault];
@@ -457,7 +460,7 @@ static NSUInteger const kRowYouSend = 0;
             CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
             customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
             customInfo.infoText = NSLocalizedString(@"usd.low.info",nil);
-            customInfo.actionButtonTitle = NSLocalizedString(@"usd.low.dismiss",nil);
+            customInfo.actionButtonTitles= @[NSLocalizedString(@"usd.low.dismiss",nil)];
             customInfo.infoImage = [UIImage imageNamed:@"illustration_under1500usd"];
             [customInfo presentOnViewController:self];
             return;
@@ -516,6 +519,9 @@ static NSUInteger const kRowYouSend = 0;
             [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
         }
     }
+    
+    [self.theyReceiveCell setTitleHighlighted:self.result.isFixedTargetPayment];
+    [self.youSendCell setTitleHighlighted:!self.result.isFixedTargetPayment];
     
     PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency target:self.theyReceiveCell.currency];
     [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];

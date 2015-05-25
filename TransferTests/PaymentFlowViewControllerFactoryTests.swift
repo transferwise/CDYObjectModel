@@ -46,20 +46,20 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is PersonalPaymentProfileViewController, "invalid type of controller")
 		
-		let concreteController = controller as PersonalPaymentProfileViewController
+		let concreteController = controller as! PersonalPaymentProfileViewController
 		
 		XCTAssertTrue(concreteController.allowProfileSwitch, "invalid value for allow profile switch")
 		XCTAssertTrue(concreteController.isExisting, "invalid value for is existing")
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		
-		let controllerValidator = concreteController.profileValidation as PersonalProfileValidator
+		let controllerValidator = concreteController.profileValidation as! PersonalProfileValidator
 		
-		XCTAssertEqual(controllerValidator, validator as PersonalProfileValidator, "incorrect personal validator set")
+		XCTAssertEqual(controllerValidator, validator as! PersonalProfileValidator, "incorrect personal validator set")
 	}
 	
 	func testGetViewControllerReturnsCorrectRecipient()
 	{
-		let recipient: Recipient = Recipient.insertInManagedObjectContext(objectModel?.managedObjectContext) as Recipient
+		let recipient: Recipient = Recipient.insertInManagedObjectContext(objectModel?.managedObjectContext) as! Recipient
 		let validator: AnyObject! = validatorFactory!.getValidatorWithType(.ValidateRecipientProfile)
 		let controller = factory!.getViewControllerWithType(.RecipientController, params: [kShowMiniProfile: true,
 			kTemplateRecipient: recipient,
@@ -71,7 +71,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is RecipientViewController, "invalid type of controller")
 		
-		let concreteController = controller as RecipientViewController
+		let concreteController = controller as! RecipientViewController
 		
 		XCTAssertTrue(concreteController.showMiniProfile, "invalid value for allow profile switch")
 		XCTAssertEqual(concreteController.templateRecipient, recipient, "invalid template recipient set")
@@ -79,9 +79,9 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		//so... you can't compare closures in swift because they could be optimized differenlty
 		XCTAssertNotNil(unsafeBitCast(concreteController.afterSaveAction, AnyObject.self), "after save action not set")
 		
-		let controllerValidator = concreteController.recipientValidation as RecipientProfileValidator
+		let controllerValidator = concreteController.recipientValidation as! RecipientProfileValidator
 		
-		XCTAssertEqual(controllerValidator, validator as RecipientProfileValidator, "incorrect recipient validator set")
+		XCTAssertEqual(controllerValidator, validator as! RecipientProfileValidator, "incorrect recipient validator set")
 	}
 	
 	func testGetViewControllerReturnsCorrectBusinessPaymentProfile()
@@ -92,13 +92,13 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is BusinessPaymentProfileViewController, "invalid type of controller")
 		
-		let concreteController = controller as BusinessPaymentProfileViewController
+		let concreteController = controller as! BusinessPaymentProfileViewController
 		
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		
-		let controllerValidator = concreteController.profileValidation as BusinessProfileValidator
+		let controllerValidator = concreteController.profileValidation as! BusinessProfileValidator
 		
-		XCTAssertEqual(controllerValidator, validator as BusinessProfileValidator, "incorrect business profile validator set")
+		XCTAssertEqual(controllerValidator, validator as! BusinessProfileValidator, "incorrect business profile validator set")
 	}
 	
 	func testGetViewControllerReturnsCorrectConfirmPayment()
@@ -108,7 +108,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is ConfirmPaymentViewController, "invalid type of controller")
 		
-		let concreteController = controller as ConfirmPaymentViewController
+		let concreteController = controller as! ConfirmPaymentViewController
 		
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		XCTAssertNotNil(unsafeBitCast(concreteController.sucessBlock, AnyObject.self), "after save action not set")
@@ -117,7 +117,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	
 	func testGetViewControllerReturnsCorrectPersonalProfileIdentification()
 	{
-		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
+		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as! PendingPayment
 		pendingPayment.proposedPaymentsPurpose = "blah"
 		let controller = factory!.getViewControllerWithType(.PersonalProfileIdentificationController, params: [kPendingPayment: pendingPayment,
 			kVerificationCompletionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
@@ -125,7 +125,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is PersonalProfileIdentificationViewController, "invalid type of controller")
 		
-		let concreteController = controller as PersonalProfileIdentificationViewController
+		let concreteController = controller as! PersonalProfileIdentificationViewController
 		
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		XCTAssertEqual(concreteController.identificationRequired, IdentificationRequired(rawValue: pendingPayment.verificiationNeededValue), "invalid verification needed set")
@@ -135,13 +135,13 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	
 	func testGetViewControllerReturnsCorrectPaymentMethodSelector()
 	{
-		let payment: Payment = Payment.insertInManagedObjectContext(objectModel?.managedObjectContext) as Payment
+		let payment: Payment = Payment.insertInManagedObjectContext(objectModel?.managedObjectContext) as! Payment
 		let controller = factory!.getViewControllerWithType(.PaymentMethodSelectorController, params: [kPayment: payment])
 		
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is PaymentMethodSelectorViewController, "invalid type of controller")
 		
-		let concreteController = controller as PaymentMethodSelectorViewController
+		let concreteController = controller as! PaymentMethodSelectorViewController
 		
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		XCTAssertEqual(concreteController.payment, payment, "invalid payment set")
@@ -149,13 +149,13 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	
 	func testGetViewControllerReturnsCorrectUploadMoney()
 	{
-		let payment: Payment = Payment.insertInManagedObjectContext(objectModel?.managedObjectContext) as Payment
+		let payment: Payment = Payment.insertInManagedObjectContext(objectModel?.managedObjectContext) as! Payment
 		let controller = factory!.getViewControllerWithType(.UploadMoneyController, params: [kPayment: payment])
 		
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is UploadMoneyViewController, "invalid type of controller")
 		
-		let concreteController = controller as UploadMoneyViewController
+		let concreteController = controller as! UploadMoneyViewController
 		
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		XCTAssertEqual(concreteController.payment, payment, "invalid payment set")
@@ -163,7 +163,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	
 	func testGetViewControllerReturnsCorrectBusinessProfileIdentification()
 	{
-		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
+		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as! PendingPayment
 		pendingPayment.proposedPaymentsPurpose = "blah"
 		let controller = factory!.getViewControllerWithType(.BusinessProfileIdentificationController, params: [kPendingPayment: pendingPayment,
 			kVerificationCompletionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
@@ -171,15 +171,15 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is BusinessProfileIdentificationViewController, "invalid type of controller")
 		
-		let concreteController = controller as BusinessProfileIdentificationViewController
+		let concreteController = controller as! BusinessProfileIdentificationViewController
 		
 		XCTAssertNotNil(unsafeBitCast(concreteController.completionHandler, AnyObject.self), "completion handler not set")
 	}
 	
 	func testGetViewControllerReturnsCorrectRefundDetailsController()
 	{
-		let sourceCurrency: Currency = Currency.insertInManagedObjectContext(objectModel?.managedObjectContext) as Currency
-		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
+		let sourceCurrency: Currency = Currency.insertInManagedObjectContext(objectModel?.managedObjectContext) as! Currency
+		let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as! PendingPayment
 		pendingPayment.sourceCurrency = sourceCurrency
 		let controller = factory!.getViewControllerWithType(.RefundDetailsController, params: [kPendingPayment: pendingPayment,
 			kNextActionBlock: unsafeBitCast(getEmptyBlock(), AnyObject.self)])
@@ -187,7 +187,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 		XCTAssertNotNil(controller, "controller must exist")
 		XCTAssertTrue(controller is RefundDetailsViewController, "invalid type of controller")
 		
-		let concreteController = controller as RefundDetailsViewController
+		let concreteController = controller as! RefundDetailsViewController
 		
 		XCTAssertEqual(concreteController.objectModel, objectModel!, "object model not correctly set")
 		XCTAssertEqual(concreteController.payment, pendingPayment, "invalid pending payment set")
@@ -197,19 +197,21 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
     func testGetCustomModalReturnsCorrectNoPayInMethodsModal()
     {
         
-        let sourceCurrency: Currency = Currency.insertInManagedObjectContext(objectModel?.managedObjectContext) as Currency
-        let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as PendingPayment
+        let sourceCurrency: Currency = Currency.insertInManagedObjectContext(objectModel?.managedObjectContext) as! Currency
+        let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(objectModel?.managedObjectContext) as! PendingPayment
         pendingPayment.sourceCurrency = sourceCurrency
         let controller = factory!.getCustomModalWithType(ModalType.NoPayInMethodsFailModal, params: [kPayment: pendingPayment])
         
         XCTAssertNotNil(controller, "controller must exist")
         XCTAssertTrue(controller is CustomInfoViewController, "invalid type of controller")
         
-        let concreteController = controller as CustomInfoViewController
+        let concreteController = controller as! CustomInfoViewController
         
-        XCTAssertTrue(concreteController.mapCloseButtonToAction, "close action not correctly mapped")
+        XCTAssertTrue(concreteController.mapCloseButtonToActionIndex == 0, "close action not correctly mapped")
         
-        if let actionClosure = concreteController.actionButtonBlock?
+        
+        
+        if (concreteController.actionButtonBlocks?.count == 1)
         {}
         else
         {
@@ -279,7 +281,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	func testGetViewControllerThrowsOnNullVerificationCompletionPersonalIdentification()
 	{
 		XCTAssertThrows({ () -> Void in
-			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as PendingPayment
+			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as! PendingPayment
 			let controller = self.factory!.getViewControllerWithType(.PersonalProfileIdentificationController, params: [kPendingPayment: pendingPayment,
 				kVerificationCompletionBlock: NSNull()])
 		}, "no exception on unset verification completion")
@@ -310,7 +312,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	func testGetViewControllerThrowsOnNullVerificationCompletionBusinessIdentification()
 	{
 		XCTAssertThrows({ () -> Void in
-			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as PendingPayment
+			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as! PendingPayment
 			let controller = self.factory!.getViewControllerWithType(.BusinessProfileIdentificationController, params: [kPendingPayment: pendingPayment,
 				kVerificationCompletionBlock: NSNull()])
 		}, "no exception on unset verification completion")
@@ -327,7 +329,7 @@ class PaymentFlowViewControllerFactoryTests: XCTestCase
 	func testGetViewControllerThrowsOnNullNextActionRefund()
 	{
 		XCTAssertThrows({ () -> Void in
-			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as PendingPayment
+			let pendingPayment: PendingPayment = PendingPayment.insertInManagedObjectContext(self.objectModel?.managedObjectContext) as! PendingPayment
 			let controller = self.factory!.getViewControllerWithType(.RefundDetailsController, params: [kPendingPayment: pendingPayment,
 				kNextActionBlock: NSNull()])
 		}, "no exception on unset next action block")

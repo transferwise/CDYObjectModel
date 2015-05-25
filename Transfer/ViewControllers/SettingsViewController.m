@@ -57,7 +57,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Settings"]];
+    [[GoogleAnalytics sharedInstance] sendScreen:GASettings];
 
 }
 - (void)didReceiveMemoryWarning {
@@ -94,7 +94,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 - (IBAction)customerServiceTapped:(id)sender
 {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Settings"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAContactsupport withLabel:@"Settings"];
 	[[SupportCoordinator sharedInstance] presentOnController:IPAD ? self : self.hostViewController];
 }
 
@@ -119,14 +119,13 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     // get the size of the elements here for readability
     CGSize imageSize = button.imageView.frame.size;
-    CGSize titleSize = button.titleLabel.frame.size;
     
     // lower the text and push it left to center it
     button.titleEdgeInsets = UIEdgeInsetsMake(0.0, - imageSize.width, - (imageSize.height   + spacing), 0.0);
     
     // the text width might have changed (in case it was shortened before due to
     // lack of space and isn't anymore now), so we get the frame size again
-    titleSize = button.titleLabel.frame.size;
+    CGSize titleSize = button.titleLabel.frame.size;
     
     // raise the image and push it right to center it
 	if (IOS_8)

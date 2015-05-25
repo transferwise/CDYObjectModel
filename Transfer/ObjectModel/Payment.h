@@ -37,4 +37,7 @@ typedef NS_ENUM(NSUInteger, PaymentStatus) {
 - (BOOL)multiplePaymentMethods;
 - (NSString *)transferredCurrenciesString;
 - (NSString*)paymentStatusString;
+
+-(NSDictionary*)trackingProperties;
+
 @end

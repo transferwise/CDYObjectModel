@@ -9,12 +9,10 @@
 #import "InviteViewController.h"
 #import <MessageUI/MessageUI.h>
 #import "TRWAlertView.h"
-#import <FBDialogs.h>
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "PersonalProfile.h"
 #import <Social/Social.h>
-#import <FBErrorUtility.h>
 #import "NavigationBarCustomiser.h"
 #import "UIImage+Color.h"
 #import "GoogleAnalytics.h"
@@ -26,14 +24,12 @@
 @property (nonatomic, strong) NSArray *referralLinks;
 @property (nonatomic, strong) NSString *rewardAmountString;
 
-@property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *smsButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contextLabel;
 @property (weak, nonatomic) IBOutlet UIButton *urlCopyButton;
 
-@property (strong, nonatomic) NSString* fbUrl;
 @property (strong, nonatomic) NSString* smsUrl;
 @property (strong, nonatomic) NSString* emailUrl;
 @property (strong, nonatomic) NSString* linkUrl;
@@ -57,7 +53,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.facebookButton setTitle:NSLocalizedString(@"invite.fb.button.title", @"") forState:UIControlStateNormal];
     [self.emailButton setTitle:NSLocalizedString(@"invite.email.button.title", @"") forState:UIControlStateNormal];
     [self.smsButton setTitle:NSLocalizedString(@"invite.sms.button.title", @"") forState:UIControlStateNormal];
     [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copy.button.title", @"") forState:UIControlStateNormal];
@@ -67,8 +62,7 @@
 	[self parseUrls];
     
     self.smsButton.hidden = self.smsUrl == nil || ![MFMessageComposeViewController canSendText];
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite friends modal"]];
-	self.facebookButton.enabled = self.fbUrl != nil;
+    [[GoogleAnalytics sharedInstance] sendScreen:GAInviteFriendsModal];
 	self.emailButton.enabled = self.emailUrl != nil;
 	self.urlCopyButton.enabled = self.linkUrl != nil;
 }
@@ -84,9 +78,6 @@
 			case ReferralChannelEmail:
 				self.emailUrl = url;
 				break;
-			case ReferralChannelFb:
-				self.fbUrl = url;
-				break;
 			case ReferralChannelSms:
 				self.smsUrl = url;
 				break;
@@ -101,72 +92,8 @@
 	if (self.linkUrl)
 	{
 		if (!self.emailUrl) self.emailUrl = self.linkUrl;
-		if (!self.fbUrl) self.fbUrl = self.linkUrl;
 		if (!self.smsUrl) self.smsUrl = self.smsUrl;
 	}
-}
-
-- (IBAction)facebookTapped:(id)sender
-{
-    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
-    NSURL* url = [NSURL URLWithString:self.fbUrl];
-    params.link = url;
-    BOOL canShare = [FBDialogs canPresentShareDialogWithParams:params];
-    if (canShare) {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBInitiated"];
-        // FBDialogs call to open Share dialog
-        [FBDialogs presentShareDialogWithLink:url
-                                      handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                          if(error)
-										  {
-                                              if([FBErrorUtility shouldNotifyUserForError:error])
-                                              {
-                                                  TRWAlertView* alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.error.facebook.title",nil) message:[FBErrorUtility userMessageForError:error]];
-                                                  [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                                                  [alertView show];
-                                                  
-                                              }
-                                          }
-										  else
-										  {
-                                              [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBSent"];
-                                              [self dismiss];
-                                          }
-                                      }];
-        
-    }
-    else
-    {
-        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-		{
-            SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-			
-			if ([self hasProfile])
-			{
-				[controller setInitialText:[NSString stringWithFormat:NSLocalizedString(@"invite.facebook.default.message", nil), [self.objectModel currentUser].personalProfile.firstName]];
-			}
-			else
-			{
-				[controller setInitialText:[NSString stringWithFormat:NSLocalizedString(@"invite.facebook.default.message.anonymous", nil)]];
-			}
-			
-            [controller addURL:url];
-            [controller setCompletionHandler:^(SLComposeViewControllerResult result) {
-                if(result ==SLComposeViewControllerResultDone)
-                {
-                    [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBSent"];
-                    [self dismiss];
-                }
-             }];
-            [self presentViewController:controller animated:YES completion:nil];
-        }
-        else
-        {
-            TRWAlertView* alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.error.facebook.title",nil) message:NSLocalizedString(@"invite.error.facebook.message",nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-        }
-    }
 }
 
 - (IBAction)emailTapped:(id)sender
@@ -179,7 +106,7 @@
     }
     else
     {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaEmailInitiated"];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GAInviteviaemailinitiated];
         NSURL* url = [NSURL URLWithString:self.emailUrl];
         [NavigationBarCustomiser noStyling];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
@@ -207,7 +134,7 @@
 
 - (IBAction)smsTapped:(id)sender
 {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaSMSInitiated"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAInviteviasmsinitiated];
     NSURL* url = [NSURL URLWithString:self.smsUrl];
     [NavigationBarCustomiser noStyling];
 
@@ -237,7 +164,7 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     self.urlCopyButton.alpha = 0.5f;
     pasteboard.string = self.linkUrl;
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"CopyInviteLink"];    
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GACopyinvitelink];    
 }
 
 #pragma mark mail and sms delegate
@@ -249,7 +176,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         if (result == MessageComposeResultSent)
         {
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaSMSSent"];
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GAInviteviasmssent];
             [self dismiss];
         }
     }];
@@ -263,7 +190,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         if (result == MFMailComposeResultSaved || result == MFMailComposeResultSent)
         {
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaEmailSent"];
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GAInviteviaemailsent];
             [self dismiss];
         }
     }];

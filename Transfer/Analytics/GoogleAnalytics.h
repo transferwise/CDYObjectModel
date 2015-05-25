@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AnalyticsConstants.h"
 
 @class ObjectModel;
 
@@ -17,6 +18,7 @@
 + (GoogleAnalytics *)sharedInstance;
 
 - (void)sendScreen:(NSString *)screenName;
+- (void)sendScreen:(NSString *)screenName withAdditionalParameters:(NSDictionary*)additionalParameters;
 - (void)sendAppEvent:(NSString *)event;
 - (void)sendAppEvent:(NSString *)event withLabel:(NSString *)label;
 - (void)sendAlertEvent:(NSString *)event withLabel:(NSString *)label;

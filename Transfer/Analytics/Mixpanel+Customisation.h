@@ -7,9 +7,11 @@
 //
 
 #import "Mixpanel.h"
+#import "AnalyticsConstants.h"
 
 @interface Mixpanel (Customisation)
 
 - (void)sendPageView:(NSString *)page;
+- (void)sendPageView:(NSString *)page withProperties:(NSDictionary*)properties;
 
 @end

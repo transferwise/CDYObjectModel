@@ -46,7 +46,9 @@
 #import "NewPaymentViewController.h"
 #import "LoggedInPaymentFlow.h"
 #import "ConnectionAwareViewController.h"
+#import "PullPaymentDetailsOperation.h"
 
+static const NSInteger refreshInterval = 300;
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -72,11 +74,20 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @property (nonatomic, strong) NewPaymentHelper *paymentHelper;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
+@property (nonatomic, strong) NSDate* refreshTimestamp;
 
+@property (nonatomic, weak) Payment *lastSelectedPayment;
+
+//set this to refresh selected payment details on iPad
+@property (nonatomic) BOOL refreshPaymentDetail;
+//if this is set, then the first payment after data refresh will be selected
+@property (nonatomic) BOOL dontSelectPaymentOnce;
 
 @end
 
 @implementation TransactionsViewController
+
+#pragma mark - Init
 
 - (id)init
 {
@@ -95,6 +106,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+#pragma mark - View life-cycle
 
 - (void)viewDidLoad
 {
@@ -128,34 +141,59 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
+	
+	self.noTransfersMessage.hidden = YES;
 
     if (!self.payments)
-	{
-		self.payments = [[NSArray alloc] initWithArray:[self.objectModel allPayments]];
-        [self.tableView reloadData];
+    {
+        self.payments = [[NSArray alloc] initWithArray:[self.objectModel allPayments]];
     }
-
-	self.isViewAppearing = YES;
-    [self refreshPaymentsList];
+    
+    [self.tableView reloadData];
+	
+    if(self.deeplinkPaymentID)
+    {
+        [self presentDeeplinkPayment];
+    }
+    else if(self.refreshOnAppear || ABS([self.refreshTimestamp timeIntervalSinceNow]) > refreshInterval)
+    {
+        [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
+        self.isViewAppearing = YES;
+		[self refreshPaymentsList];
+        self.refreshOnAppear = NO;
+    }
+	else if([self.payments count] < 1)
+	{
+		[self showNoTransfersMessageAndFlashButton];
+	}
+		
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
 
     [self configureForVerificationNeeded:self.showIdentificationView];
 	[self checkPersonalVerificationNeeded];
+	
 	[self presentDetail:nil];
-    self.noTransfersMessage.hidden = YES;
     
     self.paymentFlow = nil;
     self.paymentHelper = nil;
     
+    //If we are arriving from tranfer creation process' end then don't bother selecting anything
+    //after refresh the first payment will be selected.
+    if (!self.dontSelectPaymentOnce)
+    {
+        [self selectRowContainingPayment:self.lastSelectedPayment];
+    }
+    else
+    {
+        self.dontSelectPaymentOnce = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	[[GoogleAnalytics sharedInstance] sendScreen:@"View transfers"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GAViewTransfers];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -174,6 +212,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [super viewDidDisappear:animated];
     [self.refreshView refreshComplete];
 }
+
+#pragma mark - Inteface orientation
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
@@ -200,20 +240,24 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     PaymentCell *cell = [tableView dequeueReusableCellWithIdentifier:kPaymentCellIdentifier];
     Payment *payment = [self.payments objectAtIndex:indexPath.row];
 	
-    [cell configureWithPayment:payment willShowActionButtonBlock:^{
-        //this will be called each time a touch starts
-        //including the touch that hides the button
-        //so not cancelling if the same cell is receiving touches
-        if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
-        {
-            [self removeCancellingFromCell];
-        }
-    } didShowActionButtonBlock:^{
-        self.cancellingCellIndex = indexPath;
-    } didHideActionButtonBlock:^{
-        self.cancellingCellIndex = nil;
-    } actionTappedBlock:^{
-        [self actionTappedOnPayment:payment cellIndex:indexPath];
+	[cell configureWithPayment:payment
+	 willShowActionButtonBlock:^{
+		 //this will be called each time a touch starts
+		 //including the touch that hides the button
+		 //so not cancelling if the same cell is receiving touches
+		 if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
+		 {
+			 [self removeCancellingFromCell];
+		 }
+	 }
+	  didShowActionButtonBlock:^{
+		  self.cancellingCellIndex = indexPath;
+	  }
+	  didHideActionButtonBlock:^{
+		  self.cancellingCellIndex = nil;
+	  }
+			 actionTappedBlock:^{
+				 [self actionTappedOnPayment:payment cellIndex:indexPath];
     }];
 
 	//set cancelling visible when scrolling
@@ -231,24 +275,25 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         return;
     }
 
-	[[GoogleAnalytics sharedInstance] sendScreen:@"View payment"];
+	[[GoogleAnalytics sharedInstance] sendScreen:GAViewPayment];
 	[self removeCancellingFromCell];
 
+	self.lastSelectedPayment = payment;
 	[self showPayment:payment];
 }
 
+#pragma mark - Payment List actions
 - (void)moveToPaymentsList
 {
-	//if we are redisplaying transfers list on IPAD reload the selected transfer because it might have changed
-	if (IPAD)
-	{
-		[self presentDetail:nil];
-	}
+	//cancel latest selection, we arrive here, because a new payment has been created.
+	self.lastSelectedPayment = nil;
+	self.refreshPaymentDetail = YES;
+	self.dontSelectPaymentOnce = YES;
 }
 
 - (void)refreshPaymentsList
 {
-    if (self.executedOperation)
+	if (self.executedOperation)
 	{
         return;
     }
@@ -279,6 +324,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation setCompletion:^(NSInteger totalCount, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
+            
+            if(!error && offset == 0)
+            {
+                self.refreshTimestamp = [NSDate date];
+            }
+            
 			NSInteger currentCount = self.payments.count;
 			self.payments = [self.objectModel allPayments];
 			NSInteger delta = self.payments.count - currentCount;
@@ -289,15 +340,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             
             if(!error && totalCount == 0)
             {
-                self.noTransfersMessage.hidden = NO;
-                self.noTransfersMessage.alpha = 0.0f;
-                [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-                    self.noTransfersMessage.alpha = 1.0f;
-                } completion:nil];
-                if(self.isViewLoaded && self.view.window)
-                {
-                    [SendButtonFlashHelper setSendFlash:YES];
-                }
+				[self showNoTransfersMessageAndFlashButton];
             }
 			
             BOOL footerUpdateScheduled = NO;
@@ -324,19 +367,11 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 [CATransaction commit];
             }
 			
-			if(self.isViewAppearing)
+			if(self.isViewAppearing || self.refreshPaymentDetail)
 			{
-				self.isViewAppearing = NO;
+				self.isViewAppearing = self.refreshPaymentDetail = NO;
 				
-				if (IPAD && self.payments.count > 0)
-				{
-					NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
-															   inSection:0];
-					[self tableView:self.tableView didSelectRowAtIndexPath:firstRow];
-					[self.tableView selectRowAtIndexPath:firstRow
-												animated:NO
-										  scrollPosition:UITableViewScrollPositionMiddle];
-				}
+				[self selectRowContainingPayment:self.lastSelectedPayment];
 			}
             
             if(!footerUpdateScheduled)
@@ -359,6 +394,59 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation execute];
 }
 
+- (void)showNoTransfersMessageAndFlashButton
+{
+	self.noTransfersMessage.hidden = NO;
+	self.noTransfersMessage.alpha = 0.0f;
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:0.2f
+						  delay:0.0f
+						options:UIViewAnimationOptionCurveEaseOut
+					 animations:^{
+						 self.noTransfersMessage.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {
+						 if(weakSelf.isViewLoaded && weakSelf.view.window)
+						 {
+							 [SendButtonFlashHelper setSendFlash:YES];
+						 }
+					 }];
+}
+
+#pragma mark - Select row
+- (void)selectRowContainingPayment:(Payment *)payment
+{
+	//don't select anything when not on iPad
+	if (!IPAD || self.payments.count < 1)
+	{
+		return;
+	}
+	
+	NSIndexPath *paymentIndexPath;
+	
+	//if no payment to select select the first payment
+	//if payment is not in the list of avialble payment, select the first payment
+	if(!payment || ![self.payments containsObject:payment])
+	{
+		paymentIndexPath = [NSIndexPath indexPathForRow:0
+											  inSection:0];
+	}
+	//get index path for the payment. payments are displayed lineraly
+	else
+	{
+		paymentIndexPath = [NSIndexPath indexPathForRow:[self.payments indexOfObject:payment]
+											  inSection:0];
+	}
+
+	NSAssert(paymentIndexPath, @"paymentIndexPath can not be nil");
+	
+	[self tableView:self.tableView didSelectRowAtIndexPath:paymentIndexPath];
+	[self.tableView selectRowAtIndexPath:paymentIndexPath
+								animated:NO
+						  scrollPosition:UITableViewScrollPositionMiddle];
+}
+
+#pragma mark - ScrollView delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self checkReloadNeeded];
@@ -379,6 +467,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.refreshView scrollViewDidScroll:scrollView];
 }
 
+#pragma mark - Helpers
 - (void)checkReloadNeeded
 {
     if (!self.tableView.tableFooterView)
@@ -458,6 +547,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self presentDetail:resultController];
 }
 
+#pragma mark - Verification
 - (void)checkPersonalVerificationNeeded
 {
 	MCLog(@"checkPersonalVerificationNeeded", nil);
@@ -467,21 +557,46 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		return;
 	}
 
+    TRWProgressHUD *hud = nil;
+    if(self.deeplinkDisplayVerification)
+    {
+        hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"deeplink.verification.message", nil)];
+
+    }
+    
 	CheckPersonalProfileVerificationOperation *operation = [CheckPersonalProfileVerificationOperation operation];
 	[self setCheckOperation:operation];
     __weak typeof(self) weakSelf = self;
 	[operation setResultHandler:^(IdentificationRequired identificationRequired) {
+        [hud hide];
 		[weakSelf setCheckOperation:nil];
 
-		[weakSelf setIdentificationRequired:identificationRequired];
+        [weakSelf setIdentificationRequired:identificationRequired];
 
-		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
+        BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
 
 		if (somethingNeeded != weakSelf.showIdentificationView)
 		{
             [self configureForVerificationNeeded:somethingNeeded];
 			[weakSelf setShowIdentificationView:somethingNeeded];
 		}
+        
+        if(self.deeplinkDisplayVerification)
+        {
+            self.deeplinkDisplayVerification = NO;
+            if(somethingNeeded)
+            {
+                [self pushIdentificationScreen];
+            }
+            else
+            {
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"deeplink.no.verification.message", nil) message:nil];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+                return;
+            }
+        }
 	}];
 	[operation execute];
 }
@@ -518,13 +633,37 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.navigationController pushViewController:controller animated:YES];
 }
 
+-(void)configureForVerificationNeeded:(BOOL)verificationNeeded
+{
+	if(IPAD)
+	{
+		self.verificationBar.hidden = !verificationNeeded;
+	}
+	else
+	{
+		NSString* title = verificationNeeded?NSLocalizedString(@"validation.documents.needed",nil) : NSLocalizedString(@"transactions.controller.title", nil);
+		if(verificationNeeded)
+		{
+			[NavigationBarCustomiser applyVerificationNeededStyle:self.navigationController.navigationBar];
+		}
+		else
+		{
+			[NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
+		}
+		self.title = title;
+		((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.title = self.title;
+		UIBarButtonItem* button =verificationNeeded? [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"validation.view",nil) style:UIBarButtonItemStylePlain target:self action:@selector(pushIdentificationScreen)]:nil;
+		[button setTitleTextAttributes: self.navigationController.navigationBar.titleTextAttributes forState:UIControlStateNormal];
+		((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.rightBarButtonItem = button;
+	}
+}
+
 - (void)uploadPaymentPurpose:(NSString *)purpose
 					  andSSN:(NSString*)ssn
 				errorHandler:(TRWErrorBlock)errorBlock
 		   completionHandler:(TRWActionBlock)completion
 {
     if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
         [self uploadSocialSecurityNumber:ssn errorHandler:errorBlock completionHandler:completion];
         return;
     }
@@ -540,8 +679,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 errorBlock(error);
                 return;
             }
-
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
             MCLog(@"uploadPaymentPurpose done");
             [weakSelf uploadSocialSecurityNumber:ssn errorHandler:errorBlock completionHandler:completion];
         });
@@ -643,7 +780,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[CancelHelper cancelPayment:payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
         if(!error)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
         }
     } dontCancelBlock:nil];
 }
@@ -681,7 +818,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[CancelHelper cancelPayment:payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
         if(!error)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
         }
         [self removeCancellingFromCell];
     } dontCancelBlock:^{
@@ -689,42 +826,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }];
 }
 
--(void)configureForVerificationNeeded:(BOOL)verificationNeeded
-{
-    if(IPAD)
-    {
-        self.verificationBar.hidden = !verificationNeeded;
-    }
-    else
-    {
-        NSString* title = verificationNeeded?NSLocalizedString(@"validation.documents.needed",nil) : NSLocalizedString(@"transactions.controller.title", nil);
-        if(verificationNeeded)
-        {
-            [NavigationBarCustomiser applyVerificationNeededStyle:self.navigationController.navigationBar];
-        }
-        else
-        {
-            [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
-        }
-        self.title = title;
-        ((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.title = self.title;
-        UIBarButtonItem* button =verificationNeeded? [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"validation.view",nil) style:UIBarButtonItemStylePlain target:self action:@selector(pushIdentificationScreen)]:nil;
-        [button setTitleTextAttributes: self.navigationController.navigationBar.titleTextAttributes forState:UIControlStateNormal];
-        ((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.rightBarButtonItem = button;
-    }
-}
-
 #pragma mark - PullToRefresh
 
 -(void)refreshRequested:(PullToRefreshView *)refreshView
 {
-    [self refreshPaymentsList];
+	self.refreshPaymentDetail = YES;
+	[self refreshPaymentsList];
 }
 
 #pragma mark - Clear Data
 - (void)clearData
 {
 	self.payments = nil;
+	self.lastSelectedPayment = nil;
 	[self.tableView reloadData];
 }
 
@@ -747,8 +861,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         
         [weakSelf setPaymentFlow:paymentFlow];
         
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:payment.sourceCurrency.code];
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:payment.targetCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency1Selected withLabel:payment.sourceCurrency.code];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency2Selected withLabel:payment.targetCurrency.code];
         
         
         [paymentFlow setObjectModel:weakSelf.objectModel];
@@ -768,6 +882,54 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
         [weakSelf presentViewController:wrapper animated:YES completion:nil];
     }];
+}
+
+#pragma mark - deeplinking
+-(void)presentDeeplinkPayment
+{
+    if(self.deeplinkPaymentID)
+    {
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"deeplink.payment.detail.message", nil)];
+        PullPaymentDetailsOperation* operation = [PullPaymentDetailsOperation operationWithPaymentId:self.deeplinkPaymentID];
+        operation.objectModel = self.objectModel;
+        NSNumber *deeplinkPaymentID = self.deeplinkPaymentID;
+        operation.resultHandler = ^(NSError* error){
+            [hud hide];
+            self.executedOperation = nil;
+            if(!error)
+            {
+                self.payments = [self.objectModel allPayments];
+                NSArray* loadedIds = [self.payments valueForKey:@"remoteId"];
+                if([loadedIds containsObject:deeplinkPaymentID])
+                {
+					[self.tableView reloadData];
+					
+                    NSInteger index = [loadedIds indexOfObject:deeplinkPaymentID];
+                    [self selectPaymentAtIndex:index];
+                }
+            }
+            else
+            {
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"deeplink.payment.detail.error", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+                return;
+            }
+        };
+        self.deeplinkPaymentID = nil;
+        self.executedOperation = operation;
+        [operation execute];
+    }
+}
+
+-(void)selectPaymentAtIndex:(NSUInteger)index
+{
+    if(index!= NSNotFound && index < [self.payments count])
+    {
+        [self showPayment:self.payments[index]];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:IPAD scrollPosition:UITableViewScrollPositionTop];
+    }
 }
 
 @end

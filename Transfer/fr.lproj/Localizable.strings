@@ -47,6 +47,8 @@
 "business.profile.password.lable" = "Mot de passe";
 "business.profile.confirm.payment.button.title" = "Continuer";
 "business.profile.controller.title" = "Infos sur votre entreprise";
+"business.profile.company.role.title" = "Votre rôle";
+"business.profile.company.type.title" = "Type de l'entreprise";
 
 "button.title.back" = "Retour";
 "button.title.cancel" = "Annuler";
@@ -128,6 +130,7 @@ vos amis sur TransferWise";
 
 "generic.error.message" = "Nous travaillons sur le probleme. Reessayer plus tard.";
 "generic.error.title" = "Oops. Quelque chose n'a pas marché.";
+"generic.data.reloading" = "Rechargement en cours...";
 
 "identification.controller.title" = "%d documents requis";
 "identification.controller.single.title" = "%d document requis";
@@ -160,7 +163,6 @@ vos amis sur TransferWise";
 "identification.only.purpose.ipad" = "Presque fini. Remplissez le champ: Raison du transfert";
 "identification.well.done.format" = "Bravo %@!";
 "identification.error" = "Erreur";
-"identification.optional.suffix" = " (Optionnel)";
 "identification.ssn.short" = "Le Social security number est trop court";
 "identification.ssn.generic.error" = "Erreur de validation du Social security number. Veuillez fournir une piece d'identité.";
 
@@ -273,6 +275,7 @@ Une révolution dans votre poche.";
 "payment.status.transferred.description.eta.past" = "& devrait être arrivé le";
 "payment.status.receivedWaitingRecipient.description" = "En attente du destinataire";
 "payment.status.unknown.description" = "Inconnu";
+"payment.status.notification" = "Votre transfert à %@ de %@ %@ est %@";
 
 "profile.post.code.label" = "Code postale";
 "profile.post.code.usa.label" = "Zip code";
@@ -336,7 +339,7 @@ Une révolution dans votre poche.";
 
 "recipient.controller.add.button.title" = "Ajouter";
 "recipient.controller.add.mode.title" = "Ajouter un destinataire";
-"recipient.controller.cell.label.email" = "Email du destinataire (Optionnel)";
+"recipient.controller.cell.label.email" = "Email du destinataire";
 "recipient.controller.cell.label.name" = "Nom du destinataire";
 "recipient.controller.cell.title.recipient.currency.generic" = "Monnaie du Destinataire";
 "recipient.controller.cell.title.recipient.currency" = "Monnaie de %@";
@@ -347,7 +350,6 @@ Une révolution dans votre poche.";
 "recipient.controller.recipients.preload.error.title" = "Impossible de charger les contacts";
 "recipient.controller.refreshing.message" = "Chargement...";
 "recipient.controller.sattes.load.error.title" = "Erreur de donnée";
-"recipient.controller.save.error.title" = "Erreur d'ajout";
 "recipient.controller.section.title.currency" = "Monnaie";
 "recipient.controller.section.title.recipient" = "A qui voulez-vous envoyer de l'argent?";
 "recipient.controller.section.title.sender" = "Envoyeur";
@@ -359,6 +361,7 @@ Une révolution dans votre poche.";
 "recipient.controller.validation.error.field.empty" = "%@ est manquant";
 "recipient.controller.validation.error.title" = "Erreur de validation";
 "recipient.controller.validation.error.bic.required" = "Le BIC est requis pour transférer à %@";
+"recipient.controller.validation.error.email.required" = "L'adresse email est requis pour transférer à %@";
 "recipient.controller.validation.error.email.format" = "L'adresse email est invalide";
 "recipient.controller.validation.error.address" = "L'addresse contient des champs vides";
 "recipient.controller.validation.error.country" = "Le pays est invalide";
@@ -380,10 +383,10 @@ Une révolution dans votre poche.";
 
 "refund.details.account.details.section.header" = "Vos détails bancaires";
 "refund.details.controller.title" = "Votre compte en cas de remboursement";
-"refund.details.header.description" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé 3%% extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
-"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé 3%% extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
 "refund.details.holders.name.label" = "Nom du détenteur du compte";
@@ -468,7 +471,7 @@ C'est irréversible.";
 "upload.money.bank.name.title" = "Nom de la banque";
 "upload.money.bic.title" = "BIC";
 "upload.money.data.error.title" = "Erreur de donnée";
-"upload.money.done.button.title" = "J'ai fais ce virement";
+"upload.money.done.button.title" = "J'ai fait ce virement";
 "upload.money.cancel.button.title" = "Annuler";
 "upload.money.our.address.label" = "Notre adresse: %@";
 "upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit.";
@@ -482,6 +485,7 @@ C'est irréversible.";
 "upload.money.notification.label" = "Votre transfert démarrera dés que nous aurons reçus votre argent.";
 "upload.money.pulling.data.message" = "Chargement des données...";
 "upload.money.reference.title" = "Référence";
+"upload.money.reference.title.CHF" = "Raison du paiement";
 "upload.money.title" = "Choisir comment payer";
 "upload.money.title.single.method" = "Comment payer";
 "upload.money.to.title" = "A";
@@ -622,6 +626,7 @@ Veuillez joindre vos documents à cet email et envoyez ce dernier.<br />
 "intro.start.button.title" = "Ok";
 "intro.login.button.title" = "Connexion";
 "intro.register.button.title" = "S'enregistrer";
+"intro.google.button.title" = "Connexion via Google";
 "intro.tagline.one" = "ARGENT
 SANS
 FRONTIERES";
@@ -760,4 +765,22 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "no.payin.methods.template" = "Aucune méthode de paiement sont actuellement disponible. Re-essayez plus tard.";
 
 "repeat.transfer.creation" = "Rafraîchissement du taux de change";
+
+"deeplink.payment.detail.message" = "Raffraichissement...";
+"deeplink.payment.detail.error" = "Ce transfert n'éxiste pas dans votre compte";
+"deeplink.verification.message" = "Raffraichissement des documents requis...";
+"deeplink.no.verification.message" = "Aucun document requis!";
+
+"notifications.info.format" = "Souhaitez-vous être notifié lorsque nous avons envoyé votre argent à %@?";
+"notifications.yes" = "Oui!";
+
+"reset.password.controller.yahoo.title" = "Yahoo! n'est plus disponible";
+"reset.password.header.yahoo.description" = "Nous avons retiré l'option de connexion avec Yahoo!, mais pas d'inquiètude, vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
+"reset.password.header.yahoo.description.ipad" = "Nous avons retiré l'option de connexion avec Yahoo!, mais pas d'inquiètude,
+vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
+
+
+"intro.referral.title.format" = "%@\nVOUS OFFRE un\nTRANSFERT GRATUIT";
+
+"field.optional.suffix" = " (Optionnel)";
 

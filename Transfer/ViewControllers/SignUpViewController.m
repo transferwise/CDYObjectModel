@@ -22,6 +22,8 @@
 #import "NavigationBarCustomiser.h"
 #import "AuthenticationHelper.h"
 #import "MOMStyle.h"
+#import "Mixpanel+Customisation.h"
+#import "ReferralsCoordinator.h"
 
 
 @interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate>
@@ -142,7 +144,8 @@
     [NavigationBarCustomiser setWhite];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Start screen register"];
+    [[Mixpanel sharedInstance] sendPageView:MPRegistration];
+    [[GoogleAnalytics sharedInstance] sendScreen:GAStartScreenRegister];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -178,13 +181,23 @@
 		{
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"sign.up.controller.signup.error.message", nil) error:error];
             [alertView show];
-            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"RegisterIncorrectCredentials"
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:GARegisterincorrectcredentials
                                                    withLabel:alertView.message];
             return;
         }
 
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserRegistered" withLabel:@"tw"];
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GAUserregistered withLabel:@"tw"];
+
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:NO forKey:TRWGoogleLoginUsedKey];
+        
         [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+        NSString *referralToken = [ReferralsCoordinator referralToken];
+        if(referralToken)
+        {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+        }
+
     }];
 
     [operation execute];

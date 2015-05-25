@@ -14,6 +14,8 @@
 
 @implementation RecipientUpdateOperation
 
+@dynamic objectModel;
+
 static NSString* updatePath = @"/recipient/update";
 
 +(instancetype)instanceWithRecipient:(Recipient*)recipient objectModel:(ObjectModel*)objectModel completionHandler:(void (^)(NSError *))completionHandler

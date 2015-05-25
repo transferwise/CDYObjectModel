@@ -42,6 +42,9 @@ typedef void (^TRWErrorBlock)(NSError *error);
 extern NSString *const TRWLoggedOutNotification;
 extern NSString *const TRWMoveToPaymentsListNotification;
 extern NSString *const TRWMoveToPaymentViewNotification;
+extern NSString *const TRWWillUpdateBaseDataNotification;
+extern NSString *const TRWDidUpdateBaseDataNotification;
+
 extern NSString *const TRWApplicationKey;
 extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;
@@ -53,6 +56,12 @@ extern NSString *const TRWImpactRadiusAppId;
 extern NSString *const TRWGoogleTagManagerContainerId;
 
 extern NSString *const TRWAppInstalledSettingsKey;
+extern NSString *const TRWIsRegisteredSettingsKey;
+extern NSString *const TRWHasRespondedToNotificationsPromptSettingsKey;
+extern NSString *const TRWReferralTokenKey;
+extern NSString *const TRWReferralSourceKey;
+extern NSString *const TRWReferrerKey;
+extern NSString *const TRWGoogleLoginUsedKey;
 
 
 extern NSString *const TransferSandboxUsername;
@@ -72,6 +81,8 @@ extern NSString *const TRWRateAppUrl;
 extern NSString *const TRWToSUrl;
 extern NSString *const TRWPrivacyUrl;
 extern NSString *const TRWStateSpecificTermsUrl;
+
+extern NSString *const TRWDeeplinkScheme;
 
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);
@@ -114,4 +125,11 @@ extern NSString *const GoogleOAuthProfileScope;
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
+typedef NS_ENUM(short, NavigationAction) {
+	PaymentDetails,
+	NewPayment,
+	Invite,
+	Verification
+};
 
+extern NSString *const kNavigationParamsPaymentId;

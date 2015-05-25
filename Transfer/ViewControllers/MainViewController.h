@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @class ObjectModel;
 
 @interface MainViewController : UINavigationController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+
+- (BOOL)performNavigation:(NavigationAction)navigationAction
+		   withParameters:(NSDictionary *)params;
 
 @end

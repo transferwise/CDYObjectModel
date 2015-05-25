@@ -22,6 +22,8 @@
 #import "ConnectionAwareViewController.h"
 #import "LoginViewController.h"
 #import "Mixpanel+Customisation.h"
+#import "AuthenticationHelper.h"
+#import "ReferralsCoordinator.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -38,11 +40,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteRegisterButton;
+@property (weak, nonatomic) IBOutlet UIButton *googleButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteGoogleButton;
 @property (weak, nonatomic) IBOutlet UIView *upfrontRegistrationcontainer;
 @property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *blueButtons;
 @property (nonatomic, assign) CGSize lastLaidoutPageSize;
+
+@property (strong, nonatomic) AuthenticationHelper *loginHelper;
 
 - (IBAction)startPressed;
 
@@ -50,12 +56,9 @@
 
 @implementation IntroViewController
 
-- (id)init
+-(id)init
 {
     self = [super initWithNibName:@"IntroViewController" bundle:nil];
-    if (self)
-	{
-    }
     return self;
 }
 
@@ -78,6 +81,16 @@
     
     [self.loginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
     [self.whiteLoginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
+    
+    [self.googleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteGoogleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if(![defaults boolForKey:TRWGoogleLoginUsedKey])
+    {
+        [self.googleButton removeFromSuperview];
+        [self.whiteGoogleButton removeFromSuperview];
+    }
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -119,8 +132,31 @@
     self.upfrontRegistrationcontainer.hidden = !self.requireRegistration;
     self.noRegistrationContainer.hidden = self.requireRegistration;
     
-    [[Mixpanel sharedInstance] sendPageView:@"Intro screen"];
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Intro screen"];
+    self.loginHelper = [[AuthenticationHelper alloc] init];
+    
+    
+    if(self.requireRegistration)
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        BOOL isRegistered = [defaults boolForKey:TRWIsRegisteredSettingsKey];
+        NSString *isRegisteredString = isRegistered?@"true":@"false";
+        NSString* referrer = [ReferralsCoordinator referralUser];
+        if(referrer)
+        {
+            [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen withAdditionalParameters:@{@"utm_source":@"invite"}];
+             [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString,@"utm_source":@"invite"}];
+        }
+        else
+        {
+            [[GoogleAnalytics sharedInstance] sendScreen:GAIntroScreen];
+            [[Mixpanel sharedInstance] sendPageView:MPIntro withProperties:@{TRWIsRegisteredSettingsKey:isRegisteredString}];
+        }
+    }
+    else
+    {
+        [[Mixpanel sharedInstance] sendPageView:MPWhatsNew];
+        [[GoogleAnalytics sharedInstance] sendScreen:GAWhatsNewScreen];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -172,6 +208,14 @@
             introFrame.origin.x = index * self.scrollView.bounds.size.width;
             [intro setFrame:introFrame];
             [intro setUpWithDictionary:self.introData[index]];
+            if(index ==0 && self.requireRegistration)
+            {
+                NSString* referrer = [ReferralsCoordinator referralUser];
+                if(referrer)
+                {
+                    intro.taglineLabel.text = [NSString stringWithFormat:NSLocalizedString(@"intro.referral.title.format", nil), [referrer uppercaseString]];
+                }
+            }
             [self.scrollView addSubview:intro];
             index++;
         }
@@ -305,7 +349,7 @@
     [self setReportedPage:currentPage];
     MCLog(@"Report page:%ld", (long)currentPage);
 
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"IntroScreensSlided" withLabel:[NSString stringWithFormat:@"%ld", (long) currentPage + 1]];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAIntroscreensslided withLabel:[NSString stringWithFormat:@"%ld", (long) currentPage + 1]];
 }
 
 -(void)modifyViews:(NSArray*)viewArray withBlock:(void(^)(UIView* view))modificationBlock
@@ -324,6 +368,7 @@
     [self.objectModel markIntroShown];
     [self.objectModel markExistingUserIntroShown];
 	
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 	MainViewController *mainController = [[MainViewController alloc] init];
 	[mainController setObjectModel:self.objectModel];
 	ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
@@ -345,6 +390,16 @@
     SignUpViewController *signup = [[SignUpViewController alloc] init];
     signup.objectModel = self.objectModel;
     [self fadeInDismissableViewController:signup];
+}
+- (IBAction)googleTapped:(id)sender {
+    __weak typeof(self) weakSelf = self;
+    [self.loginHelper performOAuthLoginWithProvider:GoogleOAuthServiceName
+                               navigationController:self.navigationController
+                                        objectModel:self.objectModel
+                                     successHandler:^{
+                                         [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:weakSelf objectModel:weakSelf.objectModel];
+                                     }];
+    
 }
 
 -(void)fadeInDismissableViewController:(UIViewController*)viewController

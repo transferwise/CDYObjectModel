@@ -79,18 +79,6 @@
     
 }
 
-- (void)willSelectViewController:(UIViewController *)controller atIndex:(NSUInteger)index
-{
-	if([controller isKindOfClass:[CardPaymentViewController class]])
-	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
-	}
-	else if([controller isKindOfClass:[BankTransferViewController class]])
-	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-	}
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -105,7 +93,7 @@
 
 - (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index
 {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:NSStringFromClass([[self.childViewControllers firstObject] class])];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:GAContactsupport withLabel:NSStringFromClass([[self.childViewControllers firstObject] class])];
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }

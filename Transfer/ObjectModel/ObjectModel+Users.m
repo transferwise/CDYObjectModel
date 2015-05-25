@@ -15,20 +15,27 @@
 #import "Currency.h"
 #import "Recipient.h"
 #import "Constants.h"
+#import "Mixpanel+Customisation.h"
+#import "NSString+NullString.h"
+#import "AdditionalAttribute.h"
 
 @implementation ObjectModel (Users)
 
-- (User *)userWithEmail:(NSString *)email {
+- (User *)userWithEmail:(NSString *)email
+{
     NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"email = %@", email];
-    User *user = [self fetchEntityNamed:[User entityName] withPredicate:emailPredicate];
-    if (!user) {
+    User *user = [self fetchEntityNamed:[User entityName]
+						  withPredicate:emailPredicate];
+    if (!user)
+	{
         user = [User insertInManagedObjectContext:self.managedObjectContext];
         [user setEmail:email];
     }
     return user;
 }
 
-- (void)createOrUpdateUserWithData:(NSDictionary *)rawData {
+- (void)createOrUpdateUserWithData:(NSDictionary *)rawData
+{
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSString *email = data[@"email"];
     [Credentials setUserEmail:email];
@@ -36,25 +43,34 @@
     [user setPReference:data[@"pReference"]];
 
     NSDictionary *personalProfileData = data[@"personalProfile"];
-    if (personalProfileData) {
-        [user setPersonalProfile:[self personalProfileWithData:personalProfileData forUser:user]];
+    if (personalProfileData)
+	{
+        [user setPersonalProfile:[self personalProfileWithData:personalProfileData
+													   forUser:user]];
     }
 
     NSDictionary *businessProfileData = data[@"businessProfile"];
-    if (businessProfileData) {
-        [user setBusinessProfile:[self businessProfileWithData:businessProfileData forUser:user]];
+    if (businessProfileData)
+	{
+        [user setBusinessProfile:[self businessProfileWithData:businessProfileData
+													   forUser:user]];
     }
 }
 
-- (PersonalProfile *)personalProfileWithData:(NSDictionary *)rawData forUser:(User *)user {
-    if (!rawData) {
+- (PersonalProfile *)personalProfileWithData:(NSDictionary *)rawData
+									 forUser:(User *)user
+{
+    if (!rawData)
+	{
         return nil;
     }
 
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-    PersonalProfile *profile = [self fetchEntityNamed:[PersonalProfile entityName] withPredicate:userPredicate];
-    if (!profile) {
+    PersonalProfile *profile = [self fetchEntityNamed:[PersonalProfile entityName]
+										withPredicate:userPredicate];
+    if (!profile)
+	{
         profile = [PersonalProfile insertInManagedObjectContext:self.managedObjectContext];
     }
 
@@ -74,15 +90,20 @@
     return profile;
 }
 
-- (BusinessProfile *)businessProfileWithData:(NSDictionary *)rawData forUser:(User *)user {
-    if (!rawData) {
+- (BusinessProfile *)businessProfileWithData:(NSDictionary *)rawData
+									 forUser:(User *)user
+{
+    if (!rawData)
+	{
         return nil;
     }
 
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-    BusinessProfile *profile = [self fetchEntityNamed:[BusinessProfile entityName] withPredicate:userPredicate];
-    if (!profile) {
+    BusinessProfile *profile = [self fetchEntityNamed:[BusinessProfile entityName]
+										withPredicate:userPredicate];
+    if (!profile)
+	{
         profile = [BusinessProfile insertInManagedObjectContext:self.managedObjectContext];
     }
 
@@ -95,22 +116,30 @@
     [profile setCountryCode:data[@"countryCode"]];
     [profile setReadonlyFields:[data[@"readonlyFields"] componentsJoinedByString:@"|"]];
     [profile setState:data[@"state"]];
+	//api will return "null" as a string value, if these haven't been submitted
+	[profile setCompanyRole:[data[@"companyRole"] getNullOnNullAsValue]];
+	[profile setCompanyType:[data[@"companyType"] getNullOnNullAsValue]];
 
     return profile;
 }
 
-- (User *)currentUser {
-    if ([Credentials userLoggedIn]) {
+- (User *)currentUser
+{
+    if ([Credentials userLoggedIn])
+	{
         return [self userWithEmail:[Credentials userEmail]];
     }
 
     return [self anonymousUser];
 }
 
-- (User *)anonymousUser {
+- (User *)anonymousUser
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"anonymous = YES"];
-    User *user = [self fetchEntityNamed:[User entityName] withPredicate:predicate];
-    if (!user) {
+    User *user = [self fetchEntityNamed:[User entityName]
+						  withPredicate:predicate];
+    if (!user)
+	{
         user = [User insertInManagedObjectContext:self.managedObjectContext];
         [user setAnonymousValue:YES];
     }
@@ -149,18 +178,69 @@
     
 }
 
-- (void)removeAnonymousUser {
+- (void)removeAnonymousUser
+{
     User *anonymous = [self anonymousUser];
-    if (anonymous) {
+    if (anonymous)
+	{
         [self deleteObject:anonymous saveAfter:NO];
     }
 }
 
-- (void)markAnonUserWithEmail:(NSString *)email {
+- (void)markAnonUserWithEmail:(NSString *)email
+{
     User *user = [self anonymousUser];
     MCAssert(user);
     [user setEmail:email];
     [user setAnonymousValue:NO];
+}
+
+- (void)saveDeviceToken:(NSString *)deviceToken
+{
+	User* user = [self currentUser];
+	
+	user.deviceToken = deviceToken;
+}
+
+- (void)saveAdditionalAttributeWithType:(AdditionalAttributeType)type
+								   code:(NSString *)code
+								  title:(NSString *)title
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType == %i AND code == %@", type, code];
+	AdditionalAttribute *attribute = [self fetchEntityNamed:[AdditionalAttribute entityName]
+											  withPredicate:predicate];
+	if (!attribute)
+	{
+		attribute = [AdditionalAttribute insertInManagedObjectContext:self.managedObjectContext];
+		attribute.attributeType = [NSNumber numberWithInt:type];
+		attribute.code = code;
+	}
+	
+	attribute.title = title;
+}
+
+- (NSDictionary *)additionalAttributesForType:(AdditionalAttributeType)type
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType == %i", type];
+	NSArray *attributes = [self fetchEntitiesNamed:[AdditionalAttribute entityName]
+									 withPredicate:predicate];
+	
+	NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithCapacity:attributes.count];
+	
+	for (AdditionalAttribute *attribute in attributes)
+	{
+		[result setObject:attribute.title forKey:attribute.code];
+	}
+	
+	return result;
+}
+
+//Use additionalAttributesForType, when CD has been disconnected and DropDownCell refactored
+- (NSFetchedResultsController *)fetchedControllerForAttributesOfType:(AdditionalAttributeType)type
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attributeType = %i", type];
+	NSSortDescriptor *valueSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+	return [self fetchedControllerForEntity:[AdditionalAttribute entityName] predicate:predicate sortDescriptors:@[valueSortDescriptor]];
 }
 
 @end

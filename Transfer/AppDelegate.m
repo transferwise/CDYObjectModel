@@ -11,7 +11,6 @@
 #import "ObjectModel.h"
 #import "MainViewController.h"
 #import "SettingsViewController.h"
-#import "Constants.h"
 #import "TransferwiseClient.h"
 #import "ObjectModel+Users.h"
 #import "GAI.h"
@@ -35,10 +34,14 @@
 #import <FBSettings.h>
 #import <FBAppCall.h>
 #import <NXOAuth2AccountStore.h>
+#import "PushNotificationsHelper.h"
+#import "Yozio.h"
+#import "ReferralsCoordinator.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, strong) id<PushNotificationsProvider> notificationHelper;
 
 @end
 
@@ -58,7 +61,6 @@
     [lagFreeField becomeFirstResponder];
     [lagFreeField resignFirstResponder];
     [lagFreeField removeFromSuperview];
-    
 
 	[self setupThirdParties];
 
@@ -70,7 +72,11 @@
     [self setObjectModel:model];
     [model removeAnonymousUser];
     [model loadBaseData];
-
+	
+    
+    self.notificationHelper = [PushNotificationsHelper sharedInstanceWithApplication:application
+                                                                         objectModel:self.objectModel];
+    
     [[GoogleAnalytics sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
@@ -87,6 +93,12 @@
     
 	UIViewController* controller;
     
+    if([Credentials userLoggedIn])
+    {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+    }
+    
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
@@ -100,7 +112,6 @@
 		introController.plistFilenameOverride = @"existingUserIntro";
 		[introController setObjectModel:self.objectModel];
         introController.requireRegistration = ![Credentials userLoggedIn];
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Whats new screen"];
         controller = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	}
 	else
@@ -114,6 +125,48 @@
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
 	return YES;
+}
+
+//IOS_7
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+	[self.notificationHelper handleRegistrationsSuccess:deviceToken];
+}
+
+//IOS_7
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+	[self.notificationHelper handleRegistrationFailure:error];
+}
+
+//IOS_8
+- (void)application:(UIApplication *)application
+didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+	[application registerForRemoteNotifications];
+}
+
+//IOS_8
+//For interactive notification only
+- (void)application:(UIApplication *)application
+handleActionWithIdentifier:(NSString *)identifier
+forRemoteNotification:(NSDictionary *)userInfo
+  completionHandler:(void(^)())completionHandler
+{
+	[self.notificationHelper handleNotificationArrival:userInfo];
+	//we aren't loading any data here
+	completionHandler(UIBackgroundFetchResultNoData);
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+	[self.notificationHelper handleNotificationArrival:userInfo];
+	//we aren't loading any data here
+	completionHandler(UIBackgroundFetchResultNoData);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -131,7 +184,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AppStarted"];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:GAAppstarted];
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
@@ -144,7 +197,9 @@
     [[AppsFlyerTracker sharedTracker] trackAppLaunch];
 #endif
 
-    [[TransferwiseClient sharedClient] updateConfigurationOptions];
+    [[TransferwiseClient sharedClient] updateBaseData];
+    
+    [self.notificationHelper registerForPushNotifications:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -165,15 +220,22 @@
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
 #else
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
+    [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
+    
+    [Yozio initializeWithAppKey:@"6e774e8a-7d01-46c1-918a-ea053bb46dc9"
+                   andSecretKey:@"dd39f3e4-54b3-42cc-a49a-67da6af61ac2"
+  andNewInstallMetaDataCallback: self
+    andDeepLinkMetaDataCallback: self];
+    
 #endif
 	
 	[AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
 	[AppsFlyerTracker sharedTracker].appleAppID = AppsFlyerIdentifier;
-	
+#if DEBUG
+    [AppsFlyerTracker sharedTracker].delegate = self;
+#endif
 	
 	[NanTracking setFbAppId:@"274548709260402"];
-	
-	[Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
 	
 	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 	
@@ -218,8 +280,112 @@
 								  }];
 	
 	
+    if(!urlWasHandled)
+    {
+        urlWasHandled = [Yozio handleDeeplink:url];
+        if(!urlWasHandled)
+        {
+            urlWasHandled = [self handleURL:url];
+        }
+    }
+    
     return urlWasHandled;
 }
+
+#pragma mark - deeplinking
+
+-(BOOL)handleURL:(NSURL*)url
+{
+    if([[[url scheme] lowercaseString] isEqualToString:TRWDeeplinkScheme])
+    {        
+		return [self handleDeeplink:url];
+    }
+    return NO;
+}
+
+- (BOOL)handleDeeplink:(NSURL *)deepLink
+{
+	NSString *absolute = [deepLink absoluteString];
+	NSRange startingPoint = [absolute rangeOfString:@"://"];
+	NSString *parameterString = [absolute substringFromIndex:startingPoint.location + startingPoint.length];
+	NSArray *parameters = [parameterString componentsSeparatedByString:@"/"];
+	MCLog(@"Parameters: %@",parameters);
+    
+	if([parameters count] > 0)
+	{
+		if ([[parameters[0] lowercaseString] isEqualToString:@"details"])
+		{
+			if(parameters[1])
+			{
+				[self performNavigation:PaymentDetails
+						 withParameters:@{kNavigationParamsPaymentId: parameters[1]}];
+			}
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"newpayment"])
+		{
+			[self performNavigation:NewPayment
+								withParameters:nil];
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"invite"])
+		{
+			[self performNavigation:Invite
+								withParameters:nil];
+			return YES;
+		}
+		else if ([[parameters[0] lowercaseString] isEqualToString:@"verification"])
+		{
+			[self performNavigation:Verification
+								withParameters:nil];
+			return YES;
+		}
+	}
+	return NO;
+}
+
+#pragma mark - Perform Navigation
+
+- (BOOL)performNavigation:(NavigationAction)navigationAction
+		   withParameters:(NSDictionary *)params
+{
+	//don't deliver payment status notifications when app is running
+	if (navigationAction == PaymentDetails && [UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+	{
+		return NO;
+	}
+	
+	ConnectionAwareViewController* root = (ConnectionAwareViewController*) self.window.rootViewController;
+	if([Credentials userLoggedIn] && [root.wrappedViewController isKindOfClass:[MainViewController class]])
+	{
+        
+        NSString *trackingLabel;
+        switch (navigationAction) {
+            case PaymentDetails:
+                trackingLabel = @"payment details";
+                break;
+            case Invite:
+                trackingLabel = @"invite";
+                break;
+            case NewPayment:
+                trackingLabel = @"new payment";
+                break;
+            case Verification:
+                trackingLabel = @"verification";
+                break;
+        }
+        
+        [[GoogleAnalytics sharedInstance] sendAppEvent:GADeeplink withLabel:trackingLabel];
+        [[Mixpanel sharedInstance] track:MPDeeplink properties:@{MPDeeplink:trackingLabel}];
+        
+		MainViewController* mainController = (MainViewController*) root.wrappedViewController;
+		return [mainController performNavigation:navigationAction
+								  withParameters:params];
+	}
+	return NO;
+}
+
+#pragma mark - oauth
 
 - (void)initOauth
 {
@@ -232,5 +398,32 @@
 									  keyChainGroup:@""
 									 forAccountType:GoogleOAuthServiceName];
 }
+
+#pragma AppsFlyerTrackerDelegate methods
+- (void) onConversionDataReceived:(NSDictionary*) installData{
+    id status = [installData objectForKey:@"af_status"];
+    if([status isEqualToString:@"Non-organic"]) {
+        id sourceID = [installData objectForKey:@"media_source"];
+        id campaign = [installData objectForKey:@"campaign"];
+        MCLog(@"This is a none organic install.");
+        MCLog(@"Media source: %@",sourceID);
+        MCLog(@"Campaign: %@",campaign);
+    } else if([status isEqualToString:@"Organic"]) {
+        MCLog(@"This is an organic install.");
+    }
+}
+
+- (void) onConversionDataRequestFailure:(NSError *)error{
+    MCLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
+}
+
+#pragma mark - Yozio
+
+-(void)onCallbackWithTargetViewControllerName:(NSString *)targetViewControllerName andMetaData:(NSDictionary *)metaData
+{
+    [ReferralsCoordinator handleReferralParameters:metaData];
+}
+
+
 
 @end

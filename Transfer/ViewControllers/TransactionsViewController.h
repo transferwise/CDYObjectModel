@@ -18,6 +18,9 @@
 @interface TransactionsViewController : CancellableCellViewController<TransferPayIpadViewControllerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, assign) BOOL refreshOnAppear;
+@property (nonatomic, strong) NSNumber* deeplinkPaymentID;
+@property (nonatomic, assign) BOOL deeplinkDisplayVerification;
 
 - (void)clearData;
 

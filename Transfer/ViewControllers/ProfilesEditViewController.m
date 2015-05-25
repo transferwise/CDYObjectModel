@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) PersonalProfileViewController* personalProfile;
 @property (nonatomic, strong) BusinessProfileViewController* businessProfile;
-@property (nonatomic) BOOL isShowingSettings;
+@property (nonatomic, weak) SettingsViewController* settingsViewController;
 
 @end
 
@@ -59,6 +59,12 @@
 	}
 	
 	return self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.settingsViewController dismiss];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidLoad
@@ -117,33 +123,28 @@
 {
 	if (controller == self.personalProfile)
 	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Personal profile"];
+		[[GoogleAnalytics sharedInstance] sendScreen:GAPersonalProfile];
 	}
 	else if(controller == self.businessProfile)
 	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Business profile"];
+		[[GoogleAnalytics sharedInstance] sendScreen:GABusinessProfile];
 	}
 }
 
 - (void)showSettings
 {
-	if (self.isShowingSettings)
+	if (self.settingsViewController)
 	{
 		return;
 	}
 	
-	self.isShowingSettings = YES;
 	[self.view endEditing:YES];
     SettingsViewController* controller = [[SettingsViewController alloc] init];
-	controller.delegate = self;
     controller.objectModel = self.objectModel;
     [controller presentOnViewController:self.view.window.rootViewController];
+    self.settingsViewController = controller;
 }
 
-- (void)dismissCompleted:(TransparentModalViewController *)dismissedController
-{
-	self.isShowingSettings = NO;
-}
 
 - (void)clearData
 {

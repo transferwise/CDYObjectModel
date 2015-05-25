@@ -39,6 +39,9 @@
 #import "NameSuggestionCellProvider.h"
 #import "EmailLookupWrapper.h"
 #import "GoogleAnalytics.h"
+#import "ColoredButton.h"
+#import "PendingPayment+ColoredButton.h"
+#import "Mixpanel+Customisation.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -142,6 +145,12 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
     
+    if([self.footerButton isKindOfClass:[ColoredButton class]])
+    {
+        ColoredButton* coloredButton = (ColoredButton*)self.footerButton;
+        [self.payment addProgressAnimationToButton:coloredButton];
+    }
+    
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
     
     [super configureWithDataSource:self.cellProvider
@@ -201,6 +210,11 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
     
     [[GoogleAnalytics sharedInstance] refundDetailsScreenShown];
+    PendingPayment* pendingPayment = [self.objectModel pendingPayment];
+    if(pendingPayment)
+    {
+        [[Mixpanel sharedInstance] sendPageView:MPRefundAccount withProperties:[pendingPayment trackingProperties]];
+    }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];

@@ -5,6 +5,7 @@
 
 extern const struct UserAttributes {
 	__unsafe_unretained NSString *anonymous;
+	__unsafe_unretained NSString *deviceToken;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *invitationReward;
 	__unsafe_unretained NSString *invitationRewardCurrency;
@@ -46,6 +47,10 @@ extern const struct UserRelationships {
 - (void)setAnonymousValue:(BOOL)value_;
 
 //- (BOOL)validateAnonymous:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* deviceToken;
+
+//- (BOOL)validateDeviceToken:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* email;
 
@@ -152,6 +157,9 @@ extern const struct UserRelationships {
 
 - (BOOL)primitiveAnonymousValue;
 - (void)setPrimitiveAnonymousValue:(BOOL)value_;
+
+- (NSString*)primitiveDeviceToken;
+- (void)setPrimitiveDeviceToken:(NSString*)value;
 
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;

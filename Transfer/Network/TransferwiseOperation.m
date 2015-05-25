@@ -22,6 +22,7 @@
 #import "GoogleAnalytics.h"
 #import "GAIFields.h"
 #import "AuthenticationHelper.h"
+#import "LocationHelper.h"
 
 @interface TransferwiseOperation ()
 
@@ -29,54 +30,104 @@
 @property (nonatomic, copy) TRWOperationErrorBlock operationErrorHandler;
 @property (nonatomic, copy) TRWUploadOperationProgressBlock uploadProgressHandler;
 @property (nonatomic, strong) ObjectModel *workModel;
+@property (nonatomic) BOOL isAnonymous;
 @property (nonatomic) BOOL hasBeenCancelled;
 
 @end
 
 @implementation TransferwiseOperation
 
+#pragma mark - Init
+- (instancetype)init
+{
+	self = [super init];
+	if (self)
+	{
+		self.isAnonymous = NO;
+	}
+	return self;
+}
+
+#pragma mark - Abstract Methods
 - (void)execute {
     ABSTRACT_METHOD;
 }
 
-- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath
+#pragma mark - Post and Get Data
+- (void)postData:(NSDictionary *)data
+		  toPath:(NSString *)postPath
 {
-    [self postData:data toPath:postPath timeOut:-1];
+    [self postData:data
+			toPath:postPath
+		   timeOut:-1];
 }
 
-- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath timeOut:(NSTimeInterval) timeOut{
+- (void)postData:(NSDictionary *)data
+		  toPath:(NSString *)postPath
+		 timeOut:(NSTimeInterval) timeOut
+{
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Post %@ to %@", [data sensibleDataHidden], [postPath stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
-    [self executeOperationWithMethod:@"POST" path:postPath parameters:data timeOut:timeOut];
+	
+    [self executeOperationWithMethod:@"POST"
+								path:postPath
+						  parameters:data
+							 timeOut:timeOut];
 }
 
-- (void)getDataFromPath:(NSString *)path {
-    [self getDataFromPath:path params:nil];
+- (void)getDataFromPath:(NSString *)path
+{
+    [self getDataFromPath:path
+				   params:nil];
 }
 
-- (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params {
+- (void)getDataFromPath:(NSString *)path
+				 params:(NSDictionary *)params
+{
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Server: %@", TRWServerAddress);
     MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
+	
     MCLog(@"Params:%@", [params sensibleDataHidden]);
-    [self executeOperationWithMethod:@"GET" path:path parameters:params];
+    [self executeOperationWithMethod:@"GET"
+								path:path
+						  parameters:params];
 }
 
-- (void)postBinaryDataFromFile:(NSString *)filePath withName:(NSString *)fileName usingParams:(NSDictionary *)params toPath:(NSString *)postPath {
+- (void)postBinaryDataFromFile:(NSString *)filePath
+					  withName:(NSString *)fileName
+				   usingParams:(NSDictionary *)params
+						toPath:(NSString *)postPath
+{
     MCLog(@"Post binary. Params:%@", [params sensibleDataHidden]);
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] multipartFormRequestWithMethod:@"POST" path:postPath parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
-        [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:fileName error:nil];
-    }];
+	NSMutableURLRequest *request = [[TransferwiseClient sharedClient] multipartFormRequestWithMethod:@"POST"
+																								path:postPath
+																						  parameters:params
+																		   constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
+																			   [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:fileName error:nil];
+																		   }];
 
     [self executeRequest:request];
 }
 
-- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
-    [self executeOperationWithMethod:method path:path parameters:parameters timeOut:-1];
+- (void)executeOperationWithMethod:(NSString *)method
+							  path:(NSString *)path
+						parameters:(NSDictionary *)parameters
+{
+    [self executeOperationWithMethod:method
+								path:path
+						  parameters:parameters
+							 timeOut:-1];
 }
     
-- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters timeOut:(NSTimeInterval)timeout{
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method path:path parameters:parameters];
+- (void)executeOperationWithMethod:(NSString *)method
+							  path:(NSString *)path
+						parameters:(NSDictionary *)parameters
+						   timeOut:(NSTimeInterval)timeout
+{
+	NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method
+																				   path:path
+																			 parameters:parameters];
     if(timeout >0)
     {
         request.timeoutInterval = timeout;
@@ -84,8 +135,12 @@
     [self executeRequest:request];
 }
 
-- (void)executeRequest:(NSMutableURLRequest *)request {
-    [TransferwiseOperation provideAuthenticationHeaders:request];
+#pragma mark - Request Execution
+- (void)executeRequest:(NSMutableURLRequest *)request
+{
+    [TransferwiseOperation provideAuthenticationHeaders:request
+											isAnonymous:self.isAnonymous];
+	[TransferwiseOperation provideLanguageHeader:request];
 
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
@@ -209,34 +264,56 @@
     }
 }
 
-+ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request {
-    if ([Credentials userLoggedIn]) {
-        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"X-Authorization-token"];
+#pragma mark - Helpers
++ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request
+						 isAnonymous:(BOOL)isAnonymous
+{
+    if (!isAnonymous && [Credentials userLoggedIn])
+	{
+        [request setValue:[Credentials accessToken]
+	   forHTTPHeaderField:@"X-Authorization-token"];
     }
 
-    [request setValue:TRWApplicationKey forHTTPHeaderField:@"X-Authorization-key"];
-    [request setValue:[[[GAI sharedInstance] defaultTracker] get:kGAIClientId] forHTTPHeaderField:@"Customer-identifier"];
+    [request setValue:TRWApplicationKey
+   forHTTPHeaderField:@"X-Authorization-key"];
+    [request setValue:[[[GAI sharedInstance] defaultTracker] get:kGAIClientId]
+   forHTTPHeaderField:@"Customer-identifier"];
 }
 
-- (BOOL)isCurrencyPairsOperation {
++ (void)provideLanguageHeader:(NSMutableURLRequest *)request
+{
+	[request setValue:[LocationHelper getLanguage]
+   forHTTPHeaderField:@"X-language"];
+}
+
+- (BOOL)isCurrencyPairsOperation
+{
     return [self isKindOfClass:[CurrencyPairsOperation class]];
 }
 
-- (NSError *)createCumulativeError:(NSArray *)errors {
+- (NSError *)createCumulativeError:(NSArray *)errors
+{
     //TODO jaanus: maybe can improve this
     NSDictionary *userInfo = @{TRWErrors: errors};
     NSError *error = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseCumulativeError userInfo:userInfo];
     return error;
 }
 
-- (BOOL)containsExpiredTokenError:(NSArray *)errors {
-    for (NSDictionary *data in errors) {
+- (BOOL)containsExpiredTokenError:(NSArray *)errors
+{
+    for (NSDictionary *data in errors)
+	{
         NSString *code = data[@"code"];
-        if ([TRWNetworkErrorExpiredToken isEqualToString:code]) {
+        if ([TRWNetworkErrorExpiredToken isEqualToString:code])
+		{
             return YES;
-        } else if ([TRWNetworkErrorInvalidToken isEqualToString:code]) {
+        }
+		else if ([TRWNetworkErrorInvalidToken isEqualToString:code])
+		{
             return YES;
-        } else if ([TRWNetworkErrorNoToken isEqualToString:code]) {
+        }
+		else if ([TRWNetworkErrorNoToken isEqualToString:code])
+		{
             return YES;
         }
     }
@@ -244,25 +321,32 @@
     return NO;
 }
 
-- (NSString *)addTokenToPath:(NSString *)path {
+- (NSString *)addTokenToPath:(NSString *)path
+{
     path = [NSString stringWithFormat:@"/%@%@",[self apiVersion],path];
     return [[TransferwiseClient sharedClient] addTokenToPath:path];
 }
 
-- (ObjectModel *)workModel {
+- (ObjectModel *)workModel
+{
     MCAssert(self.objectModel);
 
-    if (!_workModel) {
+    if (!_workModel)
+	{
         _workModel = [self.objectModel spawnBackgroundInstance];
     }
     return _workModel;
 }
 
-+ (NSURLRequest*)getRequestForApiPath:(NSString*)path parameters:(NSDictionary*)params
++ (NSURLRequest*)getRequestForApiPath:(NSString*)path
+						   parameters:(NSDictionary*)params
 {
     NSString *tokenizedPath = [[TransferwiseClient sharedClient] addTokenToPath:path];
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:tokenizedPath parameters:params];
-    [TransferwiseOperation provideAuthenticationHeaders:request];
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET"
+																				   path:tokenizedPath
+																			 parameters:params];
+    [TransferwiseOperation provideAuthenticationHeaders:request
+											isAnonymous:NO];
     return request;
 }
 

@@ -5,6 +5,9 @@
 #import "Payment.h"
 
 extern const struct PendingPaymentAttributes {
+	__unsafe_unretained NSString *isRepeat;
+	__unsafe_unretained NSString *paymentFlowProgress;
+	__unsafe_unretained NSString *paymentFlowProgressPrevious;
 	__unsafe_unretained NSString *paymentPurpose;
 	__unsafe_unretained NSString *proposedPaymentsPurpose;
 	__unsafe_unretained NSString *recipientEmail;
@@ -28,6 +31,30 @@ extern const struct PendingPaymentRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) PendingPaymentID* objectID;
+
+@property (nonatomic, strong) NSNumber* isRepeat;
+
+@property (atomic) BOOL isRepeatValue;
+- (BOOL)isRepeatValue;
+- (void)setIsRepeatValue:(BOOL)value_;
+
+//- (BOOL)validateIsRepeat:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* paymentFlowProgress;
+
+@property (atomic) float paymentFlowProgressValue;
+- (float)paymentFlowProgressValue;
+- (void)setPaymentFlowProgressValue:(float)value_;
+
+//- (BOOL)validatePaymentFlowProgress:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* paymentFlowProgressPrevious;
+
+@property (atomic) float paymentFlowProgressPreviousValue;
+- (float)paymentFlowProgressPreviousValue;
+- (void)setPaymentFlowProgressPreviousValue:(float)value_;
+
+//- (BOOL)validatePaymentFlowProgressPrevious:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* paymentPurpose;
 
@@ -91,6 +118,24 @@ extern const struct PendingPaymentRelationships {
 @end
 
 @interface _PendingPayment (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveIsRepeat;
+- (void)setPrimitiveIsRepeat:(NSNumber*)value;
+
+- (BOOL)primitiveIsRepeatValue;
+- (void)setPrimitiveIsRepeatValue:(BOOL)value_;
+
+- (NSNumber*)primitivePaymentFlowProgress;
+- (void)setPrimitivePaymentFlowProgress:(NSNumber*)value;
+
+- (float)primitivePaymentFlowProgressValue;
+- (void)setPrimitivePaymentFlowProgressValue:(float)value_;
+
+- (NSNumber*)primitivePaymentFlowProgressPrevious;
+- (void)setPrimitivePaymentFlowProgressPrevious:(NSNumber*)value;
+
+- (float)primitivePaymentFlowProgressPreviousValue;
+- (void)setPrimitivePaymentFlowProgressPreviousValue:(float)value_;
 
 - (NSString*)primitivePaymentPurpose;
 - (void)setPrimitivePaymentPurpose:(NSString*)value;

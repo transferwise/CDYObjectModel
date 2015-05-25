@@ -15,9 +15,12 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "PullPaymentDetailsOperation.h"
-#import "TransferDetailsViewController.h" 
-#import "FeedbackCoordinator.h"
+#import "TransferDetailsViewController.h"
 #import "CustomInfoViewController.h"
+#import "GoogleAnalytics.h"
+#import "Mixpanel+Customisation.h"
+#import "CustomInfoViewController+Notifications.h"
+#import "PushNotificationsHelper.h"
 
 
 #ifdef DEV_VERSION
@@ -30,6 +33,11 @@
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) PullPaymentDetailsOperation *executedOperation;
 @property (nonatomic, assign) NSHTTPCookieAcceptPolicy bufferedPolicy;
+@property (weak, nonatomic) IBOutlet UIView *errorView;
+@property (weak, nonatomic) IBOutlet UIImageView *errorImage;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel
+;
+@property (weak, nonatomic) IBOutlet UIButton *errorButton;
 
 @end
 
@@ -70,6 +78,15 @@
 {
     [super viewDidAppear:animated];
     [self loadCardView];
+    [[GoogleAnalytics sharedInstance] sendScreen:GADebitCardPayment];
+    [[Mixpanel sharedInstance] sendPageView:MPDebitCardPayment];
+
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.errorView.hidden = YES;
 }
 
 
@@ -166,7 +183,7 @@
         __weak typeof(self) weakSelf = self;
         __weak typeof(customInfo) weakCustomInfo = customInfo;
         __block BOOL shouldAutoDismiss = YES;
-        customInfo.actionButtonBlock = ^{
+        ActionButtonBlock action = ^{
             if(weakSelf.executedOperation)
             {
                 TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:weakCustomInfo.view];
@@ -189,11 +206,10 @@
                         details.payment = weakSelf.payment;
                         details.objectModel = self.objectModel;
                         details.showClose = YES;
+                        details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
+                        details.showRateTheApp = YES;
                         
                         [self.navigationController pushViewController:details animated:NO];
-                        [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                            return YES;
-                        }];
                         [weakCustomInfo dismiss];
                     });
                 }];
@@ -205,6 +221,8 @@
             }
             
         };
+        customInfo.actionButtonBlocks = @[action];
+        
         [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
         
         PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
@@ -224,11 +242,11 @@
                 TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
                 details.payment = weakSelf.payment;
                 details.showClose = YES;
-                
+                details.objectModel = self.objectModel;
+                details.showClose = YES;
+                details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
+                details.showRateTheApp = YES;
                 [self.navigationController pushViewController:details animated:NO];
-                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                    return YES;
-                }];
                 if(shouldAutoDismiss)
                 {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -246,20 +264,18 @@
 
 -(void)showError
 {
-    CustomInfoViewController * customInfo = [[CustomInfoViewController alloc] init];
-    customInfo.infoText = NSLocalizedString(@"upload.money.card.no.payment.message", nil);
-    customInfo.actionButtonTitle = NSLocalizedString(@"upload.money.card.retry", nil);
-    customInfo.infoImage = [UIImage imageNamed:@"RedCross"];
-    __weak typeof(self) weakSelf = self;
-    __weak typeof(customInfo) weakCustomInfo = customInfo;
-    customInfo.actionButtonBlock = ^{
-        [weakCustomInfo dismiss];
-        [weakSelf loadCardView];
-    };
-    [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
+    self.errorLabel.text = NSLocalizedString(@"upload.money.card.no.payment.message", nil);
+    [self.errorButton setTitle:NSLocalizedString(@"upload.money.card.retry", nil) forState:UIControlStateNormal];
+    self.errorImage.image = [UIImage imageNamed:@"RedCross"];
+    self.errorView.hidden = NO;
+    self.errorView.alpha = 0.0f;
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.errorView.alpha = 1.0f;
+    } completion:nil];
 }
 
 - (IBAction)refreshTapped:(id)sender {
+    self.errorView.hidden = YES;
     [self loadCardView];
 }
 

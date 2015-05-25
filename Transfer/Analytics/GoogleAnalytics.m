@@ -51,16 +51,24 @@
     [[[GAI sharedInstance] defaultTracker] send:dictionary];
 }
 
+- (void)sendScreen:(NSString *)screenName withAdditionalParameters:(NSDictionary*)additionalParameters
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"screen name"];
+    [tracker send:[[[GAIDictionaryBuilder createScreenView] setAll:additionalParameters] build]];
+    
+}
+
 - (void)sendAppEvent:(NSString *)event {
     [self sendAppEvent:event withLabel:@""];
 }
 
 - (void)sendAppEvent:(NSString *)event withLabel:(NSString *)label {
-    [self sendEvent:event category:@"app_flow" label:label];
+    [self sendEvent:event category:GACategoryAppFlow label:label];
 }
 
 - (void)sendAlertEvent:(NSString *)event withLabel:(NSString *)label {
-    [self sendEvent:event category:@"alert" label:label];
+    [self sendEvent:event category:GACategoryAlert label:label];
 }
 
 - (void)sendPaymentEvent:(NSString *)event {
@@ -68,13 +76,17 @@
 }
 
 - (void)sendPaymentEvent:(NSString *)event withLabel:(NSString *)label {
-    [self sendEvent:event category:@"payment" label:label];
+    [self sendEvent:event category:GACategoryPayment label:label];
 }
 
 - (void)markLoggedIn {
     NSString *email = nil;
     if ([Credentials userLoggedIn]) {
         email = [Credentials userEmail];
+    }
+    else
+    {
+        [self sendAppEvent:GASignout];
     }
 
     [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:1] value:email];
@@ -90,19 +102,19 @@
 }
 
 - (void)paymentRecipientProfileScreenShown {
-    [self sendScreen:@"Enter recipient details"];
+    [self sendScreen:GAEnterRecipientDetails];
 }
 
 - (void)refundDetailsScreenShown {
     if ([Credentials userLoggedIn]) {
-        [self sendScreen:@"Refund account 2"];
+        [self sendScreen:GARefundAccount2];
     } else {
-        [self sendScreen:@"Refund account"];
+        [self sendScreen:GARefundAccount];
     }
 }
 
 - (void)refundRecipientAdded {
-    [self sendPaymentEvent:@"RefundAccountAdded" withLabel:@"DuringPayment"];
+    [self sendPaymentEvent:GARefundAccountAdded withLabel:@"DuringPayment"];
 }
 
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label {
@@ -132,9 +144,9 @@
 
 -(void)sendNewRecipentEventWithLabel:(NSString*)label
 {
-    [self sendEvent:@"RecipientAdded" category:@"recipient" label:label];
-    [self sendEvent:@"RecipientOrigin" category:@"recipient" label:self.pendingRecipientOrigin];
-    self.pendingRecipientOrigin = @"Manual";
+    [self sendEvent:GARecipientAdded category:GACategoryRecipient label:label];
+    [self sendEvent:GARecipientOrigin category:GACategoryRecipient label:self.pendingRecipientOrigin];
+    self.pendingRecipientOrigin = GAManual;
 }
 
 
