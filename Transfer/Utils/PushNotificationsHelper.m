@@ -100,13 +100,15 @@
 		&& [self pushNotificationsGranted]
 		&& self.deviceTokenString)
 	{
-		if (self.objectModel.currentUser.deviceToken && [self.objectModel.currentUser.deviceToken length] > 0)
+		NSString *currentDeviceToken = self.objectModel.currentUser.deviceToken;
+		
+		if (currentDeviceToken && [currentDeviceToken length] > 0)
 		{
 			//if token exist update token just in case (as per Apple docs)
 			UpdateUserDeviceOperation *updateOperation = [UpdateUserDeviceOperation updateDeviceOperation];
 			
 			updateOperation.objectModel = self.objectModel;
-			updateOperation.existingToken = self.objectModel.currentUser.deviceToken;
+			updateOperation.existingToken = currentDeviceToken;
 			updateOperation.updatedToken = self.deviceTokenString;
 			updateOperation.completionHandler = ^(NSError *error) {
 				if (error)
