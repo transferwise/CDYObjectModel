@@ -205,6 +205,7 @@ A revolution in your pocket.";
 "login.validation.email.not.valid" = "The entered email is not correct";
 "login.validation.password.missing" = "Password is missing";
 "login.oauth.header.title" = "Log in with %@";
+"login.email.facebook.getting" = "Getting your email";
 
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";

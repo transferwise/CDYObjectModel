@@ -12,6 +12,7 @@
 #import <FBSDKGraphRequest.h>
 #import "GoogleAnalytics.h"
 #import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
 
 @implementation FacebookHelper
 
@@ -82,17 +83,29 @@
 	if ([FBSDKAccessToken currentAccessToken])
 	{
 		//Show hud
+		TRWProgressHUD *hud;
+		
+		if (navigationController.view)
+		{
+			hud = [TRWProgressHUD showHUDOnView:navigationController.view];
+			[hud setMessage:NSLocalizedString(@"login.email.facebook.getting", nil)];
+		}
 		
 		//might be necessary to check for a permission here first
 		[self getUserEmail:^(NSString *email) {
-			//Hide hud
+			if (hud)
+			{
+				[hud hide];
+			}
 			
 			if (!email)
 			{
-				__weak typeof(self) weakSelf = self;
+				
 				//no access to email or it is missing
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginNoEmail
+													   withLabel:nil];
 				//show error and fail
-				//TODO
+				
 			}
 			else
 			{
