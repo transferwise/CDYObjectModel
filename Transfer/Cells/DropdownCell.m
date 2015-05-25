@@ -55,7 +55,12 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 - (void)setAllElements:(NSFetchedResultsController *)allElements
 {
     _allElements = allElements;
-    [self selectedElement:allElements.fetchedObjects[0]];
+	
+	//we can end up here with nothing to show
+	if (allElements.fetchedObjects.count > 0)
+	{
+		[self selectedElement:allElements.fetchedObjects[0]];
+	}
 }
 
 - (void)setValue:(NSString *)value
