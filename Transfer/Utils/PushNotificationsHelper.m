@@ -103,35 +103,35 @@
 		if (self.objectModel.currentUser.deviceToken && [self.objectModel.currentUser.deviceToken length] > 0)
 		{
 			//if token exist update token just in case (as per Apple docs)
-			UpdateUserDeviceOperation *operation = [UpdateUserDeviceOperation updateDeviceOperation];
+			UpdateUserDeviceOperation *updateOperation = [UpdateUserDeviceOperation updateDeviceOperation];
 			
-			operation.objectModel = self.objectModel;
-			operation.existingToken = self.objectModel.currentUser.deviceToken;
-			operation.updatedToken = self.deviceTokenString;
-			operation.completionHandler = ^(NSError *error) {
+			updateOperation.objectModel = self.objectModel;
+			updateOperation.existingToken = self.objectModel.currentUser.deviceToken;
+			updateOperation.updatedToken = self.deviceTokenString;
+			updateOperation.completionHandler = ^(NSError *error) {
 				if (error)
 				{
 					MCLog(@"Token update failed: %@", error.domain);
 				}
 			};
-			self.executingOperation = operation;
-			[operation execute];
+			self.executingOperation = updateOperation;
+			[updateOperation execute];
 		}
 		else
 		{
 			//this is the first time, add token
-			AddUserDeviceOperation *operation = [AddUserDeviceOperation addDeviceOperation];
+			AddUserDeviceOperation *addOperation = [AddUserDeviceOperation addDeviceOperation];
 			
-			operation.objectModel = self.objectModel;
-			operation.token = self.deviceTokenString;
-			operation.completionHandler = ^(NSError *error) {
+			addOperation.objectModel = self.objectModel;
+			addOperation.token = self.deviceTokenString;
+			addOperation.completionHandler = ^(NSError *error) {
 				if (error)
 				{
 					MCLog(@"Token adding failed: %@", error);
 				}
 			};
-			self.executingOperation = operation;
-			[operation execute];
+			self.executingOperation = addOperation;
+			[addOperation execute];
 		}
 	}
 }
