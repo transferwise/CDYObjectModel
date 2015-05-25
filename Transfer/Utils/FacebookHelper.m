@@ -10,7 +10,6 @@
 #import <FBSDKLoginKit.h>
 #import <FBSDKAccessToken.h>
 #import <FBSDKGraphRequest.h>
-#import "AskEmailViewController.h"
 #import "GoogleAnalytics.h"
 #import "TRWAlertView.h"
 
@@ -82,21 +81,18 @@
 {
 	if ([FBSDKAccessToken currentAccessToken])
 	{
+		//Show hud
+		
 		//might be necessary to check for a permission here first
 		[self getUserEmail:^(NSString *email) {
+			//Hide hud
+			
 			if (!email)
 			{
 				__weak typeof(self) weakSelf = self;
 				//no access to email or it is missing
-				//show AskEmailViewController
-				AskEmailViewController *askEmailController = [[AskEmailViewController alloc] initWithReturnBlock:^(NSString *email) {
-					[weakSelf handleEmail:email
-							 successBlock:successBlock
-							   isExisting:isExisting];
-				}];
-				
-				[navigationController pushViewController:askEmailController
-												animated:YES];
+				//show error and fail
+				//TODO
 			}
 			else
 			{
