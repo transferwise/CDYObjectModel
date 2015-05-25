@@ -13,6 +13,7 @@
 #import "GoogleAnalytics.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
+#import "CustomInfoViewController.h"
 
 @implementation FacebookHelper
 
@@ -98,21 +99,10 @@
 				[hud hide];
 			}
 			
-			if (!email)
-			{
-				
-				//no access to email or it is missing
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginNoEmail
-													   withLabel:nil];
-				//show error and fail
-				
-			}
-			else
-			{
-				[self handleEmail:email
-					 successBlock:successBlock
-					   isExisting:isExisting];
-			}
+			[self handleEmail:email
+				 successBlock:successBlock
+				   isExisting:isExisting
+		 navigationController:navigationController];
 		}];
 	}
 	else
@@ -148,6 +138,7 @@
 - (void)handleEmail:(NSString *)email
 	   successBlock:(FacebookLoginSuccessBlock)successBlock
 		 isExisting:(BOOL)isExisting
+navigationController:(UINavigationController *)navigationController
 {
 	if (email)
 	{
@@ -159,8 +150,19 @@
 		//I am a failure :(
 		[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginNoEmail
 											   withLabel:nil];
+		[self logOut];		
 		
-		[self showErrorWithMessage:nil];
+		//Yep, still paranoid
+		if (navigationController && navigationController.parentViewController)
+		{
+			CustomInfoViewController *customInfo = [CustomInfoViewController failScreenWithMessage:NSLocalizedString(@"login.error.facebook.no.email", nil)];
+			[customInfo presentOnViewController:navigationController.parentViewController
+						  withPresentationStyle:TransparentPresentationFade];
+		}
+		else
+		{
+			[self showErrorWithMessage:NSLocalizedString(@"login.error.facebook.no.email", nil)];
+		}
 	}
 }
 
