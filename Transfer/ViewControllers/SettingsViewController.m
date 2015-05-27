@@ -92,6 +92,30 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SettingsButtonCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"SettingsButtonCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"SettingsSwitchCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"SettingsSwitchCell"];
+    
+    [self updateTableViewInsetsForOrientation:self.interfaceOrientation];
+}
+
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self updateTableViewInsetsForOrientation:toInterfaceOrientation];
+        
+}
+
+-(void)updateTableViewInsetsForOrientation:(UIInterfaceOrientation)orientation
+{
+    if(IPAD)
+    {
+        if(UIInterfaceOrientationIsPortrait(orientation))
+        {
+            self.tableView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0);
+        }
+        else
+        {
+            self.tableView.contentInset = UIEdgeInsetsZero;
+        }
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,11 +123,11 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     Setting currentSetting = [self.settingsFields[indexPath.row] shortValue];
     if(currentSetting != SendAsBusinessSetting)
     {
-        return 55;
+        return IPAD?60:55;
     }
     else
     {
-        return 80;
+        return IPAD?140:80;
     }
 }
 

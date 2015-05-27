@@ -68,6 +68,12 @@
 		38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
 		3812FA3B19DAD9C1003F9904 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
+		381374381B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381374361B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib */; };
+		381374391B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381374361B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib */; };
+		3813743A1B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381374361B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib */; };
+		3813743B1B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381374371B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib */; };
+		3813743C1B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381374371B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib */; };
+		3813743D1B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381374371B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib */; };
 		3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3818605719C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
@@ -1619,6 +1625,8 @@
 		38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchWaitingViewController.xib; sourceTree = "<group>"; };
 		38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeader~ipad.xib"; sourceTree = "<group>"; };
 		3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		381374361B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SettingsButtonCell~ipad.xib"; sourceTree = "<group>"; };
+		381374371B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SettingsSwitchCell~ipad.xib"; sourceTree = "<group>"; };
 		3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfirmPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3818605519C9A206009A413E /* SetSSNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSSNOperation.h; sourceTree = "<group>"; };
 		3818605619C9A206009A413E /* SetSSNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSSNOperation.m; sourceTree = "<group>"; };
@@ -3204,6 +3212,12 @@
 				EAB7215D171FCAAC00DE29F5 /* SettingsTitleCell.h */,
 				EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */,
 				EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */,
+				3846EEDF1B0A3EC1002EE80B /* SettingsButtonCell.xib */,
+				381374361B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib */,
+				387254451B0B4399005A5759 /* SettingsSwitchCell.h */,
+				387254461B0B4399005A5759 /* SettingsSwitchCell.m */,
+				387254471B0B4399005A5759 /* SettingsSwitchCell.xib */,
+				381374371B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib */,
 				383FC11019AE1BF400465FCA /* SeparatorViewCell.h */,
 				383FC11119AE1BF400465FCA /* SeparatorViewCell.m */,
 				47AC3F931987B2C3005491C6 /* SuggestionCell.h */,
@@ -3234,10 +3248,6 @@
 				38B52F96199B622D00B6AEBD /* ValidationCell.xib */,
 				3846EED41B0A35D2002EE80B /* SettingsButtonCell.h */,
 				3846EED51B0A35D2002EE80B /* SettingsButtonCell.m */,
-				3846EEDF1B0A3EC1002EE80B /* SettingsButtonCell.xib */,
-				387254451B0B4399005A5759 /* SettingsSwitchCell.h */,
-				387254461B0B4399005A5759 /* SettingsSwitchCell.m */,
-				387254471B0B4399005A5759 /* SettingsSwitchCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -3996,6 +4006,7 @@
 				388E5B1B1A5A949500AF6EB9 /* DoubleEntryCell.xib in Resources */,
 				388E5B1C1A5A949500AF6EB9 /* CurrencySelectorViewController~ipad.xib in Resources */,
 				388E5B1D1A5A949500AF6EB9 /* InviteViewController~ipad.xib in Resources */,
+				3813743D1B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib in Resources */,
 				388E5B1E1A5A949500AF6EB9 /* NewPaymentViewController~ipad.xib in Resources */,
 				388E5B1F1A5A949500AF6EB9 /* InfoPlist.strings in Resources */,
 				388E5B201A5A949500AF6EB9 /* Localizable.strings in Resources */,
@@ -4105,6 +4116,7 @@
 				388E5B7E1A5A949500AF6EB9 /* PaymentMethodSelectionView.xib in Resources */,
 				388E5B7F1A5A949500AF6EB9 /* ConfirmPaymentViewController.xib in Resources */,
 				388E5B811A5A949500AF6EB9 /* CurrencySelectionCell~ipad.xib in Resources */,
+				3813743A1B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib in Resources */,
 				388E5B821A5A949500AF6EB9 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
 				388E5B831A5A949500AF6EB9 /* SeeHowViewController~ipad.xib in Resources */,
 				388E5B841A5A949500AF6EB9 /* RecipientEntrySelectionCell.xib in Resources */,
@@ -4168,6 +4180,7 @@
 				47F84D6E198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				3840862E19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */,
+				3813743C1B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib in Resources */,
 				47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */,
 				EA31A1D017DDB29B00F937F7 /* InfoPlist.strings in Resources */,
 				EA31A1D117DDB29B00F937F7 /* Localizable.strings in Resources */,
@@ -4277,6 +4290,7 @@
 				EAD3649217E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */,
 				38CACD6A1987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */,
+				381374391B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib in Resources */,
 				3840863519A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
 				383FC10F19AE1B8400465FCA /* SeeHowViewController~ipad.xib in Resources */,
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
@@ -4333,6 +4347,7 @@
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
+				3813743B1B15CC9100BDAF85 /* SettingsSwitchCell~ipad.xib in Resources */,
 				EA84056917F0A40B00F44916 /* spinner.html in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
 				3827407F199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */,
@@ -4442,6 +4457,7 @@
 				38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */,
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
 				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
+				381374381B15CC9100BDAF85 /* SettingsButtonCell~ipad.xib in Resources */,
 				3840D34919A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */,
 				385669071980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */,
 				3840862A19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
