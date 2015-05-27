@@ -9,7 +9,6 @@
 #import "ProfileEditViewController.h"
 #import "BusinessProfileViewController.h"
 #import "BusinessProfileSource.h"
-#import "QuickProfileValidationOperation.h"
 #import "GoogleAnalytics.h"
 
 @interface BusinessProfileViewController ()
@@ -20,7 +19,7 @@
 
 - (id)init
 {
-    self = [super initWithSource:[[BusinessProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation businessProfileValidation]];
+    self = [super initWithSource:[[BusinessProfileSource alloc] init]];
     if (self)
 	{
 		self.reloadBaseData = YES;
@@ -30,7 +29,7 @@
 
 - (id)initWithActionButtonTitle:(NSString *)title
 {
-	self = [super initWithSource:[[BusinessProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation businessProfileValidation] buttonTitle:title];
+	self = [super initWithSource:[[BusinessProfileSource alloc] init] buttonTitle:title];
 	if (self)
 	{
 		self.reloadBaseData = YES;
