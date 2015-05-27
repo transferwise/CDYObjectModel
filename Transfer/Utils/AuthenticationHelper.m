@@ -43,6 +43,7 @@
 #import "PushNotificationsHelper.h"
 #import "ReferralsCoordinator.h"
 #import <FBSDKAppEvents.h>
+#import <AFNetworking.h>
 
 @interface AuthenticationHelper ()
 
@@ -237,6 +238,12 @@
                               email:email
                        successBlock:^{
                            [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
+                           [objectModel performBlock:^{
+                               User* loggedInUser = [objectModel currentUser];
+                               loggedInUser.authenticationProvider = provider;
+                               [objectModel saveContext];
+                           }];
+                           
                            NSString *referralToken = [ReferralsCoordinator referralToken];
                            if(referralToken)
                            {
@@ -386,6 +393,42 @@
 		[alertView show];
 	}
     [self deRegisterForOauthNotifications];
+}
+
+#pragma mark - oauth revoke
+
++ (void)revokeOauthAccessForProvider:(NSString*)provider completionBlock:(void (^)(void))completionBlock
+{
+    if([@"google" isEqualToString:[provider lowercaseString]])
+    {
+        NXOAuth2Account* account = [[[NXOAuth2AccountStore sharedStore] accounts] firstObject];
+        if(account)
+        {
+            NSURL *revokeUrl = [NSURL URLWithString:[NSString stringWithFormat:TRWGoogleRevokeUrlFormat,AFQueryStringFromParametersWithEncoding(@{@"token":account.accessToken.accessToken}, NSUTF8StringEncoding)]];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:revokeUrl];
+            AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if(completionBlock)
+                {
+                    completionBlock();
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                //Fail silently
+                if(completionBlock)
+                {
+                    completionBlock();
+                }
+            }];
+            [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+            [[[TransferwiseClient sharedClient] operationQueue] addOperation:requestOperation];
+            return;
+        }
+    }
+    
+    if(completionBlock)
+    {
+        completionBlock();
+    }
 }
 
 #pragma mark - Logout

@@ -404,7 +404,9 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "settings.row.about" = "About";
 "settings.row.touchid" = "Touch ID settings";
 "settings.row.send.as.business" = "Send as business";
-
+"settings.row.google" = "Google settings";
+"settings.google.alert.title" = "Google";
+"settings.google.alert.text" = "Do you want to unlink your Google account and log out?";
 
 "sign.up.controller.creating.message" = "Creating account...";
 "sign.up.controller.signup.error.message" = "Sign up error";
