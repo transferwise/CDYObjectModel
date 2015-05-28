@@ -1192,7 +1192,7 @@
 
 "invite.controller.title.boom" = "Boom!";
 
-"invite.header" = "Du verdienst %@ für jeden 3 eingeladenen Freund, der anfängt TransferWise zu nutzen.";
+"invite.header" = "Du verdienst %@ für jeden 3. eingeladenen Freund, der anfängt TransferWise zu nutzen.";
 
 "invite.progress.format1" = "%d Freund hat angefangen TransferWise zu nutzen. Noch %d & du kriegst %@.";
 
