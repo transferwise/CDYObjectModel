@@ -334,7 +334,7 @@
 
 "introduction.savings.message.part1.format" = "Aktueller Wechselkurs: %@\nGebühr: %@";
 
-"introduction.savings.message.part1.format.ipad" = "Aktueller Wechselkurs: %@\nGebühr: %@";
+"introduction.savings.message.part1.format.ipad" = "Aktueller Wechselkurs: %@ Gebühr: %@";
 
 "introduction.savings.message.part1.format.no.fee" = "Aktueller Wechselkurs: %@\nDiese Überweisung ist kostenlos.";
 
@@ -760,7 +760,7 @@
 
 "sign.up.button.title.register" = "Registrieren";
 
-"sign.up.controller.header.message" = "TransferWise Konto erstellen";
+"sign.up.controller.header.message" = "TransferWise-Konto einrichten";
 
 "sign.up.email.field.title" = "Deine E-Mail";
 
@@ -770,7 +770,7 @@
 
 "sign.up.controller.existing.user.action" = "Einloggen";
 
-"sign.up.controller.existing.user.message" = "Bist du bereits registriert?";
+"sign.up.controller.existing.user.message" = "Bereits registriert?";
 
 "transactions.controller.refreshing.message" = "Lädt Überweisungen";
 
@@ -786,7 +786,7 @@
 
 "transactions.identification.uploading.message" = "Hochladen...";
 
-"transactions.cancel.confirmation.title" = "Diese Überweisung stornieren?";
+"transactions.cancel.confirmation.title" = "Überweisung stornieren?";
 
 "transactions.cancel.confirmation.message" = "Bitte bestätige, dass du diese Überweisung stornieren möchtest.\nDas kann nicht rückgängig gemacht werden.";
 
@@ -1024,11 +1024,11 @@
 
 "payment.method.description.ADYEN" = "Wir akzeptieren alle Visa- & Masterkarten.";
 
-"payment.method.description.SWIFT" = "Für USD Bankkonten ausserhalb der USA.";
+"payment.method.description.SWIFT" = "Falls dein USD-Konto nicht in den USA ist, verwende bitte diese Option.";
 
 "payment.method.description.ACH" = "Geld wird von deinem US Bankkonto abgebucht.";
 
-"support.sheet.title" = "Solltest du Fragen haben, zögere bitte nicht unser Support Team zu kontaktieren.";
+"support.sheet.title" = "Falls du Fragen hast, kann du gerne unser Support Team kontaktieren.";
 
 "support.sheet.write.message" = "Sende eine E-Mail";
 
@@ -1154,7 +1154,7 @@
 
 "reset.password.email.not.entered" = "E-Mail-Adresse fehlt.";
 
-"reset.password.invaild.email.error" = "Bitte wähle eine gültige E-Mail-Adresse.";
+"reset.password.invaild.email.error" = "Bitte gib eine gültige E-Mail-Adresse an.";
 
 "reset.password.error.title" = "Ups!";
 
@@ -1174,13 +1174,13 @@
 
 "unknown.value" = "??";
 
-"contact.detail.send" = "Sende Geld";
+"contact.detail.send" = "Geld senden";
 
 "usd.coming.soon" = "U-S-A!";
 
 "usd.not.supported" = "USD-Überweisungen werden bald auf unserer App unterstützt. \n\nIn der Zwischenzeit, kannst du deine Überweisung auf TransferWise.com machen.";
 
-"invite.button.title" = "Lade Freunde ein";
+"invite.button.title" = "Freunde einladen";
 
 "invite.controller.title" = "Rette deine Freunde vor Banken";
 
@@ -1202,9 +1202,9 @@
 
 "invite.fb.button.title" = "Auf Facebook teilen";
 
-"invite.email.button.title" = "Einladen per E-Mail";
+"invite.email.button.title" = "Per E-Mail einladen";
 
-"invite.sms.button.title" = "Einladen per SMS";
+"invite.sms.button.title" = "Per SMS einladen";
 
 "invite.copy.button.title" = "Einladungslink kopieren";
 
