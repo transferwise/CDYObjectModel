@@ -8,7 +8,6 @@
 
 #import "PersonalProfileViewController.h"
 #import "PersonalProfileSource.h"
-#import "QuickProfileValidationOperation.h"
 #import "GoogleAnalytics.h"
 
 @interface PersonalProfileViewController ()
@@ -19,7 +18,7 @@
 
 - (id)init
 {
-    self = [super initWithSource:[[PersonalProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation personalProfileValidation]];
+    self = [super initWithSource:[[PersonalProfileSource alloc] init]];
     if (self)
 	{
         // Custom initialization
@@ -32,7 +31,6 @@
 	doNotShowMessageForExisting:(BOOL)doNotShowMessageForExisting
 {
 	self = [super initWithSource:[[PersonalProfileSource alloc] init]
-				 quickValidation:[QuickProfileValidationOperation personalProfileValidation]
 					 buttonTitle:title];
 	if (self)
 	{
