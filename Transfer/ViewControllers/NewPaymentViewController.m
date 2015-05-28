@@ -142,8 +142,9 @@ static NSUInteger const kRowYouSend = 0;
     self.amountLabel.hidden=YES;
     self.vsLabel.hidden=YES;
     self.howButton.hidden=YES;
-    self.saveLabel.text = NSLocalizedString([@"introduction.savings.message.part1" deviceSpecificLocalization], nil);
-    self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2" deviceSpecificLocalization], nil);
+    
+    self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.versus" deviceSpecificLocalization], nil);
+    
 	self.sendMoneyLabel.text = NSLocalizedString(@"introduction.title", nil);
     NSString *howString = NSLocalizedString([@"introduction.savings.message.how" deviceSpecificLocalization], nil);
     [self.howButton setTitle:howString forState:UIControlStateNormal];
@@ -247,24 +248,37 @@ static NSUInteger const kRowYouSend = 0;
     self.howButton.hidden = NO;
     self.howButton.enabled = YES;
     
+    NSString *savingsAmountString;
     if(result.amountCurrency == SourceCurrency)
     {
-        self.amountLabel.text = [result calculatedPayWinAmountWithCurrency];
+        savingsAmountString = [result calculatedPayWinAmountWithCurrency];
     }
     else
     {
-        self.amountLabel.text = [result payWinAmountWithCurrency];
+        savingsAmountString = [result payWinAmountWithCurrency];
     }
+
     
-    if([result isFeeZero] && self.view.bounds.size.height > 480)
+    if(self.view.bounds.size.height > 480)
     {
-        self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2.no.fee" deviceSpecificLocalization], nil);
+        self.amountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.part2.format", nil),savingsAmountString];
+        
+        if([result isFeeZero] && self.view.bounds.size.height > 480)
+        {
+            self.saveLabel.text = [NSString stringWithFormat:NSLocalizedString([@"introduction.savings.message.part1.format.no.fee" deviceSpecificLocalization], nil),result.transferwiseRateString];
+        }
+        else
+        {
+            self.saveLabel.text = [NSString stringWithFormat:NSLocalizedString([@"introduction.savings.message.part1.format" deviceSpecificLocalization], nil),result.transferwiseRateString,result.transferwiseTransferFeeStringWithCurrency];
+        }
+        [self.saveLabel layoutIfNeeded];
     }
     else
     {
-        self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2" deviceSpecificLocalization], nil);
+        //iphone 4
+        self.saveLabel.text = NSLocalizedString(@"introduction.savings.message.iphone4.part1", nil);
+        self.amountLabel.text = savingsAmountString;
     }
-    [self.vsLabel layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -167,8 +167,6 @@ vos amis sur TransferWise";
 "identification.ssn.generic.error" = "Erreur de validation du Social security number. Veuillez fournir une piece d'identité.";
 
 
-
-
 "introduction.currencies.retrieve.error.message" = "Impossible de téléchargé la liste des monnaies";
 "introduction.currencies.retrieve.error.title" = "Erreure liée aux monnaies";
 "introduction.calculation.error.title" = "Calculation avortée";
@@ -177,11 +175,14 @@ vos amis sur TransferWise";
 "introduction.login.section.title" = "Déja un utilisateur?";
 "introduction.savings.receive.message.base" = "Vous obtiendrez %@ de plus qu'avec votre banque";
 "introduction.savings.pay.message.base" = "Vous économisez %@ par rapport a votre banque";
-"introduction.savings.message.part1" = "Vous économisez";
-"introduction.savings.message.part1.ipad" = "Vous économisez";
-"introduction.savings.message.part2" = "avec TransferWise";
-"introduction.savings.message.part2.ipad" = "par rapport à votre banque ";
-"introduction.savings.message.part2.no.fee" = "par rapport à votre banque que vous avez gagné un transfert gratuit";
+"introduction.savings.message.iphone4.part1" = "Vous économisez";
+"introduction.savings.message.part1.format" = "Current rate: %@\nFee: %@";
+"introduction.savings.message.part1.format.ipad" = "Current rate: %@ Fee: %@";
+"introduction.savings.message.part1.format.no.fee" = "Current rate is %@.\nThis transfer is free.";
+"introduction.savings.message.part1.format.no.fee.ipad" = "Current rate is %@. This transfer is free.";
+"introduction.savings.message.part2.format" = "You'll save %@";
+"introduction.savings.message.versus" = "avec TransferWise";
+"introduction.savings.message.versus.ipad" = "par rapport à votre banque ";
 "introduction.savings.message.how" = "Voir explication";
 "introduction.savings.message.how.ipad" = "Voir explication";
 "introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.

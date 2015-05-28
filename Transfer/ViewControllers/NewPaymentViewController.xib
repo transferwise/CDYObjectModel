@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewPaymentViewController">
@@ -58,7 +58,7 @@
                         <action selector="startPaymentPressed:" destination="-1" eventType="touchUpInside" id="Tx5-vS-0V4"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="240" verticalCompressionResistancePriority="1000" text="save" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="Lrw-M9-5jB">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="240" verticalCompressionResistancePriority="1000" text="save" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="Lrw-M9-5jB">
                     <rect key="frame" x="15" y="360" width="290" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="pPR-Ms-cxk"/>
@@ -71,7 +71,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="eTr-o2-8Xr">
-                    <rect key="frame" x="15" y="377" width="290" height="24"/>
+                    <rect key="frame" x="15" y="381" width="290" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="c4X-rI-lae"/>
                     </constraints>
@@ -82,8 +82,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{20,27}.TWBlueHighlighted"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
-                    <rect key="frame" x="15" y="394" width="290" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
+                    <rect key="frame" x="15" y="398" width="290" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="0bG-QA-HQB"/>
                     </constraints>
@@ -91,11 +91,11 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@{20,27}.CoreFont"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@{20,27}.TWBlueHighlighted"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg" customClass="BlueRoundedButton">
-                    <rect key="frame" x="142" y="445" width="37" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg" customClass="BlueRoundedButton">
+                    <rect key="frame" x="142" y="443" width="37" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="bW4-I8-zWx"/>
                     </constraints>
@@ -140,7 +140,7 @@
                 <constraint firstItem="5xC-63-fjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WRX-dl-Alg" secondAttribute="bottom" priority="850" constant="1" id="04j-wj-GAl"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" constant="256" id="22B-xy-Gal"/>
                 <constraint firstAttribute="trailing" secondItem="UAL-I7-qIC" secondAttribute="trailing" id="2mt-xR-3dC"/>
-                <constraint firstItem="eTr-o2-8Xr" firstAttribute="top" secondItem="Lrw-M9-5jB" secondAttribute="bottom" constant="-4" id="2oa-Mw-5rj"/>
+                <constraint firstItem="eTr-o2-8Xr" firstAttribute="top" secondItem="Lrw-M9-5jB" secondAttribute="bottom" id="2oa-Mw-5rj"/>
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o2g-cv-K3K" secondAttribute="top" constant="64" id="8a8-5c-G9v"/>
                 <constraint firstAttribute="centerX" secondItem="WRX-dl-Alg" secondAttribute="centerX" id="9Py-3r-f10"/>
                 <constraint firstAttribute="bottom" secondItem="5xC-63-fjA" secondAttribute="bottom" id="ARC-VC-1Hn"/>
