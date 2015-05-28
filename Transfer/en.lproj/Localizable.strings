@@ -800,3 +800,5 @@ you can still access your account by resetting your password.";
 
 "field.optional.suffix" = " (Optional)";
 
+"confirmation.date.format" = "EEEE dd/MM/yyyy 'at' ha";
+

@@ -785,3 +785,4 @@ vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
 
 "field.optional.suffix" = " (Optionnel)";
 
+"confirmation.date.format" = "EEEE dd/MM/yyyy 'à' hh:mm";

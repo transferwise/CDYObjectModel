@@ -58,7 +58,7 @@
 
 "business.profile.state.label" = "Bundesstaat";
 
-"business.profile.controller.title" = "Unternehmensdaten";
+"business.profile.controller.title" = "Geschäftlich";
 
 "business.profile.controller.send.title" = "Einzelheiten zum Unternehmen";
 
@@ -92,7 +92,7 @@
 
 "business.profile.confirm.payment.button.title" = "Weiter";
 
-"business.profile.controller.title" = "Unternehmensdaten";
+"business.profile.controller.title" = "Geschäftlich";
 
 "business.profile.company.role.title" = "Deine Position";
 
@@ -634,7 +634,7 @@
 
 "recipient.controller.add.mode.title" = "Empfänger hinzufügen";
 
-"recipient.controller.cell.label.email" = "E-Mail-Adresse (freiwillig)";
+"recipient.controller.cell.label.email" = "E-Mail-Adresse";
 
 "recipient.controller.cell.label.name" = "Name des Empfängers";
 
@@ -842,7 +842,7 @@
 
 "transferdetails.controller.button.rate.ipad" = "Bewerte die App";
 
-"transferdetails.controller.button.notransfer" = "Ich habe das Geld noch nicht überwiesen";
+"transferdetails.controller.button.notransfer" = "Geld noch nicht überwiesen";
 
 "transferdetails.controller.button.gotit" = "Verstanden!";
 
@@ -882,7 +882,7 @@
 
 "upload.money.header.label.exactly" = "genau %@";
 
-"upload.money.info.label.EUR" = "SEPA-Überweisungen innerhalb der Eurozone sollten genau so viel wie eine normale Inlandsüberweisung kosten";
+"upload.money.info.label.EUR" = "SEPA-Überweisungen innerhalb Europas kosten genau so viel wie eine Inlandsüberweisung.";
 
 "upload.money.iban.title" = "IBAN";
 
@@ -904,7 +904,7 @@
 
 "upload.money.toggle.button.debit.card.title" = "Kreditkarte";
 
-"upload.money.uksort.title" = "UK Sort Code";
+"upload.money.uksort.title" = "Sort Code";
 
 "upload.money.refreshing.payment.message" = "Daten werden aktualisiert...";
 
@@ -920,7 +920,7 @@
 
 "upload.money.card.payment.success.title" = "Erfolg";
 
-"why.popup.bank.column.label" = "Gewöhnliche Bank";
+"why.popup.bank.column.label" = "Durchschnittliche Bank";
 
 "why.popup.tw.rate.title" = "Wir nutzen den echten Wechselkurs.";
 
@@ -930,7 +930,7 @@
 
 "why.popup.bank.fee.title" = "Banken verstecken Ihren Gewinn in dem Wechselkurs und der Gebühr. ";
 
-"why.popup.tw.you.get.title" = "Du bekommst";
+"why.popup.tw.you.get.title" = "Du erhältst";
 
 "why.popup.bank.you.get.title" = "Du hättest bekommen";
 
@@ -1192,7 +1192,7 @@
 
 "invite.controller.title.boom" = "Boom!";
 
-"invite.header" = "Du verdienst %@ für jeden 3. eingeladenen Freund, der anfängt TransferWise zu nutzen.";
+"invite.header" = "Du verdienst %@ für jeden 3 eingeladenen Freund, der anfängt TransferWise zu nutzen.";
 
 "invite.progress.format1" = "%d Freund hat angefangen TransferWise zu nutzen. Noch %d & du kriegst %@.";
 
@@ -1270,9 +1270,9 @@
 
 "usd.low.dismiss" = "OK";
 
-"empty.transfers" = "Noch keine Überweisungen gemacht?\nTippe 'Geld senden' um zu starten.";
+"empty.transfers" = "Noch keine Überweisungen gemacht?\nTippe 'Senden' um zu starten.";
 
-"empty.contacts" = "Keine Empfänger gespeichert.\nTippe 'Geld senden' um Geld zu überweisen.";
+"empty.contacts" = "Keine Empfänger gespeichert.\nTippe 'Senden' um Geld zu überweisen.";
 
 "registration.legaleze" = "Mit diesem Klick akzeptierst du unsere %@ & %@";
 
@@ -1280,7 +1280,7 @@
 
 "registration.privacy" = "Datenschutzerklärung";
 
-"usd.legaleze" = "Mit diesem Klick stimmst du \n unseren %@ zu";
+"usd.legaleze" = "Mit diesem Klick stimmst du unseren %@ zu";
 
 "usd.state.specific" = "Bundesstaat-spezifischen Vorschriften";
 
@@ -1321,4 +1321,6 @@
 "intro.referral.title.format" = "%@\nhat dir eine gebührenfreie \nÜberweisung besorgt";
 
 "field.optional.suffix" = " (freiwillig)";
+
+"confirmation.date.format" = "EEEE dd/MM/yyyy 'um' hh:mm";
 
