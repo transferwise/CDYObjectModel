@@ -773,7 +773,6 @@ We'll send you an email in order to let you choose a new password.";
 "transfertime.default" = "It generally takes 1 business day";
 "transfertime.EUR.REGULAR" = "It generally takes 1-2 business days";
 "transfertime.GBP.REGULAR" = "It generally takes a few business hours";
-"transfertime.USD" = "It takes up to 5 business days";
 
 "upload.money.bankname.title" = "Bank name";
 "upload.money.card.no.adyen.url" = "Could not load debit card screen. Please try again.";

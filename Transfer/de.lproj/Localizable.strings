@@ -1290,8 +1290,6 @@
 
 "transfertime.GBP.REGULAR" = "einige Werkstunden";
 
-"transfertime.USD" = "bis zu 5 Werktage";
-
 "upload.money.bankname.title" = "Name der Bank";
 
 "upload.money.card.no.adyen.url" = "Kreditkartenseite konnte nicht geladen werden. Bitte versuche es erneut.";

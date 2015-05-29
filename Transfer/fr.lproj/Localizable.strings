@@ -758,7 +758,6 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "transfertime.default" = "Cela prend généralement 1 jour ouvré";
 "transfertime.EUR.REGULAR" = "Cela prend généralement 1-2 jours ouvrés";
 "transfertime.GBP.REGULAR" = "Cela prend généralement quelques heures ouvrées";
-"transfertime.USD." = "Cela peut prendre 5 jours ouvrés";
 
 
 "upload.money.bankname.title" = "Nom de la banque";
