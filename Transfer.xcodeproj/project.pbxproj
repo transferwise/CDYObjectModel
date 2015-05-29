@@ -1665,6 +1665,7 @@
 		384CF64519F6ADE50011DDAD /* Transfer_v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v5.xcdatamodel; sourceTree = "<group>"; };
 		38504B0719C1E83700276203 /* TouchIDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIDHelper.h; sourceTree = "<group>"; };
 		38504B0819C1E83700276203 /* TouchIDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIDHelper.m; sourceTree = "<group>"; };
+		38532A8B1B18ACB1006D0B44 /* Transfer_v13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v13.xcdatamodel; sourceTree = "<group>"; };
 		385669021980F9F200BC4230 /* ContactDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewController.h; sourceTree = "<group>"; };
 		385669031980F9F200BC4230 /* ContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewController.m; sourceTree = "<group>"; };
 		385669041980F9F200BC4230 /* ContactDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDetailsViewController.xib; sourceTree = "<group>"; };
@@ -6187,6 +6188,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				38532A8B1B18ACB1006D0B44 /* Transfer_v13.xcdatamodel */,
 				4777C0BB1AF791450042721F /* Transfer_v12.xcdatamodel */,
 				47DC5EFA1AEE3E9F00C6FA50 /* Transfer_v11.xcdatamodel */,
 				470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */,
@@ -6203,7 +6205,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 4777C0BB1AF791450042721F /* Transfer_v12.xcdatamodel */;
+			currentVersion = 38532A8B1B18ACB1006D0B44 /* Transfer_v13.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";
