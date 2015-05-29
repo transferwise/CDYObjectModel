@@ -14,6 +14,8 @@
 
 NSString *const kCurrencyPairsPath = @"/currency/pairs";
 
+static NSMutableSet *allCurrencyPairsOperationsWaitingForResponse;
+
 @implementation CurrencyPairsOperation
 
 - (id)init
@@ -38,33 +40,50 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
 
 - (void)execute
 {
-    NSString *path = [self addTokenToPath:kCurrencyPairsPath];
-
-    __block __weak CurrencyPairsOperation *weakSelf = self;
-    [self setOperationErrorHandler:^(NSError *error) {
-        MCLog(@"Currency pairs error:%@", error);
-        weakSelf.currenciesHandler(error);
-    }];
-
-    [self setOperationSuccessHandler:^(NSDictionary *response) {
-        [weakSelf.workModel.managedObjectContext performBlock:^{
-            NSArray *pairs = response[@"sourceCurrencies"];
-            MCLog(@"Retrieved %lu paris", (unsigned long)[pairs count]);
-
-            [weakSelf.workModel hideExistingPairSources];
-
-            NSUInteger index = 0;
-            for (NSDictionary *data in pairs) {
-                [weakSelf.workModel createOrUpdatePairWithData:data index:index++];
+    if(allCurrencyPairsOperationsWaitingForResponse)
+    {
+        [allCurrencyPairsOperationsWaitingForResponse addObject:self];
+    }
+    else
+    {
+        allCurrencyPairsOperationsWaitingForResponse = [NSMutableSet setWithObject:self];
+        
+        NSString *path = [self addTokenToPath:kCurrencyPairsPath];
+        
+        __block __weak CurrencyPairsOperation *weakSelf = self;
+        [self setOperationErrorHandler:^(NSError *error) {
+            MCLog(@"Currency pairs error:%@", error);
+            for (CurrencyPairsOperation* operation in allCurrencyPairsOperationsWaitingForResponse)
+            {
+                operation.currenciesHandler(error);
             }
-
-            [weakSelf.workModel saveContext:^{
-                weakSelf.currenciesHandler(nil);
+            allCurrencyPairsOperationsWaitingForResponse = nil;
+        }];
+        
+        [self setOperationSuccessHandler:^(NSDictionary *response) {
+            [weakSelf.workModel.managedObjectContext performBlock:^{
+                NSArray *pairs = response[@"sourceCurrencies"];
+                MCLog(@"Retrieved %lu paris", (unsigned long)[pairs count]);
+                
+                [weakSelf.workModel hideExistingPairSources];
+                
+                NSUInteger index = 0;
+                for (NSDictionary *data in pairs) {
+                    [weakSelf.workModel createOrUpdatePairWithData:data index:index++];
+                }
+                
+                [weakSelf.workModel saveContext:^{
+                    for (CurrencyPairsOperation* operation in allCurrencyPairsOperationsWaitingForResponse)
+                    {
+                        operation.currenciesHandler(nil);
+                    }
+                    allCurrencyPairsOperationsWaitingForResponse = nil;
+                }];
             }];
         }];
-    }];
-
-    [self getDataFromPath:path];
+        
+        [self getDataFromPath:path];
+    }
 }
 
 + (CurrencyPairsOperation *)pairsOperation

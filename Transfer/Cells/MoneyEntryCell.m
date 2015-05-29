@@ -289,4 +289,9 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self.titleLabel setTextColor:[UIColor colorFromStyle:isHighlighted?@"TWElectricBlue":self.titleLabel.fontStyle]];
 }
 
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self setCurrencies:controller];
+}
+
 @end

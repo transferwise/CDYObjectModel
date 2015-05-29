@@ -13,6 +13,8 @@
 #import "ObjectModel+Currencies.h"
 #import "RecipientTypesOperation.h"
 
+#define kCurrencyUpdateFrequency (18000)
+
 NSString *const kCurrencyListPath = @"/currency/list";
 
 @interface CurrenciesOperation ()
@@ -21,45 +23,73 @@ NSString *const kCurrencyListPath = @"/currency/list";
 
 @end
 
+static NSMutableSet *allCurrenciesOperationsWaitingForResponse;
+static NSDate* lastSuccessTimestamp;
+
 @implementation CurrenciesOperation
 
 - (void)execute {
-    NSString *path = [self addTokenToPath:kCurrencyListPath];
-
-    __block __weak CurrenciesOperation *weakSelf = self;
-    [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.resultHandler(error);
-    }];
-
-    [self setOperationSuccessHandler:^(NSDictionary *response) {
-        [weakSelf.workModel.managedObjectContext performBlock:^{
-            NSArray *currencies = response[@"currencies"];
-            MCLog(@"Pulled %lu currencies", (unsigned long)[currencies count]);
-
-            void (^persistingBlock)() = ^() {
-                [weakSelf.workModel.managedObjectContext performBlock:^{
-                    NSUInteger index = 0;
-                    for (NSDictionary *data in currencies) {
-                        [weakSelf.workModel createOrUpdateCurrencyWithData:data index:index++];
-                    }
-
-                    [weakSelf.workModel saveContext:^{
-                        weakSelf.resultHandler(nil);
-                    }];
-                }];
-            };
-
-            if ([weakSelf haveAllNeededRecipientTypes:currencies]) {
-                MCLog(@"Have all recipient types. Continue");
-                persistingBlock();
-            } else {
-                MCLog(@"Need to pull missing recipient types");
-                [weakSelf pullRecipientTypesWithCompletionHandler:persistingBlock];
+    
+    if(lastSuccessTimestamp && ABS([lastSuccessTimestamp timeIntervalSinceNow]) < kCurrencyUpdateFrequency)
+    {
+        //We updated currencies within the last 5 minutes. Pretend that everything went well.
+        self.resultHandler(nil);
+    }
+    
+    if(allCurrenciesOperationsWaitingForResponse)
+    {
+        [allCurrenciesOperationsWaitingForResponse addObject:self];
+    }
+    else
+    {
+        allCurrenciesOperationsWaitingForResponse = [NSMutableSet setWithObject:self];
+        
+        NSString *path = [self addTokenToPath:kCurrencyListPath];
+        
+        __block __weak CurrenciesOperation *weakSelf = self;
+        [self setOperationErrorHandler:^(NSError *error) {
+            for (CurrenciesOperation* operation in allCurrenciesOperationsWaitingForResponse)
+            {
+                operation.resultHandler(error);
             }
+            allCurrenciesOperationsWaitingForResponse = nil;
         }];
-    }];
-
-    [self getDataFromPath:path];
+        
+        [self setOperationSuccessHandler:^(NSDictionary *response) {
+            [weakSelf.workModel.managedObjectContext performBlock:^{
+                NSArray *currencies = response[@"currencies"];
+                MCLog(@"Pulled %lu currencies", (unsigned long)[currencies count]);
+                
+                void (^persistingBlock)() = ^() {
+                    [weakSelf.workModel.managedObjectContext performBlock:^{
+                        NSUInteger index = 0;
+                        for (NSDictionary *data in currencies) {
+                            [weakSelf.workModel createOrUpdateCurrencyWithData:data index:index++];
+                        }
+                        
+                        [weakSelf.workModel saveContext:^{
+                            for (CurrenciesOperation* operation in allCurrenciesOperationsWaitingForResponse)
+                            {
+                                operation.resultHandler(nil);
+                            }
+                            allCurrenciesOperationsWaitingForResponse = nil;
+                            lastSuccessTimestamp = [NSDate date];
+                        }];
+                    }];
+                };
+                
+                if ([weakSelf haveAllNeededRecipientTypes:currencies]) {
+                    MCLog(@"Have all recipient types. Continue");
+                    persistingBlock();
+                } else {
+                    MCLog(@"Need to pull missing recipient types");
+                    [weakSelf pullRecipientTypesWithCompletionHandler:persistingBlock];
+                }
+            }];
+        }];
+        
+        [self getDataFromPath:path];
+    }
 }
 
 - (void)pullRecipientTypesWithCompletionHandler:(void (^)())completion {
