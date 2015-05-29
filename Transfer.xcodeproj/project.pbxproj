@@ -1899,6 +1899,7 @@
 		38FC0B9619EE84E000173E07 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
 		38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Customisation.h"; sourceTree = "<group>"; };
 		38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Customisation.m"; sourceTree = "<group>"; };
+		38FC441D1B1735CB007AD45B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		470B112B1ADBB682008729E9 /* PushNotificationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationsHelper.h; sourceTree = "<group>"; };
 		470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationsHelper.m; sourceTree = "<group>"; };
 		470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v10.xcdatamodel; sourceTree = "<group>"; };
@@ -3934,6 +3935,7 @@
 			knownRegions = (
 				en,
 				fr,
+				de,
 			);
 			mainGroup = EAAA145F171BC911005B9430;
 			productRefGroup = EAAA1469171BC911005B9430 /* Products */;
@@ -5715,6 +5717,7 @@
 			children = (
 				EAAA148F171BD07E005B9430 /* en */,
 				38A8B39319F021700047BD29 /* fr */,
+				38FC441D1B1735CB007AD45B /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

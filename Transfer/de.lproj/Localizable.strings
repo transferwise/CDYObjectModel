@@ -1,0 +1,1326 @@
+"ach.controller.title" = "Per ACH Lastschrift";
+
+"ach.controller.login.title" = "Zahlung bestätigen";
+
+"ach.controller.button.support.ipad" = "Kontakt";
+
+"ach.controller.button.support" = "Support Team kontaktieren";
+
+"ach.controller.button.connect" = "Weiter zum Konto";
+
+"ach.controller.routing.label" = "Deine Routing Number";
+
+"ach.controller.account.label" = "Deine Kontonummer";
+
+"ach.controller.validation.routing.invalid" = "Routing Number inkorrekt";
+
+"ach.controller.validation.account.invalid" = "Kontonummer inkorrekt";
+
+"ach.controller.error.title" = "Ungültige Daten";
+
+"ach.controller.accessing" = "Lastschrifteinzug wird angefragt";
+
+"ach.controller.accessing.error" = "Anfrage erfolglos. Bitte versuch es noch einmal.";
+
+"ach.controller.checkbook.routing" = "Routing Number";
+
+"ach.controller.checkbook.account" = " Deine Kontonummer ";
+
+"ach.controller.checkbook" = "%@ auf einem Scheckbuch";
+
+"ach.waiting.info" = "Warte einen Moment, während wir dein USD Konto suchen";
+
+"ach.waiting.info2" = "Wir nehmen gerade Kontakt mit deiner Bank auf, um den ACH Lastschrifteinzug in die Wege zu leiten. Das kann ein paar Minuten dauern.";
+
+"ach.controller.button.pay" = " $%@ einzahlen mit %@";
+
+"ach.controller.label.message.nostore" = "Wir speichern deine Bankdaten nicht.";
+
+"ach.controller.label.message.secure" = "Die Zahlung ist 100% sicher.";
+
+"ach.controller.label.firstfield" = "%@ bei %@";
+
+"ach.success.message" = "Du hast dein Geld erfolgreich bei TransferWise eingezahlt";
+
+"ach.failure.message.account" = "Wir konnten dein Konto nicht verifizieren";
+
+"ach.failure.message.mismatch" = "Bankdaten inkorrekt";
+
+"ach.failure.message.routingnumber" = "Routing Number ungültig";
+
+"business.profile.address.label" = "Adresse";
+
+"business.profile.email.label" = "Geschäftliche E-Mail-Adresse";
+
+"business.profile.address.section.title" = "Adresse";
+
+"business.profile.city.label" = "Stadt";
+
+"business.profile.state.label" = "Bundesstaat";
+
+"business.profile.controller.title" = "Geschäftlich";
+
+"business.profile.controller.send.title" = "Einzelheiten zum Unternehmen";
+
+"business.profile.country.label" = "Land";
+
+"business.profile.description.label" = "Beschreibung";
+
+"business.profile.details.section.title" = "Unternehmensdaten";
+
+"business.profile.name.label" = "Firmenname";
+
+"business.profile.refresh.error.message" = "Geschäftsprofil konnte nicht geladen werden. Bitte versuche es später noch einmal.";
+
+"business.profile.refresh.error.title" = "Einzelheiten konnten nicht aktualisiert werden.";
+
+"business.profile.refreshing.message" = "Aktualisiert. . .";
+
+"business.profile.registration.number.label" = "Registernummer";
+
+"business.profile.save.button.title" = "Speichern";
+
+"business.profile.save.error.title" = "Einzelheiten konnten nicht gespeichert werden. Bitte versuche es erneut";
+
+"business.profile.saving.message" = "Speichert. . .";
+
+"business.profile.validation.error.message" = "Bitte stelle sicher, dass alle Felder ausgefüllt sind.";
+
+"business.profile.validation.error.title" = "Überprüfe deine Daten";
+
+"business.profile.password.lable" = "Passwort";
+
+"business.profile.confirm.payment.button.title" = "Weiter";
+
+"business.profile.controller.title" = "Geschäftlich";
+
+"business.profile.company.role.title" = "Deine Position";
+
+"business.profile.company.type.title" = "Unternehmenskategorie";
+
+"button.title.back" = "Zurück";
+
+"button.title.cancel" = "Abbrechen";
+
+"button.title.continue" = "Weiter";
+
+"button.title.delete" = "Löschen";
+
+"button.title.done" = "Fertig";
+
+"button.title.fill" = "Ausfüllen";
+
+"button.title.get.started" = "Los geht's";
+
+"button.title.send.money" = "Geld senden";
+
+"button.title.get.started.ipad" = "Los geht's";
+
+"button.title.send.money.ipad" = "Geld senden";
+
+"button.title.import.from.phonebook" = "Kontakte importieren";
+
+"button.title.log.in" = "Einloggen";
+
+"button.title.log.in.google" = "Google";
+
+"button.title.log.in.yahoo" = "Yahoo!";
+
+"button.title.log.in.google.ipad" = "Einloggen mit Google";
+
+"button.title.log.in.yahoo.ipad" = "Einloggen mit Yahoo!";
+
+"button.title.ok" = "OK";
+
+"button.title.retry" = "Versuch's erneut";
+
+"button.title.yes" = "Ja";
+
+"button.title.no" = "Nein";
+
+"button.title.repeat" = "Wiederholen";
+
+"confirm.payment.controller.title" = "Einzelheiten";
+
+"confirm.payment.creating.message" = "Überweisung erstellen";
+
+"confirm.payment.data.error.title" = "Datenladefehler";
+
+"confirm.payment.delivery.date.message" = "Voraussichtliche Ankunftszeit";
+
+"confirm.payment.deposit.title.label" = "Du überweist genau";
+
+"confirm.payment.deposit.fixed.title.label" = "Du überweist";
+
+"confirm.payment.recipient.title.label" = "%@ empfängt";
+
+"confirm.payment.recipient.fixed.title.label" = "Y%@ empfängt exakt";
+
+"confirm.payment.email.label" = "E-Mail-Adresse des Empfängers";
+
+"confirm.payment.target.sum.format" = "%@";
+
+"confirm.payment.fixed.target.sum.format" = "exakt %@";
+
+"confirm.payment.header.format" = "Am \n%@ werden geschätzte \n%@\n %@ erreichen.";
+
+"confirm.payment.header.format.nodate" = "%@\n erreicht \n%@s Konto";
+
+"confirm.payment.exchangerate.title.label" = "Wechselkurs";
+
+"confirm.payment.exchangerate.exact.title.label" = "Wechselkurs";
+
+"confirm.payment.fee.title.label" = "Gebühr";
+
+"confirm.payment.footer.button.title" = "Bestätigen";
+
+"confirm.payment.payment.error.title" = "Überweisung konnte nicht erstellt werden. Bitte versuche es erneut.";
+
+"confirm.payment.pulling.data" = "Aktualisiert…";
+
+"confirm.payment.receiver.section.title" = "Empfänger";
+
+"confirm.payment.recipient.marker.label" = "Empfänger";
+
+"confirm.payment.reference.label" = "Verwendungszweck";
+
+"confirm.payment.sender.marker.label" = "Sender(Du)";
+
+"confirm.payment.sender.section.title" = "Absender";
+
+"confirm.payment.reference.message" = "Dieser Verwendungszweck wird nicht auf dem Kontoauszug von %@ ersichtlich sein. Stattdessen wird %@ \"%@\", den Namen unseres Partners in %@, sehen. Der Verwendungszweck wird jedoch in der E-Mail, die wir an %@ senden, ersichtlich sein.";
+
+"confirm.payment.reference.message.default" = "Dieser Verwendungszweck wird nicht auf dem Kontoauszug von %@ ersichtlich sein. Stattdessen wird %@ den Namen unseres Partners vor Ort sehen. Der Verwendungszweck wird jedoch in der E-Mail, die wir an %@ senden, ersichtlich sein.";
+
+"confirm.payment.reference.message.USD" = "Dieser Verwendungszweck wird nicht auf dem Kontoauszug von %@ ersichtlich sein. Der Verwendungszweck wird jedoch in der E-Mail, die wir an %@ senden, ersichtlich sein.";
+
+"confirm.payment.recipient.will.be.informed" = "%@ wird per E-Mail informiert";
+
+"confirm.payment.reference.message.confirm" = "Ok";
+
+"confirm.payment.reference.message.cancel" = "Abbrechen";
+
+"contacts.controller.delete.button.title" = "Löschen";
+
+"contacts.controller.delete.confirmation.message" = "Möchtest du %@ als Empfänger entfernen?";
+
+"contacts.controller.delete.conformation.title" = "Kontakt löschen";
+
+"contacts.controller.deleting.message" = "Löscht. . .";
+
+"contacts.controller.refreshing.message" = "Aktualisiert Empfängerliste";
+
+"contacts.controller.title" = "Empfänger";
+
+"contacts.controller.tabbar.title" = "Empfänger";
+
+"contacts.refresh.error.message" = "Empfängerliste konnte nicht aktualisiert werden";
+
+"contacts.refresh.error.title" = "Aktualisierungsfehler";
+
+"contacts.controller.send.button.title" = "%@ senden";
+
+"contacts.controller.footer.invite" = "Verdiene £50, indem du\ndeine Freunde zu TransferWise einlädst";
+
+"contacts.controller.footer.invite.button.title" = "Freunde einladen";
+
+"contacts.controller.account.type" = "%@ Konto";
+
+"claim.account.controller.title" = "Wähle ein Passwort";
+
+"claim.account.error.title" = "Fehler";
+
+"claim.account.footer.message.text" = "Bitte leg ein Passwort fest, um dich später anmelden und den Status deiner Überweisungen überprüfen zu können.";
+
+"claim.account.password.not.entered" = "Passwort fehlt";
+
+"claim.account.setting.password.message" = "Lädt. . .";
+
+"currency.selector.title" = "Währungspaar";
+
+"currency.selector.select.button.title" = "Wählen";
+
+"generic.error.message" = "Wir arbeiten an dem Fehler. Bitte versuche es später noch einmal.";
+
+"generic.error.title" = "Ups. Irgendetwas ist schief gelaufen.";
+
+"generic.data.reloading" = "Lädt...";
+
+"identification.controller.title" = "%d Dokumente benötigt";
+
+"identification.controller.single.title" = "%d Dokument benötigt";
+
+"identification.controller.fields.title" = "Fülle die Felder aus";
+
+"identification.controller.title.ipad" = "%d Dokumente aus Sicherheitsgründen benötigt";
+
+"identification.controller.single.title.ipad" = "%d Dokument aus Sicherheitsgründen benötigt";
+
+"identification.reason.title" = "Aus Sicherheitsgründen benötigen wir:";
+
+"identification.creating.payment.message" = "Erstellt Überweisung. . .";
+
+"identification.id.document" = "Bild deines Identitätsnachweises";
+
+"identification.id.description" = "Ein Bild mit guter Qualität von einem gültigen Reisepass, Personalausweis oder Führerschein. Kein Bild von dir.";
+
+"identification.id.description.drivers.first" = "Ein Foto von deinem Personalausweis, Reisepass oder Führerschein in guter Qualität. \nKein Foto von dir selbst.";
+
+"identification.id.selected.description" = "Identitätsnachweis ausgewählt";
+
+"identification.payment.error.title" = "Fehler";
+
+"identification.proof.of.address" = "Bild eines Wohnsitznachweises";
+
+"identification.proof.of.address.description" = "Eine Nebenkostenrechnung oder ein Schreiben der Bank, welches nicht älter als drei Monate ist und an deine Adresse geschickt wurde.";
+
+"identification.proof.of.address.selected.description" = "Wohnsitznachweis";
+
+"identification.take.photo" = "Foto machen";
+
+"identification.upload.button" = "Hochladen";
+
+"identification.skip.button" = "Überspringen und später erinnern";
+
+"identification.delete.button" = "Löschen";
+
+"identification.payment.purpose" = "Grund für Überweisung";
+
+"identification.ssn" = "SSN(Social Security Number)";
+
+"identification.good.format" = "Hervorragend! %d Dokumente übrig.";
+
+"identification.good.single.format" = "Hervorragend! %d Dokument übrig.";
+
+"identification.good.single.ipad" = "1 weiteres Dokument aus Sicherheitsgründen benötigt.";
+
+"identification.fields" = "Fülle die verbleibenden Felder aus";
+
+"identification.only.ssn" = "Fast geschafft. Es fehlt nur noch deine SSN(Social Security Number).";
+
+"identification.only.purpose" = "Fast geschafft. Es fehlt nur noch dein Überweisungsgrund.";
+
+"identification.only.ssn.ipad" = "Fast geschafft. Es fehlt nur noch deine SSN(Social Security Number).";
+
+"identification.only.purpose.ipad" = "Fast geschafft. Es fehlt nur noch dein Überweisungsgrund.";
+
+"identification.well.done.format" = "Hervorragend %@!";
+
+"identification.error" = "Fehler";
+
+"identification.ssn.short" = "SSN(Social Security Number)zu kurz";
+
+"identification.ssn.error.title" = "Die SSN(Social Security Number)ist inkorrekt";
+
+"identification.ssn.generic.error" = "Bitte gib eine gültige SSN(Social Security Number) an oder schick uns einen Identitätsnachweis";
+
+"introduction.currencies.retrieve.error.message" = "Währungen konnten vom Server nicht abgerufen werden";
+
+"introduction.currencies.retrieve.error.title" = "Währungsfehler";
+
+"introduction.calculation.error.title" = "Kalkulation fehlgeschlagen";
+
+"introduction.title" = "Geld schicken";
+
+"introduction.header.title.text" = "Wie viel möchtest du schicken?";
+
+"introduction.login.section.title" = "Schon registriert?";
+
+"introduction.savings.receive.message.base" = "Du erhältst %@ mehr als mit deiner Bank";
+
+"introduction.savings.pay.message.base" = "Du zahlst %@ weniger als mit deiner Bank";
+
+"introduction.savings.message.iphone4.part1" = "Du sparst";
+
+"introduction.savings.message.part1.format" = "Aktueller Wechselkurs: %@\nGebühr: %@";
+
+"introduction.savings.message.part1.format.ipad" = "Aktueller Wechselkurs: %@ Gebühr: %@";
+
+"introduction.savings.message.part1.format.no.fee" = "Aktueller Wechselkurs: %@\nDiese Überweisung ist kostenlos.";
+
+"introduction.savings.message.part1.format.no.fee.ipad" = "Aktueller Wechselkurs: %@. Diese Überweisung ist kostenlos.";
+
+"introduction.savings.message.part2.format" = "Du sparst %@";
+
+"introduction.savings.message.versus" = "verglichen mit deiner Bank";
+
+"introduction.savings.message.versus.ipad" = "verglichen mit deiner Bank";
+
+"introduction.savings.message.how" = "Wie?";
+
+"introduction.savings.message.how.ipad" = "Wie?";
+
+"introduction.header.sub.title.text" = "Keine versteckten Kosten. Keine Kopfschmerzen.\nEine Revolution in deiner Hosentasche.";
+
+"invite.controller.tabbar.title" = "Einladen";
+
+"login.controller.footer.message" = "Du bleibst solange eingeloggt, bis du dich manuell von der App abmeldest.";
+
+"login.controller.header.message" = "Gib deine Zugangsdaten ein";
+
+"login.controller.logging.in.message" = "Einloggen. . .";
+
+"login.controller.title" = "Einloggen";
+
+"login.email.field.title" = "Deine E-Mail-Adresse";
+
+"login.error.generic.message" = "Einloggen fehlgeschlagen. Bitte versuche es erneut.";
+
+"login.error.title" = "Einloggen nicht möglich.";
+
+"login.error.oauth.expired" = "Dein OAuth Token ist abgelaufen oder annuliert. Bitte versuche es erneut.";
+
+"login.password.field.title" = "Dein Passwort";
+
+"login.validation.email.missing" = "Du hast keine E-Mail-Adresse eingegeben";
+
+"login.validation.email.not.valid" = "Die eingegebene E-Mail-Adresse ist falsch";
+
+"login.validation.password.missing" = "Passwort fehlt";
+
+"login.oauth.header.title" = "%@";
+
+"money.entry.priority.payment.title" = "Expresszahlung";
+
+"money.entry.receive.fixed.amount.title" = "Erhalte fixen Betrag";
+
+"money.entry.they.receive.title" = "Empfänger erhält";
+
+"money.entry.they.receive.exactly.title" = "Empfänger erhält exakt";
+
+"money.entry.you.send.title" = "Du überweist";
+
+"money.entry.you.send.exactly.title" = "Du überweist genau";
+
+"money.entry.recipient.receive.title" = "%@ erhält";
+
+"money.entry.recipient.receive.exactly.title" = "%@ erhält exakt";
+
+"openid.login.error.title" = "Einloggen fehlgeschlagen";
+
+"openid.login.generic.error.message" = "Einloggen fehlgeschlagen. Bitte versuche es später erneut.";
+
+"payment.change.time.days.ago" = "vor %d Tagen";
+
+"payment.change.time.hours.ago" = "vor %d Stunden";
+
+"payment.change.time.minutes.ago" = "vor %d Minuten";
+
+"payment.change.time.months.ago" = "vor %d Monaten";
+
+"payment.change.time.one.day.ago" = "vor 1 Tag";
+
+"payment.change.time.one.hour.ago" = "vor 1 Stunde";
+
+"payment.change.time.one.minute.ago" = "vor 1 Minute";
+
+"payment.change.time.one.month.ago" = "Vor 1 Monat";
+
+"payment.change.time.one.year.ago" = "Vor 1 Jahr";
+
+"payment.change.time.years.ago" = "vor %d Jahren";
+
+"payment.date.format.long" = "d MMM  YYYY";
+
+"payment.date.format.short" = "d MMM";
+
+"payment.controller.calculation.error.title" = "Kalkulation fehlgeschlagen";
+
+"payment.controller.continue.to.details.button.title" = "Weiter";
+
+"payment.controller.currency.cost.label" = "Wird getauscht";
+
+"payment.controller.currency.payment.error.message" = "Überweisung an den Empfänger kann in %@ nicht durchgeführt werden";
+
+"payment.controller.currency.payment.error.title" = "Überweisung kann nicht durchgeführt werden";
+
+"payment.controller.deposit.label" = "Deine Einzahlung";
+
+"payment.controller.estimated.exchange.rate.label" = "Geschätzter Wechselkurs";
+
+"payment.controller.payment.date.message" = "Geld kommt an am %@";
+
+"payment.controller.title" = "Senden";
+
+"payment.controller.tabbar.title" = "Senden";
+
+"payment.controller.title.with.contact.name" = "Überweisung an %@";
+
+"payment.controller.transfer.fee.label" = "TransferWise Gebühr";
+
+"payment.controller.you.get.label" = "Empfänger erhält geschätzte";
+
+"payment.currencies.format" = "%@ zu %@";
+
+"payment.status.cancelled.description" = "abgebrochen am %@";
+
+"payment.status.cancelled.description.long" = "wurde storniert.";
+
+"payment.status.cancelled.description.conversion" = "wurde nicht umgetauscht in";
+
+"payment.status.cancelled.description.eta" = "";
+
+"payment.status.refunded.description" = "Zurückerstattet am %@";
+
+"payment.status.refunded.description.long" = "wurde storniert.";
+
+"payment.status.refunded.description.conversion" = "wurde zurückerstattet";
+
+"payment.status.refunded.description.eta" = "";
+
+"payment.status.matched.description" = "auf dem Weg";
+
+"payment.status.matched.description.long" = "ist auf dem Weg.";
+
+"payment.status.matched.description.conversion" = "wurde umgetauscht in";
+
+"payment.status.matched.description.eta" = "& sollte ankommen am";
+
+"payment.status.received.description" = "Wird umgetauscht";
+
+"payment.status.received.description.long" = " wird nun umgetauscht.";
+
+"payment.status.received.description.conversion" = "wird voraussichtlich umgetauscht in";
+
+"payment.status.received.description.eta" = "& sollte ankommen am";
+
+"payment.status.refunded.description" = "Zurückerstattet am %@";
+
+"payment.status.submitted.description" = "wartet auf dein Geld";
+
+"payment.status.submitted.description.long" = "beginnt sobald";
+
+"payment.status.submitted.description.long2" = "wir dein Geld erhalten.";
+
+"payment.status.payed.description" = "wartet auf dein Geld";
+
+"payment.status.payed.description.long" = "beginnt sobald wir";
+
+"payment.status.payed.description.long2" = "dein Geld erhalten haben.";
+
+"payment.status.payed.description.conversion" = "Wir warten nun darauf, dass deine Banküberweisung unser Konto erreicht. Das dauert normalerweise 1-2 Werktage.";
+
+"payment.status.payed.description.eta" = "";
+
+"payment.status.transferred.description" = "Ausgezahlt am %@";
+
+"payment.status.transferred.description.long" = "wurde ausgezahlt.";
+
+"payment.status.transferred.description.conversion" = "wurde umgetauscht in";
+
+"payment.status.transferred.description.eta" = "& sollte ankommen am";
+
+"payment.status.transferred.description.eta.past" = "& hätte ankommen sollen am";
+
+"payment.status.receivedWaitingRecipient.description" = "Warte auf Empfänger";
+
+"payment.status.unknown.description" = "Unbekannt";
+
+"payment.status.notification" = "Deine Überweisung an %@ über %@ %@ ist jetzt %@";
+
+"profile.post.code.label" = "Postleitzahl";
+
+"profile.post.code.usa.label" = "PLZ";
+
+"personal.profile.address.label" = "Adresse";
+
+"personal.profile.address.section.title" = "Adresse";
+
+"personal.profile.city.label" = "Stadt";
+
+"personal.profile.confirm.payment.button.title" = "Weiter";
+
+"personal.profile.state.label" = "Bundesstaat";
+
+"personal.profile.continue.to.recipient.button.title" = "Weiter";
+
+"personal.profile.controller.title" = "Deine Einzelheiten";
+
+"personal.profile.countries.refresh.error.message" = "Daten konnten nicht abgerufen werden. Bitte versuche es später erneut.";
+
+"personal.profile.countries.refresh.error.title" = "Aktualisierungsfehler";
+
+"personal.profile.country.label" = "Land";
+
+"personal.profile.date.of.birth.label" = "Geburtsdatum";
+
+"personal.profile.email.label" = "Deine E-Mail-Adresse";
+
+"personal.profile.email.taken.message" = "E-Mail-Adresse ist schon registriert.";
+
+"personal.profile.email.validating" = "E-Mail-Adresse wird geprüft";
+
+"personal.profile.first.name.label" = "Vorname";
+
+"personal.profile.last.name.label" = "Nachname";
+
+"personal.profile.personal.section.title" = "Persönliche Daten";
+
+"personal.profile.phone.label" = "Telefon";
+
+"personal.profile.password.label" = "Passwort";
+
+"personal.profile.password.confirm.label" = "Passwort wiederholen";
+
+"personal.profile.occupation.label" = "Beschäftigung";
+
+"personal.profile.refresh.error.message" = "Ups! Dein Profil konnte nicht geladen werden. Bitte versuche es später nochmal.";
+
+"personal.profile.refresh.error.title" = "Profil nicht verfügbar";
+
+"personal.profile.refreshing.countries.message" = "Lädt Länder...";
+
+"personal.profile.refreshing.message" = "Lädt Profil...";
+
+"personal.profile.save.button.title" = "Speichert Profil";
+
+"personal.profile.save.error.title" = "Fehler beim Speichern deines Profils";
+
+"personal.profile.saving.message" = "Speichere dein Profil...";
+
+"personal.profile.validation.error.message" = "Bitte stelle sicher, dass alle Felder ausgefüllt sind.";
+
+"personal.profile.validation.password.error.notmatching.message" = "Passwörter stimmen nicht überein.";
+
+"personal.profile.validation.password.error.invalid.length.message" = "Passwort sollte mindestens 5 Zeichen lang sein";
+
+"personal.profile.validation.dateofbirth.invalid.message" = "Dein Geburtsdatum ist nicht gültig";
+
+"personal.profile.validation.phone.invalid.message" = "Die Telefonnummer muss aus mind. 5 Zeichen bestehen";
+
+"personal.profile.validation.error.title" = "Überprüfe deine Daten";
+
+"personal.profile.verify.error.title" = "Verifizierungsfehler";
+
+"personal.profile.verify.message" = "Überprüfe Profil";
+
+"personal.profile.login.title" = "Einloggen";
+
+"personal.profile.needed.popup.message" = "Du musst dein persönliches Profil ausfüllen, um die Überweisung fortzusetzen.";
+
+"personal.profile.needed.popup.title" = "Fehlende Angaben";
+
+"profile.controller.title" = "Profil";
+
+"profile.controller.tabbar.title" = "Profil";
+
+"profile.selection.text.base" = "oder %@";
+
+"profile.selection.text.business.profile" = "Geschäftliche Überweisung";
+
+"profile.selection.text.personal.profile" = "Private Überweisung";
+
+"profile.dob.day" = "DD";
+
+"profile.dob.month" = "MM";
+
+"profile.dob.year" = "YYYY";
+
+"profile.edit.title" = "Mein Profil";
+
+"profile.edit.title.ipad" = "Mein Profil";
+
+"profile.edit.business" = "Geschäftsprofil";
+
+"profile.edit.personal" = "Persönliches Profil";
+
+"profile.edit.save" = "Speichern";
+
+"profile.edit.save.success.header" = "Erfolg";
+
+"profile.edit.save.success.message" = "Dein Profil wurde gespeichert";
+
+"recipient.controller.add.button.title" = "Hinzufügen";
+
+"recipient.controller.add.mode.title" = "Empfänger hinzufügen";
+
+"recipient.controller.cell.label.email" = "E-Mail-Adresse";
+
+"recipient.controller.cell.label.name" = "Name des Empfängers";
+
+"recipient.controller.cell.title.recipient.currency.generic" = "Währung";
+
+"recipient.controller.cell.title.recipient.currency" = "%@s Währung";
+
+"recipient.controller.confirm.payment.button.title" = "Überweisung bestätigen";
+
+"recipient.controller.creating.message" = "Erstellt...";
+
+"recipient.controller.payment.mode.title" = "Wähle einen Empfänger";
+
+"recipient.controller.recipient.types.load.error.title" = "Datenfehler";
+
+"recipient.controller.recipients.preload.error.title" = "Kontakte können nicht geladen werden";
+
+"recipient.controller.refreshing.message" = "Lädt...";
+
+"recipient.controller.sattes.load.error.title" = "Datenfehler";
+
+"recipient.controller.section.title.currency" = "Währung";
+
+"recipient.controller.section.title.recipient" = "An wen möchtest du Geld überweisen?";
+
+"recipient.controller.section.title.sender" = "Absender";
+
+"recipient.controller.section.title.recipient.bank.details.generic" = "Bankverbindung des Empfängers:";
+
+"recipient.controller.section.title.recipient.bank.details" = "Bankverbindung von %@:";
+
+"recipient.controller.section.title.ipad.recipient" = "An wen möchtest du Geld überweisen?";
+
+"recipient.controller.validating.message" = "Prüft...";
+
+"recipient.controller.validation.error.empty.name" = "Name fehlt";
+
+"recipient.controller.validation.error.field.empty" = "%@ fehlt";
+
+"recipient.controller.validation.error.title" = "Überprüfungsfehler";
+
+"recipient.controller.validation.error.bic.required" = "BIC benötigt für Überweisung an %@";
+
+"recipient.controller.validation.error.email.required" = "E-Mail-Adresse erforderlich für Überweisung an %@";
+
+"recipient.controller.validation.error.email.format" = "Ungültige E-Mail-Adresse";
+
+"recipient.controller.validation.error.address" = "Adresse hat leere Felder";
+
+"recipient.controller.validation.error.country" = "Ungültiges Land";
+
+"recipient.controller.validation.error.state" = "Ungültiger Bundesstaat";
+
+"recipient.controller.section.title.address" = "Adresse";
+
+"recipient.details.ABA.base" = "ACH / ABA: %@, Bundesstaat:%@";
+
+"recipient.details.BIC.base" = "BIC: %@";
+
+"recipient.details.IBAN.base" = "IBAN: %@";
+
+"recipient.details.SORT_CODE.base" = "UK Sort Code: %@";
+
+"recipient.details.SWIFT_CODE.base" = "SWIFT Code: %@";
+
+"recipient.details.account.number.base" = "Kontonummer: %@";
+
+"recipient.details.bank.code.base" = "Bankleitzahl: %@";
+
+"recipient.details.bic.base" = "BIC: %@";
+
+"recipient.details.iban.base" = "IBAN: %@";
+
+"recipient.import.from.phonebook.label" = "Telefonkontakte importieren";
+
+"recipient.save.error.title" = "Speichern nicht möglich";
+
+"refund.details.account.details.section.header" = "Deine Bankdaten";
+
+"refund.details.controller.title" = "Dein Rückerstattungskonto";
+
+"refund.details.header.description" = "Um garantieren zu können, dass %@ genau %@ erhält, bitten wir dich etwas mehr zu überweisen.\n\nDen Rest werden wir an dich zurückerstatten, sobald die Überweisung abgeschlossen ist.";
+
+"refund.details.header.description.iPad" = "Um garantieren zu können, dass %@ genau %@ erhält, bitten wir dich etwas mehr zu überweisen.\n\nDen Rest werden wir an dich zurückerstatten, sobald die Überweisung abgeschlossen ist.";
+
+"refund.details.holders.name.label" = "Kontoinhaber";
+
+"refund.details.footer.button.title" = "Weiter";
+
+"settings.title" = "Einstellungen";
+
+"settings.row.contact.support" = "Support kontaktieren";
+
+"settings.row.logout" = "Abmelden";
+
+"settings.row.send.feedback" = "Feedback senden";
+
+"settings.row.about" = "Über uns";
+
+"settings.row.touchid" = "Touch ID Einstellungen";
+
+"settings.row.send.as.business" = "Geschäftsüberweisung";
+
+"sign.up.controller.creating.message" = "Erstellt Konto...";
+
+"sign.up.controller.signup.error.message" = "Registrierungsfehler";
+
+"sign.up.controller.title" = "Trete der Revolution bei";
+
+"sign.up.controller.validation.email.invalid" = "E-Mail ungültig";
+
+"sign.up.controller.validation.email.missing" = "E-Mail fehlt";
+
+"sign.up.controller.validation.password.missing" = "Passwort fehlt";
+
+"sign.up.controller.validation.password.mismatch" = "Passwörter stimmen nicht überein";
+
+"sign.up.controller.google.signup.message" = "Über Google registrieren";
+
+"sign.up.controller.set.password.message" = "ODER LEGE EIN PASSWORT FEST";
+
+"sign.up.error.title" = "Fortfahren nicht möglich";
+
+"sign.up.button.title.register" = "Registrieren";
+
+"sign.up.controller.header.message" = "TransferWise-Konto einrichten";
+
+"sign.up.email.field.title" = "Deine E-Mail";
+
+"sign.up.password.confirm.field.title" = "Passwort bestätigen";
+
+"sign.up.password.field.title" = "Wähle ein Passwort";
+
+"sign.up.controller.existing.user.action" = "Einloggen";
+
+"sign.up.controller.existing.user.message" = "Bereits registriert?";
+
+"transactions.controller.refreshing.message" = "Lädt Überweisungen";
+
+"transactions.controller.title" = "Meine Überweisungen";
+
+"transactions.controller.tabbar.title" = "Übersicht";
+
+"transactions.identification.notification.message" = "Wir bearbeiten derzeit deine Dokumente";
+
+"transactions.identification.upload.message" = "Noch nicht hochgeladen?";
+
+"transactions.identification.done.button.title" = "Hochladen";
+
+"transactions.identification.uploading.message" = "Hochladen...";
+
+"transactions.cancel.confirmation.title" = "Überweisung stornieren?";
+
+"transactions.cancel.confirmation.message" = "Bitte bestätige, dass du diese Überweisung stornieren möchtest.\nDas kann nicht rückgängig gemacht werden.";
+
+"transactions.cancel.progress.title" = "Storniere Überweisung...";
+
+"transactions.cancel.fail.title" = "Stornierung fehlgeschlagen";
+
+"transactions.cancel.fail.message" = "Bitte lade deine Überweisungen nochmal und versuche es erneut.";
+
+"validation.documents.needed" = "Dokumente benötigt";
+
+"validation.view" = "Übersicht";
+
+"transfer.pay.in.too.low.message.base" = "Der eingegebene Betrag ist zu niedrig für einen Währungsumtausch. Bitte ändere den Betrag unter 'Du überweist'. Momentaner Minimumbetrag für %@ liegt bei %@";
+
+"transfer.pay.in.too.low.title" = "Betrag zu niedrig";
+
+"transfer.pay.in.too.high.message.base" = "Der eingegebene Betrag ist zu hoch für einen Währungsumtausch. Bitte ändere den Betrag unter 'Du Überweist'. Momentaner Maximumbetrag für %@ liegt bei %@";
+
+"transfer.pay.in.too.high.title" = "Betrag zu hoch";
+
+"transferdetails.controller.refunded.header" = "Überweisung storniert";
+
+"transferdetails.controller.cancelled.header" = "Überweisung storniert";
+
+"transferdetails.controller.matched.header" = "Überweisung unterwegs";
+
+"transferdetails.controller.received.header" = "Geld erhalten";
+
+"transferdetails.controller.submitted.header" = "Wir warten auf dein Geld";
+
+"transferdetails.controller.transferred.header" = "Geld ausgezahlt";
+
+"transferdetails.controller.transfer.header" = "Deine Überweisung";
+
+"transferdetails.controller.transfer.thankyou" = "Vielen Dank!";
+
+"transferdetails.controller.transfer.message" = "Wir warten nun darauf, dass dein \nGeld unser Konto erreicht.\n Das dauert normalerweise %@.";
+
+"transferdetails.controller.transfer.number" = "#%@";
+
+"transferdetails.controller.transfer.recipient" = "an %@";
+
+"transferdetails.controller.transfer.account.to" = "Bankverbindung von %@";
+
+"transferdetails.controller.transfer.account.sent" = "%@\nWir haben eine E-Mail an %@ zu \n%@ geschickt";
+
+"transferdetails.controller.button.support.ipad" = "Support Team kontaktieren";
+
+"transferdetails.controller.button.support" = "Kontaktiere unser Support Team";
+
+"transferdetails.controller.button.rate" = "Bewerte die App";
+
+"transferdetails.controller.button.rate.ipad" = "Bewerte die App";
+
+"transferdetails.controller.button.notransfer" = "Geld noch nicht überwiesen";
+
+"transferdetails.controller.button.gotit" = "Verstanden!";
+
+"transferdetails.controller.button.pay" = "Zahle %@ jetzt ein";
+
+"transferdetails.controller.button.cancel" = "Überweisung stornieren";
+
+"transferdetails.controller.repeat.button" = "Wiederholen";
+
+"upload.money.account.nr.title" = "Kontonummer";
+
+"upload.money.address.title" = "Unsere Adresse";
+
+"upload.money.amount.title" = "Betrag";
+
+"upload.money.bank.name.title" = "Name der Bank";
+
+"upload.money.bic.title" = "BIC";
+
+"upload.money.data.error.title" = "Datenfehler";
+
+"upload.money.done.button.title" = "Ich habe das Geld überwiesen";
+
+"upload.money.cancel.button.title" = "Abbrechen";
+
+"upload.money.our.address.label" = "Unsere Adresse: %@";
+
+"upload.money.header.label.GBP" = "Überweise %@ per kostenloser Inlandsüberweisung von deinem Online Banking oder deiner Banking App an das unten angegebene Konto von TransferWise in Grossbritannien. Das Geld muss von deinem eigenen Bankkonto kommen.";
+
+"upload.money.header.label.EUR" = "Überweise genau %@ von deinem Online Banking oder deinem Telefon Banking an das unten angegebene EUR-Konto von TransferWise. Das Geld muss von deinem eigenen Bankkonto kommen.";
+
+"upload.money.header.label.USD.SWIFT" = "Überweise genau %@ von deinem Online Banking oder deinem Telefon Banking, an das unten angegebene Europäische Konto von TransferWise.";
+
+"upload.money.header.label.USD.REGULAR" = "Wenn du ein normales USD Konto in den USA hast, dann überweise bitte genau %@ an das unten angegebene Konto von TransferWise in den USA. Das Geld muss von deinem eigenen Bankkonto kommen. Wir können weder Schecks noch Bareinzahlungen akzeptieren.";
+
+"upload.money.header.label" = "Überweise genau %@ von deinem Online Banking oder deinem Telefon Banking an das Konto von TransferWise. Das Geld muss von deinem eigenen Bankkonto kommen.";
+
+"upload.money.header.label.exactly" = "genau %@";
+
+"upload.money.info.label.EUR" = "SEPA-Überweisungen innerhalb Europas kosten genau so viel wie eine Inlandsüberweisung.";
+
+"upload.money.iban.title" = "IBAN";
+
+"upload.money.notification.label" = "Deine Überweisung wird aktiviert, sobald wir dein Geld erhalten haben.";
+
+"upload.money.pulling.data.message" = "Lädt Daten..";
+
+"upload.money.reference.title" = "Verwendungszweck";
+
+"upload.money.reference.title.CHF" = "Überweisungsgrund";
+
+"upload.money.title" = "Geld einzahlen";
+
+"upload.money.title.single.method" = "Geld einzahlen";
+
+"upload.money.to.title" = "An";
+
+"upload.money.toggle.button.bank.transfer.title" = "Banküberweisung";
+
+"upload.money.toggle.button.debit.card.title" = "Kreditkarte";
+
+"upload.money.uksort.title" = "Sort Code";
+
+"upload.money.refreshing.payment.message" = "Daten werden aktualisiert...";
+
+"upload.money.transaction.refresh.error.message" = "Einzelheiten konnten nicht aktualisiert werden. Bitte versuche es später noch einmal.";
+
+"upload.money.transaction.refresh.error.title" = "Aktualisierungsfehler";
+
+"upload.money.card.retry" = "Erneut versuchen";
+
+"upload.money.card.no.payment.message" = "Kartenzahlung nicht erfolgreich";
+
+"upload.money.card.payment.success.message" = "Hervorragend, deine Kartenzahlung wurde akzeptiert!";
+
+"upload.money.card.payment.success.title" = "Erfolg";
+
+"why.popup.bank.column.label" = "Durchschnittliche Bank";
+
+"why.popup.tw.rate.title" = "Wir nutzen den echten Wechselkurs.";
+
+"why.popup.bank.rate.title" = "Banken legen Ihren eigenen \nWechselkurs fest.";
+
+"why.popup.tw.fee.title" = "Wir berechnen so wenig wie möglich.";
+
+"why.popup.bank.fee.title" = "Banken verstecken Ihren Gewinn in dem Wechselkurs und der Gebühr. ";
+
+"why.popup.tw.you.get.title" = "Du erhältst";
+
+"why.popup.bank.you.get.title" = "Du hättest bekommen";
+
+"why.popup.tw.you.pay.title" = "Du zahlst";
+
+"why.popup.bank.you.pay.title" = "Du hättest gezahlt";
+
+"why.popup.button" = "Verstanden, ich spare %@";
+
+"why.popup.title" = "Preisvergleich";
+
+"why.popup.vs" = "VS";
+
+"why.popup.rate" = "WECHSEL\nKURS";
+
+"why.popup.fee" = "KOSTEN";
+
+"why.popup.tw.fee.free" = "(gebührenfrei)";
+
+"errors.CRD_NOT_VALID.message" = "Inkorrekte Zugangsdaten.";
+
+"errors.TRWErrorDomain.1.message" = "Antwort des Servers konnte nicht gelesen werden.";
+
+"errors.TRWErrorDomain.2.message" = "Antwort des Servers konnte nicht gelesen werden.";
+
+"errors.TRWErrorDomain.3.message" = "Zeit für die neueste App-Version?";
+
+"recipient.type.IBAN.name" = "IBAN";
+
+"recipient.type.SORT_CODE.name" = "Sort Code";
+
+"recipient.type.field.value.not.entered" = "Eingabe für %@ fehlt.";
+
+"recipient.type.field.value.too.short" = "Eingabe für %@ ist zu kurz. Min länge ist %d.";
+
+"recipient.type.field.value.too.long" = "Eingabe für %@ ist zu lang. Max länge ist %d.";
+
+"recipient.type.field.value.invalid" = "Eingabe für %@ ungültig.";
+
+"recipient.type.field.email.invalid" = "Eingegebene E-Mail ist ungültig.";
+
+"calculation.pending.message" = "Kalkuliert";
+
+"start.calculating.button.pending.message" = "Kalkuliert...";
+
+"payment.detail.cancel.date.message" = "Storniert am %@";
+
+"payment.detail.transferred.date.message" = "Überwiesen am %@";
+
+"payment.detail.exchange.rate.message" = "Wechselkurs %@";
+
+"payment.detail.sent.header.message" = "Geld an Empfänger ausgezahlt.\nÜberweisung #%@";
+
+"payment.detail.converting.header.message" = "Geld für Überweisung #%@ wird bald umgetauscht.";
+
+"payment.method.DATA_CASH" = "Kreditkarte";
+
+"payment.method.REGULAR" = "Banküberweisung";
+
+"payment.method.REGULAR.USD" = "Inlandsüberweisung";
+
+"payment.method.ADYEN" = "Kreditkarte";
+
+"payment.method.SWIFT" = "SWIFT-Code";
+
+"payment.method.SWIFT.USD" = "SWIFT-Code";
+
+"payment.method.ACH" = "Lastschrift(ACH)";
+
+"payment.method.ACH.USD" = "Lastschrift(ACH)";
+
+"payment.method.title.DATA_CASH" = "Per Kreditkarte";
+
+"payment.method.title.REGULAR" = "Banküberweisung";
+
+"payment.method.title.REGULAR.USD" = "Inlandsüberweisung";
+
+"payment.method.title.ADYEN" = " Per Kreditkarte";
+
+"payment.method.title.SWIFT" = "Internationale Banküberweisung";
+
+"payment.method.title.SWIFT.USD" = "SWIFT Überweisung";
+
+"payment.method.title.ACH" = "Per Lastschrift";
+
+"payment.method.title.ACH.USD" = " Per Lastschrift";
+
+"payment.method.description.DATA_CASH" = "Wir akzeptieren alle Visa- & Masterkarten.";
+
+"payment.method.description.REGULAR" = "Für USD Bankkonten innerhalb der USA.";
+
+"payment.method.description.ADYEN" = "Wir akzeptieren alle Visa- & Masterkarten.";
+
+"payment.method.description.SWIFT" = "Falls dein USD-Konto nicht in den USA ist, verwende bitte diese Option.";
+
+"payment.method.description.ACH" = "Geld wird von deinem US Bankkonto abgebucht.";
+
+"support.sheet.title" = "Falls du Fragen hast, kann du gerne unser Support Team kontaktieren.";
+
+"support.sheet.write.message" = "Sende eine E-Mail";
+
+"support.sheet.call" = "Ruf uns an";
+
+"support.cant.send.email.message" = "Bitte überprüfe deine E-Mail Einstellungen. Das versenden von E-Mails ist auf deinem Gerät nicht aktiviert.";
+
+"support.cant.send.email.title" = "E-Mail kann nicht versendet werden";
+
+"support.send.email.error.title" = "E-Mail nicht versendet";
+
+"support.send.email.error.message" = "E-Mail konnte nicht versendet werden. Bitte versuche es später noch einmal.";
+
+"support.email.to.name" = "TransferWise Support-Team";
+
+"support.generic.email.subject" = "Ich habe eine Frage";
+
+"support.email.message.body.base" = "<body>\n<br />\n<br />\n<br />\n| Info for the support team: |<br />\n| User: <a href='%@'>%@</a> |<br />\n| Device: %@, %@ |<br />\n| Application: v%@ |<br />\n</body>";
+
+"support.contact.cell.label" = "Kontaktiere Support Team";
+
+"support.email.payment.subject.base" = "Überweisung #%@";
+
+"feedback.alert.message" = "Wenn dir TransferWise genau so gut gefällt wie uns, kannst du die Revolution durch eine Bewertung weiter anfachen.";
+
+"feedback.alert.title" = "Gefällt dir TransferWise?";
+
+"feedback.alert.button.rate" = "Ja, bewerte jetzt!";
+
+"feedback.alert.button.send.feedback" = "Nein, sende Feedback";
+
+"feedback.alert.button.send.dismiss" = "Verwerfen";
+
+"feedback.email.subject" = "Feedback bezüglich eurer App";
+
+"feedback.email.message.body.base" = "<body>\n<br />\n<br />\n<br />\n| Info for the TransferWise team: |<br />\n| User: <a href='%@'>%@</a> |<br />\n| Device: %@, %@ |<br />\n| Application: v%@ |<br />\n</body>";
+
+"business.profile.identification.controller.title" = "Einige Dokumente benötigt";
+
+"business.profile.identification.button.title" = "Weiter";
+
+"business.profile.identification.instruction.text" = "Aus Sicherheitsgründen schickt unser Team dir innerhalb der nächsten 24 Stunden eine E-Mail, um einige Dokumente von deinem Unternehmen anzufordern.";
+
+"identification.email.subject" = "Unternehmensdaten";
+
+"identification.email.message.body.base" = "<body>\nBitte füge die Dokumente als Anhang zu dieser E-Mail hinzu und schick die E-Mail an uns.<br />\n<br />\n<br />\n| Info for the TransferWise team: |<br />\n| Account email: %@ |<br />\n| Business: %@ |<br />\n</body>";
+
+"business.profile.identification.making.payment.message" = "Erstellt Überweisung...";
+
+"intro.start.button.title" = "Verstanden";
+
+"intro.login.button.title" = "Einloggen";
+
+"intro.register.button.title" = "Registrieren";
+
+"intro.google.button.title" = "Über Google einloggen";
+
+"intro.tagline.one" = "GELD\nOHNE\nGRENZEN";
+
+"intro.tagline.two" = "85\\% GÜNSTIGER\nALS DEINE\nBANK";
+
+"intro.tagline.three" = "ZUVERLÄSSIG\nAUF DER\nGANZEN WELT";
+
+"intro.tagline.four" = "EINFACHER &\nSCHNELLER";
+
+"intro.message.one" = "Schnellere & günstigere\nAuslandsüberweisungen.";
+
+"intro.message.two" = "Banken berechnen bis zu 5%\nGebühren. Wir 0.5%";
+
+"intro.message.three" = "5/5 Sterne durch 16800\nunabhängige Berichte";
+
+"intro.message.four" = "Von den Entwicklern\nvon Skype";
+
+"intro.existing.tagline.one" = "VERSION 2 UNSERER IPHONE & IPAD APP";
+
+"intro.existing.tagline.two" = "NICHTS HAT SICH IN DEINEM KONTO VERÄNDERT";
+
+"intro.existing.tagline.three" = "AUSLANDSÜBERWEISUNGEN LEICHT GEMACHT";
+
+"intro.existing.tagline.four" = "NEUE GEWÜNSCHTE FUNKTIONEN";
+
+"intro.existing.message.one" = "Die gleiche TransferWise Erfahrung - nur besser.";
+
+"intro.existing.message.two" = "Keine Angst. All deine bisherigen Überweisungen & Empfänger sind noch da.";
+
+"intro.existing.message.three" = "Mehr Klarheit bei Anweisungen & Design. Für deinen inneren Frieden.";
+
+"intro.existing.message.four" = "Bestimmt selbst, wie viel der Empfänger genau erhält, storniere Überweisungen, lade Freunde ein...";
+
+"refresh.pull" = "Ziehe runter um zu aktualisieren";
+
+"refresh.release" = "Lass los um zu aktualisieren";
+
+"refresh.refreshing" = "Aktualisiert...";
+
+"business.profile.identification.header.instructions.text" = "Aufgrund von Anti-Geldwäsche-Vorschriften\nder FCA und HMRC benötigen wir einige Fotos (oder eingescannte Kopien) von wichtigen Dokumenten:\n\n1. Eine Kopie der Gründungsurkunde\n2. Eine Liste der Personen mit 25% oder mehr Unternehmensbeteiligung inkl. genauer Prozentangabe\n3. Identitätsnachweis und Wohnsitznachweis für die oben genannten Beteiligten.";
+
+"business.profile.identification.footer.instructions.text" = "Entschuldige bitte die Unannehmlichkeiten. Wir können dir versichern, dass diese Dokumente nie an Drittparteien weitergegeben werden.";
+
+"refund.controller.validation.error.empty.name" = "Name des Kontoinhabers fehlt";
+
+"refund.details.save.error.title" = "Konnte nicht gespeichert werden";
+
+"refund.controller.validating.message" = "Prüft...";
+
+"refund.controller.validation.error.title" = "Prüfung fehlgeschlagen";
+
+"login.controller.forgot.password.link" = "Passwort vergessen";
+
+"login.controller.or" = "Oder melde dich an mit";
+
+"login.controller.or.ipad" = "Oder";
+
+"reset.password.controller.title" = "Passwort zurücksetzen";
+
+"reset.password.controller.email.cell.label" = "Deine E-Mail-Adresse";
+
+"reset.password.header.description" = "Gib deine TransferWise Konto E-Mail-Adresse an.\nWir schicken dir eine E-Mail, mit der du ein neues Passwort setzen kannst.";
+
+"reset.password.header.description.ipad" = "Gib die E-Mail-Adresse an, mit der du\ndich registriert hast. Wir schicken dir\neine E-Mail, mit der du ein neues Passwort setzen kannst.";
+
+"reset.controller.footer.button.title" = "Passwort zurücksetzen";
+
+"reset.password.email.not.entered" = "E-Mail-Adresse fehlt.";
+
+"reset.password.invaild.email.error" = "Bitte gib eine gültige E-Mail-Adresse an.";
+
+"reset.password.error.title" = "Ups!";
+
+"reset.password.success.alert.title" = "Gut!";
+
+"reset.password.success.alert.message" = "Schau in deinen Posteingang. Wir haben dir eine E-Mail geschickt, mit welcher du ein neues Passwort wählen kannst.";
+
+"reset.password.alert.dismiss.button" = "OK";
+
+"reset.password.failed.alert.title" = "Ups!";
+
+"reset.password.not.found.alert.message" = "Für diese E-Mail-Adresse gibt es kein registriertes Konto. Bitte wähle eine gültige E-Mail-Adresse.";
+
+"refund.controller.existing.recipients.preload.error.title" = "Kontakte können nicht geladen werden";
+
+"network.alert" = "Keine Internetverbindung";
+
+"unknown.value" = "??";
+
+"contact.detail.send" = "Geld senden";
+
+"usd.coming.soon" = "U-S-A!";
+
+"usd.not.supported" = "USD-Überweisungen werden bald auf unserer App unterstützt. \n\nIn der Zwischenzeit, kannst du deine Überweisung auf TransferWise.com machen.";
+
+"invite.button.title" = "Freunde einladen";
+
+"invite.controller.title" = "Rette deine Freunde vor Banken";
+
+"invite.controller.title.short" = "Hilf deinen Freunden";
+
+"invite.controller.title.reward.format" = "%d Prämie verdient! %@";
+
+"invite.controller.title.rewards.format" = "%d Prämien verdient! %@";
+
+"invite.controller.title.boom" = "Boom!";
+
+"invite.header" = "Du verdienst %@ für jeden 3. eingeladenen Freund, der anfängt TransferWise zu nutzen.";
+
+"invite.progress.format1" = "%d Freund hat angefangen TransferWise zu nutzen. Noch %d & du kriegst %@.";
+
+"invite.progress.format2" = "%d Freunde haben angefangen TransferWise zu nutzen. Noch %d !";
+
+"invite.complete.format" = "%d Freunde sind jetzt dabei! Mach es noch einmal um %@ extra zu erhalten!";
+
+"invite.fb.button.title" = "Auf Facebook teilen";
+
+"invite.email.button.title" = "Per E-Mail einladen";
+
+"invite.sms.button.title" = "Per SMS einladen";
+
+"invite.copy.button.title" = "Einladungslink kopieren";
+
+"invite.copied.button.title" = "Kopiert";
+
+"invite.context.format" = "Sobald 3 Freunde anfangen TransferWise zu nutzen, erhältst du 50 GBP.";
+
+"invite.modal.title" = "Einladungslinks teilen";
+
+"invite.error.facebook.title" = "Facebookfehler";
+
+"invite.error.facebook.message" = "Bitte aktiviere Facebook auf deinem Gerät und versuche es erneut.";
+
+"invite.facebook.default.message" = "";
+
+"invite.email.subject" = "%@ hat dich zu TransferWise eingeladen";
+
+"invite.email.subject.anonymous" = "Du wurdest zu TransferWise eingeladen";
+
+"invite.email.message" = "Hallo,<br><br>Ich nutze TransferWise, um Geld ins Ausland zu überweisen. Wirklich einfach und um einiges günstiger als die Bank! Du kriegst eine gebührenfreie Überweisung, wenn du meinen Einladungslink nutzt: <br><a href=\"%@\">Akzeptiere die Einladung von %@ </a> <br><br>Gruss,<br>%@";
+
+"invite.email.message.anonymous" = "Hi,<br><br>Ich habe angefangen, TransferWise für Auslandsüberweisungen zu nutzen. Wirklich einfach und günstiger als bei deiner Bank! Ich hab für dich eine gebührenfreie Überweisung über diesen Link: <br><a href=\"%@\">Einladung annehmen</a> <br><br>Bis dann!<br>";
+
+"invite.sms.message" = "Ich nutze TransferWise, um Geld ins Ausland zu überweisen. Wirklich einfach und um einiges günstiger als die Bank! Du kriegst eine gebührenfreie Überweisung, wenn du meinen Einladungslink nutzt: %@. Gruss. %@";
+
+"invite.sms.message.anonymous" = "Ich habe angefangen, TransferWise für Auslandsüberweisungen zu nutzen. Wirklich einfach und günstiger als bei deiner Bank! Ich hab für dich eine gebührenfreie Überweisung über diesen Link: %@. Bis dann!";
+
+"invite.link.querying" = "Erhalte Einladungslink";
+
+"invite.link.error.title" = "Erhalten des Einladungslink fehlgeschlagen";
+
+"invite.link.error.message" = "Irgendetwas ist mit dem Einladungslink schief gelaufen.";
+
+"invite.status.querying" = "Erhalte Status vom eingeladenen";
+
+"invite.status.error.title" = "Statusabfrage fehlgeschlagen";
+
+"invite.status.error.message" = "Irgendetwas ist mit der Statusabfrage schief gelaufen.";
+
+"touchid.reason.store" = "Authentifizieren, um Zugangsdaten mit Touch ID zu verknüpfen.";
+
+"touchid.reason.retrieve" = "Authentifizieren, um mit Touch ID Konto anzumelden.";
+
+"touchid.reason.clear" = "Authentifizieren, um Touch ID Zugangsdaten zu entfernen.";
+
+"touchid.cleared" = "Mit Touch ID verknüpfte Anmeldung wurde entfernt. Melde dich an um die Verknüpfung erneut herzustellen.";
+
+"touchid.prompt.title" = "Schnell & sicher anmelden";
+
+"touchid.prompt.info" = "Würdest du beim nächsten Einloggen gerne Touch ID nutzen?";
+
+"touchid.alert.title" = "Touch ID";
+
+"touchid.settings.clear.info" = "Gespeicherte Touch ID Zugangsdaten entfernen?";
+
+"touchid.settings.names.info" = "Wenn du Nein zu der Nutzung von Touch ID gesagt hast, wirst du automatisch nicht mehr danach gefragt. Tippe \"Nochmal fragen\" an um bei dem nächsten einloggen erneut aufgefordert zu werden.";
+
+"touchid.settings.names.title" = "Nochmal fragen";
+
+"usd.low.title" = "U-S-A!";
+
+"usd.low.info" = "Leider ist es nicht möglich weniger als 3 USD zu überweisen.";
+
+"usd.low.dismiss" = "OK";
+
+"empty.transfers" = "Noch keine Überweisungen gemacht?\nTippe 'Senden' um zu starten.";
+
+"empty.contacts" = "Keine Empfänger gespeichert.\nTippe 'Senden' um Geld zu überweisen.";
+
+"registration.legaleze" = "Mit diesem Klick akzeptierst du unsere %@ & %@";
+
+"registration.tos" = "Nutzungsbedingungen";
+
+"registration.privacy" = "Datenschutzerklärung";
+
+"usd.legaleze" = "Mit diesem Klick stimmst du unseren %@ zu";
+
+"usd.state.specific" = "Bundesstaat-spezifischen Vorschriften";
+
+"transfertime.default" = "1 Werktag";
+
+"transfertime.EUR.REGULAR" = "1-2 Werktage";
+
+"transfertime.GBP.REGULAR" = "einige Werkstunden";
+
+"transfertime.USD" = "bis zu 5 Werktage";
+
+"upload.money.bankname.title" = "Name der Bank";
+
+"upload.money.card.no.adyen.url" = "Kreditkartenseite konnte nicht geladen werden. Bitte versuche es erneut.";
+
+"no.payin.methods.template" = "Diese %@ Überweisung kann momentan nicht fortgesetzt werden. Du musst evtl. vorher auf TransferWise.com verifiziert werden";
+
+"repeat.transfer.creation" = "Aktueller Wechselkurs angewandt";
+
+"deeplink.payment.detail.message" = "Lädt...";
+
+"deeplink.payment.detail.error" = "Diese Überweisung existiert nicht.";
+
+"deeplink.verification.message" = "Neue Dokumente benötigt...";
+
+"deeplink.no.verification.message" = "Keine Verifizierung benötigt!";
+
+"notifications.info.format" = "Möchtest du benachrichtigt werden, wenn wir das Geld an %@ ausgezahlt haben?";
+
+"notifications.yes" = "Ja, bitte!";
+
+"reset.password.controller.yahoo.title" = "Yahoo! Login deaktiviert";
+
+"reset.password.header.yahoo.description" = "Yahoo! Login ist hier nicht mehr möglich. Aber keine Sorge, du kannst auf dein Konto zugreifen, indem du ein neues Passwort erstellst.";
+
+"reset.password.header.yahoo.description.ipad" = " Yahoo! Login ist hier nicht mehr möglich. Aber keine Sorge, du kannst auf dein Konto zugreifen, indem du ein neues Passwort erstellst.";
+
+"intro.referral.title.format" = "%@\nhat dir eine gebührenfreie \nÜberweisung besorgt";
+
+"field.optional.suffix" = " (freiwillig)";
+
+"confirmation.date.format" = "EEEE dd/MM/yyyy 'um' hh:mm";
+

@@ -480,11 +480,11 @@ This can't be undone.";
 "upload.money.done.button.title" = "I made this transfer";
 "upload.money.cancel.button.title" = "Cancel";
 "upload.money.our.address.label" = "Our address: %@";
-"upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below.\nIt's free.";
-"upload.money.header.label.EUR" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account.";
+"upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below.\nIt's free. The money must be sent from your own account.";
+"upload.money.header.label.EUR" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account. The money must be sent from your own account.";
 "upload.money.header.label.USD.SWIFT" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account below. (Must be sent from your account)";
 "upload.money.header.label.USD.REGULAR" = "Only if you have a US domestic account, Transfer %@ to Transferwise's US account below. The money must be sent from your own account. We don't accept cheques or cash";
-"upload.money.header.label" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's account.";
+"upload.money.header.label" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's account. The money must be sent from your own account.";
 "upload.money.header.label.exactly" = "exactly %@";
 "upload.money.info.label.EUR" = "SEPA transfers within Europe cost the same as a local transfer.";
 "upload.money.iban.title" = "IBAN";
@@ -799,4 +799,6 @@ you can still access your account by resetting your password.";
 "intro.referral.title.format" = "%@\nGOT YOU A\nFREE TRANSFER";
 
 "field.optional.suffix" = " (Optional)";
+
+"confirmation.date.format" = "EEEE dd/MM/yyyy 'at' ha";
 

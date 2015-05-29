@@ -475,11 +475,11 @@ C'est irréversible.";
 "upload.money.done.button.title" = "J'ai fait ce virement";
 "upload.money.cancel.button.title" = "Annuler";
 "upload.money.our.address.label" = "Notre adresse: %@";
-"upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit.";
-"upload.money.header.label.EUR" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous.";
+"upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit. Uniquement depuis votre compte.";
+"upload.money.header.label.EUR" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. Uniquement depuis votre compte.";
 "upload.money.header.label.USD.swift" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. (depuis votre compte uniquement)";
 "upload.money.header.label.USD.wire" = "Seulement si vous disposez d'un compte domestique américain, transférez %@ sur le compte américain de Transferwise ci-dessous. Uniquement depuis votre compte. Nous n'acceptons pas les cheques et le cash";
-"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte Transferwise ci-dessous.";
+"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte Transferwise ci-dessous. Uniquement depuis votre compte.";
 "upload.money.header.label.exactly" = "éxactement %@";
 "upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone euro ne coûtent pas plus cher qu'un transfert local.";
 "upload.money.iban.title" = "IBAN";
@@ -785,3 +785,4 @@ vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
 
 "field.optional.suffix" = " (Optionnel)";
 
+"confirmation.date.format" = "EEEE dd/MM/yyyy 'à' hh:mm";
