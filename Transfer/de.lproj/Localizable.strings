@@ -872,13 +872,13 @@
 
 "upload.money.header.label.GBP" = "Überweise %@ per kostenloser Inlandsüberweisung von deinem Online Banking oder deiner Banking App an das unten angegebene Konto von TransferWise in Grossbritannien. Das Geld muss von deinem eigenen Bankkonto kommen.";
 
-"upload.money.header.label.EUR" = "Überweise genau %@ von deinem Online Banking oder deinem Telefon Banking an das unten angegebene EUR-Konto von TransferWise. Das Geld muss von deinem eigenen Bankkonto kommen.";
+"upload.money.header.label.EUR" = "Überweise %@ von deinem Online Banking oder deinem Telefon Banking an das unten angegebene EUR-Konto von TransferWise. Das Geld muss von deinem eigenen Bankkonto kommen.";
 
-"upload.money.header.label.USD.SWIFT" = "Überweise genau %@ von deinem Online Banking oder deinem Telefon Banking, an das unten angegebene Europäische Konto von TransferWise.";
+"upload.money.header.label.USD.SWIFT" = "Überweise %@ von deinem Online Banking oder deinem Telefon Banking, an das unten angegebene Europäische Konto von TransferWise.";
 
-"upload.money.header.label.USD.REGULAR" = "Wenn du ein normales USD Konto in den USA hast, dann überweise bitte genau %@ an das unten angegebene Konto von TransferWise in den USA. Das Geld muss von deinem eigenen Bankkonto kommen. Wir können weder Schecks noch Bareinzahlungen akzeptieren.";
+"upload.money.header.label.USD.REGULAR" = "Wenn du ein normales USD Konto in den USA hast, dann überweise bitte %@ an das unten angegebene Konto von TransferWise in den USA. Das Geld muss von deinem eigenen Bankkonto kommen. Wir können weder Schecks noch Bareinzahlungen akzeptieren.";
 
-"upload.money.header.label" = "Überweise genau %@ von deinem Online Banking oder deinem Telefon Banking an das Konto von TransferWise. Das Geld muss von deinem eigenen Bankkonto kommen.";
+"upload.money.header.label" = "Überweise %@ von deinem Online Banking oder deinem Telefon Banking an das Konto von TransferWise. Das Geld muss von deinem eigenen Bankkonto kommen.";
 
 "upload.money.header.label.exactly" = "genau %@";
 
