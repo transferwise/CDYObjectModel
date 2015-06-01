@@ -180,7 +180,7 @@ vos amis sur TransferWise";
 "introduction.savings.message.part1.format.ipad" = "Taux actuel: %@ Coût: %@";
 "introduction.savings.message.part1.format.no.fee" = "Le taux actuel est %@.\nCe transfert est gratuit.";
 "introduction.savings.message.part1.format.no.fee.ipad" = "Le taux actuel est %@. Ce transfert est gratuit.";
-"introduction.savings.message.part2.format" = "Vous économisez %@";
+"introduction.savings.message.part2.format" = "Vous économisez\n%@";
 "introduction.savings.message.versus" = "avec TransferWise";
 "introduction.savings.message.versus.ipad" = "par rapport à votre banque ";
 "introduction.savings.message.how" = "Voir explication";

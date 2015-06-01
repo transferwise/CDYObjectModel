@@ -70,8 +70,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) NewPaymentHelper* paymentHelper;
 
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
-@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *vsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sendMoneyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *howButton;
 @property (weak, nonatomic) UITapGestureRecognizer *dismissRecogniser;
@@ -139,11 +137,7 @@ static NSUInteger const kRowYouSend = 0;
 	[self.theyReceiveCell initializeSelectorBackground];
 
     self.saveLabel.hidden=YES;
-    self.amountLabel.hidden=YES;
-    self.vsLabel.hidden=YES;
     self.howButton.hidden=YES;
-    
-    self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.versus" deviceSpecificLocalization], nil);
     
 	self.sendMoneyLabel.text = NSLocalizedString(@"introduction.title", nil);
     NSString *howString = NSLocalizedString([@"introduction.savings.message.how" deviceSpecificLocalization], nil);
@@ -179,7 +173,7 @@ static NSUInteger const kRowYouSend = 0;
         weakSelf.result = result;
         [weakSelf displayWinMessage:result];
         
-        [self updateApperance];
+        [self updateApperanceAnimated:YES];
         
     }];
     
@@ -243,8 +237,6 @@ static NSUInteger const kRowYouSend = 0;
 - (void)displayWinMessage:(CalculationResult *)result
 {
     self.saveLabel.hidden = NO;
-    self.vsLabel.hidden = NO;
-    self.amountLabel.hidden = NO;
     self.howButton.hidden = NO;
     self.howButton.enabled = YES;
     
@@ -259,26 +251,50 @@ static NSUInteger const kRowYouSend = 0;
     }
 
     
+    NSString *fullString;
+    
     if(self.view.bounds.size.height > 480)
     {
-        self.amountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.part2.format", nil),savingsAmountString];
+        
+        NSString *savings = [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.part2.format", nil),savingsAmountString];
+        NSString *rateAndFee;
         
         if([result isFeeZero] && self.view.bounds.size.height > 480)
         {
-            self.saveLabel.text = [NSString stringWithFormat:NSLocalizedString([@"introduction.savings.message.part1.format.no.fee" deviceSpecificLocalization], nil),result.transferwiseRateString];
+            rateAndFee = [NSString stringWithFormat:NSLocalizedString([@"introduction.savings.message.part1.format.no.fee" deviceSpecificLocalization], nil),result.transferwiseRateString];
         }
         else
         {
-            self.saveLabel.text = [NSString stringWithFormat:NSLocalizedString([@"introduction.savings.message.part1.format" deviceSpecificLocalization], nil),result.transferwiseRateString,result.transferwiseTransferFeeStringWithCurrency];
+            rateAndFee = [NSString stringWithFormat:NSLocalizedString([@"introduction.savings.message.part1.format" deviceSpecificLocalization], nil),result.transferwiseRateString,result.transferwiseTransferFeeStringWithCurrency];
         }
-        [self.saveLabel layoutIfNeeded];
+        
+        fullString = [NSString stringWithFormat:@"%@\n%@",rateAndFee, savings];
     }
     else
     {
-        //iphone 4
-        self.saveLabel.text = NSLocalizedString(@"introduction.savings.message.iphone4.part1", nil);
-        self.amountLabel.text = savingsAmountString;
+        fullString = [NSString stringWithFormat:@"%@\n%@\n%@",NSLocalizedString(@"introduction.savings.message.iphone4.part1", nil),savingsAmountString, NSLocalizedString(@"introduction.savings.message.versus", nil)];
     }
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:fullString];
+    UIFont* normalFont = [UIFont fontFromStyle:@"book.@{20,27}"];
+    UIFont* boldFont = [UIFont fontFromStyle:@"medium.@{20,27}"];
+    
+    UIColor *normalColor = [UIColor colorFromStyle:@"CoreFont"];
+    UIColor *boldColor = [UIColor colorFromStyle:IPAD?@"DarkFont":@"TWBlueHighlighted"];
+    
+    NSRange fullRange = NSMakeRange(0,[fullString length]);
+    NSRange boldRange = [fullString rangeOfString:savingsAmountString];
+    
+    [attributedString addAttribute:NSFontAttributeName value:normalFont range:fullRange];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:normalColor range:fullRange];
+    if(boldRange.location != NSNotFound)
+    {
+        [attributedString addAttribute:NSFontAttributeName value:boldFont range:boldRange];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:boldColor range:boldRange];
+    }
+    
+    self.saveLabel.attributedText = attributedString;
+    [self.saveLabel layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -303,8 +319,7 @@ static NSUInteger const kRowYouSend = 0;
     self.loginButton.hidden = [Credentials userLoggedIn];
     self.modalCloseButton.hidden = ![Credentials userLoggedIn];
     self.logo.hidden = [Credentials userLoggedIn];
-    
-    [self updateApperance];
+    [self updateApperanceAnimated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -507,7 +522,7 @@ static NSUInteger const kRowYouSend = 0;
     });
 }
 
--(void)updateApperance
+-(void)updateApperanceAnimated:(BOOL)animated
 {
     if (self.result.isFixedTargetPayment)
     {
@@ -542,11 +557,14 @@ static NSUInteger const kRowYouSend = 0;
     
     if([self.youSendCell.currency.code isEqualToString:@"USD"])
     {
-        self.termsLabel.hidden = NO;
-        self.termsBottomConstraint.constant = -100;
-        [self.termsLabel layoutIfNeeded];
-        self.termsBottomConstraint.constant = 4;
-        self.howButtonTopConstraint.constant = 20;
+        if(self.termsBottomConstraint.constant != 4)
+        {
+            self.termsLabel.hidden = NO;
+            self.termsBottomConstraint.constant = -100;
+            [self.termsLabel layoutIfNeeded];
+            self.termsBottomConstraint.constant = 4;
+            self.howButtonTopConstraint.constant = 20;
+        }
     }
     else
     {
@@ -554,10 +572,18 @@ static NSUInteger const kRowYouSend = 0;
         self.termsLabel.hidden = YES;
         self.howButtonTopConstraint.constant = 30;
     }
-    [UIView animateWithDuration:0.2 delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    if(animated)
+    {
+        [UIView animateWithDuration:0.2 delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [self.howButton layoutIfNeeded];
+            [self.termsLabel layoutIfNeeded];
+        } completion:nil];
+    }
+    else
+    {
         [self.howButton layoutIfNeeded];
         [self.termsLabel layoutIfNeeded];
-    } completion:nil];
+    }
     
     
 }
