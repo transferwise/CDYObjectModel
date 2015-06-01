@@ -11,7 +11,7 @@
 #import "LoginViewController.h"
 #import "MoneyCalculator.h"
 #import "CalculationResult.h"
-#import "CurrencyPairsOperation.h"
+#import "CurrencyLoader.h"
 #import "TSAlertView.h"
 #import "MoneyFormatter.h"
 #import "TRWAlertView.h"
@@ -66,7 +66,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyCalculator *calculator;
 @property (nonatomic, strong) CalculationResult *result;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
-@property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
 @property (nonatomic, strong) NewPaymentHelper* paymentHelper;
 
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
@@ -346,22 +345,11 @@ static NSUInteger const kRowYouSend = 0;
         //It is dummy instance used on app launch
         return;
     }
-
-    if (self.executedOperation)
-	{
-        return;
-    }
-
-    CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
+    
     __weak typeof(self) weakSelf = self;
-
-    [operation setCurrenciesHandler:^(NSError *error) {
-        [self setExecutedOperation:nil];
-
+    [[CurrencyLoader sharedInstanceWithObjectModel:self.objectModel] getCurrenciesWithSuccessBlock:^(NSError *error) {
         if (error)
-		{
+        {
             return;
         }
         else
@@ -372,11 +360,7 @@ static NSUInteger const kRowYouSend = 0;
                 [weakSelf.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
             }
         }
-        
     }];
-
-    [operation setObjectModel:self.objectModel];
-    [operation execute];
 }
 
 #pragma mark - Table view data source

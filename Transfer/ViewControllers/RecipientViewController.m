@@ -395,7 +395,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
 		
 		CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
-		[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+		[loader getCurrenciesWithSuccessBlock:^(NSError *error) {
 			if (error) {
 				[hud hide];
 				TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
