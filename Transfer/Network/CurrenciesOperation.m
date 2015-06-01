@@ -12,6 +12,7 @@
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+Currencies.h"
 #import "RecipientTypesOperation.h"
+#import "CurrencyPairsOperation.h"
 
 #define kCurrencyUpdateFrequency (18000)
 
@@ -19,7 +20,8 @@ NSString *const kCurrencyListPath = @"/currency/list";
 
 @interface CurrenciesOperation ()
 
-@property (nonatomic, strong) RecipientTypesOperation *operation;
+@property (nonatomic, strong) RecipientTypesOperation *recipientTypesOperation;
+@property (nonatomic, strong) CurrencyPairsOperation *currencyPairsOperation;
 
 @end
 
@@ -32,8 +34,10 @@ static NSDate* lastSuccessTimestamp;
     
     if(lastSuccessTimestamp && ABS([lastSuccessTimestamp timeIntervalSinceNow]) < kCurrencyUpdateFrequency)
     {
+        MCLog(@"Calling to update currencies within 5 minutes of last attempt");
         //We updated currencies within the last 5 minutes. Pretend that everything went well.
         self.resultHandler(nil);
+        return;
     }
     
     if(allCurrenciesOperationsWaitingForResponse)
@@ -48,11 +52,7 @@ static NSDate* lastSuccessTimestamp;
         
         __block __weak CurrenciesOperation *weakSelf = self;
         [self setOperationErrorHandler:^(NSError *error) {
-            for (CurrenciesOperation* operation in allCurrenciesOperationsWaitingForResponse)
-            {
-                operation.resultHandler(error);
-            }
-            allCurrenciesOperationsWaitingForResponse = nil;
+            [weakSelf reportResult:error];
         }];
         
         [self setOperationSuccessHandler:^(NSDictionary *response) {
@@ -68,12 +68,18 @@ static NSDate* lastSuccessTimestamp;
                         }
                         
                         [weakSelf.workModel saveContext:^{
-                            for (CurrenciesOperation* operation in allCurrenciesOperationsWaitingForResponse)
-                            {
-                                operation.resultHandler(nil);
-                            }
-                            allCurrenciesOperationsWaitingForResponse = nil;
-                            lastSuccessTimestamp = [NSDate date];
+                            CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
+                            [weakSelf setCurrencyPairsOperation:operation];
+                            [operation setObjectModel:weakSelf.objectModel];
+                            
+                            
+                            [operation setCurrenciesHandler:^(NSError *error) {
+                                [weakSelf reportResult:error];
+                                lastSuccessTimestamp = [NSDate date];
+                            }];
+                            
+                            [operation setObjectModel:weakSelf.objectModel];
+                            [operation execute];
                         }];
                     }];
                 };
@@ -92,14 +98,24 @@ static NSDate* lastSuccessTimestamp;
     }
 }
 
+-(void)reportResult:(NSError*)error
+{
+    for (CurrenciesOperation* operation in allCurrenciesOperationsWaitingForResponse)
+    {
+        operation.resultHandler(error);
+    }
+    allCurrenciesOperationsWaitingForResponse = nil;
+}
+
 - (void)pullRecipientTypesWithCompletionHandler:(void (^)())completion {
     RecipientTypesOperation *operation = [RecipientTypesOperation operation];
-    [self setOperation:operation];
+    [self setRecipientTypesOperation:operation];
+    __weak typeof(self) weakSelf = self;
     [operation setObjectModel:self.objectModel];
     [operation setResultHandler:^(NSError *error, NSArray* returnedRecipientTypeIdentifiers) {
         if (error)
 		{
-            self.resultHandler(error);
+            [weakSelf reportResult:error];
             return;
         }
 

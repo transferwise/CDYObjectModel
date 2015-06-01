@@ -179,7 +179,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
         };
 		
 		CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:objectModel];
-		[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+		[loader getCurrenciesWithSuccessBlock:^(NSError *error) {
 			weakSelf.currentOperation = nil;
 			if (error) {
 				[weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CurrenciesOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];
