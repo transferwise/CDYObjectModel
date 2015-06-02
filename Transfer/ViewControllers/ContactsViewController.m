@@ -230,17 +230,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
 	__weak typeof (self) weakSelf = self;
 	
-	[loader getCurrencieWithSuccessBlock:^(NSError *error) {
-		CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
-		[weakSelf setExecutedOperation:operation];
-		[operation setObjectModel:weakSelf.objectModel];
-		
-		[operation setCurrenciesHandler:^(NSError *error) {
-			[weakSelf setExecutedOperation:nil];
-			[weakSelf refreshRecipients];
-		}];
-		[operation execute];
-	}];
+	[loader getCurrenciesWithSuccessBlock:^(NSError *error) {
+        [weakSelf refreshRecipients];
+    }];
+
 }
 
 - (void)refreshRecipients

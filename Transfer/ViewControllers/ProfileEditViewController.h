@@ -30,10 +30,8 @@
 @property (nonatomic) BOOL showFooterViewForIpad;
 @property (nonatomic) BOOL isShownInPaymentFlow;
 
+- (id)initWithSource:(ProfileSource *)source;
 - (id)initWithSource:(ProfileSource *)source
-	 quickValidation:(QuickProfileValidationOperation *)quickValidation;
-- (id)initWithSource:(ProfileSource *)source
-	 quickValidation:(QuickProfileValidationOperation *)quickValidation
 		 buttonTitle:(NSString *)buttonTitle;
 
 - (void)validateProfile;

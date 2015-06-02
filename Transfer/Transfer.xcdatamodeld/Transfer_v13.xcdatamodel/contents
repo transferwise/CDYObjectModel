@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AchBank" representedClassName="AchBank" syncable="YES">
         <attribute name="fieldType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -16,6 +16,7 @@
     </entity>
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="allowedValues" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
@@ -210,7 +211,6 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="anonymous" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="authenticationProvider" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invitationReward" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -229,7 +229,7 @@
     <elements>
         <element name="AchBank" positionX="619" positionY="-324" width="128" height="150"/>
         <element name="AdditionalAttribute" positionX="-72" positionY="-90" width="128" height="90"/>
-        <element name="AllowedTypeFieldValue" positionX="655" positionY="63" width="128" height="90"/>
+        <element name="AllowedTypeFieldValue" positionX="655" positionY="63" width="128" height="105"/>
         <element name="BusinessProfile" positionX="-396" positionY="-99" width="128" height="225"/>
         <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Currency" positionX="-92" positionY="-216" width="128" height="270"/>
@@ -248,6 +248,6 @@
         <element name="ReferralLink" positionX="-218" positionY="-405" width="128" height="88"/>
         <element name="Setting" positionX="-441" positionY="-405" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="18" positionY="504" width="128" height="88"/>
-        <element name="User" positionX="-360" positionY="207" width="128" height="285"/>
+        <element name="User" positionX="-360" positionY="207" width="128" height="253"/>
     </elements>
 </model>

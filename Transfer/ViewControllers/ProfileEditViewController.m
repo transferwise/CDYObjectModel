@@ -18,7 +18,6 @@
 #import "ObjectModel.h"
 #import "UIApplication+Keyboard.h"
 #import "ObjectModel+Countries.h"
-#import "QuickProfileValidationOperation.h"
 #import "PersonalProfileSource.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
@@ -55,8 +54,6 @@
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) BOOL shown;
-@property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
-@property (nonatomic, assign) BOOL inputCheckRunning;
 @property (nonatomic, strong) CountrySuggestionCellProvider* countryCellProvider;
 @property (nonatomic, strong) StateSuggestionCellProvider* stateCellProvider;
 @property (nonatomic) CGFloat bottomInset;
@@ -74,13 +71,11 @@
 @implementation ProfileEditViewController
 
 - (id)initWithSource:(ProfileSource *)source
-	 quickValidation:(QuickProfileValidationOperation *)quickValidation
 {
     self = [super initWithNibName:@"ProfileEditViewController" bundle:nil];
     if (self)
 	{
         _profileSource = source;
-        _quickProfileValidation = quickValidation;
 		_loginHelper = [[AuthenticationHelper alloc] init];
 		
     }
@@ -88,11 +83,9 @@
 }
 
 - (id)initWithSource:(ProfileSource *)source
-	 quickValidation:(QuickProfileValidationOperation *)quickValidation
 		 buttonTitle:(NSString *)buttonTitle
 {
-	self = [self initWithSource:source
-				quickValidation:quickValidation];
+	self = [self initWithSource:source];
 	
 	self.actionButtonTitle = buttonTitle;
 	
@@ -522,29 +515,6 @@
     [alertView show];
 }
 
-- (void)textFieldEntryFinished
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        MCLog(@"textFieldEntryFinished");
-        if (self.inputCheckRunning) {
-            MCLog(@"Validation in progress");
-            return;
-        }
-
-        [self setInputCheckRunning:YES];
-        [self.profileSource fillQuickValidation:self.quickProfileValidation];
-
-        __block __weak ProfileEditViewController *weakSelf = self;
-        [self.quickProfileValidation setValidationHandler:^(NSArray *issues) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.profileSource markCellsWithIssues:issues];
-                [weakSelf setInputCheckRunning:NO];
-            });
-        }];
-
-        [self.quickProfileValidation execute];
-    });
-}
 
 #pragma mark - SelectionCell Delegate
 - (id<SelectionItem>)selectionCell:(SelectionCell*)cell getByCodeOrName:(NSString *)codeOrName
