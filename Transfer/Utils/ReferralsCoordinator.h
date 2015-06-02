@@ -10,6 +10,8 @@
 
 @class ObjectModel;
 
+extern NSString *const ReferralsDetailsUpdatedNotification;
+
 @interface ReferralsCoordinator : NSObject
 
 @property (nonatomic, strong) ObjectModel *objectModel;

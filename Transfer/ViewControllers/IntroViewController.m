@@ -65,6 +65,7 @@
 -(void)dealloc
 {
     _scrollView.delegate = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ReferralsDetailsUpdatedNotification object:nil];
 }
 
 - (void)viewDidLoad
@@ -157,6 +158,8 @@
         [[Mixpanel sharedInstance] sendPageView:MPWhatsNew];
         [[GoogleAnalytics sharedInstance] sendScreen:GAWhatsNewScreen];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(referralUpdateNotification:) name:ReferralsDetailsUpdatedNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -192,12 +195,17 @@
 
 -(void)updatePages
 {
+    [self updatePages:NO];
+}
+
+-(void)updatePages:(BOOL)force
+{
     [self.scrollView layoutIfNeeded];
     
     //Calculate leftmost index
     NSInteger page = MAX(0,MIN(self.introData.count - 3 ,floor(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
     
-    if(page != self.lastLoadedIndex)
+    if(page != self.lastLoadedIndex || force)
     {
         NSUInteger index = page;
         self.lastLoadedIndex = page;
@@ -439,6 +447,15 @@
         
     }
     [dictionary removeObjectForKey:key];
+}
+
+-(void)referralUpdateNotification:(NSNotification*)notification
+{
+    NSString* referrer = [ReferralsCoordinator referralUser];
+    if(referrer)
+    {
+        [self updatePages:YES];
+    }
 }
 
 @end
