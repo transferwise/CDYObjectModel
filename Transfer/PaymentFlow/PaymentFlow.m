@@ -156,19 +156,6 @@
 										 animated:YES];
 }
 
-- (void)presentNextScreenAfterRecipientDetails
-{
-    [self.objectModel performBlock:^{
-        PendingPayment *payment = [self.objectModel pendingPayment];
-        if ([payment.user personalProfileFilled]) {
-            [self presentPaymentConfirmation];
-        } else {
-            [self presentPersonalProfileEntry:YES
-								   isExisting:NO];
-        }
-    }];
-}
-
 - (void)presentBusinessProfileScreen
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
@@ -321,10 +308,7 @@
             }
 			else if ([Credentials userLoggedIn])
 			{
-                MCLog(@"Update sender profile");
-                [weakSelf updateSenderProfile:^{
-                    [weakSelf handleNextStepOfPendingPaymentCommit];
-                }];
+                [weakSelf handleNextStepOfPendingPaymentCommit];
             }
 			else
 			{

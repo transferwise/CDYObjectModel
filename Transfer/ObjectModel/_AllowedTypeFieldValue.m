@@ -5,6 +5,7 @@
 
 const struct AllowedTypeFieldValueAttributes AllowedTypeFieldValueAttributes = {
 	.code = @"code",
+	.sortOrder = @"sortOrder",
 	.title = @"title",
 };
 
@@ -38,10 +39,36 @@ const struct AllowedTypeFieldValueRelationships AllowedTypeFieldValueRelationshi
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"sortOrderValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"sortOrder"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
 @dynamic code;
+
+@dynamic sortOrder;
+
+- (int16_t)sortOrderValue {
+	NSNumber *result = [self sortOrder];
+	return [result shortValue];
+}
+
+- (void)setSortOrderValue:(int16_t)value_ {
+	[self setSortOrder:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveSortOrderValue {
+	NSNumber *result = [self primitiveSortOrder];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSortOrderValue:(int16_t)value_ {
+	[self setPrimitiveSortOrder:[NSNumber numberWithShort:value_]];
+}
 
 @dynamic title;
 

@@ -13,7 +13,6 @@
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "BusinessProfile.h"
-#import "QuickProfileValidationOperation.h"
 #import "GoogleAnalytics.h"
 #import "UIView+Loading.h"
 #import "Country.h"
@@ -212,20 +211,6 @@
             completion(nil);
         });
     }];
-}
-
-- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation
-{
-    [operation setName:[self.businessNameCell value]];
-    [operation setRegistrationNumber:[self.registrationNumberCell value]];
-    [operation setBusinessDescription:[self.descriptionCell value]];
-	[operation setCompanyRole:[self.companyRoleCell value]];
-	[operation setCompanyType:[self.companyTypeCell value]];
-    [operation setAddressFirstLine:[self.addressCell value]];
-    [operation setPostCode:[self.zipCityCell value]];
-    [operation setCity:[self.zipCityCell secondValue]];
-    [operation setCountryCode:[self.countryCell value]];
-    [operation setState:[self.stateCell value]];
 }
 
 - (void)clearData

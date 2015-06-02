@@ -211,6 +211,7 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="anonymous" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="authenticationProvider" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invitationReward" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -248,6 +249,6 @@
         <element name="ReferralLink" positionX="-218" positionY="-405" width="128" height="88"/>
         <element name="Setting" positionX="-441" positionY="-405" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="18" positionY="504" width="128" height="88"/>
-        <element name="User" positionX="-360" positionY="207" width="128" height="253"/>
+        <element name="User" positionX="-360" positionY="207" width="128" height="285"/>
     </elements>
 </model>

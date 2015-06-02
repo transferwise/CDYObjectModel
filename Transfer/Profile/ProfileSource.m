@@ -11,7 +11,6 @@
 #import "TransferwiseClient.h"
 #import "Credentials.h"
 #import "Constants.h"
-#import "QuickProfileValidationOperation.h"
 #import "TextEntryCell.h"
 #import "DateEntryCell.h"
 #import "DoubleEntryCell.h"

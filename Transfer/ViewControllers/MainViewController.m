@@ -270,17 +270,7 @@
 -(void)preloadCurrencies
 {
 	CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:self.objectModel];
-	__weak typeof (self) weakSelf = self;
-	[loader getCurrencieWithSuccessBlock:^(NSError *error) {
-		CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
-		[weakSelf setExecutedOperation:operation];
-		[operation setObjectModel:weakSelf.objectModel];
-		
-		[operation setCurrenciesHandler:^(NSError *error) {
-			[weakSelf setExecutedOperation:nil];
-		}];
-		[operation execute];
-	}];
+	[loader getCurrenciesWithSuccessBlock:nil];
 }
 
 #pragma mark - Highlight Send Button

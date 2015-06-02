@@ -83,7 +83,7 @@
 - (void)createOrUpdateFieldOnType:(RecipientType *)type withData:(NSDictionary *)data
 {
 	NSString *name = data[@"name"];
-	
+    __block short allowedValuesOrdinal = 0;
 	[TypeFieldHelper getTypeWithData:data
 						  nameGetter:^NSString *{
 							  return name;
@@ -106,6 +106,8 @@
 								 [value setCode:code];
 								 [value setValueForField:field];
 							 }
+                             value.sortOrder = @(allowedValuesOrdinal);
+                             allowedValuesOrdinal++;
 							 return value;
 						 }
 						 titleGetter:^NSString *(NSDictionary *data) {
@@ -130,7 +132,7 @@
 - (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field
 {
     NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
-    NSSortDescriptor *titleSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+    NSSortDescriptor *titleSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sortOrder" ascending:YES];
     return [self fetchedControllerForEntity:[AllowedTypeFieldValue entityName] predicate:fieldPredicate sortDescriptors:@[titleSortDescriptor]];
 }
 

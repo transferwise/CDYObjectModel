@@ -178,12 +178,14 @@ your friends to TransferWise";
 "introduction.login.section.title" = "Already a user?";
 "introduction.savings.receive.message.base" = "You'll get %@ more vs your bank";
 "introduction.savings.pay.message.base" = "You'll pay %@ less vs your bank";
-"introduction.savings.message.part1" = "You'll save";
-"introduction.savings.message.part1.ipad" = "You'll save";
-"introduction.savings.message.part2" = "vs your bank";
-"introduction.savings.message.part2.ipad" = "vs your bank";
-"introduction.savings.message.part2.no.fee" = "vs your bank \nas you earned a free transfer";
-"introduction.savings.message.part2.no.fee.ipad" = "vs your bank as you earned a free transfer";
+"introduction.savings.message.iphone4.part1" = "You'll save";
+"introduction.savings.message.part1.format" = "Current rate: %@\nFee: %@";
+"introduction.savings.message.part1.format.ipad" = "Current rate: %@ Fee: %@";
+"introduction.savings.message.part1.format.no.fee" = "Current rate is %@.\nThis transfer is free.";
+"introduction.savings.message.part1.format.no.fee.ipad" = "Current rate is %@. This transfer is free.";
+"introduction.savings.message.part2.format" = "You'll save %@";
+"introduction.savings.message.versus" = "vs your bank";
+"introduction.savings.message.versus.ipad" = "vs your bank";
 "introduction.savings.message.how" = "See how";
 "introduction.savings.message.how.ipad" = "See how";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
@@ -480,11 +482,11 @@ This can't be undone.";
 "upload.money.done.button.title" = "I made this transfer";
 "upload.money.cancel.button.title" = "Cancel";
 "upload.money.our.address.label" = "Our address: %@";
-"upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below.\nIt's free.";
-"upload.money.header.label.EUR" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account.";
+"upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below.\nIt's free. The money must be sent from your own account.";
+"upload.money.header.label.EUR" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account. The money must be sent from your own account.";
 "upload.money.header.label.USD.SWIFT" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account below. (Must be sent from your account)";
 "upload.money.header.label.USD.REGULAR" = "Only if you have a US domestic account, Transfer %@ to Transferwise's US account below. The money must be sent from your own account. We don't accept cheques or cash";
-"upload.money.header.label" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's account.";
+"upload.money.header.label" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's account. The money must be sent from your own account.";
 "upload.money.header.label.exactly" = "exactly %@";
 "upload.money.info.label.EUR" = "SEPA transfers within Europe cost the same as a local transfer.";
 "upload.money.iban.title" = "IBAN";
@@ -773,7 +775,6 @@ We'll send you an email in order to let you choose a new password.";
 "transfertime.default" = "It generally takes 1 business day";
 "transfertime.EUR.REGULAR" = "It generally takes 1-2 business days";
 "transfertime.GBP.REGULAR" = "It generally takes a few business hours";
-"transfertime.USD" = "It takes up to 5 business days";
 
 "upload.money.bankname.title" = "Bank name";
 "upload.money.card.no.adyen.url" = "Could not load debit card screen. Please try again.";
@@ -799,4 +800,6 @@ you can still access your account by resetting your password.";
 "intro.referral.title.format" = "%@\nGOT YOU A\nFREE TRANSFER";
 
 "field.optional.suffix" = " (Optional)";
+
+"confirmation.date.format" = "EEEE dd/MM/yyyy 'at' ha";
 

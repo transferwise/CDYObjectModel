@@ -212,9 +212,15 @@
     }
 }
 
+
 - (void)setIsActionbuttonVisible:(BOOL)isCancelVisible
 {
-    if(_isActionbuttonVisible != isCancelVisible)
+    [self setIsActionbuttonVisible:isCancelVisible force:NO];
+}
+
+- (void)setIsActionbuttonVisible:(BOOL)isCancelVisible force:(BOOL)force
+{
+    if(_isActionbuttonVisible != isCancelVisible || force)
     {
         _isActionbuttonVisible = isCancelVisible;
         self.contentViewTrailing.constant = isCancelVisible ? self.actionButton.bounds.size.width : 0.0f;
@@ -378,7 +384,7 @@
     [self.contentView layoutIfNeeded];
     
 	[UIView animateWithDuration:duration delay:0.0f options:outOnly?UIViewAnimationOptionCurveEaseOut:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.isActionbuttonVisible = show;
+        [self setIsActionbuttonVisible:show force:YES];
         [self.contentView layoutIfNeeded];
     } completion:nil];
 }

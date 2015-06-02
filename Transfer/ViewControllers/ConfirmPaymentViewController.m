@@ -352,7 +352,7 @@
 		if (self.payment.estimatedDelivery)
 		{
 			NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-			dateFormatter.dateFormat = @"EEEE dd/MM/yyyy 'at' ha";
+			dateFormatter.dateFormat = NSLocalizedString(@"confirmation.date.format", nil);
 			NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
 			[self.estimatedDeliveryCell configureWithTitle:NSLocalizedString(@"confirm.payment.delivery.date.message",nil) text:dateString];
 		}
@@ -406,7 +406,7 @@
 -(void)fillHeaderText
 {
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"EEEE dd/MM/yyyy 'at' ha";
+    dateFormatter.dateFormat = NSLocalizedString(@"confirmation.date.format", nil);
 	NSString *amountString = [NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.fixed.target.sum.format":@"confirm.payment.target.sum.format",nil),[self.payment payOutStringWithCurrency]];
 	
 	NSString *headerText;
