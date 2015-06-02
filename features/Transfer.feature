@@ -75,7 +75,7 @@ Scenario Outline: create new transfer
 Examples:
 | source | target | payInMethod    | field1    | value1                      | field2   | value2         | field3                | value3        | field4  | value4   | field5 | value5     | field6 | value6  | field7  | value7 |
 | EUR    | GBP    | UK Sort        | Sort      | 123456                      | Account  | 12345678       |>Private               |Private        | -       | -        | -      | -          | -      | -       | -       | -      |
-| GBP    | EUR    | -              | IBAN      | FR2830002004130000071693Z15 | BIC      | CRLYFRPP       | -                     | -             | -       | -        | -      | -          | -      | -       | -       | -      |
+| GBP    | EUR    | -              | IBAN      | FR2830002004130000071693Z15 | BIC      | CRLYFRPP       |>Private               |Private        | -       | -        | -      | -          | -      | -       | -       | -      |
 | GBP    | USD    | -              | State     | NY                          | Address  | 1 Street       | Zip code              | 10001         | City    | New York | Routing| 121181976  | Account|012344321|>Private |Private |
 | GBP    | PLN    | -              | IBAN      | PL60102010260000042270201111| BIC      | ABNAPLPW       |>Private               |Private        | -       | -        | -      | -          | -      | -       | -       | -      |
 | GBP    | CHF    | -              | IBAN      | CH9300762011623852957       | BIC      | RBOSCHZXXXX    |>Private               |Private        | -       | -        | -      | -          | -      | -       | -       | -      |
