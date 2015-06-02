@@ -23,6 +23,8 @@
 
 #define kIgnoreReferrerName @"ignore"
 
+NSString *const ReferralsDetailsUpdatedNotification = @"ReferralsDetailsUpdatedNotification";
+
 @interface ReferralsCoordinator ()
 
 @property (nonatomic, strong) TransferwiseOperation* currentOperation;
@@ -245,6 +247,10 @@
         {
             [defaults setObject:referrer forKey:TRWReferrerKey];
         }
+    }
+    if(referralToken||referralSource||referrer)
+    {
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:ReferralsDetailsUpdatedNotification object:nil]];
     }
     
 }
