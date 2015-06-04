@@ -14,9 +14,10 @@
 @interface ObjectModel (RecipientTypes)
 
 - (RecipientType *)recipientTypeWithCode:(NSString *)code;
-- (NSArray *)recipientTypesWithCodes:(NSArray *)codes;
+- (NSArray *)recipientTypesWithCodes:(NSArray *)codes includeHidden:(BOOL)includeHidden;
 - (BOOL)haveRecipientTypeWithCode:(NSString *)code;
 - (void)createOrUpdateRecipientTypeWithData:(NSDictionary *)data;
+- (void)createOrUpdateRecipientTypesWithData:(NSArray*)data commonAdditions:(NSDictionary*)common;
 - (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field;
 - (void)removeOtherUsers;
 
