@@ -38,7 +38,7 @@ static NSString* emailBuffer;
 }
 
 + (NSString *)accessToken {
-    if(!accessTokenBuffer)
+    if(![accessTokenBuffer length]>0)
     {
         accessTokenBuffer = [Lockbox stringForKey:kTWAccessTokenKey];
     }
@@ -49,6 +49,8 @@ static NSString* emailBuffer;
 	[Lockbox setString:@"" forKey:kTWAccessTokenKey];
     [Lockbox setString:@"" forKey:kUserSecretKey];
     [Lockbox setString:@"" forKey:kUserEmailKey];
+    accessTokenBuffer =nil;
+    emailBuffer = nil;
 }
 
 + (BOOL)temporaryAccount {
@@ -56,7 +58,7 @@ static NSString* emailBuffer;
 }
 
 + (NSString *)userEmail {
-    if(!emailBuffer)
+    if(![emailBuffer length]>0)
     {
         emailBuffer = [Lockbox stringForKey:kUserEmailKey];
     }
