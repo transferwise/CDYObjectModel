@@ -63,9 +63,9 @@
 "button.title.import.from.phonebook" = "Importer mon répertoire";
 "button.title.log.in" = "Connexion";
 "button.title.log.in.google" = "Google";
-"button.title.log.in.yahoo" = "Yahoo!";
+"button.title.log.in.facebook" = "Facebook";
 "button.title.log.in.google.ipad" = "Se connecter via Google";
-"button.title.log.in.yahoo.ipad" = "Se connecter via Yahoo!";
+"button.title.log.in.facebook.ipad" = "Se connecter via Facebook";
 "button.title.ok" = "OK";
 "button.title.retry" = "Reéssayer";
 "button.title.yes" = "Oui";

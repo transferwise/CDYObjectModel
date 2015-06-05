@@ -63,9 +63,9 @@
 "button.title.import.from.phonebook" = "Import from phonebook";
 "button.title.log.in" = "Log in";
 "button.title.log.in.google" = "Google";
-"button.title.log.in.yahoo" = "Yahoo!";
+"button.title.log.in.facebook" = "Facebook";
 "button.title.log.in.google.ipad" = "Log in with Google";
-"button.title.log.in.yahoo.ipad" = "Log in with Yahoo!";
+"button.title.log.in.facebook.ipad" = "Log in with Facebook";
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
 "button.title.yes" = "Yes";

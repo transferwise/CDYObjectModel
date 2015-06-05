@@ -12,7 +12,6 @@
 #import "Credentials.h"
 #import "PersonalProfileViewController.h"
 #import "BusinessProfileViewController.h"
-#import "LoginViewController.h"
 #import "PersonalProfileCommitter.h"
 #import "ClaimAccountViewController.h"
 #import "BusinessProfileCommitter.h"
