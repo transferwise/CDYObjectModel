@@ -214,6 +214,11 @@
     NSMutableArray *result = [NSMutableArray array];
     for (RecipientTypeField *field in type.fields)
 	{
+        if([field.name isEqualToString:@"receiverType"])
+        {
+            //Filter out Recipent type... Don't want to display it. 
+            continue;
+        }
         PlainPresentationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
         [cell configureWithTitle:[self addColon:field.title] text:[recipient valueField:field]];
         [result addObject:cell];
