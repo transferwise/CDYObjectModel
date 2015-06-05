@@ -123,30 +123,11 @@
     return profile;
 }
 
-static NSManagedObjectID *currentUserId;
-
 - (User *)currentUser
 {
     if ([Credentials userLoggedIn])
 	{
-        NSString *email = [Credentials userEmail];
-        User* user;
-        if (currentUserId)
-        {
-            user = (User*) [[self managedObjectContext] objectWithID:currentUserId];
-            if([user.email isEqualToString:email])
-            {
-                return user;
-            }
-        }
-        
-        user = [self userWithEmail:email];
-        if(user)
-        {
-            currentUserId = user.objectID;
-        }
-        
-        return user;
+        return [self userWithEmail:[Credentials userEmail]];
     }
 
     return [self anonymousUser];
