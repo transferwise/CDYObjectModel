@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "Constants.h"
 
-typedef void (^FacebookLoginSuccessBlock)(NSString *accessToken, NSString *email, BOOL isExisting);
+typedef void (^FacebookLoginSuccessBlock)(NSString *accessToken, BOOL isExisting);
 
 @interface FacebookHelper : NSObject
 
 - (void)performFacebookLoginWithSuccessBlock:(FacebookLoginSuccessBlock)successBlock
 								 cancelBlock:(TRWActionBlock)cancelBlock
 						navigationController:(UINavigationController *)navigationController;
+
+- (void)getUserEmailWithResultBlock:(void(^)(NSString * email))resultBlock
+			   navigationController:(UINavigationController *)navigationController;
 - (void)logOut;
 
 @end

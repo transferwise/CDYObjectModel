@@ -14,6 +14,7 @@
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "CustomInfoViewController.h"
+#import "AskEmailViewController.h"
 
 @implementation FacebookHelper
 
@@ -52,7 +53,7 @@
 	FBSDKLoginManager *manager = [[FBSDKLoginManager alloc] init];
 	[manager logInWithReadPermissions:@[FacebookOAuthEmailScope, FacebookOAuthProfileScope]
 							  handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-								  //show hud
+								  //no need to show hud because we are leaving the app
 								  if (error)
 								  {
 									  //Something went pear shaped
@@ -83,27 +84,7 @@
 {
 	if ([FBSDKAccessToken currentAccessToken])
 	{
-		//Show hud
-		TRWProgressHUD *hud;
-		
-		if (navigationController.view)
-		{
-			hud = [TRWProgressHUD showHUDOnView:navigationController.view];
-			[hud setMessage:NSLocalizedString(@"login.email.facebook.getting", nil)];
-		}
-		
-		//might be necessary to check for a permission here first
-		[self getUserEmail:^(NSString *email) {
-			if (hud)
-			{
-				[hud hide];
-			}
-			
-			[self handleEmail:email
-				 successBlock:successBlock
-				   isExisting:isExisting
-		 navigationController:navigationController];
-		}];
+		successBlock([FBSDKAccessToken currentAccessToken].tokenString, isExisting);
 	}
 	else
 	{
@@ -115,55 +96,17 @@
 	}
 }
 
-- (void)getUserEmail:(void(^)(NSString * email))resultBlock
+- (void)getUserEmailWithResultBlock:(void(^)(NSString * email))resultBlock
+			   navigationController:(UINavigationController *)navigationController
 {
-	//Yes, I am paranoid
-	if ([FBSDKAccessToken currentAccessToken])
-	{
-		FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
-		
-		[request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-			if(!error && result[@"email"])
-			{
-				resultBlock(result[@"email"]);
-			}
-			else
-			{
-				resultBlock(nil);
-			}
-		}];
-	}
-}
+	//show AskEmailViewController
+	AskEmailViewController *askEmailController = [[AskEmailViewController alloc] initWithReturnBlock:^(NSString *email) {
+		resultBlock(email);
+	}];
+	
+	[navigationController pushViewController:askEmailController
+									animated:YES];
 
-- (void)handleEmail:(NSString *)email
-	   successBlock:(FacebookLoginSuccessBlock)successBlock
-		 isExisting:(BOOL)isExisting
-navigationController:(UINavigationController *)navigationController
-{
-	if (email)
-	{
-		//We are out of the woods!
-		successBlock([FBSDKAccessToken currentAccessToken].tokenString, email, isExisting);
-	}
-	else
-	{
-		//I am a failure :(
-		[[GoogleAnalytics sharedInstance] sendAlertEvent:GAFBLoginNoEmail
-											   withLabel:nil];
-		[self logOut];		
-		
-		//Yep, still paranoid
-		if (navigationController && navigationController.parentViewController)
-		{
-			CustomInfoViewController *customInfo = [CustomInfoViewController failScreenWithMessage:NSLocalizedString(@"login.error.facebook.no.email", nil)];
-			[customInfo presentOnViewController:navigationController.parentViewController
-						  withPresentationStyle:TransparentPresentationFade];
-		}
-		else
-		{
-			[self showErrorWithMessage:NSLocalizedString(@"login.error.facebook.no.email", nil)];
-		}
-	}
 }
 
 - (void)showErrorWithMessage:(NSString *)message

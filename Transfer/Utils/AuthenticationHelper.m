@@ -235,53 +235,71 @@
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
-                BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
-                [weakSelf logUserIn:token
-                              email:email
-                       successBlock:^{
-                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
-                           NSString *referralToken = [ReferralsCoordinator referralToken];
-                           if(referralToken)
-                           {
-                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
-                           }
-                           successBlock();
-                       }
-                                hud:hud
-                        objectModel:objectModel
-           waitForDetailsCompletion:waitForDetailsCompletion];
-            }];
-            return;
+				BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
+				[weakSelf logUserIn:token
+							  email:email
+					   successBlock:^{
+						   [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
+						   NSString *referralToken = [ReferralsCoordinator referralToken];
+						   if(referralToken)
+						   {
+							   [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+						   }
+						   successBlock();
+					   }
+								hud:hud
+						objectModel:objectModel
+		   waitForDetailsCompletion:waitForDetailsCompletion];
+			}];
 		}
-		
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[hud hide];
-			TRWAlertView *alertView;
-			if ([error isTransferwiseError])
-			{
-				NSString *message = [error localizedTransferwiseMessage];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
-													   withLabel:message];
-				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-													 message:message];
+		//handle email error for Facebook
+		else if ([provider isEqualToString:FacebookOAuthServiceName] && error)
+		{
+			FacebookHelper *fbHelper = [[FacebookHelper alloc] init];
+			[fbHelper getUserEmailWithResultBlock:^(NSString *email) {
+				[weakSelf performOAuthLoginWithToken:token
+											provider:provider
+											   email:email
+								  keepPendingPayment:keepPendingPayment
+								navigationController:navigationController
+										 objectModel:objectModel successBlock:successBlock
+										  errorBlock:errorBlock
+						   waitForDetailsCompletions:waitForDetailsCompletion
+											isSilent:isSilent];
 			}
-			else
-			{
-				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-													 message:NSLocalizedString(@"login.error.generic.message", nil)];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
-													   withLabel:error.localizedDescription];
-			}
-			
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			
-			if (!isSilent)
-			{
-				[alertView show];
-			}
-			
-			errorBlock();
-		});
+							 navigationController:navigationController];
+		}
+		else
+		{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[hud hide];
+				TRWAlertView *alertView;
+				if ([error isTransferwiseError])
+				{
+					NSString *message = [error localizedTransferwiseMessage];
+					[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
+														   withLabel:message];
+					alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+														 message:message];
+				}
+				else
+				{
+					alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+														 message:NSLocalizedString(@"login.error.generic.message", nil)];
+					[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
+														   withLabel:error.localizedDescription];
+				}
+				
+				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+				
+				if (!isSilent)
+				{
+					[alertView show];
+				}
+				
+				errorBlock();
+			});
+		}
 	}];
 	
 	[oauthLoginOperation execute];
@@ -320,7 +338,7 @@
 						  errorBlock:^{
 							  if (isExisting)
 							  {
-								  //if this is an existing account and auth failed do something
+								  //if this is an existing account and auth failed, do something
 								  if (errorBlock)
 								  {
 									  errorBlock();
@@ -346,7 +364,6 @@
 }
 
 #pragma mark - OAuth notifications
-
 -(void)registerForOauthNotifications
 {
     if(! self.hasRegisteredForOauthNotifications)
@@ -460,10 +477,10 @@
 	__weak typeof(self) weakSelf = self;
 	//call out to FB helper to do the login magic
 	FacebookHelper *fbHelper = [[FacebookHelper alloc] init];
-	[fbHelper performFacebookLoginWithSuccessBlock:^(NSString *accessToken, NSString *email, BOOL isExisting) {
+	[fbHelper performFacebookLoginWithSuccessBlock:^(NSString *accessToken, BOOL isExisting) {
 		[weakSelf authWithOauthToken:accessToken
 							provider:FacebookOAuthServiceName
-							   email:email
+							   email:nil
 						 sucessBlock:successBlock
 						  errorBlock:^{
 							  //will only be executed for isExisting = YES case
