@@ -30,15 +30,15 @@
 	NSString *name = nameGetterBlock();
 	RecipientTypeField *field = fieldGetterBlock(name);
 	
-    [self setChangedValue:cleanedData[@"example"] ForKey:@"example" onObject:field];
-    [self setChangedValue:cleanedData[@"maxLength"] ForKey:@"maxLength" onObject:field];
-    [self setChangedValue:cleanedData[@"minLength"] ForKey:@"minLength" onObject:field];
-    [self setChangedValue:cleanedData[@"presentationPattern"] ForKey:@"presentationPattern" onObject:field];
-    [self setChangedValue:cleanedData[@"required"] ForKey:@"required" onObject:field];
-    [self setChangedValue:titleGetterBlock(cleanedData) ForKey:@"title" onObject:field];
-    [self setChangedValue:cleanedData[@"validationRegexp"] ForKey:@"validationRegexp" onObject:field];
-    [self setChangedValue:typeGetterBlock(cleanedData) ForKey:@"type" onObject:field];
-    [self setChangedValue:imageGetterBlock(cleanedData) ForKey:@"image" onObject:field];
+	[field setExample:cleanedData[@"example"]];
+	[field setMaxLength:cleanedData[@"maxLength"]];
+	[field setMinLength:cleanedData[@"minLength"]];
+	[field setPresentationPattern:cleanedData[@"presentationPattern"]];
+	[field setRequiredValue:[cleanedData[@"required"] boolValue]];
+	[field setTitle:titleGetterBlock(cleanedData)];
+	[field setValidationRegexp:cleanedData[@"validationRegexp"]];
+	[field setType:typeGetterBlock(cleanedData)];
+	[field setImage:imageGetterBlock(cleanedData)];
 	
 	NSArray *allowedValues = cleanedData[@"valuesAllowed"];
 	
@@ -48,20 +48,11 @@
 		{
 			NSString *code = aData[@"code"];
 			AllowedTypeFieldValue *value = valueGetterBlock(field, code);
-            [self setChangedValue:aData[@"title"] ForKey:@"title" onObject:value];
+			[value setTitle:aData[@"title"]];
 		}
 	}
 	
 	return field;
-}
-
-+(void)setChangedValue:(id)value ForKey:(NSString*)key onObject:(id)target
-{
-    id currentValue = [target valueForKey:key];
-    if((currentValue || value) && ![currentValue isEqual:value])
-    {
-        [target setValue:value forKey:key];
-    }
 }
 
 + (NSArray *)generateFieldsArray:(UITableView *)tableView
@@ -114,11 +105,10 @@
 }
 
 + (AllowedTypeFieldValue *)existingAllowedValueForField:(RecipientTypeField *)field
-												   code:(NSString *)code
-											objectModel:(CDYObjectModel *)objectModel
+                                                   code:(NSString *)code
+                                            objectModel:(CDYObjectModel *)objectModel
 {
-	NSPredicate *codePredicate = [NSPredicate predicateWithFormat:@"code = %@", code];
+    NSPredicate *codePredicate = [NSPredicate predicateWithFormat:@"code = %@", code];
     return [[field.allowedValues filteredSetUsingPredicate:codePredicate] anyObject];
 }
-
 @end

@@ -43,15 +43,25 @@ NSUInteger kPaymentsListLimit = 20;
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
+        
         //TODO jaanus: pull also recipient types here
         NSNumber *totalCount = response[@"total"];
         [weakSelf.objectModel saveInBlock:^(CDYObjectModel *objectModel) {
             ObjectModel *oModel = (ObjectModel *) objectModel;
             NSMutableArray *existingPaymentIds = [NSMutableArray arrayWithArray:[oModel listRemoteIdsForExistingPayments]];
 
-            NSArray *payments = response[@"payments"];
-            for (NSDictionary *data in payments) {
-                Payment *payment = [oModel createOrUpdatePaymentWithData:data];
+            NSArray *paymentsData = response[@"payments"];
+            NSArray *existingPayments = [oModel paymentsWithRemoteIds:[paymentsData valueForKey:@"id"]];
+            for (NSDictionary *data in paymentsData) {
+                Payment *payment = [[existingPayments filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"remoteId = %@", data[@"id"]]] lastObject];
+                if(payment)
+                {
+                    payment = [oModel populatePayment:payment withData:data];
+                }
+                else
+                {
+                    payment = [oModel createOrUpdatePaymentWithData:data];
+                }
                 [existingPaymentIds removeObject:payment.remoteId];
             }
 

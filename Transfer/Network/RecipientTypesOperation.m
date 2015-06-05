@@ -36,7 +36,6 @@ static NSMutableSet *allTypesOperationsWaitingForResponse;
         [weakSelf.workModel.managedObjectContext performBlock:^{
             NSArray *recipients = response[@"recipients"];
             MCLog(@"Pulled %lu receipient types", (unsigned long)[recipients count]);
-                MCLog(@"++++Processing Recipient types: %f",[[NSDate date] timeIntervalSince1970]);
             NSDictionary* commonData;
             if(weakSelf.sourceCurrency)
             {
@@ -46,9 +45,7 @@ static NSMutableSet *allTypesOperationsWaitingForResponse;
             
             [weakSelf.workModel createOrUpdateRecipientTypesWithData:recipients commonAdditions:commonData];
             
-            MCLog(@"++++Processing Recipient types done: %f",[[NSDate date] timeIntervalSince1970]);
             [weakSelf.workModel saveContext:^{
-                MCLog(@"++++Saving Recipient types done: %f",[[NSDate date] timeIntervalSince1970]);
                 [weakSelf completeRequest:weakSelf error:nil typeList:[recipients valueForKey:@"type"]];
             }];
         }];
