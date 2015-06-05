@@ -170,7 +170,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
                     [payment setIsFixedAmountValue:result.isFixedTargetPayment];
                     [payment setRecipient:recipient];
                     [payment setProfileUsed:profile];
-                    payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[objectModel recipientTypesWithCodes:listOfRecipientTypeCodes]];
+                    payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[objectModel recipientTypesWithCodes:listOfRecipientTypeCodes includeHidden:NO]];
                     
                     successBlock(payment);
                     

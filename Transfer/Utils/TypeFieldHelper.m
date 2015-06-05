@@ -105,13 +105,10 @@
 }
 
 + (AllowedTypeFieldValue *)existingAllowedValueForField:(RecipientTypeField *)field
-												   code:(NSString *)code
-											objectModel:(CDYObjectModel *)objectModel
+                                                   code:(NSString *)code
+                                            objectModel:(CDYObjectModel *)objectModel
 {
-	NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
-	NSPredicate *codePredicate = [NSPredicate predicateWithFormat:@"code = %@", code];
-	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[fieldPredicate, codePredicate]];
-	return [objectModel fetchEntityNamed:[AllowedTypeFieldValue entityName] withPredicate:predicate];
+    NSPredicate *codePredicate = [NSPredicate predicateWithFormat:@"code = %@", code];
+    return [[field.allowedValues filteredSetUsingPredicate:codePredicate] anyObject];
 }
-
 @end

@@ -23,8 +23,9 @@
     return [self fetchEntityNamed:[RecipientType entityName] withPredicate:predicate];
 }
 
-- (NSArray *)recipientTypesWithCodes:(NSArray *)codes {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hideFromCreation = NO AND type IN %@", codes];
+- (NSArray *)recipientTypesWithCodes:(NSArray *)codes includeHidden:(BOOL)includeHidden
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:includeHidden?@"type IN %@":@"type IN %@ AND hideFromCreation = NO", codes];
     return [self fetchEntitiesNamed:[RecipientType entityName] withPredicate:predicate];
 }
 
@@ -32,10 +33,42 @@
     return [self recipientTypeWithCode:code] != nil;
 }
 
-- (void)createOrUpdateRecipientTypeWithData:(NSDictionary *)data {
+- (void)createOrUpdateRecipientTypesWithData:(NSArray*)data commonAdditions:(NSDictionary*)common
+{
+    NSArray* typeCodes = [data valueForKey:@"type"];
+    NSArray* preFetchedTypes = [self recipientTypesWithCodes:typeCodes includeHidden:YES];
+    
+    
+    for (NSDictionary *recipientTypeData in data) {
+        NSDictionary *dataToUse = recipientTypeData;
+        if(common)
+        {
+            NSMutableDictionary* mutableData = [NSMutableDictionary dictionaryWithDictionary:dataToUse];
+            [mutableData addEntriesFromDictionary:common];
+            dataToUse = mutableData;
+        }
+        
+        NSString *code = dataToUse[@"type"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type = %@", code];
+        RecipientType *preFetchedType = [[preFetchedTypes filteredArrayUsingPredicate:predicate] lastObject];
+        
+        [self createOrUpdateRecipientTypeWithData:dataToUse preFetchedType:preFetchedType];
+        
+    }
+}
+
+- (void)createOrUpdateRecipientTypeWithData:(NSDictionary *)data
+{
     NSString *code = data[@"type"];
-    RecipientType *type = [self recipientTypeWithCode:code];
+    [self createOrUpdateRecipientTypeWithData:data preFetchedType:[self recipientTypeWithCode:code]];
+
+}
+
+
+- (void)createOrUpdateRecipientTypeWithData:(NSDictionary *)data preFetchedType:(RecipientType*)preFetched {
+    RecipientType *type = preFetched;
     if (!type) {
+        NSString *code = data[@"type"];
         type = [RecipientType insertInManagedObjectContext:self.managedObjectContext];
         [type setType:code];
     }
@@ -49,6 +82,9 @@
     }
 
     NSArray *fieldsData = cleanedData[@"fields"];
+    
+    
+    
     for (NSDictionary *fData in fieldsData) {
         [self createOrUpdateFieldOnType:type withData:fData];
     }
@@ -89,12 +125,18 @@
 							  return name;
 						  }
 						 fieldGetter:^RecipientTypeField *(NSString *name) {
-							 RecipientTypeField *field = [self existingFieldOnType:type withName:name];
-							 if (!field) {
-								 field = [RecipientTypeField insertInManagedObjectContext:self.managedObjectContext];
-								 [field setName:name];
-								 [field setFieldForType:type];
-							 }
+                             NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"name = %@", name];
+                             NSOrderedSet *filteredPreFetched = [type.fields filteredOrderedSetUsingPredicate:namePredicate];
+                             RecipientTypeField *field = [filteredPreFetched lastObject];
+                             if(!field)
+                             {
+                                 field = [self existingFieldOnType:type withName:name];
+                                 if (!field) {
+                                     field = [RecipientTypeField insertInManagedObjectContext:self.managedObjectContext];
+                                     [field setName:name];
+                                     [field setFieldForType:type];
+                                 }
+                             }
 							 return field;
 						 }
 						 valueGetter:^AllowedTypeFieldValue *(RecipientTypeField *field, NSString *code) {
@@ -106,7 +148,10 @@
 								 [value setCode:code];
 								 [value setValueForField:field];
 							 }
-                             value.sortOrder = @(allowedValuesOrdinal);
+                             if(![value.sortOrder isEqualToNumber:@(allowedValuesOrdinal)])
+                             {
+                                 value.sortOrder = @(allowedValuesOrdinal);
+                             }
                              allowedValuesOrdinal++;
 							 return value;
 						 }
@@ -123,10 +168,8 @@
 
 - (RecipientTypeField *)existingFieldOnType:(RecipientType *)type withName:(NSString *)name
 {
-    NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"fieldForType = %@", type];
     NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"name = %@", name];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[typePredicate, namePredicate]];
-    return [self fetchEntityNamed:[RecipientTypeField entityName] withPredicate:predicate];
+    return [[type.fields filteredOrderedSetUsingPredicate:namePredicate] lastObject];
 }
 
 - (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field

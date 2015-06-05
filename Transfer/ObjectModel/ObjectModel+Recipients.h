@@ -15,7 +15,7 @@
 
 - (NSArray *)allUserRecipientsForDisplay;
 - (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)data;
-- (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)data hideCreted:(BOOL)hideCreated;
+- (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)data hideCreated:(BOOL)hideCreated;
 - (Recipient *)createOrUpdatePayInMethodRecipientWithData:(NSDictionary *)data;
 - (Recipient *)createRecipient;
 - (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency;
