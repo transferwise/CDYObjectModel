@@ -14,6 +14,6 @@
 - (id)init __attribute__((unavailable("init unavailable, use sharedInstance")));
 + (CurrencyLoader *)sharedInstanceWithObjectModel:(ObjectModel *)objectModel;
 
-- (void)getCurrencieWithSuccessBlock:(CurrencyBlock)successBlock;
+- (void)getCurrenciesWithSuccessBlock:(CurrencyBlock)successBlock;
 
 @end

@@ -42,6 +42,8 @@ touchIDHost:(UIViewController*)touchIdHost;
 										 objectModel:(ObjectModel *)objectModel
 									  successHandler:(TRWActionBlock)successBlock;
 
++ (void)revokeOauthAccessForProvider:(NSString*)provider completionBlock:(void (^)(void))completionBlock;
+
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller
 										 objectModel:(ObjectModel*)objectModel;
 

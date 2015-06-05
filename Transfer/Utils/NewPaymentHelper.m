@@ -170,7 +170,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
                     [payment setIsFixedAmountValue:result.isFixedTargetPayment];
                     [payment setRecipient:recipient];
                     [payment setProfileUsed:profile];
-                    payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[objectModel recipientTypesWithCodes:listOfRecipientTypeCodes]];
+                    payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[objectModel recipientTypesWithCodes:listOfRecipientTypeCodes includeHidden:NO]];
                     
                     successBlock(payment);
                     
@@ -179,7 +179,7 @@ NSString *const NewTransferSourceCurrencyCodeKey = @"SourceCurrencyCode";
         };
 		
 		CurrencyLoader *loader = [CurrencyLoader sharedInstanceWithObjectModel:objectModel];
-		[loader getCurrencieWithSuccessBlock:^(NSError *error) {
+		[loader getCurrenciesWithSuccessBlock:^(NSError *error) {
 			weakSelf.currentOperation = nil;
 			if (error) {
 				[weakSelf reportFailure:failureBlock error:[NSError errorWithDomain:NewTransferErrorDomain code:CurrenciesOperationFailed userInfo:@{NewTransferNetworkOperationErrorKey:error}]];

@@ -167,8 +167,6 @@ vos amis sur TransferWise";
 "identification.ssn.generic.error" = "Erreur de validation du Social security number. Veuillez fournir une piece d'identité.";
 
 
-
-
 "introduction.currencies.retrieve.error.message" = "Impossible de téléchargé la liste des monnaies";
 "introduction.currencies.retrieve.error.title" = "Erreure liée aux monnaies";
 "introduction.calculation.error.title" = "Calculation avortée";
@@ -177,11 +175,14 @@ vos amis sur TransferWise";
 "introduction.login.section.title" = "Déja un utilisateur?";
 "introduction.savings.receive.message.base" = "Vous obtiendrez %@ de plus qu'avec votre banque";
 "introduction.savings.pay.message.base" = "Vous économisez %@ par rapport a votre banque";
-"introduction.savings.message.part1" = "Vous économisez";
-"introduction.savings.message.part1.ipad" = "Vous économisez";
-"introduction.savings.message.part2" = "avec TransferWise";
-"introduction.savings.message.part2.ipad" = "par rapport à votre banque ";
-"introduction.savings.message.part2.no.fee" = "par rapport à votre banque que vous avez gagné un transfert gratuit";
+"introduction.savings.message.iphone4.part1" = "Vous économisez";
+"introduction.savings.message.part1.format" = "Taux actuel: %@\nCoût: %@";
+"introduction.savings.message.part1.format.ipad" = "Taux actuel: %@ Coût: %@";
+"introduction.savings.message.part1.format.no.fee" = "Le taux actuel est %@.\nCe transfert est gratuit.";
+"introduction.savings.message.part1.format.no.fee.ipad" = "Le taux actuel est %@. Ce transfert est gratuit.";
+"introduction.savings.message.part2.format" = "Vous économisez\n%@";
+"introduction.savings.message.versus" = "avec TransferWise";
+"introduction.savings.message.versus.ipad" = "par rapport à votre banque ";
 "introduction.savings.message.how" = "Voir explication";
 "introduction.savings.message.how.ipad" = "Voir explication";
 "introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.
@@ -402,7 +403,9 @@ Nous vous rembourserons l'argent non utilisé après le transfert.";
 "settings.row.about" = "A propos";
 "settings.row.touchid" = "Paramètres Touch ID";
 "settings.row.send.as.business" = "Envoyer en tant qu'entreprise";
-
+"settings.row.google" = "Paramètres Google";
+"settings.google.alert.title" = "Google";
+"settings.google.alert.text" = "Voulez-vous dissocier votre compte Google et vous déconnecter?";
 
 "sign.up.controller.creating.message" = "Création du compte...";
 "sign.up.controller.signup.error.message" = "Erreur de création du compte";
@@ -476,11 +479,11 @@ C'est irréversible.";
 "upload.money.done.button.title" = "J'ai fait ce virement";
 "upload.money.cancel.button.title" = "Annuler";
 "upload.money.our.address.label" = "Notre adresse: %@";
-"upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit.";
-"upload.money.header.label.EUR" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous.";
+"upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit. Uniquement depuis votre compte.";
+"upload.money.header.label.EUR" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. Uniquement depuis votre compte.";
 "upload.money.header.label.USD.swift" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. (depuis votre compte uniquement)";
 "upload.money.header.label.USD.wire" = "Seulement si vous disposez d'un compte domestique américain, transférez %@ sur le compte américain de Transferwise ci-dessous. Uniquement depuis votre compte. Nous n'acceptons pas les cheques et le cash";
-"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte Transferwise ci-dessous.";
+"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte Transferwise ci-dessous. Uniquement depuis votre compte.";
 "upload.money.header.label.exactly" = "éxactement %@";
 "upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone euro ne coûtent pas plus cher qu'un transfert local.";
 "upload.money.iban.title" = "IBAN";
@@ -773,7 +776,6 @@ but you haven't shared it with us on Facebook.";
 "transfertime.default" = "Cela prend généralement 1 jour ouvré";
 "transfertime.EUR.REGULAR" = "Cela prend généralement 1-2 jours ouvrés";
 "transfertime.GBP.REGULAR" = "Cela prend généralement quelques heures ouvrées";
-"transfertime.USD." = "Cela peut prendre 5 jours ouvrés";
 
 
 "upload.money.bankname.title" = "Nom de la banque";
@@ -800,3 +802,4 @@ vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
 
 "field.optional.suffix" = " (Optionnel)";
 
+"confirmation.date.format" = "EEEE dd/MM/yyyy 'à' hh:mm";

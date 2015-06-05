@@ -44,6 +44,7 @@
 #import "ReferralsCoordinator.h"
 #import <FBSDKAppEvents.h>
 #import "FacebookHelper.h"
+#import <AFNetworking.h>
 
 @interface AuthenticationHelper ()
 
@@ -235,22 +236,28 @@
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
-				BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
-				[weakSelf logUserIn:token
-							  email:email
-					   successBlock:^{
-						   [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
-						   NSString *referralToken = [ReferralsCoordinator referralToken];
-						   if(referralToken)
-						   {
-							   [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
-						   }
-						   successBlock();
-					   }
-								hud:hud
-						objectModel:objectModel
-		   waitForDetailsCompletion:waitForDetailsCompletion];
-			}];
+                BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
+                [weakSelf logUserIn:token
+                              email:email
+                       successBlock:^{
+                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
+                           [objectModel performBlock:^{
+                               User* loggedInUser = [objectModel currentUser];
+                               loggedInUser.authenticationProvider = provider;
+                               [objectModel saveContext];
+                           }];
+                           
+                           NSString *referralToken = [ReferralsCoordinator referralToken];
+                           if(referralToken)
+                           {
+                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+                           }
+                           successBlock();
+                       }
+                                hud:hud
+                        objectModel:objectModel
+           waitForDetailsCompletion:waitForDetailsCompletion];
+            }];
 		}
 		//handle email error for Facebook
 		else if ([provider isEqualToString:FacebookOAuthServiceName] && [weakSelf isEmailAddressMissing:error])
@@ -428,6 +435,42 @@
 		[alertView show];
 	}
     [self deRegisterForOauthNotifications];
+}
+
+#pragma mark - oauth revoke
+
++ (void)revokeOauthAccessForProvider:(NSString*)provider completionBlock:(void (^)(void))completionBlock
+{
+    if([@"google" isEqualToString:[provider lowercaseString]])
+    {
+        NXOAuth2Account* account = [[[NXOAuth2AccountStore sharedStore] accounts] firstObject];
+        if(account)
+        {
+            NSURL *revokeUrl = [NSURL URLWithString:[NSString stringWithFormat:TRWGoogleRevokeUrlFormat,AFQueryStringFromParametersWithEncoding(@{@"token":account.accessToken.accessToken}, NSUTF8StringEncoding)]];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:revokeUrl];
+            AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if(completionBlock)
+                {
+                    completionBlock();
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                //Fail silently
+                if(completionBlock)
+                {
+                    completionBlock();
+                }
+            }];
+            [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+            [[[TransferwiseClient sharedClient] operationQueue] addOperation:requestOperation];
+            return;
+        }
+    }
+    
+    if(completionBlock)
+    {
+        completionBlock();
+    }
 }
 
 #pragma mark - Logout
