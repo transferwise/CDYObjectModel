@@ -957,6 +957,15 @@
 		4723EA341975644A00B4345F /* RedRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA321975644A00B4345F /* RedRoundedButton.m */; };
 		4723EA3719756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
 		4723EA3819756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
+		472523301B219B57003AC7A6 /* AskEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4725232D1B219B57003AC7A6 /* AskEmailViewController.m */; };
+		472523311B219B57003AC7A6 /* AskEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4725232D1B219B57003AC7A6 /* AskEmailViewController.m */; };
+		472523321B219B57003AC7A6 /* AskEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4725232D1B219B57003AC7A6 /* AskEmailViewController.m */; };
+		472523331B219B57003AC7A6 /* AskEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4725232E1B219B57003AC7A6 /* AskEmailViewController.xib */; };
+		472523341B219B57003AC7A6 /* AskEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4725232E1B219B57003AC7A6 /* AskEmailViewController.xib */; };
+		472523351B219B57003AC7A6 /* AskEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4725232E1B219B57003AC7A6 /* AskEmailViewController.xib */; };
+		472523361B219B57003AC7A6 /* AskEmailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4725232F1B219B57003AC7A6 /* AskEmailViewController~ipad.xib */; };
+		472523371B219B57003AC7A6 /* AskEmailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4725232F1B219B57003AC7A6 /* AskEmailViewController~ipad.xib */; };
+		472523381B219B57003AC7A6 /* AskEmailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4725232F1B219B57003AC7A6 /* AskEmailViewController~ipad.xib */; };
 		472915341AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
 		472915351AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
 		472915361AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
@@ -1956,6 +1965,10 @@
 		4723EA321975644A00B4345F /* RedRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedRoundedButton.m; path = Views/RedRoundedButton.m; sourceTree = "<group>"; };
 		4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundedButtonWithInsets.h; path = Views/RoundedButtonWithInsets.h; sourceTree = "<group>"; };
 		4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundedButtonWithInsets.m; path = Views/RoundedButtonWithInsets.m; sourceTree = "<group>"; };
+		4725232C1B219B57003AC7A6 /* AskEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskEmailViewController.h; sourceTree = "<group>"; };
+		4725232D1B219B57003AC7A6 /* AskEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskEmailViewController.m; sourceTree = "<group>"; };
+		4725232E1B219B57003AC7A6 /* AskEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskEmailViewController.xib; sourceTree = "<group>"; };
+		4725232F1B219B57003AC7A6 /* AskEmailViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AskEmailViewController~ipad.xib"; sourceTree = "<group>"; };
 		472915321AE549EA00301260 /* PushNotificationDispather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationDispather.h; sourceTree = "<group>"; };
 		472915331AE549EA00301260 /* PushNotificationDispather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationDispather.m; sourceTree = "<group>"; };
 		472D5640198FE98500257BB8 /* PersonalPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPaymentProfileViewController.h; sourceTree = "<group>"; };
@@ -3569,6 +3582,10 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				4725232C1B219B57003AC7A6 /* AskEmailViewController.h */,
+				4725232D1B219B57003AC7A6 /* AskEmailViewController.m */,
+				4725232E1B219B57003AC7A6 /* AskEmailViewController.xib */,
+				4725232F1B219B57003AC7A6 /* AskEmailViewController~ipad.xib */,
 				477319F01A1B62BB00660770 /* AchDetailsViewController.h */,
 				477319F11A1B62BB00660770 /* AchDetailsViewController.m */,
 				477319F21A1B62BB00660770 /* AchDetailsViewController.xib */,
@@ -3968,6 +3985,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				388E5B141A5A949500AF6EB9 /* TransferDetailsViewController.xib in Resources */,
+				472523351B219B57003AC7A6 /* AskEmailViewController.xib in Resources */,
 				388E5B151A5A949500AF6EB9 /* TransferDetailsViewController~ipad.xib in Resources */,
 				388E5B161A5A949500AF6EB9 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				388E5B171A5A949500AF6EB9 /* CurrencyCell~ipad.xib in Resources */,
@@ -4100,6 +4118,7 @@
 				388E5B8E1A5A949500AF6EB9 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				388E5B901A5A949500AF6EB9 /* TransferWaitingViewController~ipad.xib in Resources */,
 				388E5B911A5A949500AF6EB9 /* intro.plist in Resources */,
+				472523381B219B57003AC7A6 /* AskEmailViewController~ipad.xib in Resources */,
 				388E5B921A5A949500AF6EB9 /* DateEntryCell~ipad.xib in Resources */,
 				388E5B931A5A949500AF6EB9 /* ResetPasswordViewController~ipad.xib in Resources */,
 				388E5B941A5A949500AF6EB9 /* ClaimAccountViewController.xib in Resources */,
@@ -4138,6 +4157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479B6930194878EE001FA4FE /* TransferDetailsViewController.xib in Resources */,
+				472523341B219B57003AC7A6 /* AskEmailViewController.xib in Resources */,
 				479B6931194878EE001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
 				38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
@@ -4270,6 +4290,7 @@
 				38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				385AC117198FE5500088DCD6 /* intro.plist in Resources */,
+				472523371B219B57003AC7A6 /* AskEmailViewController~ipad.xib in Resources */,
 				47971C62199A3C1C0018FDA8 /* DateEntryCell~ipad.xib in Resources */,
 				4723EA211974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */,
 				EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */,
@@ -4301,6 +4322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
+				472523331B219B57003AC7A6 /* AskEmailViewController.xib in Resources */,
 				47F84D6D198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
 				3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
@@ -4433,6 +4455,7 @@
 				BB29BD49173CD30D0016A6E9 /* BankTransferViewController.xib in Resources */,
 				47AC3F9B1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
+				472523361B219B57003AC7A6 /* AskEmailViewController~ipad.xib in Resources */,
 				38B52FA0199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
@@ -4990,6 +5013,7 @@
 				388E5ADC1A5A949500AF6EB9 /* SwitchCell.m in Sources */,
 				388E5ADD1A5A949500AF6EB9 /* NSMutableAttributedString+Presentation.m in Sources */,
 				388E5ADE1A5A949500AF6EB9 /* StartPaymentButton.m in Sources */,
+				472523321B219B57003AC7A6 /* AskEmailViewController.m in Sources */,
 				388E5ADF1A5A949500AF6EB9 /* ObjectModel+Currencies.m in Sources */,
 				388E5AE01A5A949500AF6EB9 /* ObjectModel+CurrencyPairs.m in Sources */,
 				388E5AE11A5A949500AF6EB9 /* SupportCoordinator.m in Sources */,
@@ -5280,6 +5304,7 @@
 				38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				389F6804198FC1C6006CF1F6 /* _PayInMethod.m in Sources */,
+				472523311B219B57003AC7A6 /* AskEmailViewController.m in Sources */,
 				474D1AA71951A500008BC7A7 /* GradientButton.m in Sources */,
 				47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */,
 				38B0930A1951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
@@ -5614,6 +5639,7 @@
 				38B093171951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
 				389F6803198FC1C6006CF1F6 /* _PayInMethod.m in Sources */,
 				4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */,
+				472523301B219B57003AC7A6 /* AskEmailViewController.m in Sources */,
 				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
 				47B3864A1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */,
 				3893A1C31AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */,
