@@ -6096,7 +6096,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f8611e6a-e8a2-44fb-a4ee-9072d624372f";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "e5077026-0ad8-4e3d-8f45-c96741089431";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

@@ -253,8 +253,9 @@
 			}];
 		}
 		//handle email error for Facebook
-		else if ([provider isEqualToString:FacebookOAuthServiceName] && error)
+		else if ([provider isEqualToString:FacebookOAuthServiceName] && [weakSelf isEmailAddressMissing:error])
 		{
+			[hud hide];
 			FacebookHelper *fbHelper = [[FacebookHelper alloc] init];
 			[fbHelper getUserEmailWithResultBlock:^(NSString *email) {
 				[weakSelf performOAuthLoginWithToken:token
@@ -441,7 +442,8 @@
 			PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
 																							 objectModel:objectModel];
 			[pushHelper handleLoggingOut];			
-            [objectModel deleteObject:objectModel.currentUser];
+            [objectModel deleteObject:objectModel.currentUser];			
+			
             dispatch_async(dispatch_get_main_queue(), ^{
                 if([Credentials userLoggedIn])
                 {
@@ -493,8 +495,14 @@
 	}
 									   cancelBlock:^{
 										   //do something when FB login is cancelled
-									   }
-							  navigationController:navigationController];
+									   }];
+}
+
+- (BOOL)isEmailAddressMissing:(NSError *)error
+{
+	//102 is the "registration email not found" error code which
+	//it signifies the fact that user hasn't given us access to his/her email on FB
+	return [error isTransferwiseError] && [error containsTwCode:@"102"];
 }
 
 #pragma mark - Helpers

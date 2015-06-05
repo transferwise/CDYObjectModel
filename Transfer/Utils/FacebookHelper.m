@@ -20,7 +20,6 @@
 
 - (void)performFacebookLoginWithSuccessBlock:(FacebookLoginSuccessBlock)successBlock
 								 cancelBlock:(TRWActionBlock)cancelBlock
-						navigationController:(UINavigationController *)navigationController
 {
 	
 	//flag up that we have used FB
@@ -32,23 +31,20 @@
 	{
 		//if we have an existing account, try to use that
 		[self handleAccessTokenWithSuccessBlock:successBlock
-									 isExisting:YES
-						   navigationController:navigationController];
+									 isExisting:YES];
 	}
 	else
 	{
 		//do standard auth
 		[self doFacebookLoginWithSuccessBlock:successBlock
 								  cancelBlock:cancelBlock
-								   isExisting:NO
-						 navigationController:navigationController];
+								   isExisting:NO];
 	}
 }
 
 - (void)doFacebookLoginWithSuccessBlock:(FacebookLoginSuccessBlock)successBlock
 							cancelBlock:(TRWActionBlock)cancelBlock
 							 isExisting:(BOOL)isExisting
-				   navigationController:(UINavigationController *)navigationController
 {
 	FBSDKLoginManager *manager = [[FBSDKLoginManager alloc] init];
 	[manager logInWithReadPermissions:@[FacebookOAuthEmailScope, FacebookOAuthProfileScope]
@@ -70,8 +66,7 @@
 								  else
 								  {
 									  [self handleAccessTokenWithSuccessBlock:successBlock
-																   isExisting:isExisting
-														 navigationController:navigationController];
+																   isExisting:isExisting];
 								  }
 							  }];
 }
@@ -80,7 +75,6 @@
 //Try getting email, one way or the other and succeed or fail
 - (void)handleAccessTokenWithSuccessBlock:(FacebookLoginSuccessBlock)successBlock
 							   isExisting:(BOOL)isExisting
-					 navigationController:(UINavigationController *)navigationController
 {
 	if ([FBSDKAccessToken currentAccessToken])
 	{

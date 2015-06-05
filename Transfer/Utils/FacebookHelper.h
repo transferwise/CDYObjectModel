@@ -14,8 +14,7 @@ typedef void (^FacebookLoginSuccessBlock)(NSString *accessToken, BOOL isExisting
 @interface FacebookHelper : NSObject
 
 - (void)performFacebookLoginWithSuccessBlock:(FacebookLoginSuccessBlock)successBlock
-								 cancelBlock:(TRWActionBlock)cancelBlock
-						navigationController:(UINavigationController *)navigationController;
+								 cancelBlock:(TRWActionBlock)cancelBlock;
 
 - (void)getUserEmailWithResultBlock:(void(^)(NSString * email))resultBlock
 			   navigationController:(UINavigationController *)navigationController;
