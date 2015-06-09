@@ -8,20 +8,24 @@
 
 #import "PersonLookupWrapper.h"
 
-@interface PhoneLookupWrapper : PersonLookupWrapper
+@interface PhoneEmailLookupWrapper : PersonLookupWrapper
 
 @property (nonatomic, readonly) NSArray* phones;
 
 - (instancetype)initWithRecordId:(ABRecordID)recordId
 					   firstname:(NSString *)first
 						lastName:(NSString *)last
-						  phones:(NSArray *)phones;
+						  phones:(NSArray *)phones
+						  emails:(NSArray *)emails;
+
 - (instancetype)initWithManagedObjectId:(NSManagedObjectID *)objectId
 							  firstname:(NSString *)first
 							   lastName:(NSString *)last
-								 phones:(NSArray *)phones;
+								 phones:(NSArray *)phones
+								 emails:(NSArray *)emails;
 
 - (BOOL)hasPhonesWithDifferentCountryCodes;
 - (BOOL)hasPhoneWithMatchingCountryCode:(NSString *)sourcePhone;
+- (BOOL)hasPhoneAndEmailFromDifferentCountries;
 
 @end
