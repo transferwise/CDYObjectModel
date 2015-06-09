@@ -101,22 +101,22 @@ static NSDictionary *knownPrefixesAndEmails;
 		return NO;
 	}
 	
-	for (NSString* phone in self.phones)
+	return [self hasPhoneWithPrefix:sourcePrefix];
+}
+
+- (BOOL)hasPhoneAndEmailFromDifferentCountries
+{
+	NSDictionary *dict = [[self class] knownPrefixesAndEmails];
+	
+	for (NSString *prefix in [dict allKeys])
 	{
-		NSString* prefix = [self getCountryCode:phone];
-		
-		if ([prefix isEqualToString:sourcePrefix])
+		if ([self hasPhoneWithPrefix:prefix] && ![self hasEmailWithSuffix:dict[prefix]])
 		{
 			return YES;
 		}
 	}
 	
 	return NO;
-}
-
-- (BOOL)hasPhoneAndEmailFromDifferentCountries
-{
-	
 }
 
 #pragma mark - Helpers
@@ -168,6 +168,34 @@ static NSDictionary *knownPrefixesAndEmails;
 	}
 	
 	return _regex;
+}
+
+- (BOOL)hasPhoneWithPrefix:(NSString *)sourcePrefix
+{
+	for (NSString* phone in self.phones)
+	{
+		NSString* prefix = [self getCountryCode:phone];
+		
+		if ([prefix isEqualToString:sourcePrefix])
+		{
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
+- (BOOL)hasEmailWithSuffix:(NSString *)sourceSuffix
+{
+	for (NSString* email in self.emails)
+	{
+		if ([email hasSuffix:sourceSuffix])
+		{
+			return YES;
+		}
+	}
+	
+	return NO;
 }
 
 @end

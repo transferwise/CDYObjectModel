@@ -276,11 +276,13 @@
 							  NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(entry, kABPersonFirstNameProperty);
 							  NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(entry, kABPersonLastNameProperty);
 							  NSArray *phones = [self getABMultivalueProperty:entry property:kABPersonPhoneProperty];
+							  NSArray *emails = [self getABMultivalueProperty:entry property:kABPersonEmailProperty];
 							  
 							  PhoneEmailLookupWrapper *wrapper = [[PhoneEmailLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(entry)
-																							   firstname:firstname
-																								lastName:lastName
-																								  phones:phones];
+																										 firstname:firstname
+																										  lastName:lastName
+																											phones:phones
+																											emails:emails];
 							  if(wrapper)
 							  {
 								  [result addObject:wrapper];
