@@ -100,7 +100,8 @@
 }
 
 
-- (void)loadProfileImagesWithUser:(User *)user requestAccess:(BOOL)requestAccess
+- (void)loadProfileImagesWithUser:(User *)user
+					requestAccess:(BOOL)requestAccess
 {
     AddressBookManager *manager = [[AddressBookManager alloc] init];
     
