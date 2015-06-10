@@ -117,8 +117,9 @@
                 //get profiles having pics, at least 2 numbers and of those 1 has the same country code
                 for (PhoneEmailLookupWrapper *wrapper in workArray)
                 {
-                    if ([wrapper hasPhonesWithDifferentCountryCodes]
+                    if (([wrapper hasPhonesWithDifferentCountryCodes]
                         && [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
+						|| [wrapper hasPhoneAndEmailFromDifferentCountries])
                     {
                         totalCount++;
                         [options addObject:wrapper];
