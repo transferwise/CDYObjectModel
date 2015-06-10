@@ -114,8 +114,8 @@ static NSDictionary *knownPrefixesAndEmails;
 		if (self.phones && self.emails
 			//and the phone has the known country code prefix we are currently interested in
 			&& [self hasPhoneWithPrefix:[NSString stringWithFormat:@"%@%@", @"+", prefix]]
-			//and the email does not have the same known country domain
-			&& (![self hasEmailWithSuffix:dict[prefix]]
+			//and we are not dealing with the use and the email does not have the same known country domain
+			&& ((![prefix isEqualToString:@"1"] && ![self hasEmailWithSuffix:dict[prefix]])
 				//or we are dealing with a us number and there is an email that has a two letter country domain
 				  || ([prefix isEqualToString:@"1"] && [self hasTwoLetterDomainEmail:dict[prefix]])))
 		{
@@ -132,7 +132,7 @@ static NSDictionary *knownPrefixesAndEmails;
 	if (!knownPrefixesAndEmails)
 	{
 		knownPrefixesAndEmails = @{@"44": @"uk",
-								   @"1": @"",
+								   @"1": @"us",
 								   @"33": @"fr",
 								   @"49": @"de",
 								   @"91": @"in",
