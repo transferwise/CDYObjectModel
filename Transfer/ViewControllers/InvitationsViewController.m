@@ -119,8 +119,7 @@
                 for (PhoneEmailLookupWrapper *wrapper in workArray)
                 {
                     if (([wrapper hasPhonesWithDifferentCountryCodes]
-                        && [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
-						|| [wrapper hasPhoneAndEmailFromDifferentCountries])
+                        && [wrapper hasPhoneWithMatchingCountryCode:ownNumber]))
                     {
                         totalCount++;
                         [options addObject:wrapper];
@@ -134,18 +133,21 @@
             {
                 NSMutableOrderedSet *selectedOptions = [NSMutableOrderedSet orderedSetWithOrderedSet:options];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self setProfileImagesFromSet:selectedOptions addressBookManager:manager];
+                    [self setProfileImagesFromSet:selectedOptions
+							   addressBookManager:manager];
                 });
                 
                 didSetImages = YES;
             }
             
             //if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
+			//also try to find profiles with phones/emails in different known countries
             if (options.count < self.profilePictures.count)
             {
                 for (PhoneEmailLookupWrapper *wrapper in workArray)
                 {
-                    if ([wrapper hasPhonesWithDifferentCountryCodes])
+                    if ([wrapper hasPhonesWithDifferentCountryCodes]
+						|| [wrapper hasPhoneAndEmailFromDifferentCountries])
                     {
                         totalCount++;
                         if(!didSetImages)
@@ -156,18 +158,20 @@
                 }
             }
             
-            if(! didSetImages)
+            if(!didSetImages)
             {
                 NSMutableOrderedSet *selectedOptions = [NSMutableOrderedSet orderedSetWithOrderedSet:options];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self setProfileImagesFromSet:selectedOptions addressBookManager:manager];
+                    [self setProfileImagesFromSet:selectedOptions
+							   addressBookManager:manager];
                 });
-                
             }
             
-            if(totalCount >0)
+            if(totalCount > 0)
             {
-                [[GoogleAnalytics sharedInstance] sendEvent:GAExpatsfoundinab category:GACategoryRecipient label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAExpatsfoundinab
+												   category:GACategoryRecipient
+													  label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
             }
             
         });

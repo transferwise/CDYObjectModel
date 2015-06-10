@@ -110,7 +110,14 @@ static NSDictionary *knownPrefixesAndEmails;
 	
 	for (NSString *prefix in [dict allKeys])
 	{
-		if ([self hasPhoneWithPrefix:prefix] && ![self hasEmailWithSuffix:dict[prefix]])
+		//at least one phone and one email is present
+		if (self.phones && self.emails
+			//and the phone has the known country code prefix we are currently interested in
+			&& [self hasPhoneWithPrefix:[NSString stringWithFormat:@"%@%@", @"+", prefix]]
+			//and the email does not have the same known country domain
+			&& (![self hasEmailWithSuffix:dict[prefix]]
+				//or we are dealing with a us number and there is an email that has a two letter country domain
+				  || ([prefix isEqualToString:@"1"] && [self hasTwoLetterDomainEmail:dict[prefix]])))
 		{
 			return YES;
 		}
@@ -125,7 +132,7 @@ static NSDictionary *knownPrefixesAndEmails;
 	if (!knownPrefixesAndEmails)
 	{
 		knownPrefixesAndEmails = @{@"44": @"uk",
-								   @"1": @"us",
+								   @"1": @"",
 								   @"33": @"fr",
 								   @"49": @"de",
 								   @"91": @"in",
@@ -193,6 +200,31 @@ static NSDictionary *knownPrefixesAndEmails;
 		{
 			return YES;
 		}
+	}
+	
+	return NO;
+}
+
+- (BOOL)hasTwoLetterDomainEmail:(NSString *)sourceSuffix
+{
+	for (NSString* email in self.emails)
+	{
+		if([email hasSuffix:sourceSuffix])
+		{
+			continue;
+		}
+		
+		NSRange dotRange = [email rangeOfString:@"."
+										options:NSBackwardsSearch];
+		
+		if (dotRange.location == NSNotFound)
+		{
+			continue;
+		}
+		
+		NSString *domain = [email substringFromIndex:dotRange.location + 1];
+		
+		return domain.length == 2;
 	}
 	
 	return NO;
