@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "AppDelegate.h"
 #import "ObjectModel.h"
@@ -236,7 +237,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	
 	[NanTracking setFbAppId:@"274548709260402"];
 	
-	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
+	[Fabric with:@[CrashlyticsKit]];
 	
 	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 	

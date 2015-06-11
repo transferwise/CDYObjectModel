@@ -35,6 +35,20 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>Generated</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>84bc4b5736898e3cfdb50d3d2c162c4f74480862</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>FacebookAppID</key>
 	<string>274548709260402</string>
 	<key>LSRequiresIPhoneOS</key>
