@@ -111,6 +111,7 @@ extern NSString *const GAWhatsNewScreen;
 extern NSString *const GAWireTransfer;
 extern NSString *const GAFBLoginError;
 extern NSString *const GAFBLoginNoEmail;
+extern NSString *const GAPushNotificationsPropmpted;
 
 //Mixpanel
 

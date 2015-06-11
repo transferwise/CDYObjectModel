@@ -12,6 +12,7 @@
 
 @interface CustomInfoViewController (Notifications)
 
-+(instancetype)notificationsCustomInfoWithName:(NSString*)recipientName objectModel:(ObjectModel*)objectModel;
++(instancetype)notificationsCustomInfoWithName:(NSString*)recipientName
+								   objectModel:(ObjectModel*)objectModel;
 
 @end
