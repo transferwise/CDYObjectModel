@@ -74,13 +74,15 @@
     __weak typeof(self) weakSelf = self;
     [self.objectModel performBlock:^{
         [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (IPAD)
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+            }
+        });
     }];
 	
-	if (IPAD)
-	{
-		[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-	}
-	else
+	if (!IPAD)
 	{
         UIViewController* controller;
         NSUInteger numberOfPayInMethods = [[self.payment enabledPayInMethods] count];
