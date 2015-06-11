@@ -110,6 +110,7 @@ NSString *const GAWhatsNewScreen = @"What's new screen";
 NSString *const GAWireTransfer = @"Wire transfer";
 NSString *const GAFBLoginError = @"FacebookLoginError";
 NSString *const GAFBLoginNoEmail = @"FacebookLoginNoEmail";
+NSString *const GAPushNotificationsPropmpted = @"AcceptedPushNotifications";
 
 // Mixpanel
 
