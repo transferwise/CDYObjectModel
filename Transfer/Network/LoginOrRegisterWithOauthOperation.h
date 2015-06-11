@@ -16,6 +16,7 @@
 - (id)init __attribute__((unavailable("init unavailable, use initWithProvider:token:objectModel:keepPendingPayment:")));
 + (LoginOrRegisterWithOauthOperation *)loginOrRegisterWithOauthOperationWithProvider:(NSString *)provider
 																			   token:(NSString *)token
+																			   email:(NSString *)email
 																		 objectModel:(ObjectModel *)objectModel
 																  keepPendingPayment:(BOOL)keepPendingPayment;
 

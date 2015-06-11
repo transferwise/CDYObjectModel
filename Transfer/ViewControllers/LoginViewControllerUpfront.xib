@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -11,6 +11,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="emailTextField" destination="Sqf-jN-fvd" id="pva-OL-Vn3"/>
+                <outlet property="facebookLoginButton" destination="Uqc-Ct-ZJ1" id="Jra-um-a78"/>
                 <outlet property="forgotPasswordLabel" destination="Gzj-xE-Yjr" id="ZWy-f1-Rwh"/>
                 <outlet property="googleLoginButton" destination="2Sf-8q-59z" id="BRf-2K-vsj"/>
                 <outlet property="loginButton" destination="uSj-Tb-62N" id="wrl-Rn-Dv8"/>
@@ -18,7 +19,6 @@
                 <outlet property="passwordTextField" destination="UJr-a0-Czd" id="dAI-mg-ysB"/>
                 <outlet property="touchIdButton" destination="cO2-eB-1cd" id="AwB-y1-fIc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="yahooLoginButton" destination="Uqc-Ct-ZJ1" id="gAu-Xp-nGd"/>
                 <outletCollection property="separatorHeights" destination="fek-HK-kQ5" id="jlE-zE-CeZ"/>
                 <outletCollection property="separatorHeights" destination="MaW-ap-Zmh" id="1yx-Gr-iqg"/>
             </connections>
@@ -96,13 +96,13 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Ct-ZJ1" userLabel="Yahoo Login Button" customClass="YahooButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Ct-ZJ1" userLabel="Facebook Login Button" customClass="FacebookButton">
                             <rect key="frame" x="160" y="211" width="160" height="55"/>
                             <state key="normal" title="Button">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="yahooLogInPressed:" destination="-1" eventType="touchUpInside" id="3tO-LF-T4a"/>
+                                <action selector="facebookLogInPressed:" destination="-1" eventType="touchUpInside" id="Q5M-9f-DTe"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sf-8q-59z" userLabel="Google Login Button" customClass="GoogleButton">

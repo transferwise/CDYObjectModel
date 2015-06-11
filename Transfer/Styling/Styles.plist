@@ -210,20 +210,20 @@
 				<key>color</key>
 				<string>ffffff</string>
 			</dict>
-			<key>Yahoo</key>
+			<key>Facebook</key>
 			<dict>
 				<key>color</key>
-				<string>6f399a</string>
+				<string>3B5998</string>
 			</dict>
-			<key>YahooHighlighted</key>
+			<key>FacebookHighlighted</key>
 			<dict>
 				<key>color</key>
-				<string>7a42a6</string>
+				<string>44619D</string>
 			</dict>
-			<key>YahooShadow</key>
+			<key>FacebookShadow</key>
 			<dict>
 				<key>color</key>
-				<string>5e3081</string>
+				<string>2C4271</string>
 			</dict>
 		</dict>
 		<key>font</key>
@@ -342,14 +342,14 @@
 			<key>bgStyle</key>
 			<string>Red</string>
 		</dict>
-		<key>yahooButton</key>
+		<key>FacebookButton</key>
 		<dict>
 			<key>fontStyle</key>
 			<string>medium.@{17,19}.white</string>
 			<key>highlightedBgStyle</key>
-			<string>YahooHighlighted</string>
+			<string>FacebookHighlighted</string>
 			<key>bgStyle</key>
-			<string>Yahoo</string>
+			<string>Facebook</string>
 		</dict>
 		<key>blueRoundedButton</key>
 		<dict>

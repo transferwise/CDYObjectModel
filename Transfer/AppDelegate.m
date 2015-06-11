@@ -37,6 +37,7 @@
 #import "PushNotificationsHelper.h"
 #import "Yozio.h"
 #import "ReferralsCoordinator.h"
+#import <FBSDKApplicationDelegate.h>
 
 @interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
 
@@ -124,7 +125,9 @@
 	
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
-	return YES;
+	
+	return [[FBSDKApplicationDelegate sharedInstance] application:application
+									didFinishLaunchingWithOptions:launchOptions];
 }
 
 //IOS_7
@@ -188,7 +191,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
-	[FBSDKSettings setAppID:@"274548709260402"];
     [FBSDKAppEvents activateApp];
 #endif
 
@@ -273,7 +275,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-	BOOL urlWasHandled = urlWasHandled = [Yozio handleDeeplink:url];
+	BOOL urlWasHandled = [Yozio handleDeeplink:url];
+	
+	if(!urlWasHandled)
+	{
+		urlWasHandled = [[FBSDKApplicationDelegate sharedInstance] application:application
+																	   openURL:url
+															 sourceApplication:sourceApplication
+																	annotation:annotation];
+	}
 	
 	if(!urlWasHandled)
 	{

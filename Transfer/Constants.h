@@ -63,6 +63,7 @@ extern NSString *const TRWReferralSourceKey;
 extern NSString *const TRWReferrerKey;
 extern NSString *const TRWGoogleLoginUsedKey;
 extern NSString *const TRWGoogleRevokeUrlFormat;
+extern NSString *const TRWFacebookLoginUsedKey;
 
 
 extern NSString *const TransferSandboxUsername;
@@ -123,6 +124,10 @@ extern NSString *const GoogleOAuthRedirectUrl;
 extern NSString *const GoogleOAuthServiceName;
 extern NSString *const GoogleOAuthEmailScope;
 extern NSString *const GoogleOAuthProfileScope;
+
+extern NSString *const FacebookOAuthServiceName;
+extern NSString *const FacebookOAuthEmailScope;
+extern NSString *const FacebookOAuthProfileScope;
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 

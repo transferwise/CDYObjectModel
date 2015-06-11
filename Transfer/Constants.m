@@ -73,6 +73,7 @@ NSString *const TRWReferralSourceKey = @"referralSource";
 NSString *const TRWReferrerKey = @"referralUser";
 NSString *const TRWGoogleLoginUsedKey = @"googleLoginUsed";
 NSString *const TRWGoogleRevokeUrlFormat = @"https://accounts.google.com/o/oauth2/revoke?%@";
+NSString *const TRWFacebookLoginUsedKey = @"facebookLoginUsed";
 
 #if DEV_VERSION
 NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";
@@ -90,3 +91,7 @@ NSString *const GoogleOAuthEmailScope = @"https://www.googleapis.com/auth/userin
 NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/plus.profile.emails.read";
 
 NSString *const kNavigationParamsPaymentId = @"NavigationPaymentId";
+
+NSString *const FacebookOAuthServiceName = @"Facebook";
+NSString *const FacebookOAuthEmailScope = @"email";
+NSString *const FacebookOAuthProfileScope = @"public_profile";

@@ -29,7 +29,7 @@
 			<string>Facebook</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb274548709260402</string>
+				<string>fb728076623889627</string>
 			</array>
 		</dict>
 		<dict>
@@ -60,7 +60,9 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>274548709260402</string>
+	<string>728076623889627</string>
+	<key>FacebookDisplayName</key>
+	<string>tw test app</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
