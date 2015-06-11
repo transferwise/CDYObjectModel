@@ -114,10 +114,8 @@ static NSDictionary *knownPrefixesAndEmails;
 		if (self.phones && self.emails
 			//and the phone has the known country code prefix we are currently interested in
 			&& [self hasPhoneWithPrefix:[NSString stringWithFormat:@"%@%@", @"+", prefix]]
-			//and we are not dealing with the use and the email does not have the same known country domain
-			&& ((![prefix isEqualToString:@"1"] && ![self hasEmailWithSuffix:dict[prefix]])
-				//or we are dealing with a us number and there is an email that has a two letter country domain
-				  || ([prefix isEqualToString:@"1"] && [self hasTwoLetterDomainEmail:dict[prefix]])))
+			//and the user has an email address that has a two letter domain and is not the same with the phone's country
+			&& [self hasTwoLetterDomainEmailExceptSource:dict[prefix]])
 		{
 			return YES;
 		}
@@ -192,20 +190,7 @@ static NSDictionary *knownPrefixesAndEmails;
 	return NO;
 }
 
-- (BOOL)hasEmailWithSuffix:(NSString *)sourceSuffix
-{
-	for (NSString* email in self.emails)
-	{
-		if ([email hasSuffix:sourceSuffix])
-		{
-			return YES;
-		}
-	}
-	
-	return NO;
-}
-
-- (BOOL)hasTwoLetterDomainEmail:(NSString *)sourceSuffix
+- (BOOL)hasTwoLetterDomainEmailExceptSource:(NSString *)sourceSuffix
 {
 	for (NSString* email in self.emails)
 	{
