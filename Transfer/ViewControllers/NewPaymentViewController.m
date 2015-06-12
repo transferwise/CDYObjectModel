@@ -77,7 +77,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *termsLabel;
 
-- (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *howButtonTopConstraint;

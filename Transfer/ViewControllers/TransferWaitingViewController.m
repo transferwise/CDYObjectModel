@@ -77,7 +77,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (IPAD)
             {
-                [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil userInfo:@{@"paymentId":self.payment.remoteId}];
             }
         });
     }];

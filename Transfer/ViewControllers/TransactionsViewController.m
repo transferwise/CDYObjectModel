@@ -97,7 +97,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [self setTitle:NSLocalizedString(@"transactions.controller.title", nil)];
 		
 		//Observe notification to remove selected payment for iPad
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList:) name:TRWMoveToPaymentsListNotification object:nil];
     }
     return self;
 }
@@ -150,7 +150,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
     
     [self.tableView reloadData];
-	
+    
     if(self.deeplinkPaymentID)
     {
         [self presentDeeplinkPayment];
@@ -262,7 +262,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	//set cancelling visible when scrolling
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
-	
+    
     return cell;
 }
 
@@ -278,17 +278,33 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewPayment];
 	[self removeCancellingFromCell];
 
-	self.lastSelectedPayment = payment;
-	[self showPayment:payment];
+    self.lastSelectedPayment = payment;
+    [self showPayment:payment];
+
 }
 
 #pragma mark - Payment List actions
-- (void)moveToPaymentsList
+- (void)moveToPaymentsList:(NSNotification*)note
 {
+    
+    MCLog(@"PAYMENT LIST AHOY!");
 	//cancel latest selection, we arrive here, because a new payment has been created.
 	self.lastSelectedPayment = nil;
 	self.refreshPaymentDetail = YES;
 	self.dontSelectPaymentOnce = YES;
+    
+    self.payments = [self.objectModel allPayments];
+    [self.tableView reloadData];
+    
+    NSNumber *paymentId = note.userInfo[@"paymentId"];
+    if(IPAD && paymentId)
+    {
+        NSArray* filtered = [self.payments filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"remoteId == %@", paymentId]];
+        if([filtered count] >0)
+        {
+            [self selectRowContainingPayment:[filtered lastObject]];
+        }
+    }
 }
 
 - (void)refreshPaymentsList
@@ -444,6 +460,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.tableView selectRowAtIndexPath:paymentIndexPath
 								animated:NO
 						  scrollPosition:UITableViewScrollPositionMiddle];
+    self.lastSelectedPayment = payment;
 }
 
 #pragma mark - ScrollView delegate

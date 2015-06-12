@@ -140,7 +140,7 @@ IB_DESIGNABLE
                     completion:^{
                         if(useCustomBackAction)
                         {
-                            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil userInfo:@{@"paymentId":self.payment.remoteId}];
                         }
                         else
                         {
@@ -150,7 +150,7 @@ IB_DESIGNABLE
         }
         else
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil userInfo:@{@"paymentId":self.payment.remoteId}] ;
         }
     }];
     

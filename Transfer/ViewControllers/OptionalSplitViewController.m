@@ -38,23 +38,26 @@
 			controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 		}
 		
+        UIViewController* fadeOut = self.presentedDetailController;
+        UIViewController* fadeIn = controller;
+        
 		[UIView animateWithDuration:0.3f
 						 animations:^{
-							 self.presentedDetailController.view.alpha = 0.f;
-							 [self.presentedDetailController.view removeFromSuperview];
-							 [self.presentedDetailController removeFromParentViewController];
+							 fadeOut.view.alpha = 0.f;
 							 
 							 if (controller)
 							 {
-                                 [controller willMoveToParentViewController:self];
-								 [self addChildViewController:controller];
-                                 [controller didMoveToParentViewController:self];
-								 [self.detailContainer addSubview:controller.view];
-								 controller.view.alpha = 1.f;
+                                 [fadeIn willMoveToParentViewController:self];
+								 [self addChildViewController:fadeIn];
+                                 [fadeIn didMoveToParentViewController:self];
+								 [self.detailContainer addSubview:fadeIn.view];
+								 fadeIn.view.alpha = 1.f;
 							 }
 						 }
 						 completion:^(BOOL finished){
-							 controller.view.opaque = YES;
+                             [fadeOut.view removeFromSuperview];
+                             [fadeOut removeFromParentViewController];
+							 fadeIn.view.opaque = YES;
 						 }];
 		
 		self.presentedDetailController = controller;
