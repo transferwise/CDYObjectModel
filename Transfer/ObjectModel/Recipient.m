@@ -93,8 +93,12 @@
     {
         data[@"email"] = self.email;
     }
-    for (TypeFieldValue *value in self.fieldValues) {
-        data[value.valueForField.name] = value.value;
+    for (TypeFieldValue *value in self.fieldValues)
+	{
+		if (value.value)
+		{
+			data[value.valueForField.name] = value.value;
+		}
     }
     if(self.hasAddress)
     {

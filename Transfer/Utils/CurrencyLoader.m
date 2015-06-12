@@ -8,6 +8,7 @@
 
 #import "CurrencyLoader.h"
 #import "TransferwiseOperation.h"
+#import "CurrencyPairsOperation.h"
 
 @interface CurrencyLoader ()
 
@@ -46,15 +47,20 @@
 }
 
 #pragma mark - Queue operation
-- (void)getCurrencieWithSuccessBlock:(CurrencyBlock)successBlock
+- (void)getCurrenciesWithSuccessBlock:(CurrencyBlock)successBlock
 {
 	dispatch_async(queue, ^{
 		CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
 		currenciesOperation.objectModel = self.objectModel;
 		[self setExecutedOperation:currenciesOperation];
+        __weak typeof(self) weakSelf = self;
 		[currenciesOperation setResultHandler:^(NSError* error)
 		 {
-			 successBlock(error);
+             [weakSelf setExecutedOperation:nil];
+             if(successBlock)
+             {
+                 successBlock(error);
+             }
 		 }];
 		[currenciesOperation execute];
 	});
