@@ -14,7 +14,6 @@
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "PersonalProfile.h"
-#import "QuickProfileValidationOperation.h"
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "UIView+Loading.h"
@@ -311,19 +310,6 @@ NSUInteger const kUserPersonalSection = 1;
     }];
 }
 
-- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation
-{
-    [operation setFirstName:[self.firstLastNameCell value]];
-    [operation setLastName:[self.firstLastNameCell secondValue]];
-    [operation setPhoneNumber:[self.phoneNumberCell value]];
-    [operation setAddressFirstLine:[self.addressCell value]];
-    [operation setPostCode:[self.zipCityCell value]];
-    [operation setCity:[self.zipCityCell secondValue]];
-    [operation setCountryCode:[self.countryCell value]];
-    [operation setDateOfBirth:[self.dateOfBirthCell value]];
-    [operation setState:self.stateCell.value];
-	[operation setOccupation:[self.occupationCell value]];
-}
 
 - (TextEntryCell *)includeOccupationCell:(BOOL)shouldInclude
 						  withCompletion:(SelectionCompletion)completion

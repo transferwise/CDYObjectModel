@@ -5,6 +5,7 @@
 
 extern const struct AllowedTypeFieldValueAttributes {
 	__unsafe_unretained NSString *code;
+	__unsafe_unretained NSString *sortOrder;
 	__unsafe_unretained NSString *title;
 } AllowedTypeFieldValueAttributes;
 
@@ -27,6 +28,14 @@ extern const struct AllowedTypeFieldValueRelationships {
 
 //- (BOOL)validateCode:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* sortOrder;
+
+@property (atomic) int16_t sortOrderValue;
+- (int16_t)sortOrderValue;
+- (void)setSortOrderValue:(int16_t)value_;
+
+//- (BOOL)validateSortOrder:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
@@ -41,6 +50,12 @@ extern const struct AllowedTypeFieldValueRelationships {
 
 - (NSString*)primitiveCode;
 - (void)setPrimitiveCode:(NSString*)value;
+
+- (NSNumber*)primitiveSortOrder;
+- (void)setPrimitiveSortOrder:(NSNumber*)value;
+
+- (int16_t)primitiveSortOrderValue;
+- (void)setPrimitiveSortOrderValue:(int16_t)value_;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
