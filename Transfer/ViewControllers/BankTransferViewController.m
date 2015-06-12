@@ -265,7 +265,7 @@
                 }
                 else
                 {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil userInfo:@{@"paymentId":self.payment.remoteId}];
                 }
             }
             else
@@ -290,7 +290,7 @@
     [CancelHelper cancelPayment:self.payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
         if(!error)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil userInfo:@{@"paymentId":self.payment.remoteId}];
         }
     } dontCancelBlock:nil];
 }
@@ -336,7 +336,7 @@
 
 -(void)dismissCompleted:(TransparentModalViewController *)dismissedController
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil userInfo:@{@"paymentId":self.payment.remoteId}];
 }
 @end
 
