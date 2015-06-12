@@ -564,8 +564,12 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 	[pushHelper handleDeviceRegistering];
     __weak typeof(self) weakSelf = self;
 	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
+		User *user = objectModel.currentUser;
+		
+		[[Mixpanel sharedInstance] identify:[NSString stringWithFormat:@"%ld", (long)user.deducedId]];
+		
 #if USE_APPSFLYER_EVENTS
-		[AppsFlyerTracker sharedTracker].customerUserID = objectModel.currentUser.pReference;
+		[AppsFlyerTracker sharedTracker].customerUserID = user.pReference;
 		[[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
 #endif
 		if (waitForDetailsCompletion)

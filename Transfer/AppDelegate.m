@@ -220,14 +220,17 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	
 #if DEV_VERSION
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
+	
+	//TODO: Remove this!!!
+	//[Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
 #else
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
     [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
     
     [Yozio initializeWithAppKey:@"6e774e8a-7d01-46c1-918a-ea053bb46dc9"
                    andSecretKey:@"dd39f3e4-54b3-42cc-a49a-67da6af61ac2"
-  andNewInstallMetaDataCallback: self
-    andDeepLinkMetaDataCallback: self];
+  andNewInstallMetaDataCallback:self
+    andDeepLinkMetaDataCallback:self];
     
 #endif
 	
