@@ -35,15 +35,6 @@ Scenario: Forgot Password
 	Then I wait and dismiss alert
 	And I wait to see "Your email"
 
-Scenario: Yahoo
-	Given I log out
-	And I am past the Welcome Screen
-	Then I touch the "Log in" button
-	And I wait a bit
-	Then I log in with Yahoo
-	Then I wait to see "Transfers list"
-	And I log out
-
 Scenario: Google
 	Given I log out
 	And I am past the Welcome Screen

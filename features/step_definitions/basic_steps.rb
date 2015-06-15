@@ -88,8 +88,6 @@ Given /^I enter (.*) into form field (.*)$/ do |value,key|
 		    	sleep(STEP_PAUSE)
 		    end
 			touch (query("pickerTableView view {text CONTAINS '#{value}'}"))
-			sleep(STEP_PAUSE)
-			touch (query("view:'DropdownCell' view {text CONTAINS '#{value}'}"))
 		else
 			touch(query("textFieldLabel {text CONTAINS '#{key}'}"))
   			keyboard_enter_text(value)
