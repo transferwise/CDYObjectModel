@@ -13,6 +13,7 @@
 #import "Mixpanel+Customisation.h"
 #import "Constants.h"
 #import "ReferralsCoordinator.h"
+#import "NSString+DeducedId.h"
 
 NSString *const kRegisterPath = @"/account/register";
 
@@ -61,6 +62,17 @@ NSString *const kRegisterPath = @"/account/register";
                 weakSelf.completionHandler(nil);
             }];
         }];
+		
+		//create alias for mixpanel
+		if (response[@"referenceCode"])
+		{
+			NSString *mixpanelId = [Mixpanel sharedInstance].distinctId;
+			
+			[[Mixpanel sharedInstance] createAlias:[response[@"referenceCode"] distinctId]
+									 forDistinctID:mixpanelId];
+			[[Mixpanel sharedInstance] identify:mixpanelId];
+		}
+		
         [[Mixpanel sharedInstance] track:MPUserregistered];
     }];
 
