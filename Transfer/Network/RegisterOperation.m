@@ -65,9 +65,9 @@ NSString *const kRegisterPath = @"/account/register";
         }];
 		
 		//create alias for mixpanel
-		if (response[@"referenceCode"])
+		if (response[@"pReference"])
 		{
-			[MixpanelIdentityHelper handleRegistration:[response[@"referenceCode"] deducedIdString]];
+			[MixpanelIdentityHelper handleRegistration:[response[@"pReference"] deducedIdString]];
 		}
 		
         [[Mixpanel sharedInstance] track:MPUserregistered];
