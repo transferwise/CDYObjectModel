@@ -883,6 +883,9 @@
 		38DDC2281B2F008F004D6E1E /* introB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38DDC2271B2F008F004D6E1E /* introB.plist */; };
 		38DDC2291B2F008F004D6E1E /* introB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38DDC2271B2F008F004D6E1E /* introB.plist */; };
 		38DDC22A1B2F008F004D6E1E /* introB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38DDC2271B2F008F004D6E1E /* introB.plist */; };
+		38DDC2321B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DDC2311B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m */; };
+		38DDC2331B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DDC2311B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m */; };
+		38DDC2341B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DDC2311B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
@@ -1927,6 +1930,8 @@
 		38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralsCoordinator.h; sourceTree = "<group>"; };
 		38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralsCoordinator.m; sourceTree = "<group>"; };
 		38DDC2271B2F008F004D6E1E /* introB.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = introB.plist; sourceTree = "<group>"; };
+		38DDC2301B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueRoundedSolidWhiteButton.h; path = Views/BlueRoundedSolidWhiteButton.h; sourceTree = "<group>"; };
+		38DDC2311B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlueRoundedSolidWhiteButton.m; path = Views/BlueRoundedSolidWhiteButton.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -2730,6 +2735,8 @@
 				47FAF35A195031E7004CE986 /* BlueButton.m */,
 				4723EA2D1975639E00B4345F /* BlueRoundedButton.h */,
 				4723EA2E1975639E00B4345F /* BlueRoundedButton.m */,
+				38DDC2301B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.h */,
+				38DDC2311B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m */,
 				474D1A9D19518073008BC7A7 /* ColoredButton.h */,
 				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
 				474D1AA41951A500008BC7A7 /* GradientButton.h */,
@@ -4842,6 +4849,7 @@
 				388E5A021A5A949500AF6EB9 /* UIButton+Skinning.m in Sources */,
 				388E5A031A5A949500AF6EB9 /* GreenButton.m in Sources */,
 				388E5A041A5A949500AF6EB9 /* WhiteRoundedButton.m in Sources */,
+				38DDC2341B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */,
 				388E5A051A5A949500AF6EB9 /* GrayButton.m in Sources */,
 				388E5A061A5A949500AF6EB9 /* InvitationsViewController.m in Sources */,
 				388E5A071A5A949500AF6EB9 /* RecipientCell.m in Sources */,
@@ -5302,6 +5310,7 @@
 				383FC0FB19AE1ABC00465FCA /* PersonLookupWrapper.m in Sources */,
 				EA31A16A17DDB29B00F937F7 /* BankTransferViewController.m in Sources */,
 				474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */,
+				38DDC2331B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */,
 				EA31A16B17DDB29B00F937F7 /* TextCell.m in Sources */,
 				38CB1F7819ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */,
 				EAD3647A17E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */,
@@ -5640,6 +5649,7 @@
 				EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */,
 				3840863119A2444000C837C2 /* PaymentCancelOperation.m in Sources */,
 				47FAF34E194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
+				38DDC2321B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */,
 				471CA004197FCB2200BCA3B4 /* TabbedHeaderViewController.m in Sources */,
 				389F684B198FC1C6006CF1F6 /* Setting.m in Sources */,
 				389F681B198FC1C6006CF1F6 /* BusinessProfile.m in Sources */,
