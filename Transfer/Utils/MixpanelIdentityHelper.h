@@ -12,5 +12,6 @@
 
 + (void)handleRegistration:(NSString *)userId;
 + (void)handleLogin:(NSString *)userId;
++ (void)handleLogout;
 
 @end

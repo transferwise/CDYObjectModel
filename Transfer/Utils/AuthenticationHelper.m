@@ -490,7 +490,8 @@
 			PushNotificationsHelper *pushHelper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
 																							 objectModel:objectModel];
 			[pushHelper handleLoggingOut];			
-            [objectModel deleteObject:objectModel.currentUser];			
+            [objectModel deleteObject:objectModel.currentUser];
+			[MixpanelIdentityHelper handleLogout];
 			
             dispatch_async(dispatch_get_main_queue(), ^{
                 if([Credentials userLoggedIn])

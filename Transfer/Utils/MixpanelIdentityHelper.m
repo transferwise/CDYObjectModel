@@ -17,12 +17,17 @@
 	
 	[[Mixpanel sharedInstance] createAlias:userId
 							 forDistinctID:mixpanelId];
-	[[Mixpanel sharedInstance] identify:mixpanelId];
+	[[Mixpanel sharedInstance] identify:userId];
 }
 
 + (void)handleLogin:(NSString *)userId
 {
 	[[Mixpanel sharedInstance] identify:userId];
+}
+
++ (void)handleLogout
+{
+	[[Mixpanel sharedInstance] reset];
 }
 
 @end
