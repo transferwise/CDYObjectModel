@@ -880,6 +880,9 @@
 		38CE6E191A27360300B39665 /* UITextField+CaretPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */; };
 		38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
 		38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
+		38DDC2281B2F008F004D6E1E /* introB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38DDC2271B2F008F004D6E1E /* introB.plist */; };
+		38DDC2291B2F008F004D6E1E /* introB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38DDC2271B2F008F004D6E1E /* introB.plist */; };
+		38DDC22A1B2F008F004D6E1E /* introB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38DDC2271B2F008F004D6E1E /* introB.plist */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
@@ -1917,6 +1920,7 @@
 		38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CaretPosition.m"; sourceTree = "<group>"; };
 		38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralsCoordinator.h; sourceTree = "<group>"; };
 		38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralsCoordinator.m; sourceTree = "<group>"; };
+		38DDC2271B2F008F004D6E1E /* introB.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = introB.plist; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -3357,6 +3361,7 @@
 				38C0394819E29CBB00555F65 /* GTM-TDZF76 */,
 				3831DCC319B764B900151A3D /* existingUserIntro.plist */,
 				385AC115198FE5500088DCD6 /* intro.plist */,
+				38DDC2271B2F008F004D6E1E /* introB.plist */,
 				385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */,
 				385AC10F198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf */,
 				EA84056817F0A40B00F44916 /* spinner.html */,
@@ -4085,6 +4090,7 @@
 				388E5B501A5A949500AF6EB9 /* ContactsViewController~ipad.xib in Resources */,
 				388E5B511A5A949500AF6EB9 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				380125B11AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */,
+				38DDC22A1B2F008F004D6E1E /* introB.plist in Resources */,
 				388E5B521A5A949500AF6EB9 /* SeeHowViewController.xib in Resources */,
 				388E5B531A5A949500AF6EB9 /* IntroViewController.xib in Resources */,
 				388E5B541A5A949500AF6EB9 /* CurrencyCell.xib in Resources */,
@@ -4259,6 +4265,7 @@
 				385A668E1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				380125B01AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */,
+				38DDC2291B2F008F004D6E1E /* introB.plist in Resources */,
 				383FC10D19AE1B8400465FCA /* SeeHowViewController.xib in Resources */,
 				EA0450D717EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */,
@@ -4426,6 +4433,7 @@
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
 				47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
 				380125AF1AE1254E004E5CA9 /* CustomInfo_TouchId~ipad.xib in Resources */,
+				38DDC2281B2F008F004D6E1E /* introB.plist in Resources */,
 				385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,

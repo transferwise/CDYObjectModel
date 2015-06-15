@@ -97,7 +97,19 @@
     
     NSMutableArray *screens = [NSMutableArray array];
 
-    self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.plistFilenameOverride?:@"intro" ofType:@"plist"]];
+    NSString *plistFileName = self.plistFilenameOverride;
+    if(!plistFileName)
+    {
+        plistFileName = [defaults stringForKey:TRWIntroABKey];
+        if(!plistFileName)
+        {
+            BOOL useIntroB = (arc4random()%2) == 0;
+            plistFileName = useIntroB?@"introB":@"intro";
+            [[Mixpanel sharedInstance] track:useIntroB?MPIntroABTest1:MPIntroABTest0];
+            [defaults setObject:plistFileName forKey:TRWIntroABKey];
+        }
+    }
+    self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:plistFileName ofType:@"plist"]];
     NSMutableArray* preLoadedStylesArray = [NSMutableArray arrayWithCapacity:[self.introData count]];
     for(NSDictionary* dictionary in self.introData)
     {

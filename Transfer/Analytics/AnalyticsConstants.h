@@ -125,6 +125,8 @@ extern NSString *const MPConfirmation;
 extern NSString *const MPDeeplink;
 extern NSString *const MPDebitCardPayment;
 extern NSString *const MPIntro;
+extern NSString *const MPIntroABTest0;
+extern NSString *const MPIntroABTest1;
 extern NSString *const MPLogin;
 extern NSString *const MPNewTransfer;
 extern NSString *const MPPaymentCreated;

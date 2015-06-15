@@ -64,6 +64,7 @@ extern NSString *const TRWReferrerKey;
 extern NSString *const TRWGoogleLoginUsedKey;
 extern NSString *const TRWGoogleRevokeUrlFormat;
 extern NSString *const TRWFacebookLoginUsedKey;
+extern NSString *const TRWIntroABKey;
 
 
 extern NSString *const TransferSandboxUsername;

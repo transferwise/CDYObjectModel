@@ -6,9 +6,9 @@
 		<key>imageName</key>
 		<string>intro_screen_logo</string>
 		<key>titleRef</key>
-		<string>intro.tagline.one</string>
+		<string>intro.tagline.oneB</string>
 		<key>textRef</key>
-		<string>intro.message.one</string>
+		<string>intro.message.oneB</string>
 		<key>bgStyle</key>
 		<string>twblue</string>
 		<key>titleFontStyle</key>
