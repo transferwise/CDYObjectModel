@@ -38,6 +38,7 @@
 #import "Yozio.h"
 #import "ReferralsCoordinator.h"
 #import <FBSDKApplicationDelegate.h>
+#import "User.h"
 
 @interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
 
@@ -82,7 +83,8 @@
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
 #if DEV_VERSION
-    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername password:TransferSandboxPassword];
+    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername
+											   password:TransferSandboxPassword];
 #endif
 
     [[SupportCoordinator sharedInstance] setObjectModel:model];
@@ -98,6 +100,9 @@
     {
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+		
+		//reidentify for Mixpanel
+		[[Mixpanel sharedInstance] identify:self.objectModel.currentUser.pReference];
     }
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
