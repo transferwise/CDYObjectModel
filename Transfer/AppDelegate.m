@@ -39,6 +39,8 @@
 #import "ReferralsCoordinator.h"
 #import <FBSDKApplicationDelegate.h>
 #import "User.h"
+#import "MixpanelIdentityHelper.h"
+#import "NSString+DeducedId.h"
 
 @interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
 
@@ -101,8 +103,7 @@
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
 		
-		//reidentify for Mixpanel
-		[[Mixpanel sharedInstance] identify:self.objectModel.currentUser.pReference];
+		[MixpanelIdentityHelper handleLogin:[self.objectModel.currentUser.pReference deducedIdString]];
     }
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))

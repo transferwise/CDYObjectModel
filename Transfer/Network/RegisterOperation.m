@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "ReferralsCoordinator.h"
 #import "NSString+DeducedId.h"
+#import "MixpanelIdentityHelper.h"
 
 NSString *const kRegisterPath = @"/account/register";
 
@@ -66,11 +67,7 @@ NSString *const kRegisterPath = @"/account/register";
 		//create alias for mixpanel
 		if (response[@"referenceCode"])
 		{
-			NSString *mixpanelId = [Mixpanel sharedInstance].distinctId;
-			
-			[[Mixpanel sharedInstance] createAlias:[response[@"referenceCode"] distinctId]
-									 forDistinctID:mixpanelId];
-			[[Mixpanel sharedInstance] identify:mixpanelId];
+			[MixpanelIdentityHelper handleRegistration:[response[@"referenceCode"] deducedIdString]];
 		}
 		
         [[Mixpanel sharedInstance] track:MPUserregistered];

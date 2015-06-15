@@ -1,5 +1,5 @@
 //
-//  NSString+DeducedId.h
+//  MixpanelIdentityHelper.h
 //  Transfer
 //
 //  Created by Juhan Hion on 15.06.15.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (DeducedId)
+@interface MixpanelIdentityHelper : NSObject
 
-- (NSInteger)deducedId;
-- (NSString *)deducedIdString;
++ (void)handleRegistration:(NSString *)userId;
++ (void)handleLogin:(NSString *)userId;
 
 @end

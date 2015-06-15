@@ -15,4 +15,9 @@
 	return [[self substringFromIndex:1] integerValue] - 10000;
 }
 
+- (NSString *)deducedIdString
+{
+	return [NSString stringWithFormat:@"%ld", (long)[self deducedId]];
+}
+
 @end

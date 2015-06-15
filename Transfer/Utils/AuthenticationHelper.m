@@ -45,6 +45,8 @@
 #import <FBSDKAppEvents.h>
 #import "FacebookHelper.h"
 #import <AFNetworking.h>
+#import "MixpanelIdentityHelper.h"
+#import "NSString+DeducedId.h"
 
 @interface AuthenticationHelper ()
 
@@ -148,24 +150,25 @@
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				[weakSelf logUserIn:token
-						  email:email
-				   successBlock:^{
-                       if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
-                       {
-                           CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
-                               successBlock();
-                           }];
-                           [prompt presentOnViewController:touchIdHost];
-                       }
-                       else
-                       {
-                           successBlock();
-                       }
-                
-                   }
-							hud:hud
-					objectModel:objectModel
-	   waitForDetailsCompletion:waitForDetailsCompletion];
+							  email:email
+					   successBlock:^{
+						   if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
+						   {
+							   CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
+								   successBlock();
+							   }];
+							   [prompt presentOnViewController:touchIdHost];
+						   }
+						   else
+						   {
+							   successBlock();
+						   }
+						   
+					   }
+								hud:hud
+						objectModel:objectModel
+		   waitForDetailsCompletion:waitForDetailsCompletion
+				isOAuthRegistration:NO];
 			}];
 			return;
 		}
@@ -236,28 +239,30 @@
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
-                BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
-                [weakSelf logUserIn:token
-                              email:email
-                       successBlock:^{
-                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
-                           [objectModel performBlock:^{
-                               User* loggedInUser = [objectModel currentUser];
-                               loggedInUser.authenticationProvider = provider;
-                               [objectModel saveContext];
-                           }];
-                           
-                           NSString *referralToken = [ReferralsCoordinator referralToken];
-                           if(referralToken)
-                           {
-                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
-                           }
-                           successBlock();
-                       }
-                                hud:hud
-                        objectModel:objectModel
-           waitForDetailsCompletion:waitForDetailsCompletion];
-            }];
+				BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
+				[weakSelf logUserIn:token
+							  email:email
+					   successBlock:^{
+						   [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration ? GAUserregistered : GAUserlogged
+																withLabel:[provider lowercaseString]];
+						   [objectModel performBlock:^{
+							   User* loggedInUser = [objectModel currentUser];
+							   loggedInUser.authenticationProvider = provider;
+							   [objectModel saveContext];
+						   }];
+						   
+						   NSString *referralToken = [ReferralsCoordinator referralToken];
+						   if(referralToken)
+						   {
+							   [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+						   }
+						   successBlock();
+					   }
+								hud:hud
+						objectModel:objectModel
+		   waitForDetailsCompletion:waitForDetailsCompletion
+				isOAuthRegistration:isRegistration];
+			}];
 		}
 		//handle email error for Facebook
 		else if ([provider isEqualToString:FacebookOAuthServiceName] && [weakSelf isEmailAddressMissing:error])
@@ -555,6 +560,7 @@
 			  hud:(TRWProgressHUD *)hud
 	  objectModel:(ObjectModel *)objectModel
 waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
+isOAuthRegistration:(BOOL)isOauthRegistration
 {
 	[Credentials setUserToken:token];
 	[Credentials setUserEmail:email];
@@ -565,8 +571,14 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
     __weak typeof(self) weakSelf = self;
 	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 		User *user = objectModel.currentUser;
-		
-		[[Mixpanel sharedInstance] identify:[NSString stringWithFormat:@"%ld", (long)user.deducedId]];
+		if (isOauthRegistration)
+		{
+			[MixpanelIdentityHelper handleRegistration:[user.pReference deducedIdString]];
+		}
+		else
+		{
+			[MixpanelIdentityHelper handleLogin:[user.pReference deducedIdString]];
+		}
 		
 #if USE_APPSFLYER_EVENTS
 		[AppsFlyerTracker sharedTracker].customerUserID = user.pReference;
