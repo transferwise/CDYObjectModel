@@ -2,6 +2,7 @@
 #import "PersonalProfile.h"
 #import "BusinessProfile.h"
 #import "Payment.h"
+#import "NSString+DeducedId.h"
 
 @interface User ()
 
@@ -61,7 +62,7 @@
 
 - (NSInteger)deducedId
 {
-    return [[self.pReference substringFromIndex:1] integerValue] - 10000;
+    return [self.pReference deducedId];
 }
 
 @end

@@ -38,6 +38,9 @@
 #import "Yozio.h"
 #import "ReferralsCoordinator.h"
 #import <FBSDKApplicationDelegate.h>
+#import "User.h"
+#import "MixpanelIdentityHelper.h"
+#import "NSString+DeducedId.h"
 
 @interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
 
@@ -82,7 +85,8 @@
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
 #if DEV_VERSION
-    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername password:TransferSandboxPassword];
+    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername
+											   password:TransferSandboxPassword];
 #endif
 
     [[SupportCoordinator sharedInstance] setObjectModel:model];
@@ -98,6 +102,8 @@
     {
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+		
+		[MixpanelIdentityHelper handleLogin:[self.objectModel.currentUser.pReference deducedIdString]];
     }
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
@@ -220,14 +226,16 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	
 #if DEV_VERSION
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
+	
+	[Mixpanel sharedInstanceWithToken:TRWMixpanelDevToken];
 #else
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
     [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
     
     [Yozio initializeWithAppKey:@"6e774e8a-7d01-46c1-918a-ea053bb46dc9"
                    andSecretKey:@"dd39f3e4-54b3-42cc-a49a-67da6af61ac2"
-  andNewInstallMetaDataCallback: self
-    andDeepLinkMetaDataCallback: self];
+  andNewInstallMetaDataCallback:self
+    andDeepLinkMetaDataCallback:self];
     
 #endif
 	

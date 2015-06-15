@@ -986,6 +986,12 @@
 		472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
 		472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
+		4731F65E1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
+		4731F65F1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
+		4731F6601B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
+		4731F6631B2EDE8E00E1E840 /* MixpanelIdentityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F6621B2EDE8E00E1E840 /* MixpanelIdentityHelper.m */; };
+		4731F6641B2EDE8E00E1E840 /* MixpanelIdentityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F6621B2EDE8E00E1E840 /* MixpanelIdentityHelper.m */; };
+		4731F6651B2EDE8E00E1E840 /* MixpanelIdentityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F6621B2EDE8E00E1E840 /* MixpanelIdentityHelper.m */; };
 		47334E831A37121A004C19F7 /* TargetCountryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47334E821A37121A004C19F7 /* TargetCountryProvider.m */; };
 		47334E841A37121A004C19F7 /* TargetCountryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47334E821A37121A004C19F7 /* TargetCountryProvider.m */; };
 		47343ACE1977E093009D9C3A /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
@@ -1997,6 +2003,10 @@
 		472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPaymentProfileViewController.m; sourceTree = "<group>"; };
 		472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPaymentProfileViewController.h; sourceTree = "<group>"; };
 		472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessPaymentProfileViewController.m; sourceTree = "<group>"; };
+		4731F65C1B2EC76100E1E840 /* NSString+DeducedId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeducedId.h"; sourceTree = "<group>"; };
+		4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeducedId.m"; sourceTree = "<group>"; };
+		4731F6611B2EDE8E00E1E840 /* MixpanelIdentityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelIdentityHelper.h; sourceTree = "<group>"; };
+		4731F6621B2EDE8E00E1E840 /* MixpanelIdentityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelIdentityHelper.m; sourceTree = "<group>"; };
 		47334E811A37121A004C19F7 /* TargetCountryProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetCountryProvider.h; sourceTree = "<group>"; };
 		47334E821A37121A004C19F7 /* TargetCountryProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetCountryProvider.m; sourceTree = "<group>"; };
 		47343ACC1977E093009D9C3A /* RecipientsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsFooterView.h; sourceTree = "<group>"; };
@@ -3292,6 +3302,8 @@
 				4777C0BD1AF7A2940042721F /* NSString+NullString.m */,
 				EAA6AD0517A91A95006A347D /* NSString+Presentation.h */,
 				EAA6AD0617A91A95006A347D /* NSString+Presentation.m */,
+				4731F65C1B2EC76100E1E840 /* NSString+DeducedId.h */,
+				4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */,
 				EA8FF680171D19B50090A658 /* NSString+Validation.h */,
 				EA8FF681171D19B50090A658 /* NSString+Validation.m */,
 				47C1F7511A443F1500014F55 /* NSObject+NSNull.h */,
@@ -3822,6 +3834,8 @@
 				38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */,
 				3859E7AC1A65670300B85A3F /* NewPaymentHelper.h */,
 				3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */,
+				4731F6611B2EDE8E00E1E840 /* MixpanelIdentityHelper.h */,
+				4731F6621B2EDE8E00E1E840 /* MixpanelIdentityHelper.m */,
 				38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */,
 				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
 				383FC0EE19AE1A1A00465FCA /* StateSuggestionCellProvider.h */,
@@ -4843,6 +4857,7 @@
 				388E5A171A5A949500AF6EB9 /* CalculationResult.m in Sources */,
 				388E5A181A5A949500AF6EB9 /* UIColor+SinglePixelImage.m in Sources */,
 				388E5A191A5A949500AF6EB9 /* TSAlertView.m in Sources */,
+				4731F6601B2EC76100E1E840 /* NSString+DeducedId.m in Sources */,
 				388E5A1A1A5A949500AF6EB9 /* RecipientUpdateOperation.m in Sources */,
 				388E5A1B1A5A949500AF6EB9 /* AuthenticationHelper.m in Sources */,
 				388E5A1C1A5A949500AF6EB9 /* ObjectModel+Recipients.m in Sources */,
@@ -5067,6 +5082,7 @@
 				388E5AEB1A5A949500AF6EB9 /* ObjectModel+Users.m in Sources */,
 				388E5AEC1A5A949500AF6EB9 /* ObjectModel.m in Sources */,
 				38705C691A7BDD5F002EB14B /* CopyLabel.m in Sources */,
+				4731F6651B2EDE8E00E1E840 /* MixpanelIdentityHelper.m in Sources */,
 				4740A7821A8B9A1F0044F0CD /* _MfaField.m in Sources */,
 				3859E7B01A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				388E5AED1A5A949500AF6EB9 /* ReferralsCoordinator.m in Sources */,
@@ -5210,6 +5226,7 @@
 				478C6FEB1A8CC71500431882 /* LocationHelper.m in Sources */,
 				EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */,
 				389F67FC198FC1C6006CF1F6 /* _Country.m in Sources */,
+				4731F6641B2EDE8E00E1E840 /* MixpanelIdentityHelper.m in Sources */,
 				47C1F70B1A3B3F4200014F55 /* BusinessProfileSource.m in Sources */,
 				47C1F70F1A3B3F4200014F55 /* PersonalProfileSource.m in Sources */,
 				389F683A198FC1C6006CF1F6 /* PairTargetCurrency.m in Sources */,
@@ -5417,6 +5434,7 @@
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				389F6834198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6836198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
+				4731F65F1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */,
 				38705C681A7BDD5F002EB14B /* CopyLabel.m in Sources */,
 				4740A7811A8B9A1F0044F0CD /* _MfaField.m in Sources */,
 				3859E7AF1A65670300B85A3F /* NewPaymentHelper.m in Sources */,
@@ -5546,6 +5564,7 @@
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
 				389F67FB198FC1C6006CF1F6 /* _Country.m in Sources */,
 				389F6839198FC1C6006CF1F6 /* PairTargetCurrency.m in Sources */,
+				4731F6631B2EDE8E00E1E840 /* MixpanelIdentityHelper.m in Sources */,
 				47126B5519C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */,
 				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
 				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
@@ -5753,6 +5772,7 @@
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				47C1F7531A443F1500014F55 /* NSObject+NSNull.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
+				4731F65E1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				383FC0FC19AE1ABC00465FCA /* PhoneEmailLookupWrapper.m in Sources */,
