@@ -227,8 +227,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 #if DEV_VERSION
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
 	
-	//TODO: Remove this!!!
-	//[Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
+	[Mixpanel sharedInstanceWithToken:TRWMixpanelDevToken];
 #else
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
     [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
