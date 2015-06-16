@@ -1,0 +1,102 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 3,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 19,
+          "top" : 20,
+          "right" : 22,
+          "left" : 24
+        }
+      },
+      "idiom" : "iphone",
+      "filename" : "rounded_button_iphone_blue.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 2,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 40,
+          "top" : 39,
+          "right" : 47,
+          "left" : 49
+        }
+      },
+      "idiom" : "iphone",
+      "filename" : "rounded_button_iphone_blue@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "3x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 20,
+          "top" : 23,
+          "right" : 24,
+          "left" : 25
+        }
+      },
+      "idiom" : "ipad",
+      "filename" : "rounded_button_ipad_blue.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 44,
+          "top" : 43,
+          "right" : 45,
+          "left" : 52
+        }
+      },
+      "idiom" : "ipad",
+      "filename" : "rounded_button_ipad_blue@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "screenWidth" : "{130,145}",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "screenWidth" : "{146,165}",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
