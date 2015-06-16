@@ -27,6 +27,7 @@
 #import "UITextField+CaretPosition.h"
 #import "Mixpanel+Customisation.h"
 #import "TouchIDHelper.h"
+#import <OnePasswordExtension.h>
 
 IB_DESIGNABLE
 
@@ -41,6 +42,7 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 @property (strong, nonatomic) AuthenticationHelper *loginHelper;
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
+@property (weak, nonatomic) IBOutlet UIButton *onePasswordButton;
 
 @property (nonatomic, strong) IBInspectable NSString* xibNameForResetPassword;
 
@@ -105,6 +107,10 @@ IB_DESIGNABLE
 	
 	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
     self.touchIdButton.hidden = ![TouchIDHelper isTouchIdSlotTaken];
+    
+    [self.onePasswordButton setHidden:![[OnePasswordExtension sharedExtension] isAppExtensionAvailable]];
+
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -184,6 +190,23 @@ IB_DESIGNABLE
 									 successHandler:^{
 										 [weakSelf proceedFromSuccessfulLogin];
 									 }];
+}
+
+- (IBAction)onePasswordTapped:(id)sender
+{
+    [[OnePasswordExtension sharedExtension] findLoginForURLString:@"https://www.transferwise.com" forViewController:self sender:sender completion:^(NSDictionary *loginDictionary, NSError *error) {
+        if (loginDictionary.count == 0) {
+            if (error.code != AppExtensionErrorCodeCancelledByUser) {
+                MCLog(@"Error invoking 1Password App Extension for find login: %@", error);
+            }
+            return;
+        }
+        
+        self.emailTextField.text = loginDictionary[AppExtensionUsernameKey];
+        self.passwordTextField.text = loginDictionary[AppExtensionPasswordKey];
+        
+        [self loginPressed:nil];
+    }];
 }
 
 -(void)proceedFromSuccessfulLogin

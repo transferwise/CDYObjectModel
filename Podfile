@@ -16,3 +16,4 @@ pod 'CDYAnalyticsCoordinator', :git => 'https://github.com/coodly/CDYAnalyticsCo
 pod 'JVFloatLabeledTextField', '~> 0.0.9'
 pod 'Reachability'
 pod 'NXOAuth2Client', '~> 1.2.8'
+pod '1PasswordExtension', '~> 1.2'

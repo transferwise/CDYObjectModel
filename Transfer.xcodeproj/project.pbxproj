@@ -204,8 +204,8 @@
 		38675455198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
 		38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
-		386B039C19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */; };
-		386B039D19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */; };
+		386B039C19DD687C002285EF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewController.xib */; };
+		386B039D19DD687C002285EF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewController.xib */; };
 		38705C671A7BDD5F002EB14B /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38705C661A7BDD5F002EB14B /* CopyLabel.m */; };
 		38705C681A7BDD5F002EB14B /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38705C661A7BDD5F002EB14B /* CopyLabel.m */; };
 		38705C691A7BDD5F002EB14B /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38705C661A7BDD5F002EB14B /* CopyLabel.m */; };
@@ -607,7 +607,7 @@
 		388E5B491A5A949500AF6EB9 /* CustomInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */; };
 		388E5B4A1A5A949500AF6EB9 /* TabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021F5192F43EA009B1D53 /* TabCell.xib */; };
 		388E5B4B1A5A949500AF6EB9 /* DataEntryDefaultHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */; };
-		388E5B4C1A5A949500AF6EB9 /* LoginViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */; };
+		388E5B4C1A5A949500AF6EB9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewController.xib */; };
 		388E5B4D1A5A949500AF6EB9 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		388E5B4E1A5A949500AF6EB9 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
 		388E5B4F1A5A949500AF6EB9 /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */; };
@@ -626,7 +626,7 @@
 		388E5B5C1A5A949500AF6EB9 /* page_zoom.json in Resources */ = {isa = PBXBuildFile; fileRef = EA333F3718A4BEDC00D8A44E /* page_zoom.json */; };
 		388E5B5D1A5A949500AF6EB9 /* CurrencySelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */; };
 		388E5B5E1A5A949500AF6EB9 /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
-		388E5B5F1A5A949500AF6EB9 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		388E5B5F1A5A949500AF6EB9 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewController~ipad.xib */; };
 		388E5B601A5A949500AF6EB9 /* DropdownCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34519A4D6AD00D1485A /* DropdownCell~ipad.xib */; };
 		388E5B611A5A949500AF6EB9 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
 		388E5B621A5A949500AF6EB9 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
@@ -850,8 +850,8 @@
 		38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
 		38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
 		38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
-		38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
-		38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		38C0394F19E2C75F00555F65 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewController~ipad.xib */; };
+		38C0395019E2C75F00555F65 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewController~ipad.xib */; };
 		38C0395B19E598DF00555F65 /* SectionButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SectionButtonFlashHelper.m */; };
 		38C0395C19E598DF00555F65 /* SectionButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SectionButtonFlashHelper.m */; };
 		38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
@@ -1740,7 +1740,7 @@
 		3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPasswordViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
 		38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeaderNoTitle~ipad.xib"; sourceTree = "<group>"; };
-		386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewControllerUpfront.xib; sourceTree = "<group>"; };
+		386B039B19DD687C002285EF /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		38705C651A7BDD5F002EB14B /* CopyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyLabel.h; sourceTree = "<group>"; };
 		38705C661A7BDD5F002EB14B /* CopyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyLabel.m; sourceTree = "<group>"; };
 		3876768C19BF4914007B0EE5 /* CustomInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoViewController.h; sourceTree = "<group>"; };
@@ -1903,7 +1903,7 @@
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
 		38C0394819E29CBB00555F65 /* GTM-TDZF76 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-TDZF76"; sourceTree = "<group>"; };
 		38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpViewController~ipad.xib"; sourceTree = "<group>"; };
-		38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
+		38C0394E19E2C75F00555F65 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		38C0395919E598DF00555F65 /* SectionButtonFlashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionButtonFlashHelper.h; sourceTree = "<group>"; };
 		38C0395A19E598DF00555F65 /* SectionButtonFlashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionButtonFlashHelper.m; sourceTree = "<group>"; };
 		38C1A898199CC5A0000BF59C /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
@@ -3719,8 +3719,8 @@
 				3840862C19A23F5A00C837C2 /* InviteViewController~ipad.xib */,
 				47233CD3196D457300449042 /* LoginViewController.h */,
 				47233CD4196D457300449042 /* LoginViewController.m */,
-				38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */,
-				386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */,
+				38C0394E19E2C75F00555F65 /* LoginViewController~ipad.xib */,
+				386B039B19DD687C002285EF /* LoginViewController.xib */,
 				EAD39673171BD4EE00F6D011 /* MainViewController.h */,
 				EAD39674171BD4EE00F6D011 /* MainViewController.m */,
 				EAD39675171BD4EE00F6D011 /* MainViewController.xib */,
@@ -4104,7 +4104,7 @@
 				388E5B491A5A949500AF6EB9 /* CustomInfoViewController.xib in Resources */,
 				388E5B4A1A5A949500AF6EB9 /* TabCell.xib in Resources */,
 				388E5B4B1A5A949500AF6EB9 /* DataEntryDefaultHeader.xib in Resources */,
-				388E5B4C1A5A949500AF6EB9 /* LoginViewControllerUpfront.xib in Resources */,
+				388E5B4C1A5A949500AF6EB9 /* LoginViewController.xib in Resources */,
 				388E5B4D1A5A949500AF6EB9 /* CardPaymentViewController~ipad.xib in Resources */,
 				388E5B4E1A5A949500AF6EB9 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				388E5B4F1A5A949500AF6EB9 /* NoRefCurrencyMessages.plist in Resources */,
@@ -4127,7 +4127,7 @@
 				381EF88B1A7908E600485C7F /* TwoFieldPresentationCell.xib in Resources */,
 				388E5B5D1A5A949500AF6EB9 /* CurrencySelectorViewController.xib in Resources */,
 				388E5B5E1A5A949500AF6EB9 /* ProfileEditViewController~ipad.xib in Resources */,
-				388E5B5F1A5A949500AF6EB9 /* LoginViewControllerUpfront~ipad.xib in Resources */,
+				388E5B5F1A5A949500AF6EB9 /* LoginViewController~ipad.xib in Resources */,
 				388E5B601A5A949500AF6EB9 /* DropdownCell~ipad.xib in Resources */,
 				388E5B611A5A949500AF6EB9 /* TSAlertViewBackground2.png in Resources */,
 				388E5B621A5A949500AF6EB9 /* TSAlertViewBackground.png in Resources */,
@@ -4279,7 +4279,7 @@
 				3876769219BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
 				380021FA192F43EA009B1D53 /* TabCell.xib in Resources */,
 				38B0930C1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
-				386B039D19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */,
+				386B039D19DD687C002285EF /* LoginViewController.xib in Resources */,
 				38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */,
 				EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */,
@@ -4302,7 +4302,7 @@
 				381EF88A1A7908E600485C7F /* TwoFieldPresentationCell.xib in Resources */,
 				380021F2192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
-				38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
+				38C0395019E2C75F00555F65 /* LoginViewController~ipad.xib in Resources */,
 				3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
@@ -4447,7 +4447,7 @@
 				3876769119BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
 				3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */,
 				385AC113198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */,
-				386B039C19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */,
+				386B039C19DD687C002285EF /* LoginViewController.xib in Resources */,
 				383FC10E19AE1B8400465FCA /* SeeHowViewController~ipad.xib in Resources */,
 				47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */,
 				38B0930B1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
@@ -4470,7 +4470,7 @@
 				381EF8891A7908E600485C7F /* TwoFieldPresentationCell.xib in Resources */,
 				380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				3840863719A370A400C837C2 /* ValidationCell~ipad.xib in Resources */,
-				38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
+				38C0394F19E2C75F00555F65 /* LoginViewController~ipad.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
