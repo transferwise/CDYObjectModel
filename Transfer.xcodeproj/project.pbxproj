@@ -456,7 +456,7 @@
 		388E5AAE1A5A949500AF6EB9 /* SettlementRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093161951FA8300315BE4 /* SettlementRecipient.m */; };
 		388E5AAF1A5A949500AF6EB9 /* NSDictionary+Cleanup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C84178EB21C009D6B83 /* NSDictionary+Cleanup.m */; };
 		388E5AB01A5A949500AF6EB9 /* AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67C0198FC1C5006CF1F6 /* AllowedTypeFieldValue.m */; };
-		388E5AB11A5A949500AF6EB9 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
+		388E5AB11A5A949500AF6EB9 /* SectionButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SectionButtonFlashHelper.m */; };
 		388E5AB21A5A949500AF6EB9 /* AddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E4194F2EB700315BE4 /* AddressBookManager.m */; };
 		388E5AB31A5A949500AF6EB9 /* AchWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */; };
 		388E5AB41A5A949500AF6EB9 /* MOMCompoundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021BD192CC531009B1D53 /* MOMCompoundStyle.m */; };
@@ -852,8 +852,8 @@
 		38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
 		38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
 		38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
-		38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
-		38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
+		38C0395B19E598DF00555F65 /* SectionButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SectionButtonFlashHelper.m */; };
+		38C0395C19E598DF00555F65 /* SectionButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SectionButtonFlashHelper.m */; };
 		38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
@@ -1904,8 +1904,8 @@
 		38C0394819E29CBB00555F65 /* GTM-TDZF76 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-TDZF76"; sourceTree = "<group>"; };
 		38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpViewController~ipad.xib"; sourceTree = "<group>"; };
 		38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
-		38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendButtonFlashHelper.h; sourceTree = "<group>"; };
-		38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendButtonFlashHelper.m; sourceTree = "<group>"; };
+		38C0395919E598DF00555F65 /* SectionButtonFlashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionButtonFlashHelper.h; sourceTree = "<group>"; };
+		38C0395A19E598DF00555F65 /* SectionButtonFlashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionButtonFlashHelper.m; sourceTree = "<group>"; };
 		38C1A898199CC5A0000BF59C /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		38C1A899199CC5A0000BF59C /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		38C1A89A199CC5A0000BF59C /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
@@ -3848,8 +3848,8 @@
 				3859E7AD1A65670300B85A3F /* NewPaymentHelper.m */,
 				4731F6611B2EDE8E00E1E840 /* MixpanelIdentityHelper.h */,
 				4731F6621B2EDE8E00E1E840 /* MixpanelIdentityHelper.m */,
-				38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */,
-				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
+				38C0395919E598DF00555F65 /* SectionButtonFlashHelper.h */,
+				38C0395A19E598DF00555F65 /* SectionButtonFlashHelper.m */,
 				383FC0EE19AE1A1A00465FCA /* StateSuggestionCellProvider.h */,
 				383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
@@ -5033,7 +5033,7 @@
 				388E5AAE1A5A949500AF6EB9 /* SettlementRecipient.m in Sources */,
 				388E5AAF1A5A949500AF6EB9 /* NSDictionary+Cleanup.m in Sources */,
 				388E5AB01A5A949500AF6EB9 /* AllowedTypeFieldValue.m in Sources */,
-				388E5AB11A5A949500AF6EB9 /* SendButtonFlashHelper.m in Sources */,
+				388E5AB11A5A949500AF6EB9 /* SectionButtonFlashHelper.m in Sources */,
 				388E5AB21A5A949500AF6EB9 /* AddressBookManager.m in Sources */,
 				388E5AB31A5A949500AF6EB9 /* AchWaitingViewController.m in Sources */,
 				388E5AB41A5A949500AF6EB9 /* MOMCompoundStyle.m in Sources */,
@@ -5388,7 +5388,7 @@
 				38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */,
 				EA31A19517DDB29B00F937F7 /* NSDictionary+Cleanup.m in Sources */,
 				389F681A198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
-				38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
+				38C0395C19E598DF00555F65 /* SectionButtonFlashHelper.m in Sources */,
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
 				4777C0C61AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */,
 				38057AD01A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
@@ -5729,7 +5729,7 @@
 				47C1F7491A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */,
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
-				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
+				38C0395B19E598DF00555F65 /* SectionButtonFlashHelper.m in Sources */,
 				4777C0C51AF88B7D0042721F /* CompanyAttributesOperation.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
 				474D1AA61951A500008BC7A7 /* GradientButton.m in Sources */,

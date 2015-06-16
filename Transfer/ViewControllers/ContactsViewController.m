@@ -31,7 +31,7 @@
 #import "RecipientsFooterView.h"
 #import "ContactDetailsViewController.h"
 #import "ReferralsCoordinator.h"
-#import "SendButtonFlashHelper.h"
+#import "SectionButtonFlashHelper.h"
 #import "CurrencyPairsOperation.h"
 #import "CurrencyLoader.h"
 
@@ -118,7 +118,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [SendButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setSendFlash:NO];
 }
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -245,7 +245,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     }
 
     self.noRecipientsMessage.hidden = YES;
-    [SendButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setSendFlash:NO];
     
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
     [self setExecutedOperation:operation];
@@ -404,7 +404,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
             } completion:nil];
             if(self.isViewLoaded && self.view.window)
             {
-                [SendButtonFlashHelper setSendFlash:YES];
+                [SectionButtonFlashHelper setSendFlash:YES];
             }
         }
     });

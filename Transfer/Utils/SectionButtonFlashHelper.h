@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const TRWChangeSendButtonFlashStatusNotification;
+extern NSString *const TRWChangeSectionButtonFlashStatusNotification;
 extern NSString *const TRWChangeSendButtonFlashOnOffKey;
+extern NSString *const TRWChangeInviteButtonFlashOnOffKey;
 
-@interface SendButtonFlashHelper : NSObject
+@interface SectionButtonFlashHelper : NSObject
 
 +(void)setSendFlash:(BOOL)on;
++(void)setInviteFlash:(BOOL)on;
 
 @end

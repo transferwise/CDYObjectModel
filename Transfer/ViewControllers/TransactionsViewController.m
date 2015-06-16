@@ -39,7 +39,7 @@
 #import "NavigationBarCustomiser.h"
 #import "PaymentMethodSelectorViewController.h"
 #import "SetSSNOperation.h"
-#import "SendButtonFlashHelper.h"
+#import "SectionButtonFlashHelper.h"
 #import "RecipientTypesOperation.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
 #import "NewPaymentHelper.h"
@@ -166,6 +166,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	{
 		[self showNoTransfersMessageAndFlashButton];
 	}
+    else
+    {
+        [self checkIfInviteHighlightingIsNeeded];
+    }
 		
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
@@ -204,7 +208,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     {
         [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
     }
-    [SendButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setInviteFlash:NO];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -331,7 +336,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud
 {
     self.noTransfersMessage.hidden = YES;
-    [SendButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setSendFlash:NO];
     
     PaymentsOperation *operation = [PaymentsOperation operationWithOffset:offset];
     [self setExecutedOperation:operation];
@@ -357,6 +362,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             if(!error && totalCount == 0)
             {
 				[self showNoTransfersMessageAndFlashButton];
+            }
+            else
+            {
+                [self checkIfInviteHighlightingIsNeeded];
             }
 			
             BOOL footerUpdateScheduled = NO;
@@ -424,9 +433,27 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 					 completion:^(BOOL finished) {
 						 if(weakSelf.isViewLoaded && weakSelf.view.window)
 						 {
-							 [SendButtonFlashHelper setSendFlash:YES];
+							 [SectionButtonFlashHelper setSendFlash:YES];
 						 }
 					 }];
+}
+
+-(void)checkIfInviteHighlightingIsNeeded
+{
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:TRWDidHighlightInviteSection])
+    {
+        NSCountedSet* countedStatuses = [NSCountedSet setWithArray:[self.payments valueForKey:@"status"]];
+       
+        NSUInteger numberOfCompleted = [countedStatuses countForObject:@(PaymentStatusTransferred)];
+        if (numberOfCompleted > 0){
+            if(numberOfCompleted == 1)
+            {
+                [SectionButtonFlashHelper setInviteFlash:YES];
+            }
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TRWDidHighlightInviteSection];
+        }
+    }
+
 }
 
 #pragma mark - Select row
