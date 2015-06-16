@@ -10,7 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import "GoogleAnalytics.h"
 #import "EmailLookupWrapper.h"
-#import "PhoneEmailLookupWrapper.h"
+#import "ExpatDetectionLookupWrapper.h"
 #import "Constants.h"
 
 #define cachedNameLookup @"nameLookup"
@@ -278,7 +278,7 @@
 							  NSArray *phones = [self getABMultivalueProperty:entry property:kABPersonPhoneProperty];
 							  NSArray *emails = [self getABMultivalueProperty:entry property:kABPersonEmailProperty];
 							  
-							  PhoneEmailLookupWrapper *wrapper = [[PhoneEmailLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(entry)
+							  ExpatDetectionLookupWrapper *wrapper = [[ExpatDetectionLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(entry)
 																										 firstname:firstname
 																										  lastName:lastName
 																											phones:phones

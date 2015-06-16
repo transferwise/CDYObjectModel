@@ -128,8 +128,8 @@
 		383FC0F919AE1ABC00465FCA /* EmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */; };
 		383FC0FA19AE1ABC00465FCA /* PersonLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F519AE1ABC00465FCA /* PersonLookupWrapper.m */; };
 		383FC0FB19AE1ABC00465FCA /* PersonLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F519AE1ABC00465FCA /* PersonLookupWrapper.m */; };
-		383FC0FC19AE1ABC00465FCA /* PhoneEmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F719AE1ABC00465FCA /* PhoneEmailLookupWrapper.m */; };
-		383FC0FD19AE1ABC00465FCA /* PhoneEmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F719AE1ABC00465FCA /* PhoneEmailLookupWrapper.m */; };
+		383FC0FC19AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F719AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m */; };
+		383FC0FD19AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F719AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m */; };
 		383FC10019AE1B6700465FCA /* SeeHowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0FF19AE1B6700465FCA /* SeeHowView.m */; };
 		383FC10119AE1B6700465FCA /* SeeHowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0FF19AE1B6700465FCA /* SeeHowView.m */; };
 		383FC10819AE1B8400465FCA /* CancellableCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC10319AE1B8300465FCA /* CancellableCellViewController.m */; };
@@ -518,7 +518,7 @@
 		388E5AED1A5A949500AF6EB9 /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
 		388E5AEE1A5A949500AF6EB9 /* FeedbackCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */; };
 		388E5AEF1A5A949500AF6EB9 /* SeeHowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC10519AE1B8300465FCA /* SeeHowViewController.m */; };
-		388E5AF01A5A949500AF6EB9 /* PhoneEmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F719AE1ABC00465FCA /* PhoneEmailLookupWrapper.m */; };
+		388E5AF01A5A949500AF6EB9 /* ExpatDetectionLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F719AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m */; };
 		388E5AF11A5A949500AF6EB9 /* PaymentPurposeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2296C117E04D1B001CF541 /* PaymentPurposeOperation.m */; };
 		388E5AF21A5A949500AF6EB9 /* ObjectModel+ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C13201A12660300EEAF25 /* ObjectModel+ReferralLinks.m */; };
 		388E5AF31A5A949500AF6EB9 /* StateSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */; };
@@ -1682,8 +1682,8 @@
 		383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailLookupWrapper.m; sourceTree = "<group>"; };
 		383FC0F419AE1ABC00465FCA /* PersonLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonLookupWrapper.h; sourceTree = "<group>"; };
 		383FC0F519AE1ABC00465FCA /* PersonLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonLookupWrapper.m; sourceTree = "<group>"; };
-		383FC0F619AE1ABC00465FCA /* PhoneEmailLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneEmailLookupWrapper.h; sourceTree = "<group>"; };
-		383FC0F719AE1ABC00465FCA /* PhoneEmailLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneEmailLookupWrapper.m; sourceTree = "<group>"; };
+		383FC0F619AE1ABC00465FCA /* ExpatDetectionLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpatDetectionLookupWrapper.h; sourceTree = "<group>"; };
+		383FC0F719AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpatDetectionLookupWrapper.m; sourceTree = "<group>"; };
 		383FC0FE19AE1B6700465FCA /* SeeHowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeHowView.h; sourceTree = "<group>"; };
 		383FC0FF19AE1B6700465FCA /* SeeHowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeHowView.m; sourceTree = "<group>"; };
 		383FC10219AE1B8300465FCA /* CancellableCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancellableCellViewController.h; sourceTree = "<group>"; };
@@ -3397,8 +3397,8 @@
 				383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */,
 				383FC0F419AE1ABC00465FCA /* PersonLookupWrapper.h */,
 				383FC0F519AE1ABC00465FCA /* PersonLookupWrapper.m */,
-				383FC0F619AE1ABC00465FCA /* PhoneEmailLookupWrapper.h */,
-				383FC0F719AE1ABC00465FCA /* PhoneEmailLookupWrapper.m */,
+				383FC0F619AE1ABC00465FCA /* ExpatDetectionLookupWrapper.h */,
+				383FC0F719AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m */,
 				38B093131951FA8300315BE4 /* NameSuggestionCellProvider.h */,
 				38B093141951FA8300315BE4 /* NameSuggestionCellProvider.m */,
 				38B093151951FA8300315BE4 /* SettlementRecipient.h */,
@@ -5096,7 +5096,7 @@
 				388E5AED1A5A949500AF6EB9 /* ReferralsCoordinator.m in Sources */,
 				388E5AEE1A5A949500AF6EB9 /* FeedbackCoordinator.m in Sources */,
 				388E5AEF1A5A949500AF6EB9 /* SeeHowViewController.m in Sources */,
-				388E5AF01A5A949500AF6EB9 /* PhoneEmailLookupWrapper.m in Sources */,
+				388E5AF01A5A949500AF6EB9 /* ExpatDetectionLookupWrapper.m in Sources */,
 				388E5AF11A5A949500AF6EB9 /* PaymentPurposeOperation.m in Sources */,
 				388E5AF21A5A949500AF6EB9 /* ObjectModel+ReferralLinks.m in Sources */,
 				388E5AF31A5A949500AF6EB9 /* StateSuggestionCellProvider.m in Sources */,
@@ -5449,7 +5449,7 @@
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				383FC10B19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
-				383FC0FD19AE1ABC00465FCA /* PhoneEmailLookupWrapper.m in Sources */,
+				383FC0FD19AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				470C13221A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,
 				383FC0F119AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */,
@@ -5783,7 +5783,7 @@
 				4731F65E1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
-				383FC0FC19AE1ABC00465FCA /* PhoneEmailLookupWrapper.m in Sources */,
+				383FC0FC19AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */,
 				470C13211A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,

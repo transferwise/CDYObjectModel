@@ -14,7 +14,7 @@
 #import "TRWAlertView.h"
 #import "ReferralListOperation.h"
 #import "AddressBookManager.h"
-#import "PhoneEmailLookupWrapper.h"
+#import "ExpatDetectionLookupWrapper.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "PersonalProfile.h"
@@ -116,7 +116,7 @@
             if (ownNumber)
             {
                 //get profiles having pics, at least 2 numbers and of those 1 has the same country code
-                for (PhoneEmailLookupWrapper *wrapper in workArray)
+                for (ExpatDetectionLookupWrapper *wrapper in workArray)
                 {
                     if (([wrapper hasPhonesWithDifferentCountryCodes]
                         && [wrapper hasPhoneWithMatchingCountryCode:ownNumber]))
@@ -145,7 +145,7 @@
 			//or profiles with different known email countries
             if (options.count < self.profilePictures.count)
             {
-                for (PhoneEmailLookupWrapper *wrapper in workArray)
+                for (ExpatDetectionLookupWrapper *wrapper in workArray)
                 {
                     if ([wrapper hasPhonesWithDifferentCountryCodes]
 						|| [wrapper hasPhoneAndEmailFromDifferentCountries]
@@ -188,7 +188,7 @@
     for (NSInteger i = 0; i < limit; i++)
     {
         NSUInteger index = arc4random_uniform((u_int32_t)options.count);
-        PhoneEmailLookupWrapper* wrapper = options[index];
+        ExpatDetectionLookupWrapper* wrapper = options[index];
         [options removeObject:wrapper];
         [manager getImageForRecordId:wrapper.recordId requestAccess:NO completion:^(UIImage *image)
         {
