@@ -27,5 +27,6 @@
 - (BOOL)hasPhonesWithDifferentCountryCodes;
 - (BOOL)hasPhoneWithMatchingCountryCode:(NSString *)sourcePhone;
 - (BOOL)hasPhoneAndEmailFromDifferentCountries;
+- (BOOL)hasEmailFromDifferentCountries;
 
 @end

@@ -142,12 +142,14 @@
             
             //if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
 			//also try to find profiles with phones/emails in different known countries
+			//or profiles with different known email countries
             if (options.count < self.profilePictures.count)
             {
                 for (PhoneEmailLookupWrapper *wrapper in workArray)
                 {
                     if ([wrapper hasPhonesWithDifferentCountryCodes]
-						|| [wrapper hasPhoneAndEmailFromDifferentCountries])
+						|| [wrapper hasPhoneAndEmailFromDifferentCountries]
+						|| [wrapper hasEmailFromDifferentCountries])
                     {
                         totalCount++;
                         if(!didSetImages)

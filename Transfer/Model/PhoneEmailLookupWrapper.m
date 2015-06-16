@@ -34,8 +34,8 @@ static NSDictionary *knownPrefixesAndEmails;
 						  lastName:last];
 	if(self)
 	{
-		self.phones = phones;
-		self.emails = emails;
+		[self setPhones:phones
+				  email:emails];
 	}
 	
 	return self;
@@ -52,43 +52,34 @@ static NSDictionary *knownPrefixesAndEmails;
 								 lastName:last];
 	if(self)
 	{
-		self.phones = phones;
-		self.emails = emails;
+		[self setPhones:phones
+				  email:emails];
 	}
 	
 	return self;
 }
 
+- (void)setPhones:(NSArray *)phones
+			email:(NSArray *)emails
+{
+	NSPredicate *phonePredicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
+		return [self getCountryCode:evaluatedObject] != nil;
+	}];
+	NSPredicate *emailPredicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
+		return [self getDomain:evaluatedObject].length == 2;
+	}];
+	
+	self.phones = [phones filteredArrayUsingPredicate:phonePredicate];
+	self.emails = [emails filteredArrayUsingPredicate:emailPredicate];
+}
+
 #pragma mark - Condition checks
 - (BOOL)hasPhonesWithDifferentCountryCodes
 {
-	//need to have at least two phone numbers
-	if ([self.phones count] < 2)
-	{
-		return NO;
-	}
-	
-	NSString* existingPrefix = nil;
-	
-	for (NSString* phone in self.phones)
-	{
-		NSString* prefix = [self getCountryCode:phone];
-		
-		if (!prefix || [existingPrefix isEqualToString:prefix])
-		{
-			continue;
-		}
-		else if (!existingPrefix)
-		{
-			existingPrefix = prefix;
-		}
-		else
-		{
-			return YES;
-		}
-	}
-	
-	return NO;
+	return [self hasItemsWithMatchingProperties:self.phones
+									getProperty:^NSString *(NSString *item) {
+										return [self getCountryCode:item];
+									}];
 }
 
 - (BOOL)hasPhoneWithMatchingCountryCode:(NSString *)sourcePhone
@@ -150,6 +141,47 @@ static NSDictionary *knownPrefixesAndEmails;
 	return knownPrefixesAndEmails;
 }
 
+- (BOOL)hasPhoneWithPrefix:(NSString *)sourcePrefix
+{
+	for (NSString* phone in self.phones)
+	{
+		NSString* prefix = [self getCountryCode:phone];
+		
+		if ([prefix isEqualToString:sourcePrefix])
+		{
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
+- (BOOL)hasTwoLetterDomainEmailExceptSource:(NSString *)sourceSuffix
+{
+	for (NSString* email in self.emails)
+	{
+		if(sourceSuffix && [email hasSuffix:sourceSuffix])
+		{
+			continue;
+		}
+		
+		NSString *domain = [self getDomain:email];
+		
+		return domain.length == 2;
+	}
+	
+	return NO;
+}
+
+- (BOOL)hasEmailFromDifferentCountries
+{
+	return [self hasItemsWithMatchingProperties:self.emails
+									getProperty:^NSString *(NSString *item) {
+										return [self getDomain:item];
+									}];
+}
+
+#pragma mark - Helpers
 - (NSString *)getCountryCode:(NSString *)source
 {
 	NSRange range = [self.regex rangeOfFirstMatchInString:source
@@ -175,41 +207,50 @@ static NSDictionary *knownPrefixesAndEmails;
 	return _regex;
 }
 
-- (BOOL)hasPhoneWithPrefix:(NSString *)sourcePrefix
+- (NSString *)getDomain:(NSString *)source
 {
-	for (NSString* phone in self.phones)
+	NSRange dotRange = [source rangeOfString:@"."
+									 options:NSBackwardsSearch];
+	
+	if (dotRange.location == NSNotFound)
 	{
-		NSString* prefix = [self getCountryCode:phone];
+		return nil;
+	}
+	
+	return [source substringFromIndex:dotRange.location + 1];
+}
+
+- (BOOL)hasItemsWithMatchingProperties:(NSArray *)items
+						   getProperty:(NSString *(^)(NSString *item))getProperty
+{
+	//need to have at least two items
+	if ([items count] < 2)
+	{
+		return NO;
+	}
+	
+	NSString* existingProperty = nil;
+	
+	for (NSString* item in items)
+	{
+		NSString* property = getProperty(item);
 		
-		if ([prefix isEqualToString:sourcePrefix])
+		//either the property is not available or it is equal to previous property
+		if (!property || [existingProperty isEqualToString:property])
+		{
+			continue;
+		}
+		//no previous properties
+		else if (!existingProperty)
+		{
+			existingProperty = property;
+		}
+		//the property is available
+		//it is not the same as previous property
+		else
 		{
 			return YES;
 		}
-	}
-	
-	return NO;
-}
-
-- (BOOL)hasTwoLetterDomainEmailExceptSource:(NSString *)sourceSuffix
-{
-	for (NSString* email in self.emails)
-	{
-		if([email hasSuffix:sourceSuffix])
-		{
-			continue;
-		}
-		
-		NSRange dotRange = [email rangeOfString:@"."
-										options:NSBackwardsSearch];
-		
-		if (dotRange.location == NSNotFound)
-		{
-			continue;
-		}
-		
-		NSString *domain = [email substringFromIndex:dotRange.location + 1];
-		
-		return domain.length == 2;
 	}
 	
 	return NO;
