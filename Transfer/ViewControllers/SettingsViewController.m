@@ -28,8 +28,9 @@
 #import "SettingsButtonCell.h"
 #import "SettingsSwitchCell.h"
 #import "TRWProgressHUD.h"
+#import "LocationHelper.h"
 
-#define ABOUT_URL	@"https://transferwise.com/en/about"
+#define ABOUT_URL	@"https://transferwise.com/%@/about"
 
 typedef NS_ENUM(short, Setting)
 {
@@ -185,7 +186,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 - (IBAction)infoTapped:(id)sender
 {
-	NSURL *url = [NSURL URLWithString:ABOUT_URL];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:ABOUT_URL, [LocationHelper getSupportedLanguage]]];
 	[[UIApplication sharedApplication] openURL:url];
 }
 
