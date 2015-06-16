@@ -1,5 +1,5 @@
 //
-//  PhoneLookupWrapper.h
+//  ExpatDetectionLookupWrapper.h
 //  Transfer
 //
 //  Created by Juhan Hion on 25.08.14.
@@ -8,7 +8,7 @@
 
 #import "PersonLookupWrapper.h"
 
-@interface PhoneEmailLookupWrapper : PersonLookupWrapper
+@interface ExpatDetectionLookupWrapper : PersonLookupWrapper
 
 @property (nonatomic, readonly) NSArray* phones;
 
@@ -27,5 +27,6 @@
 - (BOOL)hasPhonesWithDifferentCountryCodes;
 - (BOOL)hasPhoneWithMatchingCountryCode:(NSString *)sourcePhone;
 - (BOOL)hasPhoneAndEmailFromDifferentCountries;
+- (BOOL)hasEmailFromDifferentCountries;
 
 @end
