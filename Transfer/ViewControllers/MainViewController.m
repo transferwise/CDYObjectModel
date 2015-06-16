@@ -21,7 +21,7 @@
 #import "ConnectionAwareViewController.h"
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
-#import "SendButtonFlashHelper.h"
+#import "SectionButtonFlashHelper.h"
 #import "NavigationBarCustomiser.h"
 #import "CurrencyPairsOperation.h"
 #import "CurrencyLoader.h"
@@ -50,7 +50,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedOut) name:TRWLoggedOutNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentView) name:TRWMoveToPaymentViewNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSendButtonFlashNotification:) name:TRWChangeSendButtonFlashStatusNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSectionButtonFlashNotification:) name:TRWChangeSectionButtonFlashStatusNotification object:nil];
     }
     return self;
 }
@@ -95,6 +95,7 @@
 	inviteItem.title = inviteItem.accessibilityLabel = NSLocalizedString(@"invite.controller.tabbar.title", nil);
 	inviteItem.icon = [UIImage imageNamed:@"Invite"];
 	inviteItem.selectedIcon = [UIImage imageNamed:@"Invite_selected"];
+    inviteItem.flashColor = [UIColor colorFromStyle:@"TWElectricblueDarker"];
 	inviteItem.viewController = invitationController;
 	
 	
@@ -275,16 +276,27 @@
 
 #pragma mark - Highlight Send Button
 
--(void)changeSendButtonFlashNotification:(NSNotification*) note;
+-(void)changeSectionButtonFlashNotification:(NSNotification*) note;
 {
-    BOOL turnedOn = [note.userInfo[TRWChangeSendButtonFlashOnOffKey] boolValue];
-    if(turnedOn)
+    
+    BOOL sendTurnedOn = [note.userInfo[TRWChangeSendButtonFlashOnOffKey] boolValue];
+    if(sendTurnedOn)
     {
         [self.tabController turnOnFlashForItemAtIndex:IPAD?0:2];
     }
     else
     {
         [self.tabController turnOffFlashForItemAtIndex:IPAD?0:2];
+    }
+    
+    BOOL inviteTurnedOn = [note.userInfo[TRWChangeInviteButtonFlashOnOffKey] boolValue];
+    if(inviteTurnedOn)
+    {
+        [self.tabController turnOnFlashForItemAtIndex:IPAD?2:1];
+    }
+    else
+    {
+        [self.tabController turnOffFlashForItemAtIndex:IPAD?2:1];
     }
 }
 
