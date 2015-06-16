@@ -66,7 +66,7 @@ static NSDictionary *knownPrefixesAndEmails;
 		return [self getCountryCode:evaluatedObject] != nil;
 	}];
 	
-	self.phones = [phones filteredArrayUsingPredicate:phonePredicate];
+	_phones = [phones filteredArrayUsingPredicate:phonePredicate];
 }
 
 - (void)setEmails:(NSArray *)emails
@@ -75,13 +75,13 @@ static NSDictionary *knownPrefixesAndEmails;
 		return [self getDomain:evaluatedObject].length == 2;
 	}];
 	
-	self.emails = [emails filteredArrayUsingPredicate:emailPredicate];
+	_emails = [emails filteredArrayUsingPredicate:emailPredicate];
 }
 
 #pragma mark - Condition checks
 - (BOOL)hasPhonesWithDifferentCountryCodes
 {
-	return [self hasItemsWithMatchingProperties:self.phones
+	return [self hasItemsWithDifferentProperties:self.phones
 									getProperty:^NSString *(NSString *item) {
 										return [self getCountryCode:item];
 									}];
@@ -180,7 +180,7 @@ static NSDictionary *knownPrefixesAndEmails;
 
 - (BOOL)hasEmailFromDifferentCountries
 {
-	return [self hasItemsWithMatchingProperties:self.emails
+	return [self hasItemsWithDifferentProperties:self.emails
 									getProperty:^NSString *(NSString *item) {
 										return [self getDomain:item];
 									}];
@@ -225,7 +225,7 @@ static NSDictionary *knownPrefixesAndEmails;
 	return [source substringFromIndex:dotRange.location + 1];
 }
 
-- (BOOL)hasItemsWithMatchingProperties:(NSArray *)items
+- (BOOL)hasItemsWithDifferentProperties:(NSArray *)items
 						   getProperty:(NSString *(^)(NSString *item))getProperty
 {
 	//need to have at least two items
