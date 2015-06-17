@@ -14,6 +14,7 @@
 {
 	[super configureWithCompoundStyle:@"blueRoundedButton"];
 	[self setBackgroundImage:[UIImage imageNamed:@"RoundedBlueSolidWhiteBGButton"] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageNamed:@"RoundedSolidHighlighted"] forState:UIControlStateHighlighted];
 	[super commonSetup];
 }
 @end
