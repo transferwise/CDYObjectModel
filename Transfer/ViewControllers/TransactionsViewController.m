@@ -440,19 +440,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 -(void)checkIfInviteHighlightingIsNeeded
 {
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:TRWDidHighlightInviteSection])
-    {
-        NSCountedSet* countedStatuses = [NSCountedSet setWithArray:[self.payments valueForKey:@"status"]];
-       
-        NSUInteger numberOfCompleted = [countedStatuses countForObject:@(PaymentStatusTransferred)];
-        if (numberOfCompleted > 0){
-            if(numberOfCompleted == 1)
-            {
-                [SectionButtonFlashHelper setInviteFlash:YES];
-            }
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TRWDidHighlightInviteSection];
-        }
+    NSCountedSet* countedStatuses = [NSCountedSet setWithArray:[self.payments valueForKey:@"status"]];
+    
+    NSUInteger numberOfCompleted = [countedStatuses countForObject:@(PaymentStatusTransferred)];
+    if (numberOfCompleted == 1){
+        [SectionButtonFlashHelper flashInviteSectionIfNeeded];
     }
+
 
 }
 

@@ -16,5 +16,7 @@ extern NSString *const TRWChangeInviteButtonFlashOnOffKey;
 
 +(void)setSendFlash:(BOOL)on;
 +(void)setInviteFlash:(BOOL)on;
++(void)flashInviteSectionIfNeeded;
++(void)inviteScreenHasBeenVisited;
 
 @end

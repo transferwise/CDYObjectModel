@@ -7,6 +7,9 @@
 //
 
 #import "SectionButtonFlashHelper.h"
+#import "Constants.h"
+
+#define numberOfTimesToFlashInvites 3
 
 NSString *const TRWChangeSectionButtonFlashStatusNotification = @"TRWChangeSectionButtonFlashStatusNotification";
 NSString *const TRWChangeSendButtonFlashOnOffKey = @"TRWChangeSendButtonFlashOnOffKey";
@@ -22,6 +25,26 @@ NSString *const TRWChangeInviteButtonFlashOnOffKey = @"TRWChangeInviteButtonFlas
 +(void)setInviteFlash:(BOOL)on
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:TRWChangeSectionButtonFlashStatusNotification object:nil userInfo:@{TRWChangeInviteButtonFlashOnOffKey:@(on)}];
+}
+
++(void)flashInviteSectionIfNeeded
+{
+    NSInteger inviteFlashingHasBeenShown = [[NSUserDefaults standardUserDefaults] integerForKey:TRWDidHighlightInviteSection];
+    if((inviteFlashingHasBeenShown >= 0 && inviteFlashingHasBeenShown <= numberOfTimesToFlashInvites))
+    {
+        inviteFlashingHasBeenShown++;
+        [[NSUserDefaults standardUserDefaults] setInteger:inviteFlashingHasBeenShown forKey:TRWDidHighlightInviteSection];
+        [self setInviteFlash:YES];
+    }
+}
+
++(void)inviteScreenHasBeenVisited
+{
+    NSInteger inviteFlashingHasBeenShown = [[NSUserDefaults standardUserDefaults] integerForKey:TRWDidHighlightInviteSection];
+    if((inviteFlashingHasBeenShown > 0))
+    {
+        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:TRWDidHighlightInviteSection];
+    }
 }
 
 @end
