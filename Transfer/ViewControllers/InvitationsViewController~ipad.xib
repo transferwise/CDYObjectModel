@@ -74,10 +74,10 @@
                             <rect key="frame" x="214" y="203" width="125" height="125"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User0" translatesAutoresizingMaskIntoConstraints="NO" id="MfW-mD-cm9">
-                                    <rect key="frame" x="7" y="7" width="112" height="112"/>
+                                    <rect key="frame" x="3" y="3" width="119" height="119"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="112" id="nuD-Su-Kz2"/>
-                                        <constraint firstAttribute="height" constant="112" id="wPZ-ak-dlP"/>
+                                        <constraint firstAttribute="width" constant="119" id="nuD-Su-Kz2"/>
+                                        <constraint firstAttribute="height" constant="119" id="wPZ-ak-dlP"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -94,17 +94,17 @@
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUI-Wu-CV3" userLabel="rightProfile">
                             <rect key="frame" x="434" y="203" width="125" height="125"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User2" translatesAutoresizingMaskIntoConstraints="NO" id="X3Q-zd-dep">
-                                    <rect key="frame" x="6" y="6" width="112" height="112"/>
+                                    <rect key="frame" x="3" y="3" width="119" height="119"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="112" id="amk-ad-ca2"/>
-                                        <constraint firstAttribute="height" constant="112" id="bqp-SH-7nP"/>
+                                        <constraint firstAttribute="width" constant="119" id="amk-ad-ca2"/>
+                                        <constraint firstAttribute="height" constant="119" id="bqp-SH-7nP"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -121,17 +121,17 @@
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9U-C2-S5z" userLabel="CenterProfile">
                             <rect key="frame" x="312" y="188" width="145" height="145"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User1" translatesAutoresizingMaskIntoConstraints="NO" id="P4R-HH-GKW">
-                                    <rect key="frame" x="11" y="11" width="124" height="124"/>
+                                    <rect key="frame" x="3" y="3" width="139" height="139"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="124" id="2n9-9I-rOc"/>
-                                        <constraint firstAttribute="height" constant="124" id="LCN-YE-mQP"/>
+                                        <constraint firstAttribute="width" constant="139" id="2n9-9I-rOc"/>
+                                        <constraint firstAttribute="height" constant="139" id="LCN-YE-mQP"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -148,7 +148,7 @@
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue.alpha6"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="khm-LQ-dnq">
@@ -279,7 +279,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Illustration_invite" width="65" height="65"/>
+        <image name="Illustration_invite" width="50" height="40"/>
         <image name="User0" width="136" height="136"/>
         <image name="User1" width="136" height="136"/>
         <image name="User2" width="136" height="136"/>
