@@ -2016,6 +2016,7 @@
 		4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeducedId.m"; sourceTree = "<group>"; };
 		4731F6611B2EDE8E00E1E840 /* MixpanelIdentityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelIdentityHelper.h; sourceTree = "<group>"; };
 		4731F6621B2EDE8E00E1E840 /* MixpanelIdentityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelIdentityHelper.m; sourceTree = "<group>"; };
+		4731F6661B31A05C00E1E840 /* ProfileSource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ProfileSource+Private.h"; path = "Profile/ProfileSource+Private.h"; sourceTree = "<group>"; };
 		47334E811A37121A004C19F7 /* TargetCountryProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetCountryProvider.h; sourceTree = "<group>"; };
 		47334E821A37121A004C19F7 /* TargetCountryProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetCountryProvider.m; sourceTree = "<group>"; };
 		47343ACC1977E093009D9C3A /* RecipientsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsFooterView.h; sourceTree = "<group>"; };
@@ -2994,6 +2995,7 @@
 				47C1F7011A3B3F4200014F55 /* PersonalProfileSource.m */,
 				47C1F7031A3B3F4200014F55 /* ProfileSource.h */,
 				47C1F7041A3B3F4200014F55 /* ProfileSource.m */,
+				4731F6661B31A05C00E1E840 /* ProfileSource+Private.h */,
 				47C1F7051A3B3F4200014F55 /* RecipientProfileCommitter.h */,
 				47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */,
 			);

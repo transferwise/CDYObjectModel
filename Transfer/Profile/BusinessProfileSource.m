@@ -20,6 +20,7 @@
 #import "DoublePasswordEntryCell.h"
 #import "StateSuggestionCellProvider.h"
 #import "DropdownCell.h"
+#import "ProfileSource+Private.h"
 
 @interface BusinessProfileSource ()
 

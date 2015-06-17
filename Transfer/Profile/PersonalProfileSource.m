@@ -22,6 +22,7 @@
 #import "Country.h"
 #import "SwitchCell.h"
 #import "StateSuggestionCellProvider.h"
+#import "ProfileSource+Private.h"
 
 #define MIN_PASSWORD_LENGTH	5
 
