@@ -49,6 +49,9 @@
 "business.profile.controller.title" = "Business details";
 "business.profile.company.role.title" = "Your role";
 "business.profile.company.type.title" = "Type of company";
+"business.profile.au.acn" = "ACN (Australian Company Number)";
+"business.profile.au.abn" = "ABN (Australian Business Number)";
+"business.profile.au.arbn" = "ARBN (Australian Registered Body Number)";
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";

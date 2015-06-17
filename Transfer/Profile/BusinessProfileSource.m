@@ -30,6 +30,9 @@
 @property (nonatomic, strong) TextEntryCell *addressCell;
 @property (nonatomic, strong) DropdownCell *companyRoleCell;
 @property (nonatomic, strong) DropdownCell *companyTypeCell;
+@property (nonatomic, strong) TextEntryCell *acnCell;
+@property (nonatomic, strong) TextEntryCell *abnCell;
+@property (nonatomic, strong) TextEntryCell *arbnCell;
 
 @end
 
@@ -89,6 +92,21 @@
 	[companyTypeCell setCellTag:@"companyRole"];
 	
 	[self reloadDropDowns];
+	
+	TextEntryCell *acnCell = [TextEntryCell loadInstance];
+	[self setAcnCell:acnCell];
+	[acnCell configureWithTitle:NSLocalizedString(@"business.profile.au.acn", nil) value:@""];
+	[acnCell setCellTag:@"acn"];
+	
+	TextEntryCell *abnCell = [TextEntryCell loadInstance];
+	[self setAbnCell:abnCell];
+	[acnCell configureWithTitle:NSLocalizedString(@"business.profile.au.abn", nil) value:@""];
+	[acnCell setCellTag:@"abn"];
+	
+	TextEntryCell *arbnCell = [TextEntryCell loadInstance];
+	[self setArbnCell:arbnCell];
+	[acnCell configureWithTitle:NSLocalizedString(@"business.profile.au.arbn", nil) value:@""];
+	[acnCell setCellTag:@"arbn"];
 
     NSMutableArray *secondColumnCells = [NSMutableArray array];
 	
