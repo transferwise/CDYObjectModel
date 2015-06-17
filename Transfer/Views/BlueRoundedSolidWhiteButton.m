@@ -13,7 +13,7 @@
 - (void)commonSetup
 {
 	[super configureWithCompoundStyle:@"blueRoundedButton"];
-	[self setBackgroundImage:[UIImage imageNamed:@"RoundedBlueSolidWhiteButton"] forState:UIControlStateNormal];
+	[self setBackgroundImage:[UIImage imageNamed:@"RoundedBlueSolidWhiteBGButton"] forState:UIControlStateNormal];
 	[super commonSetup];
 }
 @end
