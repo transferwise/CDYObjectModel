@@ -308,6 +308,18 @@
 					   withTarget:countryCode];
 }
 
++ (BOOL)showAcnAndAbnCells:(NSString *)countryCode
+{
+	return [self isMatchingSource:@"au"
+					   withTarget:countryCode];
+}
+
++ (BOOL)showArbnCell:(NSString *)targetCurrency
+{
+	return [self isMatchingSource:@"aud"
+					   withTarget:targetCurrency];
+}
+
 + (BOOL)isMatchingSource:(NSString *)source
 			  withTarget:(NSString *)target
 {
