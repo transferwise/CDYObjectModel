@@ -22,6 +22,7 @@
 #import "GoogleAnalytics.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
+#import "SectionButtonFlashHelper.h"
 
 #define defaultRewardAmount 50
 #define defaultRewardCurrency @"GBP"
@@ -53,6 +54,12 @@
     if (self) {
     }
     return self;
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [SectionButtonFlashHelper inviteScreenHasBeenVisited];
 }
 
 -(void)viewWillAppear:(BOOL)animated
