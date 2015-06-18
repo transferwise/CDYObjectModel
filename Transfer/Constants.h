@@ -49,6 +49,7 @@ extern NSString *const TRWApplicationKey;
 extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;
 extern NSString *const TRWGoogleAnalyticsDevTrackingId;
+extern NSString *const TRWMixpanelDevToken;
 extern NSString *const TRWMixpanelToken;
 extern NSString *const TRWImpactRadiusSID;
 extern NSString *const TRWImpactRadiusToken;
@@ -62,6 +63,10 @@ extern NSString *const TRWReferralTokenKey;
 extern NSString *const TRWReferralSourceKey;
 extern NSString *const TRWReferrerKey;
 extern NSString *const TRWGoogleLoginUsedKey;
+extern NSString *const TRWGoogleRevokeUrlFormat;
+extern NSString *const TRWFacebookLoginUsedKey;
+extern NSString *const TRWIntroABKey;
+extern NSString *const TRWDidHighlightInviteSection;
 
 
 extern NSString *const TransferSandboxUsername;
@@ -122,6 +127,10 @@ extern NSString *const GoogleOAuthRedirectUrl;
 extern NSString *const GoogleOAuthServiceName;
 extern NSString *const GoogleOAuthEmailScope;
 extern NSString *const GoogleOAuthProfileScope;
+
+extern NSString *const FacebookOAuthServiceName;
+extern NSString *const FacebookOAuthEmailScope;
+extern NSString *const FacebookOAuthProfileScope;
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 

@@ -8,7 +8,6 @@
 
 #import "NewPaymentViewController.h"
 #import "MoneyEntryCell.h"
-#import "LoginViewController.h"
 #import "MoneyCalculator.h"
 #import "CalculationResult.h"
 #import "CurrencyLoader.h"
@@ -46,8 +45,6 @@
 #import "LocationHelper.h"
 #import "Mixpanel+Customisation.h"
 
-
-
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
 
@@ -80,7 +77,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *termsLabel;
 
-- (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *howButtonTopConstraint;
@@ -403,13 +399,6 @@ static NSUInteger const kRowYouSend = 0;
 -(void)dismissKeyboard:(id)sender
 {
     [self.view endEditing:YES];
-}
-
-- (IBAction)loginPressed:(id)sender
-{
-	LoginViewController *controller = [[LoginViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)startPaymentPressed:(id)sender

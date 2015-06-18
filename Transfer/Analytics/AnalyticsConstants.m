@@ -108,7 +108,9 @@ NSString *const GAViewPayment = @"View payment";
 NSString *const GAViewTransfers = @"View transfers";
 NSString *const GAWhatsNewScreen = @"What's new screen";
 NSString *const GAWireTransfer = @"Wire transfer";
-
+NSString *const GAFBLoginError = @"FacebookLoginError";
+NSString *const GAFBLoginNoEmail = @"FacebookLoginNoEmail";
+NSString *const GAPushNotificationsPropmpted = @"AcceptedPushNotifications";
 
 // Mixpanel
 
@@ -122,6 +124,8 @@ NSString *const MPConfirmation = @"Confirmation";
 NSString *const MPDeeplink = @"deeplink";
 NSString *const MPDebitCardPayment = @"Debit card payment";
 NSString *const MPIntro = @"Intro";
+NSString *const MPIntroABTest0 = @"New-wording-0";
+NSString *const MPIntroABTest1 = @"New-wording-1";
 NSString *const MPLogin = @"Login";
 NSString *const MPNewTransfer = @"New transfer";
 NSString *const MPPaymentCreated = @"Transfer created";

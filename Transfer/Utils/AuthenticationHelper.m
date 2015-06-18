@@ -32,7 +32,6 @@
 #import "AppsFlyerTracker.h"
 #import "PaymentsOperation.h"
 #import "ObjectModel+RecipientTypes.h"
-#import <FacebookSDK.h>
 #import "Mixpanel+Customisation.h"
 #import "LoginOrRegisterWithOauthOperation.h"
 #import <NXOAuth2AccountStore.h>
@@ -43,6 +42,12 @@
 #import "CustomInfoViewController.h"
 #import "PushNotificationsHelper.h"
 #import "ReferralsCoordinator.h"
+#import <FBSDKAppEvents.h>
+#import "FacebookHelper.h"
+#import <AFNetworking.h>
+#import "MixpanelIdentityHelper.h"
+#import "NSString+DeducedId.h"
+#import <OnePasswordExtension.h>
 
 @interface AuthenticationHelper ()
 
@@ -146,24 +151,25 @@
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				[weakSelf logUserIn:token
-						  email:email
-				   successBlock:^{
-                       if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
-                       {
-                           CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
-                               successBlock();
-                           }];
-                           [prompt presentOnViewController:touchIdHost];
-                       }
-                       else
-                       {
-                           successBlock();
-                       }
-                
-                   }
-							hud:hud
-					objectModel:objectModel
-	   waitForDetailsCompletion:waitForDetailsCompletion];
+							  email:email
+					   successBlock:^{
+						   if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
+						   {
+							   CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
+								   successBlock();
+							   }];
+							   [prompt presentOnViewController:touchIdHost];
+						   }
+						   else
+						   {
+							   successBlock();
+						   }
+						   
+					   }
+								hud:hud
+						objectModel:objectModel
+		   waitForDetailsCompletion:waitForDetailsCompletion
+				isOAuthRegistration:NO];
 			}];
 			return;
 		}
@@ -207,6 +213,7 @@
 
 - (void)performOAuthLoginWithToken:(NSString *)token
 						  provider:(NSString *)provider
+							 email:(NSString *)email
 				keepPendingPayment:(BOOL)keepPendingPayment
 			  navigationController:(UINavigationController *)navigationController
 					   objectModel:(ObjectModel *)objectModel
@@ -220,6 +227,7 @@
 	
 	LoginOrRegisterWithOauthOperation *oauthLoginOperation = [LoginOrRegisterWithOauthOperation loginOrRegisterWithOauthOperationWithProvider:provider
 																																		token:token
+																																		email:email
 																																  objectModel:objectModel
 																														   keepPendingPayment:keepPendingPayment];
 	self.executedOperation = oauthLoginOperation;
@@ -232,53 +240,80 @@
 			[objectModel performBlock:^{
 				NSString *token = response[@"token"];
 				NSString *email = response[@"email"];
-                BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
-                [weakSelf logUserIn:token
-                              email:email
-                       successBlock:^{
-                           [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration?GAUserregistered:GAUserlogged withLabel:[provider lowercaseString]];
-                           NSString *referralToken = [ReferralsCoordinator referralToken];
-                           if(referralToken)
-                           {
-                               [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
-                           }
-                           successBlock();
-                       }
-                                hud:hud
-                        objectModel:objectModel
-           waitForDetailsCompletion:waitForDetailsCompletion];
-            }];
-            return;
+				BOOL isRegistration = [response[@"registeredNewUser"] boolValue];
+				[weakSelf logUserIn:token
+							  email:email
+					   successBlock:^{
+						   [[GoogleAnalytics sharedInstance] sendAppEvent:isRegistration ? GAUserregistered : GAUserlogged
+																withLabel:[provider lowercaseString]];
+						   [objectModel performBlock:^{
+							   User* loggedInUser = [objectModel currentUser];
+							   loggedInUser.authenticationProvider = provider;
+							   [objectModel saveContext];
+						   }];
+						   
+						   NSString *referralToken = [ReferralsCoordinator referralToken];
+						   if(referralToken)
+						   {
+							   [[GoogleAnalytics sharedInstance] sendAppEvent:GAInvitedUserJoined];
+						   }
+						   successBlock();
+					   }
+								hud:hud
+						objectModel:objectModel
+		   waitForDetailsCompletion:waitForDetailsCompletion
+				isOAuthRegistration:isRegistration];
+			}];
 		}
-		
-		dispatch_async(dispatch_get_main_queue(), ^{
+		//handle email error for Facebook
+		else if ([provider isEqualToString:FacebookOAuthServiceName] && [weakSelf isEmailAddressMissing:error])
+		{
 			[hud hide];
-			TRWAlertView *alertView;
-			if ([error isTransferwiseError])
-			{
-				NSString *message = [error localizedTransferwiseMessage];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
-													   withLabel:message];
-				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-													 message:message];
+			FacebookHelper *fbHelper = [[FacebookHelper alloc] init];
+			[fbHelper getUserEmailWithResultBlock:^(NSString *email) {
+				[weakSelf performOAuthLoginWithToken:token
+											provider:provider
+											   email:email
+								  keepPendingPayment:keepPendingPayment
+								navigationController:navigationController
+										 objectModel:objectModel successBlock:successBlock
+										  errorBlock:errorBlock
+						   waitForDetailsCompletions:waitForDetailsCompletion
+											isSilent:isSilent];
 			}
-			else
-			{
-				alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-													 message:NSLocalizedString(@"login.error.generic.message", nil)];
-				[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
-													   withLabel:error.localizedDescription];
-			}
-			
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			
-			if (!isSilent)
-			{
-				[alertView show];
-			}
-			
-			errorBlock();
-		});
+							 navigationController:navigationController];
+		}
+		else
+		{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[hud hide];
+				TRWAlertView *alertView;
+				if ([error isTransferwiseError])
+				{
+					NSString *message = [error localizedTransferwiseMessage];
+					[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
+														   withLabel:message];
+					alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+														 message:message];
+				}
+				else
+				{
+					alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+														 message:NSLocalizedString(@"login.error.generic.message", nil)];
+					[[GoogleAnalytics sharedInstance] sendAlertEvent:GAOauthloginerror
+														   withLabel:error.localizedDescription];
+				}
+				
+				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+				
+				if (!isSilent)
+				{
+					[alertView show];
+				}
+				
+				errorBlock();
+			});
+		}
 	}];
 	
 	[oauthLoginOperation execute];
@@ -289,8 +324,27 @@
 				  isExisting:(BOOL)isExisting
 {
 	__weak typeof(self) weakSelf = self;
-	[self performOAuthLoginWithToken:account.accessToken.accessToken
-							provider:account.accountType
+	[self authWithOauthToken:account.accessToken.accessToken
+					provider:account.accountType
+					   email:nil
+				 sucessBlock:successBlock
+				  errorBlock:^{
+					  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+					  [weakSelf presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+				  }
+				  isExisting:isExisting];
+}
+
+- (void)authWithOauthToken:(NSString *)token
+				  provider:(NSString *)provider
+					 email:(NSString *)email
+			   sucessBlock:(TRWActionBlock)successBlock
+				errorBlock:(TRWActionBlock)errorBlock
+				isExisting:(BOOL)isExisting
+{
+	[self performOAuthLoginWithToken:token
+							provider:provider
+							   email:email
 				  keepPendingPayment:NO
 				navigationController:self.navigationController
 						 objectModel:self.objectModel
@@ -298,9 +352,11 @@
 						  errorBlock:^{
 							  if (isExisting)
 							  {
-								  //if this is an existing account and auth failed show login
-								  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
-								  [weakSelf presentOAuthLogInWithProvider:GoogleOAuthServiceName];
+								  //if this is an existing account and auth failed, do something
+								  if (errorBlock)
+								  {
+									  errorBlock();
+								  }
 							  }
 						  }
 		   waitForDetailsCompletions:YES
@@ -322,7 +378,6 @@
 }
 
 #pragma mark - OAuth notifications
-
 -(void)registerForOauthNotifications
 {
     if(! self.hasRegisteredForOauthNotifications)
@@ -388,6 +443,42 @@
     [self deRegisterForOauthNotifications];
 }
 
+#pragma mark - oauth revoke
+
++ (void)revokeOauthAccessForProvider:(NSString*)provider completionBlock:(void (^)(void))completionBlock
+{
+    if([@"google" isEqualToString:[provider lowercaseString]])
+    {
+        NXOAuth2Account* account = [[[NXOAuth2AccountStore sharedStore] accounts] firstObject];
+        if(account)
+        {
+            NSURL *revokeUrl = [NSURL URLWithString:[NSString stringWithFormat:TRWGoogleRevokeUrlFormat,AFQueryStringFromParametersWithEncoding(@{@"token":account.accessToken.accessToken}, NSUTF8StringEncoding)]];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:revokeUrl];
+            AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if(completionBlock)
+                {
+                    completionBlock();
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                //Fail silently
+                if(completionBlock)
+                {
+                    completionBlock();
+                }
+            }];
+            [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+            [[[TransferwiseClient sharedClient] operationQueue] addOperation:requestOperation];
+            return;
+        }
+    }
+    
+    if(completionBlock)
+    {
+        completionBlock();
+    }
+}
+
 #pragma mark - Logout
 + (void)logOutWithObjectModel:(ObjectModel *)objectModel
            tokenNeedsClearing:(BOOL)clearToken
@@ -401,6 +492,8 @@
 																							 objectModel:objectModel];
 			[pushHelper handleLoggingOut];			
             [objectModel deleteObject:objectModel.currentUser];
+			[MixpanelIdentityHelper handleLogout];
+			
             dispatch_async(dispatch_get_main_queue(), ^{
                 if([Credentials userLoggedIn])
                 {
@@ -424,6 +517,44 @@
     }	
 }
 
+#pragma mark - Facebook login
+- (void)performFacebookLoginWithNavigationController:(UINavigationController *)navigationController
+										 objectModel:(ObjectModel *)objectModel
+									  successHandler:(TRWActionBlock)successBlock
+{
+	self.navigationController = navigationController;
+	self.objectModel = objectModel;
+	self.oauthSuccessBlock = successBlock;
+	
+	__weak typeof(self) weakSelf = self;
+	//call out to FB helper to do the login magic
+	FacebookHelper *fbHelper = [[FacebookHelper alloc] init];
+	[fbHelper performFacebookLoginWithSuccessBlock:^(NSString *accessToken, BOOL isExisting) {
+		[weakSelf authWithOauthToken:accessToken
+							provider:FacebookOAuthServiceName
+							   email:nil
+						 sucessBlock:successBlock
+						  errorBlock:^{
+							  //will only be executed for isExisting = YES case
+							  [fbHelper logOut];
+							  [weakSelf performFacebookLoginWithNavigationController:weakSelf.navigationController
+																		 objectModel:weakSelf.objectModel
+																	  successHandler:successBlock];
+						  }
+						  isExisting:isExisting];
+	}
+									   cancelBlock:^{
+										   //do something when FB login is cancelled
+									   }];
+}
+
+- (BOOL)isEmailAddressMissing:(NSError *)error
+{
+	//102 is the "registration email not found" error code which
+	//it signifies the fact that user hasn't given us access to his/her email on FB
+	return [error isTransferwiseError] && [error containsTwCode:@"102"];
+}
+
 #pragma mark - Helpers
 - (void)logUserIn:(NSString *)token
 			email:(NSString *)email
@@ -431,6 +562,7 @@
 			  hud:(TRWProgressHUD *)hud
 	  objectModel:(ObjectModel *)objectModel
 waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
+isOAuthRegistration:(BOOL)isOauthRegistration
 {
 	[Credentials setUserToken:token];
 	[Credentials setUserEmail:email];
@@ -440,8 +572,18 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 	[pushHelper handleDeviceRegistering];
     __weak typeof(self) weakSelf = self;
 	[[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
+		User *user = objectModel.currentUser;
+		if (isOauthRegistration)
+		{
+			[MixpanelIdentityHelper handleRegistration:[user.pReference deducedIdString]];
+		}
+		else
+		{
+			[MixpanelIdentityHelper handleLogin:[user.pReference deducedIdString]];
+		}
+		
 #if USE_APPSFLYER_EVENTS
-		[AppsFlyerTracker sharedTracker].customerUserID = objectModel.currentUser.pReference;
+		[AppsFlyerTracker sharedTracker].customerUserID = user.pReference;
 		[[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
 #endif
 		if (waitForDetailsCompletion)
@@ -464,7 +606,7 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
 	[objectModel removeOtherUsers];
 	
 #if USE_FACEBOOK_EVENTS
-	[FBAppEvents logEvent:@"loggedIn"];
+	[FBSDKAppEvents logEvent:@"loggedIn"];
 #endif
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 	
@@ -564,4 +706,49 @@ waitForDetailsCompletion:(BOOL)waitForDetailsCompletion
         }
     }
 }
+
+#pragma mark - one password
+
++(void)onePasswordLoginWithCompletion:(void(^)(BOOL success, NSString* username, NSString* password))completionBlock onViewController:(UIViewController*)controller sender:(id)sender
+{
+    [[OnePasswordExtension sharedExtension] findLoginForURLString:@"https://www.transferwise.com" forViewController:controller sender:sender completion:^(NSDictionary *loginDictionary, NSError *error) {
+        if (loginDictionary.count == 0) {
+            if (error.code != AppExtensionErrorCodeCancelledByUser) {
+                completionBlock(NO,nil,nil);
+            }
+            return;
+        }
+        
+        completionBlock(YES, loginDictionary[AppExtensionUsernameKey], loginDictionary[AppExtensionPasswordKey]);
+    }];
+   
+}
+
++(void)onePasswordInsertRegistrationDetails:(void(^)(BOOL success, NSString* email, NSString* password))completionBlock preEnteredUsername:(NSString*)email preEnteredPassword:(NSString*)password viewController:(UIViewController*)controller sender:(id)sender
+{
+    NSDictionary *loginDetails = @{
+                                   AppExtensionTitleKey: @"TransferWise",
+                                   AppExtensionUsernameKey:email?:@"", // 1Password will prompt the user to create a new item if no matching logins are found with this username.
+                                   AppExtensionPasswordKey: password?:@"",
+                                   AppExtensionNotesKey: @"Saved with the TransferWise app",
+                                   };
+    
+    // Password generation options are optional, but are very handy in case you have strict rules about password lengths
+    NSDictionary *passwordGenerationOptions = @{
+                                                AppExtensionGeneratedPasswordMinLengthKey: @(5) // The minimum value can be 4 or more
+                                                };
+    [[OnePasswordExtension sharedExtension] storeLoginForURLString:@"https://www.transferwise.com" loginDetails:loginDetails passwordGenerationOptions:passwordGenerationOptions forViewController:controller sender:sender completion:^(NSDictionary *loginDictionary, NSError *error) {
+        
+        if (loginDictionary.count == 0) {
+            completionBlock(NO,nil,nil);
+        }
+        completionBlock(YES,loginDictionary[AppExtensionUsernameKey] ? : @"",loginDictionary[AppExtensionPasswordKey] ? : @"");
+    }];
+}
+
++(BOOL)onePasswordIsAvaliable
+{
+    return [[OnePasswordExtension sharedExtension] isAppExtensionAvailable];
+}
+
 @end

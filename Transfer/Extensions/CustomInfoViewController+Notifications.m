@@ -10,27 +10,36 @@
 #import "PushNotificationsHelper.h"
 #import "Constants.h"
 #import "ObjectModel.h"
+#import "AnalyticsConstants.h"
+#import "GoogleAnalytics.h"
 
 @implementation CustomInfoViewController (Notifications)
 
-+(instancetype)notificationsCustomInfoWithName:(NSString*)recipientName objectModel:(ObjectModel*)objectModel
++(instancetype)notificationsCustomInfoWithName:(NSString*)recipientName
+								   objectModel:(ObjectModel*)objectModel
 {
-    CustomInfoViewController *result = [[CustomInfoViewController alloc] initWithNibName:@"CustomInfo_Notifications" bundle:nil];
+    CustomInfoViewController *result = [[CustomInfoViewController alloc] initWithNibName:@"CustomInfo_Notifications"
+																				  bundle:nil];
     result.infoText = [NSString stringWithFormat:NSLocalizedString(@"notifications.info.format", nil),recipientName];
     result.titleText = @"";
     result.infoImage = [UIImage imageNamed:@"push_notification_icon"];
     result.actionButtonTitles = @[NSLocalizedString(@"notifications.yes", nil), NSLocalizedString(@"button.title.no", nil)];
 
     ActionButtonBlock yesBlock = ^{
-        PushNotificationsHelper *helper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication] objectModel:objectModel];
+        PushNotificationsHelper *helper = [PushNotificationsHelper sharedInstanceWithApplication:[UIApplication sharedApplication]
+																					 objectModel:objectModel];
         [helper registerForPushNotifications:NO];
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:TRWHasRespondedToNotificationsPromptSettingsKey];
+		[[GoogleAnalytics sharedInstance] sendAppEvent:GAPushNotificationsPropmpted
+											 withLabel:@"Accepted"];
         [result dismiss];
     };
     ActionButtonBlock noBlock = ^{
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:TRWHasRespondedToNotificationsPromptSettingsKey];
+		[[GoogleAnalytics sharedInstance] sendAppEvent:GAPushNotificationsPropmpted
+											 withLabel:@"Declined"];
         [result dismiss];
     };
 

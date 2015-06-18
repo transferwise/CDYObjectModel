@@ -63,9 +63,9 @@
 "button.title.import.from.phonebook" = "Importer mon répertoire";
 "button.title.log.in" = "Connexion";
 "button.title.log.in.google" = "Google";
-"button.title.log.in.yahoo" = "Yahoo!";
+"button.title.log.in.facebook" = "Facebook";
 "button.title.log.in.google.ipad" = "Se connecter via Google";
-"button.title.log.in.yahoo.ipad" = "Se connecter via Yahoo!";
+"button.title.log.in.facebook.ipad" = "Se connecter via Facebook";
 "button.title.ok" = "OK";
 "button.title.retry" = "Reéssayer";
 "button.title.yes" = "Oui";
@@ -198,11 +198,13 @@ Une révolution dans votre poche.";
 "login.error.generic.message" = "Erreur de connexion. Essayez de nouveau.";
 "login.error.title" = "Impossible de se connecter";
 "login.error.oauth.expired" = "Votre jeton d'OAuth a expiré. Essayez à nouveau s'il vous plait.";
+"login.error.facebook.no.email" = "Vous n'avez pas partagé votre adresse email avec nous.";
 "login.password.field.title" = "Mot de passe";
 "login.validation.email.missing" = "Adresse email manquante";
 "login.validation.email.not.valid" = "L'émail saisi n'est pas valide";
 "login.validation.password.missing" = "Mot de passe manquant";
 "login.oauth.header.title" = "Connecter avec %@";
+"login.email.facebook.getting" = "L'obtention de votre e-mail";
 
 "money.entry.priority.payment.title" = "Transfert prioritaire";
 "money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";
@@ -401,7 +403,9 @@ Nous vous rembourserons l'argent non utilisé après le transfert.";
 "settings.row.about" = "A propos";
 "settings.row.touchid" = "Paramètres Touch ID";
 "settings.row.send.as.business" = "Envoyer en tant qu'entreprise";
-
+"settings.row.google" = "Paramètres Google";
+"settings.google.alert.title" = "Google";
+"settings.google.alert.text" = "Voulez-vous dissocier votre compte Google et vous déconnecter?";
 
 "sign.up.controller.creating.message" = "Création du compte...";
 "sign.up.controller.signup.error.message" = "Erreur de création du compte";
@@ -688,6 +692,20 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "reset.password.failed.alert.title" = "Oops!";
 "reset.password.not.found.alert.message" = "Aucun compte correspondant à cette adresse email.";
 "refund.controller.existing.recipients.preload.error.title" = "Impossible de charger vos contacts";
+
+"ask.email.controller.title" = "Your email address";
+"ask.email.controller.email.cell.label" = "Your email";
+"ask.email.header.description" = "Enter your email address.
+We need this to create your account
+but you haven't shared it
+with us on Facebook.";
+"ask.email.header.description.ipad" = "Enter your email address.
+We need this to create your account
+but you haven't shared it with us on Facebook.";
+"ask.email.controller.footer.button.title" = "Done";
+"ask.email.email.not.entered" = "Email is missing.";
+"ask.email.invaild.email.error" = "Please provide a valid email.";
+"ask.email.error.title" = "Oops!";
 
 "network.alert" = "Pas de connexion internet";
 "unknown.value" = "??";

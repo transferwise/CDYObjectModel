@@ -283,16 +283,24 @@
 	{
 		CGRect newHeaderFrame = self.headerView.frame;
 		CGRect newFooterFrame = self.footerView.frame;
+        
+        CGFloat heightOfTableCells = self.tableView.contentSize.height - newHeaderFrame.size.height - newFooterFrame.size.height;
+        
+        CGFloat screenHeight;
 		if (UIInterfaceOrientationIsLandscape(orientation))
 		{
-			newHeaderFrame.size.height = 60.0f;
+            screenHeight = 704;
 			newFooterFrame.size.height = 224.0f;
 		}
 		else
 		{
-			newHeaderFrame.size.height = 188.0f;
+            screenHeight = 960;
 			newFooterFrame.size.height = 352.0f;
 		}
+        
+        newHeaderFrame.size.height = MAX(20.0f, screenHeight - newFooterFrame.size.height - heightOfTableCells);
+        MCLog(@"HeaderHeight %f",newHeaderFrame.size.height);
+        
 		self.headerView.frame = newHeaderFrame;
 		self.footerView.frame = newFooterFrame;
 		self.tableView.tableHeaderView = self.headerView;

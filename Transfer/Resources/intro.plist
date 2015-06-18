@@ -10,9 +10,9 @@
 		<key>textRef</key>
 		<string>intro.message.one</string>
 		<key>bgStyle</key>
-		<string>lightBlue</string>
+		<string>twblue</string>
 		<key>titleFontStyle</key>
-		<string>sharpBold.@{35,60}.TWBlue</string>
+		<string>sharpBold.@{35,60}.white</string>
 		<key>textFontStyle</key>
 		<string>book.@{20,27}.corefont</string>
 		<key>useWhiteButton</key>
@@ -26,9 +26,9 @@
 		<key>textRef</key>
 		<string>intro.message.two</string>
 		<key>bgStyle</key>
-		<string>twblue</string>
+		<string>lightBlue</string>
 		<key>titleFontStyle</key>
-		<string>sharpBold.@{35,60}.white</string>
+		<string>sharpBold.@{35,60}.TWBlue</string>
 		<key>textFontStyle</key>
 		<string>book.@{20,27}.corefont</string>
 		<key>useWhiteButton</key>

@@ -63,9 +63,9 @@
 "button.title.import.from.phonebook" = "Import from phonebook";
 "button.title.log.in" = "Log in";
 "button.title.log.in.google" = "Google";
-"button.title.log.in.yahoo" = "Yahoo!";
+"button.title.log.in.facebook" = "Facebook";
 "button.title.log.in.google.ipad" = "Log in with Google";
-"button.title.log.in.yahoo.ipad" = "Log in with Yahoo!";
+"button.title.log.in.facebook.ipad" = "Log in with Facebook";
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
 "button.title.yes" = "Yes";
@@ -201,11 +201,13 @@ A revolution in your pocket.";
 "login.error.generic.message" = "Login failed. Please try again.";
 "login.error.title" = "Can't log in";
 "login.error.oauth.expired" = "Your OAuth token has expired or is revoked. Please try again.";
+"login.error.facebook.no.email" = "You have not shared your email address with us.";
 "login.password.field.title" = "Password";
 "login.validation.email.missing" = "You haven't entered an email";
 "login.validation.email.not.valid" = "The entered email is not correct";
 "login.validation.password.missing" = "Password is missing";
 "login.oauth.header.title" = "Log in with %@";
+"login.email.facebook.getting" = "Getting your email";
 
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";
@@ -406,7 +408,9 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "settings.row.about" = "About";
 "settings.row.touchid" = "Touch ID settings";
 "settings.row.send.as.business" = "Send as business";
-
+"settings.row.google" = "Google settings";
+"settings.google.alert.title" = "Google";
+"settings.google.alert.text" = "Do you want to unlink your Google account and log out?";
 
 "sign.up.controller.creating.message" = "Creating account...";
 "sign.up.controller.signup.error.message" = "Sign up error";
@@ -636,6 +640,8 @@ Please attach your documents to this email and send it our way.<br />
 "intro.tagline.one" = "MONEY
 WITHOUT
 BORDERS";
+"intro.tagline.oneB" = "GET THE REAL
+EXCHANGE RATE.";
 "intro.tagline.two" = "90\% CHEAPER
 THAN YOUR
 BANK";
@@ -647,6 +653,8 @@ FASTER
 EXPERIENCE";
 "intro.message.one" = "Send money abroad
 cheaper & faster.";
+"intro.message.oneB" = "TransferWise is the cheapest 
+way to send money abroad.";
 "intro.message.two" = "Banks charge 5% with hidden
 fees. We charge 0.5%";
 "intro.message.three" = "5/5 ratings across 6758
@@ -703,6 +711,20 @@ We'll send you an email in order to let you choose a new password.";
 "reset.password.failed.alert.title" = "Oops!";
 "reset.password.not.found.alert.message" = "There is no account registered with that email. Please provide a valid email.";
 "refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
+
+"ask.email.controller.title" = "Your email address";
+"ask.email.controller.email.cell.label" = "Your email";
+"ask.email.header.description" = "Enter your email address.
+We need this to create your account
+but you haven't shared it
+with us on Facebook.";
+"ask.email.header.description.ipad" = "Enter your email address.
+We need this to create your account
+but you haven't shared it with us on Facebook.";
+"ask.email.controller.footer.button.title" = "Done";
+"ask.email.email.not.entered" = "Email is missing.";
+"ask.email.invaild.email.error" = "Please provide a valid email.";
+"ask.email.error.title" = "Oops!";
 
 "network.alert" = "No Internet Connection";
 "unknown.value" = "??";

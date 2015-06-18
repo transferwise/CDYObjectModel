@@ -39,7 +39,7 @@
 #import "NavigationBarCustomiser.h"
 #import "PaymentMethodSelectorViewController.h"
 #import "SetSSNOperation.h"
-#import "SendButtonFlashHelper.h"
+#import "SectionButtonFlashHelper.h"
 #import "RecipientTypesOperation.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
 #import "NewPaymentHelper.h"
@@ -97,7 +97,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [self setTitle:NSLocalizedString(@"transactions.controller.title", nil)];
 		
 		//Observe notification to remove selected payment for iPad
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList:) name:TRWMoveToPaymentsListNotification object:nil];
     }
     return self;
 }
@@ -150,7 +150,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
     
     [self.tableView reloadData];
-	
+    
     if(self.deeplinkPaymentID)
     {
         [self presentDeeplinkPayment];
@@ -166,6 +166,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	{
 		[self showNoTransfersMessageAndFlashButton];
 	}
+    else
+    {
+        [self checkIfInviteHighlightingIsNeeded];
+    }
 		
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
@@ -204,7 +208,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     {
         [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
     }
-    [SendButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setInviteFlash:NO];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -262,7 +267,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	//set cancelling visible when scrolling
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
-	
+    
     return cell;
 }
 
@@ -278,17 +283,33 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewPayment];
 	[self removeCancellingFromCell];
 
-	self.lastSelectedPayment = payment;
-	[self showPayment:payment];
+    self.lastSelectedPayment = payment;
+    [self showPayment:payment];
+
 }
 
 #pragma mark - Payment List actions
-- (void)moveToPaymentsList
+- (void)moveToPaymentsList:(NSNotification*)note
 {
+    
+    MCLog(@"PAYMENT LIST AHOY!");
 	//cancel latest selection, we arrive here, because a new payment has been created.
 	self.lastSelectedPayment = nil;
 	self.refreshPaymentDetail = YES;
 	self.dontSelectPaymentOnce = YES;
+    
+    self.payments = [self.objectModel allPayments];
+    [self.tableView reloadData];
+    
+    NSNumber *paymentId = note.userInfo[@"paymentId"];
+    if(IPAD && paymentId)
+    {
+        NSArray* filtered = [self.payments filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"remoteId == %@", paymentId]];
+        if([filtered count] >0)
+        {
+            [self selectRowContainingPayment:[filtered lastObject]];
+        }
+    }
 }
 
 - (void)refreshPaymentsList
@@ -315,7 +336,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud
 {
     self.noTransfersMessage.hidden = YES;
-    [SendButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setSendFlash:NO];
     
     PaymentsOperation *operation = [PaymentsOperation operationWithOffset:offset];
     [self setExecutedOperation:operation];
@@ -341,6 +362,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             if(!error && totalCount == 0)
             {
 				[self showNoTransfersMessageAndFlashButton];
+            }
+            else
+            {
+                [self checkIfInviteHighlightingIsNeeded];
             }
 			
             BOOL footerUpdateScheduled = NO;
@@ -408,9 +433,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 					 completion:^(BOOL finished) {
 						 if(weakSelf.isViewLoaded && weakSelf.view.window)
 						 {
-							 [SendButtonFlashHelper setSendFlash:YES];
+							 [SectionButtonFlashHelper setSendFlash:YES];
 						 }
 					 }];
+}
+
+-(void)checkIfInviteHighlightingIsNeeded
+{
+    NSCountedSet* countedStatuses = [NSCountedSet setWithArray:[self.payments valueForKey:@"status"]];
+    
+    NSUInteger numberOfCompleted = [countedStatuses countForObject:@(PaymentStatusTransferred)];
+    if (numberOfCompleted == 1){
+        [SectionButtonFlashHelper flashInviteSectionIfNeeded];
+    }
+
+
 }
 
 #pragma mark - Select row
@@ -444,6 +481,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.tableView selectRowAtIndexPath:paymentIndexPath
 								animated:NO
 						  scrollPosition:UITableViewScrollPositionMiddle];
+    self.lastSelectedPayment = payment;
 }
 
 #pragma mark - ScrollView delegate

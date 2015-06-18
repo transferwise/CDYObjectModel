@@ -51,4 +51,18 @@
 	return [[NSBundle mainBundle] preferredLocalizations][0];
 }
 
+
++ (NSString *)getSupportedLanguage
+{
+	NSString *lang = [self getLanguage];
+	
+	if ([@[@"fr", @"de", @"es", @"it"] containsObject:lang])
+	{
+		return lang;
+	}
+	
+	//default to en
+	return @"en";
+}
+
 @end

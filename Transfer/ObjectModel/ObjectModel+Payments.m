@@ -41,23 +41,28 @@
 }
 
 - (Payment *)createOrUpdatePaymentWithData:(NSDictionary *)rawData {
-    NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
-    NSNumber *paymentId = data[@"id"];
+    NSNumber *paymentId = rawData[@"id"];
     Payment *payment = [self paymentWithId:paymentId];
     if (!payment) {
         payment = [Payment insertInManagedObjectContext:self.managedObjectContext];
         [payment setRemoteId:paymentId];
         [payment setUser:[self currentUser]];
     }
+    return [self populatePayment:payment withData:rawData];
+}
+
+-(Payment*)populatePayment:(Payment*)payment withData:(NSDictionary*)rawData
+{
+    NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
 
     [payment setPaymentStatus:data[@"paymentStatus"]];
     [payment setSourceCurrency:[self currencyWithCode:data[@"sourceCurrency"]]];
     [payment setTargetCurrency:[self currencyWithCode:data[@"targetCurrency"]]];
     [payment setPayIn:data[@"payIn"]];
-    [payment setRecipient:[self createOrUpdateRecipientWithData:data[@"recipient"] hideCreted:YES]];
+    [payment setRecipient:[self createOrUpdateRecipientWithData:data[@"recipient"] hideCreated:YES]];
     NSDictionary *refund = data[@"refundRecipient"];
     if (refund) {
-        [payment setRefundRecipient:[self createOrUpdateRecipientWithData:refund hideCreted:YES]];
+        [payment setRefundRecipient:[self createOrUpdateRecipientWithData:refund hideCreated:YES]];
     }
     [payment setSubmittedDate:[NSDate dateFromServerString:data[@"submittedDate"]]];
     [payment setReceivedDate:[NSDate dateFromServerString:data[@"receivedDate"]]];
@@ -112,7 +117,8 @@
     return [self countInstancesOfEntity:[Payment entityName] withPredicate:completedPredicate] > 0;
 }
 
-- (NSArray *)paymentsWithRemoteIds:(NSArray *)array {
+- (NSArray *)paymentsWithRemoteIds:(NSArray *)array
+{
     NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"remoteId IN %@", array];
     return [self fetchEntitiesNamed:[Payment entityName] withPredicate:remoteIdPredicate];
 }

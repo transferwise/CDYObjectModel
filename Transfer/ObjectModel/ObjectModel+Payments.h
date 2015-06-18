@@ -14,9 +14,11 @@
 
 - (NSArray *)allPayments;
 - (Payment *)createOrUpdatePaymentWithData:(NSDictionary *)rawData;
+- (Payment *)populatePayment:(Payment*)payment withData:(NSDictionary*)data;
 - (NSArray *)listRemoteIdsForExistingPayments;
 - (void)removePaymentsWithIds:(NSArray *)array;
 - (BOOL)hasCompletedPayments;
+- (NSArray *)paymentsWithRemoteIds:(NSArray *)array;
 - (void)togglePaymentMadeForPayment:(Payment*)payment payInMethodName:(NSString*)payInMethodName;
 - (BOOL)hasNoOrOnlyCancelledPaymentsExeptThis:(NSManagedObjectID *)paymentID;
 - (Payment*)latestPayment;

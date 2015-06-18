@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="xibNameForResetPassword" value="ResetPasswordViewControllerUpfront"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="emailTextField" destination="jNz-Kj-TyF" id="RQo-Is-8f0"/>
+                <outlet property="facebookLoginButton" destination="r8f-4O-fgG" id="oDP-zE-rNO"/>
                 <outlet property="forgotPasswordLabel" destination="nVw-3E-NCJ" id="r9h-mA-0Pc"/>
                 <outlet property="googleLoginButton" destination="ZQJ-ts-mwH" id="h7C-iS-B2K"/>
                 <outlet property="loginButton" destination="A1z-HI-x7D" id="DP4-kN-c57"/>
+                <outlet property="onePasswordButton" destination="eDp-ac-LhS" id="EWc-JT-mJ2"/>
                 <outlet property="orLabel" destination="Z2S-88-Izr" id="ThB-cl-kvD"/>
                 <outlet property="passwordTextField" destination="RCm-Tg-pZv" id="kvs-p0-1d5"/>
+                <outlet property="touchIdButton" destination="Nja-qb-Bvk" id="oca-Pz-vzm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="yahooLoginButton" destination="r8f-4O-fgG" id="ZyH-nK-wHZ"/>
-                <outletCollection property="separatorHeights" destination="vHM-sh-uTK" id="QPi-nF-myP"/>
-                <outletCollection property="separatorHeights" destination="aIc-s5-uLA" id="3Cb-a0-yIU"/>
+                <outletCollection property="separatorHeights" destination="vHM-sh-uTK" id="moX-pC-4xM"/>
+                <outletCollection property="separatorHeights" destination="aIc-s5-uLA" id="bb0-ek-Krx"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -59,23 +64,21 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="SeparatorGrey"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-HI-x7D" userLabel="Login Button" customClass="GreenButton">
-                    <rect key="frame" x="297" y="274" width="430" height="55"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-HI-x7D" userLabel="Login Button" customClass="BlueRoundedButton">
+                    <rect key="frame" x="297" y="284" width="100" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="XQM-j6-8CV"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="OYp-dd-r59"/>
+                        <constraint firstAttribute="height" constant="44" id="XQM-j6-8CV"/>
                     </constraints>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="FKE-ry-GCf"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5AO-Ch-ke6" customClass="IntrinsicSizeUIView">
-                    <rect key="frame" x="0.0" y="419" width="1024" height="349"/>
+                    <rect key="frame" x="0.0" y="416" width="1024" height="352"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2S-88-Izr" userLabel="Or Label">
                             <rect key="frame" x="491" y="45" width="42" height="21"/>
@@ -86,7 +89,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8f-4O-fgG" userLabel="Yahoo Login Button" customClass="YahooButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8f-4O-fgG" userLabel="Facebook Login Button" customClass="FacebookButton">
                             <rect key="frame" x="297" y="156" width="430" height="55"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="55" id="P8x-ZE-LrH"/>
@@ -98,7 +101,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="yahooLogInPressed:" destination="-1" eventType="touchUpInside" id="AMd-up-58Q"/>
+                                <action selector="facebookLogInPressed:" destination="-1" eventType="touchUpInside" id="83l-iX-flT"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQJ-ts-mwH" userLabel="Google Login Button" customClass="GoogleButton">
@@ -113,7 +116,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="UlJ-BW-YXl"/>
+                                <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="s9v-B0-Fir"/>
                             </connections>
                         </button>
                     </subviews>
@@ -131,7 +134,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVw-3E-NCJ" userLabel="Forgot Password Label">
-                    <rect key="frame" x="683" y="359" width="42" height="21"/>
+                    <rect key="frame" x="685" y="295" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -139,34 +142,63 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@16.TWElectricblue"/>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nja-qb-Bvk">
+                    <rect key="frame" x="490" y="344" width="45" height="45"/>
+                    <state key="normal" image="touch_id_icon">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="touchIdTapped:" destination="-1" eventType="touchUpInside" id="Nge-ax-k2j"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDp-ac-LhS" userLabel="onePassword">
+                    <rect key="frame" x="213" y="286" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="GsT-7g-Vhe"/>
+                        <constraint firstAttribute="height" constant="40" id="MSR-CV-0PG"/>
+                    </constraints>
+                    <state key="normal" image="onepassword-button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onePasswordTapped:" destination="-1" eventType="touchUpInside" id="lFy-Ub-EUj"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="centerX" secondItem="jNz-Kj-TyF" secondAttribute="centerX" id="3od-ps-FcN"/>
-                <constraint firstItem="nVw-3E-NCJ" firstAttribute="trailing" secondItem="A1z-HI-x7D" secondAttribute="trailing" constant="-2" id="4eR-s0-Spe"/>
-                <constraint firstItem="5AO-Ch-ke6" firstAttribute="top" secondItem="nVw-3E-NCJ" secondAttribute="bottom" constant="39" id="5Du-w1-TdR"/>
+                <constraint firstItem="5AO-Ch-ke6" firstAttribute="top" secondItem="nVw-3E-NCJ" secondAttribute="bottom" constant="100" id="5Du-w1-TdR"/>
                 <constraint firstItem="seY-db-tL6" firstAttribute="top" secondItem="RCm-Tg-pZv" secondAttribute="bottom" constant="10" id="5Yi-s1-iW8"/>
+                <constraint firstItem="nVw-3E-NCJ" firstAttribute="top" secondItem="RCm-Tg-pZv" secondAttribute="bottom" constant="62" id="7hq-eq-M2M"/>
+                <constraint firstItem="Nja-qb-Bvk" firstAttribute="centerX" secondItem="RCm-Tg-pZv" secondAttribute="centerX" id="Bjw-sO-R59"/>
                 <constraint firstItem="71E-0J-nDm" firstAttribute="top" secondItem="jNz-Kj-TyF" secondAttribute="bottom" constant="10" id="DPJ-hD-RWC"/>
                 <constraint firstItem="seY-db-tL6" firstAttribute="centerX" secondItem="RCm-Tg-pZv" secondAttribute="centerX" id="FDb-IC-8Jx"/>
-                <constraint firstItem="nVw-3E-NCJ" firstAttribute="top" secondItem="A1z-HI-x7D" secondAttribute="bottom" constant="30" id="HEA-xl-lqZ"/>
-                <constraint firstItem="RCm-Tg-pZv" firstAttribute="width" secondItem="A1z-HI-x7D" secondAttribute="width" id="OLl-RY-9N8"/>
-                <constraint firstItem="RCm-Tg-pZv" firstAttribute="centerX" secondItem="A1z-HI-x7D" secondAttribute="centerX" id="ONo-CJ-pqQ"/>
+                <constraint firstItem="nVw-3E-NCJ" firstAttribute="trailing" secondItem="RCm-Tg-pZv" secondAttribute="trailing" id="OK1-iL-K7J"/>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="width" secondItem="jNz-Kj-TyF" secondAttribute="width" id="OYl-jk-nK6"/>
+                <constraint firstItem="eDp-ac-LhS" firstAttribute="centerY" secondItem="A1z-HI-x7D" secondAttribute="centerY" id="WxT-9s-erR"/>
                 <constraint firstItem="seY-db-tL6" firstAttribute="width" secondItem="RCm-Tg-pZv" secondAttribute="width" id="aAE-eW-HRV"/>
                 <constraint firstItem="71E-0J-nDm" firstAttribute="width" secondItem="jNz-Kj-TyF" secondAttribute="width" id="alY-vK-ymg"/>
-                <constraint firstItem="A1z-HI-x7D" firstAttribute="top" secondItem="seY-db-tL6" secondAttribute="bottom" constant="30" id="c9M-eF-Bjr"/>
-                <constraint firstItem="ZQJ-ts-mwH" firstAttribute="width" secondItem="A1z-HI-x7D" secondAttribute="width" id="f6v-sU-UcS"/>
+                <constraint firstItem="A1z-HI-x7D" firstAttribute="leading" secondItem="eDp-ac-LhS" secondAttribute="trailing" constant="44" id="bjJ-Jf-RLN"/>
+                <constraint firstItem="A1z-HI-x7D" firstAttribute="top" secondItem="seY-db-tL6" secondAttribute="bottom" constant="40" id="c9M-eF-Bjr"/>
+                <constraint firstItem="A1z-HI-x7D" firstAttribute="leading" secondItem="RCm-Tg-pZv" secondAttribute="leading" id="hIW-Nu-I7L"/>
                 <constraint firstItem="jNz-Kj-TyF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="hpb-RC-0d1"/>
+                <constraint firstItem="Nja-qb-Bvk" firstAttribute="centerY" secondItem="A1z-HI-x7D" secondAttribute="centerY" constant="60" id="jVe-c4-u5s"/>
                 <constraint firstAttribute="bottom" secondItem="5AO-Ch-ke6" secondAttribute="bottom" id="kIl-X3-hS4"/>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="top" secondItem="71E-0J-nDm" secondAttribute="bottom" constant="10" id="kXr-8o-Sdd"/>
                 <constraint firstItem="71E-0J-nDm" firstAttribute="centerX" secondItem="jNz-Kj-TyF" secondAttribute="centerX" id="kgH-N3-qx4"/>
                 <constraint firstAttribute="centerX" secondItem="jNz-Kj-TyF" secondAttribute="centerX" id="nHH-hd-oBC"/>
                 <constraint firstAttribute="trailing" secondItem="5AO-Ch-ke6" secondAttribute="trailing" id="tvc-Za-e4G"/>
                 <constraint firstItem="5AO-Ch-ke6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uqO-gY-Qek"/>
+                <constraint firstItem="RCm-Tg-pZv" firstAttribute="width" secondItem="ZQJ-ts-mwH" secondAttribute="width" id="yZx-Vb-DqJ"/>
             </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
     </objects>
+    <resources>
+        <image name="onepassword-button" width="27" height="27"/>
+        <image name="touch_id_icon" width="45" height="45"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

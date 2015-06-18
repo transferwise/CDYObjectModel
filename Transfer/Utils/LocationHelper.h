@@ -17,5 +17,6 @@
 + (Currency *)getSourceCurrencyWithObjectModel:(ObjectModel *)objectModel;
 + (NSString *)getSupportPhoneNumber;
 + (NSString *)getLanguage;
++ (NSString *)getSupportedLanguage;
 
 @end
