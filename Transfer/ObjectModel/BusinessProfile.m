@@ -39,7 +39,7 @@
 	//usa needs to have state
 	&& (([@"usa" caseInsensitiveCompare:self.countryCode] == NSOrderedSame && [self.state hasValue])
 		//au needs to have either acn or abn
-		|| ([@"aus" caseInsensitiveCompare:country] == NSOrderedSame && ([self.acn hasValue] || [self.abn hasValue])));
+		|| ([@"aus" caseInsensitiveCompare:self.countryCode] == NSOrderedSame && ([self.acn hasValue] || [self.abn hasValue])));
 }
 
 @end
