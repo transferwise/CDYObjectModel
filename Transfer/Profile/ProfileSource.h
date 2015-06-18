@@ -44,7 +44,7 @@ typedef void (^SelectionCompletion)();
 
 - (void)markCellsWithIssues:(NSArray *)issues;
 - (void)setUpTableView:(UITableView *)tableView;
-- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+- (NSArray *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
 						 withCompletion:(SelectionCompletion)completion;
 - (void)clearData;

@@ -273,8 +273,8 @@
 }
 
 #pragma mark - AU specific cells
-- (void)includeAcnAndAbnCells:(BOOL)shouldInclude
-			   withCompletion:(SelectionCompletion)completion
+- (NSArray *)includeAcnAndAbnCells:(BOOL)shouldInclude
+					withCompletion:(SelectionCompletion)completion
 {
 	[self includeCell:self.acnCell
 			afterCell:self.zipCityCell
@@ -285,6 +285,13 @@
 			afterCell:self.acnCell
 		shouldInclude:shouldInclude
 	   withCompletion:completion];
+	
+	if (shouldInclude)
+	{
+		return @[self.acnCell, self.abnCell];
+	}
+	
+	return nil;
 }
 
 - (TextEntryCell *)includeArbnCell:(BOOL)shouldInclude
@@ -310,15 +317,21 @@
 					   withTarget:targetCurrency];
 }
 
-- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+- (NSArray *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
 						 withCompletion:(SelectionCompletion)completion
 {
-	[self includeAcnAndAbnCells:[BusinessProfileSource showAcnAndAbnCells:country.code]
-				 withCompletion:nil];
-	return [super countrySelectionCell:cell
-					  didSelectCountry:country
-						withCompletion:completion];
+	if ([BusinessProfileSource showAcnAndAbnCells:country.code])
+	{
+		return [self includeAcnAndAbnCells:[BusinessProfileSource showAcnAndAbnCells:country.code]
+							withCompletion:nil];
+	}
+	else
+	{
+		return [super countrySelectionCell:cell
+						  didSelectCountry:country
+							withCompletion:completion];
+	}
 }
 
 @end

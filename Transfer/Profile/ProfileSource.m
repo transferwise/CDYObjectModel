@@ -159,7 +159,7 @@
 	[tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
-- (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
+- (NSArray *)includeStateCell:(BOOL)shouldInclude
 					 withCompletion:(SelectionCompletion)completion
 {
 	TextEntryCell *result = [self includeCell:self.stateCell
@@ -176,7 +176,7 @@
 		[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.label", nil)];
 	}
 	
-	return result;
+	return result ? @[result] : nil;
 }
 
 - (TextEntryCell *)includeCell:(TextEntryCell *)includeCell
@@ -294,7 +294,7 @@
     }
 }
 
-- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+- (NSArray *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
 						 withCompletion:(SelectionCompletion)completion
 {

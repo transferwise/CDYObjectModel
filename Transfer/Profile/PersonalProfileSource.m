@@ -353,7 +353,7 @@ NSUInteger const kUserPersonalSection = 1;
 
 #pragma mark - US DOB format
 
-- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+- (NSArray *)countrySelectionCell:(SelectionCell *)cell
                        didSelectCountry:(Country *)country
                          withCompletion:(SelectionCompletion)completion
 {

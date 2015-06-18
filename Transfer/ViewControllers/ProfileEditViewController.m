@@ -321,29 +321,41 @@
 - (void)didSelectCountry:(NSString *)country
 {
     self.countryCell.value = country;
-	TextEntryCell *stateCell = [self.profileSource countrySelectionCell:self.countryCell
-													   didSelectCountry:[self.countryCellProvider getCountryByCodeOrName:self.countryCell.value]
-														 withCompletion:^{
-                                                             dispatch_async(dispatch_get_main_queue(), ^{
-																 [UIView animateWithDuration:0.2f
-																				  animations:^{
-																					  [self refreshTableViewSizes];
-																				  }
-																				  completion:^(BOOL finished) {
-																					  [self forceLayoutOfSuggestionTable];
-																				  }];
-                                                             });
-															 
-														 }];
-	
-	if (stateCell)
+	NSArray *cells = [self.profileSource countrySelectionCell:self.countryCell
+											 didSelectCountry:[self.countryCellProvider getCountryByCodeOrName:self.countryCell.value]
+											   withCompletion:^{
+												   dispatch_async(dispatch_get_main_queue(), ^{
+													   [UIView animateWithDuration:0.2f
+																		animations:^{
+																			[self refreshTableViewSizes];
+																		}
+																		completion:^(BOOL finished) {
+																			[self forceLayoutOfSuggestionTable];
+																		}];
+												   });
+												   
+											   }];
+	//handle delegates
+	if (cells)
 	{
-		[stateCell.entryField setDelegate:self];
+		for (TextEntryCell *cell in cells)
+		{
+			[cell.entryField setDelegate:self];
+		}
 	}
-	else
+	
+	if ([@"usa" caseInsensitiveCompare:country] != NSOrderedSame)
 	{
 		self.stateCell.value = @"";
 		[self didSelectState:@""];
+	}
+	else if ([self.profileSource isKindOfClass:[BusinessProfileSource class]]
+			 && [@"aus" caseInsensitiveCompare:country] != NSOrderedSame)
+	{
+		BusinessProfileSource *businessProfile = (BusinessProfileSource *)self.profileSource;
+		
+		businessProfile.abnCell.entryField.text = @"";
+		businessProfile.acnCell.entryField.text = @"";
 	}
 	
 	[self moveFocusOnNextEntryAfterCell:self.countryCell];
