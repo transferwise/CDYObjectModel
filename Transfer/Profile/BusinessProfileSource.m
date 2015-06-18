@@ -100,13 +100,13 @@
 	
 	TextEntryCell *abnCell = [TextEntryCell loadInstance];
 	[self setAbnCell:abnCell];
-	[acnCell configureWithTitle:NSLocalizedString(@"business.profile.au.abn", nil) value:@""];
-	[acnCell setCellTag:@"abn"];
+	[abnCell configureWithTitle:NSLocalizedString(@"business.profile.au.abn", nil) value:@""];
+	[abnCell setCellTag:@"abn"];
 	
 	TextEntryCell *arbnCell = [TextEntryCell loadInstance];
 	[self setArbnCell:arbnCell];
-	[acnCell configureWithTitle:NSLocalizedString(@"business.profile.au.arbn", nil) value:@""];
-	[acnCell setCellTag:@"arbn"];
+	[arbnCell configureWithTitle:NSLocalizedString(@"business.profile.au.arbn", nil) value:@""];
+	[arbnCell setCellTag:@"arbn"];
 
     NSMutableArray *secondColumnCells = [NSMutableArray array];
 	
@@ -272,25 +272,19 @@
 	}
 }
 
-- (NSArray *)includeAcnAndAbnCells:(BOOL)shouldInclude
-					withCompletion:(SelectionCompletion)completion
+#pragma mark - AU specific cells
+- (void)includeAcnAndAbnCells:(BOOL)shouldInclude
+			   withCompletion:(SelectionCompletion)completion
 {
-	TextEntryCell *acnCell = [self includeCell:self.acnCell
-									 afterCell:self.zipCityCell
-								 shouldInclude:shouldInclude
-								withCompletion:completion];
+	[self includeCell:self.acnCell
+			afterCell:self.zipCityCell
+		shouldInclude:shouldInclude
+	   withCompletion:completion];
 	
-	TextEntryCell *abnCell = [self includeCell:self.abnCell
-									 afterCell:self.acnCell
-								 shouldInclude:shouldInclude
-								withCompletion:completion];
-	
-	if (shouldInclude)
-	{
-		return @[acnCell, abnCell];
-	}
-	
-	return nil;
+	[self includeCell:self.abnCell
+			afterCell:self.acnCell
+		shouldInclude:shouldInclude
+	   withCompletion:completion];
 }
 
 - (TextEntryCell *)includeArbnCell:(BOOL)shouldInclude
@@ -306,7 +300,7 @@
 
 + (BOOL)showAcnAndAbnCells:(NSString *)countryCode
 {
-	return [self isMatchingSource:@"au"
+	return [self isMatchingSource:@"aus"
 					   withTarget:countryCode];
 }
 
@@ -314,6 +308,17 @@
 {
 	return [self isMatchingSource:@"aud"
 					   withTarget:targetCurrency];
+}
+
+- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+					   didSelectCountry:(Country *)country
+						 withCompletion:(SelectionCompletion)completion
+{
+	[self includeAcnAndAbnCells:[BusinessProfileSource showAcnAndAbnCells:country.code]
+				 withCompletion:nil];
+	return [super countrySelectionCell:cell
+					  didSelectCountry:country
+						withCompletion:completion];
 }
 
 @end

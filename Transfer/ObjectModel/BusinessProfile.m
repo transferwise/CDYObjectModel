@@ -25,6 +25,8 @@
     data[@"city"] = self.city;
     data[@"countryCode"] = self.countryCode;
     data[@"state"] = ([@"usa" caseInsensitiveCompare:self.countryCode]==NSOrderedSame && self.state)?self.state:@"";
+	data[@"acn"] = ([@"aus" caseInsensitiveCompare:self.countryCode]==NSOrderedSame && self.acn)?self.acn:@"";
+	data[@"abn"] = ([@"aus" caseInsensitiveCompare:self.countryCode]==NSOrderedSame && self.abn)?self.abn:@"";
     return [NSDictionary dictionaryWithDictionary:data];
 }
 

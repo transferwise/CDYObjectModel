@@ -325,13 +325,15 @@
 													   didSelectCountry:[self.countryCellProvider getCountryByCodeOrName:self.countryCell.value]
 														 withCompletion:^{
                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                 [UIView animateWithDuration:0.2f animations:^{
-                                                                     [self refreshTableViewSizes];
-                                                                 } completion:^(BOOL finished) {
-                                                                     [self forceLayoutOfSuggestionTable];
-                                                                 }];
+																 [UIView animateWithDuration:0.2f
+																				  animations:^{
+																					  [self refreshTableViewSizes];
+																				  }
+																				  completion:^(BOOL finished) {
+																					  [self forceLayoutOfSuggestionTable];
+																				  }];
                                                              });
-                                                             
+															 
 														 }];
 	
 	if (stateCell)
@@ -357,13 +359,12 @@
 																								 state:[self.stateCellProvider getByCodeOrName:self.stateCell.value]
 																						withCompletion:^{
                                                                                             dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                                [UIView animateWithDuration:0.2f animations:^{
-                                                                                                    [self refreshTableViewSizes];
-                                                                                                }];
+																								[UIView animateWithDuration:0.2f
+																												 animations:^{
+																													 [self refreshTableViewSizes];
+																												 }];
 
                                                                                             });
-                                                                                            
-																							
 																						}];
 		if (occupationCell)
 		{
