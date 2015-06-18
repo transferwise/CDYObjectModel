@@ -191,6 +191,8 @@
 	
     [self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
 			withCompletion:nil];
+	[self includeAcnAndAbnCells:[BusinessProfileSource showAcnAndAbnCells:profile.countryCode]
+				 withCompletion:nil];
 }
 
 - (BOOL)inputValid
@@ -215,6 +217,9 @@
     [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:[self.countryCell value]];
     [profile setState:self.stateCell.value];
+	[profile setAbn:self.abnCell.value];
+	[profile setAcn:self.acnCell.value];
+	[profile setArbn:self.arbnCell.value];
 
     [self.objectModel saveContext];
 
@@ -250,6 +255,9 @@
 	[self.zipCityCell setSecondValue:@""];
 	[self.countryCell setValue:@""];
 	[self.stateCell setValue:@""];
+	[self.abnCell setValue:@""];
+	[self.acnCell setValue:@""];
+	[self.arbnCell setValue:@""];
 }
 
 - (void)reloadDropDowns
@@ -267,13 +275,33 @@
 - (NSArray *)includeAcnAndAbnCells:(BOOL)shouldInclude
 					withCompletion:(SelectionCompletion)completion
 {
+	TextEntryCell *acnCell = [self includeCell:self.acnCell
+									 afterCell:self.zipCityCell
+								 shouldInclude:shouldInclude
+								withCompletion:completion];
 	
+	TextEntryCell *abnCell = [self includeCell:self.abnCell
+									 afterCell:self.acnCell
+								 shouldInclude:shouldInclude
+								withCompletion:completion];
+	
+	if (shouldInclude)
+	{
+		return @[acnCell, abnCell];
+	}
+	
+	return nil;
 }
 
 - (TextEntryCell *)includeArbnCell:(BOOL)shouldInclude
 					withCompletion:(SelectionCompletion)completion
 {
+	TextEntryCell *arbnCell = [self includeCell:self.arbnCell
+									  afterCell:self.zipCityCell
+								  shouldInclude:shouldInclude
+								 withCompletion:completion];
 	
+	return arbnCell;
 }
 
 + (BOOL)showAcnAndAbnCells:(NSString *)countryCode
