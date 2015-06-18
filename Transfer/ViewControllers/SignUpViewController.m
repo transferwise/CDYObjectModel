@@ -24,7 +24,6 @@
 #import "MOMStyle.h"
 #import "Mixpanel+Customisation.h"
 #import "ReferralsCoordinator.h"
-#import <OnePasswordExtension.h>
 
 
 @interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate>
@@ -98,7 +97,7 @@
     
 	[self generateLegalezeLabels];
     
-    [self.onePasswordButton setHidden:![[OnePasswordExtension sharedExtension] isAppExtensionAvailable]];
+    [self.onePasswordButton setHidden:![AuthenticationHelper onePasswordIsAvaliable]];
 }
 
 - (void)generateLegalezeLabels
@@ -209,32 +208,14 @@
 
 - (IBAction)onePasswordTapped:(id)sender
 {
-    NSDictionary *loginDetails = @{
-                                   AppExtensionTitleKey: @"TransferWise",
-                                   AppExtensionUsernameKey: self.emailCell.entryField.text?:@"", // 1Password will prompt the user to create a new item if no matching logins are found with this username.
-                                   AppExtensionPasswordKey: self.passwordCell.entryField.text?:@"",
-                                   AppExtensionNotesKey: @"Saved with the TransferWise app",
-                                   };
+    __weak typeof(self) weakSelf= self;
+    [AuthenticationHelper onePasswordInsertRegistrationDetails:^(BOOL success, NSString *email, NSString *password) {
+        weakSelf.emailCell.entryField.text = email;
+        weakSelf.passwordCell.entryField.text = password;
+        weakSelf.confirmPasswordCell.entryField.text = password;
+
+    } preEnteredUsername:self.emailCell.entryField.text preEnteredPassword:self.passwordCell.entryField.text viewController:self sender:sender];
     
-    // Password generation options are optional, but are very handy in case you have strict rules about password lengths
-    NSDictionary *passwordGenerationOptions = @{
-                                                AppExtensionGeneratedPasswordMinLengthKey: @(5) // The minimum value can be 4 or more
-                                                };
-    [[OnePasswordExtension sharedExtension] storeLoginForURLString:@"https://www.transferwise.com" loginDetails:loginDetails passwordGenerationOptions:passwordGenerationOptions forViewController:self sender:sender completion:^(NSDictionary *loginDictionary, NSError *error) {
-        
-        if (loginDictionary.count == 0) {
-            if (error.code != AppExtensionErrorCodeCancelledByUser) {
-                MCLog(@"Failed to use 1Password App Extension to save a new Login: %@", error);
-            }
-            return;
-        }
-        
-        self.emailCell.entryField.text = loginDictionary[AppExtensionUsernameKey] ? : @"";
-        self.passwordCell.entryField.text = loginDictionary[AppExtensionPasswordKey] ? : @"";
-        self.confirmPasswordCell.entryField.text = loginDictionary[AppExtensionPasswordKey] ? : @"";
-        
-        [self signUpPressed:nil];
-    }];
 }
 
 - (NSString *)validateInput

@@ -47,6 +47,7 @@
 #import <AFNetworking.h>
 #import "MixpanelIdentityHelper.h"
 #import "NSString+DeducedId.h"
+#import <OnePasswordExtension.h>
 
 @interface AuthenticationHelper ()
 
@@ -705,4 +706,49 @@ isOAuthRegistration:(BOOL)isOauthRegistration
         }
     }
 }
+
+#pragma mark - one password
+
++(void)onePasswordLoginWithCompletion:(void(^)(BOOL success, NSString* username, NSString* password))completionBlock onViewController:(UIViewController*)controller sender:(id)sender
+{
+    [[OnePasswordExtension sharedExtension] findLoginForURLString:@"https://www.transferwise.com" forViewController:controller sender:sender completion:^(NSDictionary *loginDictionary, NSError *error) {
+        if (loginDictionary.count == 0) {
+            if (error.code != AppExtensionErrorCodeCancelledByUser) {
+                completionBlock(NO,nil,nil);
+            }
+            return;
+        }
+        
+        completionBlock(YES, loginDictionary[AppExtensionUsernameKey], loginDictionary[AppExtensionPasswordKey]);
+    }];
+   
+}
+
++(void)onePasswordInsertRegistrationDetails:(void(^)(BOOL success, NSString* email, NSString* password))completionBlock preEnteredUsername:(NSString*)email preEnteredPassword:(NSString*)password viewController:(UIViewController*)controller sender:(id)sender
+{
+    NSDictionary *loginDetails = @{
+                                   AppExtensionTitleKey: @"TransferWise",
+                                   AppExtensionUsernameKey:email?:@"", // 1Password will prompt the user to create a new item if no matching logins are found with this username.
+                                   AppExtensionPasswordKey: password?:@"",
+                                   AppExtensionNotesKey: @"Saved with the TransferWise app",
+                                   };
+    
+    // Password generation options are optional, but are very handy in case you have strict rules about password lengths
+    NSDictionary *passwordGenerationOptions = @{
+                                                AppExtensionGeneratedPasswordMinLengthKey: @(5) // The minimum value can be 4 or more
+                                                };
+    [[OnePasswordExtension sharedExtension] storeLoginForURLString:@"https://www.transferwise.com" loginDetails:loginDetails passwordGenerationOptions:passwordGenerationOptions forViewController:controller sender:sender completion:^(NSDictionary *loginDictionary, NSError *error) {
+        
+        if (loginDictionary.count == 0) {
+            completionBlock(NO,nil,nil);
+        }
+        completionBlock(YES,loginDictionary[AppExtensionUsernameKey] ? : @"",loginDictionary[AppExtensionPasswordKey] ? : @"");
+    }];
+}
+
++(BOOL)onePasswordIsAvaliable
+{
+    return [[OnePasswordExtension sharedExtension] isAppExtensionAvailable];
+}
+
 @end

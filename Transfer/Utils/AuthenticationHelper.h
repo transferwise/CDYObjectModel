@@ -51,4 +51,11 @@ touchIDHost:(UIViewController*)touchIdHost;
 		   tokenNeedsClearing:(BOOL)clearToken
 			  completionBlock:(void (^)(void))completionBlock;
 
++(void)onePasswordLoginWithCompletion:(void(^)(BOOL success, NSString* username, NSString* password))completionBlock onViewController:(UIViewController*)controller sender:(id)sender;
+
++(void)onePasswordInsertRegistrationDetails:(void(^)(BOOL success, NSString* email, NSString* password))completionBlock preEnteredUsername:(NSString*)email preEnteredPassword:(NSString*)password viewController:(UIViewController*)controller sender:(id)sender;
+
++(BOOL)onePasswordIsAvaliable;
+
+
 @end
