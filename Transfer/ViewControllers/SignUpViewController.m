@@ -34,6 +34,7 @@
 @property (nonatomic, strong) TextEntryCell *confirmPasswordCell;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (weak, nonatomic) IBOutlet UITextView *legalezetextView;
+@property (weak, nonatomic) IBOutlet UIButton *onePasswordButton;
 
 - (IBAction)signUpPressed:(id)sender;
 
@@ -95,6 +96,8 @@
     }
     
 	[self generateLegalezeLabels];
+    
+    [self.onePasswordButton setHidden:![AuthenticationHelper onePasswordIsAvaliable]];
 }
 
 - (void)generateLegalezeLabels
@@ -201,6 +204,18 @@
     }];
 
     [operation execute];
+}
+
+- (IBAction)onePasswordTapped:(id)sender
+{
+    __weak typeof(self) weakSelf= self;
+    [AuthenticationHelper onePasswordInsertRegistrationDetails:^(BOOL success, NSString *email, NSString *password) {
+        weakSelf.emailCell.entryField.text = email;
+        weakSelf.passwordCell.entryField.text = password;
+        weakSelf.confirmPasswordCell.entryField.text = password;
+
+    } preEnteredUsername:self.emailCell.entryField.text preEnteredPassword:self.passwordCell.entryField.text viewController:self sender:sender];
+    
 }
 
 - (NSString *)validateInput

@@ -399,7 +399,7 @@
 
 - (IBAction)logInTapped:(id)sender
 {
-    LoginViewController* login = [[LoginViewController alloc] initWithNibName:@"LoginViewControllerUpfront" bundle:nil];
+    LoginViewController* login = [[LoginViewController alloc] init];
     login.objectModel = self.objectModel;
     [self fadeInDismissableViewController:login];
 }

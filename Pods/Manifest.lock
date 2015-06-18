@@ -1,22 +1,23 @@
 PODS:
+  - 1PasswordExtension (1.2)
   - AFNetworking (1.3.4)
-  - Bolts (1.1.5):
-    - Bolts/AppLinks (= 1.1.5)
-    - Bolts/Tasks (= 1.1.5)
-  - Bolts/AppLinks (1.1.5):
+  - Bolts (1.2.0):
+    - Bolts/AppLinks
     - Bolts/Tasks
-  - Bolts/Tasks (1.1.5)
+  - Bolts/AppLinks (1.2.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.2.0)
   - CDYAnalyticsCoordinator (0.1.0):
-    - CDYAnalyticsCoordinator/Core (= 0.1.0)
+    - CDYAnalyticsCoordinator/Core
   - CDYAnalyticsCoordinator/Core (0.1.0)
   - CDYObjectModel (1.0):
-    - CDYObjectModel/Core (= 1.0)
+    - CDYObjectModel/Core
   - CDYObjectModel/Core (1.0)
   - CXAlertView (1.0.1)
   - FBSDKCoreKit (4.1.0):
     - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc (= 4.1.0)
-    - FBSDKCoreKit/no-arc (= 4.1.0)
+    - FBSDKCoreKit/arc
+    - FBSDKCoreKit/no-arc
   - FBSDKCoreKit/arc (4.1.0):
     - Bolts (~> 1.1)
   - FBSDKCoreKit/no-arc (4.1.0):
@@ -28,7 +29,7 @@ PODS:
   - Lockbox (2.1.0)
   - MBProgressHUD (0.9.1)
   - Mixpanel (2.8.1):
-    - Mixpanel/Mixpanel (= 2.8.1)
+    - Mixpanel/Mixpanel
   - Mixpanel/Mixpanel (2.8.1):
     - Mixpanel/MPCategoryHelpers
   - Mixpanel/MPCategoryHelpers (2.8.1)
@@ -37,6 +38,7 @@ PODS:
   - SMPageControl (1.2)
 
 DEPENDENCIES:
+  - 1PasswordExtension (~> 1.2)
   - AFNetworking (~> 1.3.2)
   - CDYAnalyticsCoordinator (from `https://github.com/coodly/CDYAnalyticsCoordinator.git`)
   - CDYObjectModel (from `https://github.com/coodly/CDYObjectModel.git`)
@@ -57,17 +59,10 @@ EXTERNAL SOURCES:
   CDYObjectModel:
     :git: https://github.com/coodly/CDYObjectModel.git
 
-CHECKOUT OPTIONS:
-  CDYAnalyticsCoordinator:
-    :commit: 5ca6ba7710acff8bb923ba7c4f7a34df4f4e8b93
-    :git: https://github.com/coodly/CDYAnalyticsCoordinator.git
-  CDYObjectModel:
-    :commit: 4e8d91343197c26197e0ab0b408e3c72c06336c6
-    :git: https://github.com/coodly/CDYObjectModel.git
-
 SPEC CHECKSUMS:
+  1PasswordExtension: fcf300204bda5b5c78936dbb937a7d661f1ca796
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
-  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  Bolts: d176cb1e0012175589e389a9db49b85e27787576
   CDYAnalyticsCoordinator: 75094418537506be1355dd6cc0248f622d9f591e
   CDYObjectModel: da0ab52fa697ba2df41b32219f3bb90dea544270
   CXAlertView: 767f92f23c482a163e723d39865e46f11b9bc2ef
@@ -81,4 +76,4 @@ SPEC CHECKSUMS:
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.34.4

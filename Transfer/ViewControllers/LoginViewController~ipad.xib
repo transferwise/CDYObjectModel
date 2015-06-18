@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -15,6 +15,7 @@
                 <outlet property="forgotPasswordLabel" destination="nVw-3E-NCJ" id="r9h-mA-0Pc"/>
                 <outlet property="googleLoginButton" destination="ZQJ-ts-mwH" id="h7C-iS-B2K"/>
                 <outlet property="loginButton" destination="A1z-HI-x7D" id="DP4-kN-c57"/>
+                <outlet property="onePasswordButton" destination="eDp-ac-LhS" id="EWc-JT-mJ2"/>
                 <outlet property="orLabel" destination="Z2S-88-Izr" id="ThB-cl-kvD"/>
                 <outlet property="passwordTextField" destination="RCm-Tg-pZv" id="kvs-p0-1d5"/>
                 <outlet property="touchIdButton" destination="Nja-qb-Bvk" id="oca-Pz-vzm"/>
@@ -150,6 +151,19 @@
                         <action selector="touchIdTapped:" destination="-1" eventType="touchUpInside" id="Nge-ax-k2j"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDp-ac-LhS" userLabel="onePassword">
+                    <rect key="frame" x="213" y="286" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="GsT-7g-Vhe"/>
+                        <constraint firstAttribute="height" constant="40" id="MSR-CV-0PG"/>
+                    </constraints>
+                    <state key="normal" image="onepassword-button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onePasswordTapped:" destination="-1" eventType="touchUpInside" id="lFy-Ub-EUj"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -162,8 +176,10 @@
                 <constraint firstItem="seY-db-tL6" firstAttribute="centerX" secondItem="RCm-Tg-pZv" secondAttribute="centerX" id="FDb-IC-8Jx"/>
                 <constraint firstItem="nVw-3E-NCJ" firstAttribute="trailing" secondItem="RCm-Tg-pZv" secondAttribute="trailing" id="OK1-iL-K7J"/>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="width" secondItem="jNz-Kj-TyF" secondAttribute="width" id="OYl-jk-nK6"/>
+                <constraint firstItem="eDp-ac-LhS" firstAttribute="centerY" secondItem="A1z-HI-x7D" secondAttribute="centerY" id="WxT-9s-erR"/>
                 <constraint firstItem="seY-db-tL6" firstAttribute="width" secondItem="RCm-Tg-pZv" secondAttribute="width" id="aAE-eW-HRV"/>
                 <constraint firstItem="71E-0J-nDm" firstAttribute="width" secondItem="jNz-Kj-TyF" secondAttribute="width" id="alY-vK-ymg"/>
+                <constraint firstItem="A1z-HI-x7D" firstAttribute="leading" secondItem="eDp-ac-LhS" secondAttribute="trailing" constant="44" id="bjJ-Jf-RLN"/>
                 <constraint firstItem="A1z-HI-x7D" firstAttribute="top" secondItem="seY-db-tL6" secondAttribute="bottom" constant="40" id="c9M-eF-Bjr"/>
                 <constraint firstItem="A1z-HI-x7D" firstAttribute="leading" secondItem="RCm-Tg-pZv" secondAttribute="leading" id="hIW-Nu-I7L"/>
                 <constraint firstItem="jNz-Kj-TyF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="hpb-RC-0d1"/>
@@ -180,6 +196,7 @@
         </view>
     </objects>
     <resources>
+        <image name="onepassword-button" width="27" height="27"/>
         <image name="touch_id_icon" width="45" height="45"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

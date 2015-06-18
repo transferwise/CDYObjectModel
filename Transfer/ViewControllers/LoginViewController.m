@@ -41,6 +41,7 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 @property (strong, nonatomic) AuthenticationHelper *loginHelper;
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
+@property (weak, nonatomic) IBOutlet UIButton *onePasswordButton;
 
 @property (nonatomic, strong) IBInspectable NSString* xibNameForResetPassword;
 
@@ -105,6 +106,10 @@ IB_DESIGNABLE
 	
 	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
     self.touchIdButton.hidden = ![TouchIDHelper isTouchIdSlotTaken];
+    
+    [self.onePasswordButton setHidden:![AuthenticationHelper onePasswordIsAvaliable]];
+
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -184,6 +189,18 @@ IB_DESIGNABLE
 									 successHandler:^{
 										 [weakSelf proceedFromSuccessfulLogin];
 									 }];
+}
+
+- (IBAction)onePasswordTapped:(id)sender
+{
+    __weak typeof(self) weakSelf = self;
+    [AuthenticationHelper onePasswordLoginWithCompletion:^(BOOL success, NSString *username, NSString *password) {
+        if (success)
+        {
+            weakSelf.emailTextField.text = username;
+            weakSelf.passwordTextField.text = password;
+        }
+    } onViewController:self sender:sender];
 }
 
 -(void)proceedFromSuccessfulLogin
