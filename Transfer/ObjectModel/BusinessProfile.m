@@ -34,7 +34,12 @@
 {
 	return [self.name hasValue] && [self.registrationNumber hasValue] && [self.registrationNumber hasValue]
 	&& [self.businessDescription hasValue] && [self.companyRole hasValue] && [self.companyType hasValue]
-	&& [self.addressFirstLine hasValue] && [self.postCode hasValue] && [self.city hasValue] && [self.countryCode hasValue];
+	&& [self.addressFirstLine hasValue] && [self.postCode hasValue] && [self.city hasValue] && [self.countryCode hasValue]
+	//country specific exceptions
+	//usa needs to have state
+	&& (([@"usa" caseInsensitiveCompare:self.countryCode] == NSOrderedSame && [self.state hasValue])
+		//au needs to have either acn or abn
+		|| ([@"aus" caseInsensitiveCompare:country] == NSOrderedSame && ([self.acn hasValue] || [self.abn hasValue])));
 }
 
 @end
