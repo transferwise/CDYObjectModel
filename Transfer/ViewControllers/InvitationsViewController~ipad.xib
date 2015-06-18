@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitationsViewController">
@@ -63,14 +63,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3AO-Gr-zBc" userLabel="ProfilePictureContainer">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="691"/>
                     <subviews>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWX-vT-8Ml" userLabel="leftProfile">
-                            <rect key="frame" x="254" y="155" width="89" height="89"/>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illustration_invite" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-FK-YS9">
+                            <rect key="frame" x="-66" y="-5" width="900" height="390"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="390" id="Vw6-F3-XpM"/>
+                                <constraint firstAttribute="width" constant="900" id="iWE-J9-gRt"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWX-vT-8Ml" userLabel="leftProfile">
+                            <rect key="frame" x="214" y="203" width="125" height="125"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User0" translatesAutoresizingMaskIntoConstraints="NO" id="MfW-mD-cm9">
-                                    <rect key="frame" x="6" y="6" width="76" height="76"/>
+                                    <rect key="frame" x="3" y="3" width="119" height="119"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="76" id="nuD-Su-Kz2"/>
-                                        <constraint firstAttribute="height" constant="76" id="wPZ-ak-dlP"/>
+                                        <constraint firstAttribute="width" constant="119" id="nuD-Su-Kz2"/>
+                                        <constraint firstAttribute="height" constant="119" id="wPZ-ak-dlP"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -82,22 +89,22 @@
                             <constraints>
                                 <constraint firstAttribute="centerY" secondItem="MfW-mD-cm9" secondAttribute="centerY" id="5eT-XC-5f6"/>
                                 <constraint firstAttribute="centerX" secondItem="MfW-mD-cm9" secondAttribute="centerX" id="XSN-6x-0g8"/>
-                                <constraint firstAttribute="width" constant="89" id="ZuG-MF-9TL"/>
-                                <constraint firstAttribute="height" constant="89" id="nPU-Cw-tDX"/>
+                                <constraint firstAttribute="width" constant="125" id="ZuG-MF-9TL"/>
+                                <constraint firstAttribute="height" constant="125" id="nPU-Cw-tDX"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUI-Wu-CV3" userLabel="rightProfile">
-                            <rect key="frame" x="426" y="156" width="89" height="89"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUI-Wu-CV3" userLabel="rightProfile">
+                            <rect key="frame" x="434" y="203" width="125" height="125"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User2" translatesAutoresizingMaskIntoConstraints="NO" id="X3Q-zd-dep">
-                                    <rect key="frame" x="6" y="6" width="76" height="76"/>
+                                    <rect key="frame" x="3" y="3" width="119" height="119"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="76" id="amk-ad-ca2"/>
-                                        <constraint firstAttribute="height" constant="76" id="bqp-SH-7nP"/>
+                                        <constraint firstAttribute="width" constant="119" id="amk-ad-ca2"/>
+                                        <constraint firstAttribute="height" constant="119" id="bqp-SH-7nP"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -107,24 +114,24 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="89" id="CFH-O2-Kvu"/>
-                                <constraint firstAttribute="height" constant="89" id="L8y-QW-f5b"/>
+                                <constraint firstAttribute="width" constant="125" id="CFH-O2-Kvu"/>
+                                <constraint firstAttribute="height" constant="125" id="L8y-QW-f5b"/>
                                 <constraint firstAttribute="centerX" secondItem="X3Q-zd-dep" secondAttribute="centerX" id="emb-TK-gYw"/>
                                 <constraint firstAttribute="centerY" secondItem="X3Q-zd-dep" secondAttribute="centerY" id="mGy-ad-BNQ"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9U-C2-S5z" userLabel="CenterProfile">
-                            <rect key="frame" x="324" y="140" width="120" height="120"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9U-C2-S5z" userLabel="CenterProfile">
+                            <rect key="frame" x="312" y="188" width="145" height="145"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User1" translatesAutoresizingMaskIntoConstraints="NO" id="P4R-HH-GKW">
-                                    <rect key="frame" x="10" y="10" width="99" height="99"/>
+                                    <rect key="frame" x="3" y="3" width="139" height="139"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="99" id="2n9-9I-rOc"/>
-                                        <constraint firstAttribute="height" constant="99" id="LCN-YE-mQP"/>
+                                        <constraint firstAttribute="width" constant="139" id="2n9-9I-rOc"/>
+                                        <constraint firstAttribute="height" constant="139" id="LCN-YE-mQP"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -136,21 +143,14 @@
                             <constraints>
                                 <constraint firstAttribute="centerY" secondItem="P4R-HH-GKW" secondAttribute="centerY" id="EdQ-Gh-0y4"/>
                                 <constraint firstAttribute="centerX" secondItem="P4R-HH-GKW" secondAttribute="centerX" id="MvM-TF-z7z"/>
-                                <constraint firstAttribute="height" constant="120" id="duO-lR-IlU"/>
-                                <constraint firstAttribute="width" constant="120" id="sHR-ca-DMk"/>
+                                <constraint firstAttribute="height" constant="145" id="duO-lR-IlU"/>
+                                <constraint firstAttribute="width" constant="145" id="sHR-ca-DMk"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue.alpha6"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illustration_invite" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-FK-YS9">
-                            <rect key="frame" x="-66" y="-5" width="900" height="390"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="390" id="Vw6-F3-XpM"/>
-                                <constraint firstAttribute="width" constant="900" id="iWE-J9-gRt"/>
-                            </constraints>
-                        </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="khm-LQ-dnq">
                             <rect key="frame" x="184" y="434" width="400" height="21"/>
                             <constraints>
@@ -178,19 +178,19 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="jUI-Wu-CV3" firstAttribute="leading" secondItem="V9U-C2-S5z" secondAttribute="trailing" constant="-18" id="4IO-P8-HiB"/>
+                        <constraint firstItem="jUI-Wu-CV3" firstAttribute="leading" secondItem="V9U-C2-S5z" secondAttribute="trailing" constant="-23" id="4IO-P8-HiB"/>
                         <constraint firstItem="cJH-J1-88a" firstAttribute="top" secondItem="khm-LQ-dnq" secondAttribute="bottom" constant="40" id="4RR-Ur-MQc"/>
                         <constraint firstAttribute="centerX" secondItem="khm-LQ-dnq" secondAttribute="centerX" id="D3z-NS-ntk"/>
                         <constraint firstAttribute="centerX" secondItem="cJH-J1-88a" secondAttribute="centerX" id="GIb-Bk-Z8g"/>
-                        <constraint firstItem="V9U-C2-S5z" firstAttribute="top" secondItem="3AO-Gr-zBc" secondAttribute="top" constant="140" id="MAG-7e-AEZ"/>
-                        <constraint firstItem="V9U-C2-S5z" firstAttribute="leading" secondItem="FWX-vT-8Ml" secondAttribute="trailing" constant="-19" id="OHW-hU-Hph"/>
+                        <constraint firstItem="V9U-C2-S5z" firstAttribute="top" secondItem="3AO-Gr-zBc" secondAttribute="top" constant="188" id="MAG-7e-AEZ"/>
+                        <constraint firstItem="V9U-C2-S5z" firstAttribute="leading" secondItem="FWX-vT-8Ml" secondAttribute="trailing" constant="-27" id="OHW-hU-Hph"/>
                         <constraint firstAttribute="centerY" secondItem="SEJ-FK-YS9" secondAttribute="centerY" constant="155.5" id="ROG-QO-Yqc"/>
                         <constraint firstAttribute="height" constant="691" id="Seo-WK-aro"/>
-                        <constraint firstItem="jUI-Wu-CV3" firstAttribute="centerY" secondItem="V9U-C2-S5z" secondAttribute="centerY" constant="0.5" id="TDd-Zt-2MU"/>
+                        <constraint firstItem="jUI-Wu-CV3" firstAttribute="centerY" secondItem="V9U-C2-S5z" secondAttribute="centerY" constant="5" id="TDd-Zt-2MU"/>
                         <constraint firstAttribute="width" constant="768" id="Wif-xX-7Sa"/>
-                        <constraint firstAttribute="centerX" secondItem="V9U-C2-S5z" secondAttribute="centerX" id="Xgr-2i-sVX"/>
+                        <constraint firstAttribute="centerX" secondItem="V9U-C2-S5z" secondAttribute="centerX" constant="-1" id="Xgr-2i-sVX"/>
                         <constraint firstAttribute="centerX" secondItem="SEJ-FK-YS9" secondAttribute="centerX" id="scZ-Sv-zf0"/>
-                        <constraint firstItem="V9U-C2-S5z" firstAttribute="centerY" secondItem="FWX-vT-8Ml" secondAttribute="centerY" constant="0.5" id="vXz-Mn-HcO"/>
+                        <constraint firstItem="V9U-C2-S5z" firstAttribute="centerY" secondItem="FWX-vT-8Ml" secondAttribute="centerY" constant="-5" id="vXz-Mn-HcO"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="JlX-8u-9xq" userLabel="indicatorContainer">
@@ -279,7 +279,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Illustration_invite" width="65" height="65"/>
+        <image name="Illustration_invite" width="50" height="40"/>
         <image name="User0" width="136" height="136"/>
         <image name="User1" width="136" height="136"/>
         <image name="User2" width="136" height="136"/>

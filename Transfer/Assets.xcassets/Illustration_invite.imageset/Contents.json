@@ -1,25 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
-    },
-    {
       "idiom" : "ipad",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "Illustration_invite_ipad_@2x.png"
+      "filename" : "illustration_invite_ipad__2x.png"
     }
   ],
   "info" : {
