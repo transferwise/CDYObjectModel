@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitationsViewController">
@@ -17,9 +17,9 @@
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="inviteButtons" destination="FKt-v3-ttW" id="1j5-Yd-C4I"/>
                 <outletCollection property="inviteButtons" destination="cJH-J1-88a" id="OwX-Lk-BqN"/>
-                <outletCollection property="profilePictures" destination="P4R-HH-GKW" id="osj-bQ-3XQ"/>
                 <outletCollection property="profilePictures" destination="MfW-mD-cm9" id="Txj-Mq-Fpy"/>
                 <outletCollection property="profilePictures" destination="X3Q-zd-dep" id="Cx2-Nv-lfU"/>
+                <outletCollection property="profilePictures" destination="P4R-HH-GKW" id="osj-bQ-3XQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -70,8 +70,8 @@
                                 <constraint firstAttribute="width" constant="900" id="iWE-J9-gRt"/>
                             </constraints>
                         </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWX-vT-8Ml" userLabel="leftProfile">
-                            <rect key="frame" x="214" y="203" width="125" height="125"/>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FWX-vT-8Ml" userLabel="leftProfile">
+                            <rect key="frame" x="210" y="209" width="125" height="125"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User0" translatesAutoresizingMaskIntoConstraints="NO" id="MfW-mD-cm9">
                                     <rect key="frame" x="3" y="3" width="119" height="119"/>
@@ -97,8 +97,8 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUI-Wu-CV3" userLabel="rightProfile">
-                            <rect key="frame" x="434" y="203" width="125" height="125"/>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jUI-Wu-CV3" userLabel="rightProfile">
+                            <rect key="frame" x="440" y="209" width="125" height="125"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User2" translatesAutoresizingMaskIntoConstraints="NO" id="X3Q-zd-dep">
                                     <rect key="frame" x="3" y="3" width="119" height="119"/>
@@ -125,30 +125,57 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9U-C2-S5z" userLabel="CenterProfile">
-                            <rect key="frame" x="312" y="188" width="145" height="145"/>
+                            <rect key="frame" x="308" y="188" width="155" height="155"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User1" translatesAutoresizingMaskIntoConstraints="NO" id="P4R-HH-GKW">
-                                    <rect key="frame" x="3" y="3" width="139" height="139"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAK-eW-nUb" customClass="GradientView">
+                                    <rect key="frame" x="-307" y="-114" width="768" height="384"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="FromColorStyle" value="LightBlueHighlighted"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="ToColorStyle" value="LightBlue"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="orientation">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xxk-Fa-gxK" userLabel="CenterProfile">
+                                    <rect key="frame" x="6" y="3" width="145" height="145"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="User1" translatesAutoresizingMaskIntoConstraints="NO" id="P4R-HH-GKW">
+                                            <rect key="frame" x="3" y="4" width="139" height="139"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="139" id="2n9-9I-rOc"/>
+                                                <constraint firstAttribute="height" constant="139" id="LCN-YE-mQP"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="139" id="2n9-9I-rOc"/>
-                                        <constraint firstAttribute="height" constant="139" id="LCN-YE-mQP"/>
+                                        <constraint firstAttribute="centerX" secondItem="P4R-HH-GKW" secondAttribute="centerX" id="fDq-8c-O7H"/>
+                                        <constraint firstAttribute="centerY" secondItem="P4R-HH-GKW" secondAttribute="centerY" id="gdF-5S-qd9"/>
+                                        <constraint firstAttribute="height" constant="145" id="qhr-bj-8KL"/>
+                                        <constraint firstAttribute="width" constant="145" id="wD2-P6-dMr"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                                     </userDefinedRuntimeAttributes>
-                                </imageView>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="centerY" secondItem="P4R-HH-GKW" secondAttribute="centerY" id="EdQ-Gh-0y4"/>
-                                <constraint firstAttribute="centerX" secondItem="P4R-HH-GKW" secondAttribute="centerX" id="MvM-TF-z7z"/>
-                                <constraint firstAttribute="height" constant="145" id="duO-lR-IlU"/>
-                                <constraint firstAttribute="width" constant="145" id="sHR-ca-DMk"/>
+                                <constraint firstAttribute="centerX" secondItem="xxk-Fa-gxK" secondAttribute="centerX" id="IrP-kk-5rU"/>
+                                <constraint firstAttribute="height" constant="155" id="duO-lR-IlU"/>
+                                <constraint firstAttribute="centerY" secondItem="xxk-Fa-gxK" secondAttribute="centerY" id="iTn-UA-qsk"/>
+                                <constraint firstAttribute="width" constant="155" id="sHR-ca-DMk"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="khm-LQ-dnq">
@@ -259,11 +286,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="xAK-eW-nUb" firstAttribute="width" secondItem="Wgz-Qn-mRj" secondAttribute="width" id="1WK-FD-ufF"/>
                 <constraint firstItem="O3k-Eh-dGI" firstAttribute="top" secondItem="HJX-4X-iH2" secondAttribute="bottom" constant="50" id="232-xx-CoX"/>
                 <constraint firstItem="O3k-Eh-dGI" firstAttribute="top" secondItem="Wgz-Qn-mRj" secondAttribute="bottom" id="4dk-37-CPc"/>
+                <constraint firstItem="xAK-eW-nUb" firstAttribute="centerX" secondItem="Wgz-Qn-mRj" secondAttribute="centerX" constant="1" id="F05-O6-Rng"/>
                 <constraint firstAttribute="trailing" secondItem="Wgz-Qn-mRj" secondAttribute="trailing" id="HeX-CY-aLi"/>
                 <constraint firstAttribute="centerX" secondItem="3AO-Gr-zBc" secondAttribute="centerX" id="K2a-uW-NjL"/>
                 <constraint firstAttribute="trailing" secondItem="O3k-Eh-dGI" secondAttribute="trailing" id="YT8-BC-GQb"/>
+                <constraint firstItem="xAK-eW-nUb" firstAttribute="height" secondItem="Wgz-Qn-mRj" secondAttribute="height" id="aKD-BF-der"/>
                 <constraint firstItem="i9E-mc-ETr" firstAttribute="top" secondItem="Wgz-Qn-mRj" secondAttribute="bottom" constant="50" id="cSH-r7-ky1"/>
                 <constraint firstAttribute="bottom" secondItem="O3k-Eh-dGI" secondAttribute="bottom" id="euw-pc-qHj"/>
                 <constraint firstAttribute="centerY" secondItem="JlX-8u-9xq" secondAttribute="centerY" constant="67" id="fg7-X0-O6Z"/>
@@ -273,6 +303,7 @@
                 <constraint firstItem="O3k-Eh-dGI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s18-Ws-dVh"/>
                 <constraint firstAttribute="centerX" secondItem="JlX-8u-9xq" secondAttribute="centerX" id="ssA-yT-kaV"/>
                 <constraint firstAttribute="centerY" secondItem="3AO-Gr-zBc" secondAttribute="centerY" constant="38.5" id="tqf-gm-VmJ"/>
+                <constraint firstItem="xAK-eW-nUb" firstAttribute="centerY" secondItem="Wgz-Qn-mRj" secondAttribute="centerY" constant="74" id="wsG-aU-9Fd"/>
                 <constraint firstItem="Wgz-Qn-mRj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ybi-Re-ZKI"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
