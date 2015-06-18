@@ -171,6 +171,9 @@
 	[self.zipCityCell setSecondValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
     [self.stateCell setValue:profile.state];
+	[self.abnCell setValue:profile.abn];
+	[self.acnCell setValue:profile.acn];
+	[self.arbnCell setValue:profile.arbn];
 
     [self.businessNameCell setEditable:![profile isFieldReadonly:@"name"]];
     [self.registrationNumberCell setEditable:![profile isFieldReadonly:@"registrationNumber"]];
@@ -182,6 +185,9 @@
 	[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
     [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
     [self.stateCell setEditable:![profile isFieldReadonly:@"state"]];
+	[self.abnCell setEditable:![profile isFieldReadonly:@"abn"]];
+	[self.acnCell setEditable:![profile isFieldReadonly:@"acn"]];
+	[self.arbnCell setEditable:![profile isFieldReadonly:@"arbn"]];
 	
     [self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
 			withCompletion:nil];
@@ -256,6 +262,30 @@
 	{		
 		[self.companyTypeCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyType]];
 	}
+}
+
+- (NSArray *)includeAcnAndAbnCells:(BOOL)shouldInclude
+					withCompletion:(SelectionCompletion)completion
+{
+	
+}
+
+- (TextEntryCell *)includeArbnCell:(BOOL)shouldInclude
+					withCompletion:(SelectionCompletion)completion
+{
+	
+}
+
++ (BOOL)showAcnAndAbnCells:(NSString *)countryCode
+{
+	return [self isMatchingSource:@"au"
+					   withTarget:countryCode];
+}
+
++ (BOOL)showArbnCell:(NSString *)targetCurrency
+{
+	return [self isMatchingSource:@"aud"
+					   withTarget:targetCurrency];
 }
 
 @end

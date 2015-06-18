@@ -23,7 +23,5 @@
 + (BOOL)showStateCell:(NSString *)countryCode;
 + (BOOL)isMatchingSource:(NSString *)source
 			  withTarget:(NSString *)target;
-+ (BOOL)showAcnAndAbnCells:(NSString *)countryCode;
-+ (BOOL)showArbnCell:(NSString *)targetCurrency;
 
 @end
