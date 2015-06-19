@@ -4,7 +4,10 @@
 #import <CoreData/CoreData.h>
 
 extern const struct BusinessProfileAttributes {
+	__unsafe_unretained NSString *abn;
+	__unsafe_unretained NSString *acn;
 	__unsafe_unretained NSString *addressFirstLine;
+	__unsafe_unretained NSString *arbn;
 	__unsafe_unretained NSString *businessDescription;
 	__unsafe_unretained NSString *city;
 	__unsafe_unretained NSString *companyRole;
@@ -32,9 +35,21 @@ extern const struct BusinessProfileRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) BusinessProfileID* objectID;
 
+@property (nonatomic, strong) NSString* abn;
+
+//- (BOOL)validateAbn:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* acn;
+
+//- (BOOL)validateAcn:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* addressFirstLine;
 
 //- (BOOL)validateAddressFirstLine:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* arbn;
+
+//- (BOOL)validateArbn:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* businessDescription;
 
@@ -84,8 +99,17 @@ extern const struct BusinessProfileRelationships {
 
 @interface _BusinessProfile (CoreDataGeneratedPrimitiveAccessors)
 
+- (NSString*)primitiveAbn;
+- (void)setPrimitiveAbn:(NSString*)value;
+
+- (NSString*)primitiveAcn;
+- (void)setPrimitiveAcn:(NSString*)value;
+
 - (NSString*)primitiveAddressFirstLine;
 - (void)setPrimitiveAddressFirstLine:(NSString*)value;
+
+- (NSString*)primitiveArbn;
+- (void)setPrimitiveArbn:(NSString*)value;
 
 - (NSString*)primitiveBusinessDescription;
 - (void)setPrimitiveBusinessDescription:(NSString*)value;

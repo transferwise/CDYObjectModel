@@ -22,6 +22,7 @@
 #import "Country.h"
 #import "SwitchCell.h"
 #import "StateSuggestionCellProvider.h"
+#import "ProfileSource+Private.h"
 
 #define MIN_PASSWORD_LENGTH	5
 
@@ -352,7 +353,7 @@ NSUInteger const kUserPersonalSection = 1;
 
 #pragma mark - US DOB format
 
-- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+- (NSArray *)countrySelectionCell:(SelectionCell *)cell
                        didSelectCountry:(Country *)country
                          withCompletion:(SelectionCompletion)completion
 {
