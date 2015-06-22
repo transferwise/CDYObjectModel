@@ -204,7 +204,6 @@ Une révolution dans votre poche.";
 "login.validation.email.not.valid" = "L'émail saisi n'est pas valide";
 "login.validation.password.missing" = "Mot de passe manquant";
 "login.oauth.header.title" = "Connecter avec %@";
-"login.email.facebook.getting" = "L'obtention de votre e-mail";
 
 "money.entry.priority.payment.title" = "Transfert prioritaire";
 "money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";
