@@ -255,6 +255,7 @@ Une révolution dans votre poche.";
 "payment.status.matched.description.conversion" = "a éte converti en";
 "payment.status.matched.description.eta" = "& devrait arriver le";
 "payment.status.received.description" = "en conversion";
+"payment.status.received.description.long" = "est en conversion.";
 "payment.status.received.description.conversion" = "est estimé de convertir en";
 "payment.status.received.description.eta" = "& devrait arriver le";
 "payment.status.refunded.description" = "Remboursé %@";

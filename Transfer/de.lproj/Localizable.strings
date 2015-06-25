@@ -474,6 +474,8 @@
 
 "payment.status.received.description" = "Wird umgetauscht";
 
+"payment.status.received.description.long" = " wird nun umgetauscht.";
+
 "payment.status.received.description.conversion" = "wird voraussichtlich umgetauscht in";
 
 "payment.status.received.description.eta" = "& sollte ankommen am";

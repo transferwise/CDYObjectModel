@@ -259,6 +259,7 @@ A revolution in your pocket.";
 "payment.status.matched.description.conversion" = "have been converted to";
 "payment.status.matched.description.eta" = "& should arrive on";
 "payment.status.received.description" = "Converting";
+"payment.status.received.description.long" = "is now being converted.";
 "payment.status.received.description.conversion" = "is estimated to convert to";
 "payment.status.received.description.eta" = "& should arrive on";
 "payment.status.refunded.description" = "Refunded %@";
