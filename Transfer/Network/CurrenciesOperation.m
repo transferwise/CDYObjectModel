@@ -84,13 +84,16 @@ static NSDate* lastSuccessTimestamp;
                     }];
                 };
                 
-                if ([weakSelf haveAllNeededRecipientTypes:currencies]) {
-                    MCLog(@"Have all recipient types. Continue");
-                    persistingBlock();
-                } else {
-                    MCLog(@"Need to pull missing recipient types");
-                    [weakSelf pullRecipientTypesWithCompletionHandler:persistingBlock];
-                }
+                [weakSelf haveAllNeededRecipientTypes:currencies objectModel:weakSelf.workModel completionBlock:^(BOOL allTypesPresent) {
+                    if (allTypesPresent) {
+                        MCLog(@"Have all recipient types. Continue");
+                        persistingBlock();
+                    } else {
+                        MCLog(@"Need to pull missing recipient types");
+                        [weakSelf pullRecipientTypesWithCompletionHandler:persistingBlock];
+                    }
+                }];
+                
             }];
         }];
         
@@ -125,22 +128,19 @@ static NSDate* lastSuccessTimestamp;
     [operation execute];
 }
 
-- (BOOL)haveAllNeededRecipientTypes:(NSArray *)currencies
+- (void)haveAllNeededRecipientTypes:(NSArray *)currencies objectModel:(ObjectModel*)objectModel completionBlock:(void(^)(BOOL allTypesPresent))completionBlock
 {
+    NSMutableSet *typesSet = [NSMutableSet set];
     for (NSDictionary *currencyData in currencies)
 	{
         NSArray *types = currencyData[@"recipientTypes"];
-        for (NSString *type in types)
-		{
-            if (![self.objectModel haveRecipientTypeWithCode:type])
-			{
-                MCLog(@"Mossing type %@", type);
-                return NO;
-            }
-        }
+        [typesSet addObjectsFromArray:types];
     }
-
-    return YES;
+    
+    [objectModel.managedObjectContext performBlock:^{
+        NSArray* existingTypes = [objectModel recipientTypesWithCodes:[typesSet allObjects] includeHidden:NO];
+        completionBlock([existingTypes count] == [typesSet count]);
+    }];
 }
 
 + (CurrenciesOperation *)operation
