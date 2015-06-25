@@ -170,11 +170,6 @@ your friends to TransferWise";
 "identification.ssn.error.title" = "SSN invalid";
 "identification.ssn.generic.error" = "Please provide a valid SSN number or provide of photo of your ID.";
 
-
-
-
-"introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";
-"introduction.currencies.retrieve.error.title" = "Currencies error";
 "introduction.calculation.error.title" = "Calculation failed";
 "introduction.title" = "Send money";
 "introduction.header.title.text" = "How much would you like to send?";
@@ -264,7 +259,6 @@ A revolution in your pocket.";
 "payment.status.matched.description.conversion" = "have been converted to";
 "payment.status.matched.description.eta" = "& should arrive on";
 "payment.status.received.description" = "Converting";
-"payment.status.received.description.long" = "is now being converted.";
 "payment.status.received.description.conversion" = "is estimated to convert to";
 "payment.status.received.description.eta" = "& should arrive on";
 "payment.status.refunded.description" = "Refunded %@";
@@ -495,7 +489,6 @@ This can't be undone.";
 "upload.money.info.label.EUR" = "SEPA transfers within Europe cost the same as a local transfer.";
 "upload.money.iban.title" = "IBAN";
 "upload.money.notification.label" = "Your payment will be activated when we receive your deposit.";
-"upload.money.pulling.data.message" = "Pulling data...";
 "upload.money.reference.title" = "Reference";
 "upload.money.reference.title.CHF" = "Reason for payment";
 "upload.money.title" = "How do you want to pay?";
@@ -530,8 +523,6 @@ This can't be undone.";
 "why.popup.tw.fee.free" = " (Free)";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
-"errors.TRWErrorDomain.1.message" = "Could not read server response.";
-"errors.TRWErrorDomain.2.message" = "Could not read server response.";
 "errors.TRWErrorDomain.3.message" = "Functionality removed. Please update your app.";
 
 "recipient.type.IBAN.name" = "IBAN";
@@ -755,7 +746,6 @@ but you haven't shared it with us on Facebook.";
 "invite.modal.title" = "Share your invite url";
 "invite.error.facebook.title" = "Facebook error";
 "invite.error.facebook.message" = "Please enable Facebook in your device settings and try again.";
-"invite.facebook.default.message" = "";
 "invite.email.subject" = "%@ has invited you to TransferWise";
 "invite.email.subject.anonymous" = "You have been invited to TransferWise";
 "invite.email.message" = "Hi,<br><br>I’ve been using TransferWise to send money abroad. Really easy and a lot cheaper than the bank! I got you a free transfer using my invite link: <br><a href=\"%@\">Accept %@'s invitation</a> <br><br>Cheers,<br>%@";
@@ -765,9 +755,6 @@ but you haven't shared it with us on Facebook.";
 "invite.link.querying" = "Getting invite link";
 "invite.link.error.title" = "Unable to get invite link";
 "invite.link.error.message" = "Something went wrong while getting invite link";
-"invite.status.querying" = "Getting invite's status";
-"invite.status.error.title" = "Unable to get status";
-"invite.status.error.message" = "Something went wrong while getting invite's status";
 
 "touchid.reason.store" = "Authenticate to associate login credentials with Touch ID.";
 "touchid.reason.retrieve" = "Authenticate to log in with Touch ID account.";
