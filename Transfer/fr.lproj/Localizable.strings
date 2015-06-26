@@ -166,9 +166,6 @@ vos amis sur TransferWise";
 "identification.ssn.short" = "Le Social security number est trop court";
 "identification.ssn.generic.error" = "Erreur de validation du Social security number. Veuillez fournir une piece d'identité.";
 
-
-"introduction.currencies.retrieve.error.message" = "Impossible de téléchargé la liste des monnaies";
-"introduction.currencies.retrieve.error.title" = "Erreure liée aux monnaies";
 "introduction.calculation.error.title" = "Calculation avortée";
 "introduction.title" = "Envoyer de l'argent";
 "introduction.header.title.text" = "Combien souhaitez-vous envoyer?";
@@ -487,7 +484,6 @@ C'est irréversible.";
 "upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone euro ne coûtent pas plus cher qu'un transfert local.";
 "upload.money.iban.title" = "IBAN";
 "upload.money.notification.label" = "Votre transfert démarrera dés que nous aurons reçus votre argent.";
-"upload.money.pulling.data.message" = "Chargement des données...";
 "upload.money.reference.title" = "Référence";
 "upload.money.reference.title.CHF" = "Raison du paiement";
 "upload.money.title" = "Choisir comment payer";
@@ -522,8 +518,6 @@ C'est irréversible.";
 "why.popup.tw.fee.free" = " (Gratuit)";
 
 "errors.CRD_NOT_VALID.message" = "Identifiants incorrects.";
-"errors.TRWErrorDomain.1.message" = "Impossible de lire réponse du serveur.";
-"errors.TRWErrorDomain.2.message" = "Impossible de lire réponse du serveur.";
 "errors.TRWErrorDomain.3.message" = "Fonctionnalité supprimée. Veuillez mettre à jour votre application";
 
 "recipient.type.IBAN.name" = "IBAN";
@@ -733,7 +727,6 @@ but you haven't shared it with us on Facebook.";
 "invite.modal.title" = "Envoyer vos invitations";
 "invite.error.facebook.title" = "Erreur de Facebook";
 "invite.error.facebook.message" = "Activez Facebook sur votre téléphone et réessayez.";
-"invite.facebook.default.message" = "";
 "invite.email.subject" = "%@ vous invite sur TransferWise";
 "invite.email.subject.anonymous" = "Vous avez été invité sur TransferWise";
 "invite.email.message" = "Salut,<br><br>J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi: <br><a href=\"%@\">Accepter l'invitation de %@</a> <br><br>J'espères que cela te rendra service,<br>%@";
@@ -743,9 +736,6 @@ but you haven't shared it with us on Facebook.";
 "invite.link.querying" = "Obtention du lien d'invitation";
 "invite.link.error.title" = "Lien d'invitation non disponible";
 "invite.link.error.message" = "Il est impossible de charger votre lien d'invitation pour le moment. Réessayer plus tard.";
-"invite.status.querying" = "Obtention du statut des invitations";
-"invite.status.error.title" = "Impossible d'obtenir le statut des invitations";
-"invite.status.error.message" = "Il est impossible de charger le status de vos invitations pour le moment. Réessayer plus tard.";
 
 "touchid.reason.store" = "Authenticate to associate login credentials with Touch ID.";
 "touchid.reason.retrieve" = "Authenticate to log in with Touch ID account.";

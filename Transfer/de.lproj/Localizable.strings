@@ -314,10 +314,6 @@
 
 "identification.ssn.generic.error" = "Bitte gib eine gültige SSN(Social Security Number) an oder schick uns einen Identitätsnachweis";
 
-"introduction.currencies.retrieve.error.message" = "Währungen konnten vom Server nicht abgerufen werden";
-
-"introduction.currencies.retrieve.error.title" = "Währungsfehler";
-
 "introduction.calculation.error.title" = "Kalkulation fehlgeschlagen";
 
 "introduction.title" = "Geld schicken";
@@ -888,8 +884,6 @@
 
 "upload.money.notification.label" = "Deine Überweisung wird aktiviert, sobald wir dein Geld erhalten haben.";
 
-"upload.money.pulling.data.message" = "Lädt Daten..";
-
 "upload.money.reference.title" = "Verwendungszweck";
 
 "upload.money.reference.title.CHF" = "Überweisungsgrund";
@@ -951,10 +945,6 @@
 "why.popup.tw.fee.free" = "(gebührenfrei)";
 
 "errors.CRD_NOT_VALID.message" = "Inkorrekte Zugangsdaten.";
-
-"errors.TRWErrorDomain.1.message" = "Antwort des Servers konnte nicht gelesen werden.";
-
-"errors.TRWErrorDomain.2.message" = "Antwort des Servers konnte nicht gelesen werden.";
 
 "errors.TRWErrorDomain.3.message" = "Zeit für die neueste App-Version?";
 
@@ -1218,8 +1208,6 @@
 
 "invite.error.facebook.message" = "Bitte aktiviere Facebook auf deinem Gerät und versuche es erneut.";
 
-"invite.facebook.default.message" = "";
-
 "invite.email.subject" = "%@ hat dich zu TransferWise eingeladen";
 
 "invite.email.subject.anonymous" = "Du wurdest zu TransferWise eingeladen";
@@ -1237,12 +1225,6 @@
 "invite.link.error.title" = "Erhalten des Einladungslink fehlgeschlagen";
 
 "invite.link.error.message" = "Irgendetwas ist mit dem Einladungslink schief gelaufen.";
-
-"invite.status.querying" = "Erhalte Status vom eingeladenen";
-
-"invite.status.error.title" = "Statusabfrage fehlgeschlagen";
-
-"invite.status.error.message" = "Irgendetwas ist mit der Statusabfrage schief gelaufen.";
 
 "touchid.reason.store" = "Authentifizieren, um Zugangsdaten mit Touch ID zu verknüpfen.";
 
