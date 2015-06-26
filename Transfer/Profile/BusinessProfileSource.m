@@ -204,7 +204,7 @@
             && [[self.countryCell value] hasValue] && (![ProfileSource showStateCell:self.countryCell.value] || [[self.stateCell value] hasValue]);
 }
 
-- (id)enteredProfile
+- (void)commitProfile
 {
 	BusinessProfile *profile = [self.objectModel.currentUser businessProfileObject];
     [profile setName:[self.businessNameCell value]];
@@ -223,12 +223,11 @@
 
     [self.objectModel saveContext];
 
-    return profile.objectID;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+- (void)validateProfileWithValidation:(id)validation completion:(ProfileActionBlock)completion
 {
-    [validation validateBusinessProfile:profile withHandler:^(NSError *error) {
+    [validation validateBusinessProfile:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error)
 			{

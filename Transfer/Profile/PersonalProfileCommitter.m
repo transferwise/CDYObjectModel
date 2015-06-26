@@ -21,12 +21,11 @@
 
 @implementation PersonalProfileCommitter
 
-- (void)validatePersonalProfile:(NSManagedObjectID *)profileID
-					withHandler:(PersonalProfileValidationBlock)handler
+- (void)validatePersonalProfile:(PersonalProfileValidationBlock)handler
 {
     MCLog(@"Commit profile");
     [[GoogleAnalytics sharedInstance] sendAppEvent:GAPersonalprofilesaved];
-    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:profileID];
+    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 

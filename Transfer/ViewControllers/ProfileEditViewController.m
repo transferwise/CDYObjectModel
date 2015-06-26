@@ -492,10 +492,9 @@
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
     
-    NSManagedObjectID *profile = [self.profileSource enteredProfile];
+    [self.profileSource commitProfile];
 	
-    [self.profileSource validateProfile:profile
-						 withValidation:self.profileValidation
+    [self.profileSource validateProfileWithValidation:self.profileValidation
 							 completion:^(NSError *error) {
         [hud hide];
 		
@@ -634,7 +633,7 @@
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
 	
-	[self.profileSource validateProfile:profile.objectID withValidation:self.profileValidation completion:^(NSError *error) {
+	[self.profileSource validateProfileWithValidation:self.profileValidation completion:^(NSError *error) {
         [hud hide];
 		
         if (error)

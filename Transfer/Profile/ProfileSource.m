@@ -71,13 +71,12 @@
     return NO;
 }
 
-- (id)enteredProfile
+- (void)commitProfile
 {
     ABSTRACT_METHOD;
-    return nil;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+- (void)validateProfileWithValidation:(id)validation completion:(ProfileActionBlock)completion
 {
     ABSTRACT_METHOD;
 }

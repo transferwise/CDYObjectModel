@@ -21,11 +21,10 @@
 
 @implementation BusinessProfileValidator
 
-- (void)validateBusinessProfile:(NSManagedObjectID *)profile
-					withHandler:(BusinessProfileValidationBlock)handler
+- (void)validateBusinessProfile:(BusinessProfileValidationBlock)handler
 {
 	MCLog(@"validateBusinessProfile");
-	BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
+	BusinessProfileOperation *operation = [BusinessProfileOperation validateOperation];
 	[self setExecutedOperation:operation];
 	[operation setObjectModel:self.objectModel];
 	__weak typeof(self) weakSelf = self;

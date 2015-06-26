@@ -12,23 +12,22 @@
 #import "ObjectModel+Users.h"
 #import "Constants.h"
 #import "BusinessProfile.h"
+#import "User.h"
 
 NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
 NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
 
 @interface BusinessProfileOperation ()
 
-@property (nonatomic, strong) NSManagedObjectID *data;
 @property (nonatomic, copy) NSString *path;
 
 @end
 
 @implementation BusinessProfileOperation
 
-- (id)initWithPath:(NSString *)path data:(NSManagedObjectID *)data {
+- (id)initWithPath:(NSString *)path{
     self = [super init];
     if (self) {
-        _data = data;
         _path = path;
     }
     return self;
@@ -60,17 +59,17 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
     }];
 
     [self.objectModel performBlock:^{
-        BusinessProfile *profile = (BusinessProfile *) [self.objectModel.managedObjectContext objectWithID:self.data];
+        BusinessProfile *profile = [self.objectModel.currentUser businessProfile];
         [self postData:[profile data] toPath:path];
     }];
 }
 
-+ (BusinessProfileOperation *)commitWithData:(NSManagedObjectID *)data {
-    return [[BusinessProfileOperation alloc] initWithPath:kUpdateBusinessProfilePath data:data];
++ (BusinessProfileOperation *)commitOperation {
+    return [[BusinessProfileOperation alloc] initWithPath:kUpdateBusinessProfilePath];
 }
 
-+ (BusinessProfileOperation *)validateWithData:(NSManagedObjectID *)data {
-    return [[BusinessProfileOperation alloc] initWithPath:kValidateBusinessProfilePath data:data];
++ (BusinessProfileOperation *)validateOperation {
+    return [[BusinessProfileOperation alloc] initWithPath:kValidateBusinessProfilePath];
 }
 
 @end
