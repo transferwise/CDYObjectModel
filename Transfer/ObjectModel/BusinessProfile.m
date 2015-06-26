@@ -30,16 +30,49 @@
     return [NSDictionary dictionaryWithDictionary:data];
 }
 
-- (BOOL)isFilled
+/**
+ *  Check to see if  all required business profile fields have all been filled
+ *
+ *  @return TRUE if all fields filled
+ */
+
+- (BOOL) isFilled
 {
-	return [self.name hasValue] && [self.registrationNumber hasValue] && [self.registrationNumber hasValue]
-	&& [self.businessDescription hasValue] && [self.companyRole hasValue] && [self.companyType hasValue]
-	&& [self.addressFirstLine hasValue] && [self.postCode hasValue] && [self.city hasValue] && [self.countryCode hasValue]
-	//country specific exceptions
-	//usa needs to have state
-	&& (([@"usa" caseInsensitiveCompare:self.countryCode] == NSOrderedSame && [self.state hasValue])
-		//au needs to have either acn or abn
-		|| ([@"aus" caseInsensitiveCompare:self.countryCode] == NSOrderedSame && ([self.acn hasValue] || [self.abn hasValue])));
+    // I have made this method more verbose than strictly necessary to allow easy debugging
+    BOOL nameFilled = self.name.hasValue;
+    BOOL registrationNumberFilled = self.registrationNumber.hasValue;
+    BOOL businessDescriptionFilled = self.businessDescription.hasValue;
+    BOOL companyRoleFilled = self.companyRole.hasValue;
+    BOOL companyTypeFilled = self.companyType.hasValue;
+    BOOL addressFirstLineFilled = self.addressFirstLine.hasValue;
+    BOOL postCodeFilled = self.postCode.hasValue;
+    BOOL cityFilled = self.city.hasValue;
+    BOOL countryCodeFilled = self.countryCode.hasValue;
+    
+    // Are all fields filled? (Before checking for exceptions)
+    BOOL allFieldsFilled = nameFilled & registrationNumberFilled & businessDescriptionFilled & companyRoleFilled & companyTypeFilled & addressFirstLineFilled & postCodeFilled & cityFilled & countryCodeFilled;
+    
+    // Now check for exceptions
+    if ([@"usa" caseInsensitiveCompare: self.countryCode] == NSOrderedSame)
+    {
+        //Are we USA, but with no state field filled?
+        if (self.state.hasValue == NO)
+        {
+            // We are missing the state field, so indicate failure
+            allFieldsFilled = NO;
+        }
+    }
+    else if ([@"aus" caseInsensitiveCompare: self.countryCode] == NSOrderedSame)
+    {
+        // If we are in Australia, then we need either ACN or ABN fiels filled
+        if (self.acn.hasValue == NO && self.abn.hasValue == NO)
+        {
+            // We have neither acn nor abn fields filled, so indicate failure
+            allFieldsFilled = NO;
+        }
+    }
+    
+    return allFieldsFilled;
 }
 
 @end
