@@ -19,11 +19,10 @@
 
 @implementation BusinessProfileCommitter
 
-- (void)validateBusinessProfile:(NSManagedObjectID *)profile
-					withHandler:(BusinessProfileValidationBlock)handler
+- (void)validateBusinessProfile:(BusinessProfileValidationBlock)handler
 {
     [[GoogleAnalytics sharedInstance] sendAppEvent:GABusinessprofilesaved];
-    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:profile];
+    BusinessProfileOperation *operation = [BusinessProfileOperation commitOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 

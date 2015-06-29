@@ -399,7 +399,7 @@
 - (void)updateBusinessProfile:(TRWActionBlock)completion
 {
     MCLog(@"updateBusinessProfile");
-    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.objectModel.currentUser.businessProfile.objectID];
+    BusinessProfileOperation *operation = [BusinessProfileOperation commitOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
@@ -421,7 +421,7 @@
 - (void)updatePersonalProfile:(TRWActionBlock)completion
 {
     MCLog(@"updatePersonalProfile");
-    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.objectModel.currentUser.personalProfile.objectID];
+    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;

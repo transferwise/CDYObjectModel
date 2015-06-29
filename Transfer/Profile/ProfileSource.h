@@ -35,9 +35,8 @@ typedef void (^SelectionCompletion)();
 - (NSArray *)presentedLoginCells;
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler;
 - (BOOL)inputValid;
-- (id)enteredProfile;
-- (void)validateProfile:(id)profile
-		 withValidation:(id)validation
+- (void)commitProfile;
+- (void)validateProfileWithValidation:(id)validation
 			 completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
