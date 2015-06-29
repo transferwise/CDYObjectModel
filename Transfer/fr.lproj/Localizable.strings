@@ -233,7 +233,6 @@ Une révolution dans votre poche.";
 "payment.controller.currency.payment.error.title" = "Paiement impossible";
 "payment.controller.deposit.label" = "Votre dépot";
 "payment.controller.estimated.exchange.rate.label" = "Taux de change estimé";
-"payment.controller.payment.date.message" = "L'argent arrive le %@";
 "payment.controller.title" = "Envoyer";
 "payment.controller.tabbar.title" = "Envoyer";
 

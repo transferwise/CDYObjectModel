@@ -237,7 +237,6 @@ A revolution in your pocket.";
 "payment.controller.currency.payment.error.title" = "Can't make payment";
 "payment.controller.deposit.label" = "Your deposit";
 "payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
-"payment.controller.payment.date.message" = "Money arrives %@";
 "payment.controller.title" = "Send";
 "payment.controller.tabbar.title" = "Send";
 
