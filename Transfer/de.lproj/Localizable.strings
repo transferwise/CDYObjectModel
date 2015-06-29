@@ -434,8 +434,6 @@
 
 "payment.controller.estimated.exchange.rate.label" = "Geschätzter Wechselkurs";
 
-"payment.controller.payment.date.message" = "Geld kommt an am %@";
-
 "payment.controller.title" = "Senden";
 
 "payment.controller.tabbar.title" = "Senden";
