@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0156BA951B417CD500175C0D /* BusinessProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA941B417CD500175C0D /* BusinessProfileTests.swift */; };
+		0156BA981B41915000175C0D /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA971B41915000175C0D /* XCTest+Utils.swift */; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
@@ -1576,6 +1578,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0156BA941B417CD500175C0D /* BusinessProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessProfileTests.swift; sourceTree = "<group>"; };
+		0156BA971B41915000175C0D /* XCTest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Utils.swift"; sourceTree = "<group>"; };
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
 		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
 		1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileOperation.h; sourceTree = "<group>"; };
@@ -2601,6 +2605,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0156BA931B41680100175C0D /* Regression */ = {
+			isa = PBXGroup;
+			children = (
+				0156BA941B417CD500175C0D /* BusinessProfileTests.swift */,
+			);
+			name = Regression;
+			sourceTree = "<group>";
+		};
+		0156BA961B41903500175C0D /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				0156BA971B41915000175C0D /* XCTest+Utils.swift */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
 		235F7C7030E9A118DDA01767 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3039,6 +3059,8 @@
 		47DC89821A03950F0042054B /* TransferTests */ = {
 			isa = PBXGroup;
 			children = (
+				0156BA961B41903500175C0D /* Abstract */,
+				0156BA931B41680100175C0D /* Regression */,
 				385696091A7A4BEE00D9F833 /* Utils */,
 				474206FE1A5A671600DF6477 /* PaymentFlow */,
 				47C1F7551A44446600014F55 /* Extensions */,
@@ -3991,6 +4013,7 @@
 		EAAA1460171BC911005B9430 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mooncascade OÜ";
@@ -5133,9 +5156,11 @@
 				474206FD1A5A660300DF6477 /* NSStringValidationTests.swift in Sources */,
 				3856960D1A7A4C4C00D9F833 /* CalculationResultTests.swift in Sources */,
 				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
+				0156BA951B417CD500175C0D /* BusinessProfileTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
 				4777C0C21AF7A3D60042721F /* NSStringNullStringTests.swift in Sources */,
 				474207031A5BF4AB00DF6477 /* XCTestCase+Exceptions.m in Sources */,
+				0156BA981B41915000175C0D /* XCTest+Utils.swift in Sources */,
 				474207001A5A674F00DF6477 /* PaymentFlowViewControllerFactoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

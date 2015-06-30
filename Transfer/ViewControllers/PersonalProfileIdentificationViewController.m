@@ -70,8 +70,9 @@
 
     self.idVerificationRowIndex = NSNotFound;
     self.addressVerificationRowIndex = NSNotFound;
-
+    
     self.tableView.tableHeaderView = self.headerView;
+
     CGRect newFrame = self.headerSeparator.frame;
     newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
     self.headerSeparator.frame=newFrame;
@@ -533,7 +534,7 @@
         }
 
     }
-
+    
     [self resizeHeader];
     
     return numberOfMissingFields<=0;
@@ -548,16 +549,26 @@
     return nil;
 }
 
--(void)resizeHeader
+/**
+ *  Resize the header to take account of any error messages
+ */
+
+- (void) resizeHeader
 {
     CGRect headerFrame = self.headerView.frame;
     CGRect reasonFrame = self.reasonTitle.frame;
-    [self.reasonTitle sizeToFit];
+   [self.reasonTitle sizeToFit];
+    
     headerFrame.size.height = headerFrame.size.height - reasonFrame.size.height + self.reasonTitle.frame.size.height;
     reasonFrame.size.height = self.reasonTitle.frame.size.height;
+    
     self.headerView.frame = headerFrame;
     self.reasonTitle.frame = reasonFrame;
+    
     self.tableView.tableHeaderView = self.headerView;
+    
+    // We need to reload the tableview to eliminate the annoying gap that appears every time the header is resized
+    [self.tableView reloadData];
 }
 
 #pragma mark - number helpers
