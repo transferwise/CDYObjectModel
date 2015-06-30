@@ -106,7 +106,7 @@ class BusinessProfileTests: XCTestCase {
         XCTAssertTrue(usaBusinessProfile.isFilled(), "USA Profile not completly filled")
         
         // Nil out one of the attributes that are required, and see if it is now reported as not filled
-        usaBusinessProfile.city = nil
+        usaBusinessProfile.state = nil
         XCTAssertFalse(usaBusinessProfile.isFilled(), "USA Profile incorrectly reported as filled")
     }
     
@@ -125,7 +125,16 @@ class BusinessProfileTests: XCTestCase {
         XCTAssertTrue(ausBusinessProfile.isFilled(), "AUS Profile not completly filled")
         
         // Nil out one of the attributes that are required, and see if it is now reported as not filled
-        ausBusinessProfile.city = nil
+        ausBusinessProfile.acn = nil
+        XCTAssertTrue(ausBusinessProfile.isFilled(), "AUS Profile incorrectly reported as not filled")
+        
+        ausBusinessProfile.setupAsAUS()
+        ausBusinessProfile.abn = nil
+        XCTAssertTrue(ausBusinessProfile.isFilled(), "AUS Profile incorrectly reported as not filled")
+        
+        ausBusinessProfile.setupAsAUS()
+        ausBusinessProfile.acn = nil
+        ausBusinessProfile.abn = nil
         XCTAssertFalse(ausBusinessProfile.isFilled(), "AUS Profile incorrectly reported as filled")
     }
 }

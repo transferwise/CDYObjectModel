@@ -566,6 +566,8 @@
     self.reasonTitle.frame = reasonFrame;
     
     self.tableView.tableHeaderView = self.headerView;
+    
+    // We need to reload the tableview to eliminate the annoying gap that appears every time the header is resized
     [self.tableView reloadData];
 }
 
