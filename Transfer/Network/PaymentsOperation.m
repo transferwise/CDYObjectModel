@@ -43,38 +43,39 @@ NSUInteger kPaymentsListLimit = 20;
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        
-        //TODO jaanus: pull also recipient types here
-        NSNumber *totalCount = response[@"total"];
-        [weakSelf.objectModel saveInBlock:^(CDYObjectModel *objectModel) {
-            ObjectModel *oModel = (ObjectModel *) objectModel;
-            NSMutableArray *existingPaymentIds = [NSMutableArray arrayWithArray:[oModel listRemoteIdsForExistingPayments]];
-
-            NSArray *paymentsData = response[@"payments"];
-            NSArray *existingPayments = [oModel paymentsWithRemoteIds:[paymentsData valueForKey:@"id"]];
-            for (NSDictionary *data in paymentsData) {
-                Payment *payment = [[existingPayments filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"remoteId = %@", data[@"id"]]] lastObject];
-                if(payment)
-                {
-                    payment = [oModel populatePayment:payment withData:data];
+        [weakSelf.objectModel performBlock:^{
+            //TODO jaanus: pull also recipient types here
+            NSNumber *totalCount = response[@"total"];
+            [weakSelf.objectModel saveInBlock:^(CDYObjectModel *objectModel) {
+                ObjectModel *oModel = (ObjectModel *) objectModel;
+                NSMutableArray *existingPaymentIds = [NSMutableArray arrayWithArray:[oModel listRemoteIdsForExistingPayments]];
+                
+                NSArray *paymentsData = response[@"payments"];
+                NSArray *existingPayments = [oModel paymentsWithRemoteIds:[paymentsData valueForKey:@"id"]];
+                for (NSDictionary *data in paymentsData) {
+                    Payment *payment = [[existingPayments filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"remoteId = %@", data[@"id"]]] lastObject];
+                    if(payment)
+                    {
+                        payment = [oModel populatePayment:payment withData:data];
+                    }
+                    else
+                    {
+                        payment = [oModel createOrUpdatePaymentWithData:data];
+                    }
+                    [existingPaymentIds removeObject:payment.remoteId];
                 }
-                else
+                
+                if (weakSelf.offset == 0)
                 {
-                    payment = [oModel createOrUpdatePaymentWithData:data];
+                    MCLog(@"Have %lu remote id's after zero pull", (unsigned long)[existingPaymentIds count]);
+                    [oModel removePaymentsWithIds:existingPaymentIds];
                 }
-                [existingPaymentIds removeObject:payment.remoteId];
-            }
-
-            if (weakSelf.offset == 0)
-			{
-                MCLog(@"Have %lu remote id's after zero pull", (unsigned long)[existingPaymentIds count]);
-                [oModel removePaymentsWithIds:existingPaymentIds];
-            }
-        } completion:^{
-            [[GoogleAnalytics sharedInstance] markHasCompletedPayments];
-            [[Mixpanel sharedInstance] registerSuperProperties:@{@"Hascompletepayment":[[GoogleAnalytics sharedInstance].objectModel hasCompletedPayments]?@"YES":@"NO"}];
-            
-            weakSelf.completion([totalCount integerValue], nil);
+            } completion:^{
+                [[GoogleAnalytics sharedInstance] markHasCompletedPayments];
+                [[Mixpanel sharedInstance] registerSuperProperties:@{@"Hascompletepayment":[[GoogleAnalytics sharedInstance].objectModel hasCompletedPayments]?@"YES":@"NO"}];
+                
+                weakSelf.completion([totalCount integerValue], nil);
+            }];
         }];
     }];
 

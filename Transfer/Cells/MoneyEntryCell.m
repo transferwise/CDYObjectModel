@@ -226,45 +226,47 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 - (void)setCurrencies:(NSFetchedResultsController *)currencies
 {
-    [_currencies setDelegate:nil];
-    _currencies = currencies;
-    [_currencies setDelegate:self];
-    
-    [currencies performFetch:nil];
-    
-    NSUInteger index = 0;
-    
-    Currency* preSelectedCurrrency = self.selectedCurrency?:self.suggestedStartCurrency;
-    
-    if(preSelectedCurrrency)
-    {
-        NSArray* codes = [currencies.fetchedObjects valueForKey:@"currency"];
-        index = [codes indexOfObject:preSelectedCurrrency];
-        if(index == NSNotFound)
-        {
-            index = 0;
-        }
-    }
-    
-    if (index < [currencies.fetchedObjects count])
-    {
-        id source = currencies.fetchedObjects[index];
-        [self setSource:source];
+    [currencies.managedObjectContext performBlockAndWait: ^{
+        [_currencies setDelegate:nil];
+        _currencies = currencies;
+        [_currencies setDelegate:self];
         
-        Currency *selected = [source currency];
+        [currencies performFetch:nil];
         
-        if (self.forced)
+        NSUInteger index = 0;
+        
+        Currency* preSelectedCurrrency = self.selectedCurrency?:self.suggestedStartCurrency;
+        
+        if(preSelectedCurrrency)
         {
-            selected = self.forced;
-            self.dropdownArrow.hidden = YES;
-            self.currencyButton.enabled = NO;
+            NSArray* codes = [currencies.fetchedObjects valueForKey:@"currency"];
+            index = [codes indexOfObject:preSelectedCurrrency];
+            if(index == NSNotFound)
+            {
+                index = 0;
+            }
         }
         
-        [self setSelectedCurrency:selected];
-        [self.currencyButton setTitle:selected.code forState:UIControlStateNormal];
-        self.currenciesLoaded = currencies.fetchedObjects.count > 2;
-        self.currencyChangedHandler(selected);
-    }
+        if (index < [currencies.fetchedObjects count])
+        {
+            id source = currencies.fetchedObjects[index];
+            [self setSource:source];
+            
+            Currency *selected = [source currency];
+            
+            if (self.forced)
+            {
+                selected = self.forced;
+                self.dropdownArrow.hidden = YES;
+                self.currencyButton.enabled = NO;
+            }
+            
+            [self setSelectedCurrency:selected];
+            [self.currencyButton setTitle:selected.code forState:UIControlStateNormal];
+            self.currenciesLoaded = currencies.fetchedObjects.count > 2;
+            self.currencyChangedHandler(selected);
+        }
+    }];
 }
 
 -(void)setSelectedCurrency:(Currency *)selectedCurrency

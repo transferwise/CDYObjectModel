@@ -25,19 +25,21 @@ NSString *const kReferralLinksPath = @"/referral/links";
 		weakSelf.resultHandler(error);
 	}];
 	
-	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		if (response[@"referralLinks"])
-		{
-			NSDictionary *referralLinks = response[@"referralLinks"];
-			if (referralLinks)
-			{
-    			[weakSelf.workModel createOrUpdateReferralLinks:referralLinks];
-				[weakSelf.workModel saveContext:^{
-					weakSelf.resultHandler(nil);
-				}];
-			}
-		}
-		else
+    [self setOperationSuccessHandler:^(NSDictionary *response) {
+        if (response[@"referralLinks"])
+        {
+            NSDictionary *referralLinks = response[@"referralLinks"];
+            if (referralLinks)
+            {
+                [weakSelf.workModel performBlock:^{
+                    [weakSelf.workModel createOrUpdateReferralLinks:referralLinks];
+                    [weakSelf.workModel saveContext:^{
+                        weakSelf.resultHandler(nil);
+                    }];
+                }];
+            }
+        }
+        else
 		{
 			weakSelf.resultHandler(nil);
 		}
