@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -37,6 +38,19 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </textField>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-73-bBd" userLabel="onePassword">
+                    <rect key="frame" x="285" y="88" width="27" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="0Xp-aT-r0f"/>
+                        <constraint firstAttribute="width" constant="27" id="ND2-yJ-aVt"/>
+                    </constraints>
+                    <state key="normal" image="onepassword-button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onePasswordTapped:" destination="-1" eventType="touchUpInside" id="vdE-2I-EOm"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOe-X8-gxb" userLabel="Separator View">
                     <rect key="frame" x="10" y="145" width="310" height="1"/>
                     <constraints>
@@ -47,7 +61,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJr-a0-Czd" userLabel="Password TextField" customClass="FloatingLabelTextField">
-                    <rect key="frame" x="20" y="155" width="300" height="70"/>
+                    <rect key="frame" x="20" y="155" width="250" height="70"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" placeholder="YES" id="DmN-tB-1bM"/>
                     </constraints>
@@ -118,7 +132,7 @@
                                 <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="lhc-yY-EfH"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-eB-1cd">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-eB-1cd">
                             <rect key="frame" x="138" y="80" width="45" height="45"/>
                             <state key="normal" image="touch_id_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -144,38 +158,24 @@
                         <constraint firstItem="2Sf-8q-59z" firstAttribute="leading" secondItem="Eab-el-220" secondAttribute="leading" id="uWd-ge-OSE"/>
                     </constraints>
                 </view>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-73-bBd" userLabel="onePassword">
-                    <rect key="frame" x="260" y="262" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="0Xp-aT-r0f"/>
-                        <constraint firstAttribute="width" constant="40" id="ND2-yJ-aVt"/>
-                    </constraints>
-                    <state key="normal" image="onepassword-button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onePasswordTapped:" destination="-1" eventType="touchUpInside" id="vdE-2I-EOm"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="x7f-aP-kB6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="18s-q2-FnP"/>
-                <constraint firstItem="bEo-73-bBd" firstAttribute="leading" secondItem="uSj-Tb-62N" secondAttribute="trailing" constant="32" id="5GB-dO-14M"/>
                 <constraint firstItem="OOe-X8-gxb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="8SA-gA-9iv"/>
                 <constraint firstAttribute="centerX" secondItem="uSj-Tb-62N" secondAttribute="centerX" id="9DZ-y7-4Vg"/>
                 <constraint firstItem="uSj-Tb-62N" firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="top" id="Ehu-CB-vo4"/>
-                <constraint firstItem="Sqf-jN-fvd" firstAttribute="trailing" secondItem="UJr-a0-Czd" secondAttribute="trailing" id="Jkd-Oy-Vml"/>
+                <constraint firstAttribute="trailingMargin" secondItem="bEo-73-bBd" secondAttribute="trailing" id="HAw-yU-onc"/>
+                <constraint firstItem="bEo-73-bBd" firstAttribute="leading" secondItem="UJr-a0-Czd" secondAttribute="trailing" constant="15" id="HKQ-hs-FVC"/>
                 <constraint firstItem="Sqf-jN-fvd" firstAttribute="leading" secondItem="UJr-a0-Czd" secondAttribute="leading" id="KPT-LD-skT"/>
                 <constraint firstItem="x7f-aP-kB6" firstAttribute="top" secondItem="UJr-a0-Czd" secondAttribute="bottom" constant="9" id="Kjo-qL-fW3"/>
                 <constraint firstItem="UJr-a0-Czd" firstAttribute="top" secondItem="OOe-X8-gxb" secondAttribute="bottom" constant="9" id="MNW-jQ-nkJ"/>
                 <constraint firstItem="Sqf-jN-fvd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="MOr-k6-BXT"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="centerY" secondItem="bEo-73-bBd" secondAttribute="centerY" id="NBl-AO-M3y"/>
                 <constraint firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="bottom" id="OBE-MG-xlt"/>
                 <constraint firstAttribute="trailing" secondItem="OOe-X8-gxb" secondAttribute="trailing" id="cKb-1a-cpk"/>
-                <constraint firstItem="UJr-a0-Czd" firstAttribute="width" secondItem="Sqf-jN-fvd" secondAttribute="width" id="cYf-NV-jm4"/>
                 <constraint firstAttribute="trailing" secondItem="Eab-el-220" secondAttribute="trailing" id="dii-nJ-N22"/>
                 <constraint firstAttribute="trailing" secondItem="x7f-aP-kB6" secondAttribute="trailing" id="eGQ-3N-H4t"/>
-                <constraint firstItem="uSj-Tb-62N" firstAttribute="centerY" secondItem="bEo-73-bBd" secondAttribute="centerY" id="gHk-os-3IY"/>
                 <constraint firstItem="uSj-Tb-62N" firstAttribute="top" secondItem="x7f-aP-kB6" secondAttribute="bottom" constant="27" id="qfS-D0-H5Z"/>
                 <constraint firstItem="OOe-X8-gxb" firstAttribute="top" secondItem="Sqf-jN-fvd" secondAttribute="bottom" constant="9" id="rYl-UV-Lzu"/>
                 <constraint firstItem="Sqf-jN-fvd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="sbd-nD-ZJR"/>
