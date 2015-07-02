@@ -22,6 +22,7 @@
 #import "Country.h"
 #import "SwitchCell.h"
 #import "StateSuggestionCellProvider.h"
+#import "ProfileSource+Private.h"
 
 #define MIN_PASSWORD_LENGTH	5
 
@@ -265,7 +266,7 @@ NSUInteger const kUserPersonalSection = 1;
 	return [self.phoneNumberCell.value isValidPhoneNumber];
 }
 
-- (id)enteredProfile
+- (void)commitProfile
 {
     User *user = [self.objectModel currentUser];
     PersonalProfile *profile = [user personalProfileObject];
@@ -289,13 +290,11 @@ NSUInteger const kUserPersonalSection = 1;
 	}
 
     [self.objectModel saveContext];
-
-    return profile.objectID;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+- (void)validateProfileWithValidation:(id)validation completion:(ProfileActionBlock)completion
 {
-    [validation validatePersonalProfile:profile withHandler:^(NSError *error) {
+    [validation validatePersonalProfile:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error)
 			{
@@ -352,7 +351,7 @@ NSUInteger const kUserPersonalSection = 1;
 
 #pragma mark - US DOB format
 
-- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+- (NSArray *)countrySelectionCell:(SelectionCell *)cell
                        didSelectCountry:(Country *)country
                          withCompletion:(SelectionCompletion)completion
 {

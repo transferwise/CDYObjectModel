@@ -35,26 +35,17 @@ typedef void (^SelectionCompletion)();
 - (NSArray *)presentedLoginCells;
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler;
 - (BOOL)inputValid;
-- (id)enteredProfile;
-- (void)validateProfile:(id)profile
-		 withValidation:(id)validation
+- (void)commitProfile;
+- (void)validateProfileWithValidation:(id)validation
 			 completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
-- (TextEntryCell *)includeCell:(TextEntryCell *)includeCell
-					 afterCell:(UITableViewCell *)afterCell
-				 shouldInclude:(BOOL)shouldInclude
-				withCompletion:(SelectionCompletion)completion;
-- (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
-					 withCompletion:(SelectionCompletion)completion;
+
 - (void)markCellsWithIssues:(NSArray *)issues;
 - (void)setUpTableView:(UITableView *)tableView;
-- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
+- (NSArray *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
 						 withCompletion:(SelectionCompletion)completion;
 - (void)clearData;
-+ (BOOL)showStateCell:(NSString *)countryCode;
-+ (BOOL)isMatchingSource:(NSString *)source
-			  withTarget:(NSString *)target;
 
 @end

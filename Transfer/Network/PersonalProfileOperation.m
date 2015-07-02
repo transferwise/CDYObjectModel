@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "ObjectModel+Users.h"
 #import "PersonalProfile.h"
+#import "User.h"
 
 NSString *const kUpdatePersonalProfilePath = @"/user/updatePersonalProfile";
 NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
@@ -19,17 +20,15 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
 @interface PersonalProfileOperation ()
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) NSManagedObjectID *profile;
 
 @end
 
 @implementation PersonalProfileOperation
 
-- (id)initWithPath:(NSString *)path profile:(NSManagedObjectID *)data {
+- (id)initWithPath:(NSString *)path {
     self = [super init];
     if (self) {
         _path = path;
-        _profile = data;
     }
     return self;
 }
@@ -59,19 +58,19 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
     }];
 
     [self.objectModel performBlock:^{
-        PersonalProfile *personalProfile = (PersonalProfile *) [weakSelf.objectModel.managedObjectContext objectWithID:self.profile];
+        PersonalProfile *personalProfile = weakSelf.objectModel.currentUser.personalProfile;
         MCAssert(personalProfile);
 
         [self postData:[personalProfile data] toPath:path];
     }];
 }
 
-+ (PersonalProfileOperation *)commitOperationWithProfile:(NSManagedObjectID *)profile {
-    return [[PersonalProfileOperation alloc] initWithPath:kUpdatePersonalProfilePath profile:profile];
++ (PersonalProfileOperation *)commitOperation {
+    return [[PersonalProfileOperation alloc] initWithPath:kUpdatePersonalProfilePath];
 }
 
-+ (PersonalProfileOperation *)validateOperationWithProfile:(NSManagedObjectID *)profile {
-    return [[PersonalProfileOperation alloc] initWithPath:kValidatePersonalProfilePath profile:profile];
++ (PersonalProfileOperation *)validateOperation {
+    return [[PersonalProfileOperation alloc] initWithPath:kValidatePersonalProfilePath];
 }
 
 @end

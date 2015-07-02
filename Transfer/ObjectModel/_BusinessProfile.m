@@ -4,7 +4,10 @@
 #import "_BusinessProfile.h"
 
 const struct BusinessProfileAttributes BusinessProfileAttributes = {
+	.abn = @"abn",
+	.acn = @"acn",
 	.addressFirstLine = @"addressFirstLine",
+	.arbn = @"arbn",
 	.businessDescription = @"businessDescription",
 	.city = @"city",
 	.companyRole = @"companyRole",
@@ -50,7 +53,13 @@ const struct BusinessProfileRelationships BusinessProfileRelationships = {
 	return keyPaths;
 }
 
+@dynamic abn;
+
+@dynamic acn;
+
 @dynamic addressFirstLine;
+
+@dynamic arbn;
 
 @dynamic businessDescription;
 

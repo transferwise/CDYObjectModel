@@ -119,6 +119,9 @@
 	//api will return "null" as a string value, if these haven't been submitted
 	[profile setCompanyRole:[data[@"companyRole"] getNullOnNullAsValue]];
 	[profile setCompanyType:[data[@"companyType"] getNullOnNullAsValue]];
+	[profile setAbn:data[@"abn"]];
+	[profile setAcn:data[@"acn"]];
+	[profile setArbn:data[@"arbn"]];
 
     return profile;
 }

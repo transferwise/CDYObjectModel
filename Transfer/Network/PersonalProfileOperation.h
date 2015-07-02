@@ -13,7 +13,7 @@
 
 @property (nonatomic, copy) TWProfileDetailsHandler saveResultHandler;
 
-+ (PersonalProfileOperation *)commitOperationWithProfile:(NSManagedObjectID *)profileID;
-+ (PersonalProfileOperation *)validateOperationWithProfile:(NSManagedObjectID *)profileID;
++ (PersonalProfileOperation *)commitOperation;
++ (PersonalProfileOperation *)validateOperation;
 
 @end

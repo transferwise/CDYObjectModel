@@ -10,6 +10,9 @@
 
 @interface BusinessProfileSource : ProfileSource
 
+@property (readonly) TextEntryCell *acnCell;
+@property (readonly) TextEntryCell *abnCell;
+
 - (void)reloadDropDowns;
 
 @end

@@ -22,28 +22,31 @@ NSString *const kCompanyAttributesOperationPath = @"/user/companyAttributes";
 	
 	__weak CompanyAttributesOperation *weakSelf = self;
 	
-	[self setOperationErrorHandler:^(NSError *error) {
-		weakSelf.resultHandler(error);
-	}];
-	
-	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		if (response[@"companyTypes"] && response[@"companyRoles"])
-		{
-			for (NSDictionary *companyType in response[@"companyTypes"])
-			{
-				[weakSelf.objectModel saveAdditionalAttributeWithType:CompanyType
-																  code:companyType[@"id"]
-																title:companyType[@"title"]];
-			}
-			
-			for (NSDictionary *companyRole in response[@"companyRoles"])
-			{
-				[weakSelf.objectModel saveAdditionalAttributeWithType:CompanyRole
-																  code:companyRole[@"id"]
-																title:companyRole[@"title"]];
-			}
-		}
-		
+    [self setOperationErrorHandler:^(NSError *error) {
+        weakSelf.resultHandler(error);
+    }];
+    
+    [self setOperationSuccessHandler:^(NSDictionary *response) {
+        if (response[@"companyTypes"] && response[@"companyRoles"])
+        {
+            [weakSelf.objectModel performBlock:^{
+                
+                for (NSDictionary *companyType in response[@"companyTypes"])
+                {
+                    [weakSelf.objectModel saveAdditionalAttributeWithType:CompanyType
+                                                                     code:companyType[@"id"]
+                                                                    title:companyType[@"title"]];
+                }
+                
+                for (NSDictionary *companyRole in response[@"companyRoles"])
+                {
+                    [weakSelf.objectModel saveAdditionalAttributeWithType:CompanyRole
+                                                                     code:companyRole[@"id"]
+                                                                    title:companyRole[@"title"]];
+                }
+            }];
+        }
+        
 		weakSelf.resultHandler(nil);
 	}];
 	

@@ -13,7 +13,7 @@
 
 @property (nonatomic, copy) TWProfileDetailsHandler saveResultHandler;
 
-+ (BusinessProfileOperation *)commitWithData:(NSManagedObjectID *)data;
-+ (BusinessProfileOperation *)validateWithData:(NSManagedObjectID *)data;
++ (BusinessProfileOperation *)commitOperation;
++ (BusinessProfileOperation *)validateOperation;
 
 @end
