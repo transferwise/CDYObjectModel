@@ -199,13 +199,12 @@ static NSUInteger const kRowYouSend = 0;
     
 	[self generateLegaleze:@"/terms-of-use"
 					tcLink:TRWStateSpecificTermsUrl
-			 customMessage:nil
-			additionalDocs:nil];
+			additionalDocs:@{@"Product Disclosure Statement": @"",
+							 @"Financial Services Guide": @""}];
 }
 
 - (void)generateLegaleze:(NSString *)touLink
 				  tcLink:(NSString *)tcLink
-		   customMessage:(NSString *)customMessage
 		  additionalDocs:(NSDictionary *)additionalDocs
 
 {
@@ -231,8 +230,7 @@ static NSUInteger const kRowYouSend = 0;
 	//handle additional docs
 	if (additionalDocs)
 	{
-		NSString* additionalLegaleze = [NSString stringWithFormat: @"%@ %@", customMessage ? customMessage : @"", [self concatStringFromDict:additionalDocs]];
-		legaleze = [NSString stringWithFormat:@"%@\n%@", legaleze, additionalLegaleze];
+		legaleze = [NSString stringWithFormat:@"%@\n%@", legaleze, [self concatStringFromDict:additionalDocs]];
 		
 		[mainDocs addEntriesFromDictionary:additionalDocs];
 	}
