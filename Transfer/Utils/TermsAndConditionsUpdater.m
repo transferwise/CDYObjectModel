@@ -24,7 +24,7 @@
 								   font:(UIFont *)font
 								  color:(UIColor *)color
 {
-	
+	//implement network operation
 }
 
 - (NSAttributedString *)generateLegaleze:(NSString *)touLink
