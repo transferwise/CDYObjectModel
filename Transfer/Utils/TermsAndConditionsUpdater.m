@@ -24,7 +24,14 @@
 								   font:(UIFont *)font
 								  color:(UIColor *)color
 {
-	//implement network operation
+	self.executedOperation = [TermsOperation operationWithSourceCurrency:currencyCode
+																 country:countryCode
+													   completionHandler:^(NSError *error, NSDictionary *result) {
+														   if (!error && result)
+														   {
+															   //parse dictionary
+														   }
+													   }];
 }
 
 - (NSAttributedString *)generateLegaleze:(NSString *)touLink

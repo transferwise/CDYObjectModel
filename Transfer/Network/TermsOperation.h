@@ -10,10 +10,8 @@
 
 @interface TermsOperation : TransferwiseOperation
 
-@property (nonatomic, copy) void (^completionHandler)(NSError *error, NSDictionary *result);
-
 + (TermsOperation *)operationWithSourceCurrency:(NSString *)currencyCode
-										country:(NSString *)countryCode;
-
+										country:(NSString *)countryCode
+							  completionHandler:(void (^)(NSError *error, NSDictionary *result))completionHandler;
 
 @end

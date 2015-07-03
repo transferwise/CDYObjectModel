@@ -191,7 +191,6 @@ static NSUInteger const kRowYouSend = 0;
         {
             [self.calculator forceCalculate];
         }
-        
     }
     
     [self retrieveCurrencyPairs];
@@ -230,7 +229,6 @@ static NSUInteger const kRowYouSend = 0;
     {
         savingsAmountString = [result payWinAmountWithCurrency];
     }
-
     
     NSString *fullString;
     

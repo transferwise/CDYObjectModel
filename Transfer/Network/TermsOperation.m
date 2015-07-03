@@ -15,6 +15,7 @@ NSString *const kTermsPath = @"/terms/get";
 
 @property (nonatomic, strong) NSString *currencyCode;
 @property (nonatomic, strong) NSString *countryCode;
+@property (nonatomic, copy) void (^completionHandler)(NSError *error, NSDictionary *result);
 
 @end
 
@@ -22,6 +23,7 @@ NSString *const kTermsPath = @"/terms/get";
 
 - (instancetype)initWithSourceCurrency:(NSString *)currencyCode
 							   country:(NSString *)countryCode
+					 completionHandler:(void (^)(NSError *error, NSDictionary *result))completionHandler
 {
 	NSAssert(currencyCode, @"currencyCode cannot be nil");
 	NSAssert(countryCode, @"countryCode cannot be nil");
@@ -31,15 +33,18 @@ NSString *const kTermsPath = @"/terms/get";
 	{
 		self.currencyCode = currencyCode;
 		self.countryCode = countryCode;
+		self.completionHandler = completionHandler;
 	}
 	return self;
 }
 
 + (TermsOperation *)operationWithSourceCurrency:(NSString *)currencyCode
 										country:(NSString *)countryCode
+							  completionHandler:(void (^)(NSError *error, NSDictionary *result))completionHandler
 {
 	return [[TermsOperation alloc] initWithSourceCurrency:currencyCode
-												  country:countryCode];
+												  country:countryCode
+										completionHandler:completionHandler];
 }
 
 - (void)execute
