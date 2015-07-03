@@ -226,9 +226,18 @@ static NSUInteger const kRowYouSend = 0;
 	
 	NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"general.legaleze", nil), [self concatStringFromDict:mainDocs]];
 	
-	//handle additional docs
+	NSMutableAttributedString *attributedLegaleze;
 	
-	NSMutableAttributedString *attributedLegaleze = [[NSMutableAttributedString alloc] initWithString:legaleze];
+	//handle additional docs
+	if (additionalDocs)
+	{
+		NSString* additionalLegaleze = [NSString stringWithFormat: @"%@ %@", customMessage ? customMessage : @"", [self concatStringFromDict:additionalDocs]];
+		legaleze = [NSString stringWithFormat:@"%@\n%@", legaleze, additionalLegaleze];
+		
+		[mainDocs addEntriesFromDictionary:additionalDocs];
+	}
+	
+	attributedLegaleze = [[NSMutableAttributedString alloc] initWithString:legaleze];
 	
 	NSRange wholeString = NSMakeRange(0, [legaleze length]);
 	
@@ -245,7 +254,6 @@ static NSUInteger const kRowYouSend = 0;
 							   value:paragraphStyle
 							   range:wholeString];
 	
-	//handle additional docs
 	[self setUrls:attributedLegaleze
 			 text:legaleze
 			links:mainDocs];
