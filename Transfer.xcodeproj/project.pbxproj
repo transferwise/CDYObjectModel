@@ -1189,6 +1189,9 @@
 		47E6CF371B46804F00790921 /* TermsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF361B46804F00790921 /* TermsOperation.m */; };
 		47E6CF381B46804F00790921 /* TermsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF361B46804F00790921 /* TermsOperation.m */; };
 		47E6CF391B46804F00790921 /* TermsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF361B46804F00790921 /* TermsOperation.m */; };
+		47E6CF3C1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */; };
+		47E6CF3D1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */; };
+		47E6CF3E1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47F346D31AF896E700F780ED /* _AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D01AF896E700F780ED /* _AdditionalAttribute.m */; };
 		47F346D41AF896E700F780ED /* AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D21AF896E700F780ED /* AdditionalAttribute.m */; };
@@ -2200,6 +2203,8 @@
 		47DC89841A03950F0042054B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47E6CF351B46804F00790921 /* TermsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOperation.h; sourceTree = "<group>"; };
 		47E6CF361B46804F00790921 /* TermsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOperation.m; sourceTree = "<group>"; };
+		47E6CF3A1B46B8B300790921 /* TermsAndConditionsUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsUpdater.h; sourceTree = "<group>"; };
+		47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsUpdater.m; sourceTree = "<group>"; };
 		47F346CF1AF896E700F780ED /* _AdditionalAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AdditionalAttribute.h; sourceTree = "<group>"; };
 		47F346D01AF896E700F780ED /* _AdditionalAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AdditionalAttribute.m; sourceTree = "<group>"; };
 		47F346D11AF896E700F780ED /* AdditionalAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalAttribute.h; sourceTree = "<group>"; };
@@ -3971,6 +3976,8 @@
 				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
 				47852D681B0F206E0028E11A /* FacebookHelper.h */,
 				47852D691B0F206E0028E11A /* FacebookHelper.m */,
+				47E6CF3A1B46B8B300790921 /* TermsAndConditionsUpdater.h */,
+				47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -5217,6 +5224,7 @@
 				388E5AF01A5A949500AF6EB9 /* ExpatDetectionLookupWrapper.m in Sources */,
 				388E5AF11A5A949500AF6EB9 /* PaymentPurposeOperation.m in Sources */,
 				388E5AF21A5A949500AF6EB9 /* ObjectModel+ReferralLinks.m in Sources */,
+				47E6CF3E1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */,
 				388E5AF31A5A949500AF6EB9 /* StateSuggestionCellProvider.m in Sources */,
 				388E5AF41A5A949500AF6EB9 /* RefundDetailsViewController.m in Sources */,
 				388E5AF51A5A949500AF6EB9 /* CurrencyCell.m in Sources */,
@@ -5396,6 +5404,7 @@
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
 				473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */,
+				47E6CF3D1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
 				389F682C198FC1C6006CF1F6 /* ObjectModel+PendingPayments.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
@@ -5737,6 +5746,7 @@
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
 				47C4D0461A232AC1005EC7C6 /* FieldGroup.m in Sources */,
 				38B092E5194F2EB700315BE4 /* AddressBookManager.m in Sources */,
+				47E6CF3C1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 				389F684D198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */,

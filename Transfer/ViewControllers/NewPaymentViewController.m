@@ -44,6 +44,7 @@
 #import "NewPaymentHelper.h"
 #import "LocationHelper.h"
 #import "Mixpanel+Customisation.h"
+#import "TermsAndConditionsUpdater.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -63,7 +64,8 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyCalculator *calculator;
 @property (nonatomic, strong) CalculationResult *result;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
-@property (nonatomic, strong) NewPaymentHelper* paymentHelper;
+@property (nonatomic, strong) NewPaymentHelper *paymentHelper;
+@property (nonatomic, strong) TermsAndConditionsUpdater *termsAndConditionsUpdater;
 
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sendMoneyLabel;
@@ -141,6 +143,8 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.startedButton setTitle:NSLocalizedString([(![Credentials userLoggedIn] ? @"button.title.get.started" : @"button.title.send.money") deviceSpecificLocalization], nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
+	
+	self.termsAndConditionsUpdater = [[TermsAndConditionsUpdater alloc] init];
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
     [self setCalculator:calculator];
@@ -170,7 +174,6 @@ static NSUInteger const kRowYouSend = 0;
         [weakSelf displayWinMessage:result];
         
         [self updateApperanceAnimated:YES];
-        
     }];
     
     MCAssert(self.objectModel);
@@ -196,89 +199,6 @@ static NSUInteger const kRowYouSend = 0;
     
     [[GoogleAnalytics sharedInstance] sendScreen:GANewPayment];
     [[Mixpanel sharedInstance] sendPageView:MPNewTransfer];
-    
-	[self generateLegaleze:@"/terms-of-use"
-					tcLink:TRWStateSpecificTermsUrl
-			additionalDocs:@{@"Product Disclosure Statement": @"",
-							 @"Financial Services Guide": @""}];
-}
-
-- (void)generateLegaleze:(NSString *)touLink
-				  tcLink:(NSString *)tcLink
-		  additionalDocs:(NSDictionary *)additionalDocs
-
-{
-	//terms of use should be always present
-	NSAssert(touLink, @"terms of use link cannot be nil");
-	
-	NSMutableDictionary *mainDocs = [[NSMutableDictionary alloc] initWithCapacity:2];
-	
-	[mainDocs setObject:touLink
-				 forKey:NSLocalizedString(@"general.terms.of.use", nil)];
-	
-	//terms & consitions link is only for US
-	if (tcLink)
-	{
-		[mainDocs setObject:tcLink
-					 forKey:NSLocalizedString(@"usd.state.specific", nil)];
-	}
-	
-	NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"general.legaleze", nil), [self concatStringFromDict:mainDocs]];
-	
-	NSMutableAttributedString *attributedLegaleze;
-	
-	//handle additional docs
-	if (additionalDocs)
-	{
-		legaleze = [NSString stringWithFormat:@"%@\n%@", legaleze, [self concatStringFromDict:additionalDocs]];
-		
-		[mainDocs addEntriesFromDictionary:additionalDocs];
-	}
-	
-	attributedLegaleze = [[NSMutableAttributedString alloc] initWithString:legaleze];
-	
-	NSRange wholeString = NSMakeRange(0, [legaleze length]);
-	
-	[attributedLegaleze addAttribute:NSForegroundColorAttributeName
-							   value:[UIColor colorFromStyle:self.termsLabel.fontStyle]
-							   range:wholeString];
-	[attributedLegaleze addAttribute:NSFontAttributeName
-							   value:[UIFont fontFromStyle:self.termsLabel.fontStyle]
-							   range:wholeString];
-	
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-	[paragraphStyle setAlignment:NSTextAlignmentCenter];
-	[attributedLegaleze addAttribute:NSParagraphStyleAttributeName
-							   value:paragraphStyle
-							   range:wholeString];
-	
-	[self setUrls:attributedLegaleze
-			 text:legaleze
-			links:mainDocs];
-	
-	self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
-	self.termsLabel.attributedText = attributedLegaleze;
-	
-	[self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
-}
-
-- (NSString *)concatStringFromDict:(NSDictionary *)dict
-{
-	return [[dict allKeys] componentsJoinedByString:@" & "];
-}
-
-- (void)setUrls:(NSMutableAttributedString *)attributedText
-		   text:(NSString *)text
-		  links:(NSDictionary *)links
-{
-	for (NSString *key in [links allKeys])
-	{
-		NSRange linkRange = [text rangeOfString:key];
-		
-		[attributedText addAttribute:NSLinkAttributeName
-							   value:[NSString stringWithFormat:@"%@%@", TRWServerAddress, links[key]]
-							   range:linkRange];
-	}
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
@@ -595,27 +515,42 @@ static NSUInteger const kRowYouSend = 0;
 	
     [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];
 	
-	//TODO: reload terms for changed currency
-    if([self.youSendCell.currency.code isEqualToString:@"USD"])
-    {
-        if(self.termsBottomConstraint.constant != 4)
-        {
-            self.termsLabel.hidden = NO;
-            self.termsBottomConstraint.constant = -100;
-            [self.termsLabel layoutIfNeeded];
-            self.termsBottomConstraint.constant = 4;
-            self.howButtonTopConstraint.constant = 20;
-        }
-    }
-    else
-    {
-        self.termsBottomConstraint.constant = -100;
-        self.termsLabel.hidden = YES;
-        self.howButtonTopConstraint.constant = 30;
-    }
+	[self updateLegaleze:animated];
+}
+
+#pragma mark - Legaleze
+- (void)updateLegaleze:(BOOL)animated
+{
+	//get profile contry
 	
-    if(animated)
-    {
+	//fire up TermsAndConditionsUpdater
+
+	if([self.youSendCell.currency.code isEqualToString:@"USD"])
+	{
+		self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+		self.termsLabel.attributedText = [self generateLegaleze:@"/terms-of-use"
+														 tcLink:nil
+												 additionalDocs:nil];
+		[self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
+		
+		if(self.termsBottomConstraint.constant != 4)
+		{
+			self.termsLabel.hidden = NO;
+			self.termsBottomConstraint.constant = -100;
+			[self.termsLabel layoutIfNeeded];
+			self.termsBottomConstraint.constant = 4;
+			self.howButtonTopConstraint.constant = 20;
+		}
+	}
+	else
+	{
+		self.termsBottomConstraint.constant = -100;
+		self.termsLabel.hidden = YES;
+		self.howButtonTopConstraint.constant = 30;
+	}
+	
+	if(animated)
+	{
 		[UIView animateWithDuration:0.2
 							  delay:0.0f
 							options:UIViewAnimationOptionCurveEaseInOut
@@ -623,12 +558,87 @@ static NSUInteger const kRowYouSend = 0;
 							 [self.howButton layoutIfNeeded];
 							 [self.termsLabel layoutIfNeeded];
 						 } completion:nil];
-    }
-    else
-    {
-        [self.howButton layoutIfNeeded];
-        [self.termsLabel layoutIfNeeded];
-    }
+	}
+	else
+	{
+		[self.howButton layoutIfNeeded];
+		[self.termsLabel layoutIfNeeded];
+	}
+}
+
+- (NSAttributedString *)generateLegaleze:(NSString *)touLink
+								  tcLink:(NSString *)tcLink
+						  additionalDocs:(NSDictionary *)additionalDocs
+
+{
+	//terms of use should be always present
+	NSAssert(touLink, @"terms of use link cannot be nil");
+	
+	NSMutableDictionary *mainDocs = [[NSMutableDictionary alloc] initWithCapacity:2];
+	
+	[mainDocs setObject:touLink
+				 forKey:NSLocalizedString(@"general.terms.of.use", nil)];
+	
+	//terms & consitions link is only for US
+	if (tcLink)
+	{
+		[mainDocs setObject:tcLink
+					 forKey:NSLocalizedString(@"usd.state.specific", nil)];
+	}
+	
+	NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"general.legaleze", nil), [self concatStringFromDict:mainDocs]];
+	
+	NSMutableAttributedString *attributedLegaleze;
+	
+	//handle additional docs
+	if (additionalDocs)
+	{
+		legaleze = [NSString stringWithFormat:@"%@\n%@", legaleze, [self concatStringFromDict:additionalDocs]];
+		
+		[mainDocs addEntriesFromDictionary:additionalDocs];
+	}
+	
+	attributedLegaleze = [[NSMutableAttributedString alloc] initWithString:legaleze];
+	
+	NSRange wholeString = NSMakeRange(0, [legaleze length]);
+	
+	[attributedLegaleze addAttribute:NSForegroundColorAttributeName
+							   value:[UIColor colorFromStyle:self.termsLabel.fontStyle]
+							   range:wholeString];
+	[attributedLegaleze addAttribute:NSFontAttributeName
+							   value:[UIFont fontFromStyle:self.termsLabel.fontStyle]
+							   range:wholeString];
+	
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+	[paragraphStyle setAlignment:NSTextAlignmentCenter];
+	[attributedLegaleze addAttribute:NSParagraphStyleAttributeName
+							   value:paragraphStyle
+							   range:wholeString];
+	
+	[self setUrls:attributedLegaleze
+			 text:legaleze
+			links:mainDocs];
+	
+	return attributedLegaleze;
+}
+
+- (NSString *)concatStringFromDict:(NSDictionary *)dict
+{
+	return [[dict allKeys] componentsJoinedByString:@" & "];
+}
+
+- (void)setUrls:(NSMutableAttributedString *)attributedText
+		   text:(NSString *)text
+		  links:(NSDictionary *)links
+{
+	for (NSString *key in [links allKeys])
+	{
+		NSRange linkRange = [text rangeOfString:key];
+		
+		[attributedText addAttribute:NSLinkAttributeName
+							   value:[NSString stringWithFormat:@"%@%@", TRWServerAddress, links[key]]
+							   range:linkRange];
+	}
 }
 
 @end
