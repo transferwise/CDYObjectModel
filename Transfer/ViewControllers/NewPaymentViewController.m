@@ -161,7 +161,8 @@ static NSUInteger const kRowYouSend = 0;
     }];
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
-        if (error) {
+        if (error)
+		{
             return;
         }
 
@@ -196,25 +197,82 @@ static NSUInteger const kRowYouSend = 0;
     [[GoogleAnalytics sharedInstance] sendScreen:GANewPayment];
     [[Mixpanel sharedInstance] sendPageView:MPNewTransfer];
     
-	[self generateUsdLegaleze];
+	[self generateLegaleze:@"/terms-of-use"
+					tcLink:TRWStateSpecificTermsUrl
+			 customMessage:nil
+			additionalDocs:nil];
 }
 
-- (void)generateUsdLegaleze
+- (void)generateLegaleze:(NSString *)touLink
+				  tcLink:(NSString *)tcLink
+		   customMessage:(NSString *)customMessage
+		  additionalDocs:(NSDictionary *)additionalDocs
+
 {
-	NSString* stateSpecific = NSLocalizedString(@"usd.state.specific", nil);
-	NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"usd.legaleze", nil),stateSpecific];
+	//terms of use should be always present
+	NSAssert(touLink, @"terms of use link cannot be nil");
+	
+	NSMutableDictionary *mainDocs = [[NSMutableDictionary alloc] initWithCapacity:2];
+	
+	[mainDocs setObject:touLink
+				 forKey:NSLocalizedString(@"general.terms.of.use", nil)];
+	
+	//terms & consitions link is only for US
+	if (tcLink)
+	{
+		[mainDocs setObject:tcLink
+					 forKey:NSLocalizedString(@"usd.state.specific", nil)];
+	}
+	
+	NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"general.legaleze", nil), [self concatStringFromDict:mainDocs]];
+	
+	//handle additional docs
+	
 	NSMutableAttributedString *attributedLegaleze = [[NSMutableAttributedString alloc] initWithString:legaleze];
+	
 	NSRange wholeString = NSMakeRange(0, [legaleze length]);
-	[attributedLegaleze addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.termsLabel.fontStyle] range:wholeString];
-	[attributedLegaleze addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.termsLabel.fontStyle] range:wholeString];
+	
+	[attributedLegaleze addAttribute:NSForegroundColorAttributeName
+							   value:[UIColor colorFromStyle:self.termsLabel.fontStyle]
+							   range:wholeString];
+	[attributedLegaleze addAttribute:NSFontAttributeName
+							   value:[UIFont fontFromStyle:self.termsLabel.fontStyle]
+							   range:wholeString];
+	
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	[paragraphStyle setAlignment:NSTextAlignmentCenter];
-	[attributedLegaleze addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeString];
-	NSRange stateRange = [legaleze rangeOfString:stateSpecific];
-	[attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWStateSpecificTermsUrl] range:stateRange];
+	[attributedLegaleze addAttribute:NSParagraphStyleAttributeName
+							   value:paragraphStyle
+							   range:wholeString];
+	
+	//handle additional docs
+	[self setUrls:attributedLegaleze
+			 text:legaleze
+			links:mainDocs];
+	
 	self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
 	self.termsLabel.attributedText = attributedLegaleze;
+	
 	[self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
+}
+
+- (NSString *)concatStringFromDict:(NSDictionary *)dict
+{
+	return [[dict allKeys] componentsJoinedByString:@" & "];
+}
+
+- (void)setUrls:(NSMutableAttributedString *)attributedText
+		   text:(NSString *)text
+		  links:(NSDictionary *)links
+{
+	for (NSString *key in [links allKeys])
+	{
+		NSRange linkRange = [text rangeOfString:key];
+		
+		[attributedText addAttribute:NSLinkAttributeName
+							   value:[NSString stringWithFormat:@"%@%@", TRWServerAddress, links[key]]
+							   range:linkRange];
+	}
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
@@ -489,7 +547,8 @@ static NSUInteger const kRowYouSend = 0;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)showCalculationIndicator:(BOOL)calculating {
+- (void)showCalculationIndicator:(BOOL)calculating
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.startedButton showCalculating:calculating];
     });
@@ -525,9 +584,12 @@ static NSUInteger const kRowYouSend = 0;
     [self.theyReceiveCell setTitleHighlighted:self.result.isFixedTargetPayment];
     [self.youSendCell setTitleHighlighted:!self.result.isFixedTargetPayment];
     
-    PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency target:self.theyReceiveCell.currency];
+    PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency
+																		  target:self.theyReceiveCell.currency];
+	
     [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];
-    
+	
+	//TODO: reload terms for changed currency
     if([self.youSendCell.currency.code isEqualToString:@"USD"])
     {
         if(self.termsBottomConstraint.constant != 4)
@@ -545,20 +607,22 @@ static NSUInteger const kRowYouSend = 0;
         self.termsLabel.hidden = YES;
         self.howButtonTopConstraint.constant = 30;
     }
+	
     if(animated)
     {
-        [UIView animateWithDuration:0.2 delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [self.howButton layoutIfNeeded];
-            [self.termsLabel layoutIfNeeded];
-        } completion:nil];
+		[UIView animateWithDuration:0.2
+							  delay:0.0f
+							options:UIViewAnimationOptionCurveEaseInOut
+						 animations:^{
+							 [self.howButton layoutIfNeeded];
+							 [self.termsLabel layoutIfNeeded];
+						 } completion:nil];
     }
     else
     {
         [self.howButton layoutIfNeeded];
         [self.termsLabel layoutIfNeeded];
     }
-    
-    
 }
 
 @end
