@@ -16,6 +16,7 @@
 		012B78F31B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78F11B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib */; };
 		0156BA951B417CD500175C0D /* BusinessProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA941B417CD500175C0D /* BusinessProfileTests.swift */; };
 		0156BA981B41915000175C0D /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA971B41915000175C0D /* XCTest+Utils.swift */; };
+		01E7BD121B46F02D0076402D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E7BD111B46F02D0076402D /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
@@ -1591,6 +1592,7 @@
 		012B78F41B441B5400CFA7FE /* OnePasswordTextEntryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnePasswordTextEntryCell.h; sourceTree = "<group>"; };
 		0156BA941B417CD500175C0D /* BusinessProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessProfileTests.swift; sourceTree = "<group>"; };
 		0156BA971B41915000175C0D /* XCTest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Utils.swift"; sourceTree = "<group>"; };
+		01E7BD111B46F02D0076402D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
 		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
 		1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileOperation.h; sourceTree = "<group>"; };
@@ -2559,6 +2561,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E7BD121B46F02D0076402D /* StoreKit.framework in Frameworks */,
 				3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */,
 				EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */,
 				EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */,
@@ -3658,6 +3661,7 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01E7BD111B46F02D0076402D /* StoreKit.framework */,
 				47BBD8311B296A870048C1D4 /* Fabric.framework */,
 				47BBD8301B2969930048C1D4 /* Crashlytics.framework */,
 				474FF6291AB6F0EC008DF343 /* CoreMotion.framework */,
@@ -4098,6 +4102,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
 							};
 						};
 					};
