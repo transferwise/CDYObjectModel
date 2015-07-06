@@ -30,8 +30,25 @@
 														   if (!error && result)
 														   {
 															   //parse dictionary
+															   NSString *termsOfUse = result[@"termsOfUse"];
+															   
+															   //if no terms of use then no point in continuing
+															   if (termsOfUse)
+															   {
+																   NSString *termsAndConditions = result[@"termsAndConditions"];
+																   
+																   completionBlock([self generateLegaleze:termsOfUse
+																								   tcLink:termsAndConditions
+																						   additionalDocs:result[@"customDocuments"]
+																									 font:font
+																									color:color]);
+															   }
 														   }
+														   
+														   completionBlock(nil);
 													   }];
+	
+	[self.executedOperation execute];
 }
 
 - (NSAttributedString *)generateLegaleze:(NSString *)touLink
@@ -61,7 +78,7 @@
 	NSMutableAttributedString *attributedLegaleze;
 	
 	//handle additional docs
-	if (additionalDocs)
+	if (additionalDocs && additionalDocs.count > 0)
 	{
 		legaleze = [NSString stringWithFormat:@"%@\n%@", legaleze, [self concatStringFromDict:additionalDocs]];
 		

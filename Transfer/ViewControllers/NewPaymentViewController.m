@@ -175,14 +175,15 @@ static NSUInteger const kRowYouSend = 0;
         weakSelf.result = result;
         [weakSelf displayWinMessage:result];
         
-        [self updateApperanceAnimated:YES];
+        [self updateAppearanceAnimated:YES];
     }];
     
     MCAssert(self.objectModel);
     
     [self.calculator setObjectModel:self.objectModel];
     [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
-    if (!self.dummyPresentation) {
+    if (!self.dummyPresentation)
+	{
         if(self.suggestedTransactionIsFixedTarget)
         {
             [self.calculator forceCalculateWithFixedTarget];
@@ -298,7 +299,7 @@ static NSUInteger const kRowYouSend = 0;
     self.loginButton.hidden = [Credentials userLoggedIn];
     self.modalCloseButton.hidden = ![Credentials userLoggedIn];
     self.logo.hidden = [Credentials userLoggedIn];
-    [self updateApperanceAnimated:NO];
+    [self updateAppearanceAnimated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -469,7 +470,8 @@ static NSUInteger const kRowYouSend = 0;
 											   }];
 }
 
-- (IBAction)howButtonTapped:(id)sender {
+- (IBAction)howButtonTapped:(id)sender
+{
     SeeHowViewController * whyController = [[SeeHowViewController alloc] init];
     [whyController.whyView setupWithResult:self.result];
     [whyController presentOnViewController:self];
@@ -487,7 +489,7 @@ static NSUInteger const kRowYouSend = 0;
     });
 }
 
--(void)updateApperanceAnimated:(BOOL)animated
+-(void)updateAppearanceAnimated:(BOOL)animated
 {
     if (self.result.isFixedTargetPayment)
     {
