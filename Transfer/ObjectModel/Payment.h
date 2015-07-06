@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, PaymentStatus) {
 - (NSString *)latestChangeTimeString;
 - (NSString *)payInWithCurrency;
 - (NSString *)payInString;
+- (NSString *)payInStringNoSpaces;
 - (NSString *)payOutString;
 - (BOOL)isSubmitted;
 - (NSString *)payInStringWithCurrency;

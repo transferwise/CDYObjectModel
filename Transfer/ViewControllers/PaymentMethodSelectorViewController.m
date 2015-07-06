@@ -6,22 +6,23 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "PaymentMethodSelectorViewController.h"
+#import "ApplePayHelper.h"
+#import "Currency.h"
+#import "GoogleAnalytics.h"
+#import "MOMStyle.h"
+#import "Mixpanel+Customisation.h"
+#import "PayInMethod.h"
 #import "Payment.h"
 #import "PaymentMethodCell.h"
-#import "MOMStyle.h"
+#import "PaymentMethodSelectorViewController.h"
 #import "TransferBackButtonItem.h"
-#import "Currency.h"
-#import "PayInMethod.h"
 #import "UploadMoneyViewController.h"
-#import "GoogleAnalytics.h"
-#import "Mixpanel+Customisation.h"
-#import "ApplePayHelper.h"
 @import PassKit;
 
 #define PaymentMethodCellName @"PaymentMethodCell"
 
 @interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate, PKPaymentAuthorizationViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIView *applePayView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *applePayViewHeightContraint;
@@ -40,25 +41,19 @@
     CGFloat applePayViewHeight = 0.0;
     
     // If we support Apple pay (iOS 8 and above) then we will need to display the button at the bottom of the screen
-    if ([ApplePayHelper isApplePayAvailableForPayment: self.payment]) {
+    if ([ApplePayHelper isApplePayAvailableForPayment: self.payment])
+    {
+        // Pay is available
+        // Retain the view height
+        applePayViewHeight = self.applePayViewHeightContraint.constant;
         
-        // We can only currently pay wih Apple pay when using GBP
-        if(self.payment.sourceCurrency.code && [@"gbp" caseInsensitiveCompare: self.payment.sourceCurrency.code] == NSOrderedSame)
-        {
-            if ([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks: self.paymentNetworks] == YES) {
-                // Pay is available
-                // Retain the view height
-                applePayViewHeight = self.applePayViewHeightContraint.constant;
-                
-                // Now create out custom button and center it in the applePayView
-                UIButton *applePayButton = [PKPaymentButton buttonWithType: PKPaymentButtonTypeBuy style: PKPaymentButtonStyleWhiteOutline];
-                [applePayButton addTarget: self action: @selector(userTouchedApplePayButton:) forControlEvents: UIControlEventTouchUpInside];
-                applePayButton.center = self.applePayView.center;
-                applePayButton.center = CGPointMake(200,30);
-                applePayButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-                [self.applePayView addSubview: applePayButton];
-            }
-        }
+        // Now create out custom button and center it in the applePayView
+        UIButton *applePayButton = [PKPaymentButton buttonWithType: PKPaymentButtonTypeBuy style: PKPaymentButtonStyleWhiteOutline];
+        [applePayButton addTarget: self action: @selector(userTouchedApplePayButton:) forControlEvents: UIControlEventTouchUpInside];
+        applePayButton.center = self.applePayView.center;
+        applePayButton.center = CGPointMake(200,30);
+        applePayButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [self.applePayView addSubview: applePayButton];
     }
     
     // Hide the Pay view if required
@@ -120,31 +115,56 @@
 
 }
 
+#pragma mark - Apple Pay support
+
+/**
+ *  The user touched the Apple Pay button
+ *
+ *  @param button Button
+ */
+
 - (void) userTouchedApplePayButton: (UIButton *) button
 {
     // Create the payment request from our helper
     PKPaymentRequest *paymentRequest = [ApplePayHelper createPaymentRequestForPayment: self.payment];
     
-    PKPaymentAuthorizationViewController *vc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
-    vc.delegate = self;  // for the PKPaymentAuthorizationViewControllerDelegate
+    UIViewController *paymentAuthorizationViewController;
+   
+    paymentAuthorizationViewController = [ApplePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest delegate: self];
+ // for the PKPaymentAuthorizationViewControllerDelegate
     
     // Show Apple Pay slideup
-    [self presentViewController: vc
+    [self presentViewController: paymentAuthorizationViewController
                        animated: YES
                      completion: nil];
 }
 
 #pragma mark - PKPaymentAuthorizationViewControllerDelegate
 
+/**
+ *  Apple Pay authorised this payment
+ *
+ *  @param controller PKPaymentAuthorizationViewController
+ *  @param payment    The payment
+ *  @param completion Block to callback with a status code when payment is completed
+ */
 - (void) paymentAuthorizationViewController: (PKPaymentAuthorizationViewController *)controller
-                        didAuthorizePayment: (PKPayment *)payment completion: (void (^)(PKPaymentAuthorizationStatus status))completion
+                        didAuthorizePayment: (PKPayment *)payment
+                                 completion: (void (^)(PKPaymentAuthorizationStatus status))completion
 {
-    
+    completion(PKPaymentAuthorizationStatusSuccess);
 }
+
+/**
+ *  Finshed with PKPaymentAuthorizationViewController, so dismiss it
+ *
+ *  @param controller PKPaymentAuthorizationViewController
+ */
 
 - (void) paymentAuthorizationViewControllerDidFinish: (PKPaymentAuthorizationViewController *) controller
 {
-    
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
 }
 
 
