@@ -6,20 +6,21 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "TransferWaitingViewController.h"
-#import "LightBlueButton.h"
-#import "ObjectModel+Payments.h"
 #import "Constants.h"
-#import "UploadMoneyViewController.h"
-#import "UIViewController+SwitchToViewController.h"
-#import "TransferBackButtonItem.h"
 #import "Currency.h"
-#import "PaymentMadeIndicator.h"
-#import "NSString+Presentation.h"
-#import "PaymentMethodSelectorViewController.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
 #import "CustomInfoViewController+Notifications.h"
+#import "LightBlueButton.h"
+#import "NSString+Presentation.h"
+#import "ObjectModel+Payments.h"
+#import "PaymentMadeIndicator.h"
+#import "PaymentMethodDisplayHelper.h"
+#import "PaymentMethodSelectorViewController.h"
 #import "PushNotificationsHelper.h"
+#import "TransferBackButtonItem.h"
+#import "TransferWaitingViewController.h"
+#import "UIViewController+SwitchToViewController.h"
+#import "UploadMoneyViewController.h"
 
 @interface TransferWaitingViewController ()
 
@@ -85,14 +86,13 @@
 	if (!IPAD)
 	{
         UIViewController* controller;
-        NSUInteger numberOfPayInMethods = [[self.payment enabledPayInMethods] count];
-        if(numberOfPayInMethods <1)
+        if([PaymentMethodDisplayHelper displayErrorForPayment: self.payment])
         {
             CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:self.payment.sourceCurrency];
             [errorScreen presentOnViewController:self.navigationController.parentViewController];
             return;
         }
-        else if (numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[self.payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1))
+        else if ([PaymentMethodDisplayHelper displayMethodForPayment: self.payment] == kDisplayAsList)
         {
             PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
             selector.objectModel = self.objectModel;

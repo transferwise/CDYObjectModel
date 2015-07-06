@@ -16,6 +16,7 @@
 #import "UploadMoneyViewController.h"
 #import "GoogleAnalytics.h"
 #import "Mixpanel+Customisation.h"
+#import "ApplePayHelper.h"
 @import PassKit;
 
 #define PaymentMethodCellName @"PaymentMethodCell"
@@ -39,22 +40,24 @@
     CGFloat applePayViewHeight = 0.0;
     
     // If we support Apple pay (iOS 8 and above) then we will need to display the button at the bottom of the screen
-    if (IS_OS_8_OR_LATER) {
+    if ([ApplePayHelper isApplePayAvailableForPayment: self.payment]) {
         
-        self.paymentNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
-        
-        if ([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks: self.paymentNetworks] == YES) {
-            // Pay is available
-            // Retain the view height
-            applePayViewHeight = self.applePayViewHeightContraint.constant;
-            
-            // Now create out custom button and center it in the applePayView
-            UIButton *applePayButton = [PKPaymentButton buttonWithType: PKPaymentButtonTypeBuy style: PKPaymentButtonStyleWhiteOutline];
-            [applePayButton addTarget: self action: @selector(userTouchedApplePayButton:) forControlEvents: UIControlEventTouchUpInside];
-            applePayButton.center = self.applePayView.center;
-                        applePayButton.center = CGPointMake(200,30);
-            applePayButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-            [self.applePayView addSubview: applePayButton];
+        // We can only currently pay wih Apple pay when using GBP
+        if(self.payment.sourceCurrency.code && [@"gbp" caseInsensitiveCompare: self.payment.sourceCurrency.code] == NSOrderedSame)
+        {
+            if ([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks: self.paymentNetworks] == YES) {
+                // Pay is available
+                // Retain the view height
+                applePayViewHeight = self.applePayViewHeightContraint.constant;
+                
+                // Now create out custom button and center it in the applePayView
+                UIButton *applePayButton = [PKPaymentButton buttonWithType: PKPaymentButtonTypeBuy style: PKPaymentButtonStyleWhiteOutline];
+                [applePayButton addTarget: self action: @selector(userTouchedApplePayButton:) forControlEvents: UIControlEventTouchUpInside];
+                applePayButton.center = self.applePayView.center;
+                applePayButton.center = CGPointMake(200,30);
+                applePayButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+                [self.applePayView addSubview: applePayButton];
+            }
         }
     }
     
@@ -119,33 +122,29 @@
 
 - (void) userTouchedApplePayButton: (UIButton *) button
 {
-    /*
-    NSString *prefix = [NSBundle.mainBundle objectForInfoDictionaryKey: @"AAPLEmporiumBundlePrefix"];
-    NSString *payment = [NSString stringWithFormat: @"%@.transferwise.payment"];
+    // Create the payment request from our helper
+    PKPaymentRequest *paymentRequest = [ApplePayHelper createPaymentRequestForPayment: self.payment];
     
-    struct UserActivity {
-        static let payment = "\(Bundle.prefix).Emporium.payment"
-    }
+    PKPaymentAuthorizationViewController *vc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
+    vc.delegate = self;  // for the PKPaymentAuthorizationViewControllerDelegate
     
-    struct Merchant {
-        static let identififer = "merchant.\(Bundle.prefix).Emporium"
-     */
-        
-    PKPaymentRequest *request = [PKPaymentRequest new];
-    request.merchantIdentifier = @"com.transferwise.transferwise.payment";
-    request.supportedNetworks = @[PKPaymentNetworkMasterCard, PKPaymentNetworkVisa, PKPaymentNetworkAmex];
-    request.merchantCapabilities = PKMerchantCapability3DS; // Adyen supports only 3DS types
-    request.countryCode = @"GB";    // ISO 3166-1 alpha-2 country code - Merchant country code (!)
-    request.currencyCode = @"GBP";  // ISO 4217 currency code
-    
-    NSDecimalNumber *totalAmount = [NSDecimalNumber decimalNumberWithString: @"100.0"];
-    PKPaymentSummaryItem *totalItem = [PKPaymentSummaryItem summaryItemWithLabel: @"Total" amount:totalAmount];
-    request.paymentSummaryItems = @[totalItem];
+    // Show Apple Pay slideup
+    [self presentViewController: vc
+                       animated: YES
+                     completion: nil];
+}
 
+#pragma mark - PKPaymentAuthorizationViewControllerDelegate
+
+- (void) paymentAuthorizationViewController: (PKPaymentAuthorizationViewController *)controller
+                        didAuthorizePayment: (PKPayment *)payment completion: (void (^)(PKPaymentAuthorizationStatus status))completion
+{
     
-    PKPaymentAuthorizationViewController *vc = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:request];
-    vc.delegate = self;
-    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void) paymentAuthorizationViewControllerDidFinish: (PKPaymentAuthorizationViewController *) controller
+{
+    
 }
 
 
