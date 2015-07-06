@@ -530,14 +530,13 @@ static NSUInteger const kRowYouSend = 0;
 #pragma mark - Legaleze
 - (void)updateLegaleze:(BOOL)animated
 {
-	//fire up TermsAndConditionsUpdater
 	[self.termsAndConditionsUpdater getTermsAndConditionsForCountry:[LocationHelper getProfileLocationWithObjectModel:self.objectModel]
 														   currency:self.youSendCell.currency.code
 													completionBlock:^(NSAttributedString *tcString) {
 														if(tcString)
 														{
-															self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
 															self.termsLabel.attributedText = tcString;
+															self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
 															[self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
 															
 															if(self.termsBottomConstraint.constant != 4)

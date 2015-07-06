@@ -42,6 +42,7 @@
 																						   additionalDocs:result[@"customDocuments"]
 																									 font:font
 																									color:color]);
+																   return;
 															   }
 														   }
 														   
