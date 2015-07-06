@@ -191,7 +191,7 @@
 	
     [self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
 			withCompletion:nil];
-	[self includeAcnAndAbnCells:[BusinessProfileSource showAcnAndAbnCells:profile.countryCode]
+	[self includeAuCells:[BusinessProfileSource showAuCells:profile.countryCode]
 				 withCompletion:nil];
 }
 
@@ -272,7 +272,7 @@
 }
 
 #pragma mark - AU specific cells
-- (NSArray *)includeAcnAndAbnCells:(BOOL)shouldInclude
+- (NSArray *)includeAuCells:(BOOL)shouldInclude
 					withCompletion:(SelectionCompletion)completion
 {
 	[self includeCell:self.acnCell
@@ -285,6 +285,11 @@
 		shouldInclude:shouldInclude
 	   withCompletion:completion];
 	
+	[self includeCell:self.arbnCell
+			afterCell:self.abnCell
+		shouldInclude:shouldInclude
+	   withCompletion:completion];
+	
 	if (shouldInclude)
 	{
 		return @[self.acnCell, self.abnCell];
@@ -293,36 +298,19 @@
 	return nil;
 }
 
-- (TextEntryCell *)includeArbnCell:(BOOL)shouldInclude
-					withCompletion:(SelectionCompletion)completion
-{
-	TextEntryCell *arbnCell = [self includeCell:self.arbnCell
-									  afterCell:self.zipCityCell
-								  shouldInclude:shouldInclude
-								 withCompletion:completion];
-	
-	return arbnCell;
-}
-
-+ (BOOL)showAcnAndAbnCells:(NSString *)countryCode
++ (BOOL)showAuCells:(NSString *)countryCode
 {
 	return [self isMatchingSource:@"aus"
 					   withTarget:countryCode];
-}
-
-+ (BOOL)showArbnCell:(NSString *)targetCurrency
-{
-	return [self isMatchingSource:@"aud"
-					   withTarget:targetCurrency];
 }
 
 - (NSArray *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
 						 withCompletion:(SelectionCompletion)completion
 {
-	if ([BusinessProfileSource showAcnAndAbnCells:country.code])
+	if ([BusinessProfileSource showAuCells:country.code])
 	{
-		return [self includeAcnAndAbnCells:[BusinessProfileSource showAcnAndAbnCells:country.code]
+		return [self includeAuCells:[BusinessProfileSource showAuCells:country.code]
 							withCompletion:nil];
 	}
 	else
