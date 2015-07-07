@@ -8,6 +8,7 @@
 
 #import "ApplePayHelper.h"
 #import "Currency.h"
+#import "CustomInfoViewController.h"
 #import "GoogleAnalytics.h"
 #import "MOMStyle.h"
 #import "Mixpanel+Customisation.h"
@@ -149,12 +150,22 @@
     UIViewController *paymentAuthorizationViewController;
    
     paymentAuthorizationViewController = [ApplePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest delegate: self];
- // for the PKPaymentAuthorizationViewControllerDelegate
     
-    // Show Apple Pay slideup
-    [self presentViewController: paymentAuthorizationViewController
-                       animated: YES
-                     completion: nil];
+    if (!paymentAuthorizationViewController)
+    {
+        [self presentCustomInfoWithSuccess: NO
+                                controller: self.navigationController
+                                   message: @"applepay.failure.message.initcontroller"
+                               actionBlock: nil
+                              successBlock: nil];
+    }
+    else
+    {
+        // Show Apple Pay slideup
+        [self presentViewController: paymentAuthorizationViewController
+                           animated: YES
+                         completion: nil];
+    }
 }
 
 #pragma mark - PKPaymentAuthorizationViewControllerDelegate
@@ -170,7 +181,28 @@
                         didAuthorizePayment: (PKPayment *)payment
                                  completion: (void (^)(PKPaymentAuthorizationStatus status))completion
 {
-    completion(PKPaymentAuthorizationStatusSuccess);
+    BOOL authorizationSuccessful = YES;
+    
+    if (authorizationSuccessful)
+    {
+        completion(PKPaymentAuthorizationStatusSuccess);
+        
+        [self presentCustomInfoWithSuccess: YES
+                                controller: self.navigationController
+                                   message: @"applepay.success.message"
+                               actionBlock: nil
+                              successBlock: nil];
+    }
+    else
+    {
+        completion(PKPaymentAuthorizationStatusFailure);
+        
+        [self presentCustomInfoWithSuccess: NO
+                                controller: self.navigationController
+                                   message: @"applepay.failure.message.initcontroller"
+                               actionBlock: nil
+                              successBlock: nil];
+    }
 }
 
 /**
@@ -183,6 +215,61 @@
 {
     [self dismissViewControllerAnimated: YES
                              completion: nil];
+}
+
+
+/**
+ *  Apple Pay success/failure screen
+ *
+ *  @param success      Authentication/
+ *  @param controller   <#controller description#>
+ *  @param message      <#message description#>
+ *  @param actionBlock  <#actionBlock description#>
+ *  @param successBlock <#successBlock description#>
+ */
+
+- (void) presentCustomInfoWithSuccess:( BOOL)success
+                          controller: (UINavigationController *)controller
+                             message: (NSString *)message
+                         actionBlock: (void (^)())actionBlock
+                        successBlock: (void (^)())successBlock
+{
+    CustomInfoViewController *customInfo;
+    
+    if (success)
+    {
+        customInfo = [CustomInfoViewController successScreenWithMessage: message];
+    }
+    else
+    {
+        customInfo = [CustomInfoViewController failScreenWithMessage: message];
+    }
+    
+    __weak typeof(customInfo) weakCustomInfo = customInfo;
+    __block BOOL shouldAutoDismiss = YES;
+    
+    ActionButtonBlock action = ^{
+        shouldAutoDismiss = NO;
+        
+        if (actionBlock) { actionBlock(); }
+        
+        [weakCustomInfo dismiss];
+    };
+    
+    customInfo.actionButtonBlocks = @[action];
+    
+    if (successBlock) { successBlock(); }
+    
+    // Blurry overlay
+    [customInfo presentOnViewController: controller.parentViewController
+                  withPresentationStyle: TransparentPresentationFade];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if(shouldAutoDismiss)
+        {
+            action();
+        }
+    });
 }
 
 

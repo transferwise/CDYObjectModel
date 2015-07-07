@@ -42,8 +42,7 @@
     
     if(numberOfPayInMethods > 2
        || ([@"usd" caseInsensitiveCompare: [payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1)
-       || [ApplePayHelper isApplePayAvailableForPayment: payment]
-       )
+       || [ApplePayHelper isApplePayAvailableForPayment: payment])
     {
         return kDisplayAsList;
     }
@@ -51,7 +50,6 @@
     {
         return kDisplayAsTabs;
     }
-
 }
 
 @end

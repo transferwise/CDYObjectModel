@@ -24,6 +24,9 @@
 "ach.failure.message.mismatch" = "Incorrect account details";
 "ach.failure.message.routingnumber" = "Invalid routing number";
 
+"applepay.success.message" = "You successfully paid with ApplePay";
+"applepay.failure.message.initcontroller" = "There was a problem with your Apple Pay configuration";
+
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";
 "business.profile.address.section.title" = "Address";
