@@ -40,18 +40,18 @@
 {
     NSUInteger numberOfPayInMethods = [[payment enabledPayInMethods] count];
     
-//    if(numberOfPayInMethods > 2
-//       || ([@"usd" caseInsensitiveCompare: [payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1)
-//       )
-//    {
-//        return kDisplayAsList;
-//    }
-//    else
-//    {
-//        return kDisplayAsTabs;
-//    }
-    
-    return kDisplayAsList;
+    if(numberOfPayInMethods > 2
+       || ([@"usd" caseInsensitiveCompare: [payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1)
+       || [ApplePayHelper isApplePayAvailableForPayment: payment]
+       )
+    {
+        return kDisplayAsList;
+    }
+    else
+    {
+        return kDisplayAsTabs;
+    }
+
 }
 
 @end
