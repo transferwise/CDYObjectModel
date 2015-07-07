@@ -50,10 +50,27 @@
         // Now create out custom button and center it in the applePayView
         UIButton *applePayButton = [PKPaymentButton buttonWithType: PKPaymentButtonTypeBuy style: PKPaymentButtonStyleWhiteOutline];
         [applePayButton addTarget: self action: @selector(userTouchedApplePayButton:) forControlEvents: UIControlEventTouchUpInside];
-        applePayButton.center = self.applePayView.center;
-        applePayButton.center = CGPointMake(200,30);
-        applePayButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+
+        // Hideous nonsense to ensure that button is centered correctly
+        [applePayButton setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.applePayView addSubview: applePayButton];
+        
+        NSLayoutConstraint* cn = [NSLayoutConstraint constraintWithItem: applePayButton
+                                                              attribute: NSLayoutAttributeCenterX
+                                                              relatedBy: NSLayoutRelationEqual
+                                                                 toItem: self.applePayView
+                                                              attribute: NSLayoutAttributeCenterX
+                                                             multiplier: 1.0
+                                                               constant: 0];
+        [self.view addConstraint: cn];
+        cn = [NSLayoutConstraint constraintWithItem: applePayButton
+                                          attribute: NSLayoutAttributeCenterY
+                                          relatedBy: NSLayoutRelationEqual
+                                             toItem: self.applePayView
+                                          attribute: NSLayoutAttributeCenterY
+                                         multiplier: 1.0
+                                           constant: 0];
+        [self.view addConstraint: cn];
     }
     
     // Hide the Pay view if required
@@ -72,6 +89,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     __weak typeof(self) weakSelf = self;
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
         if(weakSelf.presentingViewController)

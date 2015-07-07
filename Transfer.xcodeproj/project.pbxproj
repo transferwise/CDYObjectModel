@@ -45,7 +45,6 @@
 		0149B47E1B4AC51400D97E00 /* STPTestShippingMethodStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */; };
 		0156BA951B417CD500175C0D /* BusinessProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA941B417CD500175C0D /* BusinessProfileTests.swift */; };
 		0156BA981B41915000175C0D /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA971B41915000175C0D /* XCTest+Utils.swift */; };
-		01E7BD121B46F02D0076402D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E7BD111B46F02D0076402D /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
@@ -1615,6 +1614,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01008E4F1B4C0B3C00FEC989 /* TransferDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TransferDev.entitlements; sourceTree = "<group>"; };
+		01008E501B4C0DA000FEC989 /* TransferWise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TransferWise.entitlements; sourceTree = "<group>"; };
 		012B78EA1B4418E600CFA7FE /* OnePasswordTextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordTextEntryCell.m; sourceTree = "<group>"; };
 		012B78EB1B4418E600CFA7FE /* OnePasswordTextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnePasswordTextEntryCell.xib; sourceTree = "<group>"; };
 		012B78F11B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OnePasswordTextEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1639,7 +1640,6 @@
 		0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestShippingMethodStore.m; sourceTree = "<group>"; };
 		0156BA941B417CD500175C0D /* BusinessProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessProfileTests.swift; sourceTree = "<group>"; };
 		0156BA971B41915000175C0D /* XCTest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Utils.swift"; sourceTree = "<group>"; };
-		01E7BD111B46F02D0076402D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
 		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
 		1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileOperation.h; sourceTree = "<group>"; };
@@ -2608,7 +2608,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01E7BD121B46F02D0076402D /* StoreKit.framework in Frameworks */,
 				3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */,
 				EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */,
 				EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */,
@@ -3707,6 +3706,8 @@
 		EAAA145F171BC911005B9430 = {
 			isa = PBXGroup;
 			children = (
+				01008E501B4C0DA000FEC989 /* TransferWise.entitlements */,
+				01008E4F1B4C0B3C00FEC989 /* TransferDev.entitlements */,
 				EAAA1473171BC911005B9430 /* Transfer */,
 				47DC89821A03950F0042054B /* TransferTests */,
 				EAAA146A171BC911005B9430 /* Frameworks */,
@@ -3730,7 +3731,6 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				01E7BD111B46F02D0076402D /* StoreKit.framework */,
 				47BBD8311B296A870048C1D4 /* Fabric.framework */,
 				47BBD8301B2969930048C1D4 /* Crashlytics.framework */,
 				474FF6291AB6F0EC008DF343 /* CoreMotion.framework */,
@@ -4177,6 +4177,9 @@
 								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.OMC = {
 								enabled = 1;
 							};
 						};
@@ -4185,6 +4188,9 @@
 						DevelopmentTeam = W53MTDV45J;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.OMC = {
 								enabled = 1;
 							};
 						};
@@ -6226,6 +6232,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TransferDev.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6266,6 +6273,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TransferDev.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6366,6 +6374,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TransferWise.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6405,6 +6414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TransferWise.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

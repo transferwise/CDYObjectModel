@@ -95,6 +95,10 @@
     
     request.currencyCode = payment.sourceCurrency.code;  // ISO 4217 currency code
     
+#if DEBUG
+    request.currencyCode = @"USD";
+    request.countryCode = @"US";
+#endif
     // Convert our payment account from a string to an NSDecimalNumber (required for accuracy reasons)
     NSString *paymentAmountString = [payment payInStringNoSpaces];
     NSDecimalNumber *totalAmount = [NSDecimalNumber decimalNumberWithString: paymentAmountString];
