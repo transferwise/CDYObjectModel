@@ -148,14 +148,14 @@
     PKPaymentRequest *paymentRequest = [ApplePayHelper createPaymentRequestForPayment: self.payment];
     
     UIViewController *paymentAuthorizationViewController;
-   
+    
     paymentAuthorizationViewController = [ApplePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest delegate: self];
     
     if (!paymentAuthorizationViewController)
     {
         [self presentCustomInfoWithSuccess: NO
-                                controller: self.navigationController
-                                   message: @"applepay.failure.message.initcontroller"
+                                controller: self
+                                messageKey: @"applepay.failure.message.initcontroller"
                                actionBlock: nil
                               successBlock: nil];
     }
@@ -177,6 +177,7 @@
  *  @param payment    The payment
  *  @param completion Block to callback with a status code when payment is completed
  */
+
 - (void) paymentAuthorizationViewController: (PKPaymentAuthorizationViewController *)controller
                         didAuthorizePayment: (PKPayment *)payment
                                  completion: (void (^)(PKPaymentAuthorizationStatus status))completion
@@ -188,8 +189,8 @@
         completion(PKPaymentAuthorizationStatusSuccess);
         
         [self presentCustomInfoWithSuccess: YES
-                                controller: self.navigationController
-                                   message: @"applepay.success.message"
+                                controller: self
+                                messageKey: @"applepay.success.message"
                                actionBlock: nil
                               successBlock: nil];
     }
@@ -198,8 +199,8 @@
         completion(PKPaymentAuthorizationStatusFailure);
         
         [self presentCustomInfoWithSuccess: NO
-                                controller: self.navigationController
-                                   message: @"applepay.failure.message.initcontroller"
+                                controller: self
+                                messageKey: @"applepay.failure.message.initcontroller"
                                actionBlock: nil
                               successBlock: nil];
     }
@@ -217,32 +218,31 @@
                              completion: nil];
 }
 
-
 /**
  *  Apple Pay success/failure screen
  *
  *  @param success      Authentication/
- *  @param controller   <#controller description#>
- *  @param message      <#message description#>
+ *  @param controller   Navigation controller
+ *  @param message      MessageKey
  *  @param actionBlock  <#actionBlock description#>
  *  @param successBlock <#successBlock description#>
  */
 
-- (void) presentCustomInfoWithSuccess:( BOOL)success
-                          controller: (UINavigationController *)controller
-                             message: (NSString *)message
-                         actionBlock: (void (^)())actionBlock
-                        successBlock: (void (^)())successBlock
+- (void) presentCustomInfoWithSuccess: (BOOL) success
+                           controller: (UIViewController *) controller
+                           messageKey: (NSString *) messageKey
+                          actionBlock: (void (^)()) actionBlock
+                         successBlock: (void (^)()) successBlock
 {
     CustomInfoViewController *customInfo;
     
     if (success)
     {
-        customInfo = [CustomInfoViewController successScreenWithMessage: message];
+        customInfo = [CustomInfoViewController successScreenWithMessage: messageKey];
     }
     else
     {
-        customInfo = [CustomInfoViewController failScreenWithMessage: message];
+        customInfo = [CustomInfoViewController failScreenWithMessage: messageKey];
     }
     
     __weak typeof(customInfo) weakCustomInfo = customInfo;
