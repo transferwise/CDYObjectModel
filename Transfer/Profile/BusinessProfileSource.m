@@ -192,7 +192,7 @@
     [self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
 			withCompletion:nil];
 	[self includeAuCells:[BusinessProfileSource showAuCells:profile.countryCode]
-				 withCompletion:nil];
+		  withCompletion:nil];
 }
 
 - (BOOL)inputValid
@@ -273,29 +273,12 @@
 
 #pragma mark - AU specific cells
 - (NSArray *)includeAuCells:(BOOL)shouldInclude
-					withCompletion:(SelectionCompletion)completion
+			 withCompletion:(SelectionCompletion)completion
 {
-	[self includeCell:self.acnCell
-			afterCell:self.zipCityCell
-		shouldInclude:shouldInclude
-	   withCompletion:completion];
-	
-	[self includeCell:self.abnCell
-			afterCell:self.acnCell
-		shouldInclude:shouldInclude
-	   withCompletion:completion];
-	
-	[self includeCell:self.arbnCell
-			afterCell:self.abnCell
-		shouldInclude:shouldInclude
-	   withCompletion:completion];
-	
-	if (shouldInclude)
-	{
-		return @[self.acnCell, self.abnCell];
-	}
-	
-	return nil;
+	return [self includeCells:@[self.acnCell, self.abnCell, self.arbnCell]
+					afterCell:self.zipCityCell
+				shouldInclude:shouldInclude
+			   withCompletion:completion];
 }
 
 + (BOOL)showAuCells:(NSString *)countryCode
@@ -305,20 +288,16 @@
 }
 
 - (NSArray *)countrySelectionCell:(SelectionCell *)cell
-					   didSelectCountry:(Country *)country
-						 withCompletion:(SelectionCompletion)completion
+				 didSelectCountry:(Country *)country
+				   withCompletion:(SelectionCompletion)completion
 {
-	if ([BusinessProfileSource showAuCells:country.code])
-	{
-		return [self includeAuCells:[BusinessProfileSource showAuCells:country.code]
-							withCompletion:nil];
-	}
-	else
-	{
-		return [super countrySelectionCell:cell
-						  didSelectCountry:country
-							withCompletion:completion];
-	}
+	NSArray *auCells = [self includeAuCells:[BusinessProfileSource showAuCells:country.code]
+							 withCompletion:completion];
+	NSArray *otherCells =  [super countrySelectionCell:cell
+									  didSelectCountry:country
+										withCompletion:completion];
+	
+	return auCells ?: otherCells;
 }
 
 @end
