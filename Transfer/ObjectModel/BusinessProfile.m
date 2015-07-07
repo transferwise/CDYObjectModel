@@ -64,8 +64,8 @@
     }
     else if ([@"aus" caseInsensitiveCompare: self.countryCode] == NSOrderedSame)
     {
-        // If we are in Australia, then we need either ACN or ABN fiels filled
-        if (self.acn.hasValue == NO && self.abn.hasValue == NO)
+        // If we are in Australia, then we need either ACN or ABN or ARBN fiels filled
+        if (self.acn.hasValue == NO && self.abn.hasValue == NO && self.arbn.hash == NO)
         {
             // We have neither acn nor abn fields filled, so indicate failure
             allFieldsFilled = NO;

@@ -17,6 +17,11 @@
 				 shouldInclude:(BOOL)shouldInclude
 				withCompletion:(SelectionCompletion)completion;
 
+- (NSArray *)includeCells:(NSArray *)cells
+				afterCell:(UITableViewCell *)afterCell
+			shouldInclude:(BOOL)shouldInclude
+		   withCompletion:(SelectionCompletion)completion;
+
 - (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
 					 withCompletion:(SelectionCompletion)completion;
 

@@ -1186,6 +1186,12 @@
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
+		47E6CF371B46804F00790921 /* TermsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF361B46804F00790921 /* TermsOperation.m */; };
+		47E6CF381B46804F00790921 /* TermsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF361B46804F00790921 /* TermsOperation.m */; };
+		47E6CF391B46804F00790921 /* TermsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF361B46804F00790921 /* TermsOperation.m */; };
+		47E6CF3C1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */; };
+		47E6CF3D1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */; };
+		47E6CF3E1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47F346D31AF896E700F780ED /* _AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D01AF896E700F780ED /* _AdditionalAttribute.m */; };
 		47F346D41AF896E700F780ED /* AdditionalAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F346D21AF896E700F780ED /* AdditionalAttribute.m */; };
@@ -2195,6 +2201,10 @@
 		47DC5EFA1AEE3E9F00C6FA50 /* Transfer_v11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v11.xcdatamodel; sourceTree = "<group>"; };
 		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47DC89841A03950F0042054B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47E6CF351B46804F00790921 /* TermsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOperation.h; sourceTree = "<group>"; };
+		47E6CF361B46804F00790921 /* TermsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOperation.m; sourceTree = "<group>"; };
+		47E6CF3A1B46B8B300790921 /* TermsAndConditionsUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsUpdater.h; sourceTree = "<group>"; };
+		47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsUpdater.m; sourceTree = "<group>"; };
 		47F346CF1AF896E700F780ED /* _AdditionalAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AdditionalAttribute.h; sourceTree = "<group>"; };
 		47F346D01AF896E700F780ED /* _AdditionalAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AdditionalAttribute.m; sourceTree = "<group>"; };
 		47F346D11AF896E700F780ED /* AdditionalAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalAttribute.h; sourceTree = "<group>"; };
@@ -3603,6 +3613,8 @@
 				EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */,
 				3818605519C9A206009A413E /* SetSSNOperation.h */,
 				3818605619C9A206009A413E /* SetSSNOperation.m */,
+				47E6CF351B46804F00790921 /* TermsOperation.h */,
+				47E6CF361B46804F00790921 /* TermsOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -3964,6 +3976,8 @@
 				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
 				47852D681B0F206E0028E11A /* FacebookHelper.h */,
 				47852D691B0F206E0028E11A /* FacebookHelper.m */,
+				47E6CF3A1B46B8B300790921 /* TermsAndConditionsUpdater.h */,
+				47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -5033,6 +5047,7 @@
 				388E5A511A5A949500AF6EB9 /* RecipientOperation.m in Sources */,
 				388E5A521A5A949500AF6EB9 /* ObjectModel+PendingPayments.m in Sources */,
 				388E5A531A5A949500AF6EB9 /* NonEditTextField.m in Sources */,
+				47E6CF391B46804F00790921 /* TermsOperation.m in Sources */,
 				381EF8871A7908A600485C7F /* PresentationCell.m in Sources */,
 				388E5A541A5A949500AF6EB9 /* PersonalProfileOperation.m in Sources */,
 				388E5A551A5A949500AF6EB9 /* PersonalProfileIdentificationViewController.m in Sources */,
@@ -5209,6 +5224,7 @@
 				388E5AF01A5A949500AF6EB9 /* ExpatDetectionLookupWrapper.m in Sources */,
 				388E5AF11A5A949500AF6EB9 /* PaymentPurposeOperation.m in Sources */,
 				388E5AF21A5A949500AF6EB9 /* ObjectModel+ReferralLinks.m in Sources */,
+				47E6CF3E1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */,
 				388E5AF31A5A949500AF6EB9 /* StateSuggestionCellProvider.m in Sources */,
 				388E5AF41A5A949500AF6EB9 /* RefundDetailsViewController.m in Sources */,
 				388E5AF51A5A949500AF6EB9 /* CurrencyCell.m in Sources */,
@@ -5388,6 +5404,7 @@
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
 				473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */,
+				47E6CF3D1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
 				389F682C198FC1C6006CF1F6 /* ObjectModel+PendingPayments.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
@@ -5420,6 +5437,7 @@
 				EAD3647A17E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */,
 				385669121980FB0500BC4230 /* PlainPresentationCell.m in Sources */,
 				EA31A16C17DDB29B00F937F7 /* CreatePaymentOperation.m in Sources */,
+				47E6CF381B46804F00790921 /* TermsOperation.m in Sources */,
 				EA31A16D17DDB29B00F937F7 /* MoneyFormatter.m in Sources */,
 				3840863219A2444000C837C2 /* PaymentCancelOperation.m in Sources */,
 				38CC81A61A1E368F007D965A /* ACHCheckView.m in Sources */,
@@ -5728,6 +5746,7 @@
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
 				47C4D0461A232AC1005EC7C6 /* FieldGroup.m in Sources */,
 				38B092E5194F2EB700315BE4 /* AddressBookManager.m in Sources */,
+				47E6CF3C1B46B8B300790921 /* TermsAndConditionsUpdater.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 				389F684D198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */,
@@ -5760,6 +5779,7 @@
 				389F681B198FC1C6006CF1F6 /* BusinessProfile.m in Sources */,
 				38CE6E181A27360300B39665 /* UITextField+CaretPosition.m in Sources */,
 				38705C671A7BDD5F002EB14B /* CopyLabel.m in Sources */,
+				47E6CF371B46804F00790921 /* TermsOperation.m in Sources */,
 				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
 				3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
