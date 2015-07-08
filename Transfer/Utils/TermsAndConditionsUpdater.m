@@ -24,32 +24,40 @@
 								   font:(UIFont *)font
 								  color:(UIColor *)color
 {
-	self.executedOperation = [TermsOperation operationWithSourceCurrency:currencyCode
-																 country:countryCode
-													   completionHandler:^(NSError *error, NSDictionary *result) {
-														   if (!error && result)
-														   {
-															   //parse dictionary
-															   NSString *termsOfUse = result[@"termsOfUse"];
-															   
-															   //if no terms of use then no point in continuing
-															   if (termsOfUse)
+	if (YES)
+	{
+		self.executedOperation = [TermsOperation operationWithSourceCurrency:currencyCode
+																	 country:countryCode
+														   completionHandler:^(NSError *error, NSDictionary *result) {
+															   if (!error && result)
 															   {
-																   NSString *termsAndConditions = result[@"termsAndConditions"];
+																   //parse dictionary
+																   NSString *termsOfUse = result[@"termsOfUse"];
 																   
-																   completionBlock([self generateLegaleze:termsOfUse
-																								   tcLink:termsAndConditions
-																						   additionalDocs:result[@"customDocuments"]
-																									 font:font
-																									color:color]);
-																   return;
+																   //if no terms of use then no point in continuing
+																   if (termsOfUse)
+																   {
+																	   NSString *termsAndConditions = result[@"termsAndConditions"];
+																	   
+																	   completionBlock([self generateLegaleze:termsOfUse
+																									   tcLink:termsAndConditions
+																							   additionalDocs:result[@"customDocuments"]
+																										 font:font
+																										color:color]);
+																	   return;
+																   }
 															   }
-														   }
-														   
-														   completionBlock(nil);
-													   }];
-	
-	[self.executedOperation execute];
+															   
+															   completionBlock(nil);
+														   }];
+		
+		[self.executedOperation execute];
+	}
+	else
+	{
+		//everything else should not show t&c
+		completionBlock(nil);
+	}
 }
 
 - (NSAttributedString *)generateLegaleze:(NSString *)touLink
