@@ -7,6 +7,7 @@
 //
 
 #import "ApplePayHelper.h"
+#import "ApplePayOperation.h"
 #import "BusinessProfile.h"
 #import "Currency.h"
 #import "Payment.h"
@@ -18,30 +19,32 @@
 #define kMinimumOSVersionForApplePay 8.1
 #define  kMinimumOSVersionForApplePayInSimulator 9.0
 
+@interface ApplePayHelper ()
+
+@property (nonatomic) ApplePayOperation *applePayOperation;
+
+@end
+
+
 @implementation ApplePayHelper
 
-/**
- *  Currently we support all networks
- *
- *  @return Array of card types
- */
+#pragma mark - Singleton
 
-+ (NSArray *) supportedPaymentNetworks
+// Not sure whether we need this yet
+
++ (instancetype) sharedInstance
 {
-    return @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
+    static ApplePayHelper *sharedInstance;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    
+    return sharedInstance;
 }
 
-/**
- *  The merchantId to use with apple pay
- *
- *  @return <#return value description#>
- */
-
-+ (NSString *) merchantId
-{
-    // We might want to move this to the plist
-    return @"merchant.com.transferwise.Transferwise";
-}
+#pragma mark - Apple Pay helpers
 
 /**
  *  Work out if we can actully use apply pay for this payment
@@ -69,6 +72,55 @@
     return isAvailable;
 }
 
+#pragma mark - Apple Pay details
+
+/**
+ *  Currently we support all networks
+ *
+ *  @return Array of card types
+ */
+
++ (NSArray *) supportedPaymentNetworks
+{
+    return @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
+}
+
+/**
+ *  The merchantId to use with apple pay
+ *
+ *  @return <#return value description#>
+ */
+
++ (NSString *) merchantId
+{
+    // We might want to move this to the plist
+    return @"merchant.com.transferwise.Transferwise";
+}
+
+/**
+ *  Works out the country code for a particular payment
+ *
+ *  @param payment payment
+ *
+ *  @return Country code string
+ */
+
+- (NSString *) countryCodeForPayment: (Payment *) payment
+{
+    NSString *countryCode;
+    
+    if (payment.businessProfileUsed)
+    {
+        countryCode = payment.user.businessProfile.countryCode;
+    }
+    else
+    {
+        countryCode = payment.user.personalProfile.countryCode;
+    }
+    
+    return countryCode;
+}
+
 /**
  *  Create a PKPayment request suitable for ApplePay based on the current payment
  *
@@ -77,22 +129,14 @@
  *  @return A new PKPaymentRequest
  */
 
-+ (PKPaymentRequest *) createPaymentRequestForPayment: (Payment *) payment
+- (PKPaymentRequest *) createPaymentRequestForPayment: (Payment *) payment
 {
     PKPaymentRequest *request = [PKPaymentRequest new];
-    request.merchantIdentifier = self.merchantId;
-    request.supportedNetworks = self.supportedPaymentNetworks;
+    request.merchantIdentifier = ApplePayHelper.merchantId;
+    request.supportedNetworks = ApplePayHelper.supportedPaymentNetworks;
     request.merchantCapabilities = PKMerchantCapability3DS; // Adyen supports only 3DS types
-   
-    if (payment.businessProfileUsed)
-    {
-        request.countryCode = payment.user.businessProfile.countryCode;
-    }
-    else
-    {
-        request.countryCode = payment.user.personalProfile.countryCode;
-    }
     
+    request.countryCode = [self countryCodeForPayment: payment];
     request.currencyCode = payment.sourceCurrency.code;  // ISO 4217 currency code
     
 #if DEBUG
@@ -118,7 +162,7 @@
  *  @return The appropriate view controller
  */
 
-+ (UIViewController *) createAuthorizationViewControllerForPaymentRequest: (PKPaymentRequest *) paymentRequest
+- (UIViewController *) createAuthorizationViewControllerForPaymentRequest: (PKPaymentRequest *) paymentRequest
                                                                  delegate: (UIViewController<PKPaymentAuthorizationViewControllerDelegate>*) delegate
 {
     UIViewController *paymentAuthorizationViewController;
@@ -140,6 +184,38 @@
 #endif
     
     return paymentAuthorizationViewController;
+}
+
+
+- (void) sendToken: (PKPaymentToken *) paymentToken
+      forPaymentId: (NSString *) paymentId
+{
+    // Create additionalData section
+    NSData *paymentData = paymentToken.paymentData;
+    NSString *tokenB64 = [paymentData base64EncodedStringWithOptions: 0];
+
+    // Now create the parameter dictionary
+    NSDictionary* parameterDictionary = @{@"paymentId" : paymentId,
+                                          @"paymentToken" : tokenB64};
+    
+    // Now create the network operation
+    // + (ApplePayTokenOperation *) applePayOperationWithToken: (NSData *) token;
+    
+    self.applePayOperation = [ApplePayOperation applePayOperationWithParameterDictionary: parameterDictionary];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.applePayOperation.responseHandler = ^(NSError* error, NSDictionary *result) {
+        
+        // Make sure we are on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+        });
+    };
+
+    // Start the operation
+    [self.applePayOperation execute];
+
 }
 
 @end

@@ -45,6 +45,9 @@
 		0149B47E1B4AC51400D97E00 /* STPTestShippingMethodStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */; };
 		0156BA951B417CD500175C0D /* BusinessProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA941B417CD500175C0D /* BusinessProfileTests.swift */; };
 		0156BA981B41915000175C0D /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA971B41915000175C0D /* XCTest+Utils.swift */; };
+		01B9C5B61B4D18A400A23A7F /* ApplePayOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */; };
+		01B9C5B71B4D18A400A23A7F /* ApplePayOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */; };
+		01B9C5B81B4D18A400A23A7F /* ApplePayOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
@@ -1640,6 +1643,8 @@
 		0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestShippingMethodStore.m; sourceTree = "<group>"; };
 		0156BA941B417CD500175C0D /* BusinessProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessProfileTests.swift; sourceTree = "<group>"; };
 		0156BA971B41915000175C0D /* XCTest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Utils.swift"; sourceTree = "<group>"; };
+		01B9C5B41B4D18A400A23A7F /* ApplePayOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayOperation.h; sourceTree = "<group>"; };
+		01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayOperation.m; sourceTree = "<group>"; };
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
 		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
 		1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileOperation.h; sourceTree = "<group>"; };
@@ -3618,6 +3623,10 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				470B11311ADCF39E008729E9 /* AddUserDeviceOperation.h */,
+				470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */,
+				01B9C5B41B4D18A400A23A7F /* ApplePayOperation.h */,
+				01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */,
 				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
 				EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */,
@@ -3670,6 +3679,8 @@
 				EA1861E21746442900BD01BB /* RegisterOperation.m */,
 				EA7F8814176F2B44003B0F46 /* RemoveTokenOperation.h */,
 				EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */,
+				470B11361ADCF3B3008729E9 /* RemoveUserDeviceOperation.h */,
+				470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */,
 				EAB61712191CDD1000545C21 /* ResetPasswordOperation.h */,
 				EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */,
 				3818605519C9A206009A413E /* SetSSNOperation.h */,
@@ -3678,27 +3689,23 @@
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
 				EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */,
-				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
+				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
+				470B113B1ADCF3CA008729E9 /* UpdateUserDeviceOperation.h */,
+				470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */,
 				EA59293C17577CCA007C0072 /* UploadVerificationFileOperation.h */,
 				EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */,
 				EA88E682172F97D50021492C /* UserDetailsOperation.h */,
 				EA88E683172F97D50021492C /* UserDetailsOperation.m */,
 				EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */,
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
-				EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */,
-				EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */,
 				47B386481A1CDC9A00478402 /* VerificationFormOperation.h */,
 				47B386491A1CDC9A00478402 /* VerificationFormOperation.m */,
+				EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */,
+				EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */,
 				471DAA7B1A276DD00077E341 /* VerifyFormOperation.h */,
 				471DAA7C1A276DD00077E341 /* VerifyFormOperation.m */,
-				470B11311ADCF39E008729E9 /* AddUserDeviceOperation.h */,
-				470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */,
-				470B11361ADCF3B3008729E9 /* RemoveUserDeviceOperation.h */,
-				470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */,
-				470B113B1ADCF3CA008729E9 /* UpdateUserDeviceOperation.h */,
-				470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -5289,6 +5296,7 @@
 				388E5AE41A5A949500AF6EB9 /* ObjectModel+RecipientTypes.m in Sources */,
 				388E5AE51A5A949500AF6EB9 /* ObjectModel+AchBank.m in Sources */,
 				388E5AE61A5A949500AF6EB9 /* NavigationBarCustomiser.m in Sources */,
+				01B9C5B81B4D18A400A23A7F /* ApplePayOperation.m in Sources */,
 				388E5AE71A5A949500AF6EB9 /* DoubleEntryCell.m in Sources */,
 				388E5AE81A5A949500AF6EB9 /* Recipient.m in Sources */,
 				388E5AE91A5A949500AF6EB9 /* PaymentMethodCell.m in Sources */,
@@ -5409,6 +5417,7 @@
 				EA31A13C17DDB29B00F937F7 /* UIButton+Skinning.m in Sources */,
 				EA31A13D17DDB29B00F937F7 /* GreenButton.m in Sources */,
 				388B1F761990E04200DF13E8 /* WhiteRoundedButton.m in Sources */,
+				01B9C5B71B4D18A400A23A7F /* ApplePayOperation.m in Sources */,
 				EA31A13E17DDB29B00F937F7 /* GrayButton.m in Sources */,
 				38B52F9F199B63B600B6AEBD /* InvitationsViewController.m in Sources */,
 				EA31A13F17DDB29B00F937F7 /* RecipientCell.m in Sources */,
@@ -5757,6 +5766,7 @@
 				38B52F9E199B63B600B6AEBD /* InvitationsViewController.m in Sources */,
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
+				01B9C5B61B4D18A400A23A7F /* ApplePayOperation.m in Sources */,
 				389F6807198FC1C6006CF1F6 /* _PaymentMadeIndicator.m in Sources */,
 				47535CAF1981362600DC39D6 /* DoublePasswordEntryCell.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,

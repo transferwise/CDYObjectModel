@@ -29,7 +29,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *applePayViewHeightContraint;
 
 @property (nonatomic) NSArray* sortedPayInMethods;
-@property (nonatomic) NSArray *paymentNetworks;
+
+@property (nonatomic) ApplePayHelper *applePayHelper;
 
 @end
 
@@ -144,15 +145,20 @@
 
 - (void) userTouchedApplePayButton: (UIButton *) button
 {
+    // Create a new helper
+    self.applePayHelper = [ApplePayHelper new];
+    
     // Create the payment request from our helper
-    PKPaymentRequest *paymentRequest = [ApplePayHelper createPaymentRequestForPayment: self.payment];
+    PKPaymentRequest *paymentRequest = [self.applePayHelper createPaymentRequestForPayment: self.payment];
     
     UIViewController *paymentAuthorizationViewController;
     
-    paymentAuthorizationViewController = [ApplePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest delegate: self];
+    paymentAuthorizationViewController = [self.applePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest delegate: self];
     
+    // Check to see if we could create an authorisation controller
     if (!paymentAuthorizationViewController)
     {
+        // We didn't create an apple pay authorisation controller, so display an error screen
         [self presentCustomInfoWithSuccess: NO
                                 controller: self
                                 messageKey: @"applepay.failure.message.initcontroller"
@@ -178,11 +184,14 @@
  *  @param completion Block to callback with a status code when payment is completed
  */
 
-- (void) paymentAuthorizationViewController: (PKPaymentAuthorizationViewController *)controller
-                        didAuthorizePayment: (PKPayment *)payment
-                                 completion: (void (^)(PKPaymentAuthorizationStatus status))completion
+- (void) paymentAuthorizationViewController: (PKPaymentAuthorizationViewController *) controller
+                        didAuthorizePayment: (PKPayment *) payment
+                                 completion: (void (^)(PKPaymentAuthorizationStatus status)) completion
 {
     BOOL authorizationSuccessful = YES;
+    
+    // First we need to get this payment info a format suitable to passing to Adyen
+    PKPaymentToken *paymentToken = payment.token;
     
     if (authorizationSuccessful)
     {
@@ -224,8 +233,8 @@
  *  @param success      Authentication/
  *  @param controller   Navigation controller
  *  @param message      MessageKey
- *  @param actionBlock  <#actionBlock description#>
- *  @param successBlock <#successBlock description#>
+ *  @param actionBlock  action
+ *  @param successBlock success
  */
 
 - (void) presentCustomInfoWithSuccess: (BOOL) success

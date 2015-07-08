@@ -11,6 +11,7 @@
 
 // Forward class declarations
 @class Payment;
+@class PKPaymentToken;
 @class PKPaymentRequest;
 
 // Forward protocol declarations
@@ -18,11 +19,16 @@
 
 @interface ApplePayHelper : NSObject
 
-+ (NSArray *) supportedPaymentNetworks;
-+ (NSString *) merchantId;
+// Class methods
 + (BOOL) isApplePayAvailableForPayment: (Payment *) payment;
-+ (PKPaymentRequest *) createPaymentRequestForPayment: (Payment *) payment;
-+ (UIViewController *) createAuthorizationViewControllerForPaymentRequest: (PKPaymentRequest *) paymentRequest
+
+// Regular methods
+- (PKPaymentRequest *) createPaymentRequestForPayment: (Payment *) payment;
+
+- (UIViewController *) createAuthorizationViewControllerForPaymentRequest: (PKPaymentRequest *) paymentRequest
                                                                  delegate: (UIViewController<PKPaymentAuthorizationViewControllerDelegate> *) delegate;
+
+- (void) sendToken: (PKPaymentToken *) paymentToken
+      forPaymentId: (NSString *) paymentId;
 
 @end
