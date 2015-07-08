@@ -192,6 +192,11 @@
 {
     // Create additionalData section
     NSData *paymentData = paymentToken.paymentData;
+    
+    #warning "For test only, remove"
+    NSString *s = @"randomstuff";
+    paymentData = [s dataUsingEncoding:NSUTF8StringEncoding];
+    
     NSString *tokenB64 = [paymentData base64EncodedStringWithOptions: 0];
 
     // Now create the network operation
@@ -199,17 +204,9 @@
     
     self.applePayOperation = [ApplePayOperation applePayOperationWithPaymentId: paymentId
                                                                       andToken: tokenB64];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    self.applePayOperation.responseHandler = ^(NSError* error, NSDictionary *result) {
-        
-        // Make sure we are on the main thread
-        dispatch_async(dispatch_get_main_queue(), ^{
 
-        });
-    };
-
+    self.applePayOperation.responseHandler = responseHandler;
+    
     // Start the operation
     [self.applePayOperation execute];
 
