@@ -188,31 +188,35 @@
                         didAuthorizePayment: (PKPayment *) payment
                                  completion: (void (^)(PKPaymentAuthorizationStatus status)) completion
 {
-    BOOL authorizationSuccessful = YES;
-    
     // First we need to get this payment info a format suitable to passing to Adyen
     PKPaymentToken *paymentToken = payment.token;
+    NSString *remoteIdString = [NSString stringWithFormat: @"%@",  self.payment.remoteId];
     
-    if (authorizationSuccessful)
-    {
-        completion(PKPaymentAuthorizationStatusSuccess);
-        
-        [self presentCustomInfoWithSuccess: YES
-                                controller: self
-                                messageKey: @"applepay.success.message"
-                               actionBlock: nil
-                              successBlock: nil];
-    }
-    else
-    {
-        completion(PKPaymentAuthorizationStatusFailure);
-        
-        [self presentCustomInfoWithSuccess: NO
-                                controller: self
-                                messageKey: @"applepay.failure.message.initcontroller"
-                               actionBlock: nil
-                              successBlock: nil];
-    }
+    [self.applePayHelper sendToken: paymentToken
+                      forPaymentId: remoteIdString
+                   responseHandler: ^(NSError *error, NSDictionary *result) {
+                       
+                       if (!error)
+                       {
+                           completion(PKPaymentAuthorizationStatusSuccess);
+                           
+                           [self presentCustomInfoWithSuccess: YES
+                                                   controller: self
+                                                   messageKey: @"applepay.success.message"
+                                                  actionBlock: nil
+                                                 successBlock: nil];
+                       }
+                       else
+                       {
+                           completion(PKPaymentAuthorizationStatusFailure);
+                           
+                           [self presentCustomInfoWithSuccess: NO
+                                                   controller: self
+                                                   messageKey: @"applepay.failure.message.initcontroller"
+                                                  actionBlock: nil
+                                                 successBlock: nil];
+                       }
+                      }];
 }
 
 /**

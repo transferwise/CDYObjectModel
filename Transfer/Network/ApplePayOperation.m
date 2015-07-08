@@ -7,6 +7,7 @@
 //
 
 #import "ApplePayOperation.h"
+#import "TransferwiseOperation+Private.h"
 
 NSString *const kApplePayTokenPath = @"/adyen/submitApplePayPayment";
 
@@ -25,9 +26,11 @@ NSString *const kApplePayTokenPath = @"/adyen/submitApplePayPayment";
  *
  *  @return Instance of operation initialised with Apple Pay token
  */
-+ (ApplePayOperation *) applePayOperationWithParameterDictionary: (NSDictionary *) parameterDictionary;
++ (ApplePayOperation *) applePayOperationWithPaymentId: (NSString *) paymentId
+                                              andToken: (NSString *) token
 {
-    return [[ApplePayOperation alloc] initWithParameterDictionary: parameterDictionary];
+    return [[ApplePayOperation alloc] initWithPaymentId: paymentId
+                                               andToken: token];
 }
 
 /**
@@ -38,33 +41,41 @@ NSString *const kApplePayTokenPath = @"/adyen/submitApplePayPayment";
  *  @return Initialised instance
  */
 
-- (instancetype) initWithParameterDictionary: (NSDictionary *) parameterDictionary
+- (instancetype) initWithPaymentId: (NSString *) paymentId
+                          andToken: (NSString *) token
 {
     if ((self = [super init]))
     {
+        NSDictionary* parameterDictionary = @{@"paymentId" : paymentId,
+                                              @"paymentToken" : token};
+        
         self.parameterDictionary = parameterDictionary;
     }
 
     return self;
 }
 
+/**
+ *  Perform the Post of the token and transactionId
+ */
 - (void) execute
 {
     //
     NSString *path = [self addTokenToPath: kApplePayTokenPath];
-//    
-//    __block __weak typeof(self) *weakSelf = self;
-//    
-//    [self setOperationSuccessHandler: ^(NSDictionary *response) {
-//        weakSelf.responseHandler(nil, response);
-//    }];
-//    
-//    [self setOperationErrorHandler: ^(NSError *error) {
-//        MCLog(@"Error:%@", error);
-//        weakSelf.responseHandler(error, nil);
-//    }];
-//    
-//    [self postData:params toPath:path];
+    
+    __block __weak ApplePayOperation *weakSelf = self;
+    
+    [self setOperationSuccessHandler: ^(NSDictionary *response) {
+        weakSelf.responseHandler(nil, response);
+    }];
+    
+    [self setOperationErrorHandler:^(NSError *error) {
+        MCLog(@"Error:%@", error);
+        weakSelf.responseHandler(error, nil);
+    }];
+    
+    [self postData: self.parameterDictionary
+            toPath: path];
 }
 
 

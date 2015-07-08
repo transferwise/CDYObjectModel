@@ -7,7 +7,6 @@
 //
 
 #import "ApplePayHelper.h"
-#import "ApplePayOperation.h"
 #import "BusinessProfile.h"
 #import "Currency.h"
 #import "Payment.h"
@@ -189,19 +188,17 @@
 
 - (void) sendToken: (PKPaymentToken *) paymentToken
       forPaymentId: (NSString *) paymentId
+   responseHandler: (ApplePayTokenResponseBlock) responseHandler
 {
     // Create additionalData section
     NSData *paymentData = paymentToken.paymentData;
     NSString *tokenB64 = [paymentData base64EncodedStringWithOptions: 0];
 
-    // Now create the parameter dictionary
-    NSDictionary* parameterDictionary = @{@"paymentId" : paymentId,
-                                          @"paymentToken" : tokenB64};
-    
     // Now create the network operation
     // + (ApplePayTokenOperation *) applePayOperationWithToken: (NSData *) token;
     
-    self.applePayOperation = [ApplePayOperation applePayOperationWithParameterDictionary: parameterDictionary];
+    self.applePayOperation = [ApplePayOperation applePayOperationWithPaymentId: paymentId
+                                                                      andToken: tokenB64];
     
     __weak typeof(self) weakSelf = self;
     
@@ -218,4 +215,42 @@
 
 }
 
+/*
+
+[loginOperation setResponseHandler:^(NSError *error, NSDictionary *response) {
+    if (!error)
+    {
+        [objectModel performBlock:^{
+            NSString *token = response[@"token"];
+            [weakSelf logUserIn:token
+                          email:email
+                   successBlock:^{
+                       if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
+                       {
+                           CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
+                               successBlock();
+                           }];
+                           [prompt presentOnViewController:touchIdHost];
+                       }
+                       else
+                       {
+                           successBlock();
+                       }
+                       
+                   }
+                            hud:hud
+                    objectModel:objectModel
+       waitForDetailsCompletion:waitForDetailsCompletion
+            isOAuthRegistration:NO];
+        }];
+        return;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [hud hide];
+        errorBlock(error);
+    });
+}];
+
+*/
 @end

@@ -17,7 +17,8 @@ typedef void (^ApplePayTokenResponseBlock)(NSError *error, NSDictionary *result)
 @property (nonatomic, copy) ApplePayTokenResponseBlock responseHandler;
 
 // Factory
-+ (ApplePayOperation *) applePayOperationWithParameterDictionary: (NSDictionary *) parameterDictionary;
++ (instancetype) applePayOperationWithPaymentId: (NSString *) paymentId
+                                       andToken: (NSString *) token;
 
 @end
 

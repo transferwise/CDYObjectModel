@@ -8,6 +8,7 @@
 //  Helper for Apple pay, keeping all of the tricky code out of the view controller
 
 @import Foundation;
+#import "ApplePayOperation.h"
 
 // Forward class declarations
 @class Payment;
@@ -29,6 +30,7 @@
                                                                  delegate: (UIViewController<PKPaymentAuthorizationViewControllerDelegate> *) delegate;
 
 - (void) sendToken: (PKPaymentToken *) paymentToken
-      forPaymentId: (NSString *) paymentId;
+      forPaymentId: (NSString *) paymentId
+   responseHandler: (ApplePayTokenResponseBlock) responseHandler;
 
 @end
