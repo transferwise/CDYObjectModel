@@ -12,7 +12,7 @@
 
 @protocol ApplePayCellDelegate <NSObject>
 
--(void)actionButtonTappedOnCell:(ApplePayCell*)cell;
+-(void)payButtonTappedOnCell:(ApplePayCell*)cell;
 
 @end
 

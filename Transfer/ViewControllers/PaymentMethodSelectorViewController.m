@@ -18,15 +18,17 @@
 #import "PaymentMethodSelectorViewController.h"
 #import "TransferBackButtonItem.h"
 #import "UploadMoneyViewController.h"
+#import "ApplePayCell.h"
 @import PassKit;
 
 #define PaymentMethodCellName @"PaymentMethodCell"
+#define ApplePayCellName @"ApplePayCell"
 
-@interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate, PKPaymentAuthorizationViewControllerDelegate>
+#define APPLE_PAY @"APPLE_PAY"
+
+@interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate, ApplePayCellDelegate, PKPaymentAuthorizationViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-@property (weak, nonatomic) IBOutlet UIView *applePayView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *applePayViewHeightContraint;
 
 @property (nonatomic) NSArray* sortedPayInMethods;
 
@@ -40,50 +42,30 @@
 {
     [super viewDidLoad];
     
-    CGFloat applePayViewHeight = 0.0;
-    
-    // If we support Apple pay (iOS 8 and above) then we will need to display the button at the bottom of the screen
-    if ([ApplePayHelper isApplePayAvailableForPayment: self.payment])
-    {
-        // Pay is available
-        // Retain the view height
-        applePayViewHeight = self.applePayViewHeightContraint.constant;
-        
-        // Now create out custom button and center it in the applePayView
-        UIButton *applePayButton = [PKPaymentButton buttonWithType: PKPaymentButtonTypeBuy style: PKPaymentButtonStyleWhiteOutline];
-        [applePayButton addTarget: self action: @selector(userTouchedApplePayButton:) forControlEvents: UIControlEventTouchUpInside];
-
-        // Hideous nonsense to ensure that button is centered correctly
-        [applePayButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.applePayView addSubview: applePayButton];
-        
-        NSLayoutConstraint* cn = [NSLayoutConstraint constraintWithItem: applePayButton
-                                                              attribute: NSLayoutAttributeCenterX
-                                                              relatedBy: NSLayoutRelationEqual
-                                                                 toItem: self.applePayView
-                                                              attribute: NSLayoutAttributeCenterX
-                                                             multiplier: 1.0
-                                                               constant: 0];
-        [self.view addConstraint: cn];
-        cn = [NSLayoutConstraint constraintWithItem: applePayButton
-                                          attribute: NSLayoutAttributeCenterY
-                                          relatedBy: NSLayoutRelationEqual
-                                             toItem: self.applePayView
-                                          attribute: NSLayoutAttributeCenterY
-                                         multiplier: 1.0
-                                           constant: 0];
-        [self.view addConstraint: cn];
-    }
-    
-    // Hide the Pay view if required
-    self.applePayViewHeightContraint.constant = applePayViewHeight;
-    
-    UINib *nib = [UINib nibWithNibName:PaymentMethodCellName bundle:[NSBundle mainBundle]];
-    [self.tableview registerNib:nib forCellReuseIdentifier:PaymentMethodCellName];
+    [self.tableview registerNib:[UINib nibWithNibName:PaymentMethodCellName
+											   bundle:[NSBundle mainBundle]]
+		 forCellReuseIdentifier:PaymentMethodCellName];
+	[self.tableview registerNib:[UINib nibWithNibName:ApplePayCellName
+											   bundle:[NSBundle mainBundle]]
+		 forCellReuseIdentifier:ApplePayCellName];
+	
     [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];
+	
+	
 	self.sortedPayInMethods = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
 			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type]integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type] integerValue];
 	}];
+	
+	if ([ApplePayHelper isApplePayAvailableForPayment: self.payment])
+	{
+		NSMutableArray *payInMethods = [[NSMutableArray alloc] initWithCapacity:self.sortedPayInMethods.count + 1];
+		[payInMethods addObjectsFromArray:self.sortedPayInMethods];
+		
+		[payInMethods addObject:APPLE_PAY];
+		
+		self.sortedPayInMethods = payInMethods;
+	}
+	
     [[GoogleAnalytics sharedInstance] sendScreen:GAPaymentMethodSelector];
     [[Mixpanel sharedInstance] sendPageView:MPPaymentMethodSelector];
 }
@@ -91,7 +73,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+	
     __weak typeof(self) weakSelf = self;
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
         if(weakSelf.presentingViewController)
@@ -108,21 +90,46 @@
 -(NSInteger)tableView:(UITableView *)tableView
 numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.payment enabledPayInMethods] count];
+    return self.sortedPayInMethods.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
 		cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PaymentMethodCell *cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
-    [cell configureWithPaymentMethod:self.sortedPayInMethods[indexPath.row]
-						fromCurrency:[self.payment sourceCurrency].code];
+	id payInMethod = self.sortedPayInMethods[indexPath.row];
 	
-    MOMBasicStyle * style = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"LightBlue"];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:[style.red floatValue] green:[style.green floatValue] blue:[style.blue floatValue] alpha:(indexPath.row%3)/2.0f];
-    cell.paymentMethodCellDelegate = self;
-	
-    return cell;
+	if ([payInMethod isKindOfClass:[PayInMethod class]])
+	{
+		PaymentMethodCell *cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
+		[cell configureWithPaymentMethod:self.sortedPayInMethods[indexPath.row]
+							fromCurrency:[self.payment sourceCurrency].code];
+		
+		[self setCellBackground:indexPath
+						   cell:cell];
+		cell.paymentMethodCellDelegate = self;
+		
+		return cell;
+	}
+	else
+	{
+		ApplePayCell *cell = (ApplePayCell *)[tableView dequeueReusableCellWithIdentifier:ApplePayCellName];
+		
+		[self setCellBackground:indexPath
+						   cell:cell];
+		cell.applePayCellDelegate = self;
+		
+		return cell;
+	}
+}
+
+- (void)setCellBackground:(NSIndexPath *)indexPath
+					 cell:(UITableViewCell *)cell
+{
+	MOMBasicStyle * style = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"LightBlue"];
+	cell.contentView.backgroundColor = [UIColor colorWithRed:[style.red floatValue]
+													   green:[style.green floatValue]
+														blue:[style.blue floatValue]
+													   alpha:(indexPath.row%3)/2.0f];
 }
 
 -(void)actionButtonTappedOnCell:(PaymentMethodCell *)cell
@@ -148,7 +155,7 @@ numberOfRowsInSection:(NSInteger)section
  *  @param button Button
  */
 
-- (void) userTouchedApplePayButton: (UIButton *) button
+- (void) payButtonTappedOnCell:(ApplePayCell *)cell
 {
     // Create a new helper
     self.applePayHelper = [ApplePayHelper new];
@@ -158,7 +165,8 @@ numberOfRowsInSection:(NSInteger)section
     
     UIViewController *paymentAuthorizationViewController;
     
-    paymentAuthorizationViewController = [self.applePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest delegate: self];
+    paymentAuthorizationViewController = [self.applePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest
+																										delegate: self];
     
     // Check to see if we could create an authorisation controller
     if (!paymentAuthorizationViewController)

@@ -10,7 +10,6 @@
 #import "UIView+SeparatorLine.h"
 #import "NSString+Presentation.h"
 
-
 @interface ApplePayCell ()
 
 @property (weak, nonatomic) IBOutlet UIButton *button;
@@ -39,10 +38,11 @@
 	self.descriptionLabel.text = [NSString localizedStringForKey:@"payment.method.description.apple.pay" withFallback:nil];
 }
 
-- (IBAction)actionButtonTapped:(id)sender {
-    if([self.applePayCellDelegate respondsToSelector:@selector(actionButtonTappedOnCell:)])
+- (IBAction)actionButtonTapped:(id)sender
+{
+    if([self.applePayCellDelegate respondsToSelector:@selector(payButtonTappedOnCell:)])
     {
-        [self.applePayCellDelegate actionButtonTappedOnCell:self];
+        [self.applePayCellDelegate payButtonTappedOnCell:self];
     }
 }
 @end
