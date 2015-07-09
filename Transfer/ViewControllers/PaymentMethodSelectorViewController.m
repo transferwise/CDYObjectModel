@@ -82,7 +82,7 @@
     [self.tableview registerNib:nib forCellReuseIdentifier:PaymentMethodCellName];
     [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];
 	self.sortedPayInMethods = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
-			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type]integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type]integerValue];
+			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type]integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type] integerValue];
 	}];
     [[GoogleAnalytics sharedInstance] sendScreen:GAPaymentMethodSelector];
     [[Mixpanel sharedInstance] sendPageView:MPPaymentMethodSelector];
@@ -105,23 +105,28 @@
     }]];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)tableView:(UITableView *)tableView
+numberOfRowsInSection:(NSInteger)section
 {
     return [[self.payment enabledPayInMethods] count];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView
+		cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PaymentMethodCell *cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
     [cell configureWithPaymentMethod:self.sortedPayInMethods[indexPath.row]
 						fromCurrency:[self.payment sourceCurrency].code];
+	
     MOMBasicStyle * style = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"LightBlue"];
     cell.contentView.backgroundColor = [UIColor colorWithRed:[style.red floatValue] green:[style.green floatValue] blue:[style.blue floatValue] alpha:(indexPath.row%3)/2.0f];
     cell.paymentMethodCellDelegate = self;
+	
     return cell;
 }
 
--(void)actionButtonTappedOnCell:(PaymentMethodCell *)cell withMethod:(PayInMethod *)method
+-(void)actionButtonTappedOnCell:(PaymentMethodCell *)cell
+					 withMethod:(PayInMethod *)method
 {
     UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
     controller.objectModel = self.objectModel;

@@ -7,8 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentMethodSelectorViewController">
             <connections>
-                <outlet property="applePayView" destination="3ck-bB-F5g" id="riP-fj-wci"/>
-                <outlet property="applePayViewHeightContraint" destination="qbA-ch-teG" id="uuY-n9-P3g"/>
                 <outlet property="tableview" destination="mHZ-Gv-Sz6" id="4aY-QS-blK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,29 +17,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="130" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mHZ-Gv-Sz6">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="yUe-Cc-6U7"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ck-bB-F5g" userLabel="Apple Pay View">
-                    <rect key="frame" x="0.0" y="500" width="600" height="100"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="100" id="qbA-ch-teG"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="3ck-bB-F5g" secondAttribute="bottom" id="CmL-f7-T5y"/>
+                <constraint firstAttribute="bottom" secondItem="mHZ-Gv-Sz6" secondAttribute="bottom" id="B7Q-db-bDo"/>
                 <constraint firstAttribute="bottom" secondItem="mHZ-Gv-Sz6" secondAttribute="bottom" id="IkW-v2-hAI"/>
-                <constraint firstAttribute="trailing" secondItem="3ck-bB-F5g" secondAttribute="trailing" id="KWP-5Z-0jB"/>
-                <constraint firstItem="3ck-bB-F5g" firstAttribute="top" secondItem="mHZ-Gv-Sz6" secondAttribute="bottom" id="SvT-wx-1hr"/>
                 <constraint firstItem="mHZ-Gv-Sz6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Yce-ca-lrO"/>
                 <constraint firstItem="mHZ-Gv-Sz6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aNl-wT-IsY"/>
-                <constraint firstItem="3ck-bB-F5g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eRj-nB-KDJ"/>
                 <constraint firstAttribute="trailing" secondItem="mHZ-Gv-Sz6" secondAttribute="trailing" id="y0y-DC-Q2I"/>
             </constraints>
             <variation key="default">

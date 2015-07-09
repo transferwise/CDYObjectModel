@@ -954,6 +954,12 @@
 		38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
+		4705C2341B4E54900041AEDF /* ApplePayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4705C2321B4E54900041AEDF /* ApplePayCell.m */; };
+		4705C2351B4E54900041AEDF /* ApplePayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4705C2321B4E54900041AEDF /* ApplePayCell.m */; };
+		4705C2361B4E54900041AEDF /* ApplePayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4705C2321B4E54900041AEDF /* ApplePayCell.m */; };
+		4705C2371B4E54900041AEDF /* ApplePayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4705C2331B4E54900041AEDF /* ApplePayCell.xib */; };
+		4705C2381B4E54900041AEDF /* ApplePayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4705C2331B4E54900041AEDF /* ApplePayCell.xib */; };
+		4705C2391B4E54900041AEDF /* ApplePayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4705C2331B4E54900041AEDF /* ApplePayCell.xib */; };
 		470B112D1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
 		470B112E1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
 		470B112F1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
@@ -2021,6 +2027,9 @@
 		38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Customisation.h"; sourceTree = "<group>"; };
 		38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Customisation.m"; sourceTree = "<group>"; };
 		38FC441D1B1735CB007AD45B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4705C2311B4E54900041AEDF /* ApplePayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayCell.h; sourceTree = "<group>"; };
+		4705C2321B4E54900041AEDF /* ApplePayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayCell.m; sourceTree = "<group>"; };
+		4705C2331B4E54900041AEDF /* ApplePayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplePayCell.xib; sourceTree = "<group>"; };
 		470B112B1ADBB682008729E9 /* PushNotificationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationsHelper.h; sourceTree = "<group>"; };
 		470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationsHelper.m; sourceTree = "<group>"; };
 		470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v10.xcdatamodel; sourceTree = "<group>"; };
@@ -3346,6 +3355,9 @@
 		EA13E033171BE0E50019FBF0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4705C2311B4E54900041AEDF /* ApplePayCell.h */,
+				4705C2321B4E54900041AEDF /* ApplePayCell.m */,
+				4705C2331B4E54900041AEDF /* ApplePayCell.xib */,
 				EAD66757174A51B900D29BCB /* ButtonCell.h */,
 				EAD66758174A51B900D29BCB /* ButtonCell.m */,
 				EAD6675A174A51C700D29BCB /* ButtonCell.xib */,
@@ -4277,6 +4289,7 @@
 				388E5B3B1A5A949500AF6EB9 /* IntroView~ipad.xib in Resources */,
 				381EF88F1A79251F00485C7F /* TwoFieldPresentationCell~ipad.xib in Resources */,
 				388E5B3C1A5A949500AF6EB9 /* RecipientCell.xib in Resources */,
+				4705C2391B4E54900041AEDF /* ApplePayCell.xib in Resources */,
 				388E5B3D1A5A949500AF6EB9 /* SettingsViewController.xib in Resources */,
 				388E5B3E1A5A949500AF6EB9 /* Assets.xcassets in Resources */,
 				388E5B3F1A5A949500AF6EB9 /* SuggestionCell.xib in Resources */,
@@ -4417,6 +4430,7 @@
 				471DBFF01ACD426800DC133C /* OAuthViewController.xib in Resources */,
 				47C4D0521A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				47F84D6E198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
+				4705C2381B4E54900041AEDF /* ApplePayCell.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				3840862E19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */,
 				383842D51B1DB7A100FA2B7A /* SettingsSwitchCell~ipad.xib in Resources */,
@@ -4588,6 +4602,7 @@
 				471DBFEF1ACD40E100DC133C /* OAuthViewController.xib in Resources */,
 				47C4D0511A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
+				4705C2371B4E54900041AEDF /* ApplePayCell.xib in Resources */,
 				385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
 				383842D41B1DB7A100FA2B7A /* SettingsSwitchCell~ipad.xib in Resources */,
@@ -5212,6 +5227,7 @@
 				388B6DAE1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				388E5A9A1A5A949500AF6EB9 /* ImageColoredButton.m in Sources */,
 				4777C0C01AF7A2940042721F /* NSString+NullString.m in Sources */,
+				4705C2361B4E54900041AEDF /* ApplePayCell.m in Sources */,
 				388E5A9B1A5A949500AF6EB9 /* PersonalPaymentProfileViewController.m in Sources */,
 				388E5A9C1A5A949500AF6EB9 /* Payment.m in Sources */,
 				388E5A9D1A5A949500AF6EB9 /* LightBlueButton.m in Sources */,
@@ -5674,6 +5690,7 @@
 				4731F65F1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */,
 				38705C681A7BDD5F002EB14B /* CopyLabel.m in Sources */,
 				4740A7811A8B9A1F0044F0CD /* _MfaField.m in Sources */,
+				4705C2351B4E54900041AEDF /* ApplePayCell.m in Sources */,
 				3859E7AF1A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
@@ -6023,6 +6040,7 @@
 				4731F65E1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
+				4705C2341B4E54900041AEDF /* ApplePayCell.m in Sources */,
 				383FC0FC19AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */,
