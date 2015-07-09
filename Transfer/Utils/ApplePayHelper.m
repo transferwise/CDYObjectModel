@@ -16,7 +16,7 @@
 @import PassKit;
 
 #define kMinimumOSVersionForApplePay 8.1
-#define  kMinimumOSVersionForApplePayInSimulator 9.0
+#define kMinimumOSVersionForApplePayInSimulator 9.0
 
 @interface ApplePayHelper ()
 
@@ -137,11 +137,7 @@
     
     request.countryCode = [self countryCodeForPayment: payment];
     request.currencyCode = payment.sourceCurrency.code;  // ISO 4217 currency code
-    
-#if DEBUG
-    request.currencyCode = @"USD";
-    request.countryCode = @"US";
-#endif
+	
     // Convert our payment account from a string to an NSDecimalNumber (required for accuracy reasons)
     NSString *paymentAmountString = [payment payInStringNoSpaces];
     NSDecimalNumber *totalAmount = [NSDecimalNumber decimalNumberWithString: paymentAmountString];
@@ -166,22 +162,22 @@
 {
     UIViewController *paymentAuthorizationViewController;
     
-#if DEBUG
-    if (([UIDevice.currentDevice.systemVersion floatValue] >= kMinimumOSVersionForApplePayInSimulator))
-    {
-        paymentAuthorizationViewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
-        ((PKPaymentAuthorizationViewController *)paymentAuthorizationViewController).delegate = delegate;
-    }
-    else
-    {
-        paymentAuthorizationViewController = [[STPTestPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
-        ((STPTestPaymentAuthorizationViewController *)paymentAuthorizationViewController).delegate = delegate;
-    }
-#else
+//#if DEBUG
+//    if (([UIDevice.currentDevice.systemVersion floatValue] >= kMinimumOSVersionForApplePayInSimulator))
+//    {
+//        paymentAuthorizationViewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
+//        ((PKPaymentAuthorizationViewController *)paymentAuthorizationViewController).delegate = delegate;
+//    }
+//    else
+//    {
+//        paymentAuthorizationViewController = [[STPTestPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
+//        ((STPTestPaymentAuthorizationViewController *)paymentAuthorizationViewController).delegate = delegate;
+//    }
+//#else
     paymentAuthorizationViewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
     ((PKPaymentAuthorizationViewController *)paymentAuthorizationViewController).delegate = delegate;
-#endif
-    
+//#endif
+	
     return paymentAuthorizationViewController;
 }
 
@@ -191,12 +187,7 @@
    responseHandler: (ApplePayTokenResponseBlock) responseHandler
 {
     // Create additionalData section
-    NSData *paymentData = paymentToken.paymentData;
-    
-    #warning "For test only, remove"
-    NSString *s = @"randomstuff";
-    paymentData = [s dataUsingEncoding:NSUTF8StringEncoding];
-    
+    NSData *paymentData = paymentToken.paymentData;    
     NSString *tokenB64 = [paymentData base64EncodedStringWithOptions: 0];
 
     // Now create the network operation
@@ -211,43 +202,4 @@
     [self.applePayOperation execute];
 
 }
-
-/*
-
-[loginOperation setResponseHandler:^(NSError *error, NSDictionary *response) {
-    if (!error)
-    {
-        [objectModel performBlock:^{
-            NSString *token = response[@"token"];
-            [weakSelf logUserIn:token
-                          email:email
-                   successBlock:^{
-                       if(touchIdHost && [TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:email])
-                       {
-                           CustomInfoViewController* prompt = [TouchIDHelper touchIdCustomInfoWithUsername:email password:password completionBlock:^{
-                               successBlock();
-                           }];
-                           [prompt presentOnViewController:touchIdHost];
-                       }
-                       else
-                       {
-                           successBlock();
-                       }
-                       
-                   }
-                            hud:hud
-                    objectModel:objectModel
-       waitForDetailsCompletion:waitForDetailsCompletion
-            isOAuthRegistration:NO];
-        }];
-        return;
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [hud hide];
-        errorBlock(error);
-    });
-}];
-
-*/
 @end
