@@ -24,7 +24,11 @@
 								   font:(UIFont *)font
 								  color:(UIColor *)color
 {
-	if (YES)
+	BOOL isUS = [@"usa" caseInsensitiveCompare:countryCode] == NSOrderedSame || [@"us" caseInsensitiveCompare:countryCode] == NSOrderedSame;
+	BOOL isAU = [@"aus" caseInsensitiveCompare:countryCode] == NSOrderedSame || [@"au" caseInsensitiveCompare:countryCode] == NSOrderedSame;
+	
+	if (([@"usd" caseInsensitiveCompare:currencyCode] == NSOrderedSame && isUS)
+		|| ([@"aud" caseInsensitiveCompare:currencyCode] == NSOrderedSame && isAU))
 	{
 		self.executedOperation = [TermsOperation operationWithSourceCurrency:currencyCode
 																	 country:countryCode
