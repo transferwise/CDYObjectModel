@@ -69,10 +69,7 @@
         objc_setAssociatedObject(controller, @selector(presentCustomInfoWithSuccess:controller:messageKey:), operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [operation setObjectModel:objectModel];
         [operation setResultHandler:^(NSError *error) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-            //});
-            //dispatch_async(dispatch_get_main_queue(), ^{
+           dispatch_async(dispatch_get_main_queue(), ^{
                 objc_setAssociatedObject(controller, @selector(presentCustomInfoWithSuccess:controller:messageKey:), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
                 
                 if (!error) {
