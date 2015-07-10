@@ -42,10 +42,17 @@
 #import "MixpanelIdentityHelper.h"
 #import "NSString+DeducedId.h"
 
-@interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
+#import "TAGManager.h"
+#import "TAGContainer.h"
+#import "TAGContainerOpener.h"
+
+@interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable, TAGContainerOpenerNotifier, TAGContainerCallback>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) id<PushNotificationsProvider> notificationHelper;
+
+@property (nonatomic, strong) TAGManager *tagManager;
+@property (nonatomic, strong) TAGContainer *container;
 
 @end
 
@@ -208,6 +215,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [[TransferwiseClient sharedClient] updateBaseData];
     
     [self.notificationHelper registerForPushNotifications:YES];
+    
+    //Refresh GTM data
+    [self.container refresh];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -257,8 +267,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [tracker setDebug:YES];
 #endif
 	[tracker initEventTracker:TRWImpactRadiusAppId username:TRWImpactRadiusSID password:TRWImpactRadiusToken];
-    
-    
+
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSString *lastInstalledVersion = [defaults stringForKey:TRWAppInstalledSettingsKey];
     NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
@@ -276,6 +285,16 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     }
     
 #endif
+    
+    //GTM - enable/disable apple pay
+    
+    self.tagManager = [TAGManager instance];
+    [TAGContainerOpener openContainerWithId:@"GTM-TDZF76"
+                                 tagManager:self.tagManager
+                                   openType:kTAGOpenTypePreferFresh
+                                    timeout:nil
+                                   notifier:self];
+    
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -432,6 +451,42 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     [ReferralsCoordinator handleReferralParameters:metaData];
 }
+
+#pragma mark - GTM
+
+-(void)containerAvailable:(TAGContainer *)container
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* containerID = container.containerId;
+        //There's apparently no way of setting a callback delegate after opening a container, so we have to close it and re-open it.
+        [container close];
+        self.container = [self.tagManager openContainerById:containerID callback:self];
+        [self updateApplePayWithContainer:self.container];
+    });
+}
+
+-(void)containerRefreshBegin:(TAGContainer *)container refreshType:(TAGContainerCallbackRefreshType)refreshType
+{
+    //NOP
+}
+
+-(void)containerRefreshFailure:(TAGContainer *)container failure:(TAGContainerCallbackRefreshFailure)failure refreshType:(TAGContainerCallbackRefreshType)refreshType
+{
+    //NOP
+}
+
+-(void)containerRefreshSuccess:(TAGContainer *)container refreshType:(TAGContainerCallbackRefreshType)refreshType
+{
+    [self updateApplePayWithContainer:container];
+}
+
+-(void)updateApplePayWithContainer:(TAGContainer *)container
+{
+    BOOL disableApplePay = [container booleanForKey:TRWDisableApplePay];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:disableApplePay forKey:TRWDisableApplePay];
+}
+
 
 
 
