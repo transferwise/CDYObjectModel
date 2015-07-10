@@ -555,6 +555,7 @@ Payment #%@";
 "payment.method.SWIFT.USD" = "SWIFT";
 "payment.method.ACH" = "Bank debit (ACH)";
 "payment.method.ACH.USD" = "Bank debit (ACH)";
+"payment.method.BANKGIRO" = "Bankgiro";
 
 "payment.method.title.DATA_CASH" = "Pay by debit card";
 "payment.method.title.REGULAR" = "Pay by bank transfer";
@@ -564,6 +565,7 @@ Payment #%@";
 "payment.method.title.SWIFT.USD" = "Pay by SWIFT Transfer";
 "payment.method.title.ACH" = "Pay by direct debit";
 "payment.method.title.ACH.USD" = "Pay by direct debit";
+"payment.method.title.BANKGIRO" = "Pay by Bankgiro";
 
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.REGULAR" = "You transfer us the money via a \n wire transfer and we do the rest.";
@@ -571,6 +573,8 @@ Payment #%@";
 "payment.method.description.SWIFT" = "If your USD account is not in the US, please use this option.";
 "payment.method.description.ACH" = "Directly withdraw money\n from your USD account.";
 "payment.method.description.apple.pay" = "Pay using your Apple Pay wallet.";
+"payment.method.description.BANKGIRO" = "Just like paying a bill.";
+
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";
 "support.sheet.call" = "Give us a call";
