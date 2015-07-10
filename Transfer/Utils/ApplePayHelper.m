@@ -116,8 +116,20 @@
     {
         countryCode = payment.user.personalProfile.countryCode;
     }
-    
-    return countryCode;
+	
+	//ApplePay expects the country code to be ISO2, Payment contains ISO3
+	if ([@"gbr" caseInsensitiveCompare: countryCode] == NSOrderedSame)
+	{
+		return @"GB";
+	}
+	else if ([@"usa" caseInsensitiveCompare: countryCode] == NSOrderedSame)
+	{
+		return @"US";
+	}
+	else
+	{
+		return @"GB";
+	}
 }
 
 /**
@@ -160,23 +172,13 @@
 - (UIViewController *) createAuthorizationViewControllerForPaymentRequest: (PKPaymentRequest *) paymentRequest
                                                                  delegate: (UIViewController<PKPaymentAuthorizationViewControllerDelegate>*) delegate
 {
-    UIViewController *paymentAuthorizationViewController;
-    
-//#if DEBUG
-//    if (([UIDevice.currentDevice.systemVersion floatValue] >= kMinimumOSVersionForApplePayInSimulator))
-//    {
-//        paymentAuthorizationViewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
-//        ((PKPaymentAuthorizationViewController *)paymentAuthorizationViewController).delegate = delegate;
-//    }
-//    else
-//    {
-//        paymentAuthorizationViewController = [[STPTestPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
-//        ((STPTestPaymentAuthorizationViewController *)paymentAuthorizationViewController).delegate = delegate;
-//    }
-//#else
-    paymentAuthorizationViewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
-    ((PKPaymentAuthorizationViewController *)paymentAuthorizationViewController).delegate = delegate;
-//#endif
+	if (![PKPaymentAuthorizationViewController canMakePayments])
+	{
+		return nil;
+	}
+	
+    PKPaymentAuthorizationViewController *paymentAuthorizationViewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];	
+    paymentAuthorizationViewController.delegate = delegate;
 	
     return paymentAuthorizationViewController;
 }
@@ -191,8 +193,6 @@
     NSString *tokenB64 = [paymentData base64EncodedStringWithOptions: 0];
 
     // Now create the network operation
-    // + (ApplePayTokenOperation *) applePayOperationWithToken: (NSData *) token;
-    
     self.applePayOperation = [ApplePayOperation applePayOperationWithPaymentId: paymentId
                                                                       andToken: tokenB64];
 
