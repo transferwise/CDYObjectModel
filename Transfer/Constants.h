@@ -90,7 +90,7 @@ extern NSString *const TRWStateSpecificTermsUrl;
 extern NSString *const TRWDeeplinkScheme;
 
 
-void delayedExecution(CGFloat seconds, TRWActionBlock action);
+void delayedExecution(NSTimeInterval seconds, TRWActionBlock action);
 
 static NSUInteger const TransferwiseAppID = 612261027;
 
