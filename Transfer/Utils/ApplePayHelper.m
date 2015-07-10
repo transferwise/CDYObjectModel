@@ -11,7 +11,6 @@
 #import "Currency.h"
 #import "Payment.h"
 #import "PersonalProfile.h"
-#import "STPTestPaymentAuthorizationViewController.h"
 #import "User.h"
 @import PassKit;
 

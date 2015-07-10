@@ -22,27 +22,6 @@
 		0149B4581B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */; };
 		0149B4591B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */; };
 		0149B45A1B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */; };
-		0149B46A1B4AC51400D97E00 /* STPTestAddressStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B45D1B4AC51400D97E00 /* STPTestAddressStore.m */; };
-		0149B46B1B4AC51400D97E00 /* STPTestAddressStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B45D1B4AC51400D97E00 /* STPTestAddressStore.m */; };
-		0149B46C1B4AC51400D97E00 /* STPTestAddressStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B45D1B4AC51400D97E00 /* STPTestAddressStore.m */; };
-		0149B46D1B4AC51400D97E00 /* STPTestCardStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B45F1B4AC51400D97E00 /* STPTestCardStore.m */; };
-		0149B46E1B4AC51400D97E00 /* STPTestCardStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B45F1B4AC51400D97E00 /* STPTestCardStore.m */; };
-		0149B46F1B4AC51400D97E00 /* STPTestCardStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B45F1B4AC51400D97E00 /* STPTestCardStore.m */; };
-		0149B4701B4AC51400D97E00 /* STPTestDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4621B4AC51400D97E00 /* STPTestDataTableViewController.m */; };
-		0149B4711B4AC51400D97E00 /* STPTestDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4621B4AC51400D97E00 /* STPTestDataTableViewController.m */; };
-		0149B4721B4AC51400D97E00 /* STPTestDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4621B4AC51400D97E00 /* STPTestDataTableViewController.m */; };
-		0149B4731B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4641B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m */; };
-		0149B4741B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4641B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m */; };
-		0149B4751B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4641B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m */; };
-		0149B4761B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4661B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m */; };
-		0149B4771B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4661B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m */; };
-		0149B4781B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4661B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m */; };
-		0149B4791B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0149B4671B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib */; };
-		0149B47A1B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0149B4671B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib */; };
-		0149B47B1B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0149B4671B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib */; };
-		0149B47C1B4AC51400D97E00 /* STPTestShippingMethodStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */; };
-		0149B47D1B4AC51400D97E00 /* STPTestShippingMethodStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */; };
-		0149B47E1B4AC51400D97E00 /* STPTestShippingMethodStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */; };
 		0156BA951B417CD500175C0D /* BusinessProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA941B417CD500175C0D /* BusinessProfileTests.swift */; };
 		0156BA981B41915000175C0D /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA971B41915000175C0D /* XCTest+Utils.swift */; };
 		01B9C5B61B4D18A400A23A7F /* ApplePayOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */; };
@@ -1639,20 +1618,6 @@
 		0149B4501B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodDisplayHelper.m; sourceTree = "<group>"; };
 		0149B4551B4AA5EF00D97E00 /* ApplePayHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayHelper.h; sourceTree = "<group>"; };
 		0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayHelper.m; sourceTree = "<group>"; };
-		0149B45C1B4AC51400D97E00 /* STPTestAddressStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestAddressStore.h; sourceTree = "<group>"; };
-		0149B45D1B4AC51400D97E00 /* STPTestAddressStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestAddressStore.m; sourceTree = "<group>"; };
-		0149B45E1B4AC51400D97E00 /* STPTestCardStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestCardStore.h; sourceTree = "<group>"; };
-		0149B45F1B4AC51400D97E00 /* STPTestCardStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestCardStore.m; sourceTree = "<group>"; };
-		0149B4601B4AC51400D97E00 /* STPTestDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestDataStore.h; sourceTree = "<group>"; };
-		0149B4611B4AC51400D97E00 /* STPTestDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestDataTableViewController.h; sourceTree = "<group>"; };
-		0149B4621B4AC51400D97E00 /* STPTestDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestDataTableViewController.m; sourceTree = "<group>"; };
-		0149B4631B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestPaymentAuthorizationViewController.h; sourceTree = "<group>"; };
-		0149B4641B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestPaymentAuthorizationViewController.m; sourceTree = "<group>"; };
-		0149B4651B4AC51400D97E00 /* STPTestPaymentSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestPaymentSummaryViewController.h; sourceTree = "<group>"; };
-		0149B4661B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestPaymentSummaryViewController.m; sourceTree = "<group>"; };
-		0149B4671B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STPTestPaymentSummaryViewController.xib; sourceTree = "<group>"; };
-		0149B4681B4AC51400D97E00 /* STPTestShippingMethodStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPTestShippingMethodStore.h; sourceTree = "<group>"; };
-		0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPTestShippingMethodStore.m; sourceTree = "<group>"; };
 		0156BA941B417CD500175C0D /* BusinessProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessProfileTests.swift; sourceTree = "<group>"; };
 		0156BA971B41915000175C0D /* XCTest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Utils.swift"; sourceTree = "<group>"; };
 		01B9C5B41B4D18A400A23A7F /* ApplePayOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayOperation.h; sourceTree = "<group>"; };
@@ -2750,27 +2715,6 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
-		0149B45B1B4AC42100D97E00 /* Stripe ApplePay Stubs */ = {
-			isa = PBXGroup;
-			children = (
-				0149B45C1B4AC51400D97E00 /* STPTestAddressStore.h */,
-				0149B45D1B4AC51400D97E00 /* STPTestAddressStore.m */,
-				0149B45E1B4AC51400D97E00 /* STPTestCardStore.h */,
-				0149B45F1B4AC51400D97E00 /* STPTestCardStore.m */,
-				0149B4601B4AC51400D97E00 /* STPTestDataStore.h */,
-				0149B4611B4AC51400D97E00 /* STPTestDataTableViewController.h */,
-				0149B4621B4AC51400D97E00 /* STPTestDataTableViewController.m */,
-				0149B4631B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.h */,
-				0149B4641B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m */,
-				0149B4651B4AC51400D97E00 /* STPTestPaymentSummaryViewController.h */,
-				0149B4661B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m */,
-				0149B4671B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib */,
-				0149B4681B4AC51400D97E00 /* STPTestShippingMethodStore.h */,
-				0149B4691B4AC51400D97E00 /* STPTestShippingMethodStore.m */,
-			);
-			name = "Stripe ApplePay Stubs";
-			sourceTree = "<group>";
-		};
 		0156BA931B41680100175C0D /* Regression */ = {
 			isa = PBXGroup;
 			children = (
@@ -3629,7 +3573,6 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
-				0149B45B1B4AC42100D97E00 /* Stripe ApplePay Stubs */,
 				389B599B1AF2892000A0A60C /* Yozio */,
 				380579AA1A1A5C65005E94DD /* GoogleAnalyticsServicesiOS_3.10 */,
 				38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */,
@@ -4332,7 +4275,6 @@
 				388E5B521A5A949500AF6EB9 /* SeeHowViewController.xib in Resources */,
 				388E5B531A5A949500AF6EB9 /* IntroViewController.xib in Resources */,
 				388E5B541A5A949500AF6EB9 /* CurrencyCell.xib in Resources */,
-				0149B47B1B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib in Resources */,
 				388E5B551A5A949500AF6EB9 /* NameSuggestionCell.xib in Resources */,
 				383842D31B1DB7A100FA2B7A /* SettingsSwitchCell.xib in Resources */,
 				388E5B561A5A949500AF6EB9 /* TSAlertViewButtonBackground.png in Resources */,
@@ -4489,7 +4431,6 @@
 				38CC81A91A1E36A2007D965A /* ACHCheckView.xib in Resources */,
 				3863B82219E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				012B78F31B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib in Resources */,
-				0149B47A1B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				4751220A1A920B3900CC22F7 /* CaptchaCell.xib in Resources */,
@@ -4661,7 +4602,6 @@
 				38CC81A81A1E36A2007D965A /* ACHCheckView.xib in Resources */,
 				3863B82119E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				012B78F21B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib in Resources */,
-				0149B4791B4AC51400D97E00 /* STPTestPaymentSummaryViewController.xib in Resources */,
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
 				3840863419A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
 				475122091A920B3900CC22F7 /* CaptchaCell.xib in Resources */,
@@ -5014,7 +4954,6 @@
 			files = (
 				47F346D71AF89F6B00F780ED /* AdditionalAttribute.m in Sources */,
 				47F346D81AF89F6B00F780ED /* _AdditionalAttribute.m in Sources */,
-				0149B46C1B4AC51400D97E00 /* STPTestAddressStore.m in Sources */,
 				388E59CB1A5A949500AF6EB9 /* InsetRespectingButton.m in Sources */,
 				388E59CC1A5A949500AF6EB9 /* TransferDetialsHeaderView.m in Sources */,
 				388E59CD1A5A949500AF6EB9 /* TransferDetailsViewController.m in Sources */,
@@ -5063,14 +5002,12 @@
 				388E59F61A5A949500AF6EB9 /* TRWAlertView.m in Sources */,
 				388E59F71A5A949500AF6EB9 /* InvitationProgressIndicatorView.m in Sources */,
 				388E59F81A5A949500AF6EB9 /* TRWProgressHUD.m in Sources */,
-				0149B4751B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m in Sources */,
 				388E59F91A5A949500AF6EB9 /* UIViewController+SwitchToViewController.m in Sources */,
 				471DBFF31ACD426E00DC133C /* OAuthViewController.m in Sources */,
 				388E59FA1A5A949500AF6EB9 /* ValidatorFactory.m in Sources */,
 				388E59FB1A5A949500AF6EB9 /* TransferwiseOperation.m in Sources */,
 				388E59FC1A5A949500AF6EB9 /* LoginOperation.m in Sources */,
 				388E59FD1A5A949500AF6EB9 /* ReferralLink.m in Sources */,
-				0149B4781B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m in Sources */,
 				388E59FE1A5A949500AF6EB9 /* TabCell.m in Sources */,
 				388E59FF1A5A949500AF6EB9 /* RecipientsFooterView.m in Sources */,
 				388E5A001A5A949500AF6EB9 /* OptionalSplitViewController.m in Sources */,
@@ -5081,7 +5018,6 @@
 				38DDC2341B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */,
 				388E5A051A5A949500AF6EB9 /* GrayButton.m in Sources */,
 				388E5A061A5A949500AF6EB9 /* InvitationsViewController.m in Sources */,
-				0149B4721B4AC51400D97E00 /* STPTestDataTableViewController.m in Sources */,
 				388E5A071A5A949500AF6EB9 /* RecipientCell.m in Sources */,
 				388E5A081A5A949500AF6EB9 /* DoublePasswordEntryCell.m in Sources */,
 				388E5A091A5A949500AF6EB9 /* _PaymentMadeIndicator.m in Sources */,
@@ -5209,7 +5145,6 @@
 				388E5A7C1A5A949500AF6EB9 /* PersonalProfileValidator.m in Sources */,
 				4740A7871A8B9A7C0044F0CD /* MfaField.m in Sources */,
 				388E5A7D1A5A949500AF6EB9 /* VerificationRequiredOperation.m in Sources */,
-				0149B47E1B4AC51400D97E00 /* STPTestShippingMethodStore.m in Sources */,
 				47852D6C1B0F206E0028E11A /* FacebookHelper.m in Sources */,
 				388E5A7E1A5A949500AF6EB9 /* UIGestureRecognizer+Cancel.m in Sources */,
 				388E5A7F1A5A949500AF6EB9 /* UploadVerificationFileOperation.m in Sources */,
@@ -5305,7 +5240,6 @@
 				388E5AD01A5A949500AF6EB9 /* MOMStyleFactory.m in Sources */,
 				388E5AD11A5A949500AF6EB9 /* RoundedButtonWithInsets.m in Sources */,
 				388E5AD21A5A949500AF6EB9 /* PairSourceCurrency.m in Sources */,
-				0149B46F1B4AC51400D97E00 /* STPTestCardStore.m in Sources */,
 				388E5AD31A5A949500AF6EB9 /* ContactDetailsViewController.m in Sources */,
 				388E5AD41A5A949500AF6EB9 /* NSMutableDictionary+SaneData.m in Sources */,
 				388E5AD51A5A949500AF6EB9 /* EmailLookupWrapper.m in Sources */,
@@ -5414,7 +5348,6 @@
 				EA31A12F17DDB29B00F937F7 /* MoneyEntryCell.m in Sources */,
 				389F6848198FC1C6006CF1F6 /* RecipientType.m in Sources */,
 				EA31A13117DDB29B00F937F7 /* UIColor+Theme.m in Sources */,
-				0149B4771B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m in Sources */,
 				389F6820198FC1C6006CF1F6 /* Currency.m in Sources */,
 				47FD9FF41A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */,
 				380021DC192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
@@ -5436,7 +5369,6 @@
 				38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */,
 				EA31A13817DDB29B00F937F7 /* TRWProgressHUD.m in Sources */,
 				476D78C619B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */,
-				0149B47D1B4AC51400D97E00 /* STPTestShippingMethodStore.m in Sources */,
 				471DBFF21ACD426E00DC133C /* OAuthViewController.m in Sources */,
 				47C1F7501A3F2BC600014F55 /* ValidatorFactory.m in Sources */,
 				EA31A13917DDB29B00F937F7 /* TransferwiseOperation.m in Sources */,
@@ -5557,7 +5489,6 @@
 				383FC0FB19AE1ABC00465FCA /* PersonLookupWrapper.m in Sources */,
 				EA31A16A17DDB29B00F937F7 /* BankTransferViewController.m in Sources */,
 				474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */,
-				0149B4741B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m in Sources */,
 				38DDC2331B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */,
 				EA31A16B17DDB29B00F937F7 /* TextCell.m in Sources */,
 				38CB1F7819ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */,
@@ -5576,7 +5507,6 @@
 				389F681C198FC1C6006CF1F6 /* BusinessProfile.m in Sources */,
 				471CA005197FCB2200BCA3B4 /* TabbedHeaderViewController.m in Sources */,
 				EA31A17017DDB29B00F937F7 /* ButtonCell.m in Sources */,
-				0149B46B1B4AC51400D97E00 /* STPTestAddressStore.m in Sources */,
 				3887CBBF1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
@@ -5587,7 +5517,6 @@
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
 				47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
-				0149B46E1B4AC51400D97E00 /* STPTestCardStore.m in Sources */,
 				389F6832198FC1C6006CF1F6 /* ObjectModel+Settings.m in Sources */,
 				47FAF35C195031E7004CE986 /* BlueButton.m in Sources */,
 				389F680A198FC1C6006CF1F6 /* _PendingPayment.m in Sources */,
@@ -5725,7 +5654,6 @@
 				47C1F7111A3B3F4200014F55 /* ProfileSource.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				470B11391ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */,
-				0149B4711B4AC51400D97E00 /* STPTestDataTableViewController.m in Sources */,
 				47C1F7421A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 				47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
@@ -5766,7 +5694,6 @@
 				389F6847198FC1C6006CF1F6 /* RecipientType.m in Sources */,
 				474D1A9F19518073008BC7A7 /* ColoredButton.m in Sources */,
 				389F681F198FC1C6006CF1F6 /* Currency.m in Sources */,
-				0149B4761B4AC51400D97E00 /* STPTestPaymentSummaryViewController.m in Sources */,
 				EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */,
 				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				470B11331ADCF39E008729E9 /* AddUserDeviceOperation.m in Sources */,
@@ -5788,7 +5715,6 @@
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
 				474A5A931A137EFA0094757B /* ReferralLink.m in Sources */,
-				0149B47C1B4AC51400D97E00 /* STPTestShippingMethodStore.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
 				EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */,
 				47343ACE1977E093009D9C3A /* RecipientsFooterView.m in Sources */,
@@ -5909,7 +5835,6 @@
 				EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */,
 				3840863119A2444000C837C2 /* PaymentCancelOperation.m in Sources */,
 				47FAF34E194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
-				0149B4731B4AC51400D97E00 /* STPTestPaymentAuthorizationViewController.m in Sources */,
 				38DDC2321B300F4D004D6E1E /* BlueRoundedSolidWhiteButton.m in Sources */,
 				471CA004197FCB2200BCA3B4 /* TabbedHeaderViewController.m in Sources */,
 				389F684B198FC1C6006CF1F6 /* Setting.m in Sources */,
@@ -5928,7 +5853,6 @@
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
-				0149B46A1B4AC51400D97E00 /* STPTestAddressStore.m in Sources */,
 				47C4D0441A232AC1005EC7C6 /* AchBank.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
 				380021EF192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
@@ -5939,7 +5863,6 @@
 				389F6809198FC1C6006CF1F6 /* _PendingPayment.m in Sources */,
 				3859E7AE1A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				389F6815198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
-				0149B46D1B4AC51400D97E00 /* STPTestCardStore.m in Sources */,
 				47C1F74B1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
 				477319F31A1B62BB00660770 /* AchDetailsViewController.m in Sources */,
@@ -6077,7 +6000,6 @@
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 				38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */,
-				0149B4701B4AC51400D97E00 /* STPTestDataTableViewController.m in Sources */,
 				38FAE5341ADE569E006CD53C /* CustomInfoViewController+Notifications.m in Sources */,
 				47C1F70E1A3B3F4200014F55 /* PersonalProfileSource.m in Sources */,
 				47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,

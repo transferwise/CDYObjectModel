@@ -7,7 +7,7 @@
 //
 //  Helper for Apple pay, keeping all of the tricky code out of the view controller
 
-@import Foundation;
+@import UIKit;
 #import "ApplePayOperation.h"
 
 // Forward class declarations
