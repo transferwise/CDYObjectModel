@@ -60,12 +60,16 @@
         // We can only currently pay wih Apple pay when using GBP
         if(payment.sourceCurrency.code && [@"gbp" caseInsensitiveCompare: payment.sourceCurrency.code] == NSOrderedSame)
         {
-			//these two checks can return different values
-            if ([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks: self.supportedPaymentNetworks] == YES
-				&& [PKPaymentAuthorizationViewController canMakePayments] == YES)
-			{
-                // Pay is available
-                isAvailable = YES;
+            // Check if ApplePay has been disabled via GTM
+            if(![[NSUserDefaults standardUserDefaults] boolForKey:TRWDisableApplePay])
+            {
+                //these two checks can return different values
+                if ([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks: self.supportedPaymentNetworks] == YES
+                    && [PKPaymentAuthorizationViewController canMakePayments] == YES)
+                {
+                    // Pay is available
+                    isAvailable = YES;
+                }
             }
         }
     }

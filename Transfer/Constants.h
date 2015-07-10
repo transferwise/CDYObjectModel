@@ -67,6 +67,7 @@ extern NSString *const TRWGoogleRevokeUrlFormat;
 extern NSString *const TRWFacebookLoginUsedKey;
 extern NSString *const TRWIntroABKey;
 extern NSString *const TRWDidHighlightInviteSection;
+extern NSString *const TRWDisableApplePay;
 
 
 extern NSString *const TransferSandboxUsername;
