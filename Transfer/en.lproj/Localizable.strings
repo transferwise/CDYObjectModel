@@ -26,6 +26,9 @@
 
 "applepay.success.message" = "You successfully paid with ApplePay";
 "applepay.failure.message.initcontroller" = "There was a problem with your Apple Pay configuration";
+"applepay.failure.message.refused" = "Your payment was refused";
+"applepay.failure.message.error" = "An error occurred while processing your payment";
+"applepay.failure.message.cancelled" = "Your payment was cancelled";
 
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";

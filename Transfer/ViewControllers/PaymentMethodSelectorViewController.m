@@ -208,28 +208,42 @@ numberOfRowsInSection:(NSInteger)section
     [self.applePayHelper sendToken: paymentToken
                       forPaymentId: remoteIdString
                    responseHandler: ^(NSError *error, NSDictionary *result) {
+					   
+					   NSString* resultCode = result[@"resultCode"];
                        
-                       if (!error)
-                       {
-                           completion(PKPaymentAuthorizationStatusSuccess);
-                           
-                           [self presentCustomInfoWithSuccess: YES
-                                                   controller: self
-                                                   messageKey: @"applepay.success.message"
-                                                  actionBlock: nil
-                                                 successBlock: nil];
-                       }
-                       else
-                       {
-                           completion(PKPaymentAuthorizationStatusFailure);
-                           
-                           [self presentCustomInfoWithSuccess: NO
-                                                   controller: self
-                                                   messageKey: @"applepay.failure.message.initcontroller"
-                                                  actionBlock: nil
-                                                 successBlock: nil];
-                       }
-                      }];
+					   if (!error
+						   && [@"Authorised" caseInsensitiveCompare: resultCode] == NSOrderedSame)
+					   {
+						   completion(PKPaymentAuthorizationStatusSuccess);
+						   
+						   [self presentCustomInfoWithSuccess: YES
+												   controller: self
+												   messageKey: @"applepay.success.message"
+							//redirect to payment details
+												  actionBlock: nil
+												 successBlock: nil];
+					   }
+					   else
+					   {
+						   completion(PKPaymentAuthorizationStatusFailure);
+						   
+						   NSString *errorKeyPrefix = @"applepay.failure.message";
+						   NSString *errorKeySuffix = @"initcontroller";
+						   
+						   if (resultCode
+							   && [@"Received" caseInsensitiveCompare: resultCode] != NSOrderedSame
+							   && [@"RedirectShopper" caseInsensitiveCompare: resultCode] != NSOrderedSame)
+						   {
+							   errorKeySuffix = [resultCode lowercaseString];
+						   }
+						   
+						   [self presentCustomInfoWithSuccess: NO
+												   controller: self
+												   messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]
+												  actionBlock: nil
+												 successBlock: nil];
+					   }
+				   }];
 }
 
 /**
