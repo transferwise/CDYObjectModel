@@ -39,6 +39,7 @@
             if(objc_getAssociatedObject(controller, @selector(presentCustomInfoWithSuccess:controller:messageKey:)))
             {
                 hud = [TRWProgressHUD showHUDOnView:weakCustomInfo.view];
+                [hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
             }
             else
             {
@@ -68,7 +69,7 @@
         objc_setAssociatedObject(controller, @selector(presentCustomInfoWithSuccess:controller:messageKey:), operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [operation setObjectModel:objectModel];
         [operation setResultHandler:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+           dispatch_async(dispatch_get_main_queue(), ^{
                 objc_setAssociatedObject(controller, @selector(presentCustomInfoWithSuccess:controller:messageKey:), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
                 
                 if (!error) {
