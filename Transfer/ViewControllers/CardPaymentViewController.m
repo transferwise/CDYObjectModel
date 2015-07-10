@@ -21,6 +21,7 @@
 #import "Mixpanel+Customisation.h"
 #import "CustomInfoViewController+Notifications.h"
 #import "PushNotificationsHelper.h"
+#import "CustomInfoViewController+UpdatePaymentDetails.h"
 
 
 #ifdef DEV_VERSION
@@ -175,90 +176,7 @@
 
 - (void)pushUpdatedTransactionScreen {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.executedOperation) {
-            return;
-        }
-        
-        CustomInfoViewController * customInfo = [CustomInfoViewController successScreenWithMessage:@"upload.money.card.payment.success.message"];
-        __weak typeof(self) weakSelf = self;
-        __weak typeof(customInfo) weakCustomInfo = customInfo;
-        __block BOOL shouldAutoDismiss = YES;
-        ActionButtonBlock action = ^{
-            if(weakSelf.executedOperation)
-            {
-                TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:weakCustomInfo.view];
-                [hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
-                
-                [weakSelf.executedOperation setResultHandler:^(NSError *error) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [hud hide];
-                        [weakSelf setExecutedOperation:nil];
-                        
-                        if (error) {
-                            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
-                            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                            [alertView show];
-                            [weakCustomInfo dismiss];
-                            return;
-                        }
-                        
-                        TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
-                        details.payment = weakSelf.payment;
-                        details.objectModel = self.objectModel;
-                        details.showClose = YES;
-                        details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
-                        details.showRateTheApp = YES;
-                        
-                        [self.navigationController pushViewController:details animated:NO];
-                        [weakCustomInfo dismiss];
-                    });
-                }];
-            }
-            else
-            {
-                shouldAutoDismiss = NO;
-                [weakCustomInfo dismiss];
-            }
-            
-        };
-        customInfo.actionButtonBlocks = @[action];
-        
-        [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
-        
-        PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
-        [self setExecutedOperation:operation];
-        [operation setObjectModel:self.objectModel];
-        [operation setResultHandler:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf setExecutedOperation:nil];
-                
-                if (error) {
-                    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
-                    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                    [alertView show];
-                    return;
-                }
-                
-                TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
-                details.payment = weakSelf.payment;
-                details.showClose = YES;
-                details.objectModel = self.objectModel;
-                details.showClose = YES;
-                details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
-                details.showRateTheApp = YES;
-                [self.navigationController pushViewController:details animated:NO];
-                if(shouldAutoDismiss)
-                {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        if(shouldAutoDismiss)
-                        {
-                            [weakCustomInfo dismiss];
-                        }
-                    });
-                }
-            });
-        }];
-        [operation execute];
+        [CustomInfoViewController presentCustomInfoWithSuccess:YES controller:self messageKey:@"upload.money.card.payment.success.message" payment:self.payment objectModel:self.objectModel];
     });
 }
 
