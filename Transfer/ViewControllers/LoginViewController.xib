@@ -44,7 +44,7 @@
                         <constraint firstAttribute="height" constant="27" id="0Xp-aT-r0f"/>
                         <constraint firstAttribute="width" constant="27" id="ND2-yJ-aVt"/>
                     </constraints>
-                    <state key="normal" image="onepassword-button">
+                    <state key="normal" image="1PasswordIcon">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -132,7 +132,7 @@
                                 <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="lhc-yY-EfH"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-eB-1cd">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-eB-1cd">
                             <rect key="frame" x="138" y="80" width="45" height="45"/>
                             <state key="normal" image="touch_id_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -185,7 +185,7 @@
         </view>
     </objects>
     <resources>
-        <image name="onepassword-button" width="27" height="27"/>
+        <image name="1PasswordIcon" width="27" height="27"/>
         <image name="touch_id_icon" width="45" height="45"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
