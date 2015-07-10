@@ -1263,7 +1263,9 @@
 
 "registration.privacy" = "Datenschutzerklärung";
 
-"usd.legaleze" = "Mit diesem Klick stimmst du unseren %@ zu";
+"general.legaleze" = "Mit diesem Klick stimmst du unseren %@ zu";
+
+"general.terms.of.use" = "Nutzungsbedingungen";
 
 "usd.state.specific" = "Bundesstaat-spezifischen Vorschriften";
 

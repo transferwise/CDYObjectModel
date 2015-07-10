@@ -28,17 +28,18 @@ NSString *const kReferralListPath = @"/referral/list";
         }
 	}];
 	
-	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		
-                [weakSelf.workModel saveReferralData:response];
-				[weakSelf.workModel saveContext:^{
-                    if(weakSelf.resultHandler)
-                    {
-                        weakSelf.resultHandler(nil);
-                    }
-				}];
-	}];
-	
+    [self setOperationSuccessHandler:^(NSDictionary *response) {
+        [weakSelf.workModel performBlock:^{
+            [weakSelf.workModel saveReferralData:response];
+            [weakSelf.workModel saveContext:^{
+                if(weakSelf.resultHandler)
+                {
+                    weakSelf.resultHandler(nil);
+                }
+            }];
+        }];
+    }];
+    
 	[self getDataFromPath:path params:nil];
 }
 

@@ -10,6 +10,10 @@
 #import "LocationHelper.h"
 #import "ObjectModel+Currencies.h"
 #import "Constants.h"
+#import "ObjectModel+Users.h"
+#import "BusinessProfile.h"
+#import "PersonalProfile.h"
+#import "User.h"
 
 @implementation LocationHelper
 
@@ -40,10 +44,8 @@
 
 + (BOOL)isUS
 {
-	NSLocale *currentLocale = [NSLocale currentLocale];
-	
 	//you can have different actual languages used in US
-	return [currentLocale.localeIdentifier hasSuffix:@"_US"];
+	return [[NSLocale currentLocale].localeIdentifier hasSuffix:@"_US"];
 }
 
 + (NSString *)getLanguage
@@ -63,6 +65,31 @@
 	
 	//default to en
 	return @"en";
+}
+
++ (NSString *)getProfileLocationWithObjectModel:(ObjectModel *)objectModel
+{
+	NSString *profileCountry;
+	
+	//we are sending as business and there is a business profile
+	if ([objectModel currentUser].sendAsBusinessDefaultSettingValue
+		&& [objectModel currentUser].businessProfile)
+	{
+		profileCountry = [objectModel currentUser].businessProfile.countryCode;
+	}
+	else if([objectModel currentUser].personalProfile)
+	{
+		profileCountry = [objectModel currentUser].personalProfile.countryCode;
+	}
+	
+	if (!profileCountry)
+	{
+		//this is a new user so no country in profile
+		//determine from device settings
+		profileCountry = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+	}
+	
+	return profileCountry;
 }
 
 @end

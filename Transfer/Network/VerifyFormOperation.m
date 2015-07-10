@@ -55,31 +55,33 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 		weakSelf.resultHandler(error, NO, nil);
 	}];
 	
-	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		AchResponseParser *parser = [[AchResponseParser alloc] initWithResponse:response];
-		
-		if (parser.hasStatus)
-		{
-			//check if we are dealing with MFA
-			if (parser.isMfa)
-			{
-				NSString* bankName = parser.BankName;
-				NSString* fieldType = parser.FieldType;
-				
-				[weakSelf.objectModel createOrUpdateAchBankWithData:parser.FieldGroups
-														  bankTitle:bankName
-															 formId:parser.VerifiableAccountId
-														  fieldType:fieldType
-															 itemId:parser.ItemId
-														  mfaFields:parser.getMfaFields];
-				[weakSelf.objectModel saveContext:^{
-					weakSelf.resultHandler(nil, parser.isSuccessful, [weakSelf.workModel bankWithTitle:bankName
-																							 fieldType:fieldType]);
-				}];
-			}
-			else
-			{
-				weakSelf.resultHandler(nil, parser.isSuccessful, nil);
+    [self setOperationSuccessHandler:^(NSDictionary *response) {
+        AchResponseParser *parser = [[AchResponseParser alloc] initWithResponse:response];
+        
+        if (parser.hasStatus)
+        {
+            //check if we are dealing with MFA
+            if (parser.isMfa)
+            {
+                [weakSelf.objectModel performBlock:^{
+                    NSString* bankName = parser.BankName;
+                    NSString* fieldType = parser.FieldType;
+                    
+                    [weakSelf.objectModel createOrUpdateAchBankWithData:parser.FieldGroups
+                                                              bankTitle:bankName
+                                                                 formId:parser.VerifiableAccountId
+                                                              fieldType:fieldType
+                                                                 itemId:parser.ItemId
+                                                              mfaFields:parser.getMfaFields];
+                    [weakSelf.objectModel saveContext:^{
+                        weakSelf.resultHandler(nil, parser.isSuccessful, [weakSelf.workModel bankWithTitle:bankName
+                                                                                                 fieldType:fieldType]);
+                    }];
+                }];
+            }
+            else
+            {
+                weakSelf.resultHandler(nil, parser.isSuccessful, nil);
 			}
 		}
 	}];

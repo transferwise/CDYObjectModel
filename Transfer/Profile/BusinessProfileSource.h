@@ -12,6 +12,7 @@
 
 @property (readonly) TextEntryCell *acnCell;
 @property (readonly) TextEntryCell *abnCell;
+@property (readonly) TextEntryCell *arbnCell;
 
 - (void)reloadDropDowns;
 

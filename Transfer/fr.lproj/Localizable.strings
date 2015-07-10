@@ -762,7 +762,9 @@ but you haven't shared it with us on Facebook.";
 "registration.legaleze" = "En utilisant TransferWise, vous adherez à nos %@ & %@";
 "registration.tos" = "conditions générales";
 "registration.privacy" = "règles de confidentialité";
-"usd.legaleze" = "En continuant vous adherez \n aux %@";
+
+"general.legaleze" = "En continuant vous adherez \n aux %@";
+"general.terms.of.use" = "conditions d'utilisation";
 "usd.state.specific" = "conditions spéciales de chaque état";
 
 "transfertime.default" = "Cela prend généralement 1 jour ouvré";
