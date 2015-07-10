@@ -112,30 +112,36 @@
 
 - (NSString *) countryCodeForPayment: (Payment *) payment
 {
-    NSString *countryCode;
+    return @"GB";
     
-    if (payment.businessProfileUsed)
-    {
-        countryCode = payment.user.businessProfile.countryCode;
-    }
-    else
-    {
-        countryCode = payment.user.personalProfile.countryCode;
-    }
-	
-	//ApplePay expects the country code to be ISO2, Payment contains ISO3
-	if ([@"gbr" caseInsensitiveCompare: countryCode] == NSOrderedSame)
-	{
-		return @"GB";
-	}
-	else if ([@"usa" caseInsensitiveCompare: countryCode] == NSOrderedSame)
-	{
-		return @"US";
-	}
-	else
-	{
-		return @"GB";
-	}
+    
+    //Pretty certain this is the Merchant country, i.e. Transferwise's home: GB. Leaving the below code in so we can look again. m@s
+    
+    
+//    NSString *countryCode;
+//    
+//    if (payment.businessProfileUsed)
+//    {
+//        countryCode = payment.user.businessProfile.countryCode;
+//    }
+//    else
+//    {
+//        countryCode = payment.user.personalProfile.countryCode;
+//    }
+//	
+//	//ApplePay expects the country code to be ISO2, Payment contains ISO3
+//	if ([@"gbr" caseInsensitiveCompare: countryCode] == NSOrderedSame)
+//	{
+//		return @"GB";
+//	}
+//	else if ([@"usa" caseInsensitiveCompare: countryCode] == NSOrderedSame)
+//	{
+//		return @"US";
+//	}
+//	else
+//	{
+//		return @"GB";
+//	}
 }
 
 /**
