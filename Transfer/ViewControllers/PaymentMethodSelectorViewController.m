@@ -227,7 +227,7 @@ numberOfRowsInSection:(NSInteger)section
 					   {
 						   completion(PKPaymentAuthorizationStatusFailure);
 						   
-						   NSString *errorKeyPrefix = @"applepay.failure.message.initcontroller";
+						   NSString *errorKeyPrefix = @"applepay.failure.message";
 						   NSString *errorKeySuffix = @"initcontroller";
 						   
 						   if (resultCode
