@@ -239,7 +239,7 @@ numberOfRowsInSection:(NSInteger)section
 						   
 						   [self presentCustomInfoWithSuccess: NO
 												   controller: self
-												   messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix];
+												   messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]
 												  actionBlock: nil
 												 successBlock: nil];
 					   }
