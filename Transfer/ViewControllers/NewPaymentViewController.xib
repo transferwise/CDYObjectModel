@@ -69,7 +69,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg" customClass="BlueRoundedButton">
-                    <rect key="frame" x="142" y="410" width="37" height="40"/>
+                    <rect key="frame" x="142" y="411" width="37" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="bW4-I8-zWx"/>
                     </constraints>
@@ -94,10 +94,9 @@
                     </connections>
                 </button>
                 <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5xC-63-fjA">
-                    <rect key="frame" x="10" y="455" width="300" height="113"/>
+                    <rect key="frame" x="5" y="456" width="310" height="113"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="QNf-og-B05"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="113" id="VHN-YU-KPJ"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="fA6-oW-DQP"/>
                     </constraints>
@@ -106,7 +105,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@13.CoreFont"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@9.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </textView>
             </subviews>
@@ -115,6 +114,7 @@
                 <constraint firstItem="5xC-63-fjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WRX-dl-Alg" secondAttribute="bottom" constant="5" id="04j-wj-GAl"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" constant="256" id="22B-xy-Gal"/>
                 <constraint firstAttribute="trailing" secondItem="UAL-I7-qIC" secondAttribute="trailing" id="2mt-xR-3dC"/>
+                <constraint firstAttribute="trailing" secondItem="5xC-63-fjA" secondAttribute="trailing" constant="5" id="6Cy-fs-GQA"/>
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o2g-cv-K3K" secondAttribute="top" constant="64" id="8a8-5c-G9v"/>
                 <constraint firstAttribute="centerX" secondItem="WRX-dl-Alg" secondAttribute="centerX" id="9Py-3r-f10"/>
                 <constraint firstAttribute="bottom" secondItem="5xC-63-fjA" secondAttribute="bottom" id="ARC-VC-1Hn"/>
@@ -139,6 +139,7 @@
                 <constraint firstItem="tx6-jd-3M7" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="kb1-oE-AvN"/>
                 <constraint firstAttribute="trailing" secondItem="w5b-eJ-Ssl" secondAttribute="trailing" id="wbi-xk-akF"/>
                 <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UAL-I7-qIC" secondAttribute="bottom" constant="5" id="xB0-6H-oF9"/>
+                <constraint firstItem="5xC-63-fjA" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" constant="5" id="yvs-uk-XhS"/>
                 <constraint firstItem="6Et-gt-hPN" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" constant="2" id="z9j-bN-uXv"/>
             </constraints>
             <userDefinedRuntimeAttributes>

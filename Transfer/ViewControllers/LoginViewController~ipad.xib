@@ -44,7 +44,7 @@
                         <constraint firstAttribute="width" constant="27" id="GsT-7g-Vhe"/>
                         <constraint firstAttribute="height" constant="27" id="MSR-CV-0PG"/>
                     </constraints>
-                    <state key="normal" image="onepassword-button">
+                    <state key="normal" image="1PasswordIcon">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -196,7 +196,7 @@
         </view>
     </objects>
     <resources>
-        <image name="onepassword-button" width="27" height="27"/>
+        <image name="1PasswordIcon" width="27" height="27"/>
         <image name="touch_id_icon" width="45" height="45"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -356,6 +356,7 @@
 		
 		businessProfile.abnCell.entryField.text = @"";
 		businessProfile.acnCell.entryField.text = @"";
+		businessProfile.arbnCell.entryField.text = @"";
 	}
 	
 	[self moveFocusOnNextEntryAfterCell:self.countryCell];
