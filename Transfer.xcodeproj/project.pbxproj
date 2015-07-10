@@ -14,8 +14,19 @@
 		012B78F01B4418F000CFA7FE /* OnePasswordTextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B78EA1B4418E600CFA7FE /* OnePasswordTextEntryCell.m */; };
 		012B78F21B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78F11B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib */; };
 		012B78F31B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78F11B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib */; };
+		0149B4511B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4501B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m */; };
+		0149B4521B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4501B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m */; };
+		0149B4531B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4501B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m */; };
+		0149B4541B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4501B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m */; };
+		0149B4571B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */; };
+		0149B4581B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */; };
+		0149B4591B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */; };
+		0149B45A1B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */; };
 		0156BA951B417CD500175C0D /* BusinessProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA941B417CD500175C0D /* BusinessProfileTests.swift */; };
 		0156BA981B41915000175C0D /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156BA971B41915000175C0D /* XCTest+Utils.swift */; };
+		01B9C5B61B4D18A400A23A7F /* ApplePayOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */; };
+		01B9C5B71B4D18A400A23A7F /* ApplePayOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */; };
+		01B9C5B81B4D18A400A23A7F /* ApplePayOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
@@ -922,6 +933,12 @@
 		38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
+		4705C2341B4E54900041AEDF /* ApplePayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4705C2321B4E54900041AEDF /* ApplePayCell.m */; };
+		4705C2351B4E54900041AEDF /* ApplePayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4705C2321B4E54900041AEDF /* ApplePayCell.m */; };
+		4705C2361B4E54900041AEDF /* ApplePayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4705C2321B4E54900041AEDF /* ApplePayCell.m */; };
+		4705C2371B4E54900041AEDF /* ApplePayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4705C2331B4E54900041AEDF /* ApplePayCell.xib */; };
+		4705C2381B4E54900041AEDF /* ApplePayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4705C2331B4E54900041AEDF /* ApplePayCell.xib */; };
+		4705C2391B4E54900041AEDF /* ApplePayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4705C2331B4E54900041AEDF /* ApplePayCell.xib */; };
 		470B112D1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
 		470B112E1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
 		470B112F1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */; };
@@ -1591,12 +1608,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01008E4F1B4C0B3C00FEC989 /* TransferDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TransferDev.entitlements; sourceTree = "<group>"; };
+		01008E501B4C0DA000FEC989 /* TransferWise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TransferWise.entitlements; sourceTree = "<group>"; };
 		012B78EA1B4418E600CFA7FE /* OnePasswordTextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordTextEntryCell.m; sourceTree = "<group>"; };
 		012B78EB1B4418E600CFA7FE /* OnePasswordTextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnePasswordTextEntryCell.xib; sourceTree = "<group>"; };
 		012B78F11B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OnePasswordTextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		012B78F41B441B5400CFA7FE /* OnePasswordTextEntryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnePasswordTextEntryCell.h; sourceTree = "<group>"; };
+		0149B44F1B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodDisplayHelper.h; sourceTree = "<group>"; };
+		0149B4501B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodDisplayHelper.m; sourceTree = "<group>"; };
+		0149B4551B4AA5EF00D97E00 /* ApplePayHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayHelper.h; sourceTree = "<group>"; };
+		0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayHelper.m; sourceTree = "<group>"; };
 		0156BA941B417CD500175C0D /* BusinessProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessProfileTests.swift; sourceTree = "<group>"; };
 		0156BA971B41915000175C0D /* XCTest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Utils.swift"; sourceTree = "<group>"; };
+		01B9C5B41B4D18A400A23A7F /* ApplePayOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayOperation.h; sourceTree = "<group>"; };
+		01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayOperation.m; sourceTree = "<group>"; };
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
 		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
 		1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileOperation.h; sourceTree = "<group>"; };
@@ -1973,6 +1998,9 @@
 		38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Customisation.h"; sourceTree = "<group>"; };
 		38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Customisation.m"; sourceTree = "<group>"; };
 		38FC441D1B1735CB007AD45B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4705C2311B4E54900041AEDF /* ApplePayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayCell.h; sourceTree = "<group>"; };
+		4705C2321B4E54900041AEDF /* ApplePayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayCell.m; sourceTree = "<group>"; };
+		4705C2331B4E54900041AEDF /* ApplePayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplePayCell.xib; sourceTree = "<group>"; };
 		470B112B1ADBB682008729E9 /* PushNotificationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationsHelper.h; sourceTree = "<group>"; };
 		470B112C1ADBB682008729E9 /* PushNotificationsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationsHelper.m; sourceTree = "<group>"; };
 		470B11301ADCF001008729E9 /* Transfer_v10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v10.xcdatamodel; sourceTree = "<group>"; };
@@ -3281,6 +3309,9 @@
 		EA13E033171BE0E50019FBF0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4705C2311B4E54900041AEDF /* ApplePayCell.h */,
+				4705C2321B4E54900041AEDF /* ApplePayCell.m */,
+				4705C2331B4E54900041AEDF /* ApplePayCell.xib */,
 				EAD66757174A51B900D29BCB /* ButtonCell.h */,
 				EAD66758174A51B900D29BCB /* ButtonCell.m */,
 				EAD6675A174A51C700D29BCB /* ButtonCell.xib */,
@@ -3557,6 +3588,10 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				470B11311ADCF39E008729E9 /* AddUserDeviceOperation.h */,
+				470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */,
+				01B9C5B41B4D18A400A23A7F /* ApplePayOperation.h */,
+				01B9C5B51B4D18A400A23A7F /* ApplePayOperation.m */,
 				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
 				EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */,
@@ -3609,6 +3644,8 @@
 				EA1861E21746442900BD01BB /* RegisterOperation.m */,
 				EA7F8814176F2B44003B0F46 /* RemoveTokenOperation.h */,
 				EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */,
+				470B11361ADCF3B3008729E9 /* RemoveUserDeviceOperation.h */,
+				470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */,
 				EAB61712191CDD1000545C21 /* ResetPasswordOperation.h */,
 				EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */,
 				3818605519C9A206009A413E /* SetSSNOperation.h */,
@@ -3619,27 +3656,23 @@
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
 				EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */,
-				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
+				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
+				470B113B1ADCF3CA008729E9 /* UpdateUserDeviceOperation.h */,
+				470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */,
 				EA59293C17577CCA007C0072 /* UploadVerificationFileOperation.h */,
 				EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */,
 				EA88E682172F97D50021492C /* UserDetailsOperation.h */,
 				EA88E683172F97D50021492C /* UserDetailsOperation.m */,
 				EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */,
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
-				EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */,
-				EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */,
 				47B386481A1CDC9A00478402 /* VerificationFormOperation.h */,
 				47B386491A1CDC9A00478402 /* VerificationFormOperation.m */,
+				EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */,
+				EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */,
 				471DAA7B1A276DD00077E341 /* VerifyFormOperation.h */,
 				471DAA7C1A276DD00077E341 /* VerifyFormOperation.m */,
-				470B11311ADCF39E008729E9 /* AddUserDeviceOperation.h */,
-				470B11321ADCF39E008729E9 /* AddUserDeviceOperation.m */,
-				470B11361ADCF3B3008729E9 /* RemoveUserDeviceOperation.h */,
-				470B11371ADCF3B3008729E9 /* RemoveUserDeviceOperation.m */,
-				470B113B1ADCF3CA008729E9 /* UpdateUserDeviceOperation.h */,
-				470B113C1ADCF3CA008729E9 /* UpdateUserDeviceOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -3647,6 +3680,8 @@
 		EAAA145F171BC911005B9430 = {
 			isa = PBXGroup;
 			children = (
+				01008E501B4C0DA000FEC989 /* TransferWise.entitlements */,
+				01008E4F1B4C0B3C00FEC989 /* TransferDev.entitlements */,
 				EAAA1473171BC911005B9430 /* Transfer */,
 				47DC89821A03950F0042054B /* TransferTests */,
 				EAAA146A171BC911005B9430 /* Frameworks */,
@@ -3924,6 +3959,8 @@
 				4740A77A1A8B64C80044F0CD /* AchResponseParser.m */,
 				47F667661A1DD2A0003C018A /* AchFlow.h */,
 				47F667671A1DD2A0003C018A /* AchFlow.m */,
+				0149B4551B4AA5EF00D97E00 /* ApplePayHelper.h */,
+				0149B4561B4AA5EF00D97E00 /* ApplePayHelper.m */,
 				4735E4D31992258C00F41D1E /* AuthenticationHelper.h */,
 				4735E4D41992258C00F41D1E /* AuthenticationHelper.m */,
 				EAEA6255172011C500A96770 /* CalculationResult.h */,
@@ -3948,6 +3985,8 @@
 				4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */,
 				EA333F3A18A4C00000D8A44E /* PageZoom.h */,
 				EA333F3B18A4C00000D8A44E /* PageZoom.m */,
+				0149B44F1B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.h */,
+				0149B4501B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m */,
 				38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */,
 				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
 				38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */,
@@ -4113,12 +4152,21 @@
 							com.apple.BackgroundModes = {
 								enabled = 0;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.OMC = {
+								enabled = 1;
+							};
 						};
 					};
 					EAAA1467171BC911005B9430 = {
 						DevelopmentTeam = W53MTDV45J;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.OMC = {
 								enabled = 1;
 							};
 						};
@@ -4198,6 +4246,7 @@
 				388E5B3B1A5A949500AF6EB9 /* IntroView~ipad.xib in Resources */,
 				381EF88F1A79251F00485C7F /* TwoFieldPresentationCell~ipad.xib in Resources */,
 				388E5B3C1A5A949500AF6EB9 /* RecipientCell.xib in Resources */,
+				4705C2391B4E54900041AEDF /* ApplePayCell.xib in Resources */,
 				388E5B3D1A5A949500AF6EB9 /* SettingsViewController.xib in Resources */,
 				388E5B3E1A5A949500AF6EB9 /* Assets.xcassets in Resources */,
 				388E5B3F1A5A949500AF6EB9 /* SuggestionCell.xib in Resources */,
@@ -4337,6 +4386,7 @@
 				471DBFF01ACD426800DC133C /* OAuthViewController.xib in Resources */,
 				47C4D0521A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				47F84D6E198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
+				4705C2381B4E54900041AEDF /* ApplePayCell.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				3840862E19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */,
 				383842D51B1DB7A100FA2B7A /* SettingsSwitchCell~ipad.xib in Resources */,
@@ -4507,6 +4557,7 @@
 				471DBFEF1ACD40E100DC133C /* OAuthViewController.xib in Resources */,
 				47C4D0511A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
+				4705C2371B4E54900041AEDF /* ApplePayCell.xib in Resources */,
 				385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
 				383842D41B1DB7A100FA2B7A /* SettingsSwitchCell~ipad.xib in Resources */,
@@ -5126,6 +5177,7 @@
 				388B6DAE1AEE5B8F001A14B5 /* UITextField+CustomDelegate.m in Sources */,
 				388E5A9A1A5A949500AF6EB9 /* ImageColoredButton.m in Sources */,
 				4777C0C01AF7A2940042721F /* NSString+NullString.m in Sources */,
+				4705C2361B4E54900041AEDF /* ApplePayCell.m in Sources */,
 				388E5A9B1A5A949500AF6EB9 /* PersonalPaymentProfileViewController.m in Sources */,
 				388E5A9C1A5A949500AF6EB9 /* Payment.m in Sources */,
 				388E5A9D1A5A949500AF6EB9 /* LightBlueButton.m in Sources */,
@@ -5197,6 +5249,7 @@
 				388E5AD91A5A949500AF6EB9 /* NSString+Presentation.m in Sources */,
 				388E5ADA1A5A949500AF6EB9 /* ObjectModel+Payments.m in Sources */,
 				388E5ADC1A5A949500AF6EB9 /* SwitchCell.m in Sources */,
+				0149B45A1B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */,
 				388E5ADD1A5A949500AF6EB9 /* NSMutableAttributedString+Presentation.m in Sources */,
 				388E5ADE1A5A949500AF6EB9 /* StartPaymentButton.m in Sources */,
 				472523321B219B57003AC7A6 /* AskEmailViewController.m in Sources */,
@@ -5208,6 +5261,7 @@
 				388E5AE41A5A949500AF6EB9 /* ObjectModel+RecipientTypes.m in Sources */,
 				388E5AE51A5A949500AF6EB9 /* ObjectModel+AchBank.m in Sources */,
 				388E5AE61A5A949500AF6EB9 /* NavigationBarCustomiser.m in Sources */,
+				01B9C5B81B4D18A400A23A7F /* ApplePayOperation.m in Sources */,
 				388E5AE71A5A949500AF6EB9 /* DoubleEntryCell.m in Sources */,
 				388E5AE81A5A949500AF6EB9 /* Recipient.m in Sources */,
 				388E5AE91A5A949500AF6EB9 /* PaymentMethodCell.m in Sources */,
@@ -5236,6 +5290,7 @@
 				470B113A1ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */,
 				388E5AFB1A5A949500AF6EB9 /* BusinessProfileValidator.m in Sources */,
 				388E5AFC1A5A949500AF6EB9 /* GoogleAnalytics.m in Sources */,
+				0149B4541B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m in Sources */,
 				388E5AFD1A5A949500AF6EB9 /* UIView+SeparatorLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5249,7 +5304,9 @@
 				3856960D1A7A4C4C00D9F833 /* CalculationResultTests.swift in Sources */,
 				47C1F7571A44448D00014F55 /* NSObjectNSNullTests.swift in Sources */,
 				0156BA951B417CD500175C0D /* BusinessProfileTests.swift in Sources */,
+				0149B4531B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
+				0149B4591B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */,
 				4777C0C21AF7A3D60042721F /* NSStringNullStringTests.swift in Sources */,
 				474207031A5BF4AB00DF6477 /* XCTestCase+Exceptions.m in Sources */,
 				0156BA981B41915000175C0D /* XCTest+Utils.swift in Sources */,
@@ -5324,6 +5381,7 @@
 				EA31A13C17DDB29B00F937F7 /* UIButton+Skinning.m in Sources */,
 				EA31A13D17DDB29B00F937F7 /* GreenButton.m in Sources */,
 				388B1F761990E04200DF13E8 /* WhiteRoundedButton.m in Sources */,
+				01B9C5B71B4D18A400A23A7F /* ApplePayOperation.m in Sources */,
 				EA31A13E17DDB29B00F937F7 /* GrayButton.m in Sources */,
 				38B52F9F199B63B600B6AEBD /* InvitationsViewController.m in Sources */,
 				EA31A13F17DDB29B00F937F7 /* RecipientCell.m in Sources */,
@@ -5443,6 +5501,7 @@
 				38CC81A61A1E368F007D965A /* ACHCheckView.m in Sources */,
 				EA31A16E17DDB29B00F937F7 /* UINavigationController+StackManipulations.m in Sources */,
 				EA31A16F17DDB29B00F937F7 /* RegisterOperation.m in Sources */,
+				0149B4521B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m in Sources */,
 				389F684C198FC1C6006CF1F6 /* Setting.m in Sources */,
 				472915351AE549EA00301260 /* PushNotificationDispather.m in Sources */,
 				389F681C198FC1C6006CF1F6 /* BusinessProfile.m in Sources */,
@@ -5494,6 +5553,7 @@
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6842198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
+				0149B4581B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */,
 				389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
 				EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */,
 				38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
@@ -5577,6 +5637,7 @@
 				4731F65F1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */,
 				38705C681A7BDD5F002EB14B /* CopyLabel.m in Sources */,
 				4740A7811A8B9A1F0044F0CD /* _MfaField.m in Sources */,
+				4705C2351B4E54900041AEDF /* ApplePayCell.m in Sources */,
 				3859E7AF1A65670300B85A3F /* NewPaymentHelper.m in Sources */,
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
@@ -5666,6 +5727,7 @@
 				38B52F9E199B63B600B6AEBD /* InvitationsViewController.m in Sources */,
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
+				01B9C5B61B4D18A400A23A7F /* ApplePayOperation.m in Sources */,
 				389F6807198FC1C6006CF1F6 /* _PaymentMadeIndicator.m in Sources */,
 				47535CAF1981362600DC39D6 /* DoublePasswordEntryCell.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
@@ -5785,6 +5847,7 @@
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				47C1F70C1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */,
 				4757BE621A3B064B005D7BDD /* PaymentFlow.m in Sources */,
+				0149B4511B4A9E3F00D97E00 /* PaymentMethodDisplayHelper.m in Sources */,
 				472915341AE549EA00301260 /* PushNotificationDispather.m in Sources */,
 				47F346D31AF896E700F780ED /* _AdditionalAttribute.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
@@ -5836,6 +5899,7 @@
 				389F6841198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
 				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
+				0149B4571B4AA5EF00D97E00 /* ApplePayHelper.m in Sources */,
 				382C134C1ADBE76A00370F39 /* AnalyticsConstants.m in Sources */,
 				EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */,
 				38B093171951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
@@ -5919,6 +5983,7 @@
 				4731F65E1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
+				4705C2341B4E54900041AEDF /* ApplePayCell.m in Sources */,
 				383FC0FC19AE1ABC00465FCA /* ExpatDetectionLookupWrapper.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				478BE9521ADF9A7F00B8999D /* NSData+HexString.m in Sources */,
@@ -6137,6 +6202,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TransferDev.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6177,6 +6243,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TransferDev.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6277,6 +6344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TransferWise.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6316,6 +6384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TransferWise.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

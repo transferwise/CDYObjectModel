@@ -24,6 +24,9 @@
 "ach.failure.message.mismatch" = "Incorrect account details";
 "ach.failure.message.routingnumber" = "Invalid routing number";
 
+"applepay.success.message" = "You successfully paid with ApplePay";
+"applepay.failure.message.initcontroller" = "There was a problem with your Apple Pay configuration";
+
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";
 "business.profile.address.section.title" = "Address";
@@ -569,6 +572,7 @@ Payment #%@";
 "payment.method.description.ADYEN" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.SWIFT" = "If your USD account is not in the US, please use this option.";
 "payment.method.description.ACH" = "Directly withdraw money\n from your USD account.";
+"payment.method.description.apple.pay" = "Pay using your Apple Pay wallet.";
 "payment.method.description.BANKGIRO" = "Just like paying a bill.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";

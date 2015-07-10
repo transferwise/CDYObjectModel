@@ -88,7 +88,7 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0.0</real>
+				<real>0</real>
 				<key>Green</key>
 				<real>1</real>
 				<key>Red</key>
@@ -111,5 +111,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.transferwise.dev.payment</string>
+	</array>
 </dict>
 </plist>

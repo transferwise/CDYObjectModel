@@ -59,7 +59,7 @@ NSString *const TRWDeeplinkScheme = @"transferdev";
 NSString *const TRWDeeplinkScheme = @"transferwise";
 #endif
 
-void delayedExecution(CGFloat seconds, TRWActionBlock action) {
+void delayedExecution(NSTimeInterval seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
 }
 
@@ -77,6 +77,7 @@ NSString *const TRWGoogleRevokeUrlFormat = @"https://accounts.google.com/o/oauth
 NSString *const TRWFacebookLoginUsedKey = @"facebookLoginUsed";
 NSString *const TRWIntroABKey = @"introAB";
 NSString *const TRWDidHighlightInviteSection = @"didHighlightInviteSection";
+NSString *const TRWDisableApplePay = @"disableApplePay";
 
 #if DEV_VERSION
 NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";

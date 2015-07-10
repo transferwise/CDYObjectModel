@@ -48,6 +48,9 @@
 
 "ach.failure.message.routingnumber" = "Routing Number ungültig";
 
+"applepay.success.message" = "You successfully paid with ApplePay";
+"applepay.failure.message.account" = "We did not manage to verify your account";
+
 "business.profile.address.label" = "Adresse";
 
 "business.profile.email.label" = "Geschäftliche E-Mail-Adresse";
