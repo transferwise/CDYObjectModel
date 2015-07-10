@@ -6372,7 +6372,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "e5077026-0ad8-4e3d-8f45-c96741089431";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "c1adc298-6d66-4cf4-8bd7-e408b4df626c";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6448,7 +6448,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6fc19856-2ed5-40fb-aa66-cf267055ea7c";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "c1adc298-6d66-4cf4-8bd7-e408b4df626c";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
