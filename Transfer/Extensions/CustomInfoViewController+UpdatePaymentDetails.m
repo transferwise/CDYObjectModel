@@ -52,7 +52,7 @@
                     details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
                     details.showRateTheApp = YES;
                     
-                    [self.navigationController pushViewController:details animated:NO];
+                    [controller.navigationController pushViewController:details animated:NO];
                 }
                 else
                 {
@@ -75,7 +75,7 @@
                     paymentDetailsCompletedSuccessfully = YES;
                 }
                 BOOL preTimerShouldDismiss = shouldAutoDismiss;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(shouldAutoDismiss?5:0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((shouldAutoDismiss?5:0) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     if(preTimerShouldDismiss == shouldAutoDismiss)
                     {
                         action();
@@ -92,7 +92,7 @@
     }
     
     // Blurry overlay
-    [customInfo presentOnViewController: controller.parentViewController
+    [customInfo presentOnViewController: controller.navigationController.parentViewController
                   withPresentationStyle: TransparentPresentationFade];
     
     

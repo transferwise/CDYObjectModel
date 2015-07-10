@@ -8,7 +8,7 @@
 
 #import "ApplePayHelper.h"
 #import "Currency.h"
-#import "CustomInfoViewController.h"
+#import "CustomInfoViewController+UpdatePaymentDetails.h"
 #import "GoogleAnalytics.h"
 #import "MOMStyle.h"
 #import "Mixpanel+Customisation.h"
@@ -20,11 +20,7 @@
 #import "UploadMoneyViewController.h"
 #import "ApplePayCell.h"
 @import PassKit;
-#import "PullPaymentDetailsOperation.h"
-#import "TRWProgressHUD.h"
-#import "TRWAlertView.h"
-#import "TransferDetailsViewController.h"
-#import "PushNotificationsHelper.h"
+
 
 #define PaymentMethodCellName @"PaymentMethodCell"
 #define ApplePayCellName @"ApplePayCell"
@@ -38,8 +34,6 @@
 @property (nonatomic) NSArray* sortedPayInMethods;
 
 @property (nonatomic) ApplePayHelper *applePayHelper;
-
-@property (nonatomic, strong) PullPaymentDetailsOperation *paymentDetailsOperation;
 
 @end
 
@@ -179,9 +173,11 @@ numberOfRowsInSection:(NSInteger)section
     if (!paymentAuthorizationViewController)
     {
         // We didn't create an apple pay authorisation controller, so display an error screen
-        [self presentCustomInfoWithSuccess: NO
-                                controller: self
-                                messageKey: @"applepay.failure.message.initcontroller"];
+        [CustomInfoViewController presentCustomInfoWithSuccess: NO
+                                                    controller: self
+                                                    messageKey: @"applepay.failure.message.initcontroller"
+                                                       payment: self.payment
+                                                   objectModel: self.objectModel];
     }
     else
     {
@@ -221,9 +217,11 @@ numberOfRowsInSection:(NSInteger)section
 					   {
 						   completion(PKPaymentAuthorizationStatusSuccess);
 						   
-						   [self presentCustomInfoWithSuccess: YES
-												   controller: self
-												   messageKey: @"applepay.success.message"];
+						   [CustomInfoViewController presentCustomInfoWithSuccess: YES
+                                                                       controller: self
+                                                                       messageKey: @"applepay.success.message"
+                                                                          payment: self.payment
+                                                                      objectModel: self.objectModel];
 					   }
 					   else
 					   {
@@ -239,9 +237,11 @@ numberOfRowsInSection:(NSInteger)section
 							   errorKeySuffix = [resultCode lowercaseString];
 						   }
 						   
-						   [self presentCustomInfoWithSuccess: NO
+						   [CustomInfoViewController presentCustomInfoWithSuccess: NO
 												   controller: self
-												   messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]];
+												   messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]
+                                                                          payment: self.payment
+                                                                      objectModel: self.objectModel];
 					   }
 				   }];
 }
@@ -256,95 +256,6 @@ numberOfRowsInSection:(NSInteger)section
 {
     [self dismissViewControllerAnimated: YES
                              completion: nil];
-}
-
-/**
- *  Apple Pay success/failure screen
- *
- *  @param success      Authentication/
- *  @param controller   Navigation controller
- *  @param message      MessageKey
- *  @param actionBlock  action
- *  @param successBlock success
- */
-
-- (void) presentCustomInfoWithSuccess: (BOOL) success
-                           controller: (UIViewController *) controller
-                           messageKey: (NSString *) messageKey
-{
-    CustomInfoViewController *customInfo;
-    
-    if (success)
-    {
-        customInfo = [CustomInfoViewController successScreenWithMessage: messageKey];
-        __weak typeof(self) weakSelf = self;
-        __weak typeof(customInfo) weakCustomInfo = customInfo;
-        __block BOOL shouldAutoDismiss = YES;
-        __block BOOL paymentDetailsCompletedSuccessfully = NO;
-        __block TRWProgressHUD *hud;
-        
-        ActionButtonBlock action = ^{
-            shouldAutoDismiss = NO;
-            if(weakSelf.paymentDetailsOperation)
-            {
-                hud = [TRWProgressHUD showHUDOnView:weakCustomInfo.view];
-            }
-            else
-            {
-                [hud hide];
-                if(paymentDetailsCompletedSuccessfully)
-                {
-                    TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
-                    details.payment = weakSelf.payment;
-                    details.objectModel = self.objectModel;
-                    details.showClose = YES;
-                    details.promptForNotifications = [PushNotificationsHelper shouldPresentNotificationsPrompt];
-                    details.showRateTheApp = YES;
-                   
-                    [self.navigationController pushViewController:details animated:NO];
-                }
-                else
-                {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil userInfo:@{@"paymentId":weakSelf.payment.remoteId}];
-                }
-                [weakCustomInfo dismiss];
-            }
-        };
-        
-        customInfo.actionButtonBlocks = @[action];
-        
-        PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
-        self.paymentDetailsOperation = operation;
-        [operation setObjectModel:self.objectModel];
-        [operation setResultHandler:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.paymentDetailsOperation = nil;
-                
-                if (!error) {
-                    paymentDetailsCompletedSuccessfully = YES;
-                }
-                BOOL preTimerShouldDismiss = shouldAutoDismiss;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(shouldAutoDismiss?5:0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if(preTimerShouldDismiss == shouldAutoDismiss)
-                    {
-                        action();
-                    }
-                });
-            });
-        }];
-        [operation execute];
-        
-    }
-    else
-    {
-        customInfo = [CustomInfoViewController failScreenWithMessage: messageKey];
-    }
-
-    // Blurry overlay
-    [customInfo presentOnViewController: controller.parentViewController
-                  withPresentationStyle: TransparentPresentationFade];
-    
-    
 }
 
 
