@@ -24,15 +24,18 @@
 "ach.failure.message.mismatch" = "Les identifiants de votre compte bancaire sont incorrects.";
 "ach.failure.message.routingnumber" = "Routing number invalide";
 
-"applepay.success.message" = "You successfully paid with ApplePay";
-"applepay.failure.message.account" = "We did not manage to verify your account";
+"applepay.success.message" = "Votre paiement Apple Pay a été effectué avec succès";
+"applepay.failure.message.initcontroller" = "Il y a un problème avec votre configuration Apple Pay";
+"applepay.failure.message.refused" = "Votre paiement a été décliné";
+"applepay.failure.message.error" = "Une erreur est encourue durant la procédure de paiement";
+"applepay.failure.message.cancelled" = "Votre paiement a été annulé";
 
 "business.profile.address.label" = "Adresse";
 "business.profile.email.label" = "Votre email profesionnel";
 "business.profile.address.section.title" = "Adresse";
 "business.profile.city.label" = "Ville";
 "business.profile.state.label" = "Etat";
-"business.profile.controller.title" = "Profil d'entreprise";
+"business.profile.controller.title" = "Infos sur votre entreprise";
 "business.profile.controller.send.title" = "Détails de votre entreprise";
 "business.profile.country.label" = "Pays";
 "business.profile.description.label" = "Description de l'entreprise";
@@ -52,6 +55,9 @@
 "business.profile.controller.title" = "Infos sur votre entreprise";
 "business.profile.company.role.title" = "Votre rôle";
 "business.profile.company.type.title" = "Type de l'entreprise";
+"business.profile.au.acn" = "ACN (Australian Company Number)";
+"business.profile.au.abn" = "ABN (Australian Business Number)";
+"business.profile.au.arbn" = "ARBN (Australian Registered Body Number)";
 
 "button.title.back" = "Retour";
 "button.title.cancel" = "Annuler";
@@ -117,8 +123,7 @@
 "contacts.refresh.error.message" = "La list de vos destinataires n'a pas pu etre raffraichie";
 "contacts.refresh.error.title" = "Erreur de raffraichissement";
 "contacts.controller.send.button.title" = "Envoyer %@";
-"contacts.controller.footer.invite" = "Gagner %@ en invitant
-vos amis sur TransferWise";
+"contacts.controller.footer.invite" = "Gagner %@ en invitant\nvos amis sur TransferWise";
 "contacts.controller.footer.invite.button.title" = "Invitez vos amis";
 "contacts.controller.account.type" = "Compte %@";
 
@@ -167,6 +172,7 @@ vos amis sur TransferWise";
 "identification.well.done.format" = "Bravo %@!";
 "identification.error" = "Erreur";
 "identification.ssn.short" = "Le Social security number est trop court";
+"identification.ssn.error.title" = "SSN invalide";
 "identification.ssn.generic.error" = "Erreur de validation du Social security number. Veuillez fournir une piece d'identité.";
 
 "introduction.calculation.error.title" = "Calculation avortée";
@@ -185,8 +191,7 @@ vos amis sur TransferWise";
 "introduction.savings.message.versus.ipad" = "par rapport à votre banque ";
 "introduction.savings.message.how" = "Voir explication";
 "introduction.savings.message.how.ipad" = "Voir explication";
-"introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.
-Une révolution dans votre poche.";
+"introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.\nUne révolution dans votre poche.";
 
 "invite.controller.tabbar.title" = "Inviter";
 
@@ -248,7 +253,7 @@ Une révolution dans votre poche.";
 "payment.status.cancelled.description.long" = "a été annulé.";
 "payment.status.cancelled.description.conversion" = "n'a pas été converti en";
 "payment.status.cancelled.description.eta" = "";
-"payment.status.refunded.description" = "Remboursé - %@";
+"payment.status.refunded.description" = "Remboursé %@";
 "payment.status.refunded.description.long" = "a été annulé.";
 "payment.status.refunded.description.conversion" = "a été remboursé";
 "payment.status.refunded.description.eta" = "";
@@ -384,12 +389,8 @@ Une révolution dans votre poche.";
 
 "refund.details.account.details.section.header" = "Vos détails bancaires";
 "refund.details.controller.title" = "Votre compte en cas de remboursement";
-"refund.details.header.description" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé 3%% extra.
-
-Nous vous rembourserons l'argent non utilisé après le transfert.";
-"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé 3%% extra.
-
-Nous vous rembourserons l'argent non utilisé après le transfert.";
+"refund.details.header.description" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé 3%% extra.\n\nNous vous rembourserons l'argent non utilisé après le transfert.";
+"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé 3%% extra.\n\nNous vous rembourserons l'argent non utilisé après le transfert.";
 "refund.details.holders.name.label" = "Nom du détenteur du compte";
 "refund.details.footer.button.title" = "Continuer";
 
@@ -431,12 +432,11 @@ Nous vous rembourserons l'argent non utilisé après le transfert.";
 "transactions.identification.done.button.title" = "Télécharger";
 "transactions.identification.uploading.message" = "Téléchargement en cours...";
 "transactions.cancel.confirmation.title" = "Annuler ce transfert?";
-"transactions.cancel.confirmation.message" = "Veuillez confirmer que vous souhaitez annuler ce transfert.
-C'est irréversible.";
+"transactions.cancel.confirmation.message" = "Veuillez confirmer que vous souhaitez annuler ce transfert.\nC'est irréversible.";
 "transactions.cancel.progress.title" = "Annulation en cours...";
 "transactions.cancel.fail.title" = "Annulation avortée";
 "transactions.cancel.fail.message" = "Raffraichissez votre liste de transferts et réessayez.";
-"validation.documents.needed" ="Documents requis";
+"validation.documents.needed" = "Documents requis";
 "validation.view" = "Voir";
 
 
@@ -479,8 +479,8 @@ C'est irréversible.";
 "upload.money.our.address.label" = "Notre adresse: %@";
 "upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit. Uniquement depuis votre compte.";
 "upload.money.header.label.EUR" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. Uniquement depuis votre compte.";
-"upload.money.header.label.USD.swift" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. (depuis votre compte uniquement)";
-"upload.money.header.label.USD.wire" = "Seulement si vous disposez d'un compte domestique américain, transférez %@ sur le compte américain de Transferwise ci-dessous. Uniquement depuis votre compte. Nous n'acceptons pas les cheques et le cash";
+"upload.money.header.label.USD.SWIFT" = "Se connecter à votre banque en ligne ou appelez votre banque. Transférer %@ vers le compte européen de Transferwise ci-dessous. ";
+"upload.money.header.label.USD.REGULAR" = "Si vous disposez d'un compte aux états-unis uniquement, transférez %@ vers le compte US de TransferWise ci-dessous. L'argent doit être envoyé depuis votre compte. Nous n'acceptons pas les chèques ni le liquide.";
 "upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte Transferwise ci-dessous. Uniquement depuis votre compte.";
 "upload.money.header.label.exactly" = "éxactement %@";
 "upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone euro ne coûtent pas plus cher qu'un transfert local.";
@@ -537,8 +537,7 @@ C'est irréversible.";
 "payment.detail.cancel.date.message" = "Annulé le %@";
 "payment.detail.transferred.date.message" = "Transféré on %@";
 "payment.detail.exchange.rate.message" = "Taux de change %@";
-"payment.detail.sent.header.message" = "Transfert envoyé au destinataire.
-Transfert #%@";
+"payment.detail.sent.header.message" = "Transfert envoyé au destinataire.\nTransfert #%@";
 "payment.detail.converting.header.message" = "Transfert #%@ en attente de conversion.";
 
 "payment.method.DATA_CASH" = "Carte de débit";
@@ -549,6 +548,7 @@ Transfert #%@";
 "payment.method.SWIFT.USD" = "SWIFT";
 "payment.method.ACH" = "Bank debit";
 "payment.method.ACH.USD" = "Bank debit";
+"payment.method.BANKGIRO" = "Bankgiro";
 
 "payment.method.title.DATA_CASH" = "Payer par carte bancaire";
 "payment.method.title.REGULAR" = "Payer par virement bancaire";
@@ -557,7 +557,8 @@ Transfert #%@";
 "payment.method.title.SWIFT" = "Payer par SWIFT";
 "payment.method.title.SWIFT.USD" = "Payer par SWIFT";
 "payment.method.title.ACH" = "Payer par bank debit";
-"payment.method.title. ACH.USD" = "Payer par bank debit";
+"payment.method.title.ACH.USD" = "Payer par direct debit";
+"payment.method.title.BANKGIRO" = "Payer avec Bankgiro";
 
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
@@ -565,6 +566,7 @@ Transfert #%@";
 "payment.method.description.SWIFT" = "Si votre compte USD n'est pas aux États Unis, virer vos USD vers notre compte Européen.";
 "payment.method.description.ACH" = "Prélever directement sur votre compte en banque.";
 "payment.method.description.apple.pay" = "Payer avec votre Apple Pay portefeuille.";
+"payment.method.description.BANKGIRO" = "Simple comme payer un facture.";
 
 "support.sheet.title" = "Si vous avez la moindre question, n'hésitez pas à contacter notre service client.";
 "support.sheet.write.message" = "Nous envoyer un email";
@@ -577,17 +579,9 @@ Transfert #%@";
 "support.email.to.name" = "Service client TransferWise";
 "support.generic.email.subject" = "J'ai une question";
 
-"support.email.message.body.base" = "<body>
-<br />
-<br />
-<br />
-| Info for the support team: |<br />
-| User: <a href='%@'>%@</a> |<br />
-| Device: %@, %@ |<br />
-| Application: v%@ |<br />
-</body>";
+"support.email.message.body.base" = "<body>\n<br />\n<br />\n<br />\n| Info for the support team: |<br />\n| User: <a href='%@'>%@</a> |<br />\n| Device: %@, %@ |<br />\n| Application: v%@ |<br />\n</body>";
 
-"support.contact.cell.label" = "Contact support";
+"support.contact.cell.label" = "Contacter le support";
 "support.email.payment.subject.base" = "A propos du transfert #%@";
 
 
@@ -598,29 +592,14 @@ Transfert #%@";
 "feedback.alert.button.send.dismiss" = "Pas maintenant";
 
 "feedback.email.subject" = "Commentaire sur l'app TransferWise";
-"feedback.email.message.body.base" = "<body>
-<br />
-<br />
-<br />
-| Info for the TransferWise team: |<br />
-| User: <a href='%@'>%@</a> |<br />
-| Device: %@, %@ |<br />
-| Application: v%@ |<br />
-</body>";
+"feedback.email.message.body.base" = "<body>\n<br />\n<br />\n<br />\n| Info for the TransferWise team: |<br />\n| User: <a href='%@'>%@</a> |<br />\n| Device: %@, %@ |<br />\n| Application: v%@ |<br />\n</body>";
 
 "business.profile.identification.controller.title" = "Quelques infos requises";
 "business.profile.identification.button.title" = "Continuer";
 "business.profile.identification.instruction.text" = "Pour des raisons de sécurité, notre équipe vous contactera par email dans les 24 prochaines heures afin de vous demander quelques documents au sujet de votre entreprise.";
 
 "identification.email.subject" = "Details de l'entreprise";
-"identification.email.message.body.base" = "<body>
-Veuillez joindre vos documents à cet email et envoyez ce dernier.<br />
-<br />
-<br />
-| Info for the TransferWise team: |<br />
-| Account email: %@ |<br />
-| Business: %@ |<br />
-</body>";
+"identification.email.message.body.base" = "<body>\nVeuillez joindre vos documents à cet email et envoyez ce dernier.<br />\n<br />\n<br />\n| Info for the TransferWise team: |<br />\n| Account email: %@ |<br />\n| Business: %@ |<br />\n</body>";
 
 "business.profile.identification.making.payment.message" = "Création du transfert...";
 
@@ -628,16 +607,13 @@ Veuillez joindre vos documents à cet email et envoyez ce dernier.<br />
 "intro.login.button.title" = "Connexion";
 "intro.register.button.title" = "S'enregistrer";
 "intro.google.button.title" = "Connexion via Google";
-"intro.tagline.one" = "ARGENT
-SANS
-FRONTIERES";
-"intro.tagline.two" = "90\%\n MOINS CHER";
-"intro.tagline.three" = "RESPECTÉ
-A TRAVERS
-LE MONDE";
-"intro.tagline.four" = "VIREMENTS FACILE &
-RAPIDES";
+"intro.tagline.one" = "ARGENT\nSANS\nFRONTIERES";
+"intro.tagline.oneB" = "BENEFICIER DU TAUX\nDE CHANGE REEL";
+"intro.tagline.two" = "90\\%\n MOINS CHER";
+"intro.tagline.three" = "RESPECTÉ\nA TRAVERS\nLE MONDE";
+"intro.tagline.four" = "VIREMENTS FACILE &\nRAPIDES";
 "intro.message.one" = "Envoi d'argent à l'étranger. Moins cher. Rapide.";
+"intro.message.oneB" = "TransferWise est le moyen le moins cher d'envoyer de l'argent à l'étranger.";
 "intro.message.two" = "Les banques vous prennent 5% via des frais cachés. Nous ne prenons que 0.5%";
 "intro.message.three" = "6758 revues independantes. Note: 5/5";
 "intro.message.four" = "Par les développeurs de Skype. ";
@@ -657,11 +633,7 @@ RAPIDES";
 "refresh.refreshing" = "Chargement des transferts...";
 
 
-"business.profile.identification.header.instructions.text" = "As we follow the anti-money laundering policies of our regulators (HMRC and FCA), we unfortunately need photos (or scanned copies) of a few key documents:
-
-1. A valid business incorporation document
-2. A list of the shareholders with over 25% ownership (with % of ownership stated)
-3. Photo ID and proof of address for all of the above stakeholders";
+"business.profile.identification.header.instructions.text" = "As we follow the anti-money laundering policies of our regulators (HMRC and FCA), we unfortunately need photos (or scanned copies) of a few key documents:\n\n1. A valid business incorporation document\n2. A list of the shareholders with over 25% ownership (with % of ownership stated)\n3. Photo ID and proof of address for all of the above stakeholders";
 "business.profile.identification.footer.instructions.text" = "Our apologies for the inconvenience. Rest assured that we will never share your documents with 3rd parties.";
 
 "refund.controller.validation.error.empty.name" = "Nom du détenteur du compte manquant";
@@ -676,31 +648,25 @@ RAPIDES";
 "reset.password.controller.title" = "Reinitialiser mot de passe";
 "reset.password.controller.email.cell.label" = "Votre email";
 "reset.password.header.description" = "Saisir l'adresse email avec laquelle vous vous êtes enregistré. Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de passe.";
-"reset.password.header.description.ipad" = "Saisir l'adresse email avec laquelle vous vous êtes enregistré.
-Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de passe.";
+"reset.password.header.description.ipad" = "Saisir l'adresse email avec laquelle vous vous êtes enregistré.\nNous vous enverrons un email afin de vous laisser choisir un nouveau mot de passe.";
 "reset.controller.footer.button.title" = "Reinitialiser mot de passe";
 "reset.password.email.not.entered" = "Adresse email manquante.";
 "reset.password.invaild.email.error" = "Veuillez saisir une adresse email valide.";
 "reset.password.error.title" = "Oops!";
 "reset.password.success.alert.title" = "Parfait!";
 "reset.password.success.alert.message" = "Maintenant consultez votre boite de réception. Nous vous avons envoyé un email avec un lien pour choisir un nouveau mot de passe.";
-"reset.password.alert.dismiss.button" = "OK";
+"reset.password.alert.dismiss.button" = "Ok";
 "reset.password.failed.alert.title" = "Oops!";
 "reset.password.not.found.alert.message" = "Aucun compte correspondant à cette adresse email.";
 "refund.controller.existing.recipients.preload.error.title" = "Impossible de charger vos contacts";
 
-"ask.email.controller.title" = "Your email address";
-"ask.email.controller.email.cell.label" = "Your email";
-"ask.email.header.description" = "Enter your email address.
-We need this to create your account
-but you haven't shared it
-with us on Facebook.";
-"ask.email.header.description.ipad" = "Enter your email address.
-We need this to create your account
-but you haven't shared it with us on Facebook.";
-"ask.email.controller.footer.button.title" = "Done";
-"ask.email.email.not.entered" = "Email is missing.";
-"ask.email.invaild.email.error" = "Please provide a valid email.";
+"ask.email.controller.title" = "Votre adresse email";
+"ask.email.controller.email.cell.label" = "Votre email";
+"ask.email.header.description" = "Saisissez votre adresse email\nNous en avons besoin pour créer votre compte.";
+"ask.email.header.description.ipad" = "Saisissez votre adresse email\nNous en avons besoin pour créer votre compte.";
+"ask.email.controller.footer.button.title" = "Ok";
+"ask.email.email.not.entered" = "Votre email est manquant.";
+"ask.email.invaild.email.error" = "Veuillez saisir une adresse email valide.";
 "ask.email.error.title" = "Oops!";
 
 "network.alert" = "Pas de connexion internet";
@@ -771,8 +737,8 @@ but you haven't shared it with us on Facebook.";
 "transfertime.EUR.REGULAR" = "Cela prend généralement 1-2 jours ouvrés";
 "transfertime.GBP.REGULAR" = "Cela prend généralement quelques heures ouvrées";
 
-
 "upload.money.bankname.title" = "Nom de la banque";
+"upload.money.card.no.adyen.url" = "Impossible de charger l'écran.";
 
 "no.payin.methods.template" = "Aucune méthode de paiement sont actuellement disponible. Re-essayez plus tard.";
 
@@ -788,8 +754,7 @@ but you haven't shared it with us on Facebook.";
 
 "reset.password.controller.yahoo.title" = "Yahoo! n'est plus disponible";
 "reset.password.header.yahoo.description" = "Nous avons retiré l'option de connexion avec Yahoo!, mais pas d'inquiètude, vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
-"reset.password.header.yahoo.description.ipad" = "Nous avons retiré l'option de connexion avec Yahoo!, mais pas d'inquiètude,
-vous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
+"reset.password.header.yahoo.description.ipad" = "Nous avons retiré l'option de connexion avec Yahoo!, mais pas d'inquiètude,\nvous pouvez accéder à votre compte en ré-initialisant votre mot de passe.";
 
 
 "intro.referral.title.format" = "%@\nVOUS OFFRE un\nTRANSFERT GRATUIT";
