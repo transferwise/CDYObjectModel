@@ -6,47 +6,48 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "TransactionsViewController.h"
-#import "PaymentsOperation.h"
-#import "UIColor+Theme.h"
-#import "PaymentCell.h"
-#import "ObjectModel.h"
-#import "ObjectModel+Payments.h"
-#import "TabBarActivityIndicatorView.h"
-#import "UploadVerificationFileOperation.h"
-#import "Payment.h"
-#import "BankTransferViewController.h"
-#import "ConfirmPaymentViewController.h"
-#import "Recipient.h"
-#import "RecipientType.h"
-#import "UploadMoneyViewController.h"
-#import "GoogleAnalytics.h"
-#import "UIView+Loading.h"
-#import "CheckPersonalProfileVerificationOperation.h"
-#import "PersonalProfileIdentificationViewController.h"
-#import "PendingPayment.h"
-#import "PaymentPurposeOperation.h"
-#import "MOMStyle.h"
 
-#import "PullToRefreshView.h"
-#import "TransferDetailsViewController.h"
-#import "TransferWaitingViewController.h"
-#import "TRWAlertView.h"
-#import "TRWProgressHUD.h"
-#import "UIGestureRecognizer+Cancel.h"
+#import "BankTransferViewController.h"
 #import "CancelHelper.h"
+#import "CheckPersonalProfileVerificationOperation.h"
+#import "ConfirmPaymentViewController.h"
+#import "ConnectionAwareViewController.h"
 #import "Currency.h"
-#import "NavigationBarCustomiser.h"
-#import "PaymentMethodSelectorViewController.h"
-#import "SetSSNOperation.h"
-#import "SectionButtonFlashHelper.h"
-#import "RecipientTypesOperation.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
+#import "GoogleAnalytics.h"
+#import "LoggedInPaymentFlow.h"
+#import "MOMStyle.h"
+#import "NavigationBarCustomiser.h"
 #import "NewPaymentHelper.h"
 #import "NewPaymentViewController.h"
-#import "LoggedInPaymentFlow.h"
-#import "ConnectionAwareViewController.h"
+#import "ObjectModel+Payments.h"
+#import "ObjectModel.h"
+#import "Payment.h"
+#import "PaymentCell.h"
+#import "PaymentMethodDisplayHelper.h"
+#import "PaymentMethodSelectorViewController.h"
+#import "PaymentPurposeOperation.h"
+#import "PaymentsOperation.h"
+#import "PendingPayment.h"
+#import "PersonalProfileIdentificationViewController.h"
 #import "PullPaymentDetailsOperation.h"
+#import "PullToRefreshView.h"
+#import "Recipient.h"
+#import "RecipientType.h"
+#import "RecipientTypesOperation.h"
+#import "SectionButtonFlashHelper.h"
+#import "SetSSNOperation.h"
+#import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
+#import "TabBarActivityIndicatorView.h"
+#import "TransactionsViewController.h"
+#import "TransferDetailsViewController.h"
+#import "TransferWaitingViewController.h"
+#import "UIColor+Theme.h"
+#import "UIGestureRecognizer+Cancel.h"
+#import "UIView+Loading.h"
+#import "UploadMoneyViewController.h"
+#import "UploadVerificationFileOperation.h"
 
 static const NSInteger refreshInterval = 300;
 
@@ -542,14 +543,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}
 		else
 		{
-            NSUInteger numberOfPayInMethods = [[payment enabledPayInMethods] count];
-            if(numberOfPayInMethods < 1)
+            if([PaymentMethodDisplayHelper displayErrorForPayment: payment])
             {
                 CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:payment.sourceCurrency];
                 [errorScreen presentOnViewController:self.navigationController.parentViewController];
                 return;
             }
-			else if(numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1))
+			else if([PaymentMethodDisplayHelper displayMethodForPayment: payment] == kDisplayAsList)
 			{
 				PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
 				selector.objectModel = self.objectModel;

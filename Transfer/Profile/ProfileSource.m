@@ -159,7 +159,7 @@
 }
 
 - (NSArray *)includeStateCell:(BOOL)shouldInclude
-					 withCompletion:(SelectionCompletion)completion
+			   withCompletion:(SelectionCompletion)completion
 {
 	TextEntryCell *result = [self includeCell:self.stateCell
 									afterCell:self.countryCell
@@ -176,6 +176,41 @@
 	}
 	
 	return result ? @[result] : nil;
+}
+
+- (NSArray *)includeCells:(NSArray *)cells
+				afterCell:(UITableViewCell *)afterCell
+			shouldInclude:(BOOL)shouldInclude
+		   withCompletion:(SelectionCompletion)completion
+{
+	NSMutableArray *allCells = [[NSMutableArray alloc] initWithCapacity:cells.count + 1];
+	[allCells addObject:afterCell];
+	[allCells addObjectsFromArray:cells];
+	
+	if (shouldInclude)
+	{
+		for (int i = 1; i < allCells.count; i ++)
+		{
+			[self includeCell:allCells[i]
+					afterCell:allCells[i - 1]
+				shouldInclude:YES
+			   withCompletion:completion];
+		}
+		
+		return cells;
+	}
+	else
+	{
+		for (long i = allCells.count - 1; i > 0; i--)
+		{
+			[self includeCell:allCells[i]
+					afterCell:allCells[i - 1]
+				shouldInclude:NO
+			   withCompletion:completion];
+		}
+		
+		return nil;
+	}
 }
 
 - (TextEntryCell *)includeCell:(TextEntryCell *)includeCell
@@ -202,18 +237,22 @@
 	
 	if(shouldInclude && ![fields containsObject:includeCell])
 	{
-		[fields insertObject:includeCell atIndex:[fields indexOfObject:afterCell] + 1];
+		[fields insertObject:includeCell
+					 atIndex:[fields indexOfObject:afterCell] + 1];
 		
-		NSIndexPath *indexPath = [self getIndexPathForCell:afterCell inTableView:tableView];
+		NSIndexPath *indexPath = [self getIndexPathForCell:afterCell
+											   inTableView:tableView];
 		if (indexPath)
 		{
-			indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+			indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1
+										   inSection:indexPath.section];
 			
 			[self updateTableView:tableView
 						   update:^{
                                if(tableView.numberOfSections > indexPath.section)
                                {
-                                   [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                                   [tableView insertRowsAtIndexPaths:@[indexPath]
+													withRowAnimation:UITableViewRowAnimationTop];
                                }
 						   }
 					   completion:completion];
@@ -224,14 +263,16 @@
 	else if(!shouldInclude && [fields containsObject:includeCell])
 	{
 		[fields removeObject:includeCell];
-		NSIndexPath *indexPath = [self getIndexPathForCell:includeCell inTableView:tableView];
+		NSIndexPath *indexPath = [self getIndexPathForCell:includeCell
+											   inTableView:tableView];
 		if (indexPath)
 		{
 			[self updateTableView:tableView
 						   update:^{
                                if(tableView.numberOfSections > indexPath.section)
                                {
-                                   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                                   [tableView deleteRowsAtIndexPaths:@[indexPath]
+													withRowAnimation:UITableViewRowAnimationTop];
                                }
 						   }
 					   completion:completion];
@@ -257,7 +298,8 @@
                     NSUInteger row = [section indexOfObject:cell];
                     if(sectionIndex != NSNotFound && row != NSNotFound)
                     {
-                        return [NSIndexPath indexPathForRow:row inSection:sectionIndex];
+                        return [NSIndexPath indexPathForRow:row
+												  inSection:sectionIndex];
                     }
                     
                 }

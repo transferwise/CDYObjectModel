@@ -24,6 +24,12 @@
 "ach.failure.message.mismatch" = "Incorrect account details";
 "ach.failure.message.routingnumber" = "Invalid routing number";
 
+"applepay.success.message" = "You successfully paid with ApplePay";
+"applepay.failure.message.initcontroller" = "There was a problem with your Apple Pay configuration";
+"applepay.failure.message.refused" = "Your payment was refused";
+"applepay.failure.message.error" = "An error occurred while processing your payment";
+"applepay.failure.message.cancelled" = "Your payment was cancelled";
+
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";
 "business.profile.address.section.title" = "Address";
@@ -256,11 +262,11 @@ A revolution in your pocket.";
 "payment.status.matched.description" = "on its way";
 "payment.status.matched.description.long" = "is on its way.";
 "payment.status.matched.description.conversion" = "have been converted to";
-"payment.status.matched.description.eta" = "& should arrive on";
+"payment.status.matched.description.eta" = "& should arrive";
 "payment.status.received.description" = "Converting";
 "payment.status.received.description.long" = "is now being converted.";
 "payment.status.received.description.conversion" = "is estimated to convert to";
-"payment.status.received.description.eta" = "& should arrive on";
+"payment.status.received.description.eta" = "& should arrive";
 "payment.status.refunded.description" = "Refunded %@";
 "payment.status.submitted.description" = "Waiting for money";
 "payment.status.submitted.description.long" = "will start as soon";
@@ -275,7 +281,7 @@ It generally takes 1-2 business day.";
 "payment.status.transferred.description" = "Completed - %@";
 "payment.status.transferred.description.long" = "has been transfered.";
 "payment.status.transferred.description.conversion" = "have been converted to";
-"payment.status.transferred.description.eta" = "& should arrive on";
+"payment.status.transferred.description.eta" = "& should arrive";
 "payment.status.transferred.description.eta.past" = "& should have arrived on";
 "payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
@@ -552,6 +558,7 @@ Payment #%@";
 "payment.method.SWIFT.USD" = "SWIFT";
 "payment.method.ACH" = "Bank debit (ACH)";
 "payment.method.ACH.USD" = "Bank debit (ACH)";
+"payment.method.BANKGIRO" = "Bankgiro";
 
 "payment.method.title.DATA_CASH" = "Pay by debit card";
 "payment.method.title.REGULAR" = "Pay by bank transfer";
@@ -561,12 +568,15 @@ Payment #%@";
 "payment.method.title.SWIFT.USD" = "Pay by SWIFT Transfer";
 "payment.method.title.ACH" = "Pay by direct debit";
 "payment.method.title.ACH.USD" = "Pay by direct debit";
+"payment.method.title.BANKGIRO" = "Pay by Bankgiro";
 
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.REGULAR" = "You transfer us the money via a \n wire transfer and we do the rest.";
 "payment.method.description.ADYEN" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.SWIFT" = "If your USD account is not in the US, please use this option.";
 "payment.method.description.ACH" = "Directly withdraw money\n from your USD account.";
+"payment.method.description.apple.pay" = "Pay using your Apple Pay wallet.";
+"payment.method.description.BANKGIRO" = "Just like paying a bill.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";
@@ -778,7 +788,9 @@ but you haven't shared it with us on Facebook.";
 "registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
 "registration.tos" = "Terms of services";
 "registration.privacy" = "Privacy Policy";
-"usd.legaleze" = "By continuing you agree\nto our %@";
+
+"general.legaleze" = "By continuing you agree\nto our %@";
+"general.terms.of.use" = "terms of use";
 "usd.state.specific" = "state specific notices";
 
 "transfertime.default" = "It generally takes 1 business day";

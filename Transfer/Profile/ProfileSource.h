@@ -37,15 +37,15 @@ typedef void (^SelectionCompletion)();
 - (BOOL)inputValid;
 - (void)commitProfile;
 - (void)validateProfileWithValidation:(id)validation
-			 completion:(ProfileActionBlock)completion;
+						   completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
 
 - (void)markCellsWithIssues:(NSArray *)issues;
 - (void)setUpTableView:(UITableView *)tableView;
 - (NSArray *)countrySelectionCell:(SelectionCell *)cell
-					   didSelectCountry:(Country *)country
-						 withCompletion:(SelectionCompletion)completion;
+				 didSelectCountry:(Country *)country
+				   withCompletion:(SelectionCompletion)completion;
 - (void)clearData;
 
 @end

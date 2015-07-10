@@ -24,6 +24,9 @@
 "ach.failure.message.mismatch" = "Les identifiants de votre compte bancaire sont incorrects.";
 "ach.failure.message.routingnumber" = "Routing number invalide";
 
+"applepay.success.message" = "You successfully paid with ApplePay";
+"applepay.failure.message.account" = "We did not manage to verify your account";
+
 "business.profile.address.label" = "Adresse";
 "business.profile.email.label" = "Votre email profesionnel";
 "business.profile.address.section.title" = "Adresse";
@@ -561,6 +564,7 @@ Transfert #%@";
 "payment.method.description.ADYEN" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.SWIFT" = "Si votre compte USD n'est pas aux États Unis, virer vos USD vers notre compte Européen.";
 "payment.method.description.ACH" = "Prélever directement sur votre compte en banque.";
+"payment.method.description.apple.pay" = "Payer avec votre Apple Pay portefeuille.";
 
 "support.sheet.title" = "Si vous avez la moindre question, n'hésitez pas à contacter notre service client.";
 "support.sheet.write.message" = "Nous envoyer un email";
@@ -758,7 +762,9 @@ but you haven't shared it with us on Facebook.";
 "registration.legaleze" = "En utilisant TransferWise, vous adherez à nos %@ & %@";
 "registration.tos" = "conditions générales";
 "registration.privacy" = "règles de confidentialité";
-"usd.legaleze" = "En continuant vous adherez \n aux %@";
+
+"general.legaleze" = "En continuant vous adherez \n aux %@";
+"general.terms.of.use" = "conditions d'utilisation";
 "usd.state.specific" = "conditions spéciales de chaque état";
 
 "transfertime.default" = "Cela prend généralement 1 jour ouvré";
