@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, weak) UIView* separatorLine;
-@property (nonatomic, weak) PayInMethod* method;
+@property (nonatomic, weak) NSString* method;
 
 @end
 
@@ -37,20 +37,23 @@
 }
 
 
--(void)configureWithPaymentMethod:(PayInMethod*)method
+-(void)configureWithPaymentMethod:(NSString*)method
 					 fromCurrency:(NSString *)currencyCode
 {
     self.method = method;
-    NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",method.type];
-	[self.button setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@", titleKey, currencyCode] withFallback:titleKey] forState:UIControlStateNormal];
-    NSString *descriptionKey = [NSString stringWithFormat:@"payment.method.description.%@",method.type];
-    self.descriptionLabel.text = [NSString localizedStringForKey:descriptionKey withFallback:nil];
+    NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",method];
+	[self.button setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@", titleKey, currencyCode]
+											 withFallback:titleKey] forState:UIControlStateNormal];
+    NSString *descriptionKey = [NSString stringWithFormat:@"payment.method.description.%@", method];
+    self.descriptionLabel.text = [NSString localizedStringForKey:descriptionKey
+													withFallback:nil];
 }
 
 - (IBAction)actionButtonTapped:(id)sender {
     if([self.paymentMethodCellDelegate respondsToSelector:@selector(actionButtonTappedOnCell:withMethod:)])
     {
-        [self.paymentMethodCellDelegate actionButtonTappedOnCell:self withMethod:self.method];
+        [self.paymentMethodCellDelegate actionButtonTappedOnCell:self
+													  withMethod:self.method];
     }
 }
 @end

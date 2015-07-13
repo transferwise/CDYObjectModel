@@ -41,15 +41,30 @@
 	
     NSMutableArray *viewControllers = [NSMutableArray array];
     NSMutableArray *titles = [NSMutableArray array];
-    NSArray *availableOptions = self.forcedMethod?@[self.forcedMethod]:[[self.payment enabledPayInMethods] array];
-    for(PayInMethod *method in availableOptions)
+    NSArray *availableOptions = self.forcedMethod ? @[self.forcedMethod] : [[self.payment enabledPayInMethods] array];
+	
+    for(id method in availableOptions)
     {
-        UIViewController *controller = [PaymentMethodViewControllerFactory viewControllerForPayInMethod:method forPayment:self.payment objectModel:self.objectModel];
+		NSString *type;
+		
+		if ([method isKindOfClass:[PayInMethod class]])
+		{
+			type = ((PayInMethod *)method).type;
+		}
+		else
+		{
+			//naively expect this to be NSString
+			type = method;
+		}
+		
+        UIViewController *controller = [PaymentMethodViewControllerFactory viewControllerForPayInMethod:method
+																							 forPayment:self.payment
+																							objectModel:self.objectModel];
         if(controller)
         {
             [viewControllers addObject:controller];
-            NSString *currencyTitleKey = [NSString stringWithFormat:@"payment.method.%@.%@",method.type,self.payment.sourceCurrency.code];
-            NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",method.type];
+            NSString *currencyTitleKey = [NSString stringWithFormat:@"payment.method.%@.%@",type,self.payment.sourceCurrency.code];
+            NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",type];
             NSString* title = [NSString localizedStringForKey:currencyTitleKey withFallback:NSLocalizedString(titleKey, nil)];
             [titles addObject:title];
         }

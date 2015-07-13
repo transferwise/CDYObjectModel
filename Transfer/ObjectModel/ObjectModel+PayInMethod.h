@@ -9,9 +9,12 @@
 #import "ObjectModel.h"
 
 @class Payment;
+@class PayInMethod;
 
 @interface ObjectModel (PayInMethod)
 
--(void)createOrUpdatePayInMethodsWithData:(NSArray*)data forPayment:(Payment*)payment;
+- (void)createOrUpdatePayInMethodsWithData:(NSArray*)data
+								forPayment:(Payment*)payment;
+- (PayInMethod *)payInMethodWithType:(NSString *)type;
 
 @end

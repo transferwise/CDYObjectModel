@@ -14,7 +14,8 @@
 
 @implementation ObjectModel (PayInMethod)
 
--(void)createOrUpdatePayInMethodsWithData:(NSArray*)data forPayment:(Payment*)payment
+-(void)createOrUpdatePayInMethodsWithData:(NSArray*)data
+							   forPayment:(Payment*)payment
 {
     NSMutableOrderedSet *objectsToDelete = [payment.payInMethods mutableCopy];
     NSOrderedSet *existingTypes = [payment.payInMethods valueForKey:@"type"];
@@ -58,5 +59,11 @@
     }
 }
 
+- (PayInMethod *)payInMethodWithType:(NSString *)type
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type = %@", type];
+	return [self fetchEntityNamed:[PayInMethod entityName]
+					withPredicate:predicate];
+}
 
 @end

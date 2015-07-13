@@ -54,19 +54,22 @@
     [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];
 	
 	
-	self.sortedPayInMethods = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
-			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type]integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type] integerValue];
+	NSArray *payInMethodsSorted = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
+			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type] integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type] integerValue];
 	}];
+	
+	NSMutableArray *sortedPayInMethodTypes = [[NSMutableArray alloc] initWithCapacity:payInMethodsSorted.count];
+	for (PayInMethod *method in sortedPayInMethodTypes)
+	{
+		[sortedPayInMethodTypes addObject:method.type];
+	}
 	
 	if ([ApplePayHelper isApplePayAvailableForPayment: self.payment])
 	{
-		NSMutableArray *payInMethods = [[NSMutableArray alloc] initWithCapacity:self.sortedPayInMethods.count + 1];
-		[payInMethods addObjectsFromArray:self.sortedPayInMethods];
-		
-		[payInMethods addObject:APPLE_PAY];
-		
-		self.sortedPayInMethods = payInMethods;
+		[sortedPayInMethodTypes addObject:APPLE_PAY];
 	}
+	
+	self.sortedPayInMethods = sortedPayInMethodTypes;
 	
     [[GoogleAnalytics sharedInstance] sendScreen:GAPaymentMethodSelector];
     [[Mixpanel sharedInstance] sendPageView:MPPaymentMethodSelector];
@@ -98,27 +101,27 @@ numberOfRowsInSection:(NSInteger)section
 -(UITableViewCell *)tableView:(UITableView *)tableView
 		cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	id payInMethod = self.sortedPayInMethods[indexPath.row];
+	NSString *payInMethod = self.sortedPayInMethods[indexPath.row];
 	
-	if ([payInMethod isKindOfClass:[PayInMethod class]])
-	{
-		PaymentMethodCell *cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
-		[cell configureWithPaymentMethod:self.sortedPayInMethods[indexPath.row]
-							fromCurrency:[self.payment sourceCurrency].code];
-		
-		[self setCellBackground:indexPath
-						   cell:cell];
-		cell.paymentMethodCellDelegate = self;
-		
-		return cell;
-	}
-	else
+	if ([APPLE_PAY caseInsensitiveCompare:payInMethod] == NSOrderedSame)
 	{
 		ApplePayCell *cell = (ApplePayCell *)[tableView dequeueReusableCellWithIdentifier:ApplePayCellName];
 		
 		[self setCellBackground:indexPath
 						   cell:cell];
 		cell.applePayCellDelegate = self;
+		
+		return cell;
+	}
+	else
+	{
+		PaymentMethodCell *cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
+		[cell configureWithPaymentMethod:payInMethod
+							fromCurrency:[self.payment sourceCurrency].code];
+		
+		[self setCellBackground:indexPath
+						   cell:cell];
+		cell.paymentMethodCellDelegate = self;
 		
 		return cell;
 	}
@@ -135,7 +138,7 @@ numberOfRowsInSection:(NSInteger)section
 }
 
 -(void)actionButtonTappedOnCell:(PaymentMethodCell *)cell
-					 withMethod:(PayInMethod *)method
+					 withMethod:(NSString *)method
 {
     UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
     controller.objectModel = self.objectModel;
