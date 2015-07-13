@@ -1021,6 +1021,9 @@
 		472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
 		472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
+		472EFE3A1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
+		472EFE3B1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
+		472EFE3C1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
 		4731F65E1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
 		4731F65F1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
 		4731F6601B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
@@ -2066,6 +2069,8 @@
 		472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPaymentProfileViewController.m; sourceTree = "<group>"; };
 		472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPaymentProfileViewController.h; sourceTree = "<group>"; };
 		472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessPaymentProfileViewController.m; sourceTree = "<group>"; };
+		472EFE381B53E22600EAEDB9 /* AdyenResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdyenResponseParser.h; sourceTree = "<group>"; };
+		472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdyenResponseParser.m; sourceTree = "<group>"; };
 		4731F65C1B2EC76100E1E840 /* NSString+DeducedId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeducedId.h"; sourceTree = "<group>"; };
 		4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeducedId.m"; sourceTree = "<group>"; };
 		4731F6611B2EDE8E00E1E840 /* MixpanelIdentityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelIdentityHelper.h; sourceTree = "<group>"; };
@@ -4024,6 +4029,8 @@
 				47852D691B0F206E0028E11A /* FacebookHelper.m */,
 				47E6CF3A1B46B8B300790921 /* TermsAndConditionsUpdater.h */,
 				47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */,
+				472EFE381B53E22600EAEDB9 /* AdyenResponseParser.h */,
+				472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -5172,6 +5179,7 @@
 				388E5A8E1A5A949500AF6EB9 /* PaymentMethodSelectorViewController.m in Sources */,
 				388E5A8F1A5A949500AF6EB9 /* UIView+RenderBlur.m in Sources */,
 				388E5A901A5A949500AF6EB9 /* TargetCountryProvider.m in Sources */,
+				472EFE3C1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */,
 				470B112F1ADBB682008729E9 /* PushNotificationsHelper.m in Sources */,
 				388E5A911A5A949500AF6EB9 /* PaymentFlowViewControllerFactory.m in Sources */,
 				388E5A921A5A949500AF6EB9 /* ClaimAccountViewController.m in Sources */,
@@ -5359,6 +5367,7 @@
 				EA31A13117DDB29B00F937F7 /* UIColor+Theme.m in Sources */,
 				389F6820198FC1C6006CF1F6 /* Currency.m in Sources */,
 				47FD9FF41A9E206D00E95D7E /* LoginOrRegisterWithOauthOperation.m in Sources */,
+				472EFE3B1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */,
 				380021DC192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
@@ -5706,6 +5715,7 @@
 				389F681F198FC1C6006CF1F6 /* Currency.m in Sources */,
 				EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */,
 				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
+				472EFE3A1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */,
 				470B11331ADCF39E008729E9 /* AddUserDeviceOperation.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,

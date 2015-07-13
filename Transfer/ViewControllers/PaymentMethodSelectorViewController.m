@@ -19,6 +19,7 @@
 #import "TransferBackButtonItem.h"
 #import "UploadMoneyViewController.h"
 #import "ApplePayCell.h"
+#import "AdyenResponseParser.h"
 @import PassKit;
 
 
@@ -209,40 +210,29 @@ numberOfRowsInSection:(NSInteger)section
     [self.applePayHelper sendToken: paymentToken
                       forPaymentId: remoteIdString
                    responseHandler: ^(NSError *error, NSDictionary *result) {
-					   
-					   NSString* resultCode = result[@"resultCode"];
-                       
-					   if (!error
-						   && [@"Authorised" caseInsensitiveCompare: resultCode] == NSOrderedSame)
-					   {
-						   completion(PKPaymentAuthorizationStatusSuccess);
-						   
-						   [CustomInfoViewController presentCustomInfoWithSuccess: YES
-                                                                       controller: self
-                                                                       messageKey: @"applepay.success.message"
-                                                                          payment: self.payment
-                                                                      objectModel: self.objectModel];
-					   }
-					   else
-					   {
-						   completion(PKPaymentAuthorizationStatusFailure);
-						   
-						   NSString *errorKeyPrefix = @"applepay.failure.message";
-						   NSString *errorKeySuffix = @"initcontroller";
-						   
-						   if (resultCode
-							   && [@"Received" caseInsensitiveCompare: resultCode] != NSOrderedSame
-							   && [@"RedirectShopper" caseInsensitiveCompare: resultCode] != NSOrderedSame)
-						   {
-							   errorKeySuffix = [resultCode lowercaseString];
-						   }
-						   
-						   [CustomInfoViewController presentCustomInfoWithSuccess: NO
-												   controller: self
-												   messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]
-                                                                          payment: self.payment
-                                                                      objectModel: self.objectModel];
-					   }
+					   [AdyenResponseParser handleAdyenResponse:error
+													   response:result
+												 successHandler:^{
+													 completion(PKPaymentAuthorizationStatusSuccess);
+													 
+													 [CustomInfoViewController presentCustomInfoWithSuccess: YES
+																								 controller: self
+																								 messageKey: @"applepay.success.message"
+																									payment: self.payment
+																								objectModel: self.objectModel];
+												 }
+													failHandler:^(NSError *error, NSString *errorKeySuffix) {
+														completion(PKPaymentAuthorizationStatusFailure);
+														
+														NSString *errorKeyPrefix = @"applepay.failure.message";
+														errorKeySuffix = errorKeySuffix ?: @"initcontroller";
+														
+														[CustomInfoViewController presentCustomInfoWithSuccess: NO
+																									controller: self
+																									messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]
+																									   payment: self.payment
+																								   objectModel: self.objectModel];
+													}];
 				   }];
 }
 
