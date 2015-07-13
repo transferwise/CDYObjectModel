@@ -826,6 +826,9 @@
 		38AA83D01949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
 		38AD6EEE19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */; };
 		38AD6EEF19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */; };
+		38AE794C1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AE794B1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m */; };
+		38AE794D1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AE794B1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m */; };
+		38AE794E1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AE794B1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m */; };
 		38AEB3C31964369F00B852E1 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */; };
 		38AEB3C4196436F800B852E1 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */; };
 		38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */; };
@@ -1913,6 +1916,8 @@
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
 		38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferTypeSelectionHeaderNoTitle.xib; sourceTree = "<group>"; };
+		38AE794A1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomInfoViewController+UpdatePaymentDetails.h"; sourceTree = "<group>"; };
+		38AE794B1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomInfoViewController+UpdatePaymentDetails.m"; sourceTree = "<group>"; };
 		38AEB3C11964369F00B852E1 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
 		38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
 		38AEB3C51966B8BF00B852E1 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
@@ -3501,6 +3506,8 @@
 				38FAE5331ADE569E006CD53C /* CustomInfoViewController+Notifications.m */,
 				38FAE5371ADE634B006CD53C /* CustomInfo_Notifications.xib */,
 				38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */,
+				38AE794A1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.h */,
+				38AE794B1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5068,6 +5075,7 @@
 				388E5A321A5A949500AF6EB9 /* UserDetailsOperation.m in Sources */,
 				388E5A331A5A949500AF6EB9 /* TransparentModalViewController.m in Sources */,
 				388E5A341A5A949500AF6EB9 /* CircleStyle.m in Sources */,
+				38AE794E1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m in Sources */,
 				388E5A351A5A949500AF6EB9 /* CountrySuggestionCellProvider.m in Sources */,
 				388E5A361A5A949500AF6EB9 /* SelectionCell.m in Sources */,
 				388E5A371A5A949500AF6EB9 /* DateEntryCell.m in Sources */,
@@ -5340,6 +5348,7 @@
 				479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
 				EA31A12B17DDB29B00F937F7 /* ContactsViewController.m in Sources */,
+				38AE794D1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m in Sources */,
 				382C134D1ADBE76A00370F39 /* AnalyticsConstants.m in Sources */,
 				389F680E198FC1C6006CF1F6 /* _Recipient.m in Sources */,
 				EA31A12D17DDB29B00F937F7 /* NewPaymentViewController.m in Sources */,
@@ -5686,6 +5695,7 @@
 				EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */,
 				470B11381ADCF3B3008729E9 /* RemoveUserDeviceOperation.m in Sources */,
 				EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */,
+				38AE794C1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m in Sources */,
 				47C4D0581A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m in Sources */,
 				389F680D198FC1C6006CF1F6 /* _Recipient.m in Sources */,
 				EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */,
@@ -6372,7 +6382,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "e5077026-0ad8-4e3d-8f45-c96741089431";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "c1adc298-6d66-4cf4-8bd7-e408b4df626c";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6448,7 +6458,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6fc19856-2ed5-40fb-aa66-cf267055ea7c";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "c1adc298-6d66-4cf4-8bd7-e408b4df626c";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
