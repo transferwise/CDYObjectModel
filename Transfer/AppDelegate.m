@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "AppDelegate.h"
 #import "ObjectModel.h"
@@ -30,18 +31,28 @@
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
-#import <FBAppEvents.h>
-#import <FBSettings.h>
-#import <FBAppCall.h>
+#import <FBSDKAppEvents.h>
+#import <FBSDKSettings.h>
 #import <NXOAuth2AccountStore.h>
 #import "PushNotificationsHelper.h"
 #import "Yozio.h"
 #import "ReferralsCoordinator.h"
+#import <FBSDKApplicationDelegate.h>
+#import "User.h"
+#import "MixpanelIdentityHelper.h"
+#import "NSString+DeducedId.h"
 
-@interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable>
+#import "TAGManager.h"
+#import "TAGContainer.h"
+#import "TAGContainerOpener.h"
+
+@interface AppDelegate ()<AppsFlyerTrackerDelegate, YozioMetaDataCallbackable, TAGContainerOpenerNotifier, TAGContainerCallback>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) id<PushNotificationsProvider> notificationHelper;
+
+@property (nonatomic, strong) TAGManager *tagManager;
+@property (nonatomic, strong) TAGContainer *container;
 
 @end
 
@@ -81,7 +92,8 @@
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
 #if DEV_VERSION
-    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername password:TransferSandboxPassword];
+    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername
+											   password:TransferSandboxPassword];
 #endif
 
     [[SupportCoordinator sharedInstance] setObjectModel:model];
@@ -97,6 +109,8 @@
     {
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:TRWIsRegisteredSettingsKey];
+		
+		[MixpanelIdentityHelper handleLogin:[self.objectModel.currentUser.pReference deducedIdString]];
     }
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
@@ -124,7 +138,9 @@
 	
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
-	return YES;
+	
+	return [[FBSDKApplicationDelegate sharedInstance] application:application
+									didFinishLaunchingWithOptions:launchOptions];
 }
 
 //IOS_7
@@ -188,8 +204,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
-	[FBSettings setDefaultAppID:@"274548709260402"];
-    [FBAppEvents activateApp];
+    [FBSDKAppEvents activateApp];
 #endif
 
 #if USE_APPSFLYER_EVENTS
@@ -200,6 +215,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [[TransferwiseClient sharedClient] updateBaseData];
     
     [self.notificationHelper registerForPushNotifications:YES];
+    
+    //Refresh GTM data
+    [self.container refresh];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -218,14 +236,16 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	
 #if DEV_VERSION
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
+	
+	[Mixpanel sharedInstanceWithToken:TRWMixpanelDevToken];
 #else
 	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
     [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
     
     [Yozio initializeWithAppKey:@"6e774e8a-7d01-46c1-918a-ea053bb46dc9"
                    andSecretKey:@"dd39f3e4-54b3-42cc-a49a-67da6af61ac2"
-  andNewInstallMetaDataCallback: self
-    andDeepLinkMetaDataCallback: self];
+  andNewInstallMetaDataCallback:self
+    andDeepLinkMetaDataCallback:self];
     
 #endif
 	
@@ -237,7 +257,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 	
 	[NanTracking setFbAppId:@"274548709260402"];
 	
-	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
+	[Fabric with:@[CrashlyticsKit]];
 	
 	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 	
@@ -247,8 +267,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [tracker setDebug:YES];
 #endif
 	[tracker initEventTracker:TRWImpactRadiusAppId username:TRWImpactRadiusSID password:TRWImpactRadiusToken];
-    
-    
+
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSString *lastInstalledVersion = [defaults stringForKey:TRWAppInstalledSettingsKey];
     NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
@@ -266,6 +285,16 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     }
     
 #endif
+    
+    //GTM - enable/disable apple pay
+    
+    self.tagManager = [TAGManager instance];
+    [TAGContainerOpener openContainerWithId:@"GTM-TDZF76"
+                                 tagManager:self.tagManager
+                                   openType:kTAGOpenTypePreferFresh
+                                    timeout:nil
+                                   notifier:self];
+    
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -273,23 +302,22 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-	BOOL urlWasHandled = [FBAppCall handleOpenURL:url
-								sourceApplication:sourceApplication
-								  fallbackHandler:^(FBAppCall *call) {
-									  MCLog(@"Unhandled deep link: %@", url);
-								  }];
+	BOOL urlWasHandled = [Yozio handleDeeplink:url];
 	
+	if(!urlWasHandled)
+	{
+		urlWasHandled = [[FBSDKApplicationDelegate sharedInstance] application:application
+																	   openURL:url
+															 sourceApplication:sourceApplication
+																	annotation:annotation];
+	}
 	
-    if(!urlWasHandled)
-    {
-        urlWasHandled = [Yozio handleDeeplink:url];
-        if(!urlWasHandled)
-        {
-            urlWasHandled = [self handleURL:url];
-        }
-    }
-    
-    return urlWasHandled;
+	if(!urlWasHandled)
+	{
+		urlWasHandled = [self handleURL:url];
+	}
+	
+	return urlWasHandled;
 }
 
 #pragma mark - deeplinking
@@ -423,6 +451,42 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     [ReferralsCoordinator handleReferralParameters:metaData];
 }
+
+#pragma mark - GTM
+
+-(void)containerAvailable:(TAGContainer *)container
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* containerID = container.containerId;
+        //There's apparently no way of setting a callback delegate after opening a container, so we have to close it and re-open it.
+        [container close];
+        self.container = [self.tagManager openContainerById:containerID callback:self];
+        [self updateApplePayWithContainer:self.container];
+    });
+}
+
+-(void)containerRefreshBegin:(TAGContainer *)container refreshType:(TAGContainerCallbackRefreshType)refreshType
+{
+    //NOP
+}
+
+-(void)containerRefreshFailure:(TAGContainer *)container failure:(TAGContainerCallbackRefreshFailure)failure refreshType:(TAGContainerCallbackRefreshType)refreshType
+{
+    //NOP
+}
+
+-(void)containerRefreshSuccess:(TAGContainer *)container refreshType:(TAGContainerCallbackRefreshType)refreshType
+{
+    [self updateApplePayWithContainer:container];
+}
+
+-(void)updateApplePayWithContainer:(TAGContainer *)container
+{
+    BOOL disableApplePay = [container booleanForKey:TRWDisableApplePay];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:disableApplePay forKey:TRWDisableApplePay];
+}
+
 
 
 

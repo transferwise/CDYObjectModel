@@ -14,6 +14,7 @@
 
 - (NSString *)formatAmount:(NSNumber *)amount withCurrency:(NSString *)currencyCode;
 - (NSString *)formatAmount:(NSNumber *)amount;
+- (NSString *)formatAmountNoSpaces:(NSNumber *)amount;
 - (NSNumber *)numberFromString:(NSString *)amountString;
 
 @end

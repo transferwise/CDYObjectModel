@@ -49,6 +49,7 @@ extern NSString *const TRWApplicationKey;
 extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;
 extern NSString *const TRWGoogleAnalyticsDevTrackingId;
+extern NSString *const TRWMixpanelDevToken;
 extern NSString *const TRWMixpanelToken;
 extern NSString *const TRWImpactRadiusSID;
 extern NSString *const TRWImpactRadiusToken;
@@ -62,6 +63,11 @@ extern NSString *const TRWReferralTokenKey;
 extern NSString *const TRWReferralSourceKey;
 extern NSString *const TRWReferrerKey;
 extern NSString *const TRWGoogleLoginUsedKey;
+extern NSString *const TRWGoogleRevokeUrlFormat;
+extern NSString *const TRWFacebookLoginUsedKey;
+extern NSString *const TRWIntroABKey;
+extern NSString *const TRWDidHighlightInviteSection;
+extern NSString *const TRWDisableApplePay;
 
 
 extern NSString *const TransferSandboxUsername;
@@ -85,7 +91,7 @@ extern NSString *const TRWStateSpecificTermsUrl;
 extern NSString *const TRWDeeplinkScheme;
 
 
-void delayedExecution(CGFloat seconds, TRWActionBlock action);
+void delayedExecution(NSTimeInterval seconds, TRWActionBlock action);
 
 static NSUInteger const TransferwiseAppID = 612261027;
 
@@ -95,7 +101,7 @@ static NSUInteger const TransferwiseAppID = 612261027;
                                     alpha:((c)&0xFF)/255.0]
 
 #define IOS_7 ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)
-#define IOS_8 ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
+#define IOS_8 ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)  
 
 #define IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
@@ -122,6 +128,10 @@ extern NSString *const GoogleOAuthRedirectUrl;
 extern NSString *const GoogleOAuthServiceName;
 extern NSString *const GoogleOAuthEmailScope;
 extern NSString *const GoogleOAuthProfileScope;
+
+extern NSString *const FacebookOAuthServiceName;
+extern NSString *const FacebookOAuthEmailScope;
+extern NSString *const FacebookOAuthProfileScope;
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 

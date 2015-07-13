@@ -30,16 +30,14 @@
 
 - (Recipient *)recipientWithRemoteId:(NSNumber *)recipientId {
     NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"remoteId = %@", recipientId];
-    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", [self currentUser]];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[remoteIdPredicate, userPredicate]];
-    return [self fetchEntityNamed:[Recipient entityName] withPredicate:predicate];
+    return [self fetchEntityNamed:[Recipient entityName] withPredicate:remoteIdPredicate];
 }
 
 - (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)rawData {
-    return [self createOrUpdateRecipientWithData:rawData hideCreted:NO];
+    return [self createOrUpdateRecipientWithData:rawData hideCreated:NO];
 }
 
-- (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)rawData hideCreted:(BOOL)hideCreated {
+- (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)rawData hideCreated:(BOOL)hideCreated {
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSNumber *remoteId = data[@"id"];
     Recipient *recipient = [self recipientWithRemoteId:remoteId];
@@ -86,10 +84,8 @@
 }
 
 - (TypeFieldValue *)existingValueForRecipient:(Recipient *)recipient field:(RecipientTypeField *)field {
-    NSPredicate *recipientPredicate = [NSPredicate predicateWithFormat:@"recipient = %@", recipient];
     NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[recipientPredicate, fieldPredicate]];
-    return [self fetchEntityNamed:[TypeFieldValue entityName] withPredicate:predicate];
+    return [[recipient.fieldValues filteredOrderedSetUsingPredicate:fieldPredicate] lastObject];
 }
 
 - (Recipient *)createOrUpdatePayInMethodRecipientWithData:(NSDictionary *)data {

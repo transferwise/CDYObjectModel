@@ -65,6 +65,7 @@
 -(void)dealloc
 {
     _scrollView.delegate = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ReferralsDetailsUpdatedNotification object:nil];
 }
 
 - (void)viewDidLoad
@@ -96,7 +97,19 @@
     
     NSMutableArray *screens = [NSMutableArray array];
 
-    self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.plistFilenameOverride?:@"intro" ofType:@"plist"]];
+    NSString *plistFileName = self.plistFilenameOverride;
+    if(!plistFileName)
+    {
+        plistFileName = [defaults stringForKey:TRWIntroABKey];
+        if(!plistFileName)
+        {
+            BOOL useIntroB = (arc4random()%2) == 0;
+            plistFileName = useIntroB?@"introB":@"intro";
+            [[Mixpanel sharedInstance] track:useIntroB?MPIntroABTest1:MPIntroABTest0];
+            [defaults setObject:plistFileName forKey:TRWIntroABKey];
+        }
+    }
+    self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:plistFileName ofType:@"plist"]];
     NSMutableArray* preLoadedStylesArray = [NSMutableArray arrayWithCapacity:[self.introData count]];
     for(NSDictionary* dictionary in self.introData)
     {
@@ -157,6 +170,8 @@
         [[Mixpanel sharedInstance] sendPageView:MPWhatsNew];
         [[GoogleAnalytics sharedInstance] sendScreen:GAWhatsNewScreen];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(referralUpdateNotification:) name:ReferralsDetailsUpdatedNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -192,12 +207,17 @@
 
 -(void)updatePages
 {
+    [self updatePages:NO];
+}
+
+-(void)updatePages:(BOOL)force
+{
     [self.scrollView layoutIfNeeded];
     
     //Calculate leftmost index
     NSInteger page = MAX(0,MIN(self.introData.count - 3 ,floor(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
     
-    if(page != self.lastLoadedIndex)
+    if(page != self.lastLoadedIndex || force)
     {
         NSUInteger index = page;
         self.lastLoadedIndex = page;
@@ -379,7 +399,7 @@
 
 - (IBAction)logInTapped:(id)sender
 {
-    LoginViewController* login = [[LoginViewController alloc] initWithNibName:@"LoginViewControllerUpfront" bundle:nil];
+    LoginViewController* login = [[LoginViewController alloc] init];
     login.objectModel = self.objectModel;
     [self fadeInDismissableViewController:login];
 }
@@ -439,6 +459,15 @@
         
     }
     [dictionary removeObjectForKey:key];
+}
+
+-(void)referralUpdateNotification:(NSNotification*)notification
+{
+    NSString* referrer = [ReferralsCoordinator referralUser];
+    if(referrer)
+    {
+        [self updatePages:YES];
+    }
 }
 
 @end

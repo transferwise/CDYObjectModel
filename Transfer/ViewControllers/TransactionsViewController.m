@@ -6,47 +6,48 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "TransactionsViewController.h"
-#import "PaymentsOperation.h"
-#import "UIColor+Theme.h"
-#import "PaymentCell.h"
-#import "ObjectModel.h"
-#import "ObjectModel+Payments.h"
-#import "TabBarActivityIndicatorView.h"
-#import "UploadVerificationFileOperation.h"
-#import "Payment.h"
-#import "BankTransferViewController.h"
-#import "ConfirmPaymentViewController.h"
-#import "Recipient.h"
-#import "RecipientType.h"
-#import "UploadMoneyViewController.h"
-#import "GoogleAnalytics.h"
-#import "UIView+Loading.h"
-#import "CheckPersonalProfileVerificationOperation.h"
-#import "PersonalProfileIdentificationViewController.h"
-#import "PendingPayment.h"
-#import "PaymentPurposeOperation.h"
-#import "MOMStyle.h"
 
-#import "PullToRefreshView.h"
-#import "TransferDetailsViewController.h"
-#import "TransferWaitingViewController.h"
-#import "TRWAlertView.h"
-#import "TRWProgressHUD.h"
-#import "UIGestureRecognizer+Cancel.h"
+#import "BankTransferViewController.h"
 #import "CancelHelper.h"
+#import "CheckPersonalProfileVerificationOperation.h"
+#import "ConfirmPaymentViewController.h"
+#import "ConnectionAwareViewController.h"
 #import "Currency.h"
-#import "NavigationBarCustomiser.h"
-#import "PaymentMethodSelectorViewController.h"
-#import "SetSSNOperation.h"
-#import "SendButtonFlashHelper.h"
-#import "RecipientTypesOperation.h"
 #import "CustomInfoViewController+NoPayInMethods.h"
+#import "GoogleAnalytics.h"
+#import "LoggedInPaymentFlow.h"
+#import "MOMStyle.h"
+#import "NavigationBarCustomiser.h"
 #import "NewPaymentHelper.h"
 #import "NewPaymentViewController.h"
-#import "LoggedInPaymentFlow.h"
-#import "ConnectionAwareViewController.h"
+#import "ObjectModel+Payments.h"
+#import "ObjectModel.h"
+#import "Payment.h"
+#import "PaymentCell.h"
+#import "PaymentMethodDisplayHelper.h"
+#import "PaymentMethodSelectorViewController.h"
+#import "PaymentPurposeOperation.h"
+#import "PaymentsOperation.h"
+#import "PendingPayment.h"
+#import "PersonalProfileIdentificationViewController.h"
 #import "PullPaymentDetailsOperation.h"
+#import "PullToRefreshView.h"
+#import "Recipient.h"
+#import "RecipientType.h"
+#import "RecipientTypesOperation.h"
+#import "SectionButtonFlashHelper.h"
+#import "SetSSNOperation.h"
+#import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
+#import "TabBarActivityIndicatorView.h"
+#import "TransactionsViewController.h"
+#import "TransferDetailsViewController.h"
+#import "TransferWaitingViewController.h"
+#import "UIColor+Theme.h"
+#import "UIGestureRecognizer+Cancel.h"
+#import "UIView+Loading.h"
+#import "UploadMoneyViewController.h"
+#import "UploadVerificationFileOperation.h"
 
 static const NSInteger refreshInterval = 300;
 
@@ -97,7 +98,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [self setTitle:NSLocalizedString(@"transactions.controller.title", nil)];
 		
 		//Observe notification to remove selected payment for iPad
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList:) name:TRWMoveToPaymentsListNotification object:nil];
     }
     return self;
 }
@@ -150,7 +151,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
     
     [self.tableView reloadData];
-	
+    
     if(self.deeplinkPaymentID)
     {
         [self presentDeeplinkPayment];
@@ -166,6 +167,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	{
 		[self showNoTransfersMessageAndFlashButton];
 	}
+    else
+    {
+        [self checkIfInviteHighlightingIsNeeded];
+    }
 		
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
@@ -204,7 +209,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     {
         [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
     }
-    [SendButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setInviteFlash:NO];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -262,7 +268,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	//set cancelling visible when scrolling
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
-	
+    
     return cell;
 }
 
@@ -278,17 +284,33 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:GAViewPayment];
 	[self removeCancellingFromCell];
 
-	self.lastSelectedPayment = payment;
-	[self showPayment:payment];
+    self.lastSelectedPayment = payment;
+    [self showPayment:payment];
+
 }
 
 #pragma mark - Payment List actions
-- (void)moveToPaymentsList
+- (void)moveToPaymentsList:(NSNotification*)note
 {
+    
+    MCLog(@"PAYMENT LIST AHOY!");
 	//cancel latest selection, we arrive here, because a new payment has been created.
 	self.lastSelectedPayment = nil;
 	self.refreshPaymentDetail = YES;
 	self.dontSelectPaymentOnce = YES;
+    
+    self.payments = [self.objectModel allPayments];
+    [self.tableView reloadData];
+    
+    NSNumber *paymentId = note.userInfo[@"paymentId"];
+    if(IPAD && paymentId)
+    {
+        NSArray* filtered = [self.payments filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"remoteId == %@", paymentId]];
+        if([filtered count] >0)
+        {
+            [self selectRowContainingPayment:[filtered lastObject]];
+        }
+    }
 }
 
 - (void)refreshPaymentsList
@@ -315,7 +337,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud
 {
     self.noTransfersMessage.hidden = YES;
-    [SendButtonFlashHelper setSendFlash:NO];
+    [SectionButtonFlashHelper setSendFlash:NO];
     
     PaymentsOperation *operation = [PaymentsOperation operationWithOffset:offset];
     [self setExecutedOperation:operation];
@@ -341,6 +363,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             if(!error && totalCount == 0)
             {
 				[self showNoTransfersMessageAndFlashButton];
+            }
+            else
+            {
+                [self checkIfInviteHighlightingIsNeeded];
             }
 			
             BOOL footerUpdateScheduled = NO;
@@ -408,9 +434,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 					 completion:^(BOOL finished) {
 						 if(weakSelf.isViewLoaded && weakSelf.view.window)
 						 {
-							 [SendButtonFlashHelper setSendFlash:YES];
+							 [SectionButtonFlashHelper setSendFlash:YES];
 						 }
 					 }];
+}
+
+-(void)checkIfInviteHighlightingIsNeeded
+{
+    NSCountedSet* countedStatuses = [NSCountedSet setWithArray:[self.payments valueForKey:@"status"]];
+    
+    NSUInteger numberOfCompleted = [countedStatuses countForObject:@(PaymentStatusTransferred)];
+    if (numberOfCompleted == 1){
+        [SectionButtonFlashHelper flashInviteSectionIfNeeded];
+    }
+
+
 }
 
 #pragma mark - Select row
@@ -444,6 +482,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.tableView selectRowAtIndexPath:paymentIndexPath
 								animated:NO
 						  scrollPosition:UITableViewScrollPositionMiddle];
+    self.lastSelectedPayment = payment;
 }
 
 #pragma mark - ScrollView delegate
@@ -504,14 +543,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}
 		else
 		{
-            NSUInteger numberOfPayInMethods = [[payment enabledPayInMethods] count];
-            if(numberOfPayInMethods < 1)
+            if([PaymentMethodDisplayHelper displayErrorForPayment: payment])
             {
                 CustomInfoViewController* errorScreen = [CustomInfoViewController failScreenNoPayInMethodsForCurrency:payment.sourceCurrency];
                 [errorScreen presentOnViewController:self.navigationController.parentViewController];
                 return;
             }
-			else if(numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1))
+			else if([PaymentMethodDisplayHelper displayMethodForPayment: payment] == kDisplayAsList)
 			{
 				PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
 				selector.objectModel = self.objectModel;

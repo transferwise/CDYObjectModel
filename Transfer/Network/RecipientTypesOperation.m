@@ -36,18 +36,15 @@ static NSMutableSet *allTypesOperationsWaitingForResponse;
         [weakSelf.workModel.managedObjectContext performBlock:^{
             NSArray *recipients = response[@"recipients"];
             MCLog(@"Pulled %lu receipient types", (unsigned long)[recipients count]);
-            for (NSDictionary *data in recipients) {
-                NSDictionary *dataToUse = data;
-                if(weakSelf.sourceCurrency)
-                {
-                    NSMutableDictionary* mutableData = [NSMutableDictionary dictionaryWithDictionary:data];
-                    BOOL addressRequired = [response[@"recipientAddressRequired"] boolValue];
-                    mutableData[@"recipientAddressRequired"] = @(addressRequired);
-                    dataToUse = mutableData;
-                }
-                [weakSelf.workModel createOrUpdateRecipientTypeWithData:dataToUse];
+            NSDictionary* commonData;
+            if(weakSelf.sourceCurrency)
+            {
+                BOOL addressRequired = [response[@"recipientAddressRequired"] boolValue];
+                commonData = @{@"recipientAddressRequired":@(addressRequired)};
             }
-
+            
+            [weakSelf.workModel createOrUpdateRecipientTypesWithData:recipients commonAdditions:commonData];
+            
             [weakSelf.workModel saveContext:^{
                 [weakSelf completeRequest:weakSelf error:nil typeList:[recipients valueForKey:@"type"]];
             }];

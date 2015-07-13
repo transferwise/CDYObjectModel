@@ -6,30 +6,31 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "SignUpViewController.h"
-#import "UIColor+Theme.h"
-#import "TableHeaderView.h"
-#import "UIView+Loading.h"
-#import "TextEntryCell.h"
-#import "NSString+Validation.h"
-#import "NSMutableString+Issues.h"
-#import "UIApplication+Keyboard.h"
-#import "TRWAlertView.h"
-#import "TRWProgressHUD.h"
-#import "RegisterOperation.h"
-#import "GoogleAnalytics.h"
-#import "TransferBackButtonItem.h"
-#import "NavigationBarCustomiser.h"
 #import "AuthenticationHelper.h"
+#import "GoogleAnalytics.h"
 #import "MOMStyle.h"
 #import "Mixpanel+Customisation.h"
+#import "NSMutableString+Issues.h"
+#import "NSString+Validation.h"
+#import "NavigationBarCustomiser.h"
+#import "OnePasswordTextEntryCell.h"
 #import "ReferralsCoordinator.h"
+#import "RegisterOperation.h"
+#import "SignUpViewController.h"
+#import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
+#import "TableHeaderView.h"
+#import "TextEntryCell.h"
+#import "TransferBackButtonItem.h"
+#import "UIApplication+Keyboard.h"
+#import "UIColor+Theme.h"
+#import "UIView+Loading.h"
 
 
-@interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate>
+@interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate, OnePasswordTextEntryCellDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
-@property (nonatomic, strong) TextEntryCell *emailCell;
+@property (nonatomic, strong) OnePasswordTextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *passwordCell;
 @property (nonatomic, strong) TextEntryCell *confirmPasswordCell;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
@@ -54,18 +55,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-
+    
+    // Register standard text cell...
+    [self.tableView registerNib: [UINib nibWithNibName: @"TextEntryCell" bundle:nil]
+         forCellReuseIdentifier: TWTextEntryCellIdentifier];
+    
+    // ...and special text cell with additional 1Password button
+    [self.tableView registerNib: [UINib nibWithNibName: @"OnePasswordTextEntryCell" bundle: nil]
+         forCellReuseIdentifier: TWOnePasswordTextEntryCellIdentifier];
+    
     [self.registerButton setTitle:NSLocalizedString(@"sign.up.button.title.register", nil) forState:UIControlStateNormal];
     
     NSMutableArray *cells = [NSMutableArray arrayWithCapacity:3];
 
-    TextEntryCell *email = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    // The email cell is a Text entry cell, but with an additional 1Password button
+    OnePasswordTextEntryCell *email = [self.tableView dequeueReusableCellWithIdentifier:TWOnePasswordTextEntryCellIdentifier];
+    // Configure rest of cell as normal (and also setting us as the delegate)
     [self setEmailCell:email];
     [email configureWithTitle:NSLocalizedString(@"sign.up.email.field.title", nil) value:@""];
     [email.entryField setReturnKeyType:UIReturnKeyNext];
     [email.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+    email.delegate = self; // Required as we are the delegate for the 1P button tap
     [cells addObject:email];
 
     TextEntryCell *password = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
@@ -201,6 +211,30 @@
     }];
 
     [operation execute];
+}
+
+/**
+ *  The user has touched the 1Password button in the email cell, so assuming that these have now been setup
+ *  in 1Password fill out the email, password and password confirmation fields
+ *
+ *  @param button (Unused)
+ */
+
+- (IBAction) userTouchedOnePasswordButton: (UIButton *) button
+{
+    __weak typeof(self) weakSelf = self;
+    
+    // Get details from 1Password
+    [AuthenticationHelper onePasswordInsertRegistrationDetails: ^(BOOL success, NSString *email, NSString *password) {
+        
+        // Fill out fields
+        weakSelf.emailCell.entryField.text = email;
+        weakSelf.passwordCell.entryField.text = password;
+        weakSelf.confirmPasswordCell.entryField.text = password; }
+                                            preEnteredUsername: self.emailCell.entryField.text
+                                            preEnteredPassword: self.passwordCell.entryField.text
+                                                viewController: self sender: button];
+    
 }
 
 - (NSString *)validateInput

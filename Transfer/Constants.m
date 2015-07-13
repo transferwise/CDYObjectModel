@@ -39,6 +39,7 @@ NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
 NSString *const TRWGoogleAnalyticsDevTrackingId = @"UA-24270670-3";
 NSString *const TRWGoogleTagManagerContainerId = @"GTM-TDZF76";
 
+NSString *const TRWMixpanelDevToken = @"7dfcbad2959c2885a453d431733b776d";
 NSString *const TRWMixpanelToken = @"96ffee966b209ba8b874598f4d936ff6";
 
 NSString *const TRWAppType = @"Ios";
@@ -58,7 +59,7 @@ NSString *const TRWDeeplinkScheme = @"transferdev";
 NSString *const TRWDeeplinkScheme = @"transferwise";
 #endif
 
-void delayedExecution(CGFloat seconds, TRWActionBlock action) {
+void delayedExecution(NSTimeInterval seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
 }
 
@@ -72,6 +73,11 @@ NSString *const TRWReferralTokenKey = @"referralToken";
 NSString *const TRWReferralSourceKey = @"referralSource";
 NSString *const TRWReferrerKey = @"referralUser";
 NSString *const TRWGoogleLoginUsedKey = @"googleLoginUsed";
+NSString *const TRWGoogleRevokeUrlFormat = @"https://accounts.google.com/o/oauth2/revoke?%@";
+NSString *const TRWFacebookLoginUsedKey = @"facebookLoginUsed";
+NSString *const TRWIntroABKey = @"introAB";
+NSString *const TRWDidHighlightInviteSection = @"didHighlightInviteSection";
+NSString *const TRWDisableApplePay = @"disableApplePay";
 
 #if DEV_VERSION
 NSString *const GoogleOAuthClientId = @"66432051640-3qobqh0qb5v7c8b59prgunf1mla4a6lm.apps.googleusercontent.com";
@@ -89,3 +95,7 @@ NSString *const GoogleOAuthEmailScope = @"https://www.googleapis.com/auth/userin
 NSString *const GoogleOAuthProfileScope = @"https://www.googleapis.com/auth/plus.profile.emails.read";
 
 NSString *const kNavigationParamsPaymentId = @"NavigationPaymentId";
+
+NSString *const FacebookOAuthServiceName = @"Facebook";
+NSString *const FacebookOAuthEmailScope = @"email";
+NSString *const FacebookOAuthProfileScope = @"public_profile";

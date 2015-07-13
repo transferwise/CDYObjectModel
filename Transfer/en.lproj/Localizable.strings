@@ -24,6 +24,12 @@
 "ach.failure.message.mismatch" = "Incorrect account details";
 "ach.failure.message.routingnumber" = "Invalid routing number";
 
+"applepay.success.message" = "You successfully paid with ApplePay";
+"applepay.failure.message.initcontroller" = "There was a problem with your Apple Pay configuration";
+"applepay.failure.message.refused" = "Your payment was refused";
+"applepay.failure.message.error" = "An error occurred while processing your payment";
+"applepay.failure.message.cancelled" = "Your payment was cancelled";
+
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";
 "business.profile.address.section.title" = "Address";
@@ -49,6 +55,9 @@
 "business.profile.controller.title" = "Business details";
 "business.profile.company.role.title" = "Your role";
 "business.profile.company.type.title" = "Type of company";
+"business.profile.au.acn" = "ACN (Australian Company Number)";
+"business.profile.au.abn" = "ABN (Australian Business Number)";
+"business.profile.au.arbn" = "ARBN (Australian Registered Body Number)";
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";
@@ -63,9 +72,9 @@
 "button.title.import.from.phonebook" = "Import from phonebook";
 "button.title.log.in" = "Log in";
 "button.title.log.in.google" = "Google";
-"button.title.log.in.yahoo" = "Yahoo!";
+"button.title.log.in.facebook" = "Facebook";
 "button.title.log.in.google.ipad" = "Log in with Google";
-"button.title.log.in.yahoo.ipad" = "Log in with Yahoo!";
+"button.title.log.in.facebook.ipad" = "Log in with Facebook";
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
 "button.title.yes" = "Yes";
@@ -167,11 +176,6 @@ your friends to TransferWise";
 "identification.ssn.error.title" = "SSN invalid";
 "identification.ssn.generic.error" = "Please provide a valid SSN number or provide of photo of your ID.";
 
-
-
-
-"introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";
-"introduction.currencies.retrieve.error.title" = "Currencies error";
 "introduction.calculation.error.title" = "Calculation failed";
 "introduction.title" = "Send money";
 "introduction.header.title.text" = "How much would you like to send?";
@@ -201,6 +205,7 @@ A revolution in your pocket.";
 "login.error.generic.message" = "Login failed. Please try again.";
 "login.error.title" = "Can't log in";
 "login.error.oauth.expired" = "Your OAuth token has expired or is revoked. Please try again.";
+"login.error.facebook.no.email" = "You have not shared your email address with us.";
 "login.password.field.title" = "Password";
 "login.validation.email.missing" = "You haven't entered an email";
 "login.validation.email.not.valid" = "The entered email is not correct";
@@ -238,7 +243,6 @@ A revolution in your pocket.";
 "payment.controller.currency.payment.error.title" = "Can't make payment";
 "payment.controller.deposit.label" = "Your deposit";
 "payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
-"payment.controller.payment.date.message" = "Money arrives %@";
 "payment.controller.title" = "Send";
 "payment.controller.tabbar.title" = "Send";
 
@@ -258,11 +262,11 @@ A revolution in your pocket.";
 "payment.status.matched.description" = "on its way";
 "payment.status.matched.description.long" = "is on its way.";
 "payment.status.matched.description.conversion" = "have been converted to";
-"payment.status.matched.description.eta" = "& should arrive on";
+"payment.status.matched.description.eta" = "& should arrive";
 "payment.status.received.description" = "Converting";
 "payment.status.received.description.long" = "is now being converted.";
 "payment.status.received.description.conversion" = "is estimated to convert to";
-"payment.status.received.description.eta" = "& should arrive on";
+"payment.status.received.description.eta" = "& should arrive";
 "payment.status.refunded.description" = "Refunded %@";
 "payment.status.submitted.description" = "Waiting for money";
 "payment.status.submitted.description.long" = "will start as soon";
@@ -277,7 +281,7 @@ It generally takes 1-2 business day.";
 "payment.status.transferred.description" = "Completed - %@";
 "payment.status.transferred.description.long" = "has been transfered.";
 "payment.status.transferred.description.conversion" = "have been converted to";
-"payment.status.transferred.description.eta" = "& should arrive on";
+"payment.status.transferred.description.eta" = "& should arrive";
 "payment.status.transferred.description.eta.past" = "& should have arrived on";
 "payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
@@ -406,7 +410,9 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "settings.row.about" = "About";
 "settings.row.touchid" = "Touch ID settings";
 "settings.row.send.as.business" = "Send as business";
-
+"settings.row.google" = "Google settings";
+"settings.google.alert.title" = "Google";
+"settings.google.alert.text" = "Do you want to unlink your Google account and log out?";
 
 "sign.up.controller.creating.message" = "Creating account...";
 "sign.up.controller.signup.error.message" = "Sign up error";
@@ -489,7 +495,6 @@ This can't be undone.";
 "upload.money.info.label.EUR" = "SEPA transfers within Europe cost the same as a local transfer.";
 "upload.money.iban.title" = "IBAN";
 "upload.money.notification.label" = "Your payment will be activated when we receive your deposit.";
-"upload.money.pulling.data.message" = "Pulling data...";
 "upload.money.reference.title" = "Reference";
 "upload.money.reference.title.CHF" = "Reason for payment";
 "upload.money.title" = "How do you want to pay?";
@@ -524,8 +529,6 @@ This can't be undone.";
 "why.popup.tw.fee.free" = " (Free)";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
-"errors.TRWErrorDomain.1.message" = "Could not read server response.";
-"errors.TRWErrorDomain.2.message" = "Could not read server response.";
 "errors.TRWErrorDomain.3.message" = "Functionality removed. Please update your app.";
 
 "recipient.type.IBAN.name" = "IBAN";
@@ -555,6 +558,7 @@ Payment #%@";
 "payment.method.SWIFT.USD" = "SWIFT";
 "payment.method.ACH" = "Bank debit (ACH)";
 "payment.method.ACH.USD" = "Bank debit (ACH)";
+"payment.method.BANKGIRO" = "Bankgiro";
 
 "payment.method.title.DATA_CASH" = "Pay by debit card";
 "payment.method.title.REGULAR" = "Pay by bank transfer";
@@ -564,12 +568,15 @@ Payment #%@";
 "payment.method.title.SWIFT.USD" = "Pay by SWIFT Transfer";
 "payment.method.title.ACH" = "Pay by direct debit";
 "payment.method.title.ACH.USD" = "Pay by direct debit";
+"payment.method.title.BANKGIRO" = "Pay by Bankgiro";
 
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.REGULAR" = "You transfer us the money via a \n wire transfer and we do the rest.";
 "payment.method.description.ADYEN" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.SWIFT" = "If your USD account is not in the US, please use this option.";
 "payment.method.description.ACH" = "Directly withdraw money\n from your USD account.";
+"payment.method.description.apple.pay" = "Pay using your Apple Pay wallet.";
+"payment.method.description.BANKGIRO" = "Just like paying a bill.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";
@@ -636,6 +643,8 @@ Please attach your documents to this email and send it our way.<br />
 "intro.tagline.one" = "MONEY
 WITHOUT
 BORDERS";
+"intro.tagline.oneB" = "GET THE REAL
+EXCHANGE RATE.";
 "intro.tagline.two" = "90\% CHEAPER
 THAN YOUR
 BANK";
@@ -647,6 +656,8 @@ FASTER
 EXPERIENCE";
 "intro.message.one" = "Send money abroad
 cheaper & faster.";
+"intro.message.oneB" = "TransferWise is the cheapest 
+way to send money abroad.";
 "intro.message.two" = "Banks charge 5% with hidden
 fees. We charge 0.5%";
 "intro.message.three" = "5/5 ratings across 6758
@@ -704,6 +715,20 @@ We'll send you an email in order to let you choose a new password.";
 "reset.password.not.found.alert.message" = "There is no account registered with that email. Please provide a valid email.";
 "refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
 
+"ask.email.controller.title" = "Your email address";
+"ask.email.controller.email.cell.label" = "Your email";
+"ask.email.header.description" = "Enter your email address.
+We need this to create your account
+but you haven't shared it
+with us on Facebook.";
+"ask.email.header.description.ipad" = "Enter your email address.
+We need this to create your account
+but you haven't shared it with us on Facebook.";
+"ask.email.controller.footer.button.title" = "Done";
+"ask.email.email.not.entered" = "Email is missing.";
+"ask.email.invaild.email.error" = "Please provide a valid email.";
+"ask.email.error.title" = "Oops!";
+
 "network.alert" = "No Internet Connection";
 "unknown.value" = "??";
 "contact.detail.send" = "Send money";
@@ -731,7 +756,6 @@ We'll send you an email in order to let you choose a new password.";
 "invite.modal.title" = "Share your invite url";
 "invite.error.facebook.title" = "Facebook error";
 "invite.error.facebook.message" = "Please enable Facebook in your device settings and try again.";
-"invite.facebook.default.message" = "";
 "invite.email.subject" = "%@ has invited you to TransferWise";
 "invite.email.subject.anonymous" = "You have been invited to TransferWise";
 "invite.email.message" = "Hi,<br><br>I’ve been using TransferWise to send money abroad. Really easy and a lot cheaper than the bank! I got you a free transfer using my invite link: <br><a href=\"%@\">Accept %@'s invitation</a> <br><br>Cheers,<br>%@";
@@ -741,9 +765,6 @@ We'll send you an email in order to let you choose a new password.";
 "invite.link.querying" = "Getting invite link";
 "invite.link.error.title" = "Unable to get invite link";
 "invite.link.error.message" = "Something went wrong while getting invite link";
-"invite.status.querying" = "Getting invite's status";
-"invite.status.error.title" = "Unable to get status";
-"invite.status.error.message" = "Something went wrong while getting invite's status";
 
 "touchid.reason.store" = "Authenticate to associate login credentials with Touch ID.";
 "touchid.reason.retrieve" = "Authenticate to log in with Touch ID account.";
@@ -767,7 +788,9 @@ We'll send you an email in order to let you choose a new password.";
 "registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
 "registration.tos" = "Terms of services";
 "registration.privacy" = "Privacy Policy";
-"usd.legaleze" = "By continuing you agree\nto our %@";
+
+"general.legaleze" = "By continuing you agree\nto our %@";
+"general.terms.of.use" = "terms of use";
 "usd.state.specific" = "state specific notices";
 
 "transfertime.default" = "It generally takes 1 business day";

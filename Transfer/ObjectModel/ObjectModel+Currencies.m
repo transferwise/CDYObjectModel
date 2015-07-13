@@ -36,7 +36,7 @@
 	[currency setReferenceMaxLength:(NSNumber *)data[@"paymentReferenceMaxLength"]];
 	
     NSArray *allTypes = data[@"recipientTypes"];
-    NSArray *typeObjects = [self recipientTypesWithCodes:allTypes];
+    NSArray *typeObjects = [self recipientTypesWithCodes:allTypes includeHidden:NO];
 
     NSArray *orderedTypes = [typeObjects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         RecipientType *one = obj1;

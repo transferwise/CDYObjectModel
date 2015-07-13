@@ -430,34 +430,41 @@ CGFloat const TransferHeaderPaddingBottom = 0;
             [self.recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
         }
     }
-
     [self.payment setRefundRecipient:self.recipient];
     [self.objectModel saveContext];
 
-    RecipientOperation *validate = [RecipientOperation validateOperationWithRecipient:self.recipient.objectID];
-    [self setOperation:validate];
-    [validate setObjectModel:self.objectModel];
-    __weak typeof(self) weakSelf = self;
-    [validate setResponseHandler:^(NSError *error) {
-        [weakSelf setOperation:nil];
-        [hud hide];
-
-        if (error)
-		{
-            if(didCreateRecipient)
+    if(didCreateRecipient)
+    {
+        RecipientOperation *validate = [RecipientOperation validateOperationWithRecipient:self.recipient.objectID];
+        [self setOperation:validate];
+        [validate setObjectModel:self.objectModel];
+        __weak typeof(self) weakSelf = self;
+        [validate setResponseHandler:^(NSError *error) {
+            [weakSelf setOperation:nil];
+            [hud hide];
+            
+            if (error)
             {
-                [weakSelf.objectModel deleteObject:self.recipient saveAfter:YES];
-                weakSelf.recipient = nil;
+                if(didCreateRecipient)
+                {
+                    [weakSelf.objectModel deleteObject:self.recipient saveAfter:YES];
+                    weakSelf.recipient = nil;
+                }
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.validation.error.title", nil) error:error];
+                [alertView show];
+                return;
             }
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.validation.error.title", nil) error:error];
-            [alertView show];
-            return;
-        }
-
+            
         [[GoogleAnalytics sharedInstance] refundRecipientAdded];
-        weakSelf.afterValidationBlock();
-    }];
-    [validate execute];
+            weakSelf.afterValidationBlock();
+        }];
+        [validate execute];
+    }
+    else
+    {
+        [hud hide];
+        self.afterValidationBlock();
+    }
 }
 
 - (NSString *)validateInput

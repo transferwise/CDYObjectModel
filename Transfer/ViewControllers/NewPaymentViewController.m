@@ -8,7 +8,6 @@
 
 #import "NewPaymentViewController.h"
 #import "MoneyEntryCell.h"
-#import "LoginViewController.h"
 #import "MoneyCalculator.h"
 #import "CalculationResult.h"
 #import "CurrencyLoader.h"
@@ -45,8 +44,7 @@
 #import "NewPaymentHelper.h"
 #import "LocationHelper.h"
 #import "Mixpanel+Customisation.h"
-
-
+#import "TermsAndConditionsUpdater.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -66,7 +64,8 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyCalculator *calculator;
 @property (nonatomic, strong) CalculationResult *result;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
-@property (nonatomic, strong) NewPaymentHelper* paymentHelper;
+@property (nonatomic, strong) NewPaymentHelper *paymentHelper;
+@property (nonatomic, strong) TermsAndConditionsUpdater *termsAndConditionsUpdater;
 
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sendMoneyLabel;
@@ -80,7 +79,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *termsLabel;
 
-- (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *howButtonTopConstraint;
@@ -90,9 +88,11 @@ static NSUInteger const kRowYouSend = 0;
 
 @implementation NewPaymentViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithNibName:@"NewPaymentViewController" bundle:nil];
-    if (self) {
+    if (self)
+	{
         // Custom initialization
     }
     return self;
@@ -145,6 +145,8 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.startedButton setTitle:NSLocalizedString([(![Credentials userLoggedIn] ? @"button.title.get.started" : @"button.title.send.money") deviceSpecificLocalization], nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
+	
+	self.termsAndConditionsUpdater = [[TermsAndConditionsUpdater alloc] init];
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
     [self setCalculator:calculator];
@@ -165,22 +167,23 @@ static NSUInteger const kRowYouSend = 0;
     }];
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
-        if (error) {
+        if (error)
+		{
             return;
         }
 
         weakSelf.result = result;
         [weakSelf displayWinMessage:result];
         
-        [self updateApperanceAnimated:YES];
-        
+        [self updateAppearanceAnimated:YES];
     }];
     
     MCAssert(self.objectModel);
     
     [self.calculator setObjectModel:self.objectModel];
     [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
-    if (!self.dummyPresentation) {
+    if (!self.dummyPresentation)
+	{
         if(self.suggestedTransactionIsFixedTarget)
         {
             [self.calculator forceCalculateWithFixedTarget];
@@ -189,7 +192,6 @@ static NSUInteger const kRowYouSend = 0;
         {
             [self.calculator forceCalculate];
         }
-        
     }
     
     [self retrieveCurrencyPairs];
@@ -199,26 +201,6 @@ static NSUInteger const kRowYouSend = 0;
     
     [[GoogleAnalytics sharedInstance] sendScreen:GANewPayment];
     [[Mixpanel sharedInstance] sendPageView:MPNewTransfer];
-    
-	[self generateUsdLegaleze];
-}
-
-- (void)generateUsdLegaleze
-{
-	NSString* stateSpecific = NSLocalizedString(@"usd.state.specific", nil);
-	NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"usd.legaleze", nil),stateSpecific];
-	NSMutableAttributedString *attributedLegaleze = [[NSMutableAttributedString alloc] initWithString:legaleze];
-	NSRange wholeString = NSMakeRange(0, [legaleze length]);
-	[attributedLegaleze addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.termsLabel.fontStyle] range:wholeString];
-	[attributedLegaleze addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.termsLabel.fontStyle] range:wholeString];
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-	[paragraphStyle setAlignment:NSTextAlignmentCenter];
-	[attributedLegaleze addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeString];
-	NSRange stateRange = [legaleze rangeOfString:stateSpecific];
-	[attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWStateSpecificTermsUrl] range:stateRange];
-	self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
-	self.termsLabel.attributedText = attributedLegaleze;
-	[self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
@@ -248,7 +230,6 @@ static NSUInteger const kRowYouSend = 0;
     {
         savingsAmountString = [result payWinAmountWithCurrency];
     }
-
     
     NSString *fullString;
     
@@ -318,7 +299,7 @@ static NSUInteger const kRowYouSend = 0;
     self.loginButton.hidden = [Credentials userLoggedIn];
     self.modalCloseButton.hidden = ![Credentials userLoggedIn];
     self.logo.hidden = [Credentials userLoggedIn];
-    [self updateApperanceAnimated:NO];
+    [self updateAppearanceAnimated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -405,13 +386,6 @@ static NSUInteger const kRowYouSend = 0;
     [self.view endEditing:YES];
 }
 
-- (IBAction)loginPressed:(id)sender
-{
-	LoginViewController *controller = [[LoginViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
 - (IBAction)startPaymentPressed:(id)sender
 {
     if (!self.result)
@@ -423,73 +397,81 @@ static NSUInteger const kRowYouSend = 0;
 
 	Currency *sourceCurrency = [self.youSendCell currency];
     Currency *targetCurrency = [self.theyReceiveCell currency];
-    NSString *profile = [self.objectModel currentUser].sendAsBusinessDefaultSettingValue? BUSINESS_PROFILE:PERSONAL_PROFILE;
+    NSString *profile = [self.objectModel currentUser].sendAsBusinessDefaultSettingValue ? BUSINESS_PROFILE : PERSONAL_PROFILE;
     
     self.paymentHelper = [[NewPaymentHelper alloc] init];
     
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
     
-    [self.paymentHelper createPendingPaymentWithObjectModel:self.objectModel source:sourceCurrency target:targetCurrency calculationResult:self.result recipient:self.recipient profile:profile successBlock:^(PendingPayment *payment) {
-        self.paymentHelper = nil;
-        [hud hide];
-        PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:self.objectModel];
-        ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:self.objectModel];
-        
-        PaymentFlow *paymentFlow = [Credentials userLoggedIn] ? [[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController
-                                                                                         paymentFlowViewControllerFactory:controllerFactory
-                                                                                                         validatorFactory:validatorFactory]
-                                                                 :[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController
-                                                                                         paymentFlowViewControllerFactory:controllerFactory
-                                                                                                         validatorFactory:validatorFactory];
-        [self setPaymentFlow:paymentFlow];
-        
-        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency1Selected withLabel:[self.youSendCell currency].code];
-        [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency2Selected withLabel:[self.theyReceiveCell currency].code];
-        
-        
-        [NavigationBarCustomiser setDefault];
-        
-        [paymentFlow setObjectModel:self.objectModel];
-        [paymentFlow presentNextPaymentScreen];
-    } failureBlock:^(NSError *error) {
-        self.paymentHelper = nil;
-        [hud hide];
-        if (error.code == PayInTooLow)
-        {
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.low.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.low.message.base", nil), error.userInfo[NewTransferMinimumAmountKey], error.userInfo[NewTransferSourceCurrencyCodeKey]]];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-
-        }
-        else if (error.code == PayInTooLow)
-        {
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.high.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.high.message.base", nil), error.userInfo[NewTransferMaximumAmountKey], error.userInfo[NewTransferSourceCurrencyCodeKey]]];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-        }
-        else if(error.code == USDPayinTooLow)
-        {
-            CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
-            customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
-            customInfo.infoText = NSLocalizedString(@"usd.low.info",nil);
-            customInfo.actionButtonTitles= @[NSLocalizedString(@"usd.low.dismiss",nil)];
-            customInfo.infoImage = [UIImage imageNamed:@"illustration_under1500usd"];
-            [customInfo presentOnViewController:self];
-            return;
-        }
-        else if(error.code == CurrenciesOperationFailed || error.code == RecipientTypesOperationFailed || error.code == CalculationOperationFailed)
-        {
-            NSError *networkError = error.userInfo[NewTransferNetworkOperationErrorKey];
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:networkError];
-            [alertView show];
-            return;
-        }
-
-    }];
+	[self.paymentHelper createPendingPaymentWithObjectModel:self.objectModel
+													 source:sourceCurrency
+													 target:targetCurrency
+										  calculationResult:self.result
+												  recipient:self.recipient
+													profile:profile
+											   successBlock:^(PendingPayment *payment) {
+												   self.paymentHelper = nil;
+												   [hud hide];
+												   PaymentFlowViewControllerFactory *controllerFactory = [[PaymentFlowViewControllerFactory alloc] initWithObjectModel:self.objectModel];
+												   ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:self.objectModel];
+												   
+												   PaymentFlow *paymentFlow = [Credentials userLoggedIn] ? [[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController
+																																	paymentFlowViewControllerFactory:controllerFactory
+																																					validatorFactory:validatorFactory]
+												   :[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController
+																		   paymentFlowViewControllerFactory:controllerFactory
+																						   validatorFactory:validatorFactory];
+												   [self setPaymentFlow:paymentFlow];
+												   
+												   [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency1Selected withLabel:[self.youSendCell currency].code];
+												   [[GoogleAnalytics sharedInstance] sendAppEvent:GACurrency2Selected withLabel:[self.theyReceiveCell currency].code];
+												   
+												   
+												   [NavigationBarCustomiser setDefault];
+												   
+												   [paymentFlow setObjectModel:self.objectModel];
+												   [paymentFlow presentNextPaymentScreen];
+											   }
+											   failureBlock:^(NSError *error) {
+												   self.paymentHelper = nil;
+												   [hud hide];
+												   if (error.code == PayInTooLow)
+												   {
+													   TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.low.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.low.message.base", nil), error.userInfo[NewTransferMinimumAmountKey], error.userInfo[NewTransferSourceCurrencyCodeKey]]];
+													   [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+													   [alertView show];
+													   
+												   }
+												   else if (error.code == PayInTooLow)
+												   {
+													   TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.high.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.high.message.base", nil), error.userInfo[NewTransferMaximumAmountKey], error.userInfo[NewTransferSourceCurrencyCodeKey]]];
+													   [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+													   [alertView show];
+												   }
+												   else if(error.code == USDPayinTooLow)
+												   {
+													   CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
+													   customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
+													   customInfo.infoText = NSLocalizedString(@"usd.low.info",nil);
+													   customInfo.actionButtonTitles= @[NSLocalizedString(@"usd.low.dismiss",nil)];
+													   customInfo.infoImage = [UIImage imageNamed:@"illustration_under1500usd"];
+													   [customInfo presentOnViewController:self];
+													   return;
+												   }
+												   else if(error.code == CurrenciesOperationFailed || error.code == RecipientTypesOperationFailed || error.code == CalculationOperationFailed)
+												   {
+													   NSError *networkError = error.userInfo[NewTransferNetworkOperationErrorKey];
+													   TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:networkError];
+													   [alertView show];
+													   return;
+												   }
+												   
+											   }];
 }
 
-- (IBAction)howButtonTapped:(id)sender {
+- (IBAction)howButtonTapped:(id)sender
+{
     SeeHowViewController * whyController = [[SeeHowViewController alloc] init];
     [whyController.whyView setupWithResult:self.result];
     [whyController presentOnViewController:self];
@@ -500,13 +482,14 @@ static NSUInteger const kRowYouSend = 0;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)showCalculationIndicator:(BOOL)calculating {
+- (void)showCalculationIndicator:(BOOL)calculating
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.startedButton showCalculating:calculating];
     });
 }
 
--(void)updateApperanceAnimated:(BOOL)animated
+-(void)updateAppearanceAnimated:(BOOL)animated
 {
     if (self.result.isFixedTargetPayment)
     {
@@ -536,40 +519,60 @@ static NSUInteger const kRowYouSend = 0;
     [self.theyReceiveCell setTitleHighlighted:self.result.isFixedTargetPayment];
     [self.youSendCell setTitleHighlighted:!self.result.isFixedTargetPayment];
     
-    PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency target:self.theyReceiveCell.currency];
+    PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency
+																		  target:self.theyReceiveCell.currency];
+	
     [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];
-    
-    if([self.youSendCell.currency.code isEqualToString:@"USD"])
-    {
-        if(self.termsBottomConstraint.constant != 4)
-        {
-            self.termsLabel.hidden = NO;
-            self.termsBottomConstraint.constant = -100;
-            [self.termsLabel layoutIfNeeded];
-            self.termsBottomConstraint.constant = 4;
-            self.howButtonTopConstraint.constant = 20;
-        }
-    }
-    else
-    {
-        self.termsBottomConstraint.constant = -100;
-        self.termsLabel.hidden = YES;
-        self.howButtonTopConstraint.constant = 30;
-    }
-    if(animated)
-    {
-        [UIView animateWithDuration:0.2 delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [self.howButton layoutIfNeeded];
-            [self.termsLabel layoutIfNeeded];
-        } completion:nil];
-    }
-    else
-    {
-        [self.howButton layoutIfNeeded];
-        [self.termsLabel layoutIfNeeded];
-    }
-    
-    
+	
+	[self updateLegaleze:animated];
+}
+
+#pragma mark - Legaleze
+- (void)updateLegaleze:(BOOL)animated
+{
+	[self.termsAndConditionsUpdater getTermsAndConditionsForCountry:[LocationHelper getProfileLocationWithObjectModel:self.objectModel]
+														   currency:self.youSendCell.currency.code
+													completionBlock:^(NSAttributedString *tcString) {
+														if(tcString)
+														{
+															self.termsLabel.attributedText = tcString;
+															self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+															[self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
+															
+															if(self.termsBottomConstraint.constant != 4)
+															{
+																self.termsLabel.hidden = NO;
+																self.termsBottomConstraint.constant = -100;
+																[self.termsLabel layoutIfNeeded];
+																self.termsBottomConstraint.constant = 4;
+																self.howButtonTopConstraint.constant = 20;
+															}
+														}
+														else
+														{
+															self.termsBottomConstraint.constant = -100;
+															self.termsLabel.hidden = YES;
+															self.howButtonTopConstraint.constant = 30;
+														}
+														
+														if(animated)
+														{
+															[UIView animateWithDuration:0.2
+																				  delay:0.0f
+																				options:UIViewAnimationOptionCurveEaseInOut
+																			 animations:^{
+																				 [self.howButton layoutIfNeeded];
+																				 [self.termsLabel layoutIfNeeded];
+																			 } completion:nil];
+														}
+														else
+														{
+															[self.howButton layoutIfNeeded];
+															[self.termsLabel layoutIfNeeded];
+														}
+													}
+															   font:[UIFont fontFromStyle:self.termsLabel.fontStyle]
+															  color:[UIColor colorFromStyle:self.termsLabel.fontStyle]];
 }
 
 @end

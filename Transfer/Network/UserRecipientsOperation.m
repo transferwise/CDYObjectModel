@@ -52,4 +52,9 @@ NSString *const kRecipientsListPath = @"/recipient/list";
     return [[UserRecipientsOperation alloc] initWithCurrency:currency];
 }
 
+-(NSString *)apiVersion
+{
+    return @"v2";
+}
+
 @end

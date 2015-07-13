@@ -20,6 +20,7 @@
 #import "DoublePasswordEntryCell.h"
 #import "StateSuggestionCellProvider.h"
 #import "DropdownCell.h"
+#import "ProfileSource+Private.h"
 
 @interface BusinessProfileSource ()
 
@@ -29,6 +30,9 @@
 @property (nonatomic, strong) TextEntryCell *addressCell;
 @property (nonatomic, strong) DropdownCell *companyRoleCell;
 @property (nonatomic, strong) DropdownCell *companyTypeCell;
+@property (nonatomic, strong) TextEntryCell *acnCell;
+@property (nonatomic, strong) TextEntryCell *abnCell;
+@property (nonatomic, strong) TextEntryCell *arbnCell;
 
 @end
 
@@ -88,6 +92,21 @@
 	[companyTypeCell setCellTag:@"companyRole"];
 	
 	[self reloadDropDowns];
+	
+	TextEntryCell *acnCell = [TextEntryCell loadInstance];
+	[self setAcnCell:acnCell];
+	[acnCell configureWithTitle:NSLocalizedString(@"business.profile.au.acn", nil) value:@""];
+	[acnCell setCellTag:@"acn"];
+	
+	TextEntryCell *abnCell = [TextEntryCell loadInstance];
+	[self setAbnCell:abnCell];
+	[abnCell configureWithTitle:NSLocalizedString(@"business.profile.au.abn", nil) value:@""];
+	[abnCell setCellTag:@"abn"];
+	
+	TextEntryCell *arbnCell = [TextEntryCell loadInstance];
+	[self setArbnCell:arbnCell];
+	[arbnCell configureWithTitle:NSLocalizedString(@"business.profile.au.arbn", nil) value:@""];
+	[arbnCell setCellTag:@"arbn"];
 
     NSMutableArray *secondColumnCells = [NSMutableArray array];
 	
@@ -152,6 +171,9 @@
 	[self.zipCityCell setSecondValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
     [self.stateCell setValue:profile.state];
+	[self.abnCell setValue:profile.abn];
+	[self.acnCell setValue:profile.acn];
+	[self.arbnCell setValue:profile.arbn];
 
     [self.businessNameCell setEditable:![profile isFieldReadonly:@"name"]];
     [self.registrationNumberCell setEditable:![profile isFieldReadonly:@"registrationNumber"]];
@@ -163,9 +185,14 @@
 	[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
     [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
     [self.stateCell setEditable:![profile isFieldReadonly:@"state"]];
+	[self.abnCell setEditable:![profile isFieldReadonly:@"abn"]];
+	[self.acnCell setEditable:![profile isFieldReadonly:@"acn"]];
+	[self.arbnCell setEditable:![profile isFieldReadonly:@"arbn"]];
 	
     [self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
 			withCompletion:nil];
+	[self includeAuCells:[BusinessProfileSource showAuCells:profile.countryCode]
+		  withCompletion:nil];
 }
 
 - (BOOL)inputValid
@@ -177,7 +204,7 @@
             && [[self.countryCell value] hasValue] && (![ProfileSource showStateCell:self.countryCell.value] || [[self.stateCell value] hasValue]);
 }
 
-- (id)enteredProfile
+- (void)commitProfile
 {
 	BusinessProfile *profile = [self.objectModel.currentUser businessProfileObject];
     [profile setName:[self.businessNameCell value]];
@@ -190,15 +217,17 @@
     [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:[self.countryCell value]];
     [profile setState:self.stateCell.value];
+	[profile setAbn:self.abnCell.value];
+	[profile setAcn:self.acnCell.value];
+	[profile setArbn:self.arbnCell.value];
 
     [self.objectModel saveContext];
 
-    return profile.objectID;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+- (void)validateProfileWithValidation:(id)validation completion:(ProfileActionBlock)completion
 {
-    [validation validateBusinessProfile:profile withHandler:^(NSError *error) {
+    [validation validateBusinessProfile:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error)
 			{
@@ -225,6 +254,9 @@
 	[self.zipCityCell setSecondValue:@""];
 	[self.countryCell setValue:@""];
 	[self.stateCell setValue:@""];
+	[self.abnCell setValue:@""];
+	[self.acnCell setValue:@""];
+	[self.arbnCell setValue:@""];
 }
 
 - (void)reloadDropDowns
@@ -237,6 +269,35 @@
 	{		
 		[self.companyTypeCell setAllElements:[self.objectModel fetchedControllerForAttributesOfType:CompanyType]];
 	}
+}
+
+#pragma mark - AU specific cells
+- (NSArray *)includeAuCells:(BOOL)shouldInclude
+			 withCompletion:(SelectionCompletion)completion
+{
+	return [self includeCells:@[self.acnCell, self.abnCell, self.arbnCell]
+					afterCell:self.zipCityCell
+				shouldInclude:shouldInclude
+			   withCompletion:completion];
+}
+
++ (BOOL)showAuCells:(NSString *)countryCode
+{
+	return [self isMatchingSource:@"aus"
+					   withTarget:countryCode];
+}
+
+- (NSArray *)countrySelectionCell:(SelectionCell *)cell
+				 didSelectCountry:(Country *)country
+				   withCompletion:(SelectionCompletion)completion
+{
+	NSArray *auCells = [self includeAuCells:[BusinessProfileSource showAuCells:country.code]
+							 withCompletion:completion];
+	NSArray *otherCells =  [super countrySelectionCell:cell
+									  didSelectCountry:country
+										withCompletion:completion];
+	
+	return auCells ?: otherCells;
 }
 
 @end

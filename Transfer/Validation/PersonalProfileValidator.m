@@ -32,11 +32,10 @@
 	return self;
 }
 
-- (void)validatePersonalProfile:(NSManagedObjectID *)profile
-					withHandler:(PersonalProfileValidationBlock)handler
+- (void)validatePersonalProfile:(PersonalProfileValidationBlock)handler
 {
 	MCLog(@"validateProfile");
-	PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
+	PersonalProfileOperation *operation = [PersonalProfileOperation validateOperation];
 	[self setExecutedOperation:operation];
 	[operation setObjectModel:self.objectModel];
 	

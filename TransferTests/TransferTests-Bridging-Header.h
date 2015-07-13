@@ -34,3 +34,4 @@
 #import "CustomInfoViewController.h"
 #import "CalculationResult.h"
 #import "NSString+NullString.h"
+#import "BusinessProfile.h"

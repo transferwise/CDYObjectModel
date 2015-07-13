@@ -14,7 +14,7 @@
 #import "TRWAlertView.h"
 #import "ReferralListOperation.h"
 #import "AddressBookManager.h"
-#import "PhoneLookupWrapper.h"
+#import "ExpatDetectionLookupWrapper.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "PersonalProfile.h"
@@ -22,6 +22,7 @@
 #import "GoogleAnalytics.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
+#import "SectionButtonFlashHelper.h"
 
 #define defaultRewardAmount 50
 #define defaultRewardCurrency @"GBP"
@@ -53,6 +54,12 @@
     if (self) {
     }
     return self;
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [SectionButtonFlashHelper inviteScreenHasBeenVisited];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -100,7 +107,8 @@
 }
 
 
-- (void)loadProfileImagesWithUser:(User *)user requestAccess:(BOOL)requestAccess
+- (void)loadProfileImagesWithUser:(User *)user
+					requestAccess:(BOOL)requestAccess
 {
     AddressBookManager *manager = [[AddressBookManager alloc] init];
     
@@ -115,10 +123,10 @@
             if (ownNumber)
             {
                 //get profiles having pics, at least 2 numbers and of those 1 has the same country code
-                for (PhoneLookupWrapper *wrapper in workArray)
+                for (ExpatDetectionLookupWrapper *wrapper in workArray)
                 {
-                    if ([wrapper hasPhonesWithDifferentCountryCodes]
-                        && [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
+                    if (([wrapper hasPhonesWithDifferentCountryCodes]
+                        && [wrapper hasPhoneWithMatchingCountryCode:ownNumber]))
                     {
                         totalCount++;
                         [options addObject:wrapper];
@@ -132,18 +140,23 @@
             {
                 NSMutableOrderedSet *selectedOptions = [NSMutableOrderedSet orderedSetWithOrderedSet:options];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self setProfileImagesFromSet:selectedOptions addressBookManager:manager];
+                    [self setProfileImagesFromSet:selectedOptions
+							   addressBookManager:manager];
                 });
                 
                 didSetImages = YES;
             }
             
             //if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
+			//also try to find profiles with phones/emails in different known countries
+			//or profiles with different known email countries
             if (options.count < self.profilePictures.count)
             {
-                for (PhoneLookupWrapper *wrapper in workArray)
+                for (ExpatDetectionLookupWrapper *wrapper in workArray)
                 {
-                    if ([wrapper hasPhonesWithDifferentCountryCodes])
+                    if ([wrapper hasPhonesWithDifferentCountryCodes]
+						|| [wrapper hasPhoneAndEmailFromDifferentCountries]
+						|| [wrapper hasEmailFromDifferentCountries])
                     {
                         totalCount++;
                         if(!didSetImages)
@@ -154,18 +167,20 @@
                 }
             }
             
-            if(! didSetImages)
+            if(!didSetImages)
             {
                 NSMutableOrderedSet *selectedOptions = [NSMutableOrderedSet orderedSetWithOrderedSet:options];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self setProfileImagesFromSet:selectedOptions addressBookManager:manager];
+                    [self setProfileImagesFromSet:selectedOptions
+							   addressBookManager:manager];
                 });
-                
             }
             
-            if(totalCount >0)
+            if(totalCount > 0)
             {
-                [[GoogleAnalytics sharedInstance] sendEvent:GAExpatsfoundinab category:GACategoryRecipient label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
+                [[GoogleAnalytics sharedInstance] sendEvent:GAExpatsfoundinab
+												   category:GACategoryRecipient
+													  label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
             }
             
         });
@@ -180,7 +195,7 @@
     for (NSInteger i = 0; i < limit; i++)
     {
         NSUInteger index = arc4random_uniform((u_int32_t)options.count);
-        PhoneLookupWrapper* wrapper = options[index];
+        ExpatDetectionLookupWrapper* wrapper = options[index];
         [options removeObject:wrapper];
         [manager getImageForRecordId:wrapper.recordId requestAccess:NO completion:^(UIImage *image)
         {

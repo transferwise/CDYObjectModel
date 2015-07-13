@@ -60,6 +60,20 @@
     return [[self.formatterWithoutCurrency stringFromNumber:amount] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
+/**
+ *  We need a version of the amount string with no spaces as group separators (or anything else) so that it can be parsed
+ *  into an NSDecimalNumber required for Apple Pay
+ *
+ *  @param amount Amount
+ *
+ *  @return Formatted string with no spaces
+ */
+
+- (NSString *)formatAmountNoSpaces: (NSNumber *) amount
+{
+    return [[self.formatterWithoutCurrency stringFromNumber: amount] stringByReplacingOccurrencesOfString: @" " withString: @""];
+}
+
 - (NSNumber *)numberFromString:(NSString *)amountString {
     return [self.formatterWithoutCurrency numberFromString:amountString];
 }

@@ -12,7 +12,6 @@
 #import "Credentials.h"
 #import "PersonalProfileViewController.h"
 #import "BusinessProfileViewController.h"
-#import "LoginViewController.h"
 #import "PersonalProfileCommitter.h"
 #import "ClaimAccountViewController.h"
 #import "BusinessProfileCommitter.h"
@@ -26,22 +25,33 @@
 #import "MOMStyle.h"
 #import "TouchIDHelper.h"
 #import "AuthenticationHelper.h"
+#import "SettingsButtonCell.h"
+#import "SettingsSwitchCell.h"
+#import "TRWProgressHUD.h"
+#import "LocationHelper.h"
 
-#define ABOUT_URL	@"https://transferwise.com/en/about"
+#define ABOUT_URL	@"https://transferwise.com/%@/about"
+
+typedef NS_ENUM(short, Setting)
+{
+    FeedbackSetting,
+    CustomerServiceSetting,
+    SendAsBusinessSetting,
+    TouchIDSetting,
+    GoogleSetting
+};
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
-@interface SettingsViewController ()<UIAlertViewDelegate>
+@interface SettingsViewController ()<UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate,SettingsButtonDelegate, SettingsSwitchDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *logOutButton;
-@property (weak, nonatomic) IBOutlet UIButton *feedbackButton;
-@property (weak, nonatomic) IBOutlet UIButton *customerServiceButton;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sendAsBusinessLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *sendAsBusinessSwitch;
-@property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
 @property (weak, nonatomic) IBOutlet UILabel *pRefLabel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSMutableArray* settingsFields;
 
 @end
 
@@ -69,26 +79,114 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     [super viewWillAppear:animated];
 
     self.titleLabel.text = NSLocalizedString(@"settings.title",nil);
-    
-    [self.customerServiceButton setTitle:NSLocalizedString(@"settings.row.contact.support",nil) forState:UIControlStateNormal];
-    [self.feedbackButton setTitle:NSLocalizedString(@"settings.row.send.feedback",nil) forState:UIControlStateNormal];
+
     [self.logOutButton setTitle:NSLocalizedString(@"settings.row.logout",nil) forState:UIControlStateNormal];
     [self.infoButton setTitle:NSLocalizedString(@"settings.row.about",nil) forState:UIControlStateNormal];
+    
     [self verticallyAlignTextAndImageOfButton:self.infoButton];
-    [self.touchIdButton setTitle:NSLocalizedString(@"settings.row.touchid",nil) forState:UIControlStateNormal];
-    self.touchIdButton.hidden = (![TouchIDHelper isTouchIdAvailable] || ((![TouchIDHelper isTouchIdSlotTaken]) && [TouchIDHelper isBlockedUserNameListEmpty]));
-    
-    self.sendAsBusinessLabel.text = NSLocalizedString(@"settings.row.send.as.business",nil);
+
     User *user = [self.objectModel currentUser];
-    [self.sendAsBusinessSwitch setOnTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
-    self.sendAsBusinessSwitch.on = user.sendAsBusinessDefaultSettingValue;
-    
     self.pRefLabel.text = user.pReference;
+    
+    [self refreshSettingsFields];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"SettingsButtonCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"SettingsButtonCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SettingsSwitchCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"SettingsSwitchCell"];
+    
+    [self updateTableViewInsetsForOrientation:self.interfaceOrientation];
 }
+
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self updateTableViewInsetsForOrientation:toInterfaceOrientation];
+        
+}
+
+-(void)updateTableViewInsetsForOrientation:(UIInterfaceOrientation)orientation
+{
+    if(IPAD)
+    {
+        if(UIInterfaceOrientationIsPortrait(orientation))
+        {
+            self.tableView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0);
+        }
+        else
+        {
+            self.tableView.contentInset = UIEdgeInsetsZero;
+        }
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Setting currentSetting = [self.settingsFields[indexPath.row] shortValue];
+    if(currentSetting != SendAsBusinessSetting)
+    {
+        return IPAD?60:55;
+    }
+    else
+    {
+        return IPAD?140:80;
+    }
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.settingsFields count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* title;
+    Setting currentSetting = [self.settingsFields[indexPath.row] shortValue];
+    switch (currentSetting) {
+        case FeedbackSetting:
+            title = NSLocalizedString(@"settings.row.send.feedback",nil);
+            break;
+        case CustomerServiceSetting:
+            title = NSLocalizedString(@"settings.row.contact.support",nil);
+            break;
+        case SendAsBusinessSetting:
+            title = NSLocalizedString(@"settings.row.send.as.business",nil);
+            break;
+        case TouchIDSetting:
+            title = NSLocalizedString(@"settings.row.touchid",nil);
+            break;
+        case GoogleSetting:
+            title = NSLocalizedString(@"settings.row.google",nil);
+            break;
+        default:
+            title = @"Send Feedback";
+            break;
+    }
+    
+    UITableViewCell *resultCell;
+    if(currentSetting != SendAsBusinessSetting)
+    {
+        SettingsButtonCell* cell = (SettingsButtonCell*)[tableView dequeueReusableCellWithIdentifier:@"SettingsButtonCell" forIndexPath:indexPath];
+        [cell.settingsButton setTitle:title forState:UIControlStateNormal];
+        cell.settingsButtonDelegate = self;
+        resultCell = cell;
+    }
+    else
+    {
+        SettingsSwitchCell* cell = (SettingsSwitchCell*)[tableView dequeueReusableCellWithIdentifier:@"SettingsSwitchCell" forIndexPath:indexPath];
+        cell.titleLabel.text = title;
+        cell.settingsSwitch.on = [self.objectModel currentUser].sendAsBusinessDefaultSettingValue;
+        cell.settingsSwitchDelegate = self;
+        resultCell = cell;
+    }
+    
+    resultCell.backgroundColor = [UIColor clearColor]; //Fix for iOS7 bug on iPad. Can't be done in awakeFromNib, or I would have...
+    return resultCell;
+    
+}
+
 
 - (IBAction)infoTapped:(id)sender
 {
-	NSURL *url = [NSURL URLWithString:ABOUT_URL];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:ABOUT_URL, [LocationHelper getSupportedLanguage]]];
 	[[UIApplication sharedApplication] openURL:url];
 }
 
@@ -109,6 +207,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     [AuthenticationHelper logOutWithObjectModel:self.objectModel tokenNeedsClearing:YES completionBlock:^{
     }];
 }
+
 
 -(void) verticallyAlignTextAndImageOfButton:(UIButton *)button
 {
@@ -140,13 +239,6 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 	}
 }
 
-- (IBAction)profileUseSwitched:(id)sender
-{
-    User *user = [self.objectModel currentUser];
-    user.sendAsBusinessDefaultSettingValue = self.sendAsBusinessSwitch.on;
-    [self.objectModel saveContext];
-}
-
 - (IBAction)touchIdButtonTapped:(id)sender
 {
     if([TouchIDHelper isTouchIdSlotTaken])
@@ -164,26 +256,122 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     
 }
 
+-(void)googleSettingsTapped:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"settings.google.alert.title",nil) message:NSLocalizedString(@"settings.google.alert.text",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"button.title.no",nil) otherButtonTitles:NSLocalizedString(@"button.title.yes",nil), nil];
+    alertView.tag = 3;
+    [alertView show];
+}
+
+-(void)refreshSettingsFields
+{
+    if (!self.settingsFields)
+    {
+        self.settingsFields = [NSMutableArray arrayWithCapacity:3];
+        [self.settingsFields addObjectsFromArray:@[@(CustomerServiceSetting),@(FeedbackSetting),@(SendAsBusinessSetting)]];
+    }
+    if([TouchIDHelper isTouchIdAvailable] && ([TouchIDHelper isTouchIdSlotTaken] || ![TouchIDHelper isBlockedUserNameListEmpty]))
+    {
+        if(![self.settingsFields containsObject:@(TouchIDSetting)])
+        {
+            [self.settingsFields insertObject:@(TouchIDSetting) atIndex:3];
+        }
+    }
+    else
+    {
+        [self.settingsFields removeObject:@(TouchIDSetting)];
+    }
+    if([@"google" caseInsensitiveCompare:[self.objectModel currentUser].authenticationProvider] == NSOrderedSame)
+    {
+        if(![self.settingsFields containsObject:@(GoogleSetting)])
+        {
+            [self.settingsFields addObject:@(GoogleSetting)];
+        }
+    }
+    else
+    {
+        [self.settingsFields removeObject:@(GoogleSetting)];
+    }
+}
+
+-(void)settingsButtonTappedOnCell:(UITableViewCell *)cell
+{
+    NSIndexPath *indexpath = [self.tableView indexPathForCell:cell];
+    if(indexpath.row != NSNotFound)
+    {
+        Setting setting = [self.settingsFields[indexpath.row] shortValue];
+        switch (setting) {
+            case CustomerServiceSetting:
+                [self customerServiceTapped:cell];
+                break;
+            case FeedbackSetting:
+                [self feedbackTapped:cell];
+                break;
+            case TouchIDSetting:
+                [self touchIdButtonTapped:cell];
+                break;
+            case GoogleSetting:
+                [self googleSettingsTapped:cell];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+-(void)settingsSwitchToggledOnCell:(UITableViewCell *)cell newValue:(BOOL)newValue
+{
+    User *user = [self.objectModel currentUser];
+    user.sendAsBusinessDefaultSettingValue = newValue;
+    [self.objectModel saveContext];
+}
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == alertView.cancelButtonIndex)
     {
         return;
     }
+
     if(alertView.tag == 1)
     {
+        __weak typeof(self) weakSelf = self;
         [TouchIDHelper clearCredentialsAfterValidation:^(BOOL success) {
             if(success)
             {
-                self.touchIdButton.hidden = YES;
+                [weakSelf removeTouchId];
             }
         }];
     }
-    else
+    else if (alertView.tag == 2)
     {
         [TouchIDHelper clearBlockedUsernames];
-        self.touchIdButton.hidden = YES;
+        [self removeTouchId];
+    }
+    else
+    {
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+        [AuthenticationHelper revokeOauthAccessForProvider:[self.objectModel currentUser].authenticationProvider completionBlock:^{
+            [hud hide];
+            [self logOutTapped:nil];
+        }];
     }
 }
 
+-(void)removeTouchId
+{
+    NSUInteger row = [self.settingsFields indexOfObject:@(TouchIDSetting)];
+    if(row != NSNotFound)
+    {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.tableView beginUpdates];
+        NSUInteger count = [self.settingsFields count];
+        [self refreshSettingsFields];
+        if (count > [self.settingsFields count])
+        {
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        [self.tableView endUpdates];
+    }
+}
 @end

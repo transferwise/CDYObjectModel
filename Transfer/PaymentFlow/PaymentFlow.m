@@ -6,48 +6,48 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "PaymentFlow.h"
-#import "CreatePaymentOperation.h"
-#import "VerificationRequiredOperation.h"
-#import "Credentials.h"
-#import "UploadVerificationFileOperation.h"
-#import "PersonalProfileOperation.h"
-#import "EmailCheckOperation.h"
-#import "RecipientOperation.h"
-#import "BusinessProfileOperation.h"
-#import "TRWAlertView.h"
-#import "ObjectModel.h"
-#import "User.h"
-#import "ObjectModel+Users.h"
-#import "PersonalProfile.h"
-#import "BusinessProfile.h"
-#import "ObjectModel+PendingPayments.h"
-#import "PendingPayment.h"
-#import "Currency.h"
-#import "Recipient.h"
-#import "PaymentPurposeOperation.h"
-#import "UploadMoneyViewController.h"
-#import "GoogleAnalytics.h"
 #import "AppsFlyerTracker.h"
+#import "BusinessProfile.h"
+#import "BusinessProfileOperation.h"
 #import "CalculationResult.h"
+#import "ConfirmPaymentViewController.h"
+#import "CreatePaymentOperation.h"
+#import "Credentials.h"
+#import "Currency.h"
+#import "EmailCheckOperation.h"
+#import "EmailValidation.h"
+#import "EventTracker.h"
+#import "GoogleAnalytics.h"
 #import "LoggedInPaymentFlow.h"
+#import "Mixpanel+Customisation.h"
+#import "Mixpanel.h"
+#import "NSObject+NSNull.h"
 #import "NanTracking.h"
-#import "FBAppEvents.h"
 #import "NetworkErrorCodes.h"
-#import "_RecipientType.h"
+#import "ObjectModel+Payments.h"
+#import "ObjectModel+PendingPayments.h"
+#import "ObjectModel+Users.h"
+#import "ObjectModel.h"
+#import "PaymentFlow.h"
+#import "PaymentMethodDisplayHelper.h"
+#import "PaymentPurposeOperation.h"
+#import "PendingPayment.h"
+#import "PersonalProfile.h"
+#import "PersonalProfileOperation.h"
+#import "Recipient.h"
+#import "RecipientOperation.h"
 #import "RecipientType.h"
 #import "RefundDetailsViewController.h"
-#import "Mixpanel.h"
-#import "Mixpanel+Customisation.h"
-#import "GoogleAnalytics.h"
 #import "RegisterOperation.h"
 #import "SetSSNOperation.h"
-#import "EventTracker.h"
-#import "ObjectModel+Payments.h"
-#import "EmailValidation.h"
-#import "NSObject+NSNull.h"
-#import "ConfirmPaymentViewController.h"
+#import "TRWAlertView.h"
 #import "TransparentModalViewController.h"
+#import "UploadMoneyViewController.h"
+#import "UploadVerificationFileOperation.h"
+#import "User.h"
+#import "VerificationRequiredOperation.h"
+#import "_RecipientType.h"
+#import <FBSDKAppEvents.h>
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -237,7 +237,7 @@
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalProfileIdentificationController
 																							 params:@{kPendingPayment: [NSObject getObjectOrNsNull:payment],
 																									  kVerificationCompletionBlock: [completion copy]}]
-										 animated:YES];
+                                         animated:YES];
 }
 
 - (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID
@@ -246,24 +246,22 @@
         MCLog(@"presentUploadMoneyController");
         Payment* payment = (id) [self.objectModel.managedObjectContext objectWithID:paymentID];
         
-        
-        NSUInteger numberOfPayInMethods = [[payment enabledPayInMethods] count];
-        if(numberOfPayInMethods < 1)
+        if([PaymentMethodDisplayHelper displayErrorForPayment: payment])
         {
             TransparentModalViewController* failModal = [self.controllerFactory getCustomModalWithType:NoPayInMethodsFailModal params:@{kPayment: [NSObject getObjectOrNsNull:payment]}];
             [failModal presentOnViewController:self.navigationController.parentViewController];
         }
-        else if(!IPAD && (numberOfPayInMethods > 2 || ([@"usd" caseInsensitiveCompare:[payment.sourceCurrency.code lowercaseString]] == NSOrderedSame && numberOfPayInMethods > 1)))
+        else if(!IPAD && [PaymentMethodDisplayHelper displayMethodForPayment: payment] == kDisplayAsList)
         {
-			[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PaymentMethodSelectorController
-																									 params:@{kPayment: [NSObject getObjectOrNsNull:payment]}]
-												 animated:YES];
+            [self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PaymentMethodSelectorController
+                                                                                                     params:@{kPayment: [NSObject getObjectOrNsNull:payment]}]
+                                                 animated:YES];
         }
         else
         {
-			[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:UploadMoneyController
-																									 params:@{kPayment: [NSObject getObjectOrNsNull:payment]}]
-												 animated:YES];
+            [self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:UploadMoneyController
+                                                                                                     params:@{kPayment: [NSObject getObjectOrNsNull:payment]}]
+                                                 animated:YES];
         }
         
     });
@@ -399,7 +397,7 @@
 - (void)updateBusinessProfile:(TRWActionBlock)completion
 {
     MCLog(@"updateBusinessProfile");
-    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.objectModel.currentUser.businessProfile.objectID];
+    BusinessProfileOperation *operation = [BusinessProfileOperation commitOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
@@ -421,7 +419,7 @@
 - (void)updatePersonalProfile:(TRWActionBlock)completion
 {
     MCLog(@"updatePersonalProfile");
-    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.objectModel.currentUser.personalProfile.objectID];
+    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
@@ -598,7 +596,8 @@
 
 #if USE_FACEBOOK_EVENTS
 		MCLog(@"Log FB purchase %@ - %@", transferFee, sourceCurrencyCode);
-		[FBAppEvents logPurchase:[transferFee floatValue] currency:[NSString stringWithFormat:@"%@ %@",sourceCurrencyCode, targetCurrencyCode]];
+		[FBSDKAppEvents logPurchase:[transferFee floatValue]
+						   currency:[NSString stringWithFormat:@"%@ %@",sourceCurrencyCode, targetCurrencyCode]];
 #endif
 
         static NSNumberFormatter *__formatter;

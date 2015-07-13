@@ -14,7 +14,7 @@
 #import "UIFont+MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "GoogleButton.h"
-#import "YahooButton.h"
+#import "FacebookButton.h"
 #import "UIColor+MOMStyle.h"
 #import "NavigationBarCustomiser.h"
 #import "AuthenticationHelper.h"
@@ -37,10 +37,11 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet GreenButton *loginButton;
 @property (strong, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
 @property (strong, nonatomic) IBOutlet GoogleButton *googleLoginButton;
-@property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
+@property (strong, nonatomic) IBOutlet FacebookButton *facebookLoginButton;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 @property (strong, nonatomic) AuthenticationHelper *loginHelper;
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
+@property (weak, nonatomic) IBOutlet UIButton *onePasswordButton;
 
 @property (nonatomic, strong) IBInspectable NSString* xibNameForResetPassword;
 
@@ -101,10 +102,14 @@ IB_DESIGNABLE
     [self.forgotPasswordLabel addGestureRecognizer:tapGestureRecognizer];
 	
 	[self.googleLoginButton setTitle:NSLocalizedString([@"button.title.log.in.google" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
-	[self.yahooLoginButton setTitle:NSLocalizedString([@"button.title.log.in.yahoo" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+	[self.facebookLoginButton setTitle:NSLocalizedString([@"button.title.log.in.facebook" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
 	
 	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
     self.touchIdButton.hidden = ![TouchIDHelper isTouchIdSlotTaken];
+    
+    [self.onePasswordButton setHidden:![AuthenticationHelper onePasswordIsAvaliable]];
+
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -186,19 +191,32 @@ IB_DESIGNABLE
 									 }];
 }
 
+- (IBAction)onePasswordTapped:(id)sender
+{
+    __weak typeof(self) weakSelf = self;
+    [AuthenticationHelper onePasswordLoginWithCompletion:^(BOOL success, NSString *username, NSString *password) {
+        if (success)
+        {
+            weakSelf.emailTextField.text = username;
+            weakSelf.passwordTextField.text = password;
+        }
+    } onViewController:self sender:sender];
+}
+
 -(void)proceedFromSuccessfulLogin
 {
     [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self
                                                            objectModel:self.objectModel];
 }
 
-- (IBAction)yahooLogInPressed:(id)sender
+- (IBAction)facebookLogInPressed:(id)sender
 {
-    ResetPasswordViewController *controller = self.xibNameForResetPassword?[[ResetPasswordViewController alloc] initWithNibName:self.xibNameForResetPassword bundle:nil]:[[ResetPasswordViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    controller.isYahooReset = YES;
-    controller.delegate = self;
-    [self.navigationController pushViewController:controller animated:YES];
+	__weak typeof(self) weakSelf = self;
+	[self.loginHelper performFacebookLoginWithNavigationController:self.navigationController
+													   objectModel:self.objectModel
+													successHandler:^{
+														[weakSelf proceedFromSuccessfulLogin];
+													}];
 }
 
 

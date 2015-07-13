@@ -76,6 +76,5 @@ Given /^I confirm the transfer$/ do
   if(query("view marked:'Ok'").count() > 0)
   		touch(query("view marked:'Ok'"))
   end
-  wait_for_elements_do_not_exist(["view marked:'Confirm'"], :timeout => 20)
+  wait_for_elements_do_not_exist(["view marked:'Confirm'"], :timeout => 60)
 end
-
