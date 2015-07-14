@@ -19,7 +19,7 @@
 	}];
 	
 	NSMutableArray *sortedPayInMethodTypes = [[NSMutableArray alloc] initWithCapacity:payInMethodsSorted.count];
-	for (PayInMethod *method in sortedPayInMethodTypes)
+	for (PayInMethod *method in payInMethodsSorted)
 	{
 		[sortedPayInMethodTypes addObject:method.type];
 	}
