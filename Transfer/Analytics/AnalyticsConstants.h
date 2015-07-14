@@ -112,6 +112,9 @@ extern NSString *const GAWireTransfer;
 extern NSString *const GAFBLoginError;
 extern NSString *const GAFBLoginNoEmail;
 extern NSString *const GAPushNotificationsPropmpted;
+extern NSString *const GAApplePayShown;
+extern NSString *const GAApplePaySuccessShown;
+extern NSString *const GAApplePayFail;
 
 //Mixpanel
 
@@ -140,5 +143,7 @@ extern NSString *const MPUserregistered;
 extern NSString *const MPVerification;
 extern NSString *const MPWhatsNew;
 extern NSString *const MPYourDetails;
+extern NSString *const MPApplePay;
+extern NSString *const MPApplePaySuccess;
 
 

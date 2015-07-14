@@ -111,6 +111,9 @@ NSString *const GAWireTransfer = @"Wire transfer";
 NSString *const GAFBLoginError = @"FacebookLoginError";
 NSString *const GAFBLoginNoEmail = @"FacebookLoginNoEmail";
 NSString *const GAPushNotificationsPropmpted = @"AcceptedPushNotifications";
+NSString *const GAApplePayShown = @"ApplePaySown";
+NSString *const GAApplePaySuccessShown = @"Success ApplePay";
+NSString *const GAApplePayFail = @"ApplePay fail";
 
 // Mixpanel
 
@@ -139,5 +142,7 @@ NSString *const MPUserregistered = @"UserRegistered";
 NSString *const MPVerification = @"Verification";
 NSString *const MPWhatsNew = @"What's new";
 NSString *const MPYourDetails = @"Your details";
+NSString *const MPApplePay = @"ApplePay";
+NSString *const MPApplePaySuccess = @"ApplePay Success";
 
 
