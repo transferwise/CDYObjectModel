@@ -1027,6 +1027,8 @@
 		472EFE3A1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
 		472EFE3B1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
 		472EFE3C1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
+		472EFE361B53C43900EAEDB9 /* OnePasswordTextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78EB1B4418E600CFA7FE /* OnePasswordTextEntryCell.xib */; };
+		472EFE371B53C43D00EAEDB9 /* OnePasswordTextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78F11B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib */; };
 		4731F65E1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
 		4731F65F1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
 		4731F6601B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
@@ -4234,6 +4236,7 @@
 				388E5B161A5A949500AF6EB9 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				388E5B171A5A949500AF6EB9 /* CurrencyCell~ipad.xib in Resources */,
 				388E5B181A5A949500AF6EB9 /* MoneyEntryCell~ipad.xib in Resources */,
+				472EFE371B53C43D00EAEDB9 /* OnePasswordTextEntryCell~ipad.xib in Resources */,
 				388E5B191A5A949500AF6EB9 /* RecipientCell~ipad.xib in Resources */,
 				471DBFF11ACD426A00DC133C /* OAuthViewController.xib in Resources */,
 				388E5B1A1A5A949500AF6EB9 /* AchLoginViewController.xib in Resources */,
@@ -4373,6 +4376,7 @@
 				388E5B951A5A949500AF6EB9 /* Styles.plist in Resources */,
 				478C6FF51A8DF61D00431882 /* (null) in Resources */,
 				388E5B961A5A949500AF6EB9 /* ProfileEditViewController.xib in Resources */,
+				472EFE361B53C43900EAEDB9 /* OnePasswordTextEntryCell.xib in Resources */,
 				388E5B971A5A949500AF6EB9 /* BusinessProfileIdentificationViewController.xib in Resources */,
 				388E5B991A5A949500AF6EB9 /* TabbedHeaderViewController~ipad.xib in Resources */,
 				388E5B9A1A5A949500AF6EB9 /* RecipientsFooterView.xib in Resources */,
