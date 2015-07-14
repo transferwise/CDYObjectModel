@@ -10,7 +10,6 @@
 #import "PayInMethod.h"
 #import "UIView+SeparatorLine.h"
 #import "NSString+Presentation.h"
-#import "PaymentMethodCell+Private.h"
 
 @interface PaymentMethodCell ()
 

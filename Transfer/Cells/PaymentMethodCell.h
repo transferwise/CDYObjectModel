@@ -20,6 +20,8 @@
 
 @interface PaymentMethodCell : UITableViewCell
 
+@property (nonatomic, weak) NSString* method;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, weak) id<PaymentMethodCellDelegate> paymentMethodCellDelegate;
 
 -(void)configureWithPaymentMethod:(NSString *)method
