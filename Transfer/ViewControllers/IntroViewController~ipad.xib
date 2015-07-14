@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController">
             <connections>
-                <outlet property="googleButton" destination="aYU-n2-PJu" id="JID-je-Ihr"/>
                 <outlet property="loginButton" destination="3J2-yn-Cds" id="MOU-Fp-bDU"/>
                 <outlet property="noRegistrationContainer" destination="36r-Gh-1de" id="oWC-h5-qtH"/>
+                <outlet property="oAuthButton" destination="aYU-n2-PJu" id="ZgR-6G-v6M"/>
                 <outlet property="pageControl" destination="NiX-z4-79M" id="LAG-XD-YuH"/>
                 <outlet property="registerButton" destination="Mxw-Yb-2WX" id="uPM-Ga-C2a"/>
                 <outlet property="scrollView" destination="vVN-5a-Y2I" id="hxm-9b-ykf"/>
                 <outlet property="startButton" destination="KFu-gX-LtS" id="yEU-2X-pSj"/>
                 <outlet property="upfrontRegistrationcontainer" destination="Mby-7N-hH5" id="Khy-15-HqS"/>
                 <outlet property="view" destination="1" id="3"/>
-                <outlet property="whiteGoogleButton" destination="cQS-aO-dCN" id="Xwk-bG-kyq"/>
                 <outlet property="whiteLoginButton" destination="dOP-HM-N6x" id="xVa-Vm-4h0"/>
+                <outlet property="whiteOAuthButton" destination="cQS-aO-dCN" id="lRN-Pw-cso"/>
                 <outlet property="whiteRegisterButton" destination="qyG-J5-SES" id="ZDF-5X-Fpw"/>
                 <outlet property="whiteStartButton" destination="Lcf-PL-6rF" id="kDU-jM-s5w"/>
                 <outletCollection property="blueButtons" destination="KFu-gX-LtS" id="q8b-lQ-I4D"/>
@@ -120,7 +119,7 @@
                                 <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="VCL-MM-oAY"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYU-n2-PJu" userLabel="Google" customClass="BlueRoundedButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYU-n2-PJu" userLabel="OAuth" customClass="BlueRoundedButton">
                             <rect key="frame" x="402" y="64" width="220" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="qYG-BO-9yE"/>
@@ -153,7 +152,7 @@
                                 <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="eOu-ZA-hyM"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQS-aO-dCN" userLabel="WhiteGoogle" customClass="WhiteRoundedButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQS-aO-dCN" userLabel="WhiteOAuth" customClass="WhiteRoundedButton">
                             <rect key="frame" x="402" y="64" width="220" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="2tD-t4-uV4"/>

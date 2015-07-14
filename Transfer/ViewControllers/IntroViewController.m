@@ -40,8 +40,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteRegisterButton;
-@property (weak, nonatomic) IBOutlet UIButton *googleButton;
-@property (weak, nonatomic) IBOutlet UIButton *whiteGoogleButton;
+@property (weak, nonatomic) IBOutlet UIButton *oAuthButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteOAuthButton;
 @property (weak, nonatomic) IBOutlet UIView *upfrontRegistrationcontainer;
 @property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
@@ -83,14 +83,14 @@
     [self.loginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
     [self.whiteLoginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
     
-    [self.googleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
-    [self.whiteGoogleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+    [self.oAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteOAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     if(![defaults boolForKey:TRWGoogleLoginUsedKey])
     {
-        [self.googleButton removeFromSuperview];
-        [self.whiteGoogleButton removeFromSuperview];
+        [self.oAuthButton removeFromSuperview];
+        [self.whiteOAuthButton removeFromSuperview];
     }
 
     self.automaticallyAdjustsScrollViewInsets = NO;

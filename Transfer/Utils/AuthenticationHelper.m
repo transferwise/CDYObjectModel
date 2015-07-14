@@ -49,6 +49,12 @@
 #import "NSString+DeducedId.h"
 #import <OnePasswordExtension.h>
 
+typedef NS_ENUM(NSInteger, OAuthLoginType) {
+	Google,
+	Facebook,
+	None
+};
+
 @interface AuthenticationHelper ()
 
 @property (strong, nonatomic) TransferwiseOperation *executedOperation;
@@ -120,9 +126,8 @@
                     waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
                                   touchIDHost:(UIViewController*)touchIdHost
 {
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:NO forKey:TRWGoogleLoginUsedKey];
-    
+	[AuthenticationHelper handleOAuthLoginFlagging:None];
+	
 	[UIApplication dismissKeyboard];
 	
     NSString *issues = [self validateEmail:email password:password];
@@ -189,12 +194,6 @@
 						  objectModel:(ObjectModel *)objectModel
 					   successHandler:(TRWActionBlock)successBlock
 {
-    if([providerName isEqualToString:GoogleOAuthServiceName])
-    {
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:YES forKey:TRWGoogleLoginUsedKey];
-    }
-    
 	self.navigationController = navigationController;
 	self.objectModel = objectModel;
 	self.oauthSuccessBlock = successBlock;
@@ -224,6 +223,8 @@
 {
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:navigationController.view];
 	[hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
+	
+	[AuthenticationHelper handleOAuthLoginFlagging:[providerName isEqualToString:GoogleOAuthServiceName] ? Google : Facebook];
 	
 	LoginOrRegisterWithOauthOperation *oauthLoginOperation = [LoginOrRegisterWithOauthOperation loginOrRegisterWithOauthOperationWithProvider:provider
 																																		token:token
@@ -445,7 +446,8 @@
 
 #pragma mark - oauth revoke
 
-+ (void)revokeOauthAccessForProvider:(NSString*)provider completionBlock:(void (^)(void))completionBlock
++ (void)revokeOauthAccessForProvider:(NSString*)provider
+					 completionBlock:(void (^)(void))completionBlock
 {
     if([@"google" isEqualToString:[provider lowercaseString]])
     {
@@ -709,7 +711,9 @@ isOAuthRegistration:(BOOL)isOauthRegistration
 
 #pragma mark - one password
 
-+(void)onePasswordLoginWithCompletion:(void(^)(BOOL success, NSString* username, NSString* password))completionBlock onViewController:(UIViewController*)controller sender:(id)sender
++(void)onePasswordLoginWithCompletion:(void(^)(BOOL success, NSString* username, NSString* password))completionBlock
+					 onViewController:(UIViewController*)controller
+							   sender:(id)sender
 {
     [[OnePasswordExtension sharedExtension] findLoginForURLString:@"https://www.transferwise.com" forViewController:controller sender:sender completion:^(NSDictionary *loginDictionary, NSError *error) {
         if (loginDictionary.count == 0) {
@@ -724,7 +728,11 @@ isOAuthRegistration:(BOOL)isOauthRegistration
    
 }
 
-+(void)onePasswordInsertRegistrationDetails:(void(^)(BOOL success, NSString* email, NSString* password))completionBlock preEnteredUsername:(NSString*)email preEnteredPassword:(NSString*)password viewController:(UIViewController*)controller sender:(id)sender
++(void)onePasswordInsertRegistrationDetails:(void(^)(BOOL success, NSString* email, NSString* password))completionBlock
+						 preEnteredUsername:(NSString*)email
+						 preEnteredPassword:(NSString*)password
+							 viewController:(UIViewController*)controller
+									 sender:(id)sender
 {
     NSDictionary *loginDetails = @{
                                    AppExtensionTitleKey: @"TransferWise",
@@ -749,6 +757,31 @@ isOAuthRegistration:(BOOL)isOauthRegistration
 +(BOOL)onePasswordIsAvaliable
 {
     return [[OnePasswordExtension sharedExtension] isAppExtensionAvailable];
+}
+
++ (void)handleOAuthLoginFlagging:(OAuthLoginType)loginType
+{
+	BOOL fb = NO;
+	BOOL g = NO;
+	
+	switch (loginType)
+	{
+		case Facebook:
+			fb = YES;
+			break;
+		case Google:
+			g = YES;
+			break;
+		case None:
+		default:
+			break;
+	}
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setBool:g
+			   forKey:TRWGoogleLoginUsedKey];
+	[defaults setBool:fb
+			   forKey:TRWFacebookLoginUsedKey];
 }
 
 @end
