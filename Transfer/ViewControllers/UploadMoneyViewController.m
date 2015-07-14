@@ -64,7 +64,7 @@
     if([viewControllers count] == 1)
     {
         PayInMethod* method = availableOptions[0];
-        NSString* key = [NSString stringWithFormat:@"payment.method.title.%@", method.type];
+        NSString* key = [NSString stringWithFormat:@"payment.method.title.%@", method];
         [self setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@",key,self.payment.sourceCurrency.code]
 										  withFallback:key]];
     }
