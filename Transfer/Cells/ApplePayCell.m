@@ -9,40 +9,16 @@
 #import "ApplePayCell.h"
 #import "UIView+SeparatorLine.h"
 #import "NSString+Presentation.h"
-
-@interface ApplePayCell ()
-
-@property (weak, nonatomic) IBOutlet UIButton *button;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, weak) UIView* separatorLine;
-
-@end
+#import "PaymentMethodCell+Private.h"
 
 @implementation ApplePayCell
 
--(void)layoutSubviews
+-(void)configureWithPaymentMethod:(NSString *)method
+					 fromCurrency:(NSString *)currencyCode
 {
-    [super layoutSubviews];
-    self.contentView.frame = self.bounds;
-    if (!self.separatorLine)
-    {
-        UIView * line = [UIView getSeparatorLineWithParentFrame:self.contentView.frame
-                                                       showFullWidth:YES];
-        self.separatorLine = line;
-        [self.contentView addSubview:self.separatorLine];
-    }
+	self.method = method;
+	self.descriptionLabel.text = [NSString localizedStringForKey:@"payment.method.description.apple.pay"
+													withFallback:nil];
 }
 
--(void)awakeFromNib
-{
-	self.descriptionLabel.text = [NSString localizedStringForKey:@"payment.method.description.apple.pay" withFallback:nil];
-}
-
-- (IBAction)actionButtonTapped:(id)sender
-{
-    if([self.applePayCellDelegate respondsToSelector:@selector(payButtonTappedOnCell:)])
-    {
-        [self.applePayCellDelegate payButtonTappedOnCell:self];
-    }
-}
 @end

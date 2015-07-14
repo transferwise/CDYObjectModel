@@ -2070,6 +2070,7 @@
 		472915331AE549EA00301260 /* PushNotificationDispather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationDispather.m; sourceTree = "<group>"; };
 		472B53B11B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SortedPayInMethods.h"; sourceTree = "<group>"; };
 		472B53B21B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SortedPayInMethods.m"; sourceTree = "<group>"; };
+		472B53B61B54E0B500F9D9A2 /* PaymentMethodCell+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaymentMethodCell+Private.h"; sourceTree = "<group>"; };
 		472D5640198FE98500257BB8 /* PersonalPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPaymentProfileViewController.h; sourceTree = "<group>"; };
 		472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPaymentProfileViewController.m; sourceTree = "<group>"; };
 		472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPaymentProfileViewController.h; sourceTree = "<group>"; };
@@ -3376,6 +3377,7 @@
 				EA35C77117327981005602F7 /* PaymentCell.xib */,
 				38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */,
 				38288F4B19C86DC200661BFB /* PaymentMethodCell.h */,
+				472B53B61B54E0B500F9D9A2 /* PaymentMethodCell+Private.h */,
 				38288F4C19C86DC200661BFB /* PaymentMethodCell.m */,
 				38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */,
 				3856690D1980FB0500BC4230 /* PlainPresentationCell.h */,

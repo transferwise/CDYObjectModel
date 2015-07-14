@@ -24,7 +24,7 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
-                            <action selector="actionButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="irG-A0-pc4"/>
+                            <action selector="actionButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="B45-Cq-GrI"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="he0-jO-B25" userLabel="Description Label">
@@ -48,8 +48,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="button" destination="7Wl-DC-1cd" id="Ecv-2X-PfM"/>
-                <outlet property="descriptionLabel" destination="he0-jO-B25" id="LJp-aG-5Tp"/>
+                <outlet property="button" destination="7Wl-DC-1cd" id="4sX-wC-8k8"/>
+                <outlet property="descriptionLabel" destination="he0-jO-B25" id="glK-AG-Ood"/>
             </connections>
         </tableViewCell>
     </objects>

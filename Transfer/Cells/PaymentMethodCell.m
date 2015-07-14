@@ -10,13 +10,12 @@
 #import "PayInMethod.h"
 #import "UIView+SeparatorLine.h"
 #import "NSString+Presentation.h"
-
+#import "PaymentMethodCell+Private.h"
 
 @interface PaymentMethodCell ()
+
 @property (weak, nonatomic) IBOutlet UIButton *button;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, weak) UIView* separatorLine;
-@property (nonatomic, weak) NSString* method;
 
 @end
 
@@ -30,14 +29,14 @@
     if (!self.separatorLine)
     {
         UIView * line = [UIView getSeparatorLineWithParentFrame:self.contentView.frame
-                                                       showFullWidth:YES];
+												  showFullWidth:YES];
         self.separatorLine = line;
         [self.contentView addSubview:self.separatorLine];
     }
 }
 
 
--(void)configureWithPaymentMethod:(NSString*)method
+-(void)configureWithPaymentMethod:(NSString *)method
 					 fromCurrency:(NSString *)currencyCode
 {
     self.method = method;

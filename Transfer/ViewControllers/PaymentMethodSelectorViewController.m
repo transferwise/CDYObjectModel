@@ -28,7 +28,7 @@
 
 #define APPLE_PAY @"APPLE_PAY"
 
-@interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate, ApplePayCellDelegate, PKPaymentAuthorizationViewControllerDelegate>
+@interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate, PKPaymentAuthorizationViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
@@ -93,29 +93,25 @@ numberOfRowsInSection:(NSInteger)section
 		cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSString *payInMethod = self.sortedPayInMethods[indexPath.row];
+	PaymentMethodCell *cell;
 	
 	if ([APPLE_PAY caseInsensitiveCompare:payInMethod] == NSOrderedSame)
 	{
-		ApplePayCell *cell = (ApplePayCell *)[tableView dequeueReusableCellWithIdentifier:ApplePayCellName];
-		
-		[self setCellBackground:indexPath
-						   cell:cell];
-		cell.applePayCellDelegate = self;
-		
-		return cell;
+		cell = (ApplePayCell *)[tableView dequeueReusableCellWithIdentifier:ApplePayCellName];
 	}
 	else
 	{
-		PaymentMethodCell *cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
-		[cell configureWithPaymentMethod:payInMethod
-							fromCurrency:[self.payment sourceCurrency].code];
-		
-		[self setCellBackground:indexPath
-						   cell:cell];
-		cell.paymentMethodCellDelegate = self;
-		
-		return cell;
+		cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
 	}
+	
+	[cell configureWithPaymentMethod:payInMethod
+						fromCurrency:[self.payment sourceCurrency].code];
+	
+	[self setCellBackground:indexPath
+					   cell:cell];
+	cell.paymentMethodCellDelegate = self;
+	
+	return cell;
 }
 
 - (void)setCellBackground:(NSIndexPath *)indexPath

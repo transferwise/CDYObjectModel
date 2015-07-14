@@ -7,17 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PaymentMethodCell.h"
 
-@class ApplePayCell;
-
-@protocol ApplePayCellDelegate <NSObject>
-
--(void)payButtonTappedOnCell:(ApplePayCell*)cell;
-
-@end
-
-@interface ApplePayCell : UITableViewCell
-
-@property (nonatomic, weak) id<ApplePayCellDelegate> applePayCellDelegate;
+@interface ApplePayCell : PaymentMethodCell
 
 @end
