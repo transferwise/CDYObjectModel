@@ -20,8 +20,8 @@
 #import "UploadMoneyViewController.h"
 #import "ApplePayCell.h"
 #import "AdyenResponseParser.h"
+#import "UIViewController+SortedPayInMethods.h"
 @import PassKit;
-
 
 #define PaymentMethodCellName @"PaymentMethodCell"
 #define ApplePayCellName @"ApplePayCell"
@@ -51,18 +51,9 @@
 											   bundle:[NSBundle mainBundle]]
 		 forCellReuseIdentifier:ApplePayCellName];
 	
-    [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];
+    [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];	
 	
-	
-	NSArray *payInMethodsSorted = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
-			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type] integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type] integerValue];
-	}];
-	
-	NSMutableArray *sortedPayInMethodTypes = [[NSMutableArray alloc] initWithCapacity:payInMethodsSorted.count];
-	for (PayInMethod *method in sortedPayInMethodTypes)
-	{
-		[sortedPayInMethodTypes addObject:method.type];
-	}
+	NSMutableArray *sortedPayInMethodTypes = [self sortedPayInMethodTypesForPayment:self.payment];
 	
 	if ([ApplePayHelper isApplePayAvailableForPayment: self.payment])
 	{

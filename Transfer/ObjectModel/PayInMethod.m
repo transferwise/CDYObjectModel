@@ -10,8 +10,7 @@
 
 @implementation PayInMethod
 
-
-+(NSDictionary*)supportedPayInMethods
++ (NSDictionary*)supportedPayInMethods
 {
     return @{
 			 @"REGULAR" : @4,
