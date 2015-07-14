@@ -12,6 +12,9 @@
 #import "AdyenResponseParser.h"
 #import "CustomInfoViewController.h"
 #import "CustomInfoViewController+UpdatePaymentDetails.h"
+#import "GoogleAnalytics.h"
+#import "Mixpanel+Customisation.h"
+#import "AnalyticsConstants.h"
 @import PassKit;
 
 @interface ApplePayFlow () <PKPaymentAuthorizationViewControllerDelegate>
@@ -81,6 +84,10 @@
 	}
 	else
 	{
+		// Track!!!
+		[[GoogleAnalytics sharedInstance] sendScreen:GAApplePayShown];
+		[[Mixpanel sharedInstance] sendPageView:MPApplePay];
+		
 		// Show Apple Pay slideup
 		[self.hostingController presentViewController: paymentAuthorizationViewController
 											 animated: YES
@@ -112,6 +119,9 @@
 													   response:result
 												 successHandler:^{
 													 completion(PKPaymentAuthorizationStatusSuccess);
+													 // Track!!!
+													 [[GoogleAnalytics sharedInstance] sendScreen:GAApplePaySuccessShown];
+													 [[Mixpanel sharedInstance] sendPageView:MPApplePaySuccess];
 													 
 													 [CustomInfoViewController presentCustomInfoWithSuccess: YES
 																								 controller: self.hostingController
@@ -124,6 +134,9 @@
 														
 														NSString *errorKeyPrefix = @"applepay.failure.message";
 														errorKeySuffix = errorKeySuffix ?: @"initcontroller";
+														
+														[[GoogleAnalytics sharedInstance] sendAlertEvent:GAApplePayFail
+																							   withLabel:errorKeySuffix];
 														
 														[CustomInfoViewController presentCustomInfoWithSuccess: NO
 																									controller: self.hostingController
