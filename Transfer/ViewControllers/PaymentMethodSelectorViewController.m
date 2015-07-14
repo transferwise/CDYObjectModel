@@ -7,8 +7,8 @@
 //
 
 #import "ApplePayHelper.h"
+#import "ApplePayFlow.h"
 #import "Currency.h"
-#import "CustomInfoViewController+UpdatePaymentDetails.h"
 #import "GoogleAnalytics.h"
 #import "MOMStyle.h"
 #import "Mixpanel+Customisation.h"
@@ -19,7 +19,6 @@
 #import "TransferBackButtonItem.h"
 #import "UploadMoneyViewController.h"
 #import "ApplePayCell.h"
-#import "AdyenResponseParser.h"
 #import "UIViewController+SortedPayInMethods.h"
 @import PassKit;
 
@@ -28,13 +27,11 @@
 
 #define APPLE_PAY @"APPLE_PAY"
 
-@interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate, PKPaymentAuthorizationViewControllerDelegate>
+@interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-
 @property (nonatomic) NSArray* sortedPayInMethods;
-
-@property (nonatomic) ApplePayHelper *applePayHelper;
+@property (strong, nonatomic) ApplePayFlow *applePayFlow;
 
 @end
 
@@ -57,7 +54,14 @@
 	
 	if ([ApplePayHelper isApplePayAvailableForPayment: self.payment])
 	{
+		//Apple Pay is in play
 		[sortedPayInMethodTypes addObject:APPLE_PAY];
+		self.applePayFlow = [ApplePayFlow sharedInstanceWithPayment:self.payment
+														objectModel:self.objectModel
+													 successHandler:^{
+														 
+													 }
+											  hostingViewController:self];
 	}
 	
 	self.sortedPayInMethods = sortedPayInMethodTypes;
@@ -127,116 +131,123 @@ numberOfRowsInSection:(NSInteger)section
 -(void)actionButtonTappedOnCell:(PaymentMethodCell *)cell
 					 withMethod:(NSString *)method
 {
-    UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-    controller.objectModel = self.objectModel;
-    controller.forcedMethod = method;
-	controller.payment = self.payment;
-    [self.navigationController pushViewController:controller animated:YES];
-    __weak typeof(self) weakSelf = self;
-    [controller.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-      [weakSelf.navigationController popViewControllerAnimated:YES];
-    }]];
-
+	if ([APPLE_PAY caseInsensitiveCompare:method] == NSOrderedSame)
+	{
+		//Apple Pay is the sore thumb here
+		[self.applePayFlow handleApplePay];
+	}
+	else
+	{
+		UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+		controller.objectModel = self.objectModel;
+		controller.forcedMethod = method;
+		controller.payment = self.payment;
+		[self.navigationController pushViewController:controller animated:YES];
+		__weak typeof(self) weakSelf = self;
+		[controller.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+			[weakSelf.navigationController popViewControllerAnimated:YES];
+		}]];
+	}
 }
 
-#pragma mark - Apple Pay support
-
-/**
- *  The user touched the Apple Pay button
- *
- *  @param button Button
- */
-
-- (void) payButtonTappedOnCell:(ApplePayCell *)cell
-{
-    // Create a new helper
-    self.applePayHelper = [ApplePayHelper new];
-    
-    // Create the payment request from our helper
-    PKPaymentRequest *paymentRequest = [self.applePayHelper createPaymentRequestForPayment: self.payment];
-    
-    UIViewController *paymentAuthorizationViewController;
-    
-    paymentAuthorizationViewController = [self.applePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest
-																										delegate: self];
-    
-    // Check to see if we could create an authorisation controller
-    if (!paymentAuthorizationViewController)
-    {
-        // We didn't create an apple pay authorisation controller, so display an error screen
-        [CustomInfoViewController presentCustomInfoWithSuccess: NO
-                                                    controller: self
-                                                    messageKey: @"applepay.failure.message.initcontroller"
-                                                       payment: self.payment
-                                                   objectModel: self.objectModel];
-    }
-    else
-    {
-        // Show Apple Pay slideup
-        [self presentViewController: paymentAuthorizationViewController
-                           animated: YES
-                         completion: nil];
-    }
-}
-
-#pragma mark - PKPaymentAuthorizationViewControllerDelegate
-
-/**
- *  Apple Pay authorised this payment
- *
- *  @param controller PKPaymentAuthorizationViewController
- *  @param payment    The payment
- *  @param completion Block to callback with a status code when payment is completed
- */
-
-- (void) paymentAuthorizationViewController: (PKPaymentAuthorizationViewController *) controller
-                        didAuthorizePayment: (PKPayment *) payment
-                                 completion: (void (^)(PKPaymentAuthorizationStatus status)) completion
-{
-    // First we need to get this payment info a format suitable to passing to Adyen
-    PKPaymentToken *paymentToken = payment.token;
-    NSString *remoteIdString = [NSString stringWithFormat: @"%@",  self.payment.remoteId];
-    
-    [self.applePayHelper sendToken: paymentToken
-                      forPaymentId: remoteIdString
-                   responseHandler: ^(NSError *error, NSDictionary *result) {
-					   [AdyenResponseParser handleAdyenResponse:error
-													   response:result
-												 successHandler:^{
-													 completion(PKPaymentAuthorizationStatusSuccess);
-													 
-													 [CustomInfoViewController presentCustomInfoWithSuccess: YES
-																								 controller: self
-																								 messageKey: @"applepay.success.message"
-																									payment: self.payment
-																								objectModel: self.objectModel];
-												 }
-													failHandler:^(NSError *error, NSString *errorKeySuffix) {
-														completion(PKPaymentAuthorizationStatusFailure);
-														
-														NSString *errorKeyPrefix = @"applepay.failure.message";
-														errorKeySuffix = errorKeySuffix ?: @"initcontroller";
-														
-														[CustomInfoViewController presentCustomInfoWithSuccess: NO
-																									controller: self
-																									messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]
-																									   payment: self.payment
-																								   objectModel: self.objectModel];
-													}];
-				   }];
-}
-
-/**
- *  Finshed with PKPaymentAuthorizationViewController, so dismiss it
- *
- *  @param controller PKPaymentAuthorizationViewController
- */
-
-- (void) paymentAuthorizationViewControllerDidFinish: (PKPaymentAuthorizationViewController *) controller
-{
-    [self dismissViewControllerAnimated: YES
-                             completion: nil];
-}
+//#pragma mark - Apple Pay support
+//
+///**
+// *  The user touched the Apple Pay button
+// *
+// *  @param button Button
+// */
+//
+//- (void) payButtonTappedOnCell:(ApplePayCell *)cell
+//{
+//    // Create a new helper
+//    self.applePayHelper = [ApplePayHelper new];
+//    
+//    // Create the payment request from our helper
+//    PKPaymentRequest *paymentRequest = [self.applePayHelper createPaymentRequestForPayment: self.payment];
+//    
+//    UIViewController *paymentAuthorizationViewController;
+//    
+//    paymentAuthorizationViewController = [self.applePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest
+//																										delegate: self];
+//    
+//    // Check to see if we could create an authorisation controller
+//    if (!paymentAuthorizationViewController)
+//    {
+//        // We didn't create an apple pay authorisation controller, so display an error screen
+//        [CustomInfoViewController presentCustomInfoWithSuccess: NO
+//                                                    controller: self
+//                                                    messageKey: @"applepay.failure.message.initcontroller"
+//                                                       payment: self.payment
+//                                                   objectModel: self.objectModel];
+//    }
+//    else
+//    {
+//        // Show Apple Pay slideup
+//        [self presentViewController: paymentAuthorizationViewController
+//                           animated: YES
+//                         completion: nil];
+//    }
+//}
+//
+//#pragma mark - PKPaymentAuthorizationViewControllerDelegate
+//
+///**
+// *  Apple Pay authorised this payment
+// *
+// *  @param controller PKPaymentAuthorizationViewController
+// *  @param payment    The payment
+// *  @param completion Block to callback with a status code when payment is completed
+// */
+//
+//- (void) paymentAuthorizationViewController: (PKPaymentAuthorizationViewController *) controller
+//                        didAuthorizePayment: (PKPayment *) payment
+//                                 completion: (void (^)(PKPaymentAuthorizationStatus status)) completion
+//{
+//    // First we need to get this payment info a format suitable to passing to Adyen
+//    PKPaymentToken *paymentToken = payment.token;
+//    NSString *remoteIdString = [NSString stringWithFormat: @"%@",  self.payment.remoteId];
+//    
+//    [self.applePayHelper sendToken: paymentToken
+//                      forPaymentId: remoteIdString
+//                   responseHandler: ^(NSError *error, NSDictionary *result) {
+//					   [AdyenResponseParser handleAdyenResponse:error
+//													   response:result
+//												 successHandler:^{
+//													 completion(PKPaymentAuthorizationStatusSuccess);
+//													 
+//													 [CustomInfoViewController presentCustomInfoWithSuccess: YES
+//																								 controller: self
+//																								 messageKey: @"applepay.success.message"
+//																									payment: self.payment
+//																								objectModel: self.objectModel];
+//												 }
+//													failHandler:^(NSError *error, NSString *errorKeySuffix) {
+//														completion(PKPaymentAuthorizationStatusFailure);
+//														
+//														NSString *errorKeyPrefix = @"applepay.failure.message";
+//														errorKeySuffix = errorKeySuffix ?: @"initcontroller";
+//														
+//														[CustomInfoViewController presentCustomInfoWithSuccess: NO
+//																									controller: self
+//																									messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]
+//																									   payment: self.payment
+//																								   objectModel: self.objectModel];
+//													}];
+//				   }];
+//}
+//
+///**
+// *  Finshed with PKPaymentAuthorizationViewController, so dismiss it
+// *
+// *  @param controller PKPaymentAuthorizationViewController
+// */
+//
+//- (void) paymentAuthorizationViewControllerDidFinish: (PKPaymentAuthorizationViewController *) controller
+//{
+//    [self dismissViewControllerAnimated: YES
+//                             completion: nil];
+//}
 
 
 @end

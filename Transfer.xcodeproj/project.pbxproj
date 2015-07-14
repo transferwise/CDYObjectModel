@@ -1100,6 +1100,9 @@
 		477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477319F11A1B62BB00660770 /* AchDetailsViewController.m */; };
 		477319F51A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
 		477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
+		4773DDBD1B54F362003A1C00 /* ApplePayFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4773DDBC1B54F362003A1C00 /* ApplePayFlow.m */; };
+		4773DDBE1B54F362003A1C00 /* ApplePayFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4773DDBC1B54F362003A1C00 /* ApplePayFlow.m */; };
+		4773DDBF1B54F362003A1C00 /* ApplePayFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4773DDBC1B54F362003A1C00 /* ApplePayFlow.m */; };
 		4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		4777C0BE1AF7A2940042721F /* NSString+NullString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4777C0BD1AF7A2940042721F /* NSString+NullString.m */; };
@@ -2145,6 +2148,8 @@
 		477319F01A1B62BB00660770 /* AchDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchDetailsViewController.h; sourceTree = "<group>"; };
 		477319F11A1B62BB00660770 /* AchDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchDetailsViewController.m; sourceTree = "<group>"; };
 		477319F21A1B62BB00660770 /* AchDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchDetailsViewController.xib; sourceTree = "<group>"; };
+		4773DDBB1B54F362003A1C00 /* ApplePayFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayFlow.h; sourceTree = "<group>"; };
+		4773DDBC1B54F362003A1C00 /* ApplePayFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayFlow.m; sourceTree = "<group>"; };
 		4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Presentation.h"; sourceTree = "<group>"; };
 		4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Presentation.m"; sourceTree = "<group>"; };
 		4777C0BB1AF791450042721F /* Transfer_v12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v12.xcdatamodel; sourceTree = "<group>"; };
@@ -4038,6 +4043,8 @@
 				47E6CF3B1B46B8B300790921 /* TermsAndConditionsUpdater.m */,
 				472EFE381B53E22600EAEDB9 /* AdyenResponseParser.h */,
 				472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */,
+				4773DDBB1B54F362003A1C00 /* ApplePayFlow.h */,
+				4773DDBC1B54F362003A1C00 /* ApplePayFlow.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -5226,6 +5233,7 @@
 				388E5AAE1A5A949500AF6EB9 /* SettlementRecipient.m in Sources */,
 				388E5AAF1A5A949500AF6EB9 /* NSDictionary+Cleanup.m in Sources */,
 				388E5AB01A5A949500AF6EB9 /* AllowedTypeFieldValue.m in Sources */,
+				4773DDBF1B54F362003A1C00 /* ApplePayFlow.m in Sources */,
 				388E5AB11A5A949500AF6EB9 /* SectionButtonFlashHelper.m in Sources */,
 				388E5AB21A5A949500AF6EB9 /* AddressBookManager.m in Sources */,
 				388E5AB31A5A949500AF6EB9 /* AchWaitingViewController.m in Sources */,
@@ -5585,6 +5593,7 @@
 				EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */,
 				38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
+				4773DDBE1B54F362003A1C00 /* ApplePayFlow.m in Sources */,
 				389F6804198FC1C6006CF1F6 /* _PayInMethod.m in Sources */,
 				472523311B219B57003AC7A6 /* AskEmailViewController.m in Sources */,
 				474D1AA71951A500008BC7A7 /* GradientButton.m in Sources */,
@@ -5934,6 +5943,7 @@
 				EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */,
 				38B093171951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
 				389F6803198FC1C6006CF1F6 /* _PayInMethod.m in Sources */,
+				4773DDBD1B54F362003A1C00 /* ApplePayFlow.m in Sources */,
 				4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */,
 				472523301B219B57003AC7A6 /* AskEmailViewController.m in Sources */,
 				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
