@@ -174,7 +174,7 @@
 }
 
 /**
- *  Create either a real or stub authorizationViewController depending on whether in Debug mode and what version of iOS we are running under
+ *  Create either an authorizationViewController
  *
  *  @param paymentRequest The paymentRequest
  *
@@ -182,7 +182,7 @@
  */
 
 - (UIViewController *) createAuthorizationViewControllerForPaymentRequest: (PKPaymentRequest *) paymentRequest
-                                                                 delegate: (UIViewController<PKPaymentAuthorizationViewControllerDelegate>*) delegate
+                                                                 delegate: (id<PKPaymentAuthorizationViewControllerDelegate>) delegate
 {
 	if (![PKPaymentAuthorizationViewController canMakePayments])
 	{
