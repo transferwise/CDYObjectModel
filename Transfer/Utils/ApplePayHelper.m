@@ -58,7 +58,9 @@
     
     if (([UIDevice.currentDevice.systemVersion floatValue] >= kMinimumOSVersionForApplePay)) {
         // We can only currently pay wih Apple pay when using GBP
-        if(payment.sourceCurrency.code && [@"gbp" caseInsensitiveCompare: payment.sourceCurrency.code] == NSOrderedSame)
+		// Only transfers of less than 2k are supported
+        if(payment.sourceCurrency.code && [@"gbp" caseInsensitiveCompare: payment.sourceCurrency.code] == NSOrderedSame
+		   && [payment.payIn floatValue] <= 2000)
         {
             // Check if ApplePay has been disabled via GTM
             if(![[NSUserDefaults standardUserDefaults] boolForKey:TRWDisableApplePay])
