@@ -224,7 +224,7 @@ typedef NS_ENUM(NSInteger, OAuthLoginType) {
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:navigationController.view];
 	[hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
 	
-	[AuthenticationHelper handleOAuthLoginFlagging:[providerName isEqualToString:GoogleOAuthServiceName] ? Google : Facebook];
+	[AuthenticationHelper handleOAuthLoginFlagging:[provider isEqualToString:GoogleOAuthServiceName] ? Google : Facebook];
 	
 	LoginOrRegisterWithOauthOperation *oauthLoginOperation = [LoginOrRegisterWithOauthOperation loginOrRegisterWithOauthOperationWithProvider:provider
 																																		token:token

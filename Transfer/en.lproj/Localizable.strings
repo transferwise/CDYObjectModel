@@ -640,6 +640,7 @@ Please attach your documents to this email and send it our way.<br />
 "intro.login.button.title" = "Log in";
 "intro.register.button.title" = "Register";
 "intro.google.button.title" = "Connect via Google";
+"intro.facebook.button.title" = "Connect via Facebook";
 "intro.tagline.one" = "MONEY
 WITHOUT
 BORDERS";
