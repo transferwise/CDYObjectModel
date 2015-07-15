@@ -20,7 +20,7 @@
 #import "UIColor+Theme.h"
 #import "GoogleAnalytics.h"
 #import "AppsFlyerTracker.h"
-#import "NanTracking.h"
+#import <NanigansSDK/NanigansSDK.h>
 #import "Mixpanel.h"
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
@@ -255,11 +255,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [AppsFlyerTracker sharedTracker].delegate = self;
 #endif
 	
-	[NanTracking setFbAppId:@"274548709260402"];
+	[NANTracking setNanigansAppId:@""
+						  fbAppId:@"274548709260402"];
 	
 	[Fabric with:@[CrashlyticsKit]];
 	
-	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
+	[NANTracking trackNanigansEvent:@""
+							   type:@"install"
+							   name:@"main"];
 	
 #if !TARGET_IPHONE_SIMULATOR //Supplied library does not contain binary for simulator
 	EventTracker *tracker = [EventTracker sharedManager];

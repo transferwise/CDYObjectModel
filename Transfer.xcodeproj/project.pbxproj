@@ -338,7 +338,6 @@
 		388E5A1F1A5A949500AF6EB9 /* PageZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = EA333F3B18A4C00000D8A44E /* PageZoom.m */; };
 		388E5A201A5A949500AF6EB9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F6198FC1C6006CF1F6 /* User.m */; };
 		388E5A211A5A949500AF6EB9 /* _Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67BA198FC1C5006CF1F6 /* _Setting.m */; };
-		388E5A221A5A949500AF6EB9 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		388E5A231A5A949500AF6EB9 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		388E5A241A5A949500AF6EB9 /* CustomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */; };
 		388E5A251A5A949500AF6EB9 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -1121,6 +1120,9 @@
 		478C6FF81A8E2C0600431882 /* CurrencyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FF71A8E2C0600431882 /* CurrencyLoader.m */; };
 		478C6FF91A8E2C0600431882 /* CurrencyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FF71A8E2C0600431882 /* CurrencyLoader.m */; };
 		478C6FFA1A8E2C0600431882 /* CurrencyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C6FF71A8E2C0600431882 /* CurrencyLoader.m */; };
+		4796A04D1B5695E20062C184 /* NanigansSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4796A04C1B5695E20062C184 /* NanigansSDK.framework */; };
+		4796A04E1B5695E20062C184 /* NanigansSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4796A04C1B5695E20062C184 /* NanigansSDK.framework */; };
+		4796A04F1B5695E20062C184 /* NanigansSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4796A04C1B5695E20062C184 /* NanigansSDK.framework */; };
 		47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
 		47971C5F199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
 		47971C61199A3C1C0018FDA8 /* DateEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */; };
@@ -1551,8 +1553,6 @@
 		EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
 		EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
-		EACD942E18D82C2C00369905 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EACD942F18D82C2C00369905 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
 		EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
@@ -2154,6 +2154,7 @@
 		478C6FE91A8CC71500431882 /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
 		478C6FF61A8E2C0600431882 /* CurrencyLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyLoader.h; sourceTree = "<group>"; };
 		478C6FF71A8E2C0600431882 /* CurrencyLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyLoader.m; sourceTree = "<group>"; };
+		4796A04C1B5695E20062C184 /* NanigansSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NanigansSDK.framework; sourceTree = "<group>"; };
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoublePasswordEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -2495,8 +2496,6 @@
 		EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountViewController.h; sourceTree = "<group>"; };
 		EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountViewController.m; sourceTree = "<group>"; };
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
-		EACD942C18D82C2C00369905 /* NanTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NanTracking.h; sourceTree = "<group>"; };
-		EACD942D18D82C2C00369905 /* NanTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NanTracking.m; sourceTree = "<group>"; };
 		EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientFieldCell.h; sourceTree = "<group>"; };
 		EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientFieldCell.m; sourceTree = "<group>"; };
 		EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientFieldCell.xib; sourceTree = "<group>"; };
@@ -2571,6 +2570,7 @@
 				388E5AFF1A5A949500AF6EB9 /* libsqlite3.dylib in Frameworks */,
 				388E5B001A5A949500AF6EB9 /* AdSupport.framework in Frameworks */,
 				388E5B011A5A949500AF6EB9 /* QuartzCore.framework in Frameworks */,
+				4796A04F1B5695E20062C184 /* NanigansSDK.framework in Frameworks */,
 				388E5B021A5A949500AF6EB9 /* AddressBook.framework in Frameworks */,
 				388E5B031A5A949500AF6EB9 /* AddressBookUI.framework in Frameworks */,
 				388E5B041A5A949500AF6EB9 /* CoreText.framework in Frameworks */,
@@ -2626,6 +2626,7 @@
 				EA31A1CD17DDB29B00F937F7 /* libPods.a in Frameworks */,
 				38AEB3C4196436F800B852E1 /* libAppsFlyerLib.a in Frameworks */,
 				47BBD8331B296A870048C1D4 /* Fabric.framework in Frameworks */,
+				4796A04E1B5695E20062C184 /* NanigansSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2655,6 +2656,7 @@
 				BC92EA001E7D4BE89CF454A0 /* libPods.a in Frameworks */,
 				EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */,
 				47BBD8321B296A870048C1D4 /* Fabric.framework in Frameworks */,
+				4796A04D1B5695E20062C184 /* NanigansSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3587,7 +3589,6 @@
 				38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
 				4781F48D194737C700B8926C /* JVFloatLabeledTextField */,
-				EACD942B18D82C2C00369905 /* NanTracking */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
 				EA0253BB17D5E44400F54C18 /* uidevice-extension */,
 			);
@@ -3714,6 +3715,7 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4796A04C1B5695E20062C184 /* NanigansSDK.framework */,
 				47BBD8311B296A870048C1D4 /* Fabric.framework */,
 				47BBD8301B2969930048C1D4 /* Crashlytics.framework */,
 				474FF6291AB6F0EC008DF343 /* CoreMotion.framework */,
@@ -4041,15 +4043,6 @@
 				38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */,
 			);
 			path = Analytics;
-			sourceTree = "<group>";
-		};
-		EACD942B18D82C2C00369905 /* NanTracking */ = {
-			isa = PBXGroup;
-			children = (
-				EACD942C18D82C2C00369905 /* NanTracking.h */,
-				EACD942D18D82C2C00369905 /* NanTracking.m */,
-			);
-			path = NanTracking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5059,7 +5052,6 @@
 				388E5A1F1A5A949500AF6EB9 /* PageZoom.m in Sources */,
 				388E5A201A5A949500AF6EB9 /* User.m in Sources */,
 				388E5A211A5A949500AF6EB9 /* _Setting.m in Sources */,
-				388E5A221A5A949500AF6EB9 /* NanTracking.m in Sources */,
 				388E5A231A5A949500AF6EB9 /* Credentials.m in Sources */,
 				388E5A241A5A949500AF6EB9 /* CustomInfoViewController.m in Sources */,
 				388E5A251A5A949500AF6EB9 /* DataEntryViewController.m in Sources */,
@@ -5426,7 +5418,6 @@
 				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
 				389F6850198FC1C6006CF1F6 /* User.m in Sources */,
 				389F6814198FC1C6006CF1F6 /* _Setting.m in Sources */,
-				EACD942F18D82C2C00369905 /* NanTracking.m in Sources */,
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */,
@@ -5758,7 +5749,6 @@
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
 				381EF8851A7908A600485C7F /* PresentationCell.m in Sources */,
-				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
 				4735E4D51992258C00F41D1E /* AuthenticationHelper.m in Sources */,
 				38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */,
 				4740A7851A8B9A7C0044F0CD /* MfaField.m in Sources */,
