@@ -619,11 +619,10 @@
         [AppsFlyerTracker sharedTracker].customerUserID = [weakSelf.objectModel.currentUser pReference];
         [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[__formatter stringFromNumber:transferFee]];
 #endif
-
-        [NANTracking trackNanigansEvent:weakSelf.objectModel.currentUser.pReference
-								   type:@"purchase"
+		[NANTracking trackNanigansEvent:@"purchase"
 								   name:@"main"
-								  value:[__formatter stringFromNumber:transferFee]];
+							extraParams:@{@"pReference": weakSelf.objectModel.currentUser.pReference,
+										  @"transferFee": [__formatter stringFromNumber:transferFee]}];
 
         [weakSelf.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [weakSelf.objectModel.managedObjectContext objectWithID:paymentID];
