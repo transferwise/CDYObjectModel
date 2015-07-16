@@ -461,7 +461,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         //There's apparently no way of setting a callback delegate after opening a container, so we have to close it and re-open it.
         [container close];
         self.container = [self.tagManager openContainerById:containerID callback:self];
-        [self updateApplePayWithContainer:self.container];
+        [self updateDefaultsWithContainer:self.container];
+
     });
 }
 
@@ -477,14 +478,20 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 
 -(void)containerRefreshSuccess:(TAGContainer *)container refreshType:(TAGContainerCallbackRefreshType)refreshType
 {
-    [self updateApplePayWithContainer:container];
+    [self updateDefaultsWithContainer:container];
 }
 
--(void)updateApplePayWithContainer:(TAGContainer *)container
+-(void)updateDefaultsWithContainer:(TAGContainer *)container
 {
     BOOL disableApplePay = [container booleanForKey:TRWDisableApplePay];
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:disableApplePay forKey:TRWDisableApplePay];
+    
+    BOOL enableFacebookOnLandingScreen = [container booleanForKey:TRWEnableFacebookOnLanding];
+    [defaults setBool:enableFacebookOnLandingScreen forKey:TRWEnableFacebookOnLanding];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWGoogleTagManagerRefreshNotification object:nil userInfo:@{TRWGoogleTagManagerIsDefaultKey:@([container isDefault])}];
+    
 }
 
 
