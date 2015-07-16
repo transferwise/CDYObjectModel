@@ -67,14 +67,13 @@ NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
 NSString *AppsFlyerIdentifier = @"612261027";
 
 NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
+NSString *const TRWAuthenticationTypeUsedKey = @"authenticationTypeUsed";
 NSString *const TRWIsRegisteredSettingsKey = @"isRegistered";
 NSString *const TRWHasRespondedToNotificationsPromptSettingsKey = @"TRWHasRespondedToNotificationsPromptSettingsKey";
 NSString *const TRWReferralTokenKey = @"referralToken";
 NSString *const TRWReferralSourceKey = @"referralSource";
 NSString *const TRWReferrerKey = @"referralUser";
-NSString *const TRWGoogleLoginUsedKey = @"googleLoginUsed";
 NSString *const TRWGoogleRevokeUrlFormat = @"https://accounts.google.com/o/oauth2/revoke?%@";
-NSString *const TRWFacebookLoginUsedKey = @"facebookLoginUsed";
 NSString *const TRWIntroABKey = @"introAB";
 NSString *const TRWDidHighlightInviteSection = @"didHighlightInviteSection";
 NSString *const TRWDisableApplePay = @"disableApplePay";
