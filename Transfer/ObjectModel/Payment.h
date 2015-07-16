@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, PaymentStatus) {
 - (PaymentStatus)status;
 - (NSString *)localizedStatus;
 - (NSOrderedSet*)enabledPayInMethods;
+- (NSArray *)sortedPayInMethodTypes;
 - (NSString *)transferredAmountString;
 - (NSString *)latestChangeTimeString;
 - (NSString *)payInWithCurrency;

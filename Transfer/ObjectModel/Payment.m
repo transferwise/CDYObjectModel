@@ -4,6 +4,7 @@
 #import "Currency.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "PaymentMadeIndicator.h"
+#import "PayInMethod.h"
 
 @interface Payment ()
 
@@ -248,6 +249,15 @@ static NSDateFormatter *__shortDateFormatter;
     NSOrderedSet *result = [self.payInMethods filteredOrderedSetUsingPredicate:[NSPredicate predicateWithFormat:@"disabled == false"]];
     return result;
 }
+
+- (NSArray *)sortedPayInMethodTypes
+{
+    NSArray *payInMethodsSorted = [[self enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
+        return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type] integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type] integerValue];
+    }];
+    return [payInMethodsSorted valueForKey:@"type"];
+}
+
 
 -(NSString*)paymentStatusString
 {

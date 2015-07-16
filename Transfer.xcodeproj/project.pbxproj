@@ -1017,18 +1017,15 @@
 		472915341AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
 		472915351AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
 		472915361AE549EA00301260 /* PushNotificationDispather.m in Sources */ = {isa = PBXBuildFile; fileRef = 472915331AE549EA00301260 /* PushNotificationDispather.m */; };
-		472B53B31B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B53B21B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m */; };
-		472B53B41B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B53B21B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m */; };
-		472B53B51B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B53B21B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m */; };
 		472D5642198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
 		472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
+		472EFE361B53C43900EAEDB9 /* OnePasswordTextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78EB1B4418E600CFA7FE /* OnePasswordTextEntryCell.xib */; };
+		472EFE371B53C43D00EAEDB9 /* OnePasswordTextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78F11B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib */; };
 		472EFE3A1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
 		472EFE3B1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
 		472EFE3C1B53E22600EAEDB9 /* AdyenResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 472EFE391B53E22600EAEDB9 /* AdyenResponseParser.m */; };
-		472EFE361B53C43900EAEDB9 /* OnePasswordTextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78EB1B4418E600CFA7FE /* OnePasswordTextEntryCell.xib */; };
-		472EFE371B53C43D00EAEDB9 /* OnePasswordTextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012B78F11B441ABC00CFA7FE /* OnePasswordTextEntryCell~ipad.xib */; };
 		4731F65E1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
 		4731F65F1B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
 		4731F6601B2EC76100E1E840 /* NSString+DeducedId.m in Sources */ = {isa = PBXBuildFile; fileRef = 4731F65D1B2EC76100E1E840 /* NSString+DeducedId.m */; };
@@ -2073,8 +2070,6 @@
 		4725232F1B219B57003AC7A6 /* AskEmailViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AskEmailViewController~ipad.xib"; sourceTree = "<group>"; };
 		472915321AE549EA00301260 /* PushNotificationDispather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationDispather.h; sourceTree = "<group>"; };
 		472915331AE549EA00301260 /* PushNotificationDispather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationDispather.m; sourceTree = "<group>"; };
-		472B53B11B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SortedPayInMethods.h"; sourceTree = "<group>"; };
-		472B53B21B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SortedPayInMethods.m"; sourceTree = "<group>"; };
 		472D5640198FE98500257BB8 /* PersonalPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPaymentProfileViewController.h; sourceTree = "<group>"; };
 		472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPaymentProfileViewController.m; sourceTree = "<group>"; };
 		472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPaymentProfileViewController.h; sourceTree = "<group>"; };
@@ -3525,8 +3520,6 @@
 				38FAE5381ADE634B006CD53C /* CustomInfo_Notifications~ipad.xib */,
 				38AE794A1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.h */,
 				38AE794B1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m */,
-				472B53B11B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.h */,
-				472B53B21B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5102,7 +5095,6 @@
 				388E5A341A5A949500AF6EB9 /* CircleStyle.m in Sources */,
 				38AE794E1B5033940023189F /* CustomInfoViewController+UpdatePaymentDetails.m in Sources */,
 				388E5A351A5A949500AF6EB9 /* CountrySuggestionCellProvider.m in Sources */,
-				472B53B51B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m in Sources */,
 				388E5A361A5A949500AF6EB9 /* SelectionCell.m in Sources */,
 				388E5A371A5A949500AF6EB9 /* DateEntryCell.m in Sources */,
 				388E5A381A5A949500AF6EB9 /* Constants.m in Sources */,
@@ -5434,7 +5426,6 @@
 				47AC3F921987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				3893A1C41AB04C7E004D0560 /* PendingPayment+ColoredButton.m in Sources */,
 				47C4D03F1A232A9F005EC7C6 /* _FieldGroup.m in Sources */,
-				472B53B41B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m in Sources */,
 				38504B0A19C1E83700276203 /* TouchIDHelper.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
 				472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
@@ -5784,7 +5775,6 @@
 				472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
-				472B53B31B54DAD700F9D9A2 /* UIViewController+SortedPayInMethods.m in Sources */,
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
 				381EF8851A7908A600485C7F /* PresentationCell.m in Sources */,
 				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
