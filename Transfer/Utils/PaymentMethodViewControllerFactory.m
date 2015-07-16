@@ -17,32 +17,41 @@
 #import <objc/runtime.h>
 #import "AchFlow.h"
 #import "Mixpanel+Customisation.h"
+#import "ObjectModel+PayInMethod.h"
 
 @implementation PaymentMethodViewControllerFactory
 
-+(UIViewController*)viewControllerForPayInMethod:(PayInMethod*)method forPayment:(Payment*)payment objectModel:(ObjectModel*)objectModel;
++(UIViewController*)viewControllerForPayInMethod:(NSString *)method
+									  forPayment:(Payment *)payment
+									 objectModel:(ObjectModel *)objectModel;
 {
     UIViewController* result;
-    if([@"DATA_CASH" caseInsensitiveCompare:method.type] == NSOrderedSame || [@"ADYEN" caseInsensitiveCompare:method.type] == NSOrderedSame)
+    if([@"DATA_CASH" caseInsensitiveCompare:method] == NSOrderedSame || [@"ADYEN" caseInsensitiveCompare:method] == NSOrderedSame)
     {
-        BOOL isDataCash = [@"DATA_CASH" caseInsensitiveCompare:method.type] == NSOrderedSame;
+        BOOL isDataCash = [@"DATA_CASH" caseInsensitiveCompare:method] == NSOrderedSame;
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
         
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
-            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay"
+																	 parameters:@{@"paymentId" : payment.remoteId}];
             loadRequestBlock(request);
         };
         
         cardController.loadURLBlock = ^(NSURL *url)
         {
             NSString *absoluteString = [url absoluteString];
-            if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound) {
+            if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound)
+			{
                 return URLActionAbortAndReportSuccess;
-            } else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound) {
+            }
+			else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound)
+			{
                 return URLActionAbortAndReportFailure;
-            } else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound) {
+            }
+			else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound)
+			{
                 return URLActionAbortLoad;
             }
             
@@ -50,19 +59,26 @@
         };
         
         [cardController setResultHandler:^(BOOL success) {
-            if (success) {
+            if (success)
+			{
                 NSString* methodName = isDataCash?@"debitcard_datacash":@"debitcard_adyen";
                 [[GoogleAnalytics sharedInstance] sendScreen:GASuccess];
-                [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentmade withLabel:methodName];
-                [[Mixpanel sharedInstance] track:MPPaymentmade properties:@{@"Payment Method":methodName}];
-            } else {
-                [[GoogleAnalytics sharedInstance] sendEvent:GAErrordebitcardpayment category:GACategoryError label:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
+                [[GoogleAnalytics sharedInstance] sendPaymentEvent:GAPaymentmade
+														 withLabel:methodName];
+                [[Mixpanel sharedInstance] track:MPPaymentmade
+									  properties:@{@"Payment Method":methodName}];
+            }
+			else
+			{
+                [[GoogleAnalytics sharedInstance] sendEvent:GAErrordebitcardpayment
+												   category:GACategoryError
+													  label:isDataCash?@"debitcard_datacash":@"debitcard_adyen"];
             }
         }];
 
         result = cardController;
     }
-    	else if ([@"ACH" caseInsensitiveCompare:method.type] == NSOrderedSame)
+	else if ([@"ACH" caseInsensitiveCompare:method] == NSOrderedSame)
 	{
 		AchFlow *flow = [AchFlow sharedInstanceWithPayment:payment
 											   objectModel:objectModel
@@ -77,7 +93,7 @@
     {
         BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
         [bankController setPayment:payment];
-        bankController.method = method;
+		bankController.method = [objectModel payInMethodWithType:method];
         result = bankController;
     }
     
@@ -86,11 +102,11 @@
         [result performSelector:@selector(setObjectModel:) withObject:objectModel];
     }
     
-    NSString *title = [NSString stringWithFormat:@"payment.method.%@",method.type];
+    NSString *title = [NSString stringWithFormat:@"payment.method.%@",method];
     result.title = NSLocalizedString(title,nil);
     if([result.title isEqualToString:title])
     {
-        result.title = method.type;
+        result.title = method;
     }
     return result;
 }

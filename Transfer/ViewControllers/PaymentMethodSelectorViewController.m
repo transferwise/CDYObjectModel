@@ -7,8 +7,8 @@
 //
 
 #import "ApplePayHelper.h"
+#import "ApplePayFlow.h"
 #import "Currency.h"
-#import "CustomInfoViewController+UpdatePaymentDetails.h"
 #import "GoogleAnalytics.h"
 #import "MOMStyle.h"
 #import "Mixpanel+Customisation.h"
@@ -19,21 +19,19 @@
 #import "TransferBackButtonItem.h"
 #import "UploadMoneyViewController.h"
 #import "ApplePayCell.h"
+#import "UIViewController+SortedPayInMethods.h"
 @import PassKit;
-
 
 #define PaymentMethodCellName @"PaymentMethodCell"
 #define ApplePayCellName @"ApplePayCell"
 
 #define APPLE_PAY @"APPLE_PAY"
 
-@interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate, ApplePayCellDelegate, PKPaymentAuthorizationViewControllerDelegate>
+@interface PaymentMethodSelectorViewController () <UITableViewDataSource, PaymentMethodCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-
 @property (nonatomic) NSArray* sortedPayInMethods;
-
-@property (nonatomic) ApplePayHelper *applePayHelper;
+@property (strong, nonatomic) ApplePayFlow *applePayFlow;
 
 @end
 
@@ -50,22 +48,23 @@
 											   bundle:[NSBundle mainBundle]]
 		 forCellReuseIdentifier:ApplePayCellName];
 	
-    [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];
+    [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];	
 	
-	
-	self.sortedPayInMethods = [[self.payment enabledPayInMethods] sortedArrayUsingComparator:^NSComparisonResult(PayInMethod *method1, PayInMethod *method2) {
-			return [[[PayInMethod supportedPayInMethods] objectForKeyedSubscript:method1.type]integerValue] > [[[PayInMethod supportedPayInMethods] objectForKey:method2.type] integerValue];
-	}];
+	NSMutableArray *sortedPayInMethodTypes = [self sortedPayInMethodTypesForPayment:self.payment];
 	
 	if ([ApplePayHelper isApplePayAvailableForPayment: self.payment])
 	{
-		NSMutableArray *payInMethods = [[NSMutableArray alloc] initWithCapacity:self.sortedPayInMethods.count + 1];
-		[payInMethods addObjectsFromArray:self.sortedPayInMethods];
-		
-		[payInMethods addObject:APPLE_PAY];
-		
-		self.sortedPayInMethods = payInMethods;
+		//Apple Pay is in play
+		[sortedPayInMethodTypes addObject:APPLE_PAY];
+		self.applePayFlow = [ApplePayFlow sharedInstanceWithPayment:self.payment
+														objectModel:self.objectModel
+													 successHandler:^{
+														 
+													 }
+											  hostingViewController:self];
 	}
+	
+	self.sortedPayInMethods = sortedPayInMethodTypes;
 	
     [[GoogleAnalytics sharedInstance] sendScreen:GAPaymentMethodSelector];
     [[Mixpanel sharedInstance] sendPageView:MPPaymentMethodSelector];
@@ -97,30 +96,26 @@ numberOfRowsInSection:(NSInteger)section
 -(UITableViewCell *)tableView:(UITableView *)tableView
 		cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	id payInMethod = self.sortedPayInMethods[indexPath.row];
+	NSString *payInMethod = self.sortedPayInMethods[indexPath.row];
+	PaymentMethodCell *cell;
 	
-	if ([payInMethod isKindOfClass:[PayInMethod class]])
+	if ([APPLE_PAY caseInsensitiveCompare:payInMethod] == NSOrderedSame)
 	{
-		PaymentMethodCell *cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
-		[cell configureWithPaymentMethod:self.sortedPayInMethods[indexPath.row]
-							fromCurrency:[self.payment sourceCurrency].code];
-		
-		[self setCellBackground:indexPath
-						   cell:cell];
-		cell.paymentMethodCellDelegate = self;
-		
-		return cell;
+		cell = (ApplePayCell *)[tableView dequeueReusableCellWithIdentifier:ApplePayCellName];
 	}
 	else
 	{
-		ApplePayCell *cell = (ApplePayCell *)[tableView dequeueReusableCellWithIdentifier:ApplePayCellName];
-		
-		[self setCellBackground:indexPath
-						   cell:cell];
-		cell.applePayCellDelegate = self;
-		
-		return cell;
+		cell = (PaymentMethodCell*) [tableView dequeueReusableCellWithIdentifier:PaymentMethodCellName];
 	}
+	
+	[cell configureWithPaymentMethod:payInMethod
+						fromCurrency:[self.payment sourceCurrency].code];
+	
+	[self setCellBackground:indexPath
+					   cell:cell];
+	cell.paymentMethodCellDelegate = self;
+	
+	return cell;
 }
 
 - (void)setCellBackground:(NSIndexPath *)indexPath
@@ -134,129 +129,25 @@ numberOfRowsInSection:(NSInteger)section
 }
 
 -(void)actionButtonTappedOnCell:(PaymentMethodCell *)cell
-					 withMethod:(PayInMethod *)method
+					 withMethod:(NSString *)method
 {
-    UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-    controller.objectModel = self.objectModel;
-    controller.forcedMethod = method;
-	controller.payment = self.payment;
-    [self.navigationController pushViewController:controller animated:YES];
-    __weak typeof(self) weakSelf = self;
-    [controller.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-      [weakSelf.navigationController popViewControllerAnimated:YES];
-    }]];
-
+	if ([APPLE_PAY caseInsensitiveCompare:method] == NSOrderedSame)
+	{
+		//Apple Pay is the sore thumb here
+		[self.applePayFlow handleApplePay];
+	}
+	else
+	{
+		UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+		controller.objectModel = self.objectModel;
+		controller.forcedMethod = method;
+		controller.payment = self.payment;
+		[self.navigationController pushViewController:controller animated:YES];
+		__weak typeof(self) weakSelf = self;
+		[controller.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+			[weakSelf.navigationController popViewControllerAnimated:YES];
+		}]];
+	}
 }
-
-#pragma mark - Apple Pay support
-
-/**
- *  The user touched the Apple Pay button
- *
- *  @param button Button
- */
-
-- (void) payButtonTappedOnCell:(ApplePayCell *)cell
-{
-    // Create a new helper
-    self.applePayHelper = [ApplePayHelper new];
-    
-    // Create the payment request from our helper
-    PKPaymentRequest *paymentRequest = [self.applePayHelper createPaymentRequestForPayment: self.payment];
-    
-    UIViewController *paymentAuthorizationViewController;
-    
-    paymentAuthorizationViewController = [self.applePayHelper createAuthorizationViewControllerForPaymentRequest: paymentRequest
-																										delegate: self];
-    
-    // Check to see if we could create an authorisation controller
-    if (!paymentAuthorizationViewController)
-    {
-        // We didn't create an apple pay authorisation controller, so display an error screen
-        [CustomInfoViewController presentCustomInfoWithSuccess: NO
-                                                    controller: self
-                                                    messageKey: @"applepay.failure.message.initcontroller"
-                                                       payment: self.payment
-                                                   objectModel: self.objectModel];
-    }
-    else
-    {
-        // Show Apple Pay slideup
-        [self presentViewController: paymentAuthorizationViewController
-                           animated: YES
-                         completion: nil];
-    }
-}
-
-#pragma mark - PKPaymentAuthorizationViewControllerDelegate
-
-/**
- *  Apple Pay authorised this payment
- *
- *  @param controller PKPaymentAuthorizationViewController
- *  @param payment    The payment
- *  @param completion Block to callback with a status code when payment is completed
- */
-
-- (void) paymentAuthorizationViewController: (PKPaymentAuthorizationViewController *) controller
-                        didAuthorizePayment: (PKPayment *) payment
-                                 completion: (void (^)(PKPaymentAuthorizationStatus status)) completion
-{
-    // First we need to get this payment info a format suitable to passing to Adyen
-    PKPaymentToken *paymentToken = payment.token;
-    NSString *remoteIdString = [NSString stringWithFormat: @"%@",  self.payment.remoteId];
-    
-    [self.applePayHelper sendToken: paymentToken
-                      forPaymentId: remoteIdString
-                   responseHandler: ^(NSError *error, NSDictionary *result) {
-					   
-					   NSString* resultCode = result[@"resultCode"];
-                       
-					   if (!error
-						   && [@"Authorised" caseInsensitiveCompare: resultCode] == NSOrderedSame)
-					   {
-						   completion(PKPaymentAuthorizationStatusSuccess);
-						   
-						   [CustomInfoViewController presentCustomInfoWithSuccess: YES
-                                                                       controller: self
-                                                                       messageKey: @"applepay.success.message"
-                                                                          payment: self.payment
-                                                                      objectModel: self.objectModel];
-					   }
-					   else
-					   {
-						   completion(PKPaymentAuthorizationStatusFailure);
-						   
-						   NSString *errorKeyPrefix = @"applepay.failure.message";
-						   NSString *errorKeySuffix = @"initcontroller";
-						   
-						   if (resultCode
-							   && [@"Received" caseInsensitiveCompare: resultCode] != NSOrderedSame
-							   && [@"RedirectShopper" caseInsensitiveCompare: resultCode] != NSOrderedSame)
-						   {
-							   errorKeySuffix = [resultCode lowercaseString];
-						   }
-						   
-						   [CustomInfoViewController presentCustomInfoWithSuccess: NO
-												   controller: self
-												   messageKey: [NSString stringWithFormat:@"%@.%@", errorKeyPrefix, errorKeySuffix]
-                                                                          payment: self.payment
-                                                                      objectModel: self.objectModel];
-					   }
-				   }];
-}
-
-/**
- *  Finshed with PKPaymentAuthorizationViewController, so dismiss it
- *
- *  @param controller PKPaymentAuthorizationViewController
- */
-
-- (void) paymentAuthorizationViewControllerDidFinish: (PKPaymentAuthorizationViewController *) controller
-{
-    [self dismissViewControllerAnimated: YES
-                             completion: nil];
-}
-
 
 @end

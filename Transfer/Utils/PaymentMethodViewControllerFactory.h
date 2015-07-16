@@ -14,6 +14,8 @@
 
 @interface PaymentMethodViewControllerFactory : NSObject
 
-+(UIViewController*)viewControllerForPayInMethod:(PayInMethod*)method forPayment:(Payment*)payment objectModel:(ObjectModel*)objectModel;
++(UIViewController*)viewControllerForPayInMethod:(NSString *)method
+									  forPayment:(Payment*)payment
+									 objectModel:(ObjectModel*)objectModel;
 
 @end

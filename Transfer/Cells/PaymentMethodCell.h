@@ -13,14 +13,18 @@
 
 @protocol PaymentMethodCellDelegate <NSObject>
 
--(void)actionButtonTappedOnCell:(PaymentMethodCell*)cell withMethod:(PayInMethod*)method;
+-(void)actionButtonTappedOnCell:(PaymentMethodCell*)cell
+					 withMethod:(NSString *)method;
 
 @end
 
 @interface PaymentMethodCell : UITableViewCell
 
+@property (nonatomic, weak) NSString* method;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, weak) id<PaymentMethodCellDelegate> paymentMethodCellDelegate;
 
--(void)configureWithPaymentMethod:(PayInMethod*)method fromCurrency:(NSString *)currencyCode;
+-(void)configureWithPaymentMethod:(NSString *)method
+					 fromCurrency:(NSString *)currencyCode;
 
 @end

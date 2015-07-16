@@ -73,7 +73,8 @@ static NSDictionary* statusLookupDictionary;
     return statusNumber?[statusNumber unsignedIntegerValue]:PaymentStatusUnknown;
 }
 
-- (NSString *)localizedStatus {
+- (NSString *)localizedStatus
+{
     NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatusString];
     NSString *statusString = NSLocalizedString(statusKey, nil);
     if([statusString rangeOfString:@"%@"].location != NSNotFound)
@@ -84,7 +85,8 @@ static NSDictionary* statusLookupDictionary;
     return statusString;
 }
 
-- (NSString *)transferredAmountString {
+- (NSString *)transferredAmountString
+{
     return [NSString stringWithFormat:@"%@", [[MoneyFormatter sharedInstance] formatAmount:self.payIn]];
 }
 
@@ -94,9 +96,11 @@ static NSDictionary* statusLookupDictionary;
     return [NSString stringWithFormat:currenciesFormat, self.sourceCurrency.code, self.targetCurrency.code];
 }
 
-- (NSString *)latestChangeTimeString {
+- (NSString *)latestChangeTimeString
+{
     NSDate *latestChangeDate = [self latestChangeDate];
-    if (!latestChangeDate) {
+    if (!latestChangeDate)
+	{
         return @"";
     }
 
@@ -116,80 +120,98 @@ static NSDictionary* statusLookupDictionary;
     return [formatter stringFromDate:latestChangeDate];
 }
 
-- (NSString *)payInWithCurrency {
+- (NSString *)payInWithCurrency
+{
     return [[MoneyFormatter sharedInstance] formatAmount:self.payIn withCurrency:self.sourceCurrency.code];
 }
 
-- (BOOL)isSubmitted {
+- (BOOL)isSubmitted
+{
     return self.status == PaymentStatusSubmitted;
 }
 
-- (NSString *)payInStringWithCurrency {
+- (NSString *)payInStringWithCurrency
+{
     return [[MoneyFormatter sharedInstance] formatAmount:[self payIn] withCurrency:self.sourceCurrency.code];
 }
 
-- (NSString *)payInString {
+- (NSString *)payInString
+{
 	return [[MoneyFormatter sharedInstance] formatAmount:[self payIn]];
 }
 
-- (NSString *)payInStringNoSpaces {
+- (NSString *)payInStringNoSpaces
+{
     return [[MoneyFormatter sharedInstance] formatAmountNoSpaces:[self payIn]];
 }
 
-- (NSString *)payOutString {
+- (NSString *)payOutString
+{
     return [[MoneyFormatter sharedInstance] formatAmount:[self payOut]];
 }
 
-- (NSString *)payOutStringWithCurrency {
+- (NSString *)payOutStringWithCurrency
+{
     return [[MoneyFormatter sharedInstance] formatAmount:self.payOut withCurrency:self.targetCurrency.code];
 }
 
-- (NSString *)rateString {
+- (NSString *)rateString
+{
     return [CalculationResult rateStringFrom:self.conversionRate];
 }
 
-- (NSString *)paymentDateString {
-    
+- (NSString *)paymentDateString
+{
     NSString *language = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
-    if (self.estimatedDeliveryStringFromServer && [language isEqualToString:@"en"]) {
+    if (self.estimatedDeliveryStringFromServer && [language isEqualToString:@"en"])
+	{
         return self.estimatedDeliveryStringFromServer;
     }
 
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.estimatedDelivery];
 }
 
-- (NSString *)cancelDateString {
+- (NSString *)cancelDateString
+{
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.cancelledDate];
 }
 
-- (BOOL)businessProfileUsed {
+- (BOOL)businessProfileUsed
+{
     return [self.profileUsed isEqualToString:@"business"];
 }
 
 
-- (BOOL)isCancelled {
+- (BOOL)isCancelled
+{
     return self.status == PaymentStatusCancelled || self.status == PaymentStatusRefunded;
 }
 
-- (BOOL)moneyReceived {
+- (BOOL)moneyReceived
+{
     return self.status == PaymentStatusMatched || self.status == PaymentStatusReceived;
 }
 
-- (BOOL)moneyTransferred {
+- (BOOL)moneyTransferred
+{
     return self.status == PaymentStatusTransferred;
 }
 
-- (NSString *)transferredDateString {
+- (NSString *)transferredDateString
+{
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.submittedDate];
 }
 
-- (BOOL)multiplePaymentMethods {
+- (BOOL)multiplePaymentMethods
+{
    return [[self enabledPayInMethods] count] > 1;
 }
 
 static NSCalendar *__gregorian;
-+ (NSCalendar *)gregorian {
-    if (!__gregorian) {
++ (NSCalendar *)gregorian
+{
+    if (!__gregorian)
+	{
         __gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     }
 
@@ -197,8 +219,10 @@ static NSCalendar *__gregorian;
 }
 
 static NSDateFormatter *__longDateFormatter;
-+ (NSDateFormatter *)longDateFormatter {
-    if (!__longDateFormatter) {
++ (NSDateFormatter *)longDateFormatter
+{
+    if (!__longDateFormatter)
+	{
         __longDateFormatter = [[NSDateFormatter alloc] init];
         __longDateFormatter.dateFormat = NSLocalizedString(@"payment.date.format.long", nil);
     }
@@ -207,8 +231,10 @@ static NSDateFormatter *__longDateFormatter;
 }
 
 static NSDateFormatter *__shortDateFormatter;
-+ (NSDateFormatter *)shortDateFormatter {
-    if (!__shortDateFormatter) {
++ (NSDateFormatter *)shortDateFormatter
+{
+    if (!__shortDateFormatter)
+	{
         __shortDateFormatter = [[NSDateFormatter alloc] init];
         __shortDateFormatter.dateFormat = NSLocalizedString(@"payment.date.format.short", nil);
     }

@@ -27,6 +27,7 @@
 #import "PayInMethod.h"
 #import "NSString+Presentation.h"
 #import "Currency.h"
+#import "UIViewController+SortedPayInMethods.h"
 
 @interface UploadMoneyViewController ()
 
@@ -41,16 +42,20 @@
 	
     NSMutableArray *viewControllers = [NSMutableArray array];
     NSMutableArray *titles = [NSMutableArray array];
-    NSArray *availableOptions = self.forcedMethod?@[self.forcedMethod]:[[self.payment enabledPayInMethods] array];
-    for(PayInMethod *method in availableOptions)
+    NSArray *availableOptions = self.forcedMethod ? @[self.forcedMethod] : [self sortedPayInMethodTypesForPayment:self.payment];
+	
+    for(NSString *method in availableOptions)
     {
-        UIViewController *controller = [PaymentMethodViewControllerFactory viewControllerForPayInMethod:method forPayment:self.payment objectModel:self.objectModel];
+		UIViewController *controller = [PaymentMethodViewControllerFactory viewControllerForPayInMethod:method
+																							 forPayment:self.payment
+																							objectModel:self.objectModel];
         if(controller)
         {
             [viewControllers addObject:controller];
-            NSString *currencyTitleKey = [NSString stringWithFormat:@"payment.method.%@.%@",method.type,self.payment.sourceCurrency.code];
-            NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",method.type];
-            NSString* title = [NSString localizedStringForKey:currencyTitleKey withFallback:NSLocalizedString(titleKey, nil)];
+            NSString *currencyTitleKey = [NSString stringWithFormat:@"payment.method.%@.%@", method, self.payment.sourceCurrency.code];
+            NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@", method];
+            NSString* title = [NSString localizedStringForKey:currencyTitleKey
+												 withFallback:NSLocalizedString(titleKey, nil)];
             [titles addObject:title];
         }
     }
@@ -59,8 +64,9 @@
     if([viewControllers count] == 1)
     {
         PayInMethod* method = availableOptions[0];
-        NSString* key = [NSString stringWithFormat:@"payment.method.title.%@", method.type];
-        [self setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@",key,self.payment.sourceCurrency.code] withFallback:key]];
+        NSString* key = [NSString stringWithFormat:@"payment.method.title.%@", method];
+        [self setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@",key,self.payment.sourceCurrency.code]
+										  withFallback:key]];
     }
     else
     {
@@ -75,8 +81,6 @@
 					 actionProgress:0.f];
 					
     [super viewDidLoad];
-
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,13 +89,14 @@
     if(!self.navigationItem.leftBarButtonItem)
     {
         [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification
+																object:nil];
 		}]];
     }
 }
 
-
-- (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index
+- (void)actionTappedWithController:(UIViewController *)controller
+						   atIndex:(NSUInteger)index
 {
     [[GoogleAnalytics sharedInstance] sendAppEvent:GAContactsupport withLabel:NSStringFromClass([[self.childViewControllers firstObject] class])];
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];

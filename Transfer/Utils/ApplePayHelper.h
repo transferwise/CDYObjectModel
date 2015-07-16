@@ -27,7 +27,7 @@
 - (PKPaymentRequest *) createPaymentRequestForPayment: (Payment *) payment;
 
 - (UIViewController *) createAuthorizationViewControllerForPaymentRequest: (PKPaymentRequest *) paymentRequest
-                                                                 delegate: (UIViewController<PKPaymentAuthorizationViewControllerDelegate> *) delegate;
+                                                                 delegate: (id<PKPaymentAuthorizationViewControllerDelegate>) delegate;
 
 - (void) sendToken: (PKPaymentToken *) paymentToken
       forPaymentId: (NSString *) paymentId
