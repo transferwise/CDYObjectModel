@@ -607,6 +607,7 @@
 "intro.login.button.title" = "Connexion";
 "intro.register.button.title" = "S'enregistrer";
 "intro.google.button.title" = "Connexion via Google";
+"intro.facebook.button.title" = "Connexion via Google";
 "intro.tagline.one" = "ARGENT\nSANS\nFRONTIERES";
 "intro.tagline.oneB" = "BENEFICIER DU TAUX\nDE CHANGE REEL";
 "intro.tagline.two" = "90\\%\n MOINS CHER";

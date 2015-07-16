@@ -607,6 +607,7 @@
 "intro.login.button.title" = "Einloggen";
 "intro.register.button.title" = "Registrieren";
 "intro.google.button.title" = "Über Google einloggen";
+"intro.facebook.button.title" = "Über Facebook einloggen";
 "intro.tagline.one" = "GELD\nOHNE\nGRENZEN";
 "intro.tagline.oneB" = "ERHALTE DEN \nECHTEN \nWECHSELKURS";
 "intro.tagline.two" = "7x GÜNSTIGER\nALS DEINE\nBANK";

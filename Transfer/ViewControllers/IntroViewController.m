@@ -40,8 +40,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteRegisterButton;
-@property (weak, nonatomic) IBOutlet UIButton *googleButton;
-@property (weak, nonatomic) IBOutlet UIButton *whiteGoogleButton;
+@property (weak, nonatomic) IBOutlet UIButton *oAuthButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteOAuthButton;
 @property (weak, nonatomic) IBOutlet UIView *upfrontRegistrationcontainer;
 @property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
@@ -82,16 +82,19 @@
     
     [self.loginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
     [self.whiteLoginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
-    
-    [self.googleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
-    [self.whiteGoogleButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
-    
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    if(![defaults boolForKey:TRWGoogleLoginUsedKey])
-    {
-        [self.googleButton removeFromSuperview];
-        [self.whiteGoogleButton removeFromSuperview];
-    }
+	
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	if([defaults boolForKey:TRWGoogleLoginUsedKey])
+	{
+		[self.oAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+		[self.whiteOAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+	}
+	else
+	{
+		[self.oAuthButton setTitle:NSLocalizedString(@"intro.facebook.button.title", nil) forState:UIControlStateNormal];
+		[self.whiteOAuthButton setTitle:NSLocalizedString(@"intro.facebook.button.title", nil) forState:UIControlStateNormal];
+	}
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -129,8 +132,6 @@
     }
     
     [self setIntroScreens:[NSArray arrayWithArray:screens]];
-    
-    
 
     [self.pageControl setNumberOfPages:[self.introData count]];
     self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
@@ -411,15 +412,33 @@
     signup.objectModel = self.objectModel;
     [self fadeInDismissableViewController:signup];
 }
-- (IBAction)googleTapped:(id)sender {
+- (IBAction)oAuthTapped:(id)sender
+{
     __weak typeof(self) weakSelf = self;
-    [self.loginHelper performOAuthLoginWithProvider:GoogleOAuthServiceName
-                               navigationController:self.navigationController
-                                        objectModel:self.objectModel
-                                     successHandler:^{
-                                         [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:weakSelf objectModel:weakSelf.objectModel];
-                                     }];
-    
+	void (^successHandler)() = ^void()
+	{
+		[AuthenticationHelper proceedFromSuccessfulLoginFromViewController:weakSelf
+															   objectModel:weakSelf.objectModel];
+	};
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	if([defaults boolForKey:TRWGoogleLoginUsedKey])
+	{
+		[self.loginHelper performOAuthLoginWithProvider:GoogleOAuthServiceName
+								   navigationController:self.navigationController
+											objectModel:self.objectModel
+										 successHandler:^{
+											 successHandler();
+										 }];
+	}
+	else
+	{
+		[self.loginHelper performFacebookLoginWithNavigationController:self.navigationController
+														   objectModel:self.objectModel
+														successHandler:^{
+															successHandler();
+														}];
+	}
 }
 
 -(void)fadeInDismissableViewController:(UIViewController*)viewController

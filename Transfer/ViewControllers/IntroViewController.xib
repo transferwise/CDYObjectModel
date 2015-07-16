@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController">
             <connections>
-                <outlet property="googleButton" destination="sxM-RC-tNZ" id="VKR-OE-mrQ"/>
                 <outlet property="loginButton" destination="ZXR-ic-jH3" id="Shc-cG-5kq"/>
                 <outlet property="noRegistrationContainer" destination="96q-Df-1oh" id="Itq-fB-62S"/>
+                <outlet property="oAuthButton" destination="sxM-RC-tNZ" id="kHf-Iz-Qm1"/>
                 <outlet property="pageControl" destination="NiX-z4-79M" id="LAG-XD-YuH"/>
                 <outlet property="registerButton" destination="C83-aN-zCM" id="n2D-bt-qv7"/>
                 <outlet property="scrollView" destination="vVN-5a-Y2I" id="hxm-9b-ykf"/>
                 <outlet property="startButton" destination="cy3-Mo-UYH" id="XOP-KB-M4P"/>
                 <outlet property="upfrontRegistrationcontainer" destination="nC2-nS-Nkq" id="VTL-29-bYn"/>
                 <outlet property="view" destination="1" id="3"/>
-                <outlet property="whiteGoogleButton" destination="sYm-Tu-PoD" id="DwL-xF-wJ7"/>
                 <outlet property="whiteLoginButton" destination="jd5-pH-5lu" id="K4t-cN-fUO"/>
+                <outlet property="whiteOAuthButton" destination="sYm-Tu-PoD" id="5a1-37-A1C"/>
                 <outlet property="whiteRegisterButton" destination="JO7-Z3-QyQ" id="aao-Dj-E3P"/>
                 <outlet property="whiteStartButton" destination="ggV-aM-cL6" id="dC0-0L-9Bd"/>
                 <outletCollection property="whiteButtons" destination="jd5-pH-5lu" id="JED-Qr-vrw"/>
@@ -81,7 +80,7 @@
                                 <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="LGA-yp-hP8"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-RC-tNZ" userLabel="Google" customClass="BlueRoundedButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-RC-tNZ" userLabel="OAuth" customClass="BlueRoundedButton">
                             <rect key="frame" x="50" y="70" width="220" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Vnv-rc-yjG"/>
@@ -91,7 +90,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="googleTapped:" destination="-1" eventType="touchUpInside" id="GMx-XJ-CCe"/>
+                                <action selector="oAuthTapped:" destination="-1" eventType="touchUpInside" id="DhH-6J-FZD"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jd5-pH-5lu" userLabel="WhiteLogIn" customClass="WhiteRoundedButton">
@@ -114,14 +113,14 @@
                                 <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="z31-D6-FOZ"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYm-Tu-PoD" userLabel="WhiteGoogle" customClass="WhiteRoundedButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYm-Tu-PoD" userLabel="WhiteOAuth" customClass="WhiteRoundedButton">
                             <rect key="frame" x="50" y="70" width="220" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Get starteD">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="googleTapped:" destination="-1" eventType="touchUpInside" id="GKg-mG-H69"/>
+                                <action selector="oAuthTapped:" destination="-1" eventType="touchUpInside" id="f0x-gj-gsB"/>
                             </connections>
                         </button>
                     </subviews>
