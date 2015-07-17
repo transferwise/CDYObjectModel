@@ -19,7 +19,6 @@
 #import "TransferBackButtonItem.h"
 #import "UploadMoneyViewController.h"
 #import "ApplePayCell.h"
-#import "UIViewController+SortedPayInMethods.h"
 @import PassKit;
 
 #define PaymentMethodCellName @"PaymentMethodCell"
@@ -50,7 +49,7 @@
 	
     [self setTitle:NSLocalizedString(@"upload.money.title.single.method",nil)];	
 	
-	NSMutableArray *sortedPayInMethodTypes = [self sortedPayInMethodTypesForPayment:self.payment];
+	NSMutableArray *sortedPayInMethodTypes = [[self.payment sortedPayInMethodTypes] mutableCopy];
 	
 	if ([ApplePayHelper isApplePayAvailableForPayment: self.payment])
 	{

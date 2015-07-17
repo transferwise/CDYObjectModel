@@ -27,7 +27,6 @@
 #import "PayInMethod.h"
 #import "NSString+Presentation.h"
 #import "Currency.h"
-#import "UIViewController+SortedPayInMethods.h"
 
 @interface UploadMoneyViewController ()
 
@@ -42,7 +41,7 @@
 	
     NSMutableArray *viewControllers = [NSMutableArray array];
     NSMutableArray *titles = [NSMutableArray array];
-    NSArray *availableOptions = self.forcedMethod ? @[self.forcedMethod] : [self sortedPayInMethodTypesForPayment:self.payment];
+    NSArray *availableOptions = self.forcedMethod ? @[self.forcedMethod] : [self.payment sortedPayInMethodTypes];
 	
     for(NSString *method in availableOptions)
     {
