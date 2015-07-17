@@ -761,27 +761,21 @@ isOAuthRegistration:(BOOL)isOauthRegistration
 
 + (void)handleOAuthLoginFlagging:(OAuthLoginType)loginType
 {
-	BOOL fb = NO;
-	BOOL g = NO;
-	
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	switch (loginType)
 	{
 		case Facebook:
-			fb = YES;
+            [defaults setObject:@(TRWAuthenticationFacebook) forKey:TRWAuthenticationTypeUsedKey];
 			break;
 		case Google:
-			g = YES;
+			[defaults setObject:@(TRWAuthenticationGoogle) forKey:TRWAuthenticationTypeUsedKey];
 			break;
 		case None:
 		default:
+            [defaults setObject:@(TRWAuthenticationTransferWise) forKey:TRWAuthenticationTypeUsedKey];
 			break;
 	}
 	
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:g
-			   forKey:TRWGoogleLoginUsedKey];
-	[defaults setBool:fb
-			   forKey:TRWFacebookLoginUsedKey];
 }
 
 @end

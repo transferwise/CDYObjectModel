@@ -85,7 +85,8 @@
 	
 	
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	if([defaults boolForKey:TRWGoogleLoginUsedKey])
+    TRWAuthenticationType authenticationType = [[defaults objectForKey:TRWAuthenticationTypeUsedKey] shortValue];
+	if(authenticationType == TRWAuthenticationGoogle)
 	{
 		[self.oAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
 		[self.whiteOAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
@@ -422,7 +423,8 @@
 	};
 	
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	if([defaults boolForKey:TRWGoogleLoginUsedKey])
+    TRWAuthenticationType authenticationType = [[defaults objectForKey:TRWAuthenticationTypeUsedKey] shortValue];
+	if(authenticationType == TRWAuthenticationGoogle)
 	{
 		[self.loginHelper performOAuthLoginWithProvider:GoogleOAuthServiceName
 								   navigationController:self.navigationController

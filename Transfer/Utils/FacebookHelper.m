@@ -24,8 +24,8 @@
 	
 	//flag up that we have used FB
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:YES
-			   forKey:TRWFacebookLoginUsedKey];
+	[defaults setObject:@(TRWAuthenticationFacebook)
+			   forKey:TRWAuthenticationTypeUsedKey];
 	
 	if ([FBSDKAccessToken currentAccessToken])
 	{

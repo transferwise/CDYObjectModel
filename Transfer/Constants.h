@@ -57,14 +57,13 @@ extern NSString *const TRWImpactRadiusAppId;
 extern NSString *const TRWGoogleTagManagerContainerId;
 
 extern NSString *const TRWAppInstalledSettingsKey;
+extern NSString *const TRWAuthenticationTypeUsedKey;
 extern NSString *const TRWIsRegisteredSettingsKey;
 extern NSString *const TRWHasRespondedToNotificationsPromptSettingsKey;
 extern NSString *const TRWReferralTokenKey;
 extern NSString *const TRWReferralSourceKey;
 extern NSString *const TRWReferrerKey;
-extern NSString *const TRWGoogleLoginUsedKey;
 extern NSString *const TRWGoogleRevokeUrlFormat;
-extern NSString *const TRWFacebookLoginUsedKey;
 extern NSString *const TRWIntroABKey;
 extern NSString *const TRWDidHighlightInviteSection;
 extern NSString *const TRWDisableApplePay;
@@ -116,6 +115,13 @@ typedef NS_OPTIONS(short, IdentificationRequired) {
 	IdentificationAddressRequired = 1 << 1,
 	IdentificationPaymentPurposeRequired = 1 << 2,
     IdentificationSSNRequired = 1 << 3
+};
+
+typedef NS_ENUM(short, TRWAuthenticationType)
+{
+    TRWAuthenticationTransferWise,
+    TRWAuthenticationGoogle,
+    TRWAuthenticationFacebook
 };
 
 extern NSString *AppsFlyerDevKey;
