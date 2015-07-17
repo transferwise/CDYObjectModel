@@ -48,6 +48,8 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *blueButtons;
 @property (nonatomic, assign) CGSize lastLaidoutPageSize;
 
+@property (nonatomic, strong) NSArray *disabledButtons;
+
 @property (strong, nonatomic) AuthenticationHelper *loginHelper;
 
 - (IBAction)startPressed;
@@ -84,19 +86,8 @@
     [self.whiteLoginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
 	
 	
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    TRWAuthenticationType authenticationType = [[defaults objectForKey:TRWAuthenticationTypeUsedKey] shortValue];
-	if(authenticationType == TRWAuthenticationGoogle)
-	{
-		[self.oAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
-		[self.whiteOAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
-	}
-	else
-	{
-		[self.oAuthButton setTitle:NSLocalizedString(@"intro.facebook.button.title", nil) forState:UIControlStateNormal];
-		[self.whiteOAuthButton setTitle:NSLocalizedString(@"intro.facebook.button.title", nil) forState:UIControlStateNormal];
-	}
-
+    [self configureOAuthButtons];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     NSMutableArray *screens = [NSMutableArray array];
@@ -104,6 +95,7 @@
     NSString *plistFileName = self.plistFilenameOverride;
     if(!plistFileName)
     {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         plistFileName = [defaults stringForKey:TRWIntroABKey];
         if(!plistFileName)
         {
@@ -248,6 +240,38 @@
     [self updateButtonAppearance];
 }
 
+-(void)configureOAuthButtons
+{
+    self.disabledButtons = @[];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    TRWAuthenticationType authenticationType = [[defaults objectForKey:TRWAuthenticationTypeUsedKey] shortValue];
+    if(authenticationType == TRWAuthenticationGoogle)
+    {
+        [self.oAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+        [self.whiteOAuthButton setTitle:NSLocalizedString(@"intro.google.button.title", nil) forState:UIControlStateNormal];
+    }
+    else
+    {
+        NSNumber* enableFacebookOnLanding = [defaults objectForKey:TRWEnableFacebookOnLanding];
+        if([enableFacebookOnLanding boolValue])
+        {
+            [self.oAuthButton setTitle:NSLocalizedString(@"intro.facebook.button.title", nil) forState:UIControlStateNormal];
+            [self.whiteOAuthButton setTitle:NSLocalizedString(@"intro.facebook.button.title", nil) forState:UIControlStateNormal];
+        }
+        else
+        {
+            self.disabledButtons = @[self.oAuthButton,self.whiteOAuthButton];
+            self.oAuthButton.hidden = YES;
+            self.whiteOAuthButton.hidden = YES;
+            if(!enableFacebookOnLanding)
+            {
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookConfigurationUpdated:) name:TRWGoogleTagManagerRefreshNotification object:nil];
+            }
+        }
+    }
+    [self updateButtonAppearance];
+}
+
 -(void)updateButtonAppearance
 {
     [self.scrollView layoutIfNeeded];
@@ -380,6 +404,7 @@
     {
         for(UIView* view in viewArray)
         {
+            if([self.disabledButtons indexOfObject:view] == NSNotFound)
             modificationBlock(view);
         }
     }
@@ -482,6 +507,8 @@
     [dictionary removeObjectForKey:key];
 }
 
+#pragma mark - Notifications
+
 -(void)referralUpdateNotification:(NSNotification*)notification
 {
     NSString* referrer = [ReferralsCoordinator referralUser];
@@ -490,5 +517,16 @@
         [self updatePages:YES];
     }
 }
+
+-(void)facebookConfigurationUpdated:(NSNotification*)note
+{
+    if (![note.userInfo[TRWGoogleTagManagerIsDefaultKey] boolValue])
+    {
+        //Only refresh if not default value. only refresh once.
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TRWGoogleTagManagerRefreshNotification object:nil];
+        [self configureOAuthButtons];
+    }
+}
+
 
 @end
