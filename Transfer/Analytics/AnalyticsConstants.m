@@ -14,6 +14,9 @@ NSString *const GAAchWaiting1Shown = @"ACH transfer payment waiting 1";
 NSString *const GAAchWaiting2Shown = @"ACH transfer payment waiting 2";
 NSString *const GAAddRecipient = @"Add recipient";
 NSString *const GAAddrecipientscreen = @"AddRecipientScreen";
+NSString *const GAApplePayFail = @"ApplePay fail";
+NSString *const GAApplePayShown = @"ApplePayShown";
+NSString *const GAApplePaySuccessShown = @"Success ApplePay";
 NSString *const GAAppstarted = @"AppStarted";
 NSString *const GABankTransferPayment = @"Bank transfer payment";
 NSString *const GABusinessProfile = @"Business profile";
@@ -111,9 +114,6 @@ NSString *const GAWireTransfer = @"Wire transfer";
 NSString *const GAFBLoginError = @"FacebookLoginError";
 NSString *const GAFBLoginNoEmail = @"FacebookLoginNoEmail";
 NSString *const GAPushNotificationsPropmpted = @"AcceptedPushNotifications";
-NSString *const GAApplePayShown = @"ApplePaySown";
-NSString *const GAApplePaySuccessShown = @"Success ApplePay";
-NSString *const GAApplePayFail = @"ApplePay fail";
 
 // Mixpanel
 
@@ -122,6 +122,8 @@ NSString *const MPAchStep2 = @"ACH step 2";
 NSString *const MPAchSuccess = @"ACH success";
 NSString *const MPAchWaiting1 = @"ACH waiting 1";
 NSString *const MPAchWaiting2 = @"ACH waiting 2";
+NSString *const MPApplePay = @"ApplePay";
+NSString *const MPApplePaySuccess = @"ApplePay Success";
 NSString *const MPBankTransferPayment = @"Bank transfer payment";
 NSString *const MPConfirmation = @"Confirmation";
 NSString *const MPDeeplink = @"deeplink";
@@ -142,7 +144,6 @@ NSString *const MPUserregistered = @"UserRegistered";
 NSString *const MPVerification = @"Verification";
 NSString *const MPWhatsNew = @"What's new";
 NSString *const MPYourDetails = @"Your details";
-NSString *const MPApplePay = @"ApplePay";
-NSString *const MPApplePaySuccess = @"ApplePay Success";
+
 
 

@@ -16,6 +16,9 @@ extern NSString *const GAAchWaiting2Shown;
 extern NSString *const GAAddRecipient;
 extern NSString *const GAAddrecipientscreen;
 extern NSString *const GAAppstarted;
+extern NSString *const GAApplePayFail;
+extern NSString *const GAApplePayShown;
+extern NSString *const GAApplePaySuccessShown;
 extern NSString *const GABankTransferPayment;
 extern NSString *const GABusinessProfile;
 extern NSString *const GABusinessprofilesaved;
@@ -112,9 +115,6 @@ extern NSString *const GAWireTransfer;
 extern NSString *const GAFBLoginError;
 extern NSString *const GAFBLoginNoEmail;
 extern NSString *const GAPushNotificationsPropmpted;
-extern NSString *const GAApplePayShown;
-extern NSString *const GAApplePaySuccessShown;
-extern NSString *const GAApplePayFail;
 
 //Mixpanel
 
@@ -123,6 +123,8 @@ extern NSString *const MPAchStep2;
 extern NSString *const MPAchSuccess;
 extern NSString *const MPAchWaiting1;
 extern NSString *const MPAchWaiting2;
+extern NSString *const MPApplePay;
+extern NSString *const MPApplePaySuccess;
 extern NSString *const MPBankTransferPayment;
 extern NSString *const MPConfirmation;
 extern NSString *const MPDeeplink;
@@ -143,7 +145,6 @@ extern NSString *const MPUserregistered;
 extern NSString *const MPVerification;
 extern NSString *const MPWhatsNew;
 extern NSString *const MPYourDetails;
-extern NSString *const MPApplePay;
-extern NSString *const MPApplePaySuccess;
+
 
 
