@@ -50,7 +50,7 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
                 return;
             }
 
-            [weakSelf.objectModel createOrUpdateUserWithData:response];
+            [weakSelf.workModel createOrUpdateUserWithData:response];
 
             [weakSelf.workModel saveContext:^{
                 weakSelf.saveResultHandler(nil);
