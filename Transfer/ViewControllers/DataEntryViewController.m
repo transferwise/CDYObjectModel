@@ -46,6 +46,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+#warning "Deliberate crash, remove before shipping"
+    
+    [Crashlytics.sharedInstance crash];
 }
 
 - (void)didReceiveMemoryWarning {

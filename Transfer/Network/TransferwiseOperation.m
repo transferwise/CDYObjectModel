@@ -25,6 +25,8 @@
 #import "LocationHelper.h"
 #import <Crashlytics/Crashlytics.h>
 
+static int instanceCount = 0;
+
 @interface TransferwiseOperation ()
 
 @property (nonatomic, copy) TRWOperationSuccessBlock operationSuccessHandler;
@@ -33,6 +35,7 @@
 @property (nonatomic, strong) ObjectModel *workModel;
 @property (nonatomic) BOOL isAnonymous;
 @property (nonatomic) BOOL hasBeenCancelled;
+@property (atomic) int instanceNumber;
 
 @end
 
@@ -45,6 +48,8 @@
 	if (self)
 	{
 		self.isAnonymous = NO;
+        self.instanceNumber = instanceCount;
+        instanceCount++;
 	}
 	return self;
 }
@@ -167,9 +172,6 @@
 #endif
     __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
-        
-        NSString *currentClassName = NSStringFromClass([self class]);
-        CLS_LOG(@"Network Operation: Dealloced %@", currentClassName);
         
         if (self.hasBeenCancelled) {
             
@@ -398,7 +400,7 @@
 - (void) logState: (NSString *) state
 {
     NSString *currentClassName = NSStringFromClass([self class]);
-    CLS_LOG(@"Network Operation: %@ %@", state, currentClassName);
+    CLSLog(@"NetOp(%d): %@ %@", self.instanceNumber, currentClassName, state);
 }
 
 @end
