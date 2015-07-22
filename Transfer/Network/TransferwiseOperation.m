@@ -23,6 +23,7 @@
 #import "GAIFields.h"
 #import "AuthenticationHelper.h"
 #import "LocationHelper.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface TransferwiseOperation ()
 
@@ -51,6 +52,16 @@
 #pragma mark - Abstract Methods
 - (void)execute {
     ABSTRACT_METHOD;
+}
+
+
+/**
+ *  Add seom logging to the destructor
+ */
+
+- (void) dealloc
+{
+    [self logState: @"Dealloced"];
 }
 
 #pragma mark - Post and Get Data
@@ -138,6 +149,8 @@
 #pragma mark - Request Execution
 - (void)executeRequest:(NSMutableURLRequest *)request
 {
+    [self logState: @"Executing"];
+    
     [TransferwiseOperation provideAuthenticationHeaders:request
 											isAnonymous:self.isAnonymous];
 	[TransferwiseOperation provideLanguageHeader:request];
@@ -154,13 +167,23 @@
 #endif
     __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
-		if (self.hasBeenCancelled) {
-			return;
-		}
-		
+        
+        NSString *currentClassName = NSStringFromClass([self class]);
+        CLS_LOG(@"Network Operation: Dealloced %@", currentClassName);
+        
+        if (self.hasBeenCancelled) {
+            
+            [self logState: @"Cancelled"];
+            return;
+        }
+        
+
+        
         NSInteger statusCode = op.response.statusCode;
         MCLog(@"%@ - Success:%ld - %lu", op.request.URL.path, (long)statusCode, (unsigned long)[responseObject length]);
         if (statusCode != 200 || !responseObject) {
+            [self logState: @"Failure (Not 200 or no response)"];
+            
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseServerError userInfo:@{}];
             if (weakSelf.operationErrorHandler)
             {
@@ -175,6 +198,7 @@
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:&jsonError];
         if (jsonError) {
             MCLog(@"Error:%@", jsonError);
+            [self logState: @"Failure (Bad Reponse JSON)"];
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseFormatError userInfo:@{NSUnderlyingErrorKey : jsonError}];
             if (weakSelf.operationErrorHandler)
             {
@@ -186,13 +210,19 @@
         {
             weakSelf.operationSuccessHandler(response);
         }
+        
+        [self logState: @"Success"];
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+     
 		if (self.hasBeenCancelled) {
+                    [self logState: @"Cancelled"];
 			return;
 		}
-		
+        
         MCLog(@"Error:%@", error);
         if (op.response.statusCode == 410) {
+            
+            [self logState: @"Failure (410)"];
             NSError *createdError = [NSError errorWithDomain:TRWErrorDomain code:ResponseCallGoneError userInfo:@{}];
             if (weakSelf.operationErrorHandler)
             {
@@ -200,11 +230,12 @@
             }
             return;
         }
-
+        
         NSData *responseData = [op responseData];
-
+        
         if ([responseData length] == 0) {
             MCLog(@"No recovery information");
+            [self logState: @"Failure (No data)"];
             if (weakSelf.operationErrorHandler)
             {
                 weakSelf.operationErrorHandler(error);
@@ -215,12 +246,14 @@
         NSError *jsonError = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
         if (jsonError) {
+            [self logState: @"Failure (Bad Error JSON)"];
             MCLog(@"Error JSON read error:%@", jsonError);
             if (weakSelf.operationErrorHandler)
             {
                 weakSelf.operationErrorHandler(error);
             }
         } else {
+            [self logState: @"Failure (Unknown)"];
             [weakSelf handleErrorResponseData:response];
         }
     }];
@@ -358,6 +391,14 @@
 - (void)cancel
 {
 	self.hasBeenCancelled = YES;
+}
+
+#pragma mark - Logging
+
+- (void) logState: (NSString *) state
+{
+    NSString *currentClassName = NSStringFromClass([self class]);
+    CLS_LOG(@"Network Operation: %@ %@", state, currentClassName);
 }
 
 @end

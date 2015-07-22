@@ -14,6 +14,7 @@
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface DataEntryViewController()
 @end
