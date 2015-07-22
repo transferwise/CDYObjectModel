@@ -22,7 +22,7 @@
 #import "Mixpanel+Customisation.h"
 #import "Mixpanel.h"
 #import "NSObject+NSNull.h"
-#import "NanTracking.h"
+#import <NanigansSDK/NanigansSDK.h>
 #import "NetworkErrorCodes.h"
 #import "ObjectModel+Payments.h"
 #import "ObjectModel+PendingPayments.h"
@@ -619,8 +619,10 @@
         [AppsFlyerTracker sharedTracker].customerUserID = [weakSelf.objectModel.currentUser pReference];
         [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[__formatter stringFromNumber:transferFee]];
 #endif
-
-        [NanTracking trackNanigansEvent:weakSelf.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
+		[NANTracking trackNanigansEvent:@"purchase"
+								   name:@"main"
+							extraParams:@{@"pReference": weakSelf.objectModel.currentUser.pReference,
+										  @"transferFee": [__formatter stringFromNumber:transferFee]}];
 
         [weakSelf.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [weakSelf.objectModel.managedObjectContext objectWithID:paymentID];

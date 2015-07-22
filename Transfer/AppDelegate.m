@@ -20,7 +20,7 @@
 #import "UIColor+Theme.h"
 #import "GoogleAnalytics.h"
 #import "AppsFlyerTracker.h"
-#import "NanTracking.h"
+#import <NanigansSDK/NanigansSDK.h>
 #import "Mixpanel.h"
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
@@ -58,12 +58,12 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     
     //Preload keyboard by showing and removing a textfield. This prevents horrible lag the first time the user
     //enters text. iOS defect that's been around since iOS 7.1 if I'm not mistaken.
@@ -195,11 +195,13 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+	[NANTracking trackAppLaunch:nil];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
 	[[GoogleAnalytics sharedInstance] sendAppEvent:GAAppstarted];
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
@@ -220,7 +222,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [self.container refresh];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+- (void)applicationWillTerminate:(UIApplication *)application
+{
     // Saves changes in the application's managed object context before the application terminates.
     [self.objectModel saveContext];
 }
@@ -246,7 +249,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
                    andSecretKey:@"dd39f3e4-54b3-42cc-a49a-67da6af61ac2"
   andNewInstallMetaDataCallback:self
     andDeepLinkMetaDataCallback:self];
-    
 #endif
 	
 	[AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
@@ -255,11 +257,17 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [AppsFlyerTracker sharedTracker].delegate = self;
 #endif
 	
-	[NanTracking setFbAppId:@"274548709260402"];
+	[NANTracking setNanigansAppId:@"68593"
+						  fbAppId:@"274548709260402"];
+#if DEV_VERSION
+	[NANTracking setDebugMode:YES];
+#endif
 	
 	[Fabric with:@[CrashlyticsKit]];
 	
-	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
+	[NANTracking trackNanigansEvent:@"install"
+							   name:@"main"
+						extraParams:nil];
 	
 #if !TARGET_IPHONE_SIMULATOR //Supplied library does not contain binary for simulator
 	EventTracker *tracker = [EventTracker sharedManager];
